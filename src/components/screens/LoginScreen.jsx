@@ -30,15 +30,15 @@ function LoginScreen() {
   // ----- HANDLERS -----
 
   // Called when the form is submitted
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // Prevent the default form submission (which would reload the page)
     e.preventDefault()
 
     // Clear any previous error
     setError('')
 
-    // Attempt to login
-    const result = login(email, password)
+    // Attempt to login (now async - calls the backend API)
+    const result = await login(email, password)
 
     if (result.success) {
       // Login successful - navigate to dashboard
@@ -50,8 +50,8 @@ function LoginScreen() {
   }
 
   // Quick login for development/testing
-  function handleDevLogin() {
-    const result = login('test@sanctuary.com', 'Sanctuary123')
+  async function handleDevLogin() {
+    const result = await login('test@sanctuary.com', 'Sanctuary123')
     if (result.success) {
       navigate('/dashboard')
     }

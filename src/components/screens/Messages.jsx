@@ -24,14 +24,14 @@ function Messages() {
   } = useApp()
 
   // Handle clicking on a conversation
-  function handleConversationClick(convId) {
-    selectConversation(convId)
+  async function handleConversationClick(convId) {
+    await selectConversation(convId)
     navigate('/chat')
   }
 
   // Handle starting a new conversation
-  function handleNewConversation(personId) {
-    startNewConversation(personId)
+  async function handleNewConversation(personId) {
+    await startNewConversation(personId)
     setShowNewConvModal(false)
     navigate('/chat')
   }
