@@ -1,0 +1,16 @@
+# Dependencies - these get re-downloaded with 'npm install'
+node_modules/
+
+# Build output - this gets regenerated with 'npm run build'
+dist/
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo
+.vscode/
+
+# Environment variables (would contain secrets in production)
+.env
+.env.local
+.env.production

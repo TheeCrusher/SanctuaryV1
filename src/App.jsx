@@ -1,0 +1,262 @@
+// =============================================================================
+// APP COMPONENT - Main Application with Routing
+// =============================================================================
+// This is the root component of your application.
+// It defines all the routes (URLs) and which components to show for each.
+
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { useApp } from './context/AppContext'
+
+// Layout components
+import { BottomNav } from './components/layout'
+
+// Screen components (we'll create these next)
+import LoginScreen from './components/screens/LoginScreen'
+import Dashboard from './components/screens/Dashboard'
+import Appointments from './components/screens/Appointments'
+import Messages from './components/screens/Messages'
+import Chat from './components/screens/Chat'
+import Churches from './components/screens/Churches'
+import ChurchDetail from './components/screens/ChurchDetail'
+import Profile from './components/screens/Profile'
+import About from './components/screens/About'
+import Help from './components/screens/Help'
+import Contact from './components/screens/Contact'
+import AccountDetails from './components/screens/AccountDetails'
+import Notifications from './components/screens/Notifications'
+import PaymentMethod from './components/screens/PaymentMethod'
+import Terms from './components/screens/Terms'
+import Privacy from './components/screens/Privacy'
+
+// =============================================================================
+// PROTECTED ROUTE COMPONENT
+// =============================================================================
+// This component wraps routes that require authentication.
+// If the user isn't logged in, it redirects them to the login page.
+
+function ProtectedRoute({ children }) {
+  const { user, isLoading } = useApp()
+
+  // While checking authentication status, show loading
+  if (isLoading) {
+    return (
+      <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="text-center">
+          <div style={{ fontSize: '48px', marginBottom: '16px' }}>🙏</div>
+          <div>Loading...</div>
+        </div>
+      </div>
+    )
+  }
+
+  // If not logged in, redirect to login page
+  // The 'replace' prop means this won't add to browser history
+  if (!user) {
+    return <Navigate to="/login" replace />
+  }
+
+  // If logged in, show the protected content
+  return children
+}
+
+// =============================================================================
+// LAYOUT COMPONENT
+// =============================================================================
+// Wraps screens that should have the bottom navigation bar.
+// Some screens (login, chat) don't show the nav bar.
+
+function MainLayout({ children }) {
+  return (
+    <>
+      {children}
+      <BottomNav />
+    </>
+  )
+}
+
+// =============================================================================
+// MAIN APP COMPONENT
+// =============================================================================
+
+function App() {
+  const { user } = useApp()
+  const location = useLocation()
+
+  // Pages where we DON'T show the bottom navigation
+  const noNavPages = ['/login', '/chat']
+  const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
+
+  return (
+    <div className="app-container">
+      <Routes>
+        {/* ====== PUBLIC ROUTES ====== */}
+        {/* These don't require authentication */}
+
+        <Route
+          path="/login"
+          element={
+            // If already logged in, redirect to dashboard
+            user ? <Navigate to="/dashboard" replace /> : <LoginScreen />
+          }
+        />
+
+        {/* ====== PROTECTED ROUTES ====== */}
+        {/* These require the user to be logged in */}
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/appointments"
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <Messages />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/chat"
+          element={
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/churches"
+          element={
+            <ProtectedRoute>
+              <Churches />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/churches/:id"
+          element={
+            <ProtectedRoute>
+              <ChurchDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/help"
+          element={
+            <ProtectedRoute>
+              <Help />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/account-details"
+          element={
+            <ProtectedRoute>
+              <AccountDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/payment-method"
+          element={
+            <ProtectedRoute>
+              <PaymentMethod />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/terms"
+          element={
+            <ProtectedRoute>
+              <Terms />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/privacy"
+          element={
+            <ProtectedRoute>
+              <Privacy />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ====== DEFAULT ROUTE ====== */}
+        {/* Redirect root URL to dashboard (or login if not authenticated) */}
+        <Route
+          path="/"
+          element={<Navigate to="/dashboard" replace />}
+        />
+
+        {/* ====== CATCH-ALL ROUTE ====== */}
+        {/* Any unknown URL goes to dashboard */}
+        <Route
+          path="*"
+          element={<Navigate to="/dashboard" replace />}
+        />
+      </Routes>
+
+      {/* Show bottom navigation on appropriate pages */}
+      {showNav && <BottomNav />}
+    </div>
+  )
+}
+
+export default App
