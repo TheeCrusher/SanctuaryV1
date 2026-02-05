@@ -10,6 +10,7 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
+import { Home, Calendar, MessageCircle, Church, User } from 'lucide-react'
 
 function BottomNav() {
   // useNavigate gives us a function to programmatically change routes
@@ -30,10 +31,10 @@ function BottomNav() {
   // Navigation items configuration
   // Each item has: path (URL), icon (emoji), and label (for accessibility)
   const navItems = [
-    { path: '/dashboard', icon: '🏠', label: 'Home' },
-    { path: '/appointments', icon: '📅', label: 'Appointments' },
-    { path: '/messages', icon: '💬', label: 'Messages' },
-    { path: '/churches', icon: '⛪', label: 'Churches' }
+    { path: '/dashboard', icon: Home, label: 'Home' },
+    { path: '/appointments', icon: Calendar, label: 'Appointments' },
+    { path: '/messages', icon: MessageCircle, label: 'Messages' },
+    { path: '/churches', icon: Church, label: 'Churches' }
   ]
 
   return (
@@ -49,7 +50,7 @@ function BottomNav() {
             aria-label={item.label}
             title={item.label}
           >
-            {item.icon}
+            <item.icon size={24} />
           </button>
         ))}
 
@@ -63,7 +64,7 @@ function BottomNav() {
           {user?.photoUrl ? (
             <img src={user.photoUrl} alt="Profile" />
           ) : (
-            user?.avatar || '👤'
+            <User size={22} />
           )}
         </button>
       </div>

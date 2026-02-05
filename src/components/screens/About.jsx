@@ -4,6 +4,7 @@
 // Information about the Sanctuary app.
 
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft, Heart } from 'lucide-react'
 
 function About() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ function About() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>About</h1>
           <div style={{ width: '40px' }} />
@@ -58,7 +59,7 @@ function About() {
 
         <div style={{ textAlign: 'center', marginTop: '32px', color: '#9ca3af' }}>
           <p>Version 1.0.0</p>
-          <p style={{ marginTop: '8px' }}>Made with 🙏 and ❤️</p>
+          <p style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>Made with <Heart size={14} style={{ color: '#ef4444' }} /> and faith</p>
         </div>
       </div>
     </div>

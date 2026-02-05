@@ -6,6 +6,7 @@
 
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useApp } from './context/AppContext'
+import { Loader2 } from 'lucide-react'
 
 // Layout components
 import { BottomNav } from './components/layout'
@@ -42,7 +43,7 @@ function ProtectedRoute({ children }) {
     return (
       <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="text-center">
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>🙏</div>
+          <Loader2 size={48} className="animate-spin" style={{ color: '#1e3a8a', marginBottom: '16px' }} />
           <div>Loading...</div>
         </div>
       </div>

@@ -5,6 +5,7 @@
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft, ChevronDown } from 'lucide-react'
 
 function Help() {
   const navigate = useNavigate()
@@ -60,7 +61,7 @@ function Help() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Help & FAQ</h1>
           <div style={{ width: '40px' }} />
@@ -79,7 +80,7 @@ function Help() {
             >
               <span>{faq.question}</span>
               <span className={`faq-arrow ${openFaqs[faq.id] ? 'open' : ''}`}>
-                ▼
+                <ChevronDown size={16} />
               </span>
             </div>
             <div className={`faq-a ${openFaqs[faq.id] ? 'open' : ''}`}>

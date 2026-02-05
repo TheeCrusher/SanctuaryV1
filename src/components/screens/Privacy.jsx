@@ -4,6 +4,7 @@
 // Displays the app's privacy policy.
 
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 
 function Privacy() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ function Privacy() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Privacy Policy</h1>
           <div style={{ width: '40px' }} />

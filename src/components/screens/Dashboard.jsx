@@ -10,6 +10,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge } from '../common'
+import { Calendar } from 'lucide-react'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -113,7 +114,7 @@ function Dashboard() {
         {upcomingAppointments.length === 0 ? (
           <Card>
             <div className="empty-state" style={{ padding: '24px' }}>
-              <div className="empty-icon">📅</div>
+              <div className="empty-icon"><Calendar size={48} /></div>
               <div className="empty-text">No upcoming sessions</div>
               <div className="empty-subtext">Your schedule is clear</div>
             </div>

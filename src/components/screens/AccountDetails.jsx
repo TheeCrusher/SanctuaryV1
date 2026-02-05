@@ -5,6 +5,7 @@
 // In the future, this would allow editing profile details.
 
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card } from '../common'
 
@@ -27,7 +28,7 @@ function AccountDetails() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Account Details</h1>
           <div style={{ width: '40px' }} />

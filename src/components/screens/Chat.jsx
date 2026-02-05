@@ -8,6 +8,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
+import { ArrowLeft, MessageCircle, Send } from 'lucide-react'
 
 function Chat() {
   const navigate = useNavigate()
@@ -54,7 +55,7 @@ function Chat() {
       {/* Chat Header */}
       <div className="chat-header">
         <button className="back-btn" onClick={() => navigate('/messages')}>
-          ←
+          <ArrowLeft size={20} />
         </button>
         <Avatar
           emoji={selectedConversation.avatar}
@@ -75,7 +76,7 @@ function Chat() {
       <div className="chat-messages" id="chatMsgs">
         {selectedConversation.msgs.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '48px 20px', color: '#9ca3af' }}>
-            <div style={{ fontSize: '48px', marginBottom: '12px' }}>💬</div>
+            <div style={{ marginBottom: '12px' }}><MessageCircle size={48} /></div>
             <div>No messages yet</div>
             <div style={{ fontSize: '14px' }}>Start the conversation!</div>
           </div>
@@ -114,7 +115,7 @@ function Chat() {
           onClick={handleSend}
           disabled={!messageText.trim()}
         >
-          ➤
+          <Send size={20} />
         </button>
       </div>
     </div>

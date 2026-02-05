@@ -11,6 +11,8 @@
 //   - variant: 'white' | 'blue' | 'gradient' (default: 'blue')
 //   - className: Additional CSS classes (optional)
 
+import { User } from 'lucide-react'
+
 function Avatar({
   src,
   emoji,
@@ -30,7 +32,7 @@ function Avatar({
         <img src={src} alt="Avatar" />
       ) : (
         // Otherwise, show the emoji (or a default)
-        emoji || '👤'
+        emoji || <User size={20} />
       )}
     </div>
   )

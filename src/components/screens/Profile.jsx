@@ -8,6 +8,7 @@ import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
+import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight } from 'lucide-react'
 
 function Profile() {
   const navigate = useNavigate()
@@ -47,17 +48,17 @@ function Profile() {
 
   // Top menu items (account-related)
   const accountItems = [
-    { icon: '👤', text: 'Account Details', path: '/account-details' },
-    { icon: '🔔', text: 'Notifications', path: '/notifications' },
-    { icon: '💳', text: 'Payment Method', path: '/payment-method' }
+    { icon: User, text: 'Account Details', path: '/account-details' },
+    { icon: Bell, text: 'Notifications', path: '/notifications' },
+    { icon: CreditCard, text: 'Payment Method', path: '/payment-method' }
   ]
 
   // Support menu items
   const supportItems = [
-    { icon: '✉️', text: 'Contact Us', path: '/contact' },
-    { icon: '❓', text: 'FAQs', path: '/help' },
-    { icon: '📄', text: 'Terms & Conditions', path: '/terms' },
-    { icon: '🔒', text: 'Privacy Policy', path: '/privacy' }
+    { icon: Mail, text: 'Contact Us', path: '/contact' },
+    { icon: HelpCircle, text: 'FAQs', path: '/help' },
+    { icon: FileText, text: 'Terms & Conditions', path: '/terms' },
+    { icon: Lock, text: 'Privacy Policy', path: '/privacy' }
   ]
 
   return (
@@ -72,7 +73,7 @@ function Profile() {
             size="xl"
             variant="gradient"
           />
-          <div className="camera-overlay">📷</div>
+          <div className="camera-overlay"><Camera size={16} /></div>
         </div>
 
         {/* Hidden file input for photo upload */}
@@ -99,10 +100,10 @@ function Profile() {
             onClick={() => navigate(item.path)}
           >
             <div className="menu-item-left">
-              <span className="menu-item-icon">{item.icon}</span>
+              <span className="menu-item-icon"><item.icon size={20} /></span>
               <span className="menu-item-text">{item.text}</span>
             </div>
-            <span className="menu-item-arrow">›</span>
+            <span className="menu-item-arrow"><ChevronRight size={18} /></span>
           </button>
         ))}
 
@@ -116,10 +117,10 @@ function Profile() {
             onClick={() => navigate(item.path)}
           >
             <div className="menu-item-left">
-              <span className="menu-item-icon">{item.icon}</span>
+              <span className="menu-item-icon"><item.icon size={20} /></span>
               <span className="menu-item-text">{item.text}</span>
             </div>
-            <span className="menu-item-arrow">›</span>
+            <span className="menu-item-arrow"><ChevronRight size={18} /></span>
           </button>
         ))}
 
@@ -128,10 +129,10 @@ function Profile() {
 
         <button className="menu-item" onClick={handleLogout}>
           <div className="menu-item-left">
-            <span className="menu-item-icon">🚪</span>
+            <span className="menu-item-icon"><LogOut size={20} /></span>
             <span className="menu-item-text danger">Log Out</span>
           </div>
-          <span className="menu-item-arrow danger">›</span>
+          <span className="menu-item-arrow danger"><ChevronRight size={18} /></span>
         </button>
       </div>
     </div>

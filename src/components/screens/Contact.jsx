@@ -4,6 +4,7 @@
 // Contact information and support options.
 
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft, Mail, Phone, MessageCircle } from 'lucide-react'
 
 function Contact() {
   const navigate = useNavigate()
@@ -11,17 +12,17 @@ function Contact() {
   // Contact options
   const contactOptions = [
     {
-      icon: '📧',
+      icon: Mail,
       label: 'Email',
       value: 'support@sanctuary.app'
     },
     {
-      icon: '📱',
+      icon: Phone,
       label: 'Phone',
       value: '1-800-SANCTUARY'
     },
     {
-      icon: '💬',
+      icon: MessageCircle,
       label: 'Live Chat',
       value: 'Available 9 AM - 5 PM EST'
     }
@@ -33,7 +34,7 @@ function Contact() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Contact Us</h1>
           <div style={{ width: '40px' }} />
@@ -53,7 +54,7 @@ function Contact() {
         {/* Contact Options */}
         {contactOptions.map((option, index) => (
           <div key={index} className="contact-row">
-            <div className="contact-icon">{option.icon}</div>
+            <div className="contact-icon"><option.icon size={24} /></div>
             <div>
               <div className="contact-label">{option.label}</div>
               <div className="contact-value">{option.value}</div>

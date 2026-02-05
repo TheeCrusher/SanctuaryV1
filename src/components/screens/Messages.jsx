@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Modal, EmptyState } from '../common'
+import { Plus, MessageCircle, ChevronRight } from 'lucide-react'
 
 function Messages() {
   const navigate = useNavigate()
@@ -46,7 +47,7 @@ function Messages() {
             className="icon-btn"
             onClick={() => setShowNewConvModal(true)}
           >
-            +
+            <Plus size={22} />
           </button>
         </div>
       </div>
@@ -55,7 +56,7 @@ function Messages() {
       <div className="screen-content">
         {conversations.length === 0 ? (
           <EmptyState
-            icon="💬"
+            icon={MessageCircle}
             title="No conversations yet"
             subtitle="Start a conversation with a seeker"
             actionLabel="New Message"
@@ -108,7 +109,7 @@ function Messages() {
               <div className="new-conv-name">{person.name}</div>
               <div className="new-conv-role">{person.role}</div>
             </div>
-            <span style={{ color: '#9ca3af' }}>›</span>
+            <span style={{ color: '#9ca3af' }}><ChevronRight size={20} /></span>
           </div>
         ))}
 

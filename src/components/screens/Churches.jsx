@@ -7,6 +7,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
+import { X, Church, Check } from 'lucide-react'
 
 function Churches() {
   const navigate = useNavigate()
@@ -48,7 +49,7 @@ function Churches() {
               className="search-clear"
               onClick={() => setChurchSearchQuery('')}
             >
-              ✕
+              <X size={18} />
             </button>
           )}
         </div>
@@ -58,7 +59,7 @@ function Churches() {
       <div className="screen-content">
         {churches.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">⛪</div>
+            <div className="empty-icon"><Church size={48} /></div>
             <div className="empty-text">No churches found</div>
             <div className="empty-subtext">
               Try a different search term
@@ -122,7 +123,10 @@ function Churches() {
               {/* Meta Tags */}
               <div className="church-meta">
                 <span className={`meta-tag ${church.sundaySchool ? 'meta-tag-yes' : 'meta-tag-no'}`}>
-                  {church.sundaySchool ? '✓ Sunday School' : '✗ No Sunday School'}
+                  {church.sundaySchool
+                    ? <><Check size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Sunday School</>
+                    : <><X size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> No Sunday School</>
+                  }
                 </span>
                 <span className="meta-tag">{church.hours}</span>
               </div>

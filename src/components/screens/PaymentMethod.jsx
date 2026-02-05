@@ -5,6 +5,7 @@
 // Displays a visual credit card using the payment-card CSS from the original app.
 
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 
 function PaymentMethod() {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ function PaymentMethod() {
       <div className="screen-header">
         <div className="screen-header-top">
           <button className="back-btn" onClick={() => navigate('/profile')}>
-            ←
+            <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Payment Method</h1>
           <div style={{ width: '40px' }} />

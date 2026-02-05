@@ -7,6 +7,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
+import { ArrowLeft, Church, Check, X } from 'lucide-react'
 
 function ChurchDetail() {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ function ChurchDetail() {
         <div className="screen-header">
           <div className="screen-header-top">
             <button className="back-btn" onClick={() => navigate('/churches')}>
-              ←
+              <ArrowLeft size={20} />
             </button>
             <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Church Not Found</h1>
             <div style={{ width: '40px' }} />
@@ -35,7 +36,7 @@ function ChurchDetail() {
         </div>
         <div className="screen-content">
           <div className="empty-state">
-            <div className="empty-icon">⛪</div>
+            <div className="empty-icon"><Church size={48} /></div>
             <div className="empty-text">Church not found</div>
             <button
               className="btn-primary"
@@ -169,7 +170,10 @@ function ChurchDetail() {
           </h3>
           <div className="church-meta">
             <span className={`meta-tag ${church.sundaySchool ? 'meta-tag-yes' : 'meta-tag-no'}`}>
-              {church.sundaySchool ? '✓ Sunday School' : '✗ No Sunday School'}
+              {church.sundaySchool
+                ? <><Check size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Sunday School</>
+                : <><X size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> No Sunday School</>
+              }
             </span>
             {church.sundaySchool && (
               <span className="meta-tag">{church.recommendedAges}</span>

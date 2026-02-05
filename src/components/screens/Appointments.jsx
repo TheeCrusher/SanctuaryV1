@@ -7,6 +7,7 @@
 import { useState } from 'react'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
+import { Plus, Calendar } from 'lucide-react'
 
 function Appointments() {
   // State for the "New Appointment" modal
@@ -122,7 +123,7 @@ function Appointments() {
         <div className="screen-header-top">
           <h1 style={{ fontSize: '24px', fontWeight: '700' }}>Sessions</h1>
           <button className="icon-btn" onClick={() => setShowModal(true)}>
-            +
+            <Plus size={22} />
           </button>
         </div>
       </div>
@@ -131,7 +132,7 @@ function Appointments() {
       <div className="screen-content">
         {appointments.length === 0 ? (
           <EmptyState
-            icon="📅"
+            icon={Calendar}
             title="No sessions yet"
             subtitle="Create your first session to get started"
             actionLabel="New Session"
