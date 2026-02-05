@@ -1,0 +1,160 @@
+// ============================================================
+// Seed Data
+// ============================================================
+// This file contains all the initial data for the Sanctuary app.
+// It's copied from the hardcoded data in:
+//   src/context/AppContext.jsx
+//
+// This data gets inserted into PostgreSQL by seed.js
+// ============================================================
+
+// Test user account (the spiritual guide)
+// Password will be hashed with bcrypt before inserting
+export const TEST_USER = {
+  name: 'Spiritual Guide',
+  email: 'test@sanctuary.com',
+  password: 'Sanctuary123',
+  avatar: '🙏',
+  role: 'guide'
+}
+
+// Available people for conversations
+// These become user accounts in the database
+export const AVAILABLE_PEOPLE = [
+  { name: 'Sarah Johnson', avatar: '👩', role: 'seeker' },
+  { name: 'Michael Chen', avatar: '👨', role: 'seeker' },
+  { name: 'Emily Rodriguez', avatar: '👩‍🦱', role: 'seeker' },
+  { name: 'James Wilson', avatar: '👨‍🦳', role: 'seeker' },
+  { name: 'Grace Okafor', avatar: '👩', role: 'guide' }
+]
+
+// Church listings
+// Maps to: AppContext.jsx → ALL_CHURCHES
+export const CHURCHES = [
+  {
+    name: 'Willow Creek Church',
+    address: '67 E Wacker Dr',
+    city: 'Chicago',
+    zip: '60601',
+    sundaySchool: true,
+    recommendedAges: 'Ages 3–12',
+    hours: 'Sun 9:00 & 11:00 AM',
+    ratingSinging: 4.5,
+    ratingPreaching: 5.0,
+    ratingOpenness: 4.0,
+    ratingSpace: 4.5,
+    overallRating: 4.5,
+    reviewCount: 88
+  },
+  {
+    name: 'Holy Name Cathedral',
+    address: '1555 N State Pkwy',
+    city: 'Chicago',
+    zip: '60610',
+    sundaySchool: true,
+    recommendedAges: 'Ages 5–14',
+    hours: 'Sun 8:00 & 10:30 AM',
+    ratingSinging: 4.0,
+    ratingPreaching: 4.5,
+    ratingOpenness: 4.5,
+    ratingSpace: 5.0,
+    overallRating: 4.5,
+    reviewCount: 142
+  },
+  {
+    name: 'Brooklyn Tabernacle',
+    address: '11 Atlantic Ave',
+    city: 'Brooklyn',
+    zip: '11217',
+    sundaySchool: true,
+    recommendedAges: 'Ages 3–12',
+    hours: 'Sun 9:00 & 11:30 AM',
+    ratingSinging: 5.0,
+    ratingPreaching: 5.0,
+    ratingOpenness: 4.5,
+    ratingSpace: 4.0,
+    overallRating: 4.8,
+    reviewCount: 445
+  },
+  {
+    name: 'Lakewood Church',
+    address: '3700 Lake Mercer Dr',
+    city: 'Houston',
+    zip: '77054',
+    sundaySchool: true,
+    recommendedAges: 'Ages 3–16',
+    hours: 'Sun 8:45 & 10:45 AM',
+    ratingSinging: 5.0,
+    ratingPreaching: 5.0,
+    ratingOpenness: 4.5,
+    ratingSpace: 5.0,
+    overallRating: 4.8,
+    reviewCount: 621
+  },
+  {
+    name: 'National Cathedral',
+    address: '3001 Massachusetts Ave NW',
+    city: 'Washington',
+    zip: '20016',
+    sundaySchool: true,
+    recommendedAges: 'Ages 5–16',
+    hours: 'Sun 8:30 & 11:00 AM',
+    ratingSinging: 5.0,
+    ratingPreaching: 5.0,
+    ratingOpenness: 4.5,
+    ratingSpace: 5.0,
+    overallRating: 4.8,
+    reviewCount: 267
+  }
+]
+
+// Bible quotes for daily inspiration
+// Maps to: AppContext.jsx → BIBLE_QUOTES
+export const BIBLE_QUOTES = [
+  { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", ref: "John 3:16" },
+  { text: "I can do all things through Christ who strengthens me.", ref: "Philippians 4:13" },
+  { text: "The Lord is my shepherd; I shall not want.", ref: "Psalm 23:1" },
+  { text: "Be strong and courageous. The Lord your God is with you wherever you go.", ref: "Joshua 1:9" },
+  { text: "Trust in the Lord with all your heart and lean not on your own understanding.", ref: "Proverbs 3:5" },
+  { text: "He has made everything beautiful in its time.", ref: "Ecclesiastes 3:11" },
+  { text: "For I know the plans I have for you — plans to prosper you and not to harm you.", ref: "Jeremiah 29:11" },
+  { text: "The Lord bless you and keep you; the Lord make His face shine upon you.", ref: "Numbers 6:24–25" },
+  { text: "Greater love has no one than this: to lay down one's life for one's friends.", ref: "John 15:13" },
+  { text: "Be still and know that I am God.", ref: "Psalm 46:10" },
+  { text: "The steadfast love of the Lord never ceases; His mercies are new every morning.", ref: "Lamentations 3:22–23" },
+  { text: "For nothing is impossible with God.", ref: "Matthew 19:26" },
+  { text: "Let all that you do be done in love.", ref: "1 Corinthians 16:14" },
+  { text: "He heals the brokenhearted and binds up their wounds.", ref: "Psalm 147:3" },
+  { text: "Cast all your anxiety on Him because He cares for you.", ref: "1 Peter 5:7" },
+  { text: "Walk by faith, not by sight.", ref: "2 Corinthians 5:7" },
+  { text: "Delight yourself in the Lord, and He will give you the desires of your heart.", ref: "Psalm 37:4" },
+  { text: "My peace I give to you, not as the world gives.", ref: "John 14:27" },
+  { text: "Seek first His kingdom and His righteousness, and all these things shall be added.", ref: "Matthew 6:33" },
+  { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" },
+  { text: "Fear not, for I am with you; be not dismayed, for I am your God.", ref: "Isaiah 41:10" }
+]
+
+// Sample appointments for the demo
+// These link to the test user (guide_id will be set during seeding)
+export const SAMPLE_APPOINTMENTS = [
+  {
+    seekerName: 'Ben Dover',
+    avatar: '👤',
+    date: '2026-02-05',
+    time: '17:30',
+    duration: 60,
+    type: 'Bible Study',
+    notes: 'Tell me about the burning bush',
+    status: 'confirmed'
+  },
+  {
+    seekerName: 'Phil Macrackin',
+    avatar: '👤',
+    date: '2026-02-07',
+    time: '17:30',
+    duration: 60,
+    type: 'Bible Study',
+    notes: 'Did Jesus really walk on water? Let\'s discuss',
+    status: 'pending'
+  }
+]

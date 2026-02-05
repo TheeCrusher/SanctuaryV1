@@ -14,3 +14,6 @@ dist/
 .env
 .env.local
 .env.production
+
+# Server dependencies (separate from frontend node_modules)
+server/node_modules/

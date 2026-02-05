@@ -1,0 +1,160 @@
+// ============================================================
+// Database Seed Script
+// ============================================================
+// This script sets up the database from scratch:
+// 1. Creates all tables (from schema.sql)
+// 2. Inserts the test user and available people
+// 3. Inserts churches, Bible quotes, and sample appointments
+//
+// Run with: npm run seed (from the server/ directory)
+//
+// IMPORTANT: This script drops and recreates tables,
+// so all existing data will be lost! Only use during
+// development setup.
+// ============================================================
+
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+import bcrypt from 'bcryptjs'
+import dotenv from 'dotenv'
+import pg from 'pg'
+
+import {
+  TEST_USER,
+  AVAILABLE_PEOPLE,
+  CHURCHES,
+  BIBLE_QUOTES,
+  SAMPLE_APPOINTMENTS
+} from './seedData.js'
+
+// Load environment variables
+dotenv.config()
+
+// Get the directory of this file (needed for reading schema.sql)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+async function seed() {
+  // Create a direct database connection (not a pool, since this is a one-time script)
+  const client = new pg.Client({
+    connectionString: process.env.DATABASE_URL,
+  })
+
+  try {
+    await client.connect()
+    console.log('📦 Connected to database\n')
+
+    // ---- Step 1: Drop existing tables and recreate ----
+    console.log('🗑️  Dropping existing tables...')
+    await client.query(`
+      DROP TABLE IF EXISTS messages CASCADE;
+      DROP TABLE IF EXISTS conversations CASCADE;
+      DROP TABLE IF EXISTS appointments CASCADE;
+      DROP TABLE IF EXISTS churches CASCADE;
+      DROP TABLE IF EXISTS bible_quotes CASCADE;
+      DROP TABLE IF EXISTS users CASCADE;
+    `)
+
+    // ---- Step 2: Run schema.sql to create tables ----
+    console.log('📋 Creating tables from schema.sql...')
+    const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
+    const schema = readFileSync(schemaPath, 'utf8')
+    await client.query(schema)
+    console.log('   ✅ 6 tables created\n')
+
+    // ---- Step 3: Insert test user ----
+    console.log('👤 Creating test user...')
+    const passwordHash = await bcrypt.hash(TEST_USER.password, 10)
+    const userResult = await client.query(
+      `INSERT INTO users (name, email, password_hash, avatar, role)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id`,
+      [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role]
+    )
+    const guideId = userResult.rows[0].id
+    console.log(`   ✅ Test user created (id: ${guideId})`)
+    console.log(`      Email: ${TEST_USER.email}`)
+    console.log(`      Password: ${TEST_USER.password}\n`)
+
+    // ---- Step 4: Insert available people as users ----
+    console.log('👥 Creating available people...')
+    const peopleIds = []
+    for (const person of AVAILABLE_PEOPLE) {
+      // Give each person a dummy password (they're demo accounts)
+      const hash = await bcrypt.hash('password123', 10)
+      const result = await client.query(
+        `INSERT INTO users (name, email, password_hash, avatar, role)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING id`,
+        [
+          person.name,
+          person.name.toLowerCase().replace(/\s+/g, '.') + '@sanctuary.com',
+          hash,
+          person.avatar,
+          person.role
+        ]
+      )
+      peopleIds.push(result.rows[0].id)
+      console.log(`   ✅ ${person.name} (${person.role})`)
+    }
+    console.log('')
+
+    // ---- Step 5: Insert churches ----
+    console.log('⛪ Inserting churches...')
+    for (const church of CHURCHES) {
+      await client.query(
+        `INSERT INTO churches (name, address, city, zip, sunday_school, recommended_ages,
+         hours, rating_singing, rating_preaching, rating_openness, rating_space,
+         overall_rating, review_count)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+        [
+          church.name, church.address, church.city, church.zip,
+          church.sundaySchool, church.recommendedAges, church.hours,
+          church.ratingSinging, church.ratingPreaching, church.ratingOpenness,
+          church.ratingSpace, church.overallRating, church.reviewCount
+        ]
+      )
+      console.log(`   ✅ ${church.name} (${church.city})`)
+    }
+    console.log('')
+
+    // ---- Step 6: Insert Bible quotes ----
+    console.log('📖 Inserting Bible quotes...')
+    for (const quote of BIBLE_QUOTES) {
+      await client.query(
+        'INSERT INTO bible_quotes (text, ref) VALUES ($1, $2)',
+        [quote.text, quote.ref]
+      )
+    }
+    console.log(`   ✅ ${BIBLE_QUOTES.length} quotes inserted\n`)
+
+    // ---- Step 7: Insert sample appointments ----
+    console.log('📅 Inserting sample appointments...')
+    for (const apt of SAMPLE_APPOINTMENTS) {
+      await client.query(
+        `INSERT INTO appointments (guide_id, seeker_name, avatar, date, time, duration, type, notes, status)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        [guideId, apt.seekerName, apt.avatar, apt.date, apt.time, apt.duration, apt.type, apt.notes, apt.status]
+      )
+      console.log(`   ✅ ${apt.seekerName} - ${apt.type} (${apt.status})`)
+    }
+
+    console.log('\n🎉 Database seeded successfully!')
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    console.log(`   Users:        ${1 + AVAILABLE_PEOPLE.length}`)
+    console.log(`   Churches:     ${CHURCHES.length}`)
+    console.log(`   Quotes:       ${BIBLE_QUOTES.length}`)
+    console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
+
+  } catch (error) {
+    console.error('\n❌ Seeding failed:', error.message)
+    console.error(error)
+    process.exit(1)
+  } finally {
+    await client.end()
+  }
+}
+
+seed()
