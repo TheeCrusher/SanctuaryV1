@@ -9,10 +9,15 @@ export default defineConfig({
     host: true, // Allows access from network (useful in Codespaces)
     proxy: {
       // Forward any request starting with /api to the Express backend
-      // Example: fetch('/api/appointments') → http://localhost:3001/api/appointments
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+      },
+      // Forward Socket.io WebSocket connections to the Express backend
+      '/socket.io': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        ws: true,
       }
     }
   }

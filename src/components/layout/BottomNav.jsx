@@ -29,7 +29,7 @@ function BottomNav() {
 
   // "More" is active when on /more, /notes, /scripture, or /churches
   function isMoreActive() {
-    const morePaths = ['/more', '/notes', '/scripture', '/churches']
+    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )

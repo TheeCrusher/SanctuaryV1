@@ -2,18 +2,20 @@
 // Sanctuary API Server - Entry Point
 // ============================================================
 // This is the main file that starts the Express server.
-// It sets up middleware (code that runs on every request),
-// registers all API routes, and starts listening for requests.
+// It sets up middleware, registers API routes, attaches
+// Socket.io for real-time messaging, and starts listening.
 //
 // Run with: npm run dev (auto-restarts on changes)
 // Or:       npm start  (production mode)
 // ============================================================
 
 import express from 'express'
+import { createServer } from 'http'
 import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 import pool from './config/db.js'
+import { setupSocket } from './socket.js'
 import authRoutes from './routes/auth.js'
 import appointmentRoutes from './routes/appointments.js'
 import churchRoutes from './routes/churches.js'
@@ -23,43 +25,37 @@ import quoteRoutes from './routes/quotes.js'
 import noteRoutes from './routes/notes.js'
 import favoriteRoutes from './routes/favorites.js'
 import scriptureRoutes from './routes/scripture.js'
+import reviewRoutes from './routes/reviews.js'
+import prayerRoutes from './routes/prayers.js'
 
 // Load environment variables from .env
 dotenv.config()
 
-// Create the Express app
+// Create the Express app and HTTP server
 const app = express()
+const server = createServer(app)
 const PORT = process.env.PORT || 3001
+
+// Attach Socket.io to the HTTP server
+const io = setupSocket(server)
+
+// Make io available to route handlers via req.app
+app.set('io', io)
 
 // ============================================================
 // MIDDLEWARE
 // ============================================================
-// Middleware runs on EVERY request before your route handlers.
-// Think of it like a security checkpoint at an airport.
 
-// cors() - Allows the React frontend (port 5173) to make
-//          requests to this backend (port 3001)
 app.use(cors())
-
-// express.json() - Parses JSON in request bodies so you can
-//                  access it via req.body (e.g., login form data)
-//                  Limit increased to 10mb for base64 photo uploads
 app.use(express.json({ limit: '10mb' }))
-
-// morgan('dev') - Logs every request to the console, like:
-//                 "POST /api/auth/login 200 15ms"
-//                 Super helpful for debugging!
 app.use(morgan('dev'))
 
 // ============================================================
 // HEALTH CHECK ROUTE
 // ============================================================
-// A simple endpoint to verify the server is running.
-// Also tests the database connection.
 
 app.get('/api/health', async (req, res) => {
   try {
-    // Try a simple database query to verify the connection
     const result = await pool.query('SELECT NOW() AS server_time')
     res.json({
       status: 'ok',
@@ -80,9 +76,6 @@ app.get('/api/health', async (req, res) => {
 // ============================================================
 // API ROUTES
 // ============================================================
-// Each route file handles a specific feature area.
-// The first argument is the URL prefix for that group of routes.
-// Example: authRoutes handles /api/auth/login and /api/auth/register
 
 app.use('/api/auth', authRoutes)
 app.use('/api/appointments', appointmentRoutes)
@@ -93,12 +86,12 @@ app.use('/api/quotes', quoteRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/favorites', favoriteRoutes)
 app.use('/api/scripture', scriptureRoutes)
+app.use('/api/churches', reviewRoutes)
+app.use('/api/prayers', prayerRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE
 // ============================================================
-// This catches any errors that happen in route handlers.
-// It must be defined AFTER all routes (Express uses order).
 
 app.use((err, req, res, next) => {
   console.error('Server error:', err.stack)
@@ -112,8 +105,11 @@ app.use((err, req, res, next) => {
 // ============================================================
 // START THE SERVER
 // ============================================================
+// Using server.listen (HTTP server) instead of app.listen
+// so Socket.io can share the same port.
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`\n🙏 Sanctuary API running on port ${PORT}`)
-  console.log(`   Health check: http://localhost:${PORT}/api/health\n`)
+  console.log(`   Health check: http://localhost:${PORT}/api/health`)
+  console.log(`   WebSocket:    ws://localhost:${PORT}\n`)
 })

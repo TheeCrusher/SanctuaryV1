@@ -7,7 +7,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { FileText, BookOpen, Church, ChevronRight, LogOut } from 'lucide-react'
+import { FileText, BookOpen, Church, Heart, ChevronRight, LogOut } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
@@ -31,6 +31,12 @@ function MoreMenu() {
       text: 'Churches',
       subtitle: 'Find & favorite churches',
       path: '/churches'
+    },
+    {
+      icon: Heart,
+      text: 'Prayer Board',
+      subtitle: 'Community prayer requests',
+      path: '/prayers'
     }
   ]
 

@@ -50,6 +50,9 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS prayer_interactions CASCADE;
+      DROP TABLE IF EXISTS prayer_requests CASCADE;
+      DROP TABLE IF EXISTS church_reviews CASCADE;
       DROP TABLE IF EXISTS user_reading_progress CASCADE;
       DROP TABLE IF EXISTS user_verse_bookmarks CASCADE;
       DROP TABLE IF EXISTS reading_plan_days CASCADE;
@@ -57,6 +60,7 @@ async function seed() {
       DROP TABLE IF EXISTS scripture_verses CASCADE;
       DROP TABLE IF EXISTS church_favorites CASCADE;
       DROP TABLE IF EXISTS notes CASCADE;
+      DROP TABLE IF EXISTS conversation_participants CASCADE;
       DROP TABLE IF EXISTS messages CASCADE;
       DROP TABLE IF EXISTS conversations CASCADE;
       DROP TABLE IF EXISTS appointments CASCADE;
@@ -70,16 +74,18 @@ async function seed() {
     const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
     const schema = readFileSync(schemaPath, 'utf8')
     await client.query(schema)
-    console.log('   ✅ 13 tables created\n')
+    console.log('   ✅ 17 tables created\n')
 
     // ---- Step 3: Insert test user ----
     console.log('👤 Creating test user...')
     const passwordHash = await bcrypt.hash(TEST_USER.password, 10)
     const userResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING id`,
-      [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role]
+      [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role,
+       'Spiritual guide dedicated to helping others find their path through prayer and scripture.',
+       'General Guidance', 'Atlanta, GA']
     )
     const guideId = userResult.rows[0].id
     console.log(`   ✅ Test user created (id: ${guideId})`)

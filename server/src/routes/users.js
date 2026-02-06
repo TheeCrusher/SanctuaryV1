@@ -29,7 +29,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -46,6 +46,9 @@ router.get('/me', async (req, res, next) => {
         avatar: user.avatar,
         photoUrl: user.photo_url,
         role: user.role,
+        bio: user.bio,
+        specialization: user.specialization,
+        location: user.location,
         createdAt: user.created_at
       }
     })
@@ -60,12 +63,12 @@ router.get('/me', async (req, res, next) => {
 // Updates the current user's profile.
 // Only updates fields that are provided in the request body.
 //
-// Request body: { name?, avatar?, photoUrl? } (all optional)
+// Request body: { name?, avatar?, photoUrl?, bio?, specialization?, location? } (all optional)
 // Replaces: updateUserPhoto() in AppContext.jsx
 
 router.put('/me', async (req, res, next) => {
   try {
-    const { name, avatar, photoUrl } = req.body
+    const { name, avatar, photoUrl, bio, specialization, location } = req.body
 
     // Build the UPDATE query dynamically based on which fields were provided
     const updates = []
@@ -87,6 +90,21 @@ router.put('/me', async (req, res, next) => {
       updates.push(`photo_url = $${paramCount}`)
       values.push(photoUrl)
     }
+    if (bio !== undefined) {
+      paramCount++
+      updates.push(`bio = $${paramCount}`)
+      values.push(bio)
+    }
+    if (specialization !== undefined) {
+      paramCount++
+      updates.push(`specialization = $${paramCount}`)
+      values.push(specialization)
+    }
+    if (location !== undefined) {
+      paramCount++
+      updates.push(`location = $${paramCount}`)
+      values.push(location)
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ error: 'No fields to update.' })
@@ -101,7 +119,7 @@ router.put('/me', async (req, res, next) => {
 
     const result = await pool.query(
       `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramCount}
-       RETURNING id, name, email, avatar, photo_url, role`,
+       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location`,
       values
     )
 
@@ -113,7 +131,45 @@ router.put('/me', async (req, res, next) => {
         email: user.email,
         avatar: user.avatar,
         photoUrl: user.photo_url,
-        role: user.role
+        role: user.role,
+        bio: user.bio,
+        specialization: user.specialization,
+        location: user.location
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// GET /api/users/:id
+// ============================================================
+// Returns another user's public profile.
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const result = await pool.query(
+      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, created_at FROM users WHERE id = $1',
+      [req.params.id]
+    )
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found.' })
+    }
+
+    const user = result.rows[0]
+    res.json({
+      user: {
+        id: user.id,
+        name: user.name,
+        avatar: user.avatar,
+        photoUrl: user.photo_url,
+        role: user.role,
+        bio: user.bio,
+        specialization: user.specialization,
+        location: user.location,
+        createdAt: user.created_at
       }
     })
   } catch (error) {

@@ -32,6 +32,9 @@ import MoreMenu from './components/screens/MoreMenu'
 import Notes from './components/screens/Notes'
 import Scripture from './components/screens/Scripture'
 import ReadingPlan from './components/screens/ReadingPlan'
+import UserProfile from './components/screens/UserProfile'
+import PrayerBoard from './components/screens/PrayerBoard'
+import CalendarView from './components/screens/CalendarView'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -127,6 +130,15 @@ function App() {
         />
 
         <Route
+          path="/calendar"
+          element={
+            <ProtectedRoute>
+              <CalendarView />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/messages"
           element={
             <ProtectedRoute>
@@ -203,6 +215,24 @@ function App() {
           element={
             <ProtectedRoute>
               <ReadingPlan />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/user/:id"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/prayers"
+          element={
+            <ProtectedRoute>
+              <PrayerBoard />
             </ProtectedRoute>
           }
         />

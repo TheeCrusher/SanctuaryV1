@@ -1,7 +1,7 @@
 // =============================================================================
 // MESSAGES SCREEN
 // =============================================================================
-// Shows a list of all conversations.
+// Shows a list of all conversations with online status indicators.
 // Allows starting new conversations with available people.
 
 import { useState } from 'react'
@@ -12,25 +12,21 @@ import { Plus, MessageCircle, ChevronRight } from 'lucide-react'
 
 function Messages() {
   const navigate = useNavigate()
-
-  // State for "New Conversation" modal
   const [showNewConvModal, setShowNewConvModal] = useState(false)
 
-  // Get data from context
   const {
     conversations,
     availablePeople,
     selectConversation,
-    startNewConversation
+    startNewConversation,
+    onlineUsers
   } = useApp()
 
-  // Handle clicking on a conversation
   async function handleConversationClick(convId) {
     await selectConversation(convId)
     navigate('/chat')
   }
 
-  // Handle starting a new conversation
   async function handleNewConversation(personId) {
     await startNewConversation(personId)
     setShowNewConvModal(false)
@@ -71,6 +67,9 @@ function Messages() {
               <div className="conv-row">
                 <div className="conv-avatar-wrap">
                   <Avatar emoji={conv.avatar} size="md" variant="blue" />
+                  {onlineUsers.has(conv.personId) && (
+                    <span className="online-dot" />
+                  )}
                   {conv.unread > 0 && (
                     <span className="unread-badge">{conv.unread}</span>
                   )}
@@ -94,7 +93,7 @@ function Messages() {
         onClose={() => setShowNewConvModal(false)}
         title="New Conversation"
       >
-        <p style={{ color: '#6b7280', marginBottom: '16px' }}>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
           Select a person to start a conversation:
         </p>
 
@@ -104,12 +103,15 @@ function Messages() {
             className="new-conv-item"
             onClick={() => handleNewConversation(person.id)}
           >
-            <Avatar emoji={person.avatar} size="md" variant="blue" />
+            <div style={{ position: 'relative' }}>
+              <Avatar emoji={person.avatar} size="md" variant="blue" />
+              {onlineUsers.has(person.id) && <span className="online-dot" />}
+            </div>
             <div className="new-conv-info">
               <div className="new-conv-name">{person.name}</div>
               <div className="new-conv-role">{person.role}</div>
             </div>
-            <span style={{ color: '#9ca3af' }}><ChevronRight size={20} /></span>
+            <span style={{ color: 'var(--text-faint)' }}><ChevronRight size={20} /></span>
           </div>
         ))}
 

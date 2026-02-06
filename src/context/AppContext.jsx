@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import { api, getToken, setToken, removeToken } from '../utils/api'
+import { connectSocket, disconnectSocket, getSocket } from '../utils/socket'
 
 // ============================================================================
 // CONTEXT SETUP
@@ -55,6 +56,71 @@ export function AppProvider({ children }) {
 
   // ----- MODAL STATE -----
   const [modal, setModal] = useState(null)
+
+  // ----- REAL-TIME STATE -----
+  const [onlineUsers, setOnlineUsers] = useState(new Set())
+  const [typingUsers, setTypingUsers] = useState({}) // { conversationId: [{ userId, userName }] }
+  const selectedConvRef = useRef(null)
+
+  // Keep ref in sync with state so socket callbacks can read latest value
+  useEffect(() => {
+    selectedConvRef.current = selectedConversation
+  }, [selectedConversation])
+
+  // =========================================================================
+  // SOCKET EVENT LISTENERS
+  // =========================================================================
+
+  function setupSocketListeners(socket) {
+    socket.on('online_users', ({ userIds }) => {
+      setOnlineUsers(new Set(userIds))
+    })
+
+    socket.on('user_online', ({ userId }) => {
+      setOnlineUsers(prev => new Set([...prev, userId]))
+    })
+
+    socket.on('user_offline', ({ userId }) => {
+      setOnlineUsers(prev => {
+        const next = new Set(prev)
+        next.delete(userId)
+        return next
+      })
+    })
+
+    socket.on('new_message', ({ conversationId, message }) => {
+      // If we're currently viewing this conversation, add the message
+      const currentConv = selectedConvRef.current
+      if (currentConv && currentConv.id === conversationId) {
+        setSelectedConversation(prev => {
+          if (!prev || prev.id !== conversationId) return prev
+          return { ...prev, msgs: [...prev.msgs, message] }
+        })
+      }
+
+      // Update conversations list (last message preview)
+      setConversations(prev => prev.map(c =>
+        c.id === conversationId
+          ? { ...c, last: message.text, time: 'Just now', unread: currentConv?.id === conversationId ? 0 : (c.unread || 0) + 1 }
+          : c
+      ))
+    })
+
+    socket.on('user_typing', ({ conversationId, userId, userName }) => {
+      setTypingUsers(prev => {
+        const current = prev[conversationId] || []
+        if (current.find(t => t.userId === userId)) return prev
+        return { ...prev, [conversationId]: [...current, { userId, userName }] }
+      })
+    })
+
+    socket.on('user_stop_typing', ({ conversationId, userId }) => {
+      setTypingUsers(prev => {
+        const current = prev[conversationId] || []
+        return { ...prev, [conversationId]: current.filter(t => t.userId !== userId) }
+      })
+    })
+  }
 
   // =========================================================================
   // LOAD ALL DATA (called after login or session restore)
@@ -131,6 +197,10 @@ export function AppProvider({ children }) {
 
         // Session restored! Now load all the user's data
         await loadAllData()
+
+        // Connect WebSocket for real-time messaging
+        const sock = connectSocket()
+        if (sock) setupSocketListeners(sock)
       } catch (error) {
         // Token is invalid or expired -- clear it
         console.error('Session restore failed:', error)
@@ -161,6 +231,10 @@ export function AppProvider({ children }) {
       // Load all the user's data (appointments, churches, etc.)
       await loadAllData()
 
+      // Connect WebSocket for real-time messaging
+      const sock = connectSocket()
+      if (sock) setupSocketListeners(sock)
+
       return { success: true }
     } catch (error) {
       return { success: false, error: error.message }
@@ -168,6 +242,9 @@ export function AppProvider({ children }) {
   }
 
   function logout() {
+    // Disconnect WebSocket
+    disconnectSocket()
+
     // Remove the JWT token from localStorage
     removeToken()
 
@@ -187,6 +264,8 @@ export function AppProvider({ children }) {
     setScriptureVerses([])
     setScriptureBookmarkIds(new Set())
     setReadingPlans([])
+    setOnlineUsers(new Set())
+    setTypingUsers({})
   }
 
   async function updateUserPhoto(photoUrl) {
@@ -198,15 +277,26 @@ export function AppProvider({ children }) {
     }
   }
 
+  async function updateProfile(data) {
+    try {
+      const { user: updatedUser } = await api.put('/users/me', data)
+      setUser(updatedUser)
+      return { success: true }
+    } catch (error) {
+      console.error('Failed to update profile:', error)
+      return { success: false, error: error.message }
+    }
+  }
+
   // =========================================================================
   // APPOINTMENT FUNCTIONS
   // =========================================================================
 
   async function createAppointment(appointmentData) {
     try {
-      const { appointment } = await api.post('/appointments', appointmentData)
-      setAppointments(prev => [...prev, appointment])
-      return appointment
+      const { appointments: newApts } = await api.post('/appointments', appointmentData)
+      setAppointments(prev => [...prev, ...newApts])
+      return newApts
     } catch (error) {
       console.error('Failed to create appointment:', error)
       throw error
@@ -228,6 +318,25 @@ export function AppProvider({ children }) {
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
     } catch (error) {
       console.error('Failed to complete appointment:', error)
+    }
+  }
+
+  async function cancelAppointment(id) {
+    try {
+      await api.delete(`/appointments/${id}`)
+      setAppointments(prev => prev.filter(apt => apt.id !== id))
+    } catch (error) {
+      console.error('Failed to cancel appointment:', error)
+    }
+  }
+
+  async function cancelSeries(seriesId) {
+    try {
+      const { appointments: cancelled } = await api.delete(`/appointments/series/${seriesId}`)
+      const cancelledIds = new Set(cancelled.map(a => a.id))
+      setAppointments(prev => prev.filter(apt => !cancelledIds.has(apt.id)))
+    } catch (error) {
+      console.error('Failed to cancel series:', error)
     }
   }
 
@@ -322,9 +431,42 @@ export function AppProvider({ children }) {
           ? { ...c, last: text.trim(), time: "Just now" }
           : c
       ))
+
+      // Broadcast via socket for real-time delivery
+      const socket = getSocket()
+      if (socket) {
+        socket.emit('send_message', {
+          conversationId: selectedConversation.id,
+          message
+        })
+        // Stop typing indicator
+        socket.emit('typing_stop', { conversationId: selectedConversation.id })
+      }
     } catch (error) {
       console.error('Failed to send message:', error)
     }
+  }
+
+  // Typing indicator helpers
+  function emitTypingStart(conversationId) {
+    const socket = getSocket()
+    if (socket) socket.emit('typing_start', { conversationId })
+  }
+
+  function emitTypingStop(conversationId) {
+    const socket = getSocket()
+    if (socket) socket.emit('typing_stop', { conversationId })
+  }
+
+  // Join/leave conversation room for real-time
+  function joinConversationRoom(conversationId) {
+    const socket = getSocket()
+    if (socket) socket.emit('join_conversation', { conversationId })
+  }
+
+  function leaveConversationRoom(conversationId) {
+    const socket = getSocket()
+    if (socket) socket.emit('leave_conversation', { conversationId })
   }
 
   // =========================================================================
@@ -457,12 +599,15 @@ export function AppProvider({ children }) {
     login,
     logout,
     updateUserPhoto,
+    updateProfile,
 
     // Appointments
     appointments,
     createAppointment,
     confirmAppointment,
     completeAppointment,
+    cancelAppointment,
+    cancelSeries,
     upcomingCount,
     completedCount,
     uniqueSeekersCount,
@@ -475,6 +620,14 @@ export function AppProvider({ children }) {
     selectConversation,
     sendMessage,
     setSelectedConversation,
+
+    // Real-time
+    onlineUsers,
+    typingUsers,
+    emitTypingStart,
+    emitTypingStop,
+    joinConversationRoom,
+    leaveConversationRoom,
 
     // Churches
     churches: filteredChurches,

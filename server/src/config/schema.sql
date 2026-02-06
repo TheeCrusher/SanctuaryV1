@@ -16,16 +16,19 @@
 -- Maps to: AppContext.jsx → user state + AVAILABLE_PEOPLE
 
 CREATE TABLE IF NOT EXISTS users (
-  id            SERIAL PRIMARY KEY,
-  name          VARCHAR(100) NOT NULL,
-  email         VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  avatar        VARCHAR(10) DEFAULT '🙏',
-  photo_url     TEXT,
-  role          VARCHAR(20) NOT NULL DEFAULT 'seeker'
-                CHECK (role IN ('guide', 'seeker', 'admin')),
-  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id              SERIAL PRIMARY KEY,
+  name            VARCHAR(100) NOT NULL,
+  email           VARCHAR(255) UNIQUE NOT NULL,
+  password_hash   VARCHAR(255) NOT NULL,
+  avatar          VARCHAR(10) DEFAULT '🙏',
+  photo_url       TEXT,
+  role            VARCHAR(20) NOT NULL DEFAULT 'seeker'
+                  CHECK (role IN ('guide', 'seeker', 'admin')),
+  bio             TEXT,
+  specialization  VARCHAR(100),
+  location        VARCHAR(100),
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
@@ -42,26 +45,31 @@ CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 -- Replaces: IndexedDB storage in database.js
 
 CREATE TABLE IF NOT EXISTS appointments (
-  id            SERIAL PRIMARY KEY,
-  guide_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  seeker_name   VARCHAR(100) NOT NULL,
-  avatar        VARCHAR(10) DEFAULT '👤',
-  date          DATE NOT NULL,
-  time          TIME NOT NULL,
-  duration      INTEGER NOT NULL CHECK (duration IN (30, 60, 90, 120)),
-  type          VARCHAR(50) NOT NULL
-                CHECK (type IN ('Bible Study', 'Prayer Session',
-                                'Counseling', 'General Guidance')),
-  notes         TEXT,
-  status        VARCHAR(20) NOT NULL DEFAULT 'pending'
-                CHECK (status IN ('pending', 'confirmed', 'completed')),
-  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id                  SERIAL PRIMARY KEY,
+  guide_id            INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  seeker_name         VARCHAR(100) NOT NULL,
+  avatar              VARCHAR(10) DEFAULT '👤',
+  date                DATE NOT NULL,
+  time                TIME NOT NULL,
+  duration            INTEGER NOT NULL CHECK (duration IN (30, 60, 90, 120)),
+  type                VARCHAR(50) NOT NULL
+                      CHECK (type IN ('Bible Study', 'Prayer Session',
+                                      'Counseling', 'General Guidance')),
+  notes               TEXT,
+  status              VARCHAR(20) NOT NULL DEFAULT 'pending'
+                      CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled')),
+  recurrence_rule     VARCHAR(20) DEFAULT 'none'
+                      CHECK (recurrence_rule IN ('none', 'weekly', 'biweekly', 'monthly')),
+  series_id           UUID,
+  recurrence_end_date DATE,
+  created_at          TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at          TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_appointments_guide ON appointments(guide_id);
 CREATE INDEX IF NOT EXISTS idx_appointments_status ON appointments(status);
 CREATE INDEX IF NOT EXISTS idx_appointments_date ON appointments(date);
+CREATE INDEX IF NOT EXISTS idx_appointments_series ON appointments(series_id);
 
 -- ============================================================
 -- CONVERSATIONS TABLE
@@ -75,15 +83,34 @@ CREATE INDEX IF NOT EXISTS idx_appointments_date ON appointments(date);
 CREATE TABLE IF NOT EXISTS conversations (
   id            SERIAL PRIMARY KEY,
   owner_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  person_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  person_id     INTEGER REFERENCES users(id) ON DELETE CASCADE,
   last_message  TEXT,
   last_time     VARCHAR(20),
   unread_count  INTEGER DEFAULT 0,
+  is_group      BOOLEAN DEFAULT false,
+  group_name    VARCHAR(100),
+  created_by    INTEGER REFERENCES users(id) ON DELETE SET NULL,
   created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_conversations_owner ON conversations(owner_id);
+
+-- ============================================================
+-- CONVERSATION PARTICIPANTS TABLE
+-- ============================================================
+-- For group conversations, tracks all members.
+
+CREATE TABLE IF NOT EXISTS conversation_participants (
+  id              SERIAL PRIMARY KEY,
+  conversation_id INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  joined_at       TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(conversation_id, user_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_conv_participants_conv ON conversation_participants(conversation_id);
+CREATE INDEX IF NOT EXISTS idx_conv_participants_user ON conversation_participants(user_id);
 
 -- ============================================================
 -- MESSAGES TABLE
@@ -257,3 +284,63 @@ CREATE TABLE IF NOT EXISTS user_reading_progress (
 );
 
 CREATE INDEX IF NOT EXISTS idx_reading_progress_user ON user_reading_progress(user_id);
+
+-- ============================================================
+-- CHURCH REVIEWS TABLE
+-- ============================================================
+-- User-submitted reviews for churches with star ratings.
+-- One review per user per church (UNIQUE constraint).
+
+CREATE TABLE IF NOT EXISTS church_reviews (
+  id          SERIAL PRIMARY KEY,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  church_id   INTEGER NOT NULL REFERENCES churches(id) ON DELETE CASCADE,
+  rating      INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  review_text TEXT,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, church_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_church_reviews_church ON church_reviews(church_id);
+CREATE INDEX IF NOT EXISTS idx_church_reviews_user ON church_reviews(user_id);
+
+-- ============================================================
+-- PRAYER REQUESTS TABLE
+-- ============================================================
+-- Community prayer request board.
+
+CREATE TABLE IF NOT EXISTS prayer_requests (
+  id            SERIAL PRIMARY KEY,
+  user_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title         VARCHAR(200) NOT NULL,
+  description   TEXT,
+  category      VARCHAR(50) NOT NULL
+                CHECK (category IN ('Health', 'Family', 'Guidance', 'Gratitude', 'Financial', 'Other')),
+  is_anonymous  BOOLEAN DEFAULT false,
+  prayer_count  INTEGER DEFAULT 0,
+  status        VARCHAR(20) DEFAULT 'active'
+                CHECK (status IN ('active', 'answered')),
+  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_prayer_requests_user ON prayer_requests(user_id);
+CREATE INDEX IF NOT EXISTS idx_prayer_requests_status ON prayer_requests(status);
+
+-- ============================================================
+-- PRAYER INTERACTIONS TABLE
+-- ============================================================
+-- Tracks who prayed for a request and comments.
+
+CREATE TABLE IF NOT EXISTS prayer_interactions (
+  id            SERIAL PRIMARY KEY,
+  user_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  request_id    INTEGER NOT NULL REFERENCES prayer_requests(id) ON DELETE CASCADE,
+  type          VARCHAR(20) NOT NULL CHECK (type IN ('prayed', 'comment')),
+  comment_text  TEXT,
+  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_prayer_interactions_request ON prayer_interactions(request_id);
+CREATE INDEX IF NOT EXISTS idx_prayer_interactions_user ON prayer_interactions(user_id);

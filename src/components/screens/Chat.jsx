@@ -2,7 +2,7 @@
 // CHAT SCREEN
 // =============================================================================
 // Shows the actual chat conversation with messages.
-// Allows sending new messages.
+// Features: real-time via Socket.io, typing indicators, online status.
 
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,29 +12,44 @@ import { ArrowLeft, MessageCircle, Send } from 'lucide-react'
 
 function Chat() {
   const navigate = useNavigate()
-
-  // State for the message input
   const [messageText, setMessageText] = useState('')
-
-  // Ref to scroll to bottom of messages
-  // useRef gives us a reference to a DOM element
   const messagesEndRef = useRef(null)
+  const typingTimeoutRef = useRef(null)
 
-  // Get chat data from context
-  const { selectedConversation, sendMessage } = useApp()
+  const {
+    selectedConversation,
+    sendMessage,
+    onlineUsers,
+    typingUsers,
+    emitTypingStart,
+    emitTypingStop,
+    joinConversationRoom,
+    leaveConversationRoom,
+    user
+  } = useApp()
 
   // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [selectedConversation?.msgs])
 
-  // If no conversation selected, redirect back to messages
+  // Join/leave the socket room for this conversation
+  useEffect(() => {
+    if (selectedConversation?.id) {
+      joinConversationRoom(selectedConversation.id)
+      return () => leaveConversationRoom(selectedConversation.id)
+    }
+  }, [selectedConversation?.id])
+
   if (!selectedConversation) {
     navigate('/messages')
     return null
   }
 
-  // Handle sending a message
+  const otherPersonId = selectedConversation.personId
+  const isOnline = onlineUsers.has(otherPersonId)
+  const convTyping = (typingUsers[selectedConversation.id] || []).filter(t => t.userId !== user?.id)
+
   function handleSend() {
     if (messageText.trim()) {
       sendMessage(messageText)
@@ -42,11 +57,25 @@ function Chat() {
     }
   }
 
-  // Handle Enter key to send message
   function handleKeyDown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSend()
+    }
+  }
+
+  function handleInputChange(e) {
+    setMessageText(e.target.value)
+
+    // Emit typing indicator
+    if (selectedConversation?.id) {
+      emitTypingStart(selectedConversation.id)
+
+      // Auto-stop typing after 2 seconds of inactivity
+      if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current)
+      typingTimeoutRef.current = setTimeout(() => {
+        emitTypingStop(selectedConversation.id)
+      }, 2000)
     }
   }
 
@@ -57,17 +86,25 @@ function Chat() {
         <button className="back-btn" onClick={() => navigate('/messages')}>
           <ArrowLeft size={20} />
         </button>
-        <Avatar
-          emoji={selectedConversation.avatar}
-          size="sm"
-          variant="blue"
-        />
+        <div style={{ position: 'relative' }}>
+          <Avatar
+            emoji={selectedConversation.avatar}
+            size="sm"
+            variant="blue"
+          />
+          {isOnline && <span className="online-dot online-dot-sm" />}
+        </div>
         <div>
-          <div style={{ fontWeight: '600', color: '#111827' }}>
+          <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
             {selectedConversation.name}
           </div>
-          <div style={{ fontSize: '12px', color: '#6b7280' }}>
-            Active now
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+            {convTyping.length > 0
+              ? <span className="typing-text">typing...</span>
+              : isOnline
+                ? 'Online'
+                : 'Offline'
+            }
           </div>
         </div>
       </div>
@@ -75,7 +112,7 @@ function Chat() {
       {/* Chat Messages */}
       <div className="chat-messages" id="chatMsgs">
         {selectedConversation.msgs.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '48px 20px', color: '#9ca3af' }}>
+          <div style={{ textAlign: 'center', padding: '48px 20px', color: 'var(--text-faint)' }}>
             <div style={{ marginBottom: '12px' }}><MessageCircle size={48} /></div>
             <div>No messages yet</div>
             <div style={{ fontSize: '14px' }}>Start the conversation!</div>
@@ -96,7 +133,18 @@ function Chat() {
             </div>
           ))
         )}
-        {/* Invisible element to scroll to */}
+
+        {/* Typing indicator bubble */}
+        {convTyping.length > 0 && (
+          <div className="bubble-wrap">
+            <div className="bubble bubble-other typing-bubble">
+              <div className="typing-dots">
+                <span /><span /><span />
+              </div>
+            </div>
+          </div>
+        )}
+
         <div ref={messagesEndRef} />
       </div>
 
@@ -107,7 +155,7 @@ function Chat() {
           className="chat-input"
           placeholder="Type a message..."
           value={messageText}
-          onChange={(e) => setMessageText(e.target.value)}
+          onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
         <button

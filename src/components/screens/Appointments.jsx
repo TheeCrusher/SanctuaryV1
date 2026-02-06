@@ -2,33 +2,38 @@
 // APPOINTMENTS SCREEN
 // =============================================================================
 // Shows all appointments grouped by status (pending, confirmed, completed).
-// Allows creating new appointments and managing existing ones.
+// Allows creating new appointments with optional recurrence.
+// Supports cancelling individual or entire series of recurring appointments.
 
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
-import { Plus, Calendar } from 'lucide-react'
+import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download } from 'lucide-react'
 
 function Appointments() {
-  // State for the "New Appointment" modal
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
+  const [showCancelConfirm, setShowCancelConfirm] = useState(null)
 
-  // Form state for new appointment
   const [formData, setFormData] = useState({
     name: '',
     date: '',
     time: '',
     duration: '60',
     type: 'Bible Study',
-    notes: ''
+    notes: '',
+    recurrenceRule: 'none',
+    recurrenceEndDate: ''
   })
 
-  // Get appointment functions from context
   const {
     appointments,
     createAppointment,
     confirmAppointment,
-    completeAppointment
+    completeAppointment,
+    cancelAppointment,
+    cancelSeries
   } = useApp()
 
   // Group appointments by status
@@ -36,7 +41,6 @@ function Appointments() {
   const confirmedApts = appointments.filter(a => a.status === 'confirmed')
   const completedApts = appointments.filter(a => a.status === 'completed')
 
-  // Format date for display
   function formatDate(dateStr) {
     const date = new Date(dateStr)
     return date.toLocaleDateString('en-US', {
@@ -46,30 +50,82 @@ function Appointments() {
     })
   }
 
-  // Handle form input changes
   function handleInputChange(e) {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  // Handle form submission
   async function handleSubmit(e) {
     e.preventDefault()
     await createAppointment(formData)
 
-    // Reset form and close modal
     setFormData({
       name: '',
       date: '',
       time: '',
       duration: '60',
       type: 'Bible Study',
-      notes: ''
+      notes: '',
+      recurrenceRule: 'none',
+      recurrenceEndDate: ''
     })
     setShowModal(false)
   }
 
-  // Render a single appointment card
+  function recurrenceLabel(rule) {
+    const labels = { weekly: 'Weekly', biweekly: 'Biweekly', monthly: 'Monthly' }
+    return labels[rule] || null
+  }
+
+  // Build a Google Calendar "Add Event" URL
+  function googleCalendarUrl(apt) {
+    const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
+    const [h, m] = apt.time.split(':').map(Number)
+    const endMinutes = h * 60 + m + Number(apt.duration)
+    const endH = String(Math.floor(endMinutes / 60)).padStart(2, '0')
+    const endM = String(endMinutes % 60).padStart(2, '0')
+    const endDt = apt.date.replace(/-/g, '') + 'T' + endH + endM + '00'
+
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: `Sanctuary: ${apt.type} with ${apt.name}`,
+      dates: `${startDt}/${endDt}`,
+      details: apt.notes || `${apt.type} session with ${apt.name}`,
+    })
+    return `https://calendar.google.com/calendar/render?${params.toString()}`
+  }
+
+  // Generate and download an .ics file
+  function downloadIcs(apt) {
+    const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
+    const [h, m] = apt.time.split(':').map(Number)
+    const endMinutes = h * 60 + m + Number(apt.duration)
+    const endH = String(Math.floor(endMinutes / 60)).padStart(2, '0')
+    const endM = String(endMinutes % 60).padStart(2, '0')
+    const endDt = apt.date.replace(/-/g, '') + 'T' + endH + endM + '00'
+
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Sanctuary//EN',
+      'BEGIN:VEVENT',
+      `DTSTART:${startDt}`,
+      `DTEND:${endDt}`,
+      `SUMMARY:Sanctuary: ${apt.type} with ${apt.name}`,
+      `DESCRIPTION:${apt.notes || apt.type + ' session'}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n')
+
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `sanctuary-session-${apt.date}.ics`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   function AppointmentCard({ apt }) {
     return (
       <Card>
@@ -83,11 +139,32 @@ function Appointments() {
             <div className="apt-meta">
               {apt.type} • {formatDate(apt.date)} at {apt.time} • {apt.duration} min
             </div>
+            {apt.recurrenceRule && apt.recurrenceRule !== 'none' && (
+              <div className="apt-recurrence-tag">
+                <Repeat size={12} />
+                {recurrenceLabel(apt.recurrenceRule)}
+              </div>
+            )}
             {apt.notes && (
               <div className="apt-notes">{apt.notes}</div>
             )}
 
-            {/* Action buttons based on status */}
+            {/* Calendar export buttons */}
+            <div className="apt-cal-actions">
+              <a
+                href={googleCalendarUrl(apt)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="apt-cal-btn"
+                title="Add to Google Calendar"
+              >
+                <CalendarPlus size={14} /> Google
+              </a>
+              <button className="apt-cal-btn" onClick={() => downloadIcs(apt)} title="Download .ics file">
+                <Download size={14} /> .ics
+              </button>
+            </div>
+
             {apt.status !== 'completed' && (
               <div className="apt-actions">
                 {apt.status === 'pending' && (
@@ -108,6 +185,12 @@ function Appointments() {
                     Complete
                   </button>
                 )}
+                <button
+                  className="btn-cancel-apt"
+                  onClick={() => setShowCancelConfirm(apt)}
+                >
+                  <X size={14} /> Cancel
+                </button>
               </div>
             )}
           </div>
@@ -122,9 +205,14 @@ function Appointments() {
       <div className="screen-header">
         <div className="screen-header-top">
           <h1 style={{ fontSize: '24px', fontWeight: '700' }}>Sessions</h1>
-          <button className="icon-btn" onClick={() => setShowModal(true)}>
-            <Plus size={22} />
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="icon-btn" onClick={() => navigate('/calendar')} title="Calendar">
+              <CalendarDays size={22} />
+            </button>
+            <button className="icon-btn" onClick={() => setShowModal(true)}>
+              <Plus size={22} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -140,7 +228,6 @@ function Appointments() {
           />
         ) : (
           <>
-            {/* Pending Section */}
             {pendingApts.length > 0 && (
               <>
                 <div className="section-divider">Pending ({pendingApts.length})</div>
@@ -150,7 +237,6 @@ function Appointments() {
               </>
             )}
 
-            {/* Confirmed Section */}
             {confirmedApts.length > 0 && (
               <>
                 <div className="section-divider">Confirmed ({confirmedApts.length})</div>
@@ -160,7 +246,6 @@ function Appointments() {
               </>
             )}
 
-            {/* Completed Section */}
             {completedApts.length > 0 && (
               <>
                 <div className="section-divider">Completed ({completedApts.length})</div>
@@ -248,6 +333,36 @@ function Appointments() {
           </div>
 
           <div className="form-group">
+            <label className="form-label" htmlFor="recurrenceRule">Repeat</label>
+            <select
+              id="recurrenceRule"
+              name="recurrenceRule"
+              value={formData.recurrenceRule}
+              onChange={handleInputChange}
+            >
+              <option value="none">Does not repeat</option>
+              <option value="weekly">Weekly</option>
+              <option value="biweekly">Every 2 weeks</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+
+          {formData.recurrenceRule !== 'none' && (
+            <div className="form-group">
+              <label className="form-label" htmlFor="recurrenceEndDate">Repeat Until</label>
+              <input
+                type="date"
+                id="recurrenceEndDate"
+                name="recurrenceEndDate"
+                value={formData.recurrenceEndDate}
+                onChange={handleInputChange}
+                min={formData.date}
+                required
+              />
+            </div>
+          )}
+
+          <div className="form-group">
             <label className="form-label" htmlFor="notes">Notes (optional)</label>
             <textarea
               id="notes"
@@ -272,6 +387,50 @@ function Appointments() {
           </div>
         </form>
       </Modal>
+
+      {/* Cancel Confirmation Modal */}
+      {showCancelConfirm && (
+        <Modal onClose={() => setShowCancelConfirm(null)}>
+          <div className="modal-title">Cancel Session</div>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+            Cancel the session with <strong>{showCancelConfirm.name}</strong> on {formatDate(showCancelConfirm.date)}?
+          </p>
+
+          <div className="modal-buttons" style={{ flexDirection: 'column', gap: '8px' }}>
+            <button
+              className="btn-primary"
+              style={{ background: 'var(--danger-bg)', color: 'var(--danger-text)', width: '100%' }}
+              onClick={() => {
+                cancelAppointment(showCancelConfirm.id)
+                setShowCancelConfirm(null)
+              }}
+            >
+              Cancel This Session
+            </button>
+
+            {showCancelConfirm.seriesId && (
+              <button
+                className="btn-primary"
+                style={{ background: 'var(--danger-bg)', color: 'var(--danger-text)', width: '100%' }}
+                onClick={() => {
+                  cancelSeries(showCancelConfirm.seriesId)
+                  setShowCancelConfirm(null)
+                }}
+              >
+                Cancel All Future in Series
+              </button>
+            )}
+
+            <button
+              className="btn-secondary"
+              style={{ width: '100%' }}
+              onClick={() => setShowCancelConfirm(null)}
+            >
+              Keep Session
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }
