@@ -39,8 +39,10 @@ const __dirname = dirname(__filename)
 
 async function seed() {
   // Create a direct database connection (not a pool, since this is a one-time script)
+  // SSL is required for cloud databases (Render) but not for local Docker
   const client = new pg.Client({
     connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
   })
 
   try {

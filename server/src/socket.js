@@ -14,8 +14,9 @@ const onlineUsers = new Map()
 export function setupSocket(server) {
   const io = new Server(server, {
     cors: {
-      origin: '*',
-      methods: ['GET', 'POST']
+      origin: process.env.CORS_ORIGIN || '*',
+      methods: ['GET', 'POST'],
+      credentials: true
     }
   })
 
@@ -27,8 +28,8 @@ export function setupSocket(server) {
     }
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'sanctuary-dev-secret')
-      socket.userId = decoded.id
-      socket.userName = decoded.name
+      socket.userId = decoded.userId
+      socket.userName = decoded.userName || 'Unknown'
       next()
     } catch {
       next(new Error('Invalid token'))

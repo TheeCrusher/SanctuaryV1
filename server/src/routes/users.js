@@ -143,6 +143,37 @@ router.put('/me', async (req, res, next) => {
 })
 
 // ============================================================
+// GET /api/users/available
+// ============================================================
+// Returns a list of users available for starting conversations.
+// Excludes the current user from the list.
+//
+// IMPORTANT: This must be defined BEFORE the /:id route,
+// otherwise Express would match "available" as an :id parameter.
+//
+// Replaces: AVAILABLE_PEOPLE constant in AppContext.jsx
+
+router.get('/available', async (req, res, next) => {
+  try {
+    const result = await pool.query(
+      'SELECT id, name, avatar, role FROM users WHERE id != $1 ORDER BY name ASC',
+      [req.user.id]
+    )
+
+    const people = result.rows.map(row => ({
+      id: row.id,
+      name: row.name,
+      avatar: row.avatar,
+      role: row.role.charAt(0).toUpperCase() + row.role.slice(1) // "seeker" → "Seeker"
+    }))
+
+    res.json({ people })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
 // GET /api/users/:id
 // ============================================================
 // Returns another user's public profile.
@@ -172,34 +203,6 @@ router.get('/:id', async (req, res, next) => {
         createdAt: user.created_at
       }
     })
-  } catch (error) {
-    next(error)
-  }
-})
-
-// ============================================================
-// GET /api/users/available
-// ============================================================
-// Returns a list of users available for starting conversations.
-// Excludes the current user from the list.
-//
-// Replaces: AVAILABLE_PEOPLE constant in AppContext.jsx
-
-router.get('/available', async (req, res, next) => {
-  try {
-    const result = await pool.query(
-      'SELECT id, name, avatar, role FROM users WHERE id != $1 ORDER BY name ASC',
-      [req.user.id]
-    )
-
-    const people = result.rows.map(row => ({
-      id: row.id,
-      name: row.name,
-      avatar: row.avatar,
-      role: row.role.charAt(0).toUpperCase() + row.role.slice(1) // "seeker" → "Seeker"
-    }))
-
-    res.json({ people })
   } catch (error) {
     next(error)
   }

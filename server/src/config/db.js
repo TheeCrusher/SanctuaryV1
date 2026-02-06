@@ -17,8 +17,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 // Create the connection pool using the DATABASE_URL from .env
+// SSL is required for cloud databases (Render) but not for local Docker
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 })
 
 // Log when a connection is established (helpful for debugging)

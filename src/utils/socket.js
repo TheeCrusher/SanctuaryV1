@@ -9,13 +9,17 @@ import { getToken } from './api'
 
 let socket = null
 
+// In development: '/' (Vite proxy forwards to localhost:3001)
+// In production:  full backend URL like "https://sanctuary-api.onrender.com"
+const SOCKET_URL = import.meta.env.VITE_API_URL || '/'
+
 export function connectSocket() {
   if (socket?.connected) return socket
 
   const token = getToken()
   if (!token) return null
 
-  socket = io('/', {
+  socket = io(SOCKET_URL, {
     auth: { token },
     transports: ['websocket', 'polling']
   })
