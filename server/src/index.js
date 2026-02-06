@@ -20,6 +20,9 @@ import churchRoutes from './routes/churches.js'
 import conversationRoutes from './routes/conversations.js'
 import userRoutes from './routes/users.js'
 import quoteRoutes from './routes/quotes.js'
+import noteRoutes from './routes/notes.js'
+import favoriteRoutes from './routes/favorites.js'
+import scriptureRoutes from './routes/scripture.js'
 
 // Load environment variables from .env
 dotenv.config()
@@ -87,6 +90,9 @@ app.use('/api/churches', churchRoutes)
 app.use('/api/conversations', conversationRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/quotes', quoteRoutes)
+app.use('/api/notes', noteRoutes)
+app.use('/api/favorites', favoriteRoutes)
+app.use('/api/scripture', scriptureRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE

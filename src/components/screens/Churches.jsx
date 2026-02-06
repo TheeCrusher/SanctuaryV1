@@ -7,17 +7,29 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
-import { X, Church, Check } from 'lucide-react'
+import { useState } from 'react'
+import { X, Church, Check, Heart } from 'lucide-react'
 
 function Churches() {
   const navigate = useNavigate()
 
-  // Get church data from context
+  // Get church data and favorites from context
   const {
     churches,
     churchSearchQuery,
-    setChurchSearchQuery
+    setChurchSearchQuery,
+    toggleFavoriteChurch,
+    isChurchFavorited,
+    favoriteChurchIds
   } = useApp()
+
+  // Local state for favorites filter toggle
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+
+  // Filter churches: if showing favorites only, filter to favorited ones
+  const displayedChurches = showFavoritesOnly
+    ? churches.filter(c => isChurchFavorited(c.id))
+    : churches
 
   // Generate star rating display
   function renderStars(rating) {
@@ -53,11 +65,26 @@ function Churches() {
             </button>
           )}
         </div>
+
+        {/* Favorites Filter Toggle */}
+        {favoriteChurchIds.size > 0 && (
+          <button
+            className={`favorites-filter-btn ${showFavoritesOnly ? 'active' : ''}`}
+            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          >
+            <Heart
+              size={16}
+              fill={showFavoritesOnly ? '#ef4444' : 'none'}
+              color={showFavoritesOnly ? '#ef4444' : '#6b7280'}
+            />
+            My Favorites ({favoriteChurchIds.size})
+          </button>
+        )}
       </div>
 
       {/* Content */}
       <div className="screen-content">
-        {churches.length === 0 ? (
+        {displayedChurches.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon"><Church size={48} /></div>
             <div className="empty-text">No churches found</div>
@@ -66,19 +93,32 @@ function Churches() {
             </div>
           </div>
         ) : (
-          churches.map(church => (
+          displayedChurches.map(church => (
             <Card
               key={church.id}
               onClick={() => navigate(`/churches/${church.id}`)}
             >
-              {/* Church Header */}
+              {/* Church Header with Heart */}
               <div className="church-top">
-                <div>
+                <div style={{ flex: 1 }}>
                   <div className="church-name">{church.name}</div>
                   <div className="church-address">
                     {church.address}, {church.city}
                   </div>
                 </div>
+                <button
+                  className="favorite-btn"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleFavoriteChurch(church.id)
+                  }}
+                >
+                  <Heart
+                    size={22}
+                    fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
+                    color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
+                  />
+                </button>
               </div>
 
               {/* Overall Rating */}

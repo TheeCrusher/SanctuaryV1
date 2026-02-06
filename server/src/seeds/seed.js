@@ -28,6 +28,8 @@ import {
   SAMPLE_APPOINTMENTS
 } from './seedData.js'
 
+import { SCRIPTURE_VERSES, READING_PLANS } from './scriptureData.js'
+
 // Load environment variables
 dotenv.config()
 
@@ -48,6 +50,13 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS user_reading_progress CASCADE;
+      DROP TABLE IF EXISTS user_verse_bookmarks CASCADE;
+      DROP TABLE IF EXISTS reading_plan_days CASCADE;
+      DROP TABLE IF EXISTS reading_plans CASCADE;
+      DROP TABLE IF EXISTS scripture_verses CASCADE;
+      DROP TABLE IF EXISTS church_favorites CASCADE;
+      DROP TABLE IF EXISTS notes CASCADE;
       DROP TABLE IF EXISTS messages CASCADE;
       DROP TABLE IF EXISTS conversations CASCADE;
       DROP TABLE IF EXISTS appointments CASCADE;
@@ -61,7 +70,7 @@ async function seed() {
     const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
     const schema = readFileSync(schemaPath, 'utf8')
     await client.query(schema)
-    console.log('   ✅ 6 tables created\n')
+    console.log('   ✅ 13 tables created\n')
 
     // ---- Step 3: Insert test user ----
     console.log('👤 Creating test user...')
@@ -140,12 +149,44 @@ async function seed() {
       console.log(`   ✅ ${apt.seekerName} - ${apt.type} (${apt.status})`)
     }
 
+    // ---- Step 8: Insert scripture verses ----
+    console.log('\n📜 Inserting scripture verses...')
+    for (const verse of SCRIPTURE_VERSES) {
+      await client.query(
+        'INSERT INTO scripture_verses (text, reference, category) VALUES ($1, $2, $3)',
+        [verse.text, verse.reference, verse.category]
+      )
+    }
+    console.log(`   ✅ ${SCRIPTURE_VERSES.length} verses inserted`)
+
+    // ---- Step 9: Insert reading plans ----
+    console.log('\n📖 Inserting reading plans...')
+    let totalPlanDays = 0
+    for (const plan of READING_PLANS) {
+      const planResult = await client.query(
+        'INSERT INTO reading_plans (name, description, total_days) VALUES ($1, $2, $3) RETURNING id',
+        [plan.name, plan.description, plan.totalDays]
+      )
+      const planId = planResult.rows[0].id
+
+      for (const day of plan.days) {
+        await client.query(
+          'INSERT INTO reading_plan_days (plan_id, day_number, title, reference) VALUES ($1, $2, $3, $4)',
+          [planId, day.dayNumber, day.title, day.reference]
+        )
+        totalPlanDays++
+      }
+      console.log(`   ✅ ${plan.name} (${plan.totalDays} days)`)
+    }
+
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     console.log(`   Users:        ${1 + AVAILABLE_PEOPLE.length}`)
     console.log(`   Churches:     ${CHURCHES.length}`)
     console.log(`   Quotes:       ${BIBLE_QUOTES.length}`)
     console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
+    console.log(`   Verses:       ${SCRIPTURE_VERSES.length}`)
+    console.log(`   Plans:        ${READING_PLANS.length} (${totalPlanDays} days)`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {

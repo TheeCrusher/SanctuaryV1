@@ -41,6 +41,18 @@ export function AppProvider({ children }) {
   // ----- DAILY QUOTE STATE -----
   const [dailyQuote, setDailyQuote] = useState({ text: '', ref: '' })
 
+  // ----- NOTES STATE -----
+  const [notes, setNotes] = useState([])
+
+  // ----- CHURCH FAVORITES STATE -----
+  const [favoriteChurchIds, setFavoriteChurchIds] = useState(new Set())
+
+  // ----- SCRIPTURE STATE -----
+  const [scriptureDailyVerse, setScriptureDailyVerse] = useState(null)
+  const [scriptureVerses, setScriptureVerses] = useState([])
+  const [scriptureBookmarkIds, setScriptureBookmarkIds] = useState(new Set())
+  const [readingPlans, setReadingPlans] = useState([])
+
   // ----- MODAL STATE -----
   const [modal, setModal] = useState(null)
 
@@ -58,13 +70,25 @@ export function AppProvider({ children }) {
         conversationsRes,
         churchesRes,
         quoteRes,
-        peopleRes
+        peopleRes,
+        notesRes,
+        favoritesRes,
+        dailyVerseRes,
+        versesRes,
+        verseBookmarksRes,
+        plansRes
       ] = await Promise.all([
         api.get('/appointments'),
         api.get('/conversations'),
         api.get('/churches'),
         api.get('/quotes/daily'),
-        api.get('/users/available')
+        api.get('/users/available'),
+        api.get('/notes'),
+        api.get('/favorites'),
+        api.get('/scripture/daily'),
+        api.get('/scripture/verses'),
+        api.get('/scripture/bookmarks'),
+        api.get('/scripture/plans')
       ])
 
       setAppointments(appointmentsRes.appointments)
@@ -72,6 +96,12 @@ export function AppProvider({ children }) {
       setChurches(churchesRes.churches)
       setDailyQuote(quoteRes.quote)
       setAvailablePeople(peopleRes.people)
+      setNotes(notesRes.notes)
+      setFavoriteChurchIds(new Set(favoritesRes.favoriteIds))
+      setScriptureDailyVerse(dailyVerseRes.verse)
+      setScriptureVerses(versesRes.verses)
+      setScriptureBookmarkIds(new Set(verseBookmarksRes.bookmarkIds))
+      setReadingPlans(plansRes.plans)
     } catch (error) {
       console.error('Failed to load data:', error)
     }
@@ -151,6 +181,12 @@ export function AppProvider({ children }) {
     setDailyQuote({ text: '', ref: '' })
     setChurchSearchQuery('')
     setModal(null)
+    setNotes([])
+    setFavoriteChurchIds(new Set())
+    setScriptureDailyVerse(null)
+    setScriptureVerses([])
+    setScriptureBookmarkIds(new Set())
+    setReadingPlans([])
   }
 
   async function updateUserPhoto(photoUrl) {
@@ -306,6 +342,108 @@ export function AppProvider({ children }) {
     : churches
 
   // =========================================================================
+  // NOTES FUNCTIONS
+  // =========================================================================
+
+  async function createNote(noteData) {
+    const { note } = await api.post('/notes', noteData)
+    setNotes(prev => [note, ...prev])
+    return note
+  }
+
+  async function updateNote(id, noteData) {
+    const { note } = await api.put(`/notes/${id}`, noteData)
+    setNotes(prev => prev.map(n => n.id === id ? note : n))
+    return note
+  }
+
+  async function deleteNote(id) {
+    await api.delete(`/notes/${id}`)
+    setNotes(prev => prev.filter(n => n.id !== id))
+  }
+
+  // =========================================================================
+  // CHURCH FAVORITES FUNCTIONS
+  // =========================================================================
+
+  async function toggleFavoriteChurch(churchId) {
+    const isFav = favoriteChurchIds.has(churchId)
+    // Optimistic update — change UI immediately, revert if API fails
+    setFavoriteChurchIds(prev => {
+      const next = new Set(prev)
+      if (isFav) next.delete(churchId)
+      else next.add(churchId)
+      return next
+    })
+    try {
+      if (isFav) {
+        await api.delete(`/favorites/${churchId}`)
+      } else {
+        await api.post(`/favorites/${churchId}`)
+      }
+    } catch (error) {
+      // Revert on failure
+      setFavoriteChurchIds(prev => {
+        const next = new Set(prev)
+        if (isFav) next.add(churchId)
+        else next.delete(churchId)
+        return next
+      })
+      console.error('Failed to toggle favorite:', error)
+    }
+  }
+
+  function isChurchFavorited(churchId) {
+    return favoriteChurchIds.has(churchId)
+  }
+
+  // =========================================================================
+  // SCRIPTURE FUNCTIONS
+  // =========================================================================
+
+  async function toggleVerseBookmark(verseId) {
+    const isBookmarked = scriptureBookmarkIds.has(verseId)
+    setScriptureBookmarkIds(prev => {
+      const next = new Set(prev)
+      if (isBookmarked) next.delete(verseId)
+      else next.add(verseId)
+      return next
+    })
+    try {
+      if (isBookmarked) await api.delete(`/scripture/bookmarks/${verseId}`)
+      else await api.post(`/scripture/bookmarks/${verseId}`)
+    } catch (error) {
+      setScriptureBookmarkIds(prev => {
+        const next = new Set(prev)
+        if (isBookmarked) next.add(verseId)
+        else next.delete(verseId)
+        return next
+      })
+      console.error('Failed to toggle bookmark:', error)
+    }
+  }
+
+  async function getRandomVerse() {
+    const { verse } = await api.get('/scripture/verses/random')
+    return verse
+  }
+
+  async function getReadingPlanDetail(planId) {
+    const { plan } = await api.get(`/scripture/plans/${planId}`)
+    return plan
+  }
+
+  async function getReadingProgress(planId) {
+    const { progress } = await api.get(`/scripture/plans/${planId}/progress`)
+    return progress
+  }
+
+  async function markDayComplete(planId, dayNumber) {
+    const { progress } = await api.post(`/scripture/plans/${planId}/progress`, { dayNumber })
+    return progress
+  }
+
+  // =========================================================================
   // CONTEXT VALUE
   // =========================================================================
   // This is what every screen gets when it calls useApp().
@@ -343,6 +481,28 @@ export function AppProvider({ children }) {
     allChurches: churches,
     churchSearchQuery,
     setChurchSearchQuery,
+
+    // Notes
+    notes,
+    createNote,
+    updateNote,
+    deleteNote,
+
+    // Church Favorites
+    favoriteChurchIds,
+    toggleFavoriteChurch,
+    isChurchFavorited,
+
+    // Scripture
+    scriptureDailyVerse,
+    scriptureVerses,
+    scriptureBookmarkIds,
+    readingPlans,
+    toggleVerseBookmark,
+    getRandomVerse,
+    getReadingPlanDetail,
+    getReadingProgress,
+    markDayComplete,
 
     // Modal
     modal,

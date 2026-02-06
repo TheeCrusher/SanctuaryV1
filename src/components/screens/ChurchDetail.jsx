@@ -7,7 +7,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
-import { ArrowLeft, Church, Check, X } from 'lucide-react'
+import { ArrowLeft, Church, Check, X, Heart } from 'lucide-react'
 
 function ChurchDetail() {
   const navigate = useNavigate()
@@ -15,8 +15,8 @@ function ChurchDetail() {
   // useParams gets URL parameters (like :id in /churches/:id)
   const { id } = useParams()
 
-  // Get all churches from context
-  const { allChurches } = useApp()
+  // Get all churches and favorites from context
+  const { allChurches, toggleFavoriteChurch, isChurchFavorited } = useApp()
 
   // Find the specific church by ID
   const church = allChurches.find(c => c.id === parseInt(id))
@@ -71,7 +71,16 @@ function ChurchDetail() {
           <h1 style={{ fontSize: '20px', fontWeight: '700', flex: 1, textAlign: 'center' }}>
             Church Details
           </h1>
-          <div style={{ width: '40px' }} />
+          <button
+            className="favorite-btn"
+            onClick={() => toggleFavoriteChurch(church.id)}
+          >
+            <Heart
+              size={22}
+              fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
+              color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
+            />
+          </button>
         </div>
       </div>
 

@@ -28,6 +28,10 @@ import Notifications from './components/screens/Notifications'
 import PaymentMethod from './components/screens/PaymentMethod'
 import Terms from './components/screens/Terms'
 import Privacy from './components/screens/Privacy'
+import MoreMenu from './components/screens/MoreMenu'
+import Notes from './components/screens/Notes'
+import Scripture from './components/screens/Scripture'
+import ReadingPlan from './components/screens/ReadingPlan'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -163,6 +167,42 @@ function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/more"
+          element={
+            <ProtectedRoute>
+              <MoreMenu />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notes"
+          element={
+            <ProtectedRoute>
+              <Notes />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/scripture"
+          element={
+            <ProtectedRoute>
+              <Scripture />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/scripture/plan/:id"
+          element={
+            <ProtectedRoute>
+              <ReadingPlan />
             </ProtectedRoute>
           }
         />

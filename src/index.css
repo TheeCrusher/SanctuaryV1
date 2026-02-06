@@ -23,6 +23,11 @@
    18. Chat Context Menu
    19. Subscreen Content
    20. Animations
+   21. Splash Screen
+   22. More Menu
+   23. Session Notes
+   24. Church Favorites
+   25. Scripture Study
    ============================================================================= */
 
 /* ---------------------------------------------------------------------------
@@ -1615,4 +1620,515 @@ textarea {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.4);
   margin-top: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   21. SPLASH SCREEN
+   --------------------------------------------------------------------------- */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.splash-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.splash-skip {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+}
+
+/* ---------------------------------------------------------------------------
+   22. MORE MENU
+   --------------------------------------------------------------------------- */
+.more-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.more-profile-card:active {
+  background: #f9fafb;
+}
+
+.more-profile-info {
+  flex: 1;
+}
+
+.more-profile-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.more-profile-email {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.more-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px 0 8px;
+}
+
+.more-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  text-align: left;
+}
+
+.more-menu-item:active {
+  background: #f9fafb;
+}
+
+.more-menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.more-menu-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f0f4ff;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.more-menu-item-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.more-menu-item-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   23. SESSION NOTES
+   --------------------------------------------------------------------------- */
+.note-card {
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+}
+
+.note-card:active {
+  background: #f9fafb;
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.note-time {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.note-preview {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.note-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.note-editor textarea {
+  width: 100%;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.note-tag-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note-tag-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.note-tag-btn.selected {
+  border-color: currentColor;
+}
+
+.note-delete-btn {
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  cursor: pointer;
+}
+
+.note-delete-btn:active {
+  background: #fee2e2;
+}
+
+/* ---------------------------------------------------------------------------
+   24. CHURCH FAVORITES
+   --------------------------------------------------------------------------- */
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-btn:active {
+  transform: scale(1.3);
+}
+
+.favorites-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.favorites-filter-btn.active {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #ef4444;
+}
+
+/* ---------------------------------------------------------------------------
+   25. SCRIPTURE STUDY
+   --------------------------------------------------------------------------- */
+.verse-of-day {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.verse-of-day-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+.verse-of-day-text {
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.verse-of-day-ref {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.verse-of-day-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.verse-action-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.verse-action-pill:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.quick-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quick-action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.quick-action-btn.active {
+  background: #1e3a8a;
+  color: white;
+  border-color: #1e3a8a;
+}
+
+.category-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.category-pill.active {
+  background: #1e3a8a;
+  color: white;
+  border-color: #1e3a8a;
+}
+
+.verse-card {
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.verse-reference {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.verse-text {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.verse-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.verse-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+}
+
+.verse-category-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #f0f4ff;
+  color: #1e3a8a;
+}
+
+.plan-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.plan-card:active {
+  background: #f9fafb;
+}
+
+.plan-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.plan-desc {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.plan-progress-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.plan-progress-fill {
+  height: 100%;
+  background: #1e3a8a;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.plan-progress-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.plan-day-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+}
+
+.plan-day-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f0f4ff;
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plan-day-number.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.plan-day-info {
+  flex: 1;
+}
+
+.plan-day-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.plan-day-ref {
+  font-size: 13px;
+  color: #6b7280;
 }

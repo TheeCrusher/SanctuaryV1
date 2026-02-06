@@ -2,7 +2,7 @@
 // BOTTOM NAVIGATION COMPONENT
 // =============================================================================
 // The main navigation bar fixed at the bottom of the screen.
-// Shows icons for: Home, Appointments, Messages, Churches, Profile
+// Shows 5 icons: Home, Appointments, Messages, More, Profile
 //
 // Uses React Router to:
 //   - Navigate to different screens when tapped
@@ -10,7 +10,7 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Home, Calendar, MessageCircle, Church, User } from 'lucide-react'
+import { Home, Calendar, MessageCircle, MoreHorizontal, User } from 'lucide-react'
 
 function BottomNav() {
   // useNavigate gives us a function to programmatically change routes
@@ -23,28 +23,32 @@ function BottomNav() {
   const { user } = useApp()
 
   // Helper function to check if a path is currently active
-  // This is used to highlight the active nav button
   function isActive(path) {
     return location.pathname === path || location.pathname.startsWith(path + '/')
   }
 
-  // Navigation items configuration
-  // Each item has: path (URL), icon (emoji), and label (for accessibility)
+  // "More" is active when on /more, /notes, /scripture, or /churches
+  function isMoreActive() {
+    const morePaths = ['/more', '/notes', '/scripture', '/churches']
+    return morePaths.some(p =>
+      location.pathname === p || location.pathname.startsWith(p + '/')
+    )
+  }
+
+  // Navigation items configuration (3 main tabs)
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Home' },
     { path: '/appointments', icon: Calendar, label: 'Appointments' },
-    { path: '/messages', icon: MessageCircle, label: 'Messages' },
-    { path: '/churches', icon: Church, label: 'Churches' }
+    { path: '/messages', icon: MessageCircle, label: 'Messages' }
   ]
 
   return (
     <nav className="bottom-nav">
       <div className="nav-items">
-        {/* Map through nav items to create buttons */}
-        {/* .map() is how we loop through arrays in React */}
+        {/* Main nav buttons */}
         {navItems.map((item) => (
           <button
-            key={item.path}  // React needs unique keys for list items
+            key={item.path}
             className={`nav-btn ${isActive(item.path) ? 'active' : ''}`}
             onClick={() => navigate(item.path)}
             aria-label={item.label}
@@ -54,7 +58,17 @@ function BottomNav() {
           </button>
         ))}
 
-        {/* Profile button is special - shows user photo or emoji */}
+        {/* More button - links to Notes, Scripture, Churches */}
+        <button
+          className={`nav-btn ${isMoreActive() ? 'active' : ''}`}
+          onClick={() => navigate('/more')}
+          aria-label="More"
+          title="More"
+        >
+          <MoreHorizontal size={24} />
+        </button>
+
+        {/* Profile button */}
         <button
           className={`nav-btn nav-btn-profile ${isActive('/profile') ? 'active' : ''}`}
           onClick={() => navigate('/profile')}
