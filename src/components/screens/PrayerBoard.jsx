@@ -47,10 +47,11 @@ function PrayerBoard() {
   async function loadRequests() {
     try {
       const params = selectedCategory !== 'All' ? `?category=${selectedCategory}` : ''
-      const { requests: data } = await api.get(`/prayers${params}`)
-      setRequests(data)
+      const result = await api.get(`/prayers${params}`)
+      setRequests(result?.requests || [])
     } catch (error) {
       console.error('Failed to load prayers:', error)
+      setRequests([])
     } finally {
       setLoading(false)
     }
