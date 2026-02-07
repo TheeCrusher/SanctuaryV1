@@ -4,7 +4,7 @@
 // Shows user profile info with editable bio, specialization, and location.
 // Allows photo upload, dark mode toggle, and logout.
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
@@ -36,9 +36,15 @@ function Profile() {
     location: ''
   })
   const [saving, setSaving] = useState(false)
+  const [showPhoto, setShowPhoto] = useState(false)
+
+  function handleCameraClick(e) {
+    e.stopPropagation()
+    fileInputRef.current?.click()
+  }
 
   function handleAvatarClick() {
-    fileInputRef.current?.click()
+    setShowPhoto(true)
   }
 
   function handleFileChange(e) {
@@ -94,14 +100,16 @@ function Profile() {
     <div className="screen with-bottom-nav">
       {/* Profile Header */}
       <div className="profile-header">
-        <div className="profile-avatar-wrap" onClick={handleAvatarClick}>
-          <Avatar
-            src={user?.photoUrl}
-            emoji={user?.avatar}
-            size="xl"
-            variant="gradient"
-          />
-          <div className="camera-overlay"><Camera size={16} /></div>
+        <div className="profile-avatar-wrap">
+          <div onClick={handleAvatarClick} style={{ cursor: 'pointer' }}>
+            <Avatar
+              src={user?.photoUrl}
+              emoji={user?.avatar}
+              size="xl"
+              variant="gradient"
+            />
+          </div>
+          <div className="camera-overlay" onClick={handleCameraClick}><Camera size={16} /></div>
         </div>
 
         <input
@@ -245,6 +253,19 @@ function Profile() {
           <span className="menu-item-arrow danger"><ChevronRight size={18} /></span>
         </button>
       </div>
+
+      {/* Photo Preview Modal */}
+      {showPhoto && (
+        <div className="photo-preview-overlay" onClick={() => setShowPhoto(false)}>
+          <div className="photo-preview-content">
+            {user?.photoUrl ? (
+              <img src={user.photoUrl} alt={user?.name || 'Profile'} className="photo-preview-img" />
+            ) : (
+              <div className="photo-preview-emoji">{user?.avatar || '🙏'}</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

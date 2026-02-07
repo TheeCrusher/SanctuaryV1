@@ -113,9 +113,7 @@ function App() {
 
         <Route
           path="/signup"
-          element={
-            user ? <Navigate to="/dashboard" replace /> : <SignUpScreen />
-          }
+          element={<SignUpScreen />}
         />
 
         {/* ====== PROTECTED ROUTES ====== */}

@@ -5,8 +5,8 @@
 // Step 2: About you (location, denomination, church) — skippable
 // Step 3: Your interests (tappable chips) — skippable
 
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart } from 'lucide-react'
 
@@ -46,6 +46,7 @@ function SignUpScreen() {
   const [showConfirm, setShowConfirm] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [onboarding, setOnboarding] = useState(false)
 
   // ----- STEP 2 STATE -----
   const [location, setLocation] = useState('')
@@ -55,8 +56,13 @@ function SignUpScreen() {
   // ----- STEP 3 STATE -----
   const [selectedInterests, setSelectedInterests] = useState([])
 
-  const { register, updateProfile } = useApp()
+  const { user, register, updateProfile } = useApp()
   const navigate = useNavigate()
+
+  // If already logged in and NOT in the onboarding flow, redirect to dashboard
+  if (user && !onboarding) {
+    return <Navigate to="/dashboard" replace />
+  }
 
   // ----- STEP 1: Create Account -----
   async function handleCreateAccount(e) {
@@ -74,6 +80,7 @@ function SignUpScreen() {
     }
 
     setLoading(true)
+    setOnboarding(true)
     const result = await register(name, email, password, role)
     setLoading(false)
 
