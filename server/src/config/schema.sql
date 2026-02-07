@@ -344,3 +344,40 @@ CREATE TABLE IF NOT EXISTS prayer_interactions (
 
 CREATE INDEX IF NOT EXISTS idx_prayer_interactions_request ON prayer_interactions(request_id);
 CREATE INDEX IF NOT EXISTS idx_prayer_interactions_user ON prayer_interactions(user_id);
+
+-- ============================================================
+-- BIBLE HIGHLIGHTS TABLE
+-- ============================================================
+-- Users can highlight individual verses with different colors.
+-- One highlight per user per verse (UNIQUE constraint).
+
+CREATE TABLE IF NOT EXISTS user_bible_highlights (
+  id         SERIAL PRIMARY KEY,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  book       VARCHAR(50) NOT NULL,
+  chapter    INTEGER NOT NULL,
+  verse      INTEGER NOT NULL,
+  color      VARCHAR(20) NOT NULL DEFAULT 'yellow',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, book, chapter, verse)
+);
+
+CREATE INDEX IF NOT EXISTS idx_bible_highlights_user ON user_bible_highlights(user_id);
+
+-- ============================================================
+-- BIBLE BOOKMARKS TABLE
+-- ============================================================
+-- Users can bookmark specific locations in the Bible.
+
+CREATE TABLE IF NOT EXISTS user_bible_bookmarks (
+  id         SERIAL PRIMARY KEY,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  book       VARCHAR(50) NOT NULL,
+  chapter    INTEGER NOT NULL,
+  verse      INTEGER DEFAULT NULL,
+  note       TEXT DEFAULT '',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, book, chapter, verse)
+);
+
+CREATE INDEX IF NOT EXISTS idx_bible_bookmarks_user ON user_bible_bookmarks(user_id);

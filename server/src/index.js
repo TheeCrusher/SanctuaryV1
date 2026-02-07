@@ -27,6 +27,7 @@ import favoriteRoutes from './routes/favorites.js'
 import scriptureRoutes from './routes/scripture.js'
 import reviewRoutes from './routes/reviews.js'
 import prayerRoutes from './routes/prayers.js'
+import bibleRoutes from './routes/bible.js'
 
 // Load environment variables from .env
 dotenv.config()
@@ -91,6 +92,7 @@ app.use('/api/favorites', favoriteRoutes)
 app.use('/api/scripture', scriptureRoutes)
 app.use('/api/churches', reviewRoutes)
 app.use('/api/prayers', prayerRoutes)
+app.use('/api/bible', bibleRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE

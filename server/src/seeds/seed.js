@@ -52,6 +52,8 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS user_bible_bookmarks CASCADE;
+      DROP TABLE IF EXISTS user_bible_highlights CASCADE;
       DROP TABLE IF EXISTS prayer_interactions CASCADE;
       DROP TABLE IF EXISTS prayer_requests CASCADE;
       DROP TABLE IF EXISTS church_reviews CASCADE;
@@ -76,7 +78,7 @@ async function seed() {
     const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
     const schema = readFileSync(schemaPath, 'utf8')
     await client.query(schema)
-    console.log('   ✅ 17 tables created\n')
+    console.log('   ✅ 19 tables created\n')
 
     // ---- Step 3: Insert test user ----
     console.log('👤 Creating test user...')

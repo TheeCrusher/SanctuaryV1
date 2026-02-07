@@ -54,6 +54,10 @@ export function AppProvider({ children }) {
   const [scriptureBookmarkIds, setScriptureBookmarkIds] = useState(new Set())
   const [readingPlans, setReadingPlans] = useState([])
 
+  // ----- BIBLE READER STATE -----
+  const [bibleHighlights, setBibleHighlights] = useState([])
+  const [bibleBookmarks, setBibleBookmarks] = useState([])
+
   // ----- MODAL STATE -----
   const [modal, setModal] = useState(null)
 
@@ -142,7 +146,9 @@ export function AppProvider({ children }) {
         dailyVerseRes,
         versesRes,
         verseBookmarksRes,
-        plansRes
+        plansRes,
+        bibleHighlightsRes,
+        bibleBookmarksRes
       ] = await Promise.all([
         api.get('/appointments'),
         api.get('/conversations'),
@@ -154,7 +160,9 @@ export function AppProvider({ children }) {
         api.get('/scripture/daily'),
         api.get('/scripture/verses'),
         api.get('/scripture/bookmarks'),
-        api.get('/scripture/plans')
+        api.get('/scripture/plans'),
+        api.get('/bible/highlights'),
+        api.get('/bible/bookmarks')
       ])
 
       setAppointments(appointmentsRes.appointments)
@@ -168,6 +176,8 @@ export function AppProvider({ children }) {
       setScriptureVerses(versesRes.verses)
       setScriptureBookmarkIds(new Set(verseBookmarksRes.bookmarkIds))
       setReadingPlans(plansRes.plans)
+      setBibleHighlights(bibleHighlightsRes.highlights)
+      setBibleBookmarks(bibleBookmarksRes.bookmarks)
     } catch (error) {
       console.error('Failed to load data:', error)
     }
@@ -586,6 +596,46 @@ export function AppProvider({ children }) {
   }
 
   // =========================================================================
+  // BIBLE HIGHLIGHTS & BOOKMARKS
+  // =========================================================================
+
+  async function addBibleHighlight(book, chapter, verse, color = 'yellow') {
+    const { highlight } = await api.post('/bible/highlights', { book, chapter, verse, color })
+    // Replace if exists (same verse), otherwise add
+    setBibleHighlights(prev => {
+      const filtered = prev.filter(h => !(h.book === book && h.chapter === chapter && h.verse === verse))
+      return [highlight, ...filtered]
+    })
+    return highlight
+  }
+
+  async function removeBibleHighlight(id) {
+    await api.delete(`/bible/highlights/${id}`)
+    setBibleHighlights(prev => prev.filter(h => h.id !== id))
+  }
+
+  async function updateBibleHighlight(id, color) {
+    const { highlight } = await api.put(`/bible/highlights/${id}`, { color })
+    setBibleHighlights(prev => prev.map(h => h.id === id ? highlight : h))
+    return highlight
+  }
+
+  async function addBibleBookmark(book, chapter, verse = null, note = '') {
+    const { bookmark } = await api.post('/bible/bookmarks', { book, chapter, verse, note })
+    // Replace if exists (same location), otherwise add
+    setBibleBookmarks(prev => {
+      const filtered = prev.filter(b => !(b.book === book && b.chapter === chapter && b.verse === verse))
+      return [bookmark, ...filtered]
+    })
+    return bookmark
+  }
+
+  async function removeBibleBookmark(id) {
+    await api.delete(`/bible/bookmarks/${id}`)
+    setBibleBookmarks(prev => prev.filter(b => b.id !== id))
+  }
+
+  // =========================================================================
   // CONTEXT VALUE
   // =========================================================================
   // This is what every screen gets when it calls useApp().
@@ -656,6 +706,15 @@ export function AppProvider({ children }) {
     getReadingPlanDetail,
     getReadingProgress,
     markDayComplete,
+
+    // Bible Reader
+    bibleHighlights,
+    bibleBookmarks,
+    addBibleHighlight,
+    removeBibleHighlight,
+    updateBibleHighlight,
+    addBibleBookmark,
+    removeBibleBookmark,
 
     // Modal
     modal,

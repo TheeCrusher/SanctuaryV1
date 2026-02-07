@@ -35,6 +35,8 @@ import ReadingPlan from './components/screens/ReadingPlan'
 import UserProfile from './components/screens/UserProfile'
 import PrayerBoard from './components/screens/PrayerBoard'
 import CalendarView from './components/screens/CalendarView'
+import BibleSelect from './components/screens/BibleSelect'
+import BibleReader from './components/screens/BibleReader'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -91,7 +93,7 @@ function App() {
   const location = useLocation()
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/chat']
+  const noNavPages = ['/login', '/chat', '/bibles/reader']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   return (
@@ -233,6 +235,24 @@ function App() {
           element={
             <ProtectedRoute>
               <PrayerBoard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bibles"
+          element={
+            <ProtectedRoute>
+              <BibleSelect />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bibles/reader"
+          element={
+            <ProtectedRoute>
+              <BibleReader />
             </ProtectedRoute>
           }
         />
