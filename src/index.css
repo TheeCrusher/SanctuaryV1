@@ -1763,6 +1763,170 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
+   20b. SIGN UP SCREEN
+   --------------------------------------------------------------------------- */
+
+/* Progress dots at the top showing which step you're on */
+.signup-progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.signup-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* "I am a..." label */
+.signup-step-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+/* Role selector — two side-by-side tappable cards */
+.signup-role-cards {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.signup-role-card {
+  flex: 1;
+  padding: 16px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.signup-role-card.selected {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.signup-role-card:active {
+  transform: scale(0.97);
+}
+
+.signup-role-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.signup-role-desc {
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* Dropdown select for denomination (styled to match frosted inputs) */
+.signup-select {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.signup-select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.signup-select option {
+  background: #1e3a8a;
+  color: white;
+}
+
+/* Interest chips grid — wrapping rows of tappable pills */
+.signup-interests-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.signup-interest-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signup-interest-chip.selected {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  font-weight: 600;
+}
+
+.signup-interest-chip:active {
+  transform: scale(0.95);
+}
+
+/* "Skip for now" button */
+.signup-skip {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.signup-skip:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* "Sign Up" / "Sign In" link at bottom */
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-link a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------------
    21. SPLASH SCREEN
    --------------------------------------------------------------------------- */
 .splash-screen {

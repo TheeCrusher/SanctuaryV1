@@ -15,17 +15,20 @@ export const TEST_USER = {
   email: 'test@sanctuary.com',
   password: 'Sanctuary123',
   avatar: '🙏',
-  role: 'guide'
+  role: 'guide',
+  denomination: 'Non-denominational',
+  churchName: 'Willow Creek Church',
+  interests: ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering']
 }
 
 // Available people for conversations
 // These become user accounts in the database
 export const AVAILABLE_PEOPLE = [
-  { name: 'Sarah Johnson', avatar: '👩', role: 'seeker' },
-  { name: 'Michael Chen', avatar: '👨', role: 'seeker' },
-  { name: 'Emily Rodriguez', avatar: '👩‍🦱', role: 'seeker' },
-  { name: 'James Wilson', avatar: '👨‍🦳', role: 'seeker' },
-  { name: 'Grace Okafor', avatar: '👩', role: 'guide' }
+  { name: 'Sarah Johnson', avatar: '👩', role: 'seeker', denomination: 'Baptist', churchName: 'Holy Name Cathedral', interests: ['Reading', 'Music', 'Bible Study'] },
+  { name: 'Michael Chen', avatar: '👨', role: 'seeker', denomination: 'Methodist', interests: ['Hiking', 'Photography', 'Community Service'] },
+  { name: 'Emily Rodriguez', avatar: '👩‍🦱', role: 'seeker', denomination: 'Catholic', churchName: 'New Life Assembly', interests: ['Painting', 'Worship', 'Cooking'] },
+  { name: 'James Wilson', avatar: '👨‍🦳', role: 'seeker', denomination: 'Presbyterian', interests: ['Sports', 'Gardening', 'Travel'] },
+  { name: 'Grace Okafor', avatar: '👩', role: 'guide', denomination: 'Pentecostal', churchName: 'Faith Community Church', interests: ['Bible Study', 'Youth Ministry', 'Writing', 'Music'] }
 ]
 
 // Church listings

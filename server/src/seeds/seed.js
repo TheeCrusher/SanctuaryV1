@@ -84,12 +84,13 @@ async function seed() {
     console.log('👤 Creating test user...')
     const passwordHash = await bcrypt.hash(TEST_USER.password, 10)
     const userResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, denomination, church_name, interests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
        RETURNING id`,
       [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role,
        'Spiritual guide dedicated to helping others find their path through prayer and scripture.',
-       'General Guidance', 'Atlanta, GA']
+       'General Guidance', 'Atlanta, GA',
+       TEST_USER.denomination, TEST_USER.churchName, TEST_USER.interests]
     )
     const guideId = userResult.rows[0].id
     console.log(`   ✅ Test user created (id: ${guideId})`)
@@ -103,15 +104,18 @@ async function seed() {
       // Give each person a dummy password (they're demo accounts)
       const hash = await bcrypt.hash('password123', 10)
       const result = await client.query(
-        `INSERT INTO users (name, email, password_hash, avatar, role)
-         VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO users (name, email, password_hash, avatar, role, denomination, church_name, interests)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
          RETURNING id`,
         [
           person.name,
           person.name.toLowerCase().replace(/\s+/g, '.') + '@sanctuary.com',
           hash,
           person.avatar,
-          person.role
+          person.role,
+          person.denomination || null,
+          person.churchName || null,
+          person.interests || []
         ]
       )
       peopleIds.push(result.rows[0].id)

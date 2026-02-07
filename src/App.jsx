@@ -13,6 +13,7 @@ import { BottomNav } from './components/layout'
 
 // Screen components (we'll create these next)
 import LoginScreen from './components/screens/LoginScreen'
+import SignUpScreen from './components/screens/SignUpScreen'
 import Dashboard from './components/screens/Dashboard'
 import Appointments from './components/screens/Appointments'
 import Messages from './components/screens/Messages'
@@ -93,7 +94,7 @@ function App() {
   const location = useLocation()
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/chat', '/bibles/reader']
+  const noNavPages = ['/login', '/signup', '/chat', '/bibles/reader']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   return (
@@ -107,6 +108,13 @@ function App() {
           element={
             // If already logged in, redirect to dashboard
             user ? <Navigate to="/dashboard" replace /> : <LoginScreen />
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            user ? <Navigate to="/dashboard" replace /> : <SignUpScreen />
           }
         />
 

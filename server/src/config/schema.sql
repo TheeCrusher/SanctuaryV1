@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS users (
   bio             TEXT,
   specialization  VARCHAR(100),
   location        VARCHAR(100),
+  denomination    VARCHAR(100),
+  church_name     VARCHAR(100),
+  interests       TEXT[] DEFAULT '{}',
   created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

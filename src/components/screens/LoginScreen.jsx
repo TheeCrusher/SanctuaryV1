@@ -2,10 +2,10 @@
 // LOGIN SCREEN COMPONENT
 // =============================================================================
 // The first screen users see. Handles email/password authentication.
-// Test credentials: test@sanctuary.com / Sanctuary123
+// Shows email/password form with link to Sign Up.
 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 
@@ -47,14 +47,6 @@ function LoginScreen() {
     } else {
       // Login failed - show error message
       setError(result.error)
-    }
-  }
-
-  // Quick login for development/testing
-  async function handleDevLogin() {
-    const result = await login('test@sanctuary.com', 'Sanctuary123')
-    if (result.success) {
-      navigate('/dashboard')
     }
   }
 
@@ -119,14 +111,9 @@ function LoginScreen() {
         </form>
       </div>
 
-      {/* Demo Quick Login */}
-      <div className="login-demo">
-        <button type="button" className="login-demo-btn" onClick={handleDevLogin}>
-          Quick Login (Demo)
-        </button>
-        <div className="login-demo-hint">
-          test@sanctuary.com / Sanctuary123
-        </div>
+      {/* Sign Up Link */}
+      <div className="signup-link">
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </div>
     </div>
   )

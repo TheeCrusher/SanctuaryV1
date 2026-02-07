@@ -227,6 +227,20 @@ export function AppProvider({ children }) {
   // AUTHENTICATION FUNCTIONS
   // =========================================================================
 
+  async function register(name, email, password, role) {
+    try {
+      const data = await api.post('/auth/register', { name, email, password, role })
+      setToken(data.token)
+      setUser(data.user)
+      await loadAllData()
+      const sock = connectSocket()
+      if (sock) setupSocketListeners(sock)
+      return { success: true }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  }
+
   async function login(email, password) {
     try {
       // Call the login API endpoint
@@ -646,6 +660,7 @@ export function AppProvider({ children }) {
     // User
     user,
     isLoading,
+    register,
     login,
     logout,
     updateUserPhoto,
