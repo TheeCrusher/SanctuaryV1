@@ -4,6 +4,7 @@
 // GET  /api/users/me        - Get current user's profile
 // PUT  /api/users/me        - Update profile (name, avatar, photo)
 // GET  /api/users/available - List people available to chat with
+// GET  /api/users/search    - Search users by name
 //
 // All routes are protected (require JWT token).
 // Replaces: user state and AVAILABLE_PEOPLE in AppContext.jsx
@@ -168,6 +169,44 @@ router.get('/available', async (req, res, next) => {
     }))
 
     res.json({ people })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// GET /api/users/search?q=name
+// ============================================================
+// Searches users by name (case-insensitive partial match).
+// Returns up to 20 results, excludes the current user.
+// Requires at least 2 characters to search.
+
+router.get('/search', async (req, res, next) => {
+  try {
+    const { q } = req.query
+
+    if (!q || q.trim().length < 2) {
+      return res.json({ users: [] })
+    }
+
+    const result = await pool.query(
+      `SELECT id, name, avatar, photo_url, role
+       FROM users
+       WHERE id != $1 AND name ILIKE $2
+       ORDER BY name ASC
+       LIMIT 20`,
+      [req.user.id, `%${q.trim()}%`]
+    )
+
+    const users = result.rows.map(row => ({
+      id: row.id,
+      name: row.name,
+      avatar: row.avatar,
+      photoUrl: row.photo_url,
+      role: row.role.charAt(0).toUpperCase() + row.role.slice(1)
+    }))
+
+    res.json({ users })
   } catch (error) {
     next(error)
   }

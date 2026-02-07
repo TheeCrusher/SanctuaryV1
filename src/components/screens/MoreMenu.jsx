@@ -4,16 +4,36 @@
 // A hub screen accessed from the 5th bottom nav tab.
 // Links to: Profile, Session Notes, Scripture Study, and future features.
 
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { FileText, BookOpen, Book, Church, Heart, ChevronRight, LogOut } from 'lucide-react'
+import { FileText, BookOpen, Book, Church, Heart, ChevronRight, LogOut, Share2 } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
   const { user, logout } = useApp()
+  const [copied, setCopied] = useState(false)
 
   const menuItems = [
+    {
+      icon: Church,
+      text: 'Churches',
+      subtitle: 'Find & favorite churches',
+      path: '/churches'
+    },
+    {
+      icon: Book,
+      text: 'Bibles',
+      subtitle: 'Read the Word of God',
+      path: '/bibles'
+    },
+    {
+      icon: Heart,
+      text: 'Prayer Board',
+      subtitle: 'Community prayer requests',
+      path: '/prayers'
+    },
     {
       icon: FileText,
       text: 'Session Notes',
@@ -27,24 +47,40 @@ function MoreMenu() {
       path: '/scripture'
     },
     {
-      icon: Book,
-      text: 'Bibles',
-      subtitle: 'Read the Word of God',
-      path: '/bibles'
-    },
-    {
-      icon: Church,
-      text: 'Churches',
-      subtitle: 'Find & favorite churches',
-      path: '/churches'
-    },
-    {
-      icon: Heart,
-      text: 'Prayer Board',
-      subtitle: 'Community prayer requests',
-      path: '/prayers'
+      icon: Share2,
+      text: 'Invite Friends',
+      subtitle: copied ? 'Link copied!' : 'Share Sanctuary with others',
+      action: handleInvite
     }
   ]
+
+  async function handleInvite() {
+    const shareData = {
+      title: 'Join me on Sanctuary',
+      text: 'Sanctuary is a spiritual guidance app connecting guides with seekers. Join our community!',
+      url: 'https://sanctuary-v1.vercel.app/login'
+    }
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        // User cancelled the share sheet — this is normal, not an error
+        if (err.name !== 'AbortError') {
+          console.error('Share failed:', err)
+        }
+      }
+    } else {
+      // Fallback for desktop: copy link to clipboard
+      try {
+        await navigator.clipboard.writeText(shareData.url)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      } catch (err) {
+        console.error('Copy failed:', err)
+      }
+    }
+  }
 
   async function handleLogout() {
     await logout()
@@ -68,9 +104,9 @@ function MoreMenu() {
         <div className="more-section-label">Features</div>
         {menuItems.map((item) => (
           <button
-            key={item.path}
+            key={item.text}
             className="more-menu-item"
-            onClick={() => navigate(item.path)}
+            onClick={() => item.action ? item.action() : navigate(item.path)}
           >
             <div className="more-menu-item-left">
               <span className="more-menu-item-icon">

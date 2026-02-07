@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Card, Modal, Avatar } from '../common'
+import { Card, Modal, Avatar, TappableName } from '../common'
 import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2 } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -223,7 +223,7 @@ function ChurchDetail() {
               <div className="review-header">
                 <Avatar emoji={review.userAvatar} src={review.userPhoto} size="sm" variant="blue" />
                 <div className="review-info">
-                  <div className="review-name">{review.userName}</div>
+                  <TappableName userId={review.userId} name={review.userName} className="review-name" />
                   <div className="review-meta">
                     <span className="stars stars-sm" style={{ fontSize: '12px' }}>{renderStars(review.rating)}</span>
                     <span>{relativeTime(review.createdAt)}</span>

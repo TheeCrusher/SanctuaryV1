@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Modal, Avatar, EmptyState } from '../common'
+import { Modal, Avatar, EmptyState, TappableName } from '../common'
 import { ArrowLeft, HandHeart, MessageCircle, Plus, Check, ChevronDown, ChevronUp } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -188,10 +188,11 @@ function PrayerBoard() {
           <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>Loading...</div>
         ) : requests.length === 0 ? (
           <EmptyState
-            icon={<HandHeart size={48} />}
-            text="No prayer requests yet"
-            subtext="Be the first to share a prayer request"
-            action={{ text: 'New Request', onClick: () => setShowCreateModal(true) }}
+            icon={HandHeart}
+            title="No prayer requests yet"
+            subtitle="Be the first to share a prayer request"
+            actionLabel="New Request"
+            onAction={() => setShowCreateModal(true)}
           />
         ) : (
           requests.map(req => (
@@ -199,7 +200,7 @@ function PrayerBoard() {
               <div className="prayer-card-header">
                 <Avatar emoji={req.userAvatar} src={req.userPhoto} size="sm" variant="blue" />
                 <div className="prayer-card-info">
-                  <div className="prayer-card-name">{req.userName}</div>
+                  <TappableName userId={req.userId} name={req.userName} isAnonymous={req.isAnonymous} className="prayer-card-name" />
                   <div className="prayer-card-time">{relativeTime(req.createdAt)}</div>
                 </div>
                 <span
@@ -244,7 +245,7 @@ function PrayerBoard() {
                     <div key={c.id} className="prayer-comment">
                       <Avatar emoji={c.userAvatar} src={c.userPhoto} size="sm" variant="blue" />
                       <div>
-                        <span className="prayer-comment-name">{c.userName}</span>
+                        <TappableName userId={c.userId} name={c.userName} className="prayer-comment-name" />
                         <span className="prayer-comment-text">{c.text}</span>
                       </div>
                     </div>

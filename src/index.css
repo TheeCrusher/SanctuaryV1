@@ -801,6 +801,41 @@ textarea {
   color: var(--text-muted);
 }
 
+.new-conv-search {
+  margin-bottom: 12px;
+}
+
+.new-conv-search input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.new-conv-search input:focus {
+  outline: 2px solid var(--brand-primary);
+  border-color: transparent;
+}
+
+.new-conv-no-results {
+  text-align: center;
+  padding: 24px 0;
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
+/* Tappable user names */
+.tappable-name {
+  cursor: pointer;
+}
+
+.tappable-name:active {
+  color: var(--brand-primary);
+}
+
 /* ---------------------------------------------------------------------------
    13. CHURCHES
    --------------------------------------------------------------------------- */

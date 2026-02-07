@@ -3,16 +3,20 @@
 // =============================================================================
 // Shows a list of all conversations with online status indicators.
 // Allows starting new conversations with available people.
+// Includes search-by-name in the new conversation modal.
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Modal, EmptyState } from '../common'
-import { Plus, MessageCircle, ChevronRight } from 'lucide-react'
+import { Plus, MessageCircle, ChevronRight, Search } from 'lucide-react'
+import { api } from '../../utils/api'
 
 function Messages() {
   const navigate = useNavigate()
   const [showNewConvModal, setShowNewConvModal] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState([])
 
   const {
     conversations,
@@ -22,6 +26,38 @@ function Messages() {
     onlineUsers
   } = useApp()
 
+  // Debounced server search — fires 300ms after user stops typing
+  useEffect(() => {
+    if (searchQuery.trim().length < 2) {
+      setSearchResults([])
+      return
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        const { users } = await api.get(`/users/search?q=${encodeURIComponent(searchQuery.trim())}`)
+        setSearchResults(users)
+      } catch (err) {
+        console.error('Search failed:', err)
+      }
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [searchQuery])
+
+  // Build the displayed people list: local filter + server results, deduplicated
+  const displayedPeople = searchQuery.trim()
+    ? (() => {
+        const q = searchQuery.toLowerCase()
+        const local = availablePeople.filter(p =>
+          p.name.toLowerCase().includes(q)
+        )
+        const localIds = new Set(local.map(p => p.id))
+        const extra = searchResults.filter(u => !localIds.has(u.id))
+        return [...local, ...extra]
+      })()
+    : availablePeople
+
   async function handleConversationClick(convId) {
     await selectConversation(convId)
     navigate('/chat')
@@ -30,7 +66,14 @@ function Messages() {
   async function handleNewConversation(personId) {
     await startNewConversation(personId)
     setShowNewConvModal(false)
+    setSearchQuery('')
     navigate('/chat')
+  }
+
+  function handleCloseModal() {
+    setShowNewConvModal(false)
+    setSearchQuery('')
+    setSearchResults([])
   }
 
   return (
@@ -90,34 +133,47 @@ function Messages() {
       {/* New Conversation Modal */}
       <Modal
         isOpen={showNewConvModal}
-        onClose={() => setShowNewConvModal(false)}
+        onClose={handleCloseModal}
         title="New Conversation"
       >
-        <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
-          Select a person to start a conversation:
-        </p>
+        <div className="new-conv-search">
+          <input
+            type="text"
+            placeholder="Search by name..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
 
-        {availablePeople.map(person => (
-          <div
-            key={person.id}
-            className="new-conv-item"
-            onClick={() => handleNewConversation(person.id)}
-          >
-            <div style={{ position: 'relative' }}>
-              <Avatar emoji={person.avatar} size="md" variant="blue" />
-              {onlineUsers.has(person.id) && <span className="online-dot" />}
-            </div>
-            <div className="new-conv-info">
-              <div className="new-conv-name">{person.name}</div>
-              <div className="new-conv-role">{person.role}</div>
-            </div>
-            <span style={{ color: 'var(--text-faint)' }}><ChevronRight size={20} /></span>
+        {displayedPeople.length === 0 ? (
+          <div className="new-conv-no-results">
+            {searchQuery.trim()
+              ? `No users found for "${searchQuery}"`
+              : 'No users available'}
           </div>
-        ))}
+        ) : (
+          displayedPeople.map(person => (
+            <div
+              key={person.id}
+              className="new-conv-item"
+              onClick={() => handleNewConversation(person.id)}
+            >
+              <div style={{ position: 'relative' }}>
+                <Avatar emoji={person.avatar} size="md" variant="blue" />
+                {onlineUsers.has(person.id) && <span className="online-dot" />}
+              </div>
+              <div className="new-conv-info">
+                <div className="new-conv-name">{person.name}</div>
+                <div className="new-conv-role">{person.role}</div>
+              </div>
+              <span style={{ color: 'var(--text-faint)' }}><ChevronRight size={20} /></span>
+            </div>
+          ))
+        )}
 
         <button
           className="btn-secondary"
-          onClick={() => setShowNewConvModal(false)}
+          onClick={handleCloseModal}
           style={{ marginTop: '16px' }}
         >
           Cancel
