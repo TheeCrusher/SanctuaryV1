@@ -16,7 +16,7 @@ import LoginScreen from './components/screens/LoginScreen'
 import SignUpScreen from './components/screens/SignUpScreen'
 import Dashboard from './components/screens/Dashboard'
 import Appointments from './components/screens/Appointments'
-import Messages from './components/screens/Messages'
+// Messages is now merged into CommunityScreen
 import Chat from './components/screens/Chat'
 import Churches from './components/screens/Churches'
 import ChurchDetail from './components/screens/ChurchDetail'
@@ -160,7 +160,7 @@ function App() {
           path="/messages"
           element={
             <ProtectedRoute>
-              <Messages />
+              <Navigate to="/community" replace />
             </ProtectedRoute>
           }
         />

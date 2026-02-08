@@ -197,6 +197,8 @@ async function seed() {
     // ---- Step 10: Insert sample community connections ----
     // peopleIds[0] = Sarah Johnson (seeker)
     // peopleIds[1] = Michael Chen (seeker)
+    // peopleIds[2] = Emily Rodriguez (seeker)
+    // peopleIds[3] = James Wilson (seeker)
     // peopleIds[4] = Grace Okafor (guide)
     console.log('\n🤝 Inserting community connections...')
 
@@ -206,6 +208,20 @@ async function seed() {
       [guideId, peopleIds[0]]
     )
     console.log('   ✅ Spiritual Guide ↔ Sarah Johnson (accepted)')
+
+    // Test user connected to Emily Rodriguez (accepted)
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
+      [guideId, peopleIds[2]]
+    )
+    console.log('   ✅ Spiritual Guide ↔ Emily Rodriguez (accepted)')
+
+    // Test user connected to James Wilson (accepted)
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
+      [guideId, peopleIds[3]]
+    )
+    console.log('   ✅ Spiritual Guide ↔ James Wilson (accepted)')
 
     // Test user connected to Grace Okafor (accepted)
     await client.query(
@@ -229,7 +245,7 @@ async function seed() {
     console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
     console.log(`   Verses:       ${SCRIPTURE_VERSES.length}`)
     console.log(`   Plans:        ${READING_PLANS.length} (${totalPlanDays} days)`)
-    console.log(`   Connections:  3 (2 accepted, 1 pending)`)
+    console.log(`   Connections:  5 (4 accepted, 1 pending)`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {

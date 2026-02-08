@@ -4,20 +4,24 @@
 // Shows all appointments grouped by status (pending, confirmed, completed).
 // Allows creating new appointments with optional recurrence.
 // Supports cancelling individual or entire series of recurring appointments.
+// Role-aware: Guides enter a seeker name, Seekers select a Guide from community.
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
-import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download } from 'lucide-react'
+import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download, ChevronDown } from 'lucide-react'
+import { api } from '../../utils/api'
 
 function Appointments() {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [showCancelConfirm, setShowCancelConfirm] = useState(null)
+  const [communityGuides, setCommunityGuides] = useState([])
 
   const [formData, setFormData] = useState({
     name: '',
+    guideId: '',
     date: '',
     time: '',
     duration: '60',
@@ -28,6 +32,7 @@ function Appointments() {
   })
 
   const {
+    user,
     appointments,
     createAppointment,
     confirmAppointment,
@@ -35,6 +40,25 @@ function Appointments() {
     cancelAppointment,
     cancelSeries
   } = useApp()
+
+  const isSeeker = user?.role?.toLowerCase() === 'seeker'
+
+  // Seekers: load Guides from community connections
+  useEffect(() => {
+    if (isSeeker) {
+      loadGuides()
+    }
+  }, [isSeeker])
+
+  async function loadGuides() {
+    try {
+      const data = await api.get('/community')
+      const guides = (data.community || []).filter(p => p.role === 'Guide')
+      setCommunityGuides(guides)
+    } catch (error) {
+      console.error('Failed to load community guides:', error)
+    }
+  }
 
   // Group appointments by status
   const pendingApts = appointments.filter(a => a.status === 'pending')
@@ -57,10 +81,26 @@ function Appointments() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    await createAppointment(formData)
+
+    // Build the data to send
+    const submitData = { ...formData }
+
+    if (isSeeker) {
+      // Seeker: auto-fill their name, send the selected guideId
+      submitData.name = user.name
+      submitData.guideId = Number(formData.guideId)
+    }
+
+    // Remove guideId from payload if Guide is creating (backend uses their own ID)
+    if (!isSeeker) {
+      delete submitData.guideId
+    }
+
+    await createAppointment(submitData)
 
     setFormData({
       name: '',
+      guideId: '',
       date: '',
       time: '',
       duration: '60',
@@ -265,18 +305,44 @@ function Appointments() {
         title="New Session"
       >
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label" htmlFor="name">Seeker Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Enter name"
-              required
-            />
-          </div>
+          {/* Role-aware first field */}
+          {isSeeker ? (
+            <div className="form-group">
+              <label className="form-label" htmlFor="guideId">Which Guide?</label>
+              <select
+                id="guideId"
+                name="guideId"
+                value={formData.guideId}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select a Guide...</option>
+                {communityGuides.map(guide => (
+                  <option key={guide.id} value={guide.id}>
+                    {guide.name}
+                  </option>
+                ))}
+              </select>
+              {communityGuides.length === 0 && (
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
+                  Add Guides to your Community first
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="form-group">
+              <label className="form-label" htmlFor="name">Seeker Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Enter name"
+                required
+              />
+            </div>
+          )}
 
           <div className="form-group">
             <label className="form-label" htmlFor="date">Date</label>

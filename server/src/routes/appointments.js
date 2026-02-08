@@ -1,7 +1,7 @@
 // ============================================================
 // Appointment Routes
 // ============================================================
-// GET    /api/appointments              - List all appointments for the logged-in guide
+// GET    /api/appointments              - List all appointments for the logged-in user (guide or seeker)
 // POST   /api/appointments              - Create a new appointment (with optional recurrence)
 // PATCH  /api/appointments/:id/status   - Update appointment status
 // DELETE /api/appointments/:id          - Cancel a single appointment
@@ -65,7 +65,7 @@ router.get('/', async (req, res, next) => {
   try {
     const { status, from, to } = req.query
 
-    let query = "SELECT * FROM appointments WHERE guide_id = $1 AND status != 'cancelled'"
+    let query = "SELECT * FROM appointments WHERE (guide_id = $1 OR seeker_id = $1) AND status != 'cancelled'"
     const params = [req.user.id]
     let paramCount = 1
 
@@ -109,13 +109,18 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const { name, date, time, duration, type, notes, recurrenceRule, recurrenceEndDate } = req.body
+    const { name, date, time, duration, type, notes, recurrenceRule, recurrenceEndDate, guideId } = req.body
 
     if (!name || !date || !time || !duration || !type) {
       return res.status(400).json({
         error: 'Name, date, time, duration, and type are required.'
       })
     }
+
+    // Determine guide_id and seeker_id based on who is creating
+    // If guideId is provided, a Seeker is booking with a specific Guide
+    const appointmentGuideId = guideId || req.user.id
+    const seekerId = guideId ? req.user.id : null
 
     const validDurations = [30, 60, 90, 120]
     if (!validDurations.includes(Number(duration))) {
@@ -147,11 +152,11 @@ router.post('/', async (req, res, next) => {
 
     // Insert the first (original) appointment
     const result = await pool.query(
-      `INSERT INTO appointments (guide_id, seeker_name, date, time, duration, type, notes,
+      `INSERT INTO appointments (guide_id, seeker_id, seeker_name, date, time, duration, type, notes,
                                   recurrence_rule, series_id, recurrence_end_date)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
        RETURNING *`,
-      [req.user.id, name, date, time, Number(duration), type, notes || '',
+      [appointmentGuideId, seekerId, name, date, time, Number(duration), type, notes || '',
        rule, seriesId, endDate]
     )
 
@@ -163,11 +168,11 @@ router.post('/', async (req, res, next) => {
 
       for (const rDate of recurringDates) {
         const rResult = await pool.query(
-          `INSERT INTO appointments (guide_id, seeker_name, date, time, duration, type, notes,
+          `INSERT INTO appointments (guide_id, seeker_id, seeker_name, date, time, duration, type, notes,
                                       recurrence_rule, series_id, recurrence_end_date)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
            RETURNING *`,
-          [req.user.id, name, rDate, time, Number(duration), type, notes || '',
+          [appointmentGuideId, seekerId, name, rDate, time, Number(duration), type, notes || '',
            rule, seriesId, endDate]
         )
         appointments.push(formatRow(rResult.rows[0]))
@@ -198,7 +203,7 @@ router.patch('/:id/status', async (req, res, next) => {
     const result = await pool.query(
       `UPDATE appointments
        SET status = $1, updated_at = NOW()
-       WHERE id = $2 AND guide_id = $3
+       WHERE id = $2 AND (guide_id = $3 OR seeker_id = $3)
        RETURNING *`,
       [status, id, req.user.id]
     )
@@ -221,7 +226,7 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const result = await pool.query(
       `UPDATE appointments SET status = 'cancelled', updated_at = NOW()
-       WHERE id = $1 AND guide_id = $2
+       WHERE id = $1 AND (guide_id = $2 OR seeker_id = $2)
        RETURNING *`,
       [req.params.id, req.user.id]
     )
@@ -244,7 +249,7 @@ router.delete('/series/:seriesId', async (req, res, next) => {
   try {
     const result = await pool.query(
       `UPDATE appointments SET status = 'cancelled', updated_at = NOW()
-       WHERE series_id = $1 AND guide_id = $2 AND date >= CURRENT_DATE AND status != 'completed'
+       WHERE series_id = $1 AND (guide_id = $2 OR seeker_id = $2) AND date >= CURRENT_DATE AND status != 'completed'
        RETURNING *`,
       [req.params.seriesId, req.user.id]
     )

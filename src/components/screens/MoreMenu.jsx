@@ -4,17 +4,14 @@
 // A hub screen accessed from the 5th bottom nav tab.
 // Links to: Profile, Session Notes, Scripture Study, and future features.
 
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { FileText, BookOpen, Book, Church, Heart, Calendar, ChevronRight, LogOut, Share2 } from 'lucide-react'
+import { FileText, BookOpen, Book, Church, Heart, Calendar, ChevronRight, LogOut } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
   const { user, logout } = useApp()
-  const [copied, setCopied] = useState(false)
-
   const menuItems = [
     {
       icon: Church,
@@ -51,42 +48,8 @@ function MoreMenu() {
       text: 'Appointments',
       subtitle: 'Manage your sessions',
       path: '/appointments'
-    },
-    {
-      icon: Share2,
-      text: 'Invite Friends',
-      subtitle: copied ? 'Link copied!' : 'Share Sanctuary with others',
-      action: handleInvite
     }
   ]
-
-  async function handleInvite() {
-    const shareData = {
-      title: 'Join me on Sanctuary',
-      text: 'Sanctuary is a spiritual guidance app connecting guides with seekers. Join our community!',
-      url: 'https://sanctuary-v1.vercel.app/login'
-    }
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData)
-      } catch (err) {
-        // User cancelled the share sheet — this is normal, not an error
-        if (err.name !== 'AbortError') {
-          console.error('Share failed:', err)
-        }
-      }
-    } else {
-      // Fallback for desktop: copy link to clipboard
-      try {
-        await navigator.clipboard.writeText(shareData.url)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-      } catch (err) {
-        console.error('Copy failed:', err)
-      }
-    }
-  }
 
   async function handleLogout() {
     await logout()

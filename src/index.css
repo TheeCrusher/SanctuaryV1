@@ -4145,6 +4145,88 @@ textarea {
   color: var(--text-muted);
 }
 
+/* --- Top toggle: Your Community | Messages --- */
+.community-top-toggle {
+  display: flex;
+  background: var(--bg-muted);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.community-top-toggle button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.community-top-toggle button.active {
+  background: var(--brand-primary);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Messages sub-header inside Community --- */
+.community-messages-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.community-messages-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* --- Extra bottom padding for invite button --- */
+.community-screen-content {
+  padding-bottom: 80px;
+}
+
+/* --- Fixed Invite Friends button --- */
+.community-invite-fixed {
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  max-width: 448px;
+  margin: 0 auto;
+  padding: 0 24px 8px;
+  z-index: 50;
+}
+
+.community-invite-fixed button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 0;
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.community-invite-fixed button:active {
+  transform: scale(0.97);
+}
+
 /* --- Connection buttons on UserProfile --- */
 .profile-actions {
   display: flex;

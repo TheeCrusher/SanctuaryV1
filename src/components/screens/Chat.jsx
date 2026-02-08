@@ -42,7 +42,7 @@ function Chat() {
   }, [selectedConversation?.id])
 
   if (!selectedConversation) {
-    navigate('/messages')
+    navigate('/community')
     return null
   }
 
@@ -83,7 +83,7 @@ function Chat() {
     <div className="screen">
       {/* Chat Header */}
       <div className="chat-header">
-        <button className="back-btn" onClick={() => navigate('/messages')}>
+        <button className="back-btn" onClick={() => navigate('/community')}>
           <ArrowLeft size={20} />
         </button>
         <div style={{ position: 'relative' }}>

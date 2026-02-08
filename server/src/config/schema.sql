@@ -42,7 +42,8 @@ CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 -- ============================================================
 -- Stores spiritual guidance sessions between guides and seekers.
 -- guide_id links to the logged-in guide (users table).
--- seeker_name is free text (seekers don't need accounts yet).
+-- seeker_name is free text for display. seeker_id links to a user account
+-- when a Seeker books a session with a Guide.
 --
 -- Maps to: AppContext.jsx → appointments state
 -- Replaces: IndexedDB storage in database.js
@@ -50,6 +51,7 @@ CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 CREATE TABLE IF NOT EXISTS appointments (
   id                  SERIAL PRIMARY KEY,
   guide_id            INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  seeker_id           INTEGER REFERENCES users(id) ON DELETE SET NULL,
   seeker_name         VARCHAR(100) NOT NULL,
   avatar              VARCHAR(10) DEFAULT '👤',
   date                DATE NOT NULL,
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS appointments (
 );
 
 CREATE INDEX IF NOT EXISTS idx_appointments_guide ON appointments(guide_id);
+CREATE INDEX IF NOT EXISTS idx_appointments_seeker ON appointments(seeker_id);
 CREATE INDEX IF NOT EXISTS idx_appointments_status ON appointments(status);
 CREATE INDEX IF NOT EXISTS idx_appointments_date ON appointments(date);
 CREATE INDEX IF NOT EXISTS idx_appointments_series ON appointments(series_id);

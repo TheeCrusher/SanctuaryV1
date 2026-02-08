@@ -2,7 +2,7 @@
 // BOTTOM NAVIGATION COMPONENT
 // =============================================================================
 // The main navigation bar fixed at the bottom of the screen.
-// Shows 5 icons: Home, Appointments, Messages, More, Profile
+// Shows 4 icons: Home, Community, More, Profile
 //
 // Uses React Router to:
 //   - Navigate to different screens when tapped
@@ -10,7 +10,7 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Home, Users, MessageCircle, MoreHorizontal, User } from 'lucide-react'
+import { Home, Users, MoreHorizontal, User } from 'lucide-react'
 
 function BottomNav() {
   // useNavigate gives us a function to programmatically change routes
@@ -38,8 +38,7 @@ function BottomNav() {
   // Navigation items configuration (3 main tabs)
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Home' },
-    { path: '/community', icon: Users, label: 'Community' },
-    { path: '/messages', icon: MessageCircle, label: 'Messages' }
+    { path: '/community', icon: Users, label: 'Community' }
   ]
 
   return (
