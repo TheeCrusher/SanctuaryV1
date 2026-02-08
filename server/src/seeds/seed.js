@@ -52,6 +52,7 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS user_connections CASCADE;
       DROP TABLE IF EXISTS user_bible_bookmarks CASCADE;
       DROP TABLE IF EXISTS user_bible_highlights CASCADE;
       DROP TABLE IF EXISTS prayer_interactions CASCADE;
@@ -78,7 +79,7 @@ async function seed() {
     const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
     const schema = readFileSync(schemaPath, 'utf8')
     await client.query(schema)
-    console.log('   ✅ 19 tables created\n')
+    console.log('   ✅ 20 tables created\n')
 
     // ---- Step 3: Insert test user ----
     console.log('👤 Creating test user...')
@@ -193,6 +194,33 @@ async function seed() {
       console.log(`   ✅ ${plan.name} (${plan.totalDays} days)`)
     }
 
+    // ---- Step 10: Insert sample community connections ----
+    // peopleIds[0] = Sarah Johnson (seeker)
+    // peopleIds[1] = Michael Chen (seeker)
+    // peopleIds[4] = Grace Okafor (guide)
+    console.log('\n🤝 Inserting community connections...')
+
+    // Test user connected to Sarah Johnson (accepted)
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
+      [guideId, peopleIds[0]]
+    )
+    console.log('   ✅ Spiritual Guide ↔ Sarah Johnson (accepted)')
+
+    // Test user connected to Grace Okafor (accepted)
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
+      [guideId, peopleIds[4]]
+    )
+    console.log('   ✅ Spiritual Guide ↔ Grace Okafor (accepted)')
+
+    // Michael Chen sent a pending request to test user
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'pending')`,
+      [peopleIds[1], guideId]
+    )
+    console.log('   ✅ Michael Chen → Spiritual Guide (pending)')
+
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     console.log(`   Users:        ${1 + AVAILABLE_PEOPLE.length}`)
@@ -201,6 +229,7 @@ async function seed() {
     console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
     console.log(`   Verses:       ${SCRIPTURE_VERSES.length}`)
     console.log(`   Plans:        ${READING_PLANS.length} (${totalPlanDays} days)`)
+    console.log(`   Connections:  3 (2 accepted, 1 pending)`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {

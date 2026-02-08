@@ -21,6 +21,7 @@ function SplashScreen({ onComplete }) {
         muted
         playsInline
         onEnded={onComplete}
+        onPlay={(e) => { e.target.playbackRate = 1.5 }}
         className="splash-video"
       />
       <button

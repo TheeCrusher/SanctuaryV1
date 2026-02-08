@@ -134,6 +134,31 @@ CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id
 CREATE INDEX IF NOT EXISTS idx_messages_created ON messages(created_at);
 
 -- ============================================================
+-- USER CONNECTIONS TABLE
+-- ============================================================
+-- Tracks community connections between users.
+-- requester_id = the user who sent the connection request.
+-- recipient_id = the user who received it.
+-- status: pending (awaiting response), accepted (in community), declined.
+--
+-- Maps to: /api/community endpoints
+
+CREATE TABLE IF NOT EXISTS user_connections (
+  id            SERIAL PRIMARY KEY,
+  requester_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  recipient_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  status        VARCHAR(20) NOT NULL DEFAULT 'pending'
+                CHECK (status IN ('pending', 'accepted', 'declined')),
+  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(requester_id, recipient_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_connections_requester ON user_connections(requester_id);
+CREATE INDEX IF NOT EXISTS idx_connections_recipient ON user_connections(recipient_id);
+CREATE INDEX IF NOT EXISTS idx_connections_status ON user_connections(status);
+
+-- ============================================================
 -- CHURCHES TABLE
 -- ============================================================
 -- Stores church listings with ratings.

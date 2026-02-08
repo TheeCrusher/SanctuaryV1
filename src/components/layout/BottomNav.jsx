@@ -10,7 +10,7 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Home, Calendar, MessageCircle, MoreHorizontal, User } from 'lucide-react'
+import { Home, Users, MessageCircle, MoreHorizontal, User } from 'lucide-react'
 
 function BottomNav() {
   // useNavigate gives us a function to programmatically change routes
@@ -29,7 +29,7 @@ function BottomNav() {
 
   // "More" is active when on /more, /notes, /scripture, or /churches
   function isMoreActive() {
-    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers']
+    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers', '/appointments', '/calendar']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )
@@ -38,7 +38,7 @@ function BottomNav() {
   // Navigation items configuration (3 main tabs)
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Home' },
-    { path: '/appointments', icon: Calendar, label: 'Appointments' },
+    { path: '/community', icon: Users, label: 'Community' },
     { path: '/messages', icon: MessageCircle, label: 'Messages' }
   ]
 

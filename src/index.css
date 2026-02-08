@@ -1694,7 +1694,7 @@ textarea {
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
+  color: #94a3b8;
   z-index: 2;
 }
 
@@ -1703,21 +1703,23 @@ textarea {
 .login-card input[type="text"] {
   width: 100%;
   padding: 14px 16px 14px 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  color: white;
+  color: #1e293b;
   font-size: 16px;
+  caret-color: #1e3a8a;
 }
 
 .login-card input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #94a3b8;
 }
 
 .login-card input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: #1e3a8a;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
 }
 
 .login-toggle-password {
@@ -1725,7 +1727,7 @@ textarea {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
+  color: #94a3b8;
   background: none;
   border: none;
   cursor: pointer;
@@ -1877,24 +1879,26 @@ textarea {
 .signup-select {
   width: 100%;
   padding: 14px 16px 14px 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  color: white;
+  color: #1e293b;
   font-size: 16px;
   appearance: none;
   -webkit-appearance: none;
+  caret-color: #1e3a8a;
 }
 
 .signup-select:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: #1e3a8a;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
 }
 
 .signup-select option {
-  background: #1e3a8a;
-  color: white;
+  background: white;
+  color: #1e293b;
 }
 
 /* Interest chips grid — wrapping rows of tappable pills */
@@ -3876,4 +3880,338 @@ textarea {
   background: var(--brand-primary) !important;
   color: white !important;
   border-color: var(--brand-primary);
+}
+
+/* =============================================================================
+   30. COMMUNITY SCREEN
+   ============================================================================= */
+
+/* --- Header count --- */
+.community-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Search bar --- */
+.community-search {
+  position: relative;
+  margin-top: 12px;
+}
+
+.community-search .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.community-search input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.community-search input:focus {
+  outline: 2px solid var(--brand-primary);
+  border-color: transparent;
+}
+
+/* --- Filter tabs (All / Guides / Seekers) --- */
+.community-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-bottom: 4px;
+}
+
+.community-tab {
+  flex: 1;
+  padding: 8px 0;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.community-tab:active {
+  background: var(--bg-muted);
+}
+
+.community-tab.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* --- Pending requests banner --- */
+.pending-banner {
+  margin-bottom: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pending-banner-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pending-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pending-list {
+  border-top: 1px solid var(--border-primary);
+  padding: 8px;
+}
+
+.pending-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-radius: 8px;
+}
+
+.pending-card:hover {
+  background: var(--bg-muted);
+}
+
+.pending-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.pending-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pending-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pending-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.pending-btn:active {
+  transform: scale(0.92);
+}
+
+.pending-btn-accept {
+  background: #16a34a;
+  color: white;
+}
+
+.pending-btn-decline {
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+}
+
+/* --- Role badges --- */
+.role-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.role-badge-guide {
+  background: rgba(30, 58, 138, 0.12);
+  color: #1e3a8a;
+}
+
+.role-badge-seeker {
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+}
+
+[data-theme="dark"] .role-badge-guide {
+  background: rgba(96, 165, 250, 0.2);
+  color: #93bbfd;
+}
+
+[data-theme="dark"] .role-badge-seeker {
+  background: rgba(74, 222, 128, 0.2);
+  color: #86efac;
+}
+
+/* --- Community list / cards --- */
+.community-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.community-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.community-card:active {
+  background: var(--bg-muted);
+}
+
+.community-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.community-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.community-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.community-card-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- Shared interests tags --- */
+.community-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.community-interest-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: var(--bg-muted);
+  border-radius: 10px;
+  color: var(--text-secondary);
+}
+
+.community-interest-more {
+  font-size: 11px;
+  padding: 2px 6px;
+  color: var(--text-muted);
+}
+
+/* --- Connection buttons on UserProfile --- */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.connection-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 2px solid var(--brand-primary);
+  background: transparent;
+  color: var(--brand-primary);
+  transition: all 0.15s ease;
+}
+
+.connection-btn:active {
+  background: rgba(30, 58, 138, 0.08);
+}
+
+.connection-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+[data-theme="dark"] .connection-btn:active {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.connection-status-pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+[data-theme="dark"] .connection-status-pending {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.connection-status-connected {
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+}
+
+[data-theme="dark"] .connection-status-connected {
+  background: rgba(74, 222, 128, 0.2);
+  color: #86efac;
 }
