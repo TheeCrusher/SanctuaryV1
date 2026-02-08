@@ -98,4 +98,59 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// ============================================================
+// GET /api/churches/:id/members
+// ============================================================
+// Returns users who have favorited OR reviewed this church.
+// Excludes the current user and already-connected users.
+// Returns limited fields + shared interests count.
+
+router.get('/:id/members', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const userId = req.user.id
+
+    // Get current user's interests for shared count
+    const meResult = await pool.query('SELECT interests FROM users WHERE id = $1', [userId])
+    const myInterests = meResult.rows[0]?.interests || []
+
+    // Find users who favorited or reviewed this church, excluding:
+    // - the current user
+    // - users already connected (accepted) or pending with current user
+    const result = await pool.query(`
+      SELECT DISTINCT u.id, u.name, u.avatar, u.photo_url, u.role, u.interests
+      FROM users u
+      WHERE u.id != $1
+        AND (
+          u.id IN (SELECT user_id FROM church_favorites WHERE church_id = $2)
+          OR u.id IN (SELECT user_id FROM church_reviews WHERE church_id = $2)
+        )
+        AND u.id NOT IN (
+          SELECT CASE WHEN requester_id = $1 THEN recipient_id ELSE requester_id END
+          FROM user_connections
+          WHERE (requester_id = $1 OR recipient_id = $1)
+            AND status IN ('accepted', 'pending')
+        )
+      ORDER BY u.name ASC
+    `, [userId, id])
+
+    const members = result.rows.map(row => {
+      const theirInterests = row.interests || []
+      const sharedCount = myInterests.filter(i => theirInterests.includes(i)).length
+      return {
+        id: row.id,
+        name: row.name,
+        avatar: row.avatar,
+        photoUrl: row.photo_url,
+        role: row.role.charAt(0).toUpperCase() + row.role.slice(1),
+        sharedInterests: sharedCount
+      }
+    })
+
+    res.json({ members })
+  } catch (error) {
+    next(error)
+  }
+})
+
 export default router

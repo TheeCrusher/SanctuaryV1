@@ -234,36 +234,147 @@ router.get('/search', async (req, res, next) => {
 })
 
 // ============================================================
+// GET /api/users/suggested?limit=5
+// ============================================================
+// Returns users NOT connected to (or pending with) the current user
+// who share 2+ interests, same denomination, or same favorited church.
+// Each result includes a matchReason string explaining the suggestion.
+
+router.get('/suggested', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const limit = Math.min(parseInt(req.query.limit) || 5, 20)
+
+    // Get current user's profile
+    const meResult = await pool.query(
+      'SELECT interests, denomination FROM users WHERE id = $1',
+      [userId]
+    )
+    const me = meResult.rows[0]
+    const myInterests = me?.interests || []
+    const myDenomination = me?.denomination
+
+    // Get my favorited church IDs
+    const myFavsResult = await pool.query(
+      'SELECT church_id FROM church_favorites WHERE user_id = $1',
+      [userId]
+    )
+    const myChurchIds = myFavsResult.rows.map(r => r.church_id)
+
+    // Find all users NOT me, NOT connected/pending
+    const result = await pool.query(`
+      SELECT u.id, u.name, u.avatar, u.photo_url, u.role, u.interests, u.denomination
+      FROM users u
+      WHERE u.id != $1
+        AND u.id NOT IN (
+          SELECT CASE WHEN requester_id = $1 THEN recipient_id ELSE requester_id END
+          FROM user_connections
+          WHERE (requester_id = $1 OR recipient_id = $1)
+            AND status IN ('accepted', 'pending')
+        )
+      ORDER BY u.name ASC
+    `, [userId])
+
+    // Score each candidate and build match reasons
+    const candidates = []
+    for (const row of result.rows) {
+      const theirInterests = row.interests || []
+      const sharedInterests = myInterests.filter(i => theirInterests.includes(i))
+      const sameDenomination = myDenomination && row.denomination && myDenomination === row.denomination
+
+      // Check shared favorited churches
+      let sharedChurch = null
+      if (myChurchIds.length > 0) {
+        const theirFavsResult = await pool.query(
+          'SELECT cf.church_id, c.name FROM church_favorites cf JOIN churches c ON c.id = cf.church_id WHERE cf.user_id = $1 AND cf.church_id = ANY($2)',
+          [row.id, myChurchIds]
+        )
+        if (theirFavsResult.rows.length > 0) {
+          sharedChurch = theirFavsResult.rows[0].name
+        }
+      }
+
+      // Must match at least one criterion
+      if (sharedInterests.length < 2 && !sameDenomination && !sharedChurch) continue
+
+      // Build match reason (most specific first)
+      const reasons = []
+      if (sharedInterests.length >= 2) reasons.push(`${sharedInterests.length} shared interests`)
+      if (sameDenomination) reasons.push(`Same denomination`)
+      if (sharedChurch) reasons.push(`Both attend ${sharedChurch}`)
+
+      candidates.push({
+        id: row.id,
+        name: row.name,
+        avatar: row.avatar,
+        photoUrl: row.photo_url,
+        role: row.role.charAt(0).toUpperCase() + row.role.slice(1),
+        matchReason: reasons.join(' · '),
+        score: sharedInterests.length + (sameDenomination ? 2 : 0) + (sharedChurch ? 2 : 0)
+      })
+    }
+
+    // Sort by score descending, take top N
+    candidates.sort((a, b) => b.score - a.score)
+    const suggested = candidates.slice(0, limit).map(({ score, ...rest }) => rest)
+
+    res.json({ suggested })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
 // GET /api/users/:id
 // ============================================================
-// Returns another user's public profile.
+// Returns another user's profile.
+// Privacy: bio, location, specialization are hidden for non-connected users.
 
 router.get('/:id', async (req, res, next) => {
   try {
+    const userId = req.user.id
+    const profileId = req.params.id
+
     const result = await pool.query(
       'SELECT id, name, avatar, photo_url, role, bio, specialization, location, denomination, church_name, interests, created_at FROM users WHERE id = $1',
-      [req.params.id]
+      [profileId]
     )
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'User not found.' })
     }
 
-    const user = result.rows[0]
+    const profile = result.rows[0]
+
+    // Check connection status (is this user connected to me?)
+    let isConnected = false
+    if (parseInt(profileId) !== userId) {
+      const connResult = await pool.query(
+        `SELECT id FROM user_connections
+         WHERE ((requester_id = $1 AND recipient_id = $2) OR (requester_id = $2 AND recipient_id = $1))
+           AND status = 'accepted'`,
+        [userId, profileId]
+      )
+      isConnected = connResult.rows.length > 0
+    } else {
+      isConnected = true // viewing own profile
+    }
+
     res.json({
       user: {
-        id: user.id,
-        name: user.name,
-        avatar: user.avatar,
-        photoUrl: user.photo_url,
-        role: user.role,
-        bio: user.bio,
-        specialization: user.specialization,
-        location: user.location,
-        denomination: user.denomination,
-        churchName: user.church_name,
-        interests: user.interests || [],
-        createdAt: user.created_at
+        id: profile.id,
+        name: profile.name,
+        avatar: profile.avatar,
+        photoUrl: profile.photo_url,
+        role: profile.role,
+        bio: isConnected ? profile.bio : null,
+        specialization: isConnected ? profile.specialization : null,
+        location: isConnected ? profile.location : null,
+        denomination: profile.denomination,
+        churchName: profile.church_name,
+        interests: profile.interests || [],
+        createdAt: profile.created_at,
+        isConnected
       }
     })
   } catch (error) {

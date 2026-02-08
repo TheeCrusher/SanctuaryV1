@@ -21,6 +21,19 @@ export const TEST_USER = {
   interests: ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering']
 }
 
+// Test seeker account (Jordan Rivera)
+// Password will be hashed with bcrypt before inserting
+export const TEST_SEEKER = {
+  name: 'Jordan Rivera',
+  email: 'jordan@sanctuary.com',
+  password: 'Sanctuary123',
+  avatar: '🙏',
+  role: 'seeker',
+  location: 'St. Louis',
+  denomination: 'Catholic',
+  interests: ['Hiking', 'Sports', 'Reading', 'Travel', 'Community Service']
+}
+
 // Available people for conversations
 // These become user accounts in the database
 export const AVAILABLE_PEOPLE = [
@@ -139,6 +152,50 @@ export const BIBLE_QUOTES = [
 
 // Sample appointments for the demo
 // These link to the test user (guide_id will be set during seeding)
+// Discovery seed users — NOT connected to anyone, so they appear in "Suggested for You"
+// David shares interests with Spiritual Guide (Bible Study, Worship)
+// Maria shares denomination with Jordan (Catholic) and interests with Spiritual Guide (Youth Ministry)
+export const DISCOVERY_USERS = [
+  {
+    name: 'David Kim',
+    email: 'david@sanctuary.com',
+    avatar: '👨',
+    role: 'seeker',
+    bio: 'College student exploring my faith journey.',
+    location: 'Austin, TX',
+    denomination: 'Non-denominational',
+    churchName: 'Willow Creek Church',
+    interests: ['Bible Study', 'Worship', 'Hiking', 'Music']
+  },
+  {
+    name: 'Maria Santos',
+    email: 'maria@sanctuary.com',
+    avatar: '👩',
+    role: 'guide',
+    bio: 'Youth pastor with 10 years of experience in community building.',
+    specialization: 'Youth Ministry',
+    location: 'Miami, FL',
+    denomination: 'Catholic',
+    churchName: 'Holy Name Cathedral',
+    interests: ['Youth Ministry', 'Volunteering', 'Community Service', 'Music']
+  }
+]
+
+// Church favorites — links users to churches they've favorited
+// Format: { userKey, churchName } — resolved to IDs during seeding
+// userKey: 'guide', 'seeker', 'david', 'maria', or a name from AVAILABLE_PEOPLE
+export const SEED_CHURCH_FAVORITES = [
+  { userKey: 'guide', churchName: 'Willow Creek Church' },
+  { userKey: 'seeker', churchName: 'Willow Creek Church' },
+  { userKey: 'seeker', churchName: 'Holy Name Cathedral' },
+  { userKey: 'david', churchName: 'Willow Creek Church' },
+  { userKey: 'maria', churchName: 'Holy Name Cathedral' },
+  { userKey: 'maria', churchName: 'Willow Creek Church' },
+  { userKey: 'Emily Rodriguez', churchName: 'Willow Creek Church' },
+  { userKey: 'Grace Okafor', churchName: 'Willow Creek Church' },
+  { userKey: 'Sarah Johnson', churchName: 'Holy Name Cathedral' }
+]
+
 export const SAMPLE_APPOINTMENTS = [
   {
     seekerName: 'Ben Dover',

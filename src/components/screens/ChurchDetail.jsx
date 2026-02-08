@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, TappableName } from '../common'
-import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2 } from 'lucide-react'
+import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2, Users } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function ChurchDetail() {
@@ -18,6 +18,9 @@ function ChurchDetail() {
 
   const church = allChurches.find(c => c.id === parseInt(id))
 
+  // Church members state (people who favorited/reviewed this church)
+  const [members, setMembers] = useState([])
+
   // Reviews state
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
@@ -26,10 +29,11 @@ function ChurchDetail() {
   const [editingReview, setEditingReview] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
-  // Load reviews when component mounts
+  // Load reviews and members when component mounts
   useEffect(() => {
     if (church) {
       loadReviews()
+      loadMembers()
     }
   }, [church?.id])
 
@@ -39,6 +43,15 @@ function ChurchDetail() {
       setReviews(data)
     } catch (error) {
       console.error('Failed to load reviews:', error)
+    }
+  }
+
+  async function loadMembers() {
+    try {
+      const { members: data } = await api.get(`/churches/${id}/members`)
+      setMembers(data)
+    } catch (error) {
+      console.error('Failed to load members:', error)
     }
   }
 
@@ -204,6 +217,38 @@ function ChurchDetail() {
             {church.sundaySchool && <span className="meta-tag">{church.recommendedAges}</span>}
           </div>
         </Card>
+
+        {/* People at This Church */}
+        {members.length > 0 && (
+          <div className="church-members-section">
+            <div className="section-header">
+              <h3 className="section-title">
+                <Users size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                People at This Church
+              </h3>
+            </div>
+            <div className="church-members-grid">
+              {members.map(member => (
+                <button
+                  key={member.id}
+                  className="church-member-card"
+                  onClick={() => navigate(`/user/${member.id}`)}
+                >
+                  <Avatar emoji={member.avatar} src={member.photoUrl} size="md" />
+                  <div className="church-member-name">{member.name}</div>
+                  <span className={`role-badge role-badge-${member.role.toLowerCase()}`}>
+                    {member.role}
+                  </span>
+                  {member.sharedInterests > 0 && (
+                    <div className="church-member-shared">
+                      {member.sharedInterests} shared {member.sharedInterests === 1 ? 'interest' : 'interests'}
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Reviews Section */}
         <div className="section-header">

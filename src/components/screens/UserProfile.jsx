@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar } from 'lucide-react'
+import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function UserProfile() {
@@ -119,6 +119,12 @@ function UserProfile() {
           )}
           {profile.bio && (
             <div className="profile-bio">{profile.bio}</div>
+          )}
+          {profile.isConnected === false && (
+            <div className="profile-limited-hint">
+              <Lock size={14} />
+              <span>Connect to see full profile</span>
+            </div>
           )}
         </div>
 

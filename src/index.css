@@ -551,6 +551,257 @@ textarea {
   color: var(--text-muted);
 }
 
+/* --- Home Screen Sections --- */
+.home-section {
+  margin-bottom: 20px;
+}
+
+.home-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.home-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* --- Role Badge in Header --- */
+.home-role-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.home-role-guide {
+  background: rgba(234, 179, 8, 0.25);
+  color: #b45309;
+}
+
+.home-role-seeker {
+  background: rgba(59, 130, 246, 0.25);
+  color: #1d4ed8;
+}
+
+/* --- Notification Cards --- */
+.home-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-notif-card {
+  cursor: pointer;
+}
+
+.home-notif-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.home-notif-messages {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+}
+
+.home-notif-connections {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+}
+
+.home-notif-prayers {
+  background: rgba(236, 72, 153, 0.12);
+  color: #db2777;
+}
+
+.home-notif-sessions {
+  background: rgba(234, 179, 8, 0.12);
+  color: #b45309;
+}
+
+.home-notif-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.home-notif-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-primary);
+  min-width: 20px;
+  text-align: center;
+}
+
+.home-notif-arrow {
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+/* --- Caught Up State --- */
+.home-caught-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  gap: 6px;
+}
+
+.home-caught-up-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --- Upcoming Appointment Row --- */
+.home-upcoming-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-upcoming-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.home-upcoming-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-upcoming-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-upcoming-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- Community Activity Cards --- */
+.home-activity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-activity-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-activity-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.home-activity-title {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-activity-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Daily Word --- */
+.home-daily-word {
+  text-align: center;
+  padding: 4px 0;
+}
+
+.home-daily-text {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.home-daily-ref {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-light-text);
+}
+
+/* --- Dark Mode Overrides for Home --- */
+[data-theme="dark"] .home-role-guide {
+  background: rgba(234, 179, 8, 0.2);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .home-role-seeker {
+  background: rgba(96, 165, 250, 0.2);
+  color: #93bbfd;
+}
+
+[data-theme="dark"] .home-notif-messages {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .home-notif-connections {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+[data-theme="dark"] .home-notif-prayers {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+}
+
+[data-theme="dark"] .home-notif-sessions {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fbbf24;
+}
+
 /* ---------------------------------------------------------------------------
    10. EMPTY STATES
    --------------------------------------------------------------------------- */
@@ -4296,4 +4547,199 @@ textarea {
 [data-theme="dark"] .connection-status-connected {
   background: rgba(74, 222, 128, 0.2);
   color: #86efac;
+}
+
+/* =============================================================================
+   31. CHURCH MEMBERS (People at This Church)
+   ============================================================================= */
+
+.church-members-section {
+  margin-top: 8px;
+}
+
+.church-members-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.church-members-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.church-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  padding: 12px 8px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s;
+}
+
+.church-member-card:active {
+  transform: scale(0.97);
+}
+
+.church-member-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
+
+.church-member-role {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.church-member-shared {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+[data-theme="dark"] .church-member-card {
+  background: var(--bg-tertiary);
+}
+
+/* =============================================================================
+   32. SUGGESTED FOR YOU (Community Screen)
+   ============================================================================= */
+
+.suggested-section {
+  margin-bottom: 12px;
+}
+
+.suggested-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08));
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.suggested-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.suggested-header-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.suggested-header-count {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.suggested-header-icon {
+  color: #8b5cf6;
+}
+
+.suggested-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.suggested-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.suggested-card:active {
+  background: var(--bg-secondary);
+}
+
+.suggested-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggested-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.suggested-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.suggested-card-reason {
+  font-size: 12px;
+  color: #8b5cf6;
+  margin-top: 2px;
+}
+
+.suggested-card-action {
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .suggested-header {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+}
+
+[data-theme="dark"] .suggested-card-reason {
+  color: #a78bfa;
+}
+
+/* =============================================================================
+   33. PROFILE LIMITED HINT (Privacy)
+   ============================================================================= */
+
+.profile-limited-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin: 16px 0 0;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.profile-limited-hint svg {
+  flex-shrink: 0;
+  color: #8b5cf6;
+}
+
+[data-theme="dark"] .profile-limited-hint {
+  background: rgba(99, 102, 241, 0.15);
 }

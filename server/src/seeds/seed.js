@@ -22,7 +22,10 @@ import pg from 'pg'
 
 import {
   TEST_USER,
+  TEST_SEEKER,
   AVAILABLE_PEOPLE,
+  DISCOVERY_USERS,
+  SEED_CHURCH_FAVORITES,
   CHURCHES,
   BIBLE_QUOTES,
   SAMPLE_APPOINTMENTS
@@ -97,6 +100,21 @@ async function seed() {
     console.log(`   ✅ Test user created (id: ${guideId})`)
     console.log(`      Email: ${TEST_USER.email}`)
     console.log(`      Password: ${TEST_USER.password}\n`)
+
+    // ---- Step 3b: Insert test seeker (Jordan Rivera) ----
+    console.log('👤 Creating test seeker...')
+    const seekerHash = await bcrypt.hash(TEST_SEEKER.password, 10)
+    const seekerResult = await client.query(
+      `INSERT INTO users (name, email, password_hash, avatar, role, location, denomination, interests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+       RETURNING id`,
+      [TEST_SEEKER.name, TEST_SEEKER.email, seekerHash, TEST_SEEKER.avatar,
+       TEST_SEEKER.role, TEST_SEEKER.location, TEST_SEEKER.denomination, TEST_SEEKER.interests]
+    )
+    const seekerId = seekerResult.rows[0].id
+    console.log(`   ✅ Test seeker created (id: ${seekerId})`)
+    console.log(`      Email: ${TEST_SEEKER.email}`)
+    console.log(`      Password: ${TEST_SEEKER.password}\n`)
 
     // ---- Step 4: Insert available people as users ----
     console.log('👥 Creating available people...')
@@ -237,15 +255,77 @@ async function seed() {
     )
     console.log('   ✅ Michael Chen → Spiritual Guide (pending)')
 
+    // Jordan Rivera connected to Spiritual Guide (accepted)
+    await client.query(
+      `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
+      [seekerId, guideId]
+    )
+    console.log('   ✅ Jordan Rivera ↔ Spiritual Guide (accepted)')
+
+    // ---- Step 10b: Insert discovery users (unconnected) ----
+    console.log('\n🔍 Creating discovery users (unconnected)...')
+    const discoveryIds = {}
+    for (const person of DISCOVERY_USERS) {
+      const hash = await bcrypt.hash('password123', 10)
+      const result = await client.query(
+        `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, denomination, church_name, interests)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+         RETURNING id`,
+        [
+          person.name, person.email, hash, person.avatar, person.role,
+          person.bio || null, person.specialization || null, person.location || null,
+          person.denomination || null, person.churchName || null, person.interests || []
+        ]
+      )
+      discoveryIds[person.name] = result.rows[0].id
+      console.log(`   ✅ ${person.name} (${person.role}) — NOT connected to anyone`)
+    }
+
+    // ---- Step 11: Insert church favorites ----
+    console.log('\n❤️  Inserting church favorites...')
+    // Build lookup maps: userName → userId, churchName → churchId
+    const userIdMap = {
+      guide: guideId,
+      seeker: seekerId,
+      david: discoveryIds['David Kim'],
+      maria: discoveryIds['Maria Santos']
+    }
+    // Also map AVAILABLE_PEOPLE by name
+    AVAILABLE_PEOPLE.forEach((person, i) => {
+      userIdMap[person.name] = peopleIds[i]
+    })
+
+    // Get church IDs by name
+    const churchResult = await client.query('SELECT id, name FROM churches')
+    const churchIdMap = {}
+    for (const row of churchResult.rows) {
+      churchIdMap[row.name] = row.id
+    }
+
+    let favCount = 0
+    for (const fav of SEED_CHURCH_FAVORITES) {
+      const userId = userIdMap[fav.userKey]
+      const churchId = churchIdMap[fav.churchName]
+      if (userId && churchId) {
+        await client.query(
+          'INSERT INTO church_favorites (user_id, church_id) VALUES ($1, $2)',
+          [userId, churchId]
+        )
+        favCount++
+        console.log(`   ✅ ${fav.userKey} ❤️ ${fav.churchName}`)
+      }
+    }
+
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    console.log(`   Users:        ${1 + AVAILABLE_PEOPLE.length}`)
+    console.log(`   Users:        ${2 + AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
     console.log(`   Churches:     ${CHURCHES.length}`)
     console.log(`   Quotes:       ${BIBLE_QUOTES.length}`)
     console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
     console.log(`   Verses:       ${SCRIPTURE_VERSES.length}`)
     console.log(`   Plans:        ${READING_PLANS.length} (${totalPlanDays} days)`)
-    console.log(`   Connections:  5 (4 accepted, 1 pending)`)
+    console.log(`   Connections:  6 (5 accepted, 1 pending)`)
+    console.log(`   Favorites:    ${favCount} church favorites`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {

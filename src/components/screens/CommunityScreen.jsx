@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Modal, EmptyState } from '../common'
-import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2 } from 'lucide-react'
+import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function CommunityScreen() {
@@ -30,6 +30,8 @@ function CommunityScreen() {
   // Community state
   const [community, setCommunity] = useState([])
   const [pending, setPending] = useState({ incoming: [], outgoing: [] })
+  const [suggested, setSuggested] = useState([])
+  const [showSuggested, setShowSuggested] = useState(true)
   const [activeTab, setActiveTab] = useState('all')
   const [searchText, setSearchText] = useState('')
   const [showPending, setShowPending] = useState(false)
@@ -69,12 +71,14 @@ function CommunityScreen() {
 
   async function loadData() {
     try {
-      const [communityRes, pendingRes] = await Promise.all([
+      const [communityRes, pendingRes, suggestedRes] = await Promise.all([
         api.get('/community'),
-        api.get('/community/pending')
+        api.get('/community/pending'),
+        api.get('/users/suggested?limit=5')
       ])
       setCommunity(communityRes.community || [])
       setPending(pendingRes || { incoming: [], outgoing: [] })
+      setSuggested(suggestedRes.suggested || [])
     } catch (error) {
       console.error('Failed to load community:', error)
     } finally {
@@ -270,6 +274,47 @@ function CommunityScreen() {
       <div className="screen-content community-screen-content">
         {topTab === 'community' ? (
           <>
+            {/* Suggested for You */}
+            {suggested.length > 0 && (
+              <div className="suggested-section">
+                <button
+                  className="suggested-header"
+                  onClick={() => setShowSuggested(!showSuggested)}
+                >
+                  <div className="suggested-header-left">
+                    <Sparkles size={18} className="suggested-header-icon" />
+                    <span className="suggested-header-title">Suggested for You</span>
+                    <span className="suggested-header-count">{suggested.length}</span>
+                  </div>
+                  {showSuggested ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </button>
+
+                {showSuggested && (
+                  <div className="suggested-list">
+                    {suggested.map(person => (
+                      <button
+                        key={person.id}
+                        className="suggested-card"
+                        onClick={() => navigate(`/user/${person.id}`)}
+                      >
+                        <Avatar emoji={person.avatar} src={person.photoUrl} size="md" />
+                        <div className="suggested-card-info">
+                          <div className="suggested-card-top">
+                            <span className="suggested-card-name">{person.name}</span>
+                            <span className={`role-badge role-badge-${person.role.toLowerCase()}`}>
+                              {person.role}
+                            </span>
+                          </div>
+                          <div className="suggested-card-reason">{person.matchReason}</div>
+                        </div>
+                        <UserPlus size={18} className="suggested-card-action" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Pending requests banner */}
             {pendingCount > 0 && (
               <div className="pending-banner">
