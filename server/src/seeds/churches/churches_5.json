@@ -205,7 +205,7 @@
     "address": "Franklin, TN",
     "phone": "615-794-7777",
     "website": "https://clearviewbc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Southern Baptist church with contemporary & traditional services, strong family ministries."
   },
@@ -225,7 +225,7 @@
     "address": "Nolensville, TN",
     "phone": "615-776-7777",
     "website": "https://crossbridgeonline.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church with contemporary services and strong community emphasis."
   },
@@ -235,7 +235,7 @@
     "address": "Chattanooga, TN",
     "phone": "423-698-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Church of God congregation. Pentecostal worship style, community outreach."
   },
@@ -245,7 +245,7 @@
     "address": "Jackson, TN",
     "phone": "731-668-7777",
     "website": "https://englewoodbaptist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Large Southern Baptist church in West Tennessee. Biblical teaching, contemporary worship, outreach focus."
   },
@@ -285,7 +285,7 @@
     "address": "Clarksville, TN",
     "phone": "931-647-7777",
     "website": "https://fbclarksville.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Large Southern Baptist church with blended worship and strong community ministries."
   },
@@ -295,7 +295,7 @@
     "address": "Columbia, TN",
     "phone": "931-388-7777",
     "website": "https://fbccolumbia.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Historic Southern Baptist church with blended worship and strong community ministries."
   },
@@ -305,7 +305,7 @@
     "address": "Maryville, TN",
     "phone": "865-982-7777",
     "website": "https://fbcmaryville.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Large Southern Baptist church in Blount County. Contemporary & traditional services."
   },
@@ -315,7 +315,7 @@
     "address": "Lebanon, TN",
     "phone": "615-444-7777",
     "website": "https://generation.church/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church focused on next generation and contemporary worship."
   },
@@ -335,7 +335,7 @@
     "address": "Nolensville, TN",
     "phone": "615-776-7777",
     "website": "https://gracechurchonline.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church with contemporary worship and strong community emphasis."
   },
@@ -345,7 +345,7 @@
     "address": "20 Belvoir Ave, Chattanooga, TN 37411",
     "phone": "423-698-7777",
     "website": "https://gracechattanooga.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church with contemporary worship, strong biblical teaching, and community focus."
   },
@@ -375,7 +375,7 @@
     "address": "Madison, TN",
     "phone": "615-865-7777",
     "website": "https://madisonchurchofchrist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Church of Christ congregation. A cappella worship, Bible-centered teaching."
   },
@@ -385,7 +385,7 @@
     "address": "Murfreesboro, TN",
     "phone": "615-893-7777",
     "website": "https://mtbc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Southern Baptist church with biblical preaching and multi-generational ministries."
   },
@@ -405,7 +405,7 @@
     "address": "Maryville, TN",
     "phone": "865-982-7777",
     "website": "https://newprovidencenpca.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "PCA Presbyterian church with traditional worship and strong teaching emphasis."
   },
@@ -415,7 +415,7 @@
     "address": "Chattanooga, TN",
     "phone": "423-531-7777",
     "website": "https://redemptionchattanooga.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church with contemporary worship and community transformation focus."
   },
@@ -425,7 +425,7 @@
     "address": "Memphis, TN (multiple locations)",
     "phone": "901-682-7777",
     "website": "https://relentlesschurch.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church focused on transformation and community impact. Contemporary style."
   },
@@ -445,7 +445,7 @@
     "address": "Signal Mountain, TN",
     "phone": "423-886-7777",
     "website": "https://smbc.church/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Southern Baptist church with biblical teaching and family-oriented ministries."
   },
@@ -465,7 +465,7 @@
     "address": "Columbia, TN",
     "phone": "931-388-7777",
     "website": "https://thebridgecolumbia.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church serving Maury County. Contemporary services, community focus."
   },
@@ -475,7 +475,7 @@
     "address": "Spring Hill, TN",
     "phone": "931-486-7777",
     "website": "https://thechurchatstationhill.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church in fast-growing Williamson County. Contemporary worship, community focus."
   },
@@ -485,7 +485,7 @@
     "address": "Clarksville, TN",
     "phone": "931-645-7777",
     "website": "https://thegatechurch.tv/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church serving Clarksville/Fort Campbell area. Modern worship, outreach focus."
   },
@@ -495,7 +495,7 @@
     "address": "Franklin, TN",
     "phone": "615-595-7777",
     "website": "https://thepeopleschurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational church with contemporary services and emphasis on authentic community."
   },
@@ -505,7 +505,7 @@
     "address": "Nashville, TN (multiple locations)",
     "phone": "615-883-7777",
     "website": "https://tworiverschurch.tv/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Tennessee",
     "short_description": "Non-denominational multi-site church. Modern worship, practical messages, strong next-steps focus."
   },
@@ -525,7 +525,7 @@
     "address": "100 W Pflugerville Pkwy, Suite 118, Pflugerville, TX 78660",
     "phone": "512-251-6957",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic ministry fostering abundant life in Christ."
   },
@@ -545,7 +545,7 @@
     "address": "1408 4th St, Killeen, TX 76541",
     "phone": "",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Temple for apostolic faith with emphasis on prayer and community."
   },
@@ -565,7 +565,7 @@
     "address": "107 E MLK Blvd, Ennis, TX 75119",
     "phone": "",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Family life church for believers in Christ."
   },
@@ -585,7 +585,7 @@
     "address": "FM Road 1239, Eddy, TX 76524",
     "phone": "",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic church promoting rebirth through faith and baptism."
   },
@@ -605,7 +605,7 @@
     "address": "524 Beltline Rd, DeSoto, TX 75115",
     "phone": "817-905-7271",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Fellowship for Christ-centered community."
   },
@@ -735,7 +735,7 @@
     "address": "3303 S Polk St, Dallas, TX 75224",
     "phone": "214-371-7835",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic congregation building greater faith."
   },
@@ -745,7 +745,7 @@
     "address": "314 Casa Dr, Copperas Cove, TX 76522",
     "phone": "254-371-4017",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic church offering name-of-Jesus focused worship and discipleship."
   },
@@ -765,7 +765,7 @@
     "address": "3401 Johnson St, Greenville, TX 75401",
     "phone": "",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Worship center changing lives through faith."
   },
@@ -775,7 +775,7 @@
     "address": "110 Hanna St, San Antonio, TX 78210",
     "phone": "210-291-7112",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Christian center dedicated to spiritual renewal and family ministries."
   },
@@ -805,7 +805,7 @@
     "address": "1509 E Ave E, Temple, TX 76503",
     "phone": "254-421-0842",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Fellowship offering new life through apostolic teachings."
   },
@@ -825,7 +825,7 @@
     "address": "9103 Ley Rd, Houston, TX 77078",
     "phone": "713-367-4182",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Worship center providing hope through Gospel teaching and community support."
   },
@@ -855,7 +855,7 @@
     "address": "2225 Cumberland Ave, Waco, TX 76707",
     "phone": "254-654-2228",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Church dedicated to restoration through faith and community."
   },
@@ -885,7 +885,7 @@
     "address": "2636 Britton Dr, Dallas, TX 75216",
     "phone": "",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic church saving souls through Christ."
   },
@@ -905,7 +905,7 @@
     "address": "2520 Lavendusky Dr, Temple, TX 76501",
     "phone": "254-760-5079",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Refuge for spiritual seekers with welcoming services and support ministries."
   },
@@ -955,7 +955,7 @@
     "address": "619 W Main St, Arlington, TX 76010",
     "phone": "214-228-8808",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic church as the tree of life for believers."
   },
@@ -965,7 +965,7 @@
     "address": "4933 Carmen St, Houston, TX 77033",
     "phone": "713-705-5746",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Family-oriented worship center with contemporary services and outreach."
   },
@@ -975,7 +975,7 @@
     "address": "1130 Westgate St, Wharton, TX 77488",
     "phone": "979-282-9145",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Holiness church focused on biblical purity and spiritual growth."
   },
@@ -985,7 +985,7 @@
     "address": "1704 Comanche Dr, Harker Heights, TX 76548",
     "phone": "254-554-7640",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Apostolic church emphasizing victory through faith and community service."
   },
@@ -995,7 +995,7 @@
     "address": "3940 Blue Ridge Blvd, Dallas, TX 75233",
     "phone": "214-339-1190",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Texas",
     "short_description": "Temple for zion-focused apostolic worship."
   },
@@ -1095,7 +1095,7 @@
     "address": "Riverton, UT (meeting at local venues)",
     "phone": "801-254-7777",
     "website": "https://harvestutah.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Utah",
     "short_description": "Non-denominational church with contemporary worship style."
   },
@@ -1105,7 +1105,7 @@
     "address": "3540 South 6000 West, West Valley City, UT 84128",
     "phone": "",
     "website": "https://iglesianicristo.net/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Utah",
     "short_description": "Church of Christ (Iglesia Ni Cristo) serving local Filipino and other communities."
   },
@@ -1125,7 +1125,7 @@
     "address": "West Jordan, UT",
     "phone": "801-280-7777",
     "website": "https://lifechurchutah.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Utah",
     "short_description": "Non-denominational church with modern services and small groups."
   },
@@ -1185,7 +1185,7 @@
     "address": "Layton, UT (multiple meeting locations)",
     "phone": "801-773-7777",
     "website": "https://reallifeutah.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Utah",
     "short_description": "Non-denominational church focused on practical faith and community."
   },
@@ -1255,7 +1255,7 @@
     "address": "Sandy, UT (rotating venues)",
     "phone": "",
     "website": "https://summitchurchutah.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Utah",
     "short_description": "Contemporary non-denominational church plant in the valley."
   },
@@ -1285,7 +1285,7 @@
     "address": "Salt Lake City (multi-site / rotating locations)",
     "phone": "",
     "website": "https://vineyardslc.com/",
-    "photo_url": "",
+    "photo_url": null,
     "short_description": "Vineyard movement church focused on contemporary worship and healing.",
     "state": "Utah"
   },
@@ -1825,7 +1825,7 @@
     "address": "Wenatchee, WA",
     "phone": "509-884-7777",
     "website": "https://gracewenatchee.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Washington",
     "short_description": "Baptist church in the Wenatchee Valley. Biblical preaching, blended worship, community focus."
   },
@@ -1865,7 +1865,7 @@
     "address": "Federal Way, WA",
     "phone": "253-839-7777",
     "website": "https://nwchurchofchrist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Washington",
     "short_description": "Church of Christ congregation emphasizing New Testament Christianity, a cappella worship, and service."
   },
@@ -1955,7 +1955,7 @@
     "address": "Kennewick, WA",
     "phone": "509-783-7777",
     "website": "https://tricitiesbaptist.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Washington",
     "short_description": "Southern Baptist church serving the Tri-Cities area. Contemporary and traditional services, family ministries."
   },
@@ -1965,7 +1965,7 @@
     "address": "Bellingham, WA (multiple venues)",
     "phone": "360-734-7777",
     "website": "https://vineyardbellingham.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Washington",
     "short_description": "Vineyard movement church with contemporary worship, healing ministry emphasis, and community focus."
   },
@@ -1975,7 +1975,7 @@
     "address": "Yakima, WA",
     "phone": "509-248-7777",
     "website": "https://yakimafoursquare.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Washington",
     "short_description": "Foursquare church with contemporary worship, strong community outreach, and family programs."
   },
@@ -1985,7 +1985,7 @@
     "address": "2500 Washington Ave, Huntington, WV 25704",
     "phone": "304-429-2241",
     "website": "https://beverlyhillschurchofchrist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Church of Christ congregation. A cappella worship, Bible-centered teaching, community outreach."
   },
@@ -1995,7 +1995,7 @@
     "address": "Bridgeport, WV",
     "phone": "304-842-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "United Methodist congregation serving Bridgeport area. Blended worship, community outreach."
   },
@@ -2005,7 +2005,7 @@
     "address": "409 N Kanawha St, Beckley, WV 25801",
     "phone": "304-252-7777",
     "website": "https://calvarybeckley.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Southern Baptist church with biblical preaching, contemporary/traditional worship, family ministries."
   },
@@ -2015,7 +2015,7 @@
     "address": "Charles Town, WV",
     "phone": "304-725-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Non-denominational Calvary Chapel. Verse-by-verse Bible teaching, contemporary worship."
   },
@@ -2035,7 +2035,7 @@
     "address": "227 S Chestnut St, Clarksburg, WV 26301",
     "phone": "304-622-7777",
     "website": "https://christchurchclarksburg.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Episcopal congregation with traditional liturgy, music program, community involvement."
   },
@@ -2055,7 +2055,7 @@
     "address": "120 Creston Ave, Morgantown, WV 26501",
     "phone": "304-296-5555",
     "website": "https://crestonavechurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Church of Christ with a cappella worship, Bible-centered teaching, community focus."
   },
@@ -2065,7 +2065,7 @@
     "address": "16 Leon Sullivan Way, Charleston, WV 25301",
     "phone": "304-343-2157",
     "website": "https://fbccharleston.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Historic downtown Baptist church (founded 1865). Blended worship, biblical teaching, long-standing community presence."
   },
@@ -2075,7 +2075,7 @@
     "address": "Clarksburg, WV",
     "phone": "304-624-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Southern Baptist church with blended worship and active community ministries."
   },
@@ -2085,7 +2085,7 @@
     "address": "Princeton, WV",
     "phone": "304-425-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Southern Baptist church with community ministries and blended worship."
   },
@@ -2095,7 +2095,7 @@
     "address": "Huntington, WV",
     "phone": "304-523-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Disciples of Christ congregation. Open communion, community-oriented ministries."
   },
@@ -2105,7 +2105,7 @@
     "address": "201 N Kanawha St, Beckley, WV 25801",
     "phone": "304-252-7331",
     "website": "https://firstpresbeckley.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "PC(USA) congregation in downtown Beckley. Traditional worship, music program, community outreach."
   },
@@ -2115,7 +2115,7 @@
     "address": "Fairmont, WV",
     "phone": "304-363-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "PC(USA) church with traditional worship and strong music ministry."
   },
@@ -2125,7 +2125,7 @@
     "address": "1015 5th Ave, Huntington, WV 25701",
     "phone": "304-523-6491",
     "website": "https://firstpreshuntington.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Historic PC(USA) church in downtown Huntington. Traditional liturgy, music program, active community ministries."
   },
@@ -2135,7 +2135,7 @@
     "address": "401 11th St, Parkersburg, WV 26101",
     "phone": "304-422-4581",
     "website": "https://www.firstumcparkersburg.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Historic downtown United Methodist church. Blended worship, music ministry, community service."
   },
@@ -2145,7 +2145,7 @@
     "address": "Weirton, WV",
     "phone": "304-748-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "United Methodist church with blended worship and community service."
   },
@@ -2155,7 +2155,7 @@
     "address": "1601 Oakhurst Dr, Charleston, WV 25314",
     "phone": "304-346-0624",
     "website": "https://gracebiblewv.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Non-denominational Bible church. Expository preaching, contemporary worship style, strong small group focus."
   },
@@ -2165,7 +2165,7 @@
     "address": "Morgantown, WV",
     "phone": "304-599-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Non-denominational church with contemporary worship and small group focus."
   },
@@ -2175,7 +2175,7 @@
     "address": "Martinsburg, WV",
     "phone": "304-263-7777",
     "website": "https://gracegospelwv.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Non-denominational church in the Eastern Panhandle. Contemporary worship, Bible teaching, community focus."
   },
@@ -2185,7 +2185,7 @@
     "address": "513 10th St, Huntington, WV 25701",
     "phone": "304-523-3408",
     "website": "https://johnsonmemorialumc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Historic downtown United Methodist church. Blended worship, strong music ministry, community service programs."
   },
@@ -2195,7 +2195,7 @@
     "address": "Bluefield, WV",
     "phone": "304-327-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Southern Baptist church serving the Bluefield area. Biblical teaching, family ministries."
   },
@@ -2205,7 +2205,7 @@
     "address": "New Martinsville, WV",
     "phone": "304-455-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Church of Christ congregation with a cappella worship and Bible study focus."
   },
@@ -2215,7 +2215,7 @@
     "address": "2600 36th St, Parkersburg, WV 26104",
     "phone": "304-422-7777",
     "website": "https://parkersburgnazarene.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Nazarene church with contemporary and traditional services, strong family and youth ministries."
   },
@@ -2225,7 +2225,7 @@
     "address": "Weirton, WV",
     "phone": "304-748-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Catholic parish in the Northern Panhandle. Masses, faith formation programs."
   },
@@ -2235,7 +2235,7 @@
     "address": "31 Saint Francis Way, Morgantown, WV 26501",
     "phone": "304-296-6511",
     "website": "https://www.sfdsmorgantown.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Active Catholic parish near WVU. Multiple Masses, campus ministry, faith formation programs."
   },
@@ -2245,7 +2245,7 @@
     "address": "410 D St, South Charleston, WV 25303",
     "phone": "304-744-1651",
     "website": "https://stjohnumc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "United Methodist congregation in South Charleston. Traditional and contemporary elements, active community ministries."
   },
@@ -2255,7 +2255,7 @@
     "address": "408 W Stephen St, Martinsburg, WV 25401",
     "phone": "304-267-2315",
     "website": "https://stjosephmartinsburg.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Active Roman Catholic parish. Multiple Masses, school affiliation, community ministries."
   },
@@ -2265,7 +2265,7 @@
     "address": "Morgantown, WV (multiple locations)",
     "phone": "304-292-7777",
     "website": "https://sunrisechurchwv.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Non-denominational church serving Morgantown area. Contemporary worship, practical teaching, strong community groups."
   },
@@ -2275,7 +2275,7 @@
     "address": "Fairmont, WV",
     "phone": "304-366-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "West Virginia",
     "short_description": "Independent Baptist church. Biblical preaching, traditional worship style."
   },
@@ -2285,7 +2285,7 @@
     "address": "Sheboygan, WI",
     "phone": "920-452-7777",
     "website": "https://calvarysheboygan.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational Calvary Chapel. Verse-by-verse Bible teaching, contemporary worship."
   },
@@ -2305,7 +2305,7 @@
     "address": "Milwaukee, WI",
     "phone": "414-463-7777",
     "website": "https://ctk-milwaukee.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "WELS Lutheran church with contemporary and traditional worship, strong family programs."
   },
@@ -2315,7 +2315,7 @@
     "address": "Kenosha, WI",
     "phone": "262-652-7777",
     "website": "https://crosspointkenosha.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church serving Kenosha/Racine area. Modern services, community outreach."
   },
@@ -2325,7 +2325,7 @@
     "address": "Wausau, WI",
     "phone": "715-845-7777",
     "website": "https://crossroadswausau.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church in central Wisconsin. Modern services, biblical teaching, community engagement."
   },
@@ -2345,7 +2345,7 @@
     "address": "Eau Claire, WI",
     "phone": "715-832-7777",
     "website": "https://eccchurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church serving Eau Claire. Contemporary worship, practical messages, strong small groups."
   },
@@ -2365,7 +2365,7 @@
     "address": "Hudson, WI",
     "phone": "715-386-7777",
     "website": "https://fcchudson.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church near the Twin Cities metro. Contemporary worship, biblical teaching."
   },
@@ -2375,7 +2375,7 @@
     "address": "420 West Ave S, La Crosse, WI 54601",
     "phone": "608-784-7777",
     "website": "https://firstbaptistlacrosse.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Historic Baptist church in La Crosse. Blended worship, biblical preaching, community ministries."
   },
@@ -2385,7 +2385,7 @@
     "address": "200 Church St, Neenah, WI 54956",
     "phone": "920-725-7777",
     "website": "https://firstpresneenah.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "PC(USA) congregation in the Fox Valley. Traditional and contemporary worship, music ministry."
   },
@@ -2415,7 +2415,7 @@
     "address": "Milwaukee, WI (multiple sites)",
     "phone": "414-271-7777",
     "website": "https://hopechurchmke.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church serving Milwaukee. Contemporary worship, community outreach, urban ministry focus."
   },
@@ -2435,7 +2435,7 @@
     "address": "Jackson, WI",
     "phone": "262-677-7777",
     "website": "https://livingwordwi.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "ELCA Lutheran church with blended worship, strong music ministry, community involvement."
   },
@@ -2445,7 +2445,7 @@
     "address": "Oshkosh, WI",
     "phone": "920-426-7777",
     "website": "https://newcommunitychurch.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church in the Fox Valley. Contemporary services, family-oriented, community focus."
   },
@@ -2465,7 +2465,7 @@
     "address": "Wisconsin Rapids, WI",
     "phone": "715-423-7777",
     "website": "https://rivervalley.church/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church serving central Wisconsin. Contemporary services, community focus."
   },
@@ -2475,7 +2475,7 @@
     "address": "220 E Jefferson St, Burlington, WI 53105",
     "phone": "262-763-7777",
     "website": "https://stmarysburlington.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Active Catholic parish in southeastern Wisconsin. Multiple Masses, school affiliation."
   },
@@ -2495,7 +2495,7 @@
     "address": "209 S Adams St, Green Bay, WI 54301",
     "phone": "920-432-7777",
     "website": "https://stwillebrord.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Historic downtown Catholic parish in Green Bay. Multiple Masses, active ministries."
   },
@@ -2515,7 +2515,7 @@
     "address": "Racine, WI",
     "phone": "262-634-7777",
     "website": "https://therockracine.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wisconsin",
     "short_description": "Non-denominational church serving Racine/Kenosha area. Modern worship, biblical teaching, community outreach."
   },
@@ -2535,7 +2535,7 @@
     "address": "Casper, WY",
     "phone": "307-577-7777",
     "website": "https://caspercommunitychurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church serving Casper. Contemporary worship, practical messages, community focus."
   },
@@ -2545,7 +2545,7 @@
     "address": "1500 S Poplar St, Casper, WY 82601",
     "phone": "307-234-7777",
     "website": "https://caspernazarene.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Church of the Nazarene congregation. Contemporary and traditional worship, strong youth and family programs."
   },
@@ -2565,7 +2565,7 @@
     "address": "Cody, WY",
     "phone": "307-587-7777",
     "website": "https://codybaptistchurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Baptist church serving the Cody area. Blended worship, community involvement."
   },
@@ -2575,7 +2575,7 @@
     "address": "Douglas, WY",
     "phone": "307-358-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Southern Baptist church in Douglas. Biblical preaching, family programs."
   },
@@ -2585,7 +2585,7 @@
     "address": "Evanston, WY",
     "phone": "307-789-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational Bible church in southwest Wyoming. Contemporary services."
   },
@@ -2595,7 +2595,7 @@
     "address": "1800 E Pershing Blvd, Cheyenne, WY 82001",
     "phone": "307-634-7777",
     "website": "https://fbc-cheyenne.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Historic Southern Baptist church in the capital. Blended worship, biblical preaching, community outreach."
   },
@@ -2605,7 +2605,7 @@
     "address": "Sheridan, WY",
     "phone": "307-674-7777",
     "website": "https://firstbaptistsheridan.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Southern Baptist church with blended worship, biblical preaching, family ministries."
   },
@@ -2615,7 +2615,7 @@
     "address": "804 S Wolcott St, Casper, WY 82601",
     "phone": "307-237-7777",
     "website": "https://firstprescasper.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "PC(USA) church in downtown Casper. Traditional liturgy, music ministry, community service."
   },
@@ -2625,7 +2625,7 @@
     "address": "Evanston, WY",
     "phone": "307-789-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "United Methodist congregation. Blended worship, community outreach."
   },
@@ -2635,7 +2635,7 @@
     "address": "Gillette, WY",
     "phone": "307-686-7777",
     "website": "https://gillettefirstbaptist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Southern Baptist church in Campbell County. Biblical preaching, family ministries."
   },
@@ -2645,7 +2645,7 @@
     "address": "Sheridan, WY",
     "phone": "307-672-7777",
     "website": "https://holynamesheridan.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish serving Sheridan area. Masses, faith formation, community service."
   },
@@ -2655,7 +2655,7 @@
     "address": "Rock Springs, WY",
     "phone": "307-362-7777",
     "website": "https://holyspiritrocksprings.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish in southwest Wyoming. Multiple Masses, family ministries."
   },
@@ -2665,7 +2665,7 @@
     "address": "Jackson, WY",
     "phone": "307-733-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational / Pentecostal-leaning church. Contemporary worship style, community focus."
   },
@@ -2675,7 +2675,7 @@
     "address": "Jackson, WY (multiple locations)",
     "phone": "307-733-7777",
     "website": "https://jhcc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church serving Jackson Hole. Contemporary worship, relevant teaching, community outreach."
   },
@@ -2685,7 +2685,7 @@
     "address": "Cheyenne, WY",
     "phone": "307-634-7777",
     "website": "https://journeychurchwy.com/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church focused on helping people take next steps with Jesus. Modern worship style."
   },
@@ -2695,7 +2695,7 @@
     "address": "Laramie, WY",
     "phone": "307-742-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Church of Christ congregation. A cappella worship, Bible study emphasis."
   },
@@ -2705,7 +2705,7 @@
     "address": "Laramie, WY",
     "phone": "307-745-7777",
     "website": "https://laramiefumc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "United Methodist church near UW campus. Blended worship, active outreach."
   },
@@ -2715,7 +2715,7 @@
     "address": "Cheyenne, WY",
     "phone": "307-632-7777",
     "website": "https://lotwcc.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church in Cheyenne. Contemporary services, Bible-centered teaching, family ministries."
   },
@@ -2725,7 +2725,7 @@
     "address": "Gillette, WY",
     "phone": "307-686-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Assemblies of God church. Pentecostal worship style, community outreach."
   },
@@ -2735,7 +2735,7 @@
     "address": "639 S Glenwood St, Jackson, WY 83001",
     "phone": "307-733-7777",
     "website": "https://ourladyofthemountains.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish in Jackson Hole. Multiple Masses, faith formation, community involvement."
   },
@@ -2745,7 +2745,7 @@
     "address": "Rawlins, WY",
     "phone": "307-324-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Baptist church serving Rawlins. Worship services, Bible study groups."
   },
@@ -2755,7 +2755,7 @@
     "address": "Riverton, WY",
     "phone": "307-856-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Southern Baptist church in Riverton. Biblical teaching, family ministries."
   },
@@ -2765,7 +2765,7 @@
     "address": "Rock Springs, WY",
     "phone": "307-362-7777",
     "website": "https://rockspringschurchofchrist.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Church of Christ congregation. A cappella worship, New Testament focus, community outreach."
   },
@@ -2775,7 +2775,7 @@
     "address": "Sheridan, WY",
     "phone": "307-674-7777",
     "website": "https://sheridanchristianfellowship.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church in Sheridan. Modern worship, Bible teaching, community-oriented."
   },
@@ -2785,7 +2785,7 @@
     "address": "Cody, WY",
     "phone": "307-587-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish in northwest Wyoming. Masses, faith formation programs."
   },
@@ -2795,7 +2795,7 @@
     "address": "Douglas, WY",
     "phone": "307-358-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish in Converse County. Masses, community involvement."
   },
@@ -2805,7 +2805,7 @@
     "address": "141 N Cache Dr, Jackson, WY 83001",
     "phone": "307-733-2601",
     "website": "https://stjohnsjackson.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Historic Episcopal church in Jackson Hole. Traditional liturgy, beautiful mountain setting."
   },
@@ -2815,7 +2815,7 @@
     "address": "Riverton, WY",
     "phone": "307-856-7777",
     "website": "",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic parish serving Riverton area. Community Masses and ministries."
   },
@@ -2835,7 +2835,7 @@
     "address": "Laramie, WY",
     "phone": "307-745-7777",
     "website": "https://stpaulslaramie.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Catholic Newman Center at University of Wyoming. Campus ministry, Masses, young adult programs."
   },
@@ -2845,7 +2845,7 @@
     "address": "Casper, WY",
     "phone": "307-235-7777",
     "website": "https://wyomingcommunitychurch.org/",
-    "photo_url": "",
+    "photo_url": null,
     "state": "Wyoming",
     "short_description": "Non-denominational church with contemporary services and emphasis on community connection."
   }

@@ -25,7 +25,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 437-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Alamogordo.",
     "photo_url": "https://example.com/first-baptist-alamogordo.jpg"
   },
@@ -35,7 +35,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 265-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Albuquerque with strong ministries.",
     "photo_url": "https://example.com/first-baptist-albuquerque.jpg"
   },
@@ -45,7 +45,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 763-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Clovis.",
     "photo_url": "https://example.com/first-baptist-clovis-nm.jpg"
   },
@@ -55,7 +55,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 327-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Farmington.",
     "photo_url": "https://example.com/first-baptist-farmington-nm.jpg"
   },
@@ -65,7 +65,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 863-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Gallup.",
     "photo_url": "https://example.com/first-baptist-gallup.jpg"
   },
@@ -75,7 +75,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 393-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Hobbs.",
     "photo_url": "https://example.com/first-baptist-hobbs.jpg"
   },
@@ -85,7 +85,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 524-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Las Cruces near New Mexico State University.",
     "photo_url": "https://example.com/first-baptist-las-cruces.jpg"
   },
@@ -95,7 +95,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Rio Rancho near Albuquerque.",
     "photo_url": "https://example.com/first-baptist-rio-rancho.jpg"
   },
@@ -105,7 +105,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 622-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Roswell.",
     "photo_url": "https://example.com/first-baptist-roswell.jpg"
   },
@@ -115,7 +115,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 988-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Santa Fe.",
     "photo_url": "https://example.com/first-umc-santa-fe.jpg"
   },
@@ -125,7 +125,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 524-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Las Cruces.",
     "photo_url": "https://example.com/holy-cross-las-cruces.jpg"
   },
@@ -135,7 +135,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 437-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Alamogordo.",
     "photo_url": "https://example.com/holy-redeemer-alamogordo.jpg"
   },
@@ -155,7 +155,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 265-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Albuquerque.",
     "photo_url": "https://example.com/st-charles-albuquerque.jpg"
   },
@@ -165,7 +165,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 863-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Gallup.",
     "photo_url": "https://example.com/st-francis-gallup.jpg"
   },
@@ -175,7 +175,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 983-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Catholic parish in Santa Fe.",
     "photo_url": "https://example.com/st-francis-santa-fe.jpg"
   },
@@ -185,7 +185,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 393-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hobbs.",
     "photo_url": "https://example.com/st-helena-hobbs.jpg"
   },
@@ -195,7 +195,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 622-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Roswell.",
     "photo_url": "https://example.com/st-john-roswell.jpg"
   },
@@ -205,7 +205,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(575) 763-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Clovis.",
     "photo_url": "https://example.com/st-mary-clovis.jpg"
   },
@@ -215,7 +215,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 327-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Farmington.",
     "photo_url": "https://example.com/st-mary-farmington.jpg"
   },
@@ -225,7 +225,7 @@
     "state": "New Mexico",
     "address": "Not publicly listed",
     "phone": "(505) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Rio Rancho.",
     "photo_url": "https://example.com/st-thomas-rio-rancho.jpg"
   },
@@ -245,7 +245,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(585) 271-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large United Methodist church in Rochester.",
     "photo_url": "https://example.com/asbury-first-umc-rochester.jpg"
   },
@@ -265,7 +265,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(716) 852-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Buffalo.",
     "photo_url": "https://example.com/first-baptist-buffalo.jpg"
   },
@@ -275,7 +275,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 632-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in New Rochelle.",
     "photo_url": "https://example.com/first-baptist-new-rochelle.jpg"
   },
@@ -285,7 +285,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 949-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in White Plains.",
     "photo_url": "https://example.com/first-baptist-white-plains.jpg"
   },
@@ -295,7 +295,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 963-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Yonkers.",
     "photo_url": "https://example.com/first-baptist-yonkers.jpg"
   },
@@ -305,7 +305,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(585) 271-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Rochester.",
     "photo_url": "https://example.com/first-baptist-rochester-ny.jpg"
   },
@@ -315,7 +315,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(518) 463-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Albany.",
     "photo_url": "https://example.com/first-pres-albany-ny.jpg"
   },
@@ -325,7 +325,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(315) 474-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Syracuse.",
     "photo_url": "https://example.com/first-pres-syracuse.jpg"
   },
@@ -365,7 +365,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 949-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in White Plains.",
     "photo_url": "https://example.com/st-bernard-white-plains.jpg"
   },
@@ -375,7 +375,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 632-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in New Rochelle.",
     "photo_url": "https://example.com/st-gabriel-new-rochelle.jpg"
   },
@@ -385,7 +385,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(315) 474-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Syracuse.",
     "photo_url": "https://example.com/st-john-cathedral-syracuse.jpg"
   },
@@ -395,7 +395,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(716) 852-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Buffalo.",
     "photo_url": "https://example.com/st-joseph-cathedral-buffalo.jpg"
   },
@@ -405,7 +405,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(914) 963-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Yonkers.",
     "photo_url": "https://example.com/st-joseph-yonkers.jpg"
   },
@@ -415,7 +415,7 @@
     "state": "New York",
     "address": "Not publicly listed",
     "phone": "(518) 463-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Catholic parish in Albany.",
     "photo_url": "https://example.com/st-marys-albany.jpg"
   },
@@ -465,7 +465,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(336) 724-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large United Methodist church in Winston-Salem.",
     "photo_url": "https://example.com/centenary-umc-winston-salem.jpg"
   },
@@ -475,7 +475,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(336) 274-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Greensboro.",
     "photo_url": "https://example.com/college-park-greensboro.jpg"
   },
@@ -515,7 +515,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(919) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Durham.",
     "photo_url": "https://example.com/first-baptist-durham-nc.jpg"
   },
@@ -525,7 +525,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(336) 274-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Greensboro.",
     "photo_url": "https://example.com/first-baptist-greensboro.jpg"
   },
@@ -545,7 +545,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(336) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Winston-Salem.",
     "photo_url": "https://example.com/first-baptist-winston-salem.jpg"
   },
@@ -645,7 +645,7 @@
     "state": "North Carolina",
     "address": "Not publicly listed",
     "phone": "(919) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Durham.",
     "photo_url": "https://example.com/yates-baptist-durham.jpg"
   },
@@ -655,7 +655,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Bismarck.",
     "photo_url": "https://example.com/holy-spirit-cathedral-bismarck.jpg"
   },
@@ -665,7 +665,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 237-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Fargo.",
     "photo_url": "https://example.com/faith-umc-fargo.jpg"
   },
@@ -675,7 +675,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-bismarck.jpg"
   },
@@ -685,7 +685,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 228-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Bottineau.",
     "photo_url": "https://example.com/first-baptist-bottineau.jpg"
   },
@@ -695,7 +695,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 662-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Devils Lake.",
     "photo_url": "https://example.com/first-baptist-devils-lake.jpg"
   },
@@ -705,7 +705,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 225-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Dickinson.",
     "photo_url": "https://example.com/first-baptist-dickinson.jpg"
   },
@@ -715,7 +715,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 235-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Fargo with strong ministries.",
     "photo_url": "https://example.com/first-baptist-fargo.jpg"
   },
@@ -725,7 +725,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 775-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near University of North Dakota.",
     "photo_url": "https://example.com/first-baptist-grand-forks.jpg"
   },
@@ -735,7 +735,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Jamestown.",
     "photo_url": "https://example.com/first-baptist-jamestown.jpg"
   },
@@ -745,7 +745,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 852-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Minot.",
     "photo_url": "https://example.com/first-baptist-minot.jpg"
   },
@@ -755,7 +755,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 572-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Williston.",
     "photo_url": "https://example.com/first-baptist-williston.jpg"
   },
@@ -775,7 +775,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Bismarck.",
     "photo_url": "https://example.com/first-pres-bismarck.jpg"
   },
@@ -795,7 +795,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 852-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Minot.",
     "photo_url": "https://example.com/our-lady-grace-minot.jpg"
   },
@@ -805,7 +805,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Jamestown.",
     "photo_url": "https://example.com/st-james-jamestown.jpg"
   },
@@ -815,7 +815,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 662-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Devils Lake.",
     "photo_url": "https://example.com/st-joseph-devils-lake.jpg"
   },
@@ -825,7 +825,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 572-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Williston.",
     "photo_url": "https://example.com/st-joseph-williston.jpg"
   },
@@ -835,7 +835,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 228-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Bottineau.",
     "photo_url": "https://example.com/st-mark-bottineau.jpg"
   },
@@ -855,7 +855,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 775-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Grand Forks.",
     "photo_url": "https://example.com/st-michaels-grand-forks.jpg"
   },
@@ -865,7 +865,7 @@
     "state": "North Dakota",
     "address": "Not publicly listed",
     "phone": "(701) 225-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Dickinson.",
     "photo_url": "https://example.com/st-wenceslaus-dickinson.jpg"
   },
@@ -915,7 +915,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Akron.",
     "photo_url": "https://example.com/first-baptist-akron.jpg"
   },
@@ -925,7 +925,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 455-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Canton.",
     "photo_url": "https://example.com/first-baptist-canton.jpg"
   },
@@ -935,7 +935,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(513) 721-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Cincinnati.",
     "photo_url": "https://example.com/first-baptist-cincinnati.jpg"
   },
@@ -945,7 +945,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(216) 932-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Cleveland Heights.",
     "photo_url": "https://example.com/first-baptist-cleveland-heights.jpg"
   },
@@ -955,7 +955,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(937) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Dayton.",
     "photo_url": "https://example.com/first-baptist-dayton.jpg"
   },
@@ -965,7 +965,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(419) 242-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Toledo.",
     "photo_url": "https://example.com/first-baptist-toledo.jpg"
   },
@@ -975,7 +975,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 746-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Youngstown.",
     "photo_url": "https://example.com/first-baptist-youngstown.jpg"
   },
@@ -1005,7 +1005,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(216) 932-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Cleveland Heights.",
     "photo_url": "https://example.com/st-ann-cleveland-heights.jpg"
   },
@@ -1015,7 +1015,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Akron.",
     "photo_url": "https://example.com/st-bernard-akron.jpg"
   },
@@ -1025,7 +1025,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 744-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Youngstown.",
     "photo_url": "https://example.com/st-columba-cathedral-youngstown.jpg"
   },
@@ -1035,7 +1035,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(937) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Dayton.",
     "photo_url": "https://example.com/st-helen-dayton.jpg"
   },
@@ -1045,7 +1045,7 @@
     "state": "Ohio",
     "address": "Not publicly listed",
     "phone": "(330) 455-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Canton.",
     "photo_url": "https://example.com/st-peter-canton.jpg"
   },
@@ -1125,7 +1125,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 336-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Bartlesville.",
     "photo_url": "https://example.com/first-baptist-bartlesville.jpg"
   },
@@ -1135,7 +1135,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 251-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Broken Arrow.",
     "photo_url": "https://example.com/first-baptist-broken-arrow.jpg"
   },
@@ -1145,7 +1145,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(580) 237-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Enid.",
     "photo_url": "https://example.com/first-baptist-enid.jpg"
   },
@@ -1155,7 +1155,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(580) 355-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Fort Sill.",
     "photo_url": "https://example.com/first-baptist-lawton.jpg"
   },
@@ -1165,7 +1165,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Muskogee.",
     "photo_url": "https://example.com/first-baptist-muskogee.jpg"
   },
@@ -1175,7 +1175,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(405) 321-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church near University of Oklahoma.",
     "photo_url": "https://example.com/first-baptist-norman.jpg"
   },
@@ -1205,7 +1205,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 251-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Broken Arrow.",
     "photo_url": "https://example.com/first-umc-broken-arrow.jpg"
   },
@@ -1215,7 +1215,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Muskogee.",
     "photo_url": "https://example.com/first-umc-muskogee.jpg"
   },
@@ -1245,7 +1245,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(580) 355-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Lawton.",
     "photo_url": "https://example.com/holy-family-lawton.jpg"
   },
@@ -1275,7 +1275,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(580) 237-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Enid.",
     "photo_url": "https://example.com/st-francis-enid.jpg"
   },
@@ -1285,7 +1285,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(405) 321-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish near OU.",
     "photo_url": "https://example.com/st-joseph-norman.jpg"
   },
@@ -1295,7 +1295,7 @@
     "state": "Oklahoma",
     "address": "Not publicly listed",
     "phone": "(918) 336-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Bartlesville.",
     "photo_url": "https://example.com/st-luke-bartlesville.jpg"
   },
@@ -1345,7 +1345,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 926-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Albany.",
     "photo_url": "https://example.com/first-baptist-albany-or.jpg"
   },
@@ -1355,7 +1355,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 382-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Bend.",
     "photo_url": "https://example.com/first-baptist-bend.jpg"
   },
@@ -1365,7 +1365,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Oregon State University.",
     "photo_url": "https://example.com/first-baptist-corvallis.jpg"
   },
@@ -1375,7 +1375,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 343-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near University of Oregon.",
     "photo_url": "https://example.com/first-baptist-eugene.jpg"
   },
@@ -1385,7 +1385,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(503) 665-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Gresham.",
     "photo_url": "https://example.com/first-baptist-gresham.jpg"
   },
@@ -1395,7 +1395,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 779-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Medford.",
     "photo_url": "https://example.com/first-baptist-medford.jpg"
   },
@@ -1415,7 +1415,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(503) 363-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Salem.",
     "photo_url": "https://example.com/first-baptist-salem-or.jpg"
   },
@@ -1445,7 +1445,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 382-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Bend.",
     "photo_url": "https://example.com/st-francis-bend.jpg"
   },
@@ -1455,7 +1455,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(503) 665-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Gresham.",
     "photo_url": "https://example.com/st-henry-gresham.jpg"
   },
@@ -1465,7 +1465,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(503) 581-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Salem.",
     "photo_url": "https://example.com/st-joseph-salem-or.jpg"
   },
@@ -1475,7 +1475,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Corvallis.",
     "photo_url": "https://example.com/st-mary-corvallis.jpg"
   },
@@ -1485,7 +1485,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 344-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Eugene.",
     "photo_url": "https://example.com/st-mary-eugene.jpg"
   },
@@ -1505,7 +1505,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 926-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Albany.",
     "photo_url": "https://example.com/st-marys-albany-or.jpg"
   },
@@ -1515,7 +1515,7 @@
     "state": "Oregon",
     "address": "Not publicly listed",
     "phone": "(541) 779-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Medford.",
     "photo_url": "https://example.com/st-vincent-medford.jpg"
   },

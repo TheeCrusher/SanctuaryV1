@@ -33,7 +33,12 @@ function formatChurch(row) {
     name: row.name,
     address: row.address,
     city: row.city,
+    state: row.state,
     zip: row.zip,
+    phone: row.phone,
+    website: row.website,
+    shortDescription: row.short_description,
+    photoUrl: row.photo_url,
     sundaySchool: row.sunday_school,
     recommendedAges: row.recommended_ages,
     hours: row.hours,
@@ -52,31 +57,49 @@ function formatChurch(row) {
 // ============================================================
 // GET /api/churches
 // ============================================================
-// Returns all churches. If ?q= is provided, filters by city
-// or ZIP code (case-insensitive).
+// Returns churches with pagination. Supports search by name,
+// city, state, or ZIP code.
 //
-// Replaces: the filteredChurches computed value in AppContext.jsx
+// Query params:
+//   ?q=       - Search term (filters by name, city, state, or zip)
+//   ?limit=   - How many to return (default 5)
+//   ?offset=  - How many to skip (default 0, used for "show more")
+//
+// Response includes { churches, hasMore, total } so the frontend
+// knows whether to show a "Show More" button.
 
 router.get('/', async (req, res, next) => {
   try {
     const { q } = req.query
+    const limit = parseInt(req.query.limit) || 5
+    const offset = parseInt(req.query.offset) || 0
 
-    let query = 'SELECT * FROM churches'
+    let baseQuery = 'FROM churches'
     const params = []
 
     if (q) {
-      // Search by city (case-insensitive) or ZIP code
-      // ILIKE is PostgreSQL's case-insensitive LIKE
-      query += ' WHERE city ILIKE $1 OR zip LIKE $2'
-      params.push(`%${q}%`, `%${q}%`)
+      // Search by city, state (case-insensitive), ZIP code, or church name
+      baseQuery += ' WHERE city ILIKE $1 OR state ILIKE $2 OR zip LIKE $3 OR name ILIKE $4'
+      params.push(`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`)
     }
 
-    query += ' ORDER BY name ASC'
+    // Get total count of matching churches
+    const countResult = await pool.query(`SELECT COUNT(*) ${baseQuery}`, params)
+    const total = parseInt(countResult.rows[0].count)
 
-    const result = await pool.query(query, params)
+    // Get the paginated results
+    const dataParams = [...params, limit, offset]
+    const result = await pool.query(
+      `SELECT * ${baseQuery} ORDER BY name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      dataParams
+    )
     const churches = result.rows.map(formatChurch)
 
-    res.json({ churches })
+    res.json({
+      churches,
+      total,
+      hasMore: offset + churches.length < total
+    })
   } catch (error) {
     next(error)
   }

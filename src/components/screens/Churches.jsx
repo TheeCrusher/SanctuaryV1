@@ -1,44 +1,76 @@
 // =============================================================================
 // CHURCHES SCREEN
 // =============================================================================
-// Browse and search for churches.
-// Shows church listings with ratings and info.
+// Browse and search for churches by name, city, state, or ZIP code.
+// Uses server-side search with pagination (5 results at a time).
+// Shows church photo, name, description, address, and ratings.
 
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
 import { useState } from 'react'
-import { X, Church, Check, Heart } from 'lucide-react'
+import { X, Church, Heart, Search, MapPin, ChevronDown } from 'lucide-react'
 
 function Churches() {
   const navigate = useNavigate()
 
-  // Get church data and favorites from context
   const {
     churches,
-    churchSearchQuery,
-    setChurchSearchQuery,
+    searchChurches,
+    churchSearchResults,
+    churchSearchTotal,
+    churchSearchHasMore,
     toggleFavoriteChurch,
     isChurchFavorited,
     favoriteChurchIds
   } = useApp()
 
-  // Local state for favorites filter toggle
+  // Local state
+  const [query, setQuery] = useState('')
+  const [hasSearched, setHasSearched] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
 
-  // Filter churches: if showing favorites only, filter to favorited ones
-  const displayedChurches = showFavoritesOnly
-    ? churches.filter(c => isChurchFavorited(c.id))
-    : churches
+  // Run a search when user taps Search or presses Enter
+  async function handleSearch() {
+    if (!query.trim()) return
+    setLoading(true)
+    setHasSearched(true)
+    await searchChurches(query, 0)
+    setLoading(false)
+  }
+
+  // Load more results (next page)
+  async function handleShowMore() {
+    setLoading(true)
+    await searchChurches(query, churchSearchResults.length)
+    setLoading(false)
+  }
+
+  // Clear search and go back to default view
+  function handleClear() {
+    setQuery('')
+    setHasSearched(false)
+    searchChurches('', 0)
+  }
 
   // Generate star rating display
   function renderStars(rating) {
+    if (!rating || rating === 0) return null
     const fullStars = Math.floor(rating)
     const hasHalf = rating % 1 >= 0.5
     let stars = '★'.repeat(fullStars)
     if (hasHalf) stars += '½'
     return stars
   }
+
+  // Decide what to display: search results or favorites
+  const showingSearchResults = hasSearched
+  const displayedChurches = showingSearchResults
+    ? churchSearchResults
+    : showFavoritesOnly
+      ? churches.filter(c => isChurchFavorited(c.id))
+      : churches
 
   return (
     <div className="screen with-bottom-nav">
@@ -52,22 +84,32 @@ function Churches() {
         <div className="search-row">
           <input
             type="text"
-            placeholder="Search by city or ZIP code..."
-            value={churchSearchQuery}
-            onChange={(e) => setChurchSearchQuery(e.target.value)}
+            placeholder="Search by name, city, state, or ZIP..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
-          {churchSearchQuery && (
-            <button
-              className="search-clear"
-              onClick={() => setChurchSearchQuery('')}
-            >
+          {query ? (
+            <button className="search-clear" onClick={handleClear}>
               <X size={18} />
             </button>
-          )}
+          ) : null}
+          <button
+            className="btn-primary"
+            onClick={handleSearch}
+            disabled={!query.trim() || loading}
+            style={{ marginLeft: '8px', padding: '8px 16px', borderRadius: '12px', minWidth: 'auto' }}
+          >
+            <Search size={18} />
+          </button>
         </div>
 
-        {/* Favorites Filter Toggle */}
-        {favoriteChurchIds.size > 0 && (
+        {/* Result count or favorites toggle */}
+        {showingSearchResults ? (
+          <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '8px' }}>
+            Showing {churchSearchResults.length} of {churchSearchTotal} results for "{query}"
+          </div>
+        ) : favoriteChurchIds.size > 0 ? (
           <button
             className={`favorites-filter-btn ${showFavoritesOnly ? 'active' : ''}`}
             onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
@@ -79,99 +121,147 @@ function Churches() {
             />
             My Favorites ({favoriteChurchIds.size})
           </button>
-        )}
+        ) : null}
       </div>
 
       {/* Content */}
       <div className="screen-content">
-        {displayedChurches.length === 0 ? (
+        {loading && !churchSearchResults.length ? (
+          <div className="empty-state">
+            <div className="empty-text">Searching...</div>
+          </div>
+        ) : displayedChurches.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon"><Church size={48} /></div>
-            <div className="empty-text">No churches found</div>
+            <div className="empty-text">
+              {hasSearched ? 'No churches found' : 'Search for churches'}
+            </div>
             <div className="empty-subtext">
-              Try a different search term
+              {hasSearched
+                ? 'Try a different city, state, or ZIP code'
+                : 'Enter a city, state, or ZIP code above'}
             </div>
           </div>
         ) : (
-          displayedChurches.map(church => (
-            <Card
-              key={church.id}
-              onClick={() => navigate(`/churches/${church.id}`)}
-            >
-              {/* Church Header with Heart */}
-              <div className="church-top">
-                <div style={{ flex: 1 }}>
-                  <div className="church-name">{church.name}</div>
-                  <div className="church-address">
-                    {church.address}, {church.city}
+          <>
+            {displayedChurches.map(church => (
+              <Card
+                key={church.id}
+                onClick={() => navigate(`/churches/${church.id}`)}
+              >
+                {/* Photo + Info Row */}
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  {/* Church Photo */}
+                  {church.photoUrl ? (
+                    <div style={{
+                      width: '80px',
+                      height: '80px',
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                      backgroundColor: '#f3f4f6'
+                    }}>
+                      <img
+                        src={church.photoUrl}
+                        alt={church.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { e.target.style.display = 'none' }}
+                      />
+                    </div>
+                  ) : (
+                    <div style={{
+                      width: '80px',
+                      height: '80px',
+                      borderRadius: '12px',
+                      flexShrink: 0,
+                      backgroundColor: '#f3f4f6',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Church size={32} color="#9ca3af" />
+                    </div>
+                  )}
+
+                  {/* Church Info */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div className="church-name" style={{ fontSize: '16px', fontWeight: '600' }}>
+                        {church.name}
+                      </div>
+                      <button
+                        className="favorite-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleFavoriteChurch(church.id)
+                        }}
+                        style={{ flexShrink: 0, marginLeft: '8px' }}
+                      >
+                        <Heart
+                          size={20}
+                          fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
+                          color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
+                        />
+                      </button>
+                    </div>
+
+                    {/* City, State */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#6b7280', fontSize: '13px', marginTop: '2px' }}>
+                      <MapPin size={12} />
+                      {church.city}{church.state ? `, ${church.state}` : ''}
+                    </div>
+
+                    {/* Description */}
+                    {church.shortDescription && (
+                      <div style={{
+                        fontSize: '13px',
+                        color: '#6b7280',
+                        marginTop: '4px',
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical'
+                      }}>
+                        {church.shortDescription}
+                      </div>
+                    )}
+
+                    {/* Rating (if has reviews) */}
+                    {church.reviewCount > 0 && (
+                      <div style={{ marginTop: '4px', fontSize: '13px' }}>
+                        <span className="stars stars-sm" style={{ color: '#f59e0b' }}>
+                          {renderStars(church.overallRating)}
+                        </span>
+                        <span style={{ color: '#9ca3af', marginLeft: '4px' }}>
+                          ({church.reviewCount})
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <button
-                  className="favorite-btn"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    toggleFavoriteChurch(church.id)
-                  }}
-                >
-                  <Heart
-                    size={22}
-                    fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
-                    color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
-                  />
-                </button>
-              </div>
+              </Card>
+            ))}
 
-              {/* Overall Rating */}
-              <div className="church-overall">
-                <span className="stars stars-sm">
-                  {renderStars(church.overallRating)}
-                </span>
-                <span className="star-score">{church.overallRating}</span>
-                <span style={{ color: '#9ca3af', fontSize: '13px' }}>
-                  ({church.reviewCount} reviews)
-                </span>
-              </div>
-
-              {/* Category Ratings */}
-              <div className="rating-grid">
-                <div>
-                  <div className="rating-label">Singing</div>
-                  <span className="stars stars-sm">
-                    {renderStars(church.ratings.singing)}
-                  </span>
-                </div>
-                <div>
-                  <div className="rating-label">Preaching</div>
-                  <span className="stars stars-sm">
-                    {renderStars(church.ratings.preaching)}
-                  </span>
-                </div>
-                <div>
-                  <div className="rating-label">Openness</div>
-                  <span className="stars stars-sm">
-                    {renderStars(church.ratings.openness)}
-                  </span>
-                </div>
-                <div>
-                  <div className="rating-label">Space</div>
-                  <span className="stars stars-sm">
-                    {renderStars(church.ratings.space)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Meta Tags */}
-              <div className="church-meta">
-                <span className={`meta-tag ${church.sundaySchool ? 'meta-tag-yes' : 'meta-tag-no'}`}>
-                  {church.sundaySchool
-                    ? <><Check size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Sunday School</>
-                    : <><X size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> No Sunday School</>
-                  }
-                </span>
-                <span className="meta-tag">{church.hours}</span>
-              </div>
-            </Card>
-          ))
+            {/* Show More Button */}
+            {showingSearchResults && churchSearchHasMore && (
+              <button
+                className="btn-secondary"
+                onClick={handleShowMore}
+                disabled={loading}
+                style={{
+                  width: '100%',
+                  marginTop: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
+              >
+                <ChevronDown size={18} />
+                {loading ? 'Loading...' : `Show More Churches (${churchSearchTotal - churchSearchResults.length} remaining)`}
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

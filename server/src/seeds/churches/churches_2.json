@@ -55,7 +55,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 935-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Hilo on the Big Island.",
     "photo_url": "https://example.com/first-baptist-hilo.jpg"
   },
@@ -65,7 +65,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 732-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist congregation serving Honolulu.",
     "photo_url": "https://example.com/first-baptist-honolulu.jpg"
   },
@@ -75,7 +75,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 621-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Wahiawa and central Oahu.",
     "photo_url": "https://example.com/first-baptist-wahiawa.jpg"
   },
@@ -85,7 +85,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 536-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Chinese Christian church in Honolulu.",
     "photo_url": "https://example.com/first-chinese-church-christ.jpg"
   },
@@ -105,7 +105,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 935-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Hilo.",
     "photo_url": "https://example.com/hale-aloha-hilo.jpg"
   },
@@ -115,7 +115,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 935-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Hilo.",
     "photo_url": "https://example.com/hilo-umc.jpg"
   },
@@ -125,7 +125,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 775-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Seventh-day Adventist church in Honokaa.",
     "photo_url": "https://example.com/honokaa-adventist.jpg"
   },
@@ -175,7 +175,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 877-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Union church serving Kahului, Maui.",
     "photo_url": "https://example.com/kahului-union-church.jpg"
   },
@@ -185,7 +185,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 262-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church serving Kailua on Windward Oahu.",
     "photo_url": "https://example.com/kailua-christian-church.jpg"
   },
@@ -195,7 +195,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 261-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Kailua.",
     "photo_url": "https://example.com/kailua-umc.jpg"
   },
@@ -215,7 +215,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 822-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Hawaiian church in Kapaa, Kauai.",
     "photo_url": "https://example.com/kapaa-first-hawaiian.jpg"
   },
@@ -225,7 +225,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 245-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Bible church serving Kauai.",
     "photo_url": "https://example.com/kauai-bible-church.jpg"
   },
@@ -235,7 +235,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 246-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Lihue and Kauai.",
     "photo_url": "https://example.com/kauai-christian-fellowship.jpg"
   },
@@ -245,7 +245,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 531-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Hawaiian Congregational church in Kalihi.",
     "photo_url": "https://example.com/kaumakapili-church.jpg"
   },
@@ -265,7 +265,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 323-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic union church on the Big Island.",
     "photo_url": "https://example.com/kealakekua-union-church.jpg"
   },
@@ -285,7 +285,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 742-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic union church in Koloa, Kauai.",
     "photo_url": "https://example.com/koloa-union-church.jpg"
   },
@@ -295,7 +295,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 326-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Kona.",
     "photo_url": "https://example.com/kona-community-church.jpg"
   },
@@ -315,7 +315,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 661-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Lahaina.",
     "photo_url": "https://example.com/lahaina-umc.jpg"
   },
@@ -325,7 +325,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 845-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Congregational church serving Kalihi.",
     "photo_url": "https://example.com/lanakila-church.jpg"
   },
@@ -335,7 +335,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 245-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church serving Lihue, Kauai.",
     "photo_url": "https://example.com/lihue-christian-church.jpg"
   },
@@ -345,7 +345,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 946-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church in the Makiki area of Honolulu.",
     "photo_url": "https://example.com/makiki-christian-church.jpg"
   },
@@ -355,7 +355,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Mililani Mauka.",
     "photo_url": "https://example.com/mililani-mauka-community.jpg"
   },
@@ -365,7 +365,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 845-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church in Moanalua.",
     "photo_url": "https://example.com/moanalua-community-church.jpg"
   },
@@ -405,7 +405,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 537-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Congregational church in Nuuanu Valley.",
     "photo_url": "https://example.com/nuuanu-congregational.jpg"
   },
@@ -415,7 +415,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 845-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Honolulu.",
     "photo_url": "https://example.com/olivet-baptist-honolulu.jpg"
   },
@@ -435,7 +435,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 822-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving the East Side of Kauai.",
     "photo_url": "https://example.com/st-catherine-kapaa.jpg"
   },
@@ -445,7 +445,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 955-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Makiki.",
     "photo_url": "https://example.com/st-clements-honolulu.jpg"
   },
@@ -455,7 +455,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 845-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Aiea / Pearl City area.",
     "photo_url": "https://example.com/st-elizabeth-aiea.jpg"
   },
@@ -485,7 +485,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 734-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Waialae.",
     "photo_url": "https://example.com/waialae-community-church.jpg"
   },
@@ -495,7 +495,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 259-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church in Waimanalo.",
     "photo_url": "https://example.com/waimanalo-community-church.jpg"
   },
@@ -505,7 +505,7 @@
     "state": "Hawaii",
     "address": "Not publicly listed",
     "phone": "(808) 885-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Hawaiian church in Waimea.",
     "photo_url": "https://example.com/waimea-hawaiian-church.jpg"
   },
@@ -535,7 +535,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 459-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Caldwell.",
     "photo_url": "https://example.com/first-umc-caldwell.jpg"
   },
@@ -555,7 +555,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church in Boise.",
     "photo_url": "https://example.com/capital-city-christian-boise.jpg"
   },
@@ -575,7 +575,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 664-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Bible-teaching church serving Coeur d'Alene.",
     "photo_url": "https://example.com/coeur-dalene-bible-church.jpg"
   },
@@ -585,7 +585,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 263-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Sandpoint and North Idaho.",
     "photo_url": "https://example.com/community-baptist-sandpoint.jpg"
   },
@@ -605,7 +605,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 365-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Emmett.",
     "photo_url": "https://example.com/first-baptist-emmett.jpg"
   },
@@ -615,7 +615,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Garden City.",
     "photo_url": "https://example.com/first-baptist-garden-city.jpg"
   },
@@ -625,7 +625,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 743-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Lewiston.",
     "photo_url": "https://example.com/first-baptist-lewiston.jpg"
   },
@@ -635,7 +635,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 585-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Middleton.",
     "photo_url": "https://example.com/first-baptist-middleton.jpg"
   },
@@ -655,7 +655,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 642-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Payette.",
     "photo_url": "https://example.com/first-baptist-payette.jpg"
   },
@@ -665,7 +665,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving Pocatello.",
     "photo_url": "https://example.com/first-baptist-pocatello.jpg"
   },
@@ -675,7 +675,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 733-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Twin Falls.",
     "photo_url": "https://example.com/first-baptist-twin-falls.jpg"
   },
@@ -685,7 +685,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 459-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Caldwell.",
     "photo_url": "https://example.com/first-christian-caldwell.jpg"
   },
@@ -715,7 +715,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 365-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Emmett.",
     "photo_url": "https://example.com/first-pres-emmett.jpg"
   },
@@ -725,7 +725,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 882-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Moscow.",
     "photo_url": "https://example.com/first-pres-moscow-id.jpg"
   },
@@ -735,7 +735,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 733-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Twin Falls.",
     "photo_url": "https://example.com/first-pres-twin-falls.jpg"
   },
@@ -745,7 +745,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 466-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Nampa.",
     "photo_url": "https://example.com/first-umc-nampa.jpg"
   },
@@ -755,7 +755,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church in Garden City.",
     "photo_url": "https://example.com/garden-city-community.jpg"
   },
@@ -775,7 +775,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 233-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Pocatello.",
     "photo_url": "https://example.com/holy-spirit-pocatello.jpg"
   },
@@ -785,7 +785,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 743-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Orthodox church serving Lewiston area.",
     "photo_url": "https://example.com/holy-trinity-lewiston.jpg"
   },
@@ -805,7 +805,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 922-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church serving Kuna.",
     "photo_url": "https://example.com/kuna-christian-church.jpg"
   },
@@ -835,7 +835,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 585-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Friends church in Middleton.",
     "photo_url": "https://example.com/middleton-friends.jpg"
   },
@@ -845,7 +845,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 376-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Boise.",
     "photo_url": "https://example.com/mountain-view-boise.jpg"
   },
@@ -855,7 +855,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 466-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene in Nampa.",
     "photo_url": "https://example.com/nazarene-nampa.jpg"
   },
@@ -865,7 +865,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 263-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational Christian center in Sandpoint.",
     "photo_url": "https://example.com/sandpoint-christian-center.jpg"
   },
@@ -885,7 +885,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 344-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Boise.",
     "photo_url": "https://example.com/st-lukes-boise.jpg"
   },
@@ -895,7 +895,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 922-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Kuna.",
     "photo_url": "https://example.com/st-michaels-kuna.jpg"
   },
@@ -905,7 +905,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 642-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Payette.",
     "photo_url": "https://example.com/st-peters-payette.jpg"
   },
@@ -915,7 +915,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 286-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church in Star.",
     "photo_url": "https://example.com/star-community-church.jpg"
   },
@@ -925,7 +925,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 286-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church serving Star.",
     "photo_url": "https://example.com/star-umc.jpg"
   },
@@ -945,7 +945,7 @@
     "state": "Idaho",
     "address": "Not publicly listed",
     "phone": "(208) 882-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Vineyard church serving Moscow and University of Idaho area.",
     "photo_url": "https://example.com/vineyard-moscow-id.jpg"
   },
@@ -965,7 +965,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(773) 743-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Covenant church in the North Side of Chicago.",
     "photo_url": "https://example.com/bethany-covenant-chicago.jpg"
   },
@@ -1015,7 +1015,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(618) 457-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Carbondale and Southern Illinois University area.",
     "photo_url": "https://example.com/first-baptist-carbondale.jpg"
   },
@@ -1025,7 +1025,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(309) 676-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving Peoria.",
     "photo_url": "https://example.com/first-baptist-peoria.jpg"
   },
@@ -1035,7 +1035,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(217) 523-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Springfield.",
     "photo_url": "https://example.com/first-baptist-springfield-il.jpg"
   },
@@ -1045,7 +1045,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(309) 827-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Bloomington-Normal area.",
     "photo_url": "https://example.com/first-christian-bloomington.jpg"
   },
@@ -1055,7 +1055,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(217) 356-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Champaign.",
     "photo_url": "https://example.com/first-pres-champaign.jpg"
   },
@@ -1065,7 +1065,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(815) 962-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Rockford.",
     "photo_url": "https://example.com/first-pres-rockford.jpg"
   },
@@ -1075,7 +1075,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(217) 522-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in the state capital.",
     "photo_url": "https://example.com/first-pres-springfield-il.jpg"
   },
@@ -1085,7 +1085,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(309) 673-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Peoria.",
     "photo_url": "https://example.com/first-umc-peoria.jpg"
   },
@@ -1095,7 +1095,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(815) 398-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Rockford.",
     "photo_url": "https://example.com/first-umc-rockford.jpg"
   },
@@ -1145,7 +1145,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(312) 842-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Catholic church near Chinatown.",
     "photo_url": "https://example.com/holy-family-chicago.jpg"
   },
@@ -1165,7 +1165,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(630) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in Aurora.",
     "photo_url": "https://example.com/junction-church-aurora.jpg"
   },
@@ -1195,7 +1195,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(815) 398-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene serving Rockford.",
     "photo_url": "https://example.com/nazarene-rockford.jpg"
   },
@@ -1205,7 +1205,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(773) 962-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large historic Baptist church on the South Side.",
     "photo_url": "https://example.com/salem-baptist-chicago.jpg"
   },
@@ -1215,7 +1215,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(708) 798-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving south suburbs.",
     "photo_url": "https://example.com/south-suburban-christian.jpg"
   },
@@ -1225,7 +1225,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(618) 549-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Carbondale.",
     "photo_url": "https://example.com/st-francis-xavier-carbondale.jpg"
   },
@@ -1235,7 +1235,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(217) 344-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic chapel serving UIUC students and community.",
     "photo_url": "https://example.com/st-johns-champaign.jpg"
   },
@@ -1245,7 +1245,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(847) 244-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving the northern suburbs.",
     "photo_url": "https://example.com/st-raphael-old-mill-creek.jpg"
   },
@@ -1285,7 +1285,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(773) 962-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Prominent UCC congregation on the South Side known for social justice ministry.",
     "photo_url": "https://example.com/trinity-ucc-chicago.jpg"
   },
@@ -1295,7 +1295,7 @@
     "state": "Illinois",
     "address": "Not publicly listed",
     "phone": "(217) 344-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving the University of Illinois area.",
     "photo_url": "https://example.com/university-baptist-champaign.jpg"
   },
@@ -1325,7 +1325,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(574) 535-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Mennonite church near Goshen College.",
     "photo_url": "https://example.com/college-mennonite-goshen.jpg"
   },
@@ -1355,7 +1355,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 644-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Anderson.",
     "photo_url": "https://example.com/first-baptist-anderson-in.jpg"
   },
@@ -1365,7 +1365,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 332-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Bloomington and Indiana University area.",
     "photo_url": "https://example.com/first-baptist-bloomington-in.jpg"
   },
@@ -1375,7 +1375,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(260) 426-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Fort Wayne.",
     "photo_url": "https://example.com/first-baptist-fort-wayne.jpg"
   },
@@ -1385,7 +1385,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(574) 533-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Goshen.",
     "photo_url": "https://example.com/first-baptist-goshen.jpg"
   },
@@ -1395,7 +1395,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 452-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Kokomo.",
     "photo_url": "https://example.com/first-baptist-kokomo.jpg"
   },
@@ -1405,7 +1405,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 447-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Lafayette and Purdue area.",
     "photo_url": "https://example.com/first-baptist-lafayette-in.jpg"
   },
@@ -1415,7 +1415,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(219) 872-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Michigan City.",
     "photo_url": "https://example.com/first-baptist-michigan-city.jpg"
   },
@@ -1425,7 +1425,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 288-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Ball State University.",
     "photo_url": "https://example.com/first-baptist-muncie.jpg"
   },
@@ -1435,7 +1435,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Terre Haute.",
     "photo_url": "https://example.com/first-baptist-terre-haute.jpg"
   },
@@ -1445,7 +1445,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 423-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Evansville.",
     "photo_url": "https://example.com/first-christian-evansville.jpg"
   },
@@ -1455,7 +1455,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Terre Haute.",
     "photo_url": "https://example.com/first-christian-terre-haute.jpg"
   },
@@ -1465,7 +1465,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(219) 462-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Valparaiso.",
     "photo_url": "https://example.com/first-pres-valparaiso.jpg"
   },
@@ -1475,7 +1475,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 457-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Kokomo.",
     "photo_url": "https://example.com/first-umc-kokomo.jpg"
   },
@@ -1495,7 +1495,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(219) 462-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Valparaiso.",
     "photo_url": "https://example.com/first-umc-valparaiso.jpg"
   },
@@ -1505,7 +1505,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(260) 485-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene serving Fort Wayne.",
     "photo_url": "https://example.com/nazarene-fort-wayne.jpg"
   },
@@ -1555,7 +1555,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 642-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of God congregation in Anderson.",
     "photo_url": "https://example.com/park-place-anderson.jpg"
   },
@@ -1575,7 +1575,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 425-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Mother church of the Diocese of Evansville.",
     "photo_url": "https://example.com/st-benedict-cathedral-evansville.jpg"
   },
@@ -1595,7 +1595,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(219) 872-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Michigan City.",
     "photo_url": "https://example.com/st-mary-michigan-city.jpg"
   },
@@ -1605,7 +1605,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 289-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Muncie.",
     "photo_url": "https://example.com/st-mary-muncie.jpg"
   },
@@ -1615,7 +1615,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(260) 424-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Catholic parish in Fort Wayne.",
     "photo_url": "https://example.com/st-mary-fort-wayne.jpg"
   },
@@ -1625,7 +1625,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(812) 332-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic center serving IU students and Bloomington community.",
     "photo_url": "https://example.com/st-paul-bloomington.jpg"
   },
@@ -1645,7 +1645,7 @@
     "state": "Indiana",
     "address": "Not publicly listed",
     "phone": "(765) 743-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church serving Purdue University community.",
     "photo_url": "https://example.com/university-church-west-lafayette.jpg"
   },
@@ -1675,7 +1675,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 393-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene serving Cedar Rapids.",
     "photo_url": "https://example.com/nazarene-cedar-rapids.jpg"
   },
@@ -1695,7 +1695,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(515) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Methodist church near Iowa State.",
     "photo_url": "https://example.com/collegiate-umc-ames.jpg"
   },
@@ -1715,7 +1715,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 242-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Clinton.",
     "photo_url": "https://example.com/first-baptist-clinton-ia.jpg"
   },
@@ -1725,7 +1725,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(712) 322-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Council Bluffs.",
     "photo_url": "https://example.com/first-baptist-council-bluffs.jpg"
   },
@@ -1735,7 +1735,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 322-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in the Quad Cities.",
     "photo_url": "https://example.com/first-baptist-davenport.jpg"
   },
@@ -1745,7 +1745,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(515) 573-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Fort Dodge.",
     "photo_url": "https://example.com/first-baptist-fort-dodge.jpg"
   },
@@ -1755,7 +1755,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 423-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Mason City.",
     "photo_url": "https://example.com/first-baptist-mason-city.jpg"
   },
@@ -1765,7 +1765,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Ottumwa.",
     "photo_url": "https://example.com/first-baptist-ottumwa.jpg"
   },
@@ -1775,7 +1775,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(712) 258-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Sioux City.",
     "photo_url": "https://example.com/first-baptist-sioux-city.jpg"
   },
@@ -1785,7 +1785,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Waterloo.",
     "photo_url": "https://example.com/first-baptist-waterloo.jpg"
   },
@@ -1805,7 +1805,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 556-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Dubuque.",
     "photo_url": "https://example.com/first-christian-dubuque.jpg"
   },
@@ -1815,7 +1815,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Marshalltown.",
     "photo_url": "https://example.com/first-christian-marshalltown.jpg"
   },
@@ -1825,7 +1825,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 364-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Lutheran church in Cedar Rapids.",
     "photo_url": "https://example.com/first-lutheran-cedar-rapids.jpg"
   },
@@ -1835,7 +1835,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(515) 573-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Fort Dodge.",
     "photo_url": "https://example.com/first-pres-fort-dodge.jpg"
   },
@@ -1845,7 +1845,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 233-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Waterloo.",
     "photo_url": "https://example.com/first-pres-waterloo.jpg"
   },
@@ -1855,7 +1855,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 337-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Methodist church near University of Iowa.",
     "photo_url": "https://example.com/first-umc-iowa-city.jpg"
   },
@@ -1865,7 +1865,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 423-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Mason City.",
     "photo_url": "https://example.com/first-umc-mason-city.jpg"
   },
@@ -1875,7 +1875,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(515) 965-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Ankeny with contemporary worship.",
     "photo_url": "https://example.com/living-water-ankeny.jpg"
   },
@@ -1895,7 +1895,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 322-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Mother church of the Diocese of Davenport.",
     "photo_url": "https://example.com/sacred-heart-cathedral-davenport.jpg"
   },
@@ -1925,7 +1925,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(712) 322-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Council Bluffs.",
     "photo_url": "https://example.com/st-john-council-bluffs.jpg"
   },
@@ -1935,7 +1935,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(712) 255-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Sioux City.",
     "photo_url": "https://example.com/st-joseph-sioux-city.jpg"
   },
@@ -1945,7 +1945,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 363-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Cedar Rapids.",
     "photo_url": "https://example.com/st-ludmila-cedar-rapids.jpg"
   },
@@ -1955,7 +1955,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Marshalltown.",
     "photo_url": "https://example.com/st-mary-marshalltown.jpg"
   },
@@ -1965,7 +1965,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(641) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Ottumwa.",
     "photo_url": "https://example.com/st-mary-ottumwa.jpg"
   },
@@ -1975,7 +1975,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(319) 338-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Iowa City and UI community.",
     "photo_url": "https://example.com/st-marys-iowa-city.jpg"
   },
@@ -1985,7 +1985,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 242-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Clinton.",
     "photo_url": "https://example.com/st-patrick-clinton.jpg"
   },
@@ -2005,7 +2005,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(563) 556-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic cathedral in Dubuque.",
     "photo_url": "https://example.com/st-raphael-cathedral-dubuque.jpg"
   },
@@ -2015,7 +2015,7 @@
     "state": "Iowa",
     "address": "Not publicly listed",
     "phone": "(515) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Iowa State University area.",
     "photo_url": "https://example.com/university-baptist-ames.jpg"
   },
@@ -2045,7 +2045,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 684-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in College Hill area of Wichita.",
     "photo_url": "https://example.com/college-hill-umc-wichita.jpg"
   },
@@ -2065,7 +2065,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 342-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Emporia.",
     "photo_url": "https://example.com/first-baptist-emporia.jpg"
   },
@@ -2075,7 +2075,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 625-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Hays and Fort Hays State area.",
     "photo_url": "https://example.com/first-baptist-hays.jpg"
   },
@@ -2085,7 +2085,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 662-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Hutchinson.",
     "photo_url": "https://example.com/first-baptist-hutchinson.jpg"
   },
@@ -2095,7 +2095,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 238-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Fort Riley.",
     "photo_url": "https://example.com/first-baptist-junction-city.jpg"
   },
@@ -2105,7 +2105,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 843-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Lawrence.",
     "photo_url": "https://example.com/first-baptist-lawrence-ks.jpg"
   },
@@ -2115,7 +2115,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 539-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Kansas State University.",
     "photo_url": "https://example.com/first-baptist-manhattan-ks.jpg"
   },
@@ -2125,7 +2125,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 283-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Newton.",
     "photo_url": "https://example.com/first-baptist-newton-ks.jpg"
   },
@@ -2135,7 +2135,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 267-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic downtown Baptist church in Wichita.",
     "photo_url": "https://example.com/first-baptist-wichita.jpg"
   },
@@ -2155,7 +2155,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 342-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Emporia.",
     "photo_url": "https://example.com/first-christian-emporia.jpg"
   },
@@ -2165,7 +2165,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 662-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Hutchinson.",
     "photo_url": "https://example.com/first-christian-hutchinson.jpg"
   },
@@ -2175,7 +2175,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 276-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Garden City.",
     "photo_url": "https://example.com/first-pres-garden-city.jpg"
   },
@@ -2185,7 +2185,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 843-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church near University of Kansas.",
     "photo_url": "https://example.com/first-pres-lawrence-ks.jpg"
   },
@@ -2195,7 +2195,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 827-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Salina.",
     "photo_url": "https://example.com/first-pres-salina.jpg"
   },
@@ -2205,7 +2205,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 283-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Newton.",
     "photo_url": "https://example.com/first-umc-newton-ks.jpg"
   },
@@ -2215,7 +2215,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 827-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Salina.",
     "photo_url": "https://example.com/first-umc-salina.jpg"
   },
@@ -2255,7 +2255,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(620) 276-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Garden City.",
     "photo_url": "https://example.com/st-dominic-garden-city.jpg"
   },
@@ -2265,7 +2265,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 775-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Augusta.",
     "photo_url": "https://example.com/st-james-augusta-ks.jpg"
   },
@@ -2275,7 +2275,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 625-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hays.",
     "photo_url": "https://example.com/st-joseph-hays.jpg"
   },
@@ -2285,7 +2285,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 238-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Junction City.",
     "photo_url": "https://example.com/st-mary-junction-city.jpg"
   },
@@ -2325,7 +2325,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(785) 539-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church serving Manhattan and K-State area.",
     "photo_url": "https://example.com/university-christian-manhattan.jpg"
   },
@@ -2335,7 +2335,7 @@
     "state": "Kansas",
     "address": "Not publicly listed",
     "phone": "(316) 684-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene serving Wichita.",
     "photo_url": "https://example.com/nazarene-wichita.jpg"
   },
@@ -2355,7 +2355,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 291-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Covington / Northern Kentucky area.",
     "photo_url": "https://example.com/christ-cathedral-covington.jpg"
   },
@@ -2375,7 +2375,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 843-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in Bowling Green.",
     "photo_url": "https://example.com/crosspoint-bowling-green.jpg"
   },
@@ -2395,7 +2395,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(606) 324-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Ashland.",
     "photo_url": "https://example.com/first-baptist-ashland.jpg"
   },
@@ -2405,7 +2405,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 843-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church serving Bowling Green.",
     "photo_url": "https://example.com/first-baptist-bowling-green.jpg"
   },
@@ -2415,7 +2415,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 431-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Covington.",
     "photo_url": "https://example.com/first-baptist-covington.jpg"
   },
@@ -2425,7 +2425,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 737-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Elizabethtown.",
     "photo_url": "https://example.com/first-baptist-elizabethtown.jpg"
   },
@@ -2435,7 +2435,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 371-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Northern Kentucky.",
     "photo_url": "https://example.com/first-baptist-florence-ky.jpg"
   },
@@ -2445,7 +2445,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(502) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-frankfort.jpg"
   },
@@ -2455,7 +2455,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(502) 863-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Georgetown College.",
     "photo_url": "https://example.com/first-baptist-georgetown-ky.jpg"
   },
@@ -2465,7 +2465,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 885-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Hopkinsville.",
     "photo_url": "https://example.com/first-baptist-hopkinsville.jpg"
   },
@@ -2475,7 +2475,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 684-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Owensboro.",
     "photo_url": "https://example.com/first-baptist-owensboro.jpg"
   },
@@ -2485,7 +2485,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 442-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Paducah.",
     "photo_url": "https://example.com/first-baptist-paducah.jpg"
   },
@@ -2495,7 +2495,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Eastern Kentucky University.",
     "photo_url": "https://example.com/first-baptist-richmond-ky.jpg"
   },
@@ -2515,7 +2515,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(606) 324-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Ashland.",
     "photo_url": "https://example.com/first-christian-ashland.jpg"
   },
@@ -2525,7 +2525,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Richmond.",
     "photo_url": "https://example.com/first-christian-richmond-ky.jpg"
   },
@@ -2585,7 +2585,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(502) 863-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Georgetown.",
     "photo_url": "https://example.com/st-francis-georgetown-ky.jpg"
   },
@@ -2595,7 +2595,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 737-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Elizabethtown.",
     "photo_url": "https://example.com/st-james-elizabethtown.jpg"
   },
@@ -2605,7 +2605,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(502) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Frankfort.",
     "photo_url": "https://example.com/st-john-frankfort.jpg"
   },
@@ -2645,7 +2645,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(859) 371-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Florence and Northern Kentucky.",
     "photo_url": "https://example.com/st-paul-florence-ky.jpg"
   },
@@ -2655,7 +2655,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 444-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Paducah.",
     "photo_url": "https://example.com/st-paul-paducah.jpg"
   },
@@ -2665,7 +2665,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 683-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Mother church of the Diocese of Owensboro.",
     "photo_url": "https://example.com/st-stephen-cathedral-owensboro.jpg"
   },
@@ -2675,7 +2675,7 @@
     "state": "Kentucky",
     "address": "Not publicly listed",
     "phone": "(270) 885-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hopkinsville.",
     "photo_url": "https://example.com/st-stephen-hopkinsville.jpg"
   },
@@ -2695,7 +2695,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 865-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Shreveport.",
     "photo_url": "https://example.com/broadmoor-baptist-shreveport.jpg"
   },
@@ -2715,7 +2715,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(504) 525-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving downtown New Orleans.",
     "photo_url": "https://example.com/canal-street-church.jpg"
   },
@@ -2745,7 +2745,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 445-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Alexandria.",
     "photo_url": "https://example.com/first-baptist-alexandria-la.jpg"
   },
@@ -2755,7 +2755,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Covington.",
     "photo_url": "https://example.com/first-baptist-covington-la.jpg"
   },
@@ -2765,7 +2765,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(225) 665-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Denham Springs.",
     "photo_url": "https://example.com/first-baptist-denham-springs.jpg"
   },
@@ -2775,7 +2775,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(225) 647-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Gonzales.",
     "photo_url": "https://example.com/first-baptist-gonzales-la.jpg"
   },
@@ -2785,7 +2785,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 345-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Hammond.",
     "photo_url": "https://example.com/first-baptist-hammond-la.jpg"
   },
@@ -2795,7 +2795,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 868-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Houma.",
     "photo_url": "https://example.com/first-baptist-houma.jpg"
   },
@@ -2805,7 +2805,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(337) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church serving Lafayette.",
     "photo_url": "https://example.com/first-baptist-lafayette-la.jpg"
   },
@@ -2815,7 +2815,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 626-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Mandeville.",
     "photo_url": "https://example.com/first-baptist-mandeville.jpg"
   },
@@ -2825,7 +2825,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 325-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Monroe.",
     "photo_url": "https://example.com/first-baptist-monroe-la.jpg"
   },
@@ -2835,7 +2835,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 386-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Ponchatoula.",
     "photo_url": "https://example.com/first-baptist-ponchatoula.jpg"
   },
@@ -2845,7 +2845,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 255-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Louisiana Tech.",
     "photo_url": "https://example.com/first-baptist-ruston.jpg"
   },
@@ -2855,7 +2855,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Shreveport.",
     "photo_url": "https://example.com/first-baptist-shreveport.jpg"
   },
@@ -2865,7 +2865,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 643-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Slidell.",
     "photo_url": "https://example.com/first-baptist-slidell.jpg"
   },
@@ -2875,7 +2875,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 446-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Thibodaux.",
     "photo_url": "https://example.com/first-baptist-thibodaux.jpg"
   },
@@ -2895,7 +2895,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 325-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Monroe.",
     "photo_url": "https://example.com/first-pres-monroe.jpg"
   },
@@ -2905,7 +2905,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 345-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Hammond.",
     "photo_url": "https://example.com/first-umc-hammond.jpg"
   },
@@ -2915,7 +2915,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(337) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church serving Lake Charles.",
     "photo_url": "https://example.com/first-umc-lake-charles.jpg"
   },
@@ -2925,7 +2925,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 255-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Ruston.",
     "photo_url": "https://example.com/first-umc-ruston.jpg"
   },
@@ -2935,7 +2935,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 643-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Slidell.",
     "photo_url": "https://example.com/first-umc-slidell.jpg"
   },
@@ -2965,7 +2965,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(337) 235-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Lafayette.",
     "photo_url": "https://example.com/our-lady-fatima-lafayette.jpg"
   },
@@ -2975,7 +2975,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(225) 647-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Gonzales.",
     "photo_url": "https://example.com/st-elizabeth-gonzales.jpg"
   },
@@ -2985,7 +2985,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(318) 445-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Alexandria.",
     "photo_url": "https://example.com/st-francis-xavier-cathedral.jpg"
   },
@@ -2995,7 +2995,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 868-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Houma.",
     "photo_url": "https://example.com/st-francis-houma.jpg"
   },
@@ -3005,7 +3005,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(601) 373-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Jackson.",
     "photo_url": "https://example.com/st-james-jackson-ms.jpg"
   },
@@ -3025,7 +3025,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 386-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Ponchatoula.",
     "photo_url": "https://example.com/st-joseph-ponchatoula.jpg"
   },
@@ -3035,7 +3035,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 446-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Thibodaux.",
     "photo_url": "https://example.com/st-joseph-thibodaux.jpg"
   },
@@ -3045,7 +3045,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(337) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Lake Charles.",
     "photo_url": "https://example.com/st-margaret-lake-charles.jpg"
   },
@@ -3055,7 +3055,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(225) 665-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Denham Springs.",
     "photo_url": "https://example.com/st-margaret-mary-denham-springs.jpg"
   },
@@ -3065,7 +3065,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Covington.",
     "photo_url": "https://example.com/st-peter-covington-la.jpg"
   },
@@ -3075,7 +3075,7 @@
     "state": "Louisiana",
     "address": "Not publicly listed",
     "phone": "(985) 626-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Mandeville.",
     "photo_url": "https://example.com/st-timothy-mandeville.jpg"
   },
@@ -3115,7 +3115,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 622-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Congregational church in Augusta.",
     "photo_url": "https://example.com/first-congregational-augusta-me.jpg"
   },
@@ -3135,7 +3135,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 338-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Belfast.",
     "photo_url": "https://example.com/first-congregational-belfast.jpg"
   },
@@ -3145,7 +3145,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 284-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Biddeford.",
     "photo_url": "https://example.com/first-congregational-biddeford.jpg"
   },
@@ -3155,7 +3155,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 236-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Camden.",
     "photo_url": "https://example.com/first-congregational-camden-me.jpg"
   },
@@ -3165,7 +3165,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 667-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Ellsworth near Acadia.",
     "photo_url": "https://example.com/first-congregational-ellsworth.jpg"
   },
@@ -3175,7 +3175,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 967-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Kennebunkport.",
     "photo_url": "https://example.com/first-congregational-kennebunkport.jpg"
   },
@@ -3185,7 +3185,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 439-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Kittery.",
     "photo_url": "https://example.com/first-congregational-kittery.jpg"
   },
@@ -3195,7 +3195,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 594-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Rockland.",
     "photo_url": "https://example.com/first-congregational-rockland.jpg"
   },
@@ -3205,7 +3205,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 236-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Rockport.",
     "photo_url": "https://example.com/first-congregational-rockport.jpg"
   },
@@ -3215,7 +3215,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 282-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic UCC church in Saco.",
     "photo_url": "https://example.com/first-congregational-saco.jpg"
   },
@@ -3255,7 +3255,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 947-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Bangor.",
     "photo_url": "https://example.com/first-umc-bangor.jpg"
   },
@@ -3265,7 +3265,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 967-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Kennebunkport.",
     "photo_url": "https://example.com/st-anns-kennebunkport.jpg"
   },
@@ -3275,7 +3275,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 594-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Rockland.",
     "photo_url": "https://example.com/st-bernard-rockland.jpg"
   },
@@ -3285,7 +3285,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 797-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church serving the Portland area.",
     "photo_url": "https://example.com/st-christophers-portland-me.jpg"
   },
@@ -3295,7 +3295,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 236-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Rockport.",
     "photo_url": "https://example.com/st-john-rockport.jpg"
   },
@@ -3305,7 +3305,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 947-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Bangor.",
     "photo_url": "https://example.com/st-johns-bangor.jpg"
   },
@@ -3315,7 +3315,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 284-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Biddeford.",
     "photo_url": "https://example.com/st-joseph-biddeford.jpg"
   },
@@ -3325,7 +3325,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 667-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Ellsworth.",
     "photo_url": "https://example.com/st-joseph-ellsworth.jpg"
   },
@@ -3335,7 +3335,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 282-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Saco.",
     "photo_url": "https://example.com/st-joseph-saco.jpg"
   },
@@ -3355,7 +3355,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 338-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Belfast.",
     "photo_url": "https://example.com/st-margaret-belfast.jpg"
   },
@@ -3395,7 +3395,7 @@
     "state": "Maine",
     "address": "Not publicly listed",
     "phone": "(207) 439-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Kittery.",
     "photo_url": "https://example.com/st-raphael-kittery.jpg"
   },
@@ -3435,7 +3435,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 922-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church serving Baltimore County.",
     "photo_url": "https://example.com/bethlehem-baptist-randallstown.jpg"
   },
@@ -3445,7 +3445,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 822-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Easton.",
     "photo_url": "https://example.com/christ-church-easton.jpg"
   },
@@ -3455,7 +3455,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 588-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large ministry with strong presence in the Silver Spring area.",
     "photo_url": "https://example.com/deeper-life-silver-spring.jpg"
   },
@@ -3475,7 +3475,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 485-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in Baltimore.",
     "photo_url": "https://example.com/faith-chapel-baltimore.jpg"
   },
@@ -3485,7 +3485,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 228-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church on the Eastern Shore.",
     "photo_url": "https://example.com/first-baptist-cambridge-md.jpg"
   },
@@ -3495,7 +3495,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Western Maryland.",
     "photo_url": "https://example.com/first-baptist-cumberland.jpg"
   },
@@ -3505,7 +3505,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 822-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church on the Eastern Shore.",
     "photo_url": "https://example.com/first-baptist-easton-md.jpg"
   },
@@ -3515,7 +3515,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 663-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Frederick.",
     "photo_url": "https://example.com/first-baptist-frederick-md.jpg"
   },
@@ -3525,7 +3525,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 733-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Hagerstown.",
     "photo_url": "https://example.com/first-baptist-hagerstown.jpg"
   },
@@ -3535,7 +3535,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 749-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Salisbury and the Eastern Shore.",
     "photo_url": "https://example.com/first-baptist-salisbury-md.jpg"
   },
@@ -3545,7 +3545,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 645-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Southern Maryland.",
     "photo_url": "https://example.com/first-baptist-waldorf.jpg"
   },
@@ -3555,7 +3555,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 263-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Annapolis.",
     "photo_url": "https://example.com/first-baptist-annapolis.jpg"
   },
@@ -3585,7 +3585,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 233-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Prominent Baptist congregation in Baltimore with strong community presence.",
     "photo_url": "https://example.com/mount-olive-baptist-baltimore.jpg"
   },
@@ -3605,7 +3605,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 433-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational ministry focused on restoration and community impact.",
     "photo_url": "https://example.com/restoration-ministries-baltimore.jpg"
   },
@@ -3625,7 +3625,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 645-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Waldorf.",
     "photo_url": "https://example.com/st-charles-waldorf.jpg"
   },
@@ -3635,7 +3635,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 749-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Salisbury.",
     "photo_url": "https://example.com/st-francis-salisbury.jpg"
   },
@@ -3645,7 +3645,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 663-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Frederick.",
     "photo_url": "https://example.com/st-john-frederick.jpg"
   },
@@ -3655,7 +3655,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(410) 228-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Cambridge.",
     "photo_url": "https://example.com/st-lukes-cambridge-md.jpg"
   },
@@ -3665,7 +3665,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 733-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hagerstown.",
     "photo_url": "https://example.com/st-mary-hagerstown.jpg"
   },
@@ -3675,7 +3675,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Cumberland.",
     "photo_url": "https://example.com/st-peter-cumberland.jpg"
   },
@@ -3685,7 +3685,7 @@
     "state": "Maryland",
     "address": "Not publicly listed",
     "phone": "(301) 498-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the Baltimore-Washington corridor.",
     "photo_url": "https://example.com/bridge-bible-laurel.jpg"
   }

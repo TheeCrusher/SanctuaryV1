@@ -25,7 +25,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(978) 454-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Lowell.",
     "photo_url": "https://example.com/first-baptist-lowell.jpg"
   },
@@ -35,7 +35,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(413) 734-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Springfield.",
     "photo_url": "https://example.com/first-baptist-springfield-ma.jpg"
   },
@@ -45,7 +45,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(508) 753-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Worcester.",
     "photo_url": "https://example.com/first-baptist-worcester.jpg"
   },
@@ -55,7 +55,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(617) 267-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Boston.",
     "photo_url": "https://example.com/first-baptist-boston.jpg"
   },
@@ -65,7 +65,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(617) 244-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Newton.",
     "photo_url": "https://example.com/first-baptist-newton-ma.jpg"
   },
@@ -75,7 +75,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(413) 734-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Congregational church in Springfield.",
     "photo_url": "https://example.com/first-congregational-springfield-ma.jpg"
   },
@@ -85,7 +85,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(413) 528-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in the Berkshires.",
     "photo_url": "https://example.com/first-congregational-great-barrington.jpg"
   },
@@ -95,7 +95,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(781) 235-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic UCC church in Wellesley.",
     "photo_url": "https://example.com/first-congregational-wellesley.jpg"
   },
@@ -105,7 +105,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(617) 876-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic UU church near Harvard Square.",
     "photo_url": "https://example.com/first-parish-cambridge.jpg"
   },
@@ -115,7 +115,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(617) 244-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic UU church in Newton Centre.",
     "photo_url": "https://example.com/first-parish-newton.jpg"
   },
@@ -125,7 +125,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(508) 753-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Unitarian church in Worcester.",
     "photo_url": "https://example.com/first-unitarian-worcester.jpg"
   },
@@ -135,7 +135,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(617) 354-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church near Harvard.",
     "photo_url": "https://example.com/harvard-epworth-cambridge.jpg"
   },
@@ -155,7 +155,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(781) 237-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the Wellesley area.",
     "photo_url": "https://example.com/new-england-chapel-wellesley.jpg"
   },
@@ -185,7 +185,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(781) 235-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Wellesley.",
     "photo_url": "https://example.com/st-andrews-wellesley.jpg"
   },
@@ -195,7 +195,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(978) 454-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Lowell.",
     "photo_url": "https://example.com/st-annes-lowell.jpg"
   },
@@ -205,7 +205,7 @@
     "state": "Massachusetts",
     "address": "Not publicly listed",
     "phone": "(413) 528-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Great Barrington.",
     "photo_url": "https://example.com/st-james-great-barrington.jpg"
   },
@@ -325,7 +325,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(810) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Flint.",
     "photo_url": "https://example.com/first-baptist-flint.jpg"
   },
@@ -335,7 +335,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(269) 345-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Kalamazoo.",
     "photo_url": "https://example.com/first-baptist-kalamazoo.jpg"
   },
@@ -345,7 +345,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(989) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Saginaw.",
     "photo_url": "https://example.com/first-baptist-saginaw.jpg"
   },
@@ -355,7 +355,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(231) 947-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Traverse City.",
     "photo_url": "https://example.com/first-baptist-traverse-city.jpg"
   },
@@ -365,7 +365,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(269) 345-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Kalamazoo.",
     "photo_url": "https://example.com/first-umc-kalamazoo.jpg"
   },
@@ -375,7 +375,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(734) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Ann Arbor and University of Michigan community.",
     "photo_url": "https://example.com/genesis-church-ann-arbor.jpg"
   },
@@ -415,7 +415,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(231) 947-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Traverse City.",
     "photo_url": "https://example.com/st-francis-traverse-city.jpg"
   },
@@ -425,7 +425,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(810) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Flint.",
     "photo_url": "https://example.com/st-paul-flint.jpg"
   },
@@ -435,7 +435,7 @@
     "state": "Michigan",
     "address": "Not publicly listed",
     "phone": "(989) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Saginaw.",
     "photo_url": "https://example.com/st-thomas-saginaw.jpg"
   },
@@ -505,7 +505,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(218) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Duluth.",
     "photo_url": "https://example.com/first-baptist-duluth-mn.jpg"
   },
@@ -515,7 +515,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(507) 388-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Mankato.",
     "photo_url": "https://example.com/first-baptist-mankato.jpg"
   },
@@ -525,7 +525,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(507) 282-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Mayo Clinic.",
     "photo_url": "https://example.com/first-baptist-rochester-mn.jpg"
   },
@@ -535,7 +535,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(320) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in St. Cloud.",
     "photo_url": "https://example.com/first-baptist-st-cloud.jpg"
   },
@@ -545,7 +545,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(651) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in St. Paul.",
     "photo_url": "https://example.com/first-baptist-st-paul-mn.jpg"
   },
@@ -555,7 +555,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(651) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in St. Paul.",
     "photo_url": "https://example.com/first-baptist-st-paul.jpg"
   },
@@ -575,7 +575,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(218) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Duluth.",
     "photo_url": "https://example.com/first-pres-duluth-mn.jpg"
   },
@@ -625,7 +625,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(612) 721-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in the Minnehaha area of Minneapolis.",
     "photo_url": "https://example.com/minnehaha-umc-minneapolis.jpg"
   },
@@ -635,7 +635,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(507) 388-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Mankato.",
     "photo_url": "https://example.com/st-john-mankato.jpg"
   },
@@ -655,7 +655,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(651) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Lutheran church serving St. Paul.",
     "photo_url": "https://example.com/st-paul-lutheran-st-paul.jpg"
   },
@@ -665,7 +665,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(507) 282-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Rochester.",
     "photo_url": "https://example.com/st-pius-rochester-mn.jpg"
   },
@@ -675,7 +675,7 @@
     "state": "Minnesota",
     "address": "Not publicly listed",
     "phone": "(612) 789-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in the Minneapolis area focused on community and worship.",
     "photo_url": "https://example.com/suburban-community-minneapolis.jpg"
   },
@@ -725,7 +725,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 842-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Tupelo.",
     "photo_url": "https://example.com/calvary-baptist-tupelo.jpg"
   },
@@ -745,7 +745,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(228) 374-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Biloxi.",
     "photo_url": "https://example.com/first-baptist-biloxi.jpg"
   },
@@ -755,7 +755,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 924-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Clinton.",
     "photo_url": "https://example.com/first-baptist-clinton-ms.jpg"
   },
@@ -765,7 +765,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 327-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Columbus.",
     "photo_url": "https://example.com/first-baptist-columbus-ms.jpg"
   },
@@ -775,7 +775,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 332-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Greenville.",
     "photo_url": "https://example.com/first-baptist-greenville-ms.jpg"
   },
@@ -795,7 +795,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 583-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Hattiesburg.",
     "photo_url": "https://example.com/first-baptist-hattiesburg.jpg"
   },
@@ -815,7 +815,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 693-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Meridian.",
     "photo_url": "https://example.com/first-baptist-meridian-ms.jpg"
   },
@@ -825,7 +825,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near University of Mississippi.",
     "photo_url": "https://example.com/first-baptist-oxford-ms.jpg"
   },
@@ -835,7 +835,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 323-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Mississippi State University.",
     "photo_url": "https://example.com/first-baptist-starkville.jpg"
   },
@@ -845,7 +845,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 842-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Tupelo.",
     "photo_url": "https://example.com/first-baptist-tupelo.jpg"
   },
@@ -855,7 +855,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 636-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Vicksburg.",
     "photo_url": "https://example.com/first-baptist-vicksburg.jpg"
   },
@@ -865,7 +865,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 924-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Clinton.",
     "photo_url": "https://example.com/first-umc-clinton-ms.jpg"
   },
@@ -875,7 +875,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 327-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Columbus.",
     "photo_url": "https://example.com/first-umc-columbus-ms.jpg"
   },
@@ -885,7 +885,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 693-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Meridian.",
     "photo_url": "https://example.com/first-umc-meridian-ms.jpg"
   },
@@ -895,7 +895,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 636-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Vicksburg.",
     "photo_url": "https://example.com/first-umc-vicksburg.jpg"
   },
@@ -935,7 +935,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Oxford.",
     "photo_url": "https://example.com/st-john-oxford-ms.jpg"
   },
@@ -945,7 +945,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 332-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Greenville.",
     "photo_url": "https://example.com/st-joseph-greenville-ms.jpg"
   },
@@ -955,7 +955,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(662) 323-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Starkville.",
     "photo_url": "https://example.com/st-joseph-starkville.jpg"
   },
@@ -965,7 +965,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(228) 374-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Biloxi.",
     "photo_url": "https://example.com/st-michael-biloxi.jpg"
   },
@@ -975,7 +975,7 @@
     "state": "Mississippi",
     "address": "Not publicly listed",
     "phone": "(601) 583-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Hattiesburg.",
     "photo_url": "https://example.com/temple-baptist-hattiesburg.jpg"
   },
@@ -1025,7 +1025,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 229-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Blue Springs.",
     "photo_url": "https://example.com/first-baptist-blue-springs.jpg"
   },
@@ -1035,7 +1035,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 335-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Cape Girardeau.",
     "photo_url": "https://example.com/first-baptist-cape-girardeau.jpg"
   },
@@ -1045,7 +1045,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 449-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near University of Missouri.",
     "photo_url": "https://example.com/first-baptist-columbia-mo.jpg"
   },
@@ -1055,7 +1055,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Gladstone.",
     "photo_url": "https://example.com/first-baptist-gladstone-mo.jpg"
   },
@@ -1065,7 +1065,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Independence.",
     "photo_url": "https://example.com/first-baptist-independence-mo.jpg"
   },
@@ -1075,7 +1075,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 636-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-jefferson-city.jpg"
   },
@@ -1085,7 +1085,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(417) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Joplin.",
     "photo_url": "https://example.com/first-baptist-joplin.jpg"
   },
@@ -1095,7 +1095,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 525-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Lee's Summit.",
     "photo_url": "https://example.com/first-baptist-lees-summit.jpg"
   },
@@ -1105,7 +1105,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 781-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Liberty.",
     "photo_url": "https://example.com/first-baptist-liberty-mo.jpg"
   },
@@ -1115,7 +1115,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 353-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Raytown.",
     "photo_url": "https://example.com/first-baptist-raytown.jpg"
   },
@@ -1125,7 +1125,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(417) 866-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Springfield.",
     "photo_url": "https://example.com/first-baptist-springfield-mo.jpg"
   },
@@ -1135,7 +1135,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in St. Joseph.",
     "photo_url": "https://example.com/first-baptist-st-joseph-mo.jpg"
   },
@@ -1145,7 +1145,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 931-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Kansas City.",
     "photo_url": "https://example.com/first-baptist-kansas-city-mo.jpg"
   },
@@ -1155,7 +1155,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(314) 231-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in St. Louis.",
     "photo_url": "https://example.com/first-baptist-st-louis.jpg"
   },
@@ -1165,7 +1165,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 449-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ church in Columbia.",
     "photo_url": "https://example.com/first-christian-columbia-mo.jpg"
   },
@@ -1175,7 +1175,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 335-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Cape Girardeau.",
     "photo_url": "https://example.com/first-pres-cape-girardeau.jpg"
   },
@@ -1185,7 +1185,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Independence.",
     "photo_url": "https://example.com/first-umc-independence-mo.jpg"
   },
@@ -1195,7 +1195,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(417) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Joplin.",
     "photo_url": "https://example.com/first-umc-joplin.jpg"
   },
@@ -1205,7 +1205,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 781-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Liberty.",
     "photo_url": "https://example.com/first-umc-liberty-mo.jpg"
   },
@@ -1235,7 +1235,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Gladstone.",
     "photo_url": "https://example.com/st-charles-gladstone.jpg"
   },
@@ -1245,7 +1245,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Kansas City-St. Joseph.",
     "photo_url": "https://example.com/st-joseph-cathedral-st-joseph-mo.jpg"
   },
@@ -1255,7 +1255,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 525-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Lee's Summit.",
     "photo_url": "https://example.com/st-michael-lees-summit.jpg"
   },
@@ -1275,7 +1275,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(573) 636-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Jefferson City.",
     "photo_url": "https://example.com/st-peter-jefferson-city.jpg"
   },
@@ -1285,7 +1285,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 353-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Raytown.",
     "photo_url": "https://example.com/st-regis-raytown.jpg"
   },
@@ -1295,7 +1295,7 @@
     "state": "Missouri",
     "address": "Not publicly listed",
     "phone": "(816) 229-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Blue Springs.",
     "photo_url": "https://example.com/st-robert-blue-springs.jpg"
   },
@@ -1325,7 +1325,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Billings with strong ministries.",
     "photo_url": "https://example.com/first-baptist-billings.jpg"
   },
@@ -1335,7 +1335,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 586-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Montana State University.",
     "photo_url": "https://example.com/first-baptist-bozeman.jpg"
   },
@@ -1345,7 +1345,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 723-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Butte.",
     "photo_url": "https://example.com/first-baptist-butte.jpg"
   },
@@ -1355,7 +1355,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 452-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Great Falls.",
     "photo_url": "https://example.com/first-baptist-great-falls.jpg"
   },
@@ -1365,7 +1365,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 265-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Havre.",
     "photo_url": "https://example.com/first-baptist-havre.jpg"
   },
@@ -1375,7 +1375,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 442-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-helena.jpg"
   },
@@ -1385,7 +1385,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Kalispell near Glacier National Park.",
     "photo_url": "https://example.com/first-baptist-kalispell.jpg"
   },
@@ -1395,7 +1395,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Livingston.",
     "photo_url": "https://example.com/first-baptist-livingston.jpg"
   },
@@ -1405,7 +1405,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Miles City.",
     "photo_url": "https://example.com/first-baptist-miles-city.jpg"
   },
@@ -1415,7 +1415,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 543-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near University of Montana.",
     "photo_url": "https://example.com/first-baptist-missoula.jpg"
   },
@@ -1425,7 +1425,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 862-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Whitefish near Glacier National Park.",
     "photo_url": "https://example.com/first-baptist-whitefish.jpg"
   },
@@ -1435,7 +1435,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Billings.",
     "photo_url": "https://example.com/first-pres-billings.jpg"
   },
@@ -1445,7 +1445,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 586-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church near Montana State University.",
     "photo_url": "https://example.com/first-pres-bozeman.jpg"
   },
@@ -1455,7 +1455,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 586-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational Bible church in Bozeman.",
     "photo_url": "https://example.com/grace-bible-bozeman.jpg"
   },
@@ -1465,7 +1465,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 543-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in Missoula with contemporary worship.",
     "photo_url": "https://example.com/hope-christian-missoula.jpg"
   },
@@ -1475,7 +1475,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 452-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Great Falls-Billings.",
     "photo_url": "https://example.com/st-ann-cathedral-great-falls.jpg"
   },
@@ -1485,7 +1485,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 442-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Helena.",
     "photo_url": "https://example.com/st-anthony-cathedral-helena.jpg"
   },
@@ -1495,7 +1495,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 862-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Whitefish.",
     "photo_url": "https://example.com/st-charles-whitefish.jpg"
   },
@@ -1505,7 +1505,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 442-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Helena.",
     "photo_url": "https://example.com/st-helena-cathedral.jpg"
   },
@@ -1515,7 +1515,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 586-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Bozeman.",
     "photo_url": "https://example.com/st-james-bozeman.jpg"
   },
@@ -1525,7 +1525,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 265-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Havre.",
     "photo_url": "https://example.com/st-jude-havre.jpg"
   },
@@ -1535,7 +1535,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Livingston.",
     "photo_url": "https://example.com/st-marys-livingston.jpg"
   },
@@ -1545,7 +1545,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 752-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Kalispell.",
     "photo_url": "https://example.com/st-matthew-kalispell.jpg"
   },
@@ -1565,7 +1565,7 @@
     "state": "Montana",
     "address": "Not publicly listed",
     "phone": "(406) 232-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Miles City.",
     "photo_url": "https://example.com/st-vincent-miles-city.jpg"
   },
@@ -1595,7 +1595,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Beatrice.",
     "photo_url": "https://example.com/first-baptist-beatrice.jpg"
   },
@@ -1605,7 +1605,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 564-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Columbus.",
     "photo_url": "https://example.com/first-baptist-columbus-ne.jpg"
   },
@@ -1615,7 +1615,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 721-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Fremont.",
     "photo_url": "https://example.com/first-baptist-fremont-ne.jpg"
   },
@@ -1625,7 +1625,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 382-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Grand Island.",
     "photo_url": "https://example.com/first-baptist-grand-island.jpg"
   },
@@ -1635,7 +1635,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 463-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Hastings.",
     "photo_url": "https://example.com/first-baptist-hastings.jpg"
   },
@@ -1645,7 +1645,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Kearney.",
     "photo_url": "https://example.com/first-baptist-kearney.jpg"
   },
@@ -1655,7 +1655,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 435-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Lincoln.",
     "photo_url": "https://example.com/first-baptist-lincoln-ne.jpg"
   },
@@ -1665,7 +1665,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 371-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Norfolk.",
     "photo_url": "https://example.com/first-baptist-norfolk-ne.jpg"
   },
@@ -1675,7 +1675,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 532-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in North Platte.",
     "photo_url": "https://example.com/first-baptist-north-platte.jpg"
   },
@@ -1685,7 +1685,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 345-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Omaha.",
     "photo_url": "https://example.com/first-baptist-omaha.jpg"
   },
@@ -1695,7 +1695,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 632-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Scottsbluff.",
     "photo_url": "https://example.com/first-baptist-scottsbluff.jpg"
   },
@@ -1725,7 +1725,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 632-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Scottsbluff.",
     "photo_url": "https://example.com/st-agnes-scottsbluff.jpg"
   },
@@ -1735,7 +1735,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 564-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Columbus.",
     "photo_url": "https://example.com/st-anthony-columbus-ne.jpg"
   },
@@ -1755,7 +1755,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 463-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hastings.",
     "photo_url": "https://example.com/st-cecilia-hastings.jpg"
   },
@@ -1765,7 +1765,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 721-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Fremont.",
     "photo_url": "https://example.com/st-james-fremont-ne.jpg"
   },
@@ -1775,7 +1775,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 234-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Kearney.",
     "photo_url": "https://example.com/st-james-kearney.jpg"
   },
@@ -1785,7 +1785,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 223-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Beatrice.",
     "photo_url": "https://example.com/st-joseph-beatrice.jpg"
   },
@@ -1795,7 +1795,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 382-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Grand Island.",
     "photo_url": "https://example.com/st-leo-grand-island.jpg"
   },
@@ -1805,7 +1805,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 435-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Lincoln.",
     "photo_url": "https://example.com/st-mary-lincoln-ne.jpg"
   },
@@ -1815,7 +1815,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(402) 371-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Norfolk.",
     "photo_url": "https://example.com/st-mary-norfolk-ne.jpg"
   },
@@ -1825,7 +1825,7 @@
     "state": "Nebraska",
     "address": "Not publicly listed",
     "phone": "(308) 532-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in North Platte.",
     "photo_url": "https://example.com/st-patrick-north-platte.jpg"
   },
@@ -1855,7 +1855,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 882-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-carson-city.jpg"
   },
@@ -1865,7 +1865,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 738-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Elko.",
     "photo_url": "https://example.com/first-baptist-elko.jpg"
   },
@@ -1875,7 +1875,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 289-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Ely.",
     "photo_url": "https://example.com/first-baptist-ely.jpg"
   },
@@ -1885,7 +1885,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 423-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Fallon.",
     "photo_url": "https://example.com/first-baptist-fallon.jpg"
   },
@@ -1895,7 +1895,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 565-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Henderson.",
     "photo_url": "https://example.com/first-baptist-henderson.jpg"
   },
@@ -1905,7 +1905,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 735-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Las Vegas.",
     "photo_url": "https://example.com/first-baptist-las-vegas.jpg"
   },
@@ -1915,7 +1915,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 649-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in North Las Vegas.",
     "photo_url": "https://example.com/first-baptist-north-las-vegas.jpg"
   },
@@ -1925,7 +1925,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 322-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Reno.",
     "photo_url": "https://example.com/first-baptist-reno.jpg"
   },
@@ -1935,7 +1935,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 358-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Sparks (Reno area).",
     "photo_url": "https://example.com/first-baptist-sparks.jpg"
   },
@@ -1945,7 +1945,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Winnemucca.",
     "photo_url": "https://example.com/first-baptist-winnemucca.jpg"
   },
@@ -1965,7 +1965,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 735-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the Las Vegas area.",
     "photo_url": "https://example.com/shadow-mountain-las-vegas.jpg"
   },
@@ -1975,7 +1975,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 649-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in North Las Vegas.",
     "photo_url": "https://example.com/st-james-north-las-vegas.jpg"
   },
@@ -1985,7 +1985,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 289-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Ely.",
     "photo_url": "https://example.com/st-john-ely.jpg"
   },
@@ -1995,7 +1995,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(702) 565-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Henderson.",
     "photo_url": "https://example.com/st-joseph-henderson.jpg"
   },
@@ -2005,7 +2005,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 738-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Elko.",
     "photo_url": "https://example.com/st-mark-elko.jpg"
   },
@@ -2015,7 +2015,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 623-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Winnemucca.",
     "photo_url": "https://example.com/st-mary-winnemucca.jpg"
   },
@@ -2025,7 +2025,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 423-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Fallon.",
     "photo_url": "https://example.com/st-patrick-fallon.jpg"
   },
@@ -2035,7 +2035,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 358-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Sparks.",
     "photo_url": "https://example.com/st-rose-sparks.jpg"
   },
@@ -2045,7 +2045,7 @@
     "state": "Nevada",
     "address": "Not publicly listed",
     "phone": "(775) 882-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Carson City.",
     "photo_url": "https://example.com/st-teresa-carson-city.jpg"
   },
@@ -2105,7 +2105,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 434-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Derry.",
     "photo_url": "https://example.com/first-baptist-derry.jpg"
   },
@@ -2115,7 +2115,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 524-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Laconia.",
     "photo_url": "https://example.com/first-baptist-laconia.jpg"
   },
@@ -2135,7 +2135,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Portsmouth.",
     "photo_url": "https://example.com/first-baptist-portsmouth-nh.jpg"
   },
@@ -2145,7 +2145,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 673-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Amherst.",
     "photo_url": "https://example.com/first-congregational-amherst-nh.jpg"
   },
@@ -2165,7 +2165,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 742-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Dover.",
     "photo_url": "https://example.com/first-congregational-dover-nh.jpg"
   },
@@ -2175,7 +2175,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 772-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Exeter.",
     "photo_url": "https://example.com/first-congregational-exeter.jpg"
   },
@@ -2185,7 +2185,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 643-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church near Dartmouth College.",
     "photo_url": "https://example.com/first-congregational-hanover.jpg"
   },
@@ -2195,7 +2195,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 352-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church in Keene.",
     "photo_url": "https://example.com/first-congregational-keene.jpg"
   },
@@ -2205,7 +2205,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 625-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Congregational church in Manchester.",
     "photo_url": "https://example.com/first-congregational-manchester-nh.jpg"
   },
@@ -2215,7 +2215,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic UCC church in Portsmouth.",
     "photo_url": "https://example.com/north-church-portsmouth.jpg"
   },
@@ -2225,7 +2225,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 643-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish near Dartmouth.",
     "photo_url": "https://example.com/st-denis-hanover.jpg"
   },
@@ -2235,7 +2235,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 352-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Keene.",
     "photo_url": "https://example.com/st-james-keene.jpg"
   },
@@ -2245,7 +2245,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 225-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Concord.",
     "photo_url": "https://example.com/st-john-concord-nh.jpg"
   },
@@ -2265,7 +2265,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 524-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Laconia.",
     "photo_url": "https://example.com/st-joseph-laconia.jpg"
   },
@@ -2275,7 +2275,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 742-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Dover.",
     "photo_url": "https://example.com/st-mary-dover-nh.jpg"
   },
@@ -2285,7 +2285,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 772-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Exeter.",
     "photo_url": "https://example.com/st-michael-exeter.jpg"
   },
@@ -2295,7 +2295,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 673-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Amherst.",
     "photo_url": "https://example.com/st-patrick-amherst.jpg"
   },
@@ -2305,7 +2305,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 882-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Nashua.",
     "photo_url": "https://example.com/st-stanislaus-nashua.jpg"
   },
@@ -2315,7 +2315,7 @@
     "state": "New Hampshire",
     "address": "Not publicly listed",
     "phone": "(603) 434-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Derry.",
     "photo_url": "https://example.com/st-thomas-derry.jpg"
   },
@@ -2335,7 +2335,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(201) 843-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large non-denominational church serving northern New Jersey with contemporary worship and strong ministries.",
     "photo_url": "https://example.com/christian-fellowship-rochelle-park.jpg"
   },
@@ -2345,7 +2345,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(856) 963-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Camden.",
     "photo_url": "https://example.com/first-baptist-camden-nj.jpg"
   },
@@ -2355,7 +2355,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 675-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in East Orange.",
     "photo_url": "https://example.com/first-baptist-east-orange.jpg"
   },
@@ -2365,7 +2365,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(732) 545-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Rutgers University.",
     "photo_url": "https://example.com/first-baptist-new-brunswick.jpg"
   },
@@ -2375,7 +2375,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 642-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Newark.",
     "photo_url": "https://example.com/first-baptist-newark-nj.jpg"
   },
@@ -2385,7 +2385,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 279-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Paterson.",
     "photo_url": "https://example.com/first-baptist-paterson.jpg"
   },
@@ -2395,7 +2395,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(609) 393-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in the state capital.",
     "photo_url": "https://example.com/first-baptist-trenton-nj.jpg"
   },
@@ -2415,7 +2415,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(908) 351-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Elizabeth.",
     "photo_url": "https://example.com/first-pres-elizabeth.jpg"
   },
@@ -2445,7 +2445,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 642-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Newark.",
     "photo_url": "https://example.com/st-benedict-newark.jpg"
   },
@@ -2455,7 +2455,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 279-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Paterson.",
     "photo_url": "https://example.com/st-john-cathedral-paterson.jpg"
   },
@@ -2465,7 +2465,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(973) 675-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in East Orange.",
     "photo_url": "https://example.com/st-john-east-orange.jpg"
   },
@@ -2475,7 +2475,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(856) 963-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Camden.",
     "photo_url": "https://example.com/st-joseph-camden.jpg"
   },
@@ -2485,7 +2485,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(201) 333-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Jersey City.",
     "photo_url": "https://example.com/st-mary-star-jersey-city.jpg"
   },
@@ -2505,7 +2505,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(609) 393-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Cathedral serving the Diocese of Trenton.",
     "photo_url": "https://example.com/st-mary-cathedral-trenton.jpg"
   },
@@ -2515,7 +2515,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(908) 351-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Elizabeth.",
     "photo_url": "https://example.com/st-mary-elizabeth.jpg"
   },
@@ -2535,7 +2535,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(732) 545-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish near Rutgers.",
     "photo_url": "https://example.com/st-peter-new-brunswick.jpg"
   },
@@ -2545,7 +2545,7 @@
     "state": "New Jersey",
     "address": "Not publicly listed",
     "phone": "(201) 333-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Jersey City with contemporary worship.",
     "photo_url": "https://example.com/the-well-jersey-city.jpg"
   }

@@ -155,7 +155,7 @@
     "state": "Alabama",
     "address": "1984 Washington St, Alexander City, AL 35010",
     "phone": "(256) 234-6345",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Southern Baptist church serving Alexander City with traditional worship and community ministries.",
     "photo_url": "https://example.com/emmanuel-baptist-alex-city.jpg"
   },
@@ -355,7 +355,7 @@
     "state": "Alabama",
     "address": "4901 Blue Haven Dr NW, Huntsville, AL 35810",
     "phone": "(256) 859-4161",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist congregation focused on community outreach and Bible-based teaching.",
     "photo_url": "https://example.com/meadow-hills-huntsville.jpg"
   },
@@ -415,7 +415,7 @@
     "state": "Alabama",
     "address": "601 S Hull St, Montgomery, AL 36104",
     "phone": "(334) 263-0433",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church focused on worship, fellowship, and serving the southside Montgomery community.",
     "photo_url": "https://example.com/southside-baptist-montgomery.jpg"
   },
@@ -485,7 +485,7 @@
     "state": "Alabama",
     "address": "6245 1st Ave N, Birmingham, AL 35212",
     "phone": "(205) 595-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church focused on neighborhood ministry and community revitalization.",
     "photo_url": "https://example.com/woodlawn-baptist-bham.jpg"
   },
@@ -505,7 +505,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "(907) 276-2405",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Downtown Episcopal church with beautiful stained glass and city views.",
     "photo_url": "https://example.com/all-saints-anchorage.jpg"
   },
@@ -515,7 +515,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian fellowship focused on alliance in faith.",
     "photo_url": "https://example.com/alliance-christian-anchorage.jpg"
   },
@@ -554,8 +554,8 @@
     "city": "Anchorage",
     "state": "Alaska",
     "address": "Not publicly listed",
-    "phone": "(907) 344-4331 (related contact)",
-    "website": "Not publicly listed",
+    "phone": "(907) 344-4331",
+    "website": null,
     "short_description": "Bible-centered fellowship focused on teaching Scripture and fellowship in Anchorage.",
     "photo_url": "https://example.com/abf-anchorage.jpg"
   },
@@ -565,7 +565,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Bible church serving the Anchorage community.",
     "photo_url": "https://example.com/arctic-grace-anchorage.jpg"
   },
@@ -575,7 +575,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church emphasizing Bible teaching in Fairbanks.",
     "photo_url": "https://example.com/bible-baptist-fairbanks.jpg"
   },
@@ -615,7 +615,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "(907) 586-2422",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church known for its scenic location and welcoming community worship.",
     "photo_url": "https://example.com/chapel-by-the-lake-juneau.jpg"
   },
@@ -655,7 +655,7 @@
     "state": "Alaska",
     "address": "2500 Sunset Dr, Juneau, AK 99801",
     "phone": "(907) 586-2380",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Lutheran church serving Juneau with worship and outreach.",
     "photo_url": "https://example.com/faith-lutheran-juneau.jpg"
   },
@@ -665,7 +665,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "(907) 276-2437",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Downtown Presbyterian church with modern architecture and notable stained glass.",
     "photo_url": "https://example.com/first-presbyterian-anchorage.jpg"
   },
@@ -675,7 +675,7 @@
     "state": "Alaska",
     "address": "725 W 9th Ave, Anchorage, AK 99501",
     "phone": "(907) 272-2113",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Downtown Methodist church with community ministries and services.",
     "photo_url": "https://example.com/first-umc-anchorage.jpg"
   },
@@ -685,7 +685,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community-focused church serving Fairbanks with welcoming worship and outreach.",
     "photo_url": "https://example.com/friends-community-fairbanks.jpg"
   },
@@ -725,7 +725,7 @@
     "state": "Alaska",
     "address": "325 Gold St, Juneau, AK 99801",
     "phone": "(907) 586-3532",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Downtown Episcopal church offering traditional worship and community outreach.",
     "photo_url": "https://example.com/holy-trinity-juneau.jpg"
   },
@@ -755,7 +755,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of Christ congregation in Juneau focused on New Testament Christianity.",
     "photo_url": "https://example.com/juneau-church-of-christ.jpg"
   },
@@ -765,7 +765,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Fellowship church serving the Kenai Peninsula.",
     "photo_url": "https://example.com/kenai-fellowship.jpg"
   },
@@ -775,7 +775,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United church serving Juneau with inclusive worship.",
     "photo_url": "https://example.com/kuneeix-hidi-juneau.jpg"
   },
@@ -805,7 +805,7 @@
     "state": "Alaska",
     "address": "400 11th St, Juneau, AK 99801",
     "phone": "(907) 586-3726",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Joint Methodist/Presbyterian congregation serving Juneau with ecumenical worship.",
     "photo_url": "https://example.com/northern-lights-juneau.jpg"
   },
@@ -815,7 +815,7 @@
     "state": "Alaska",
     "address": "4317 MacInnes St, Anchorage, AK 99508",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church offering worship and outreach in Anchorage.",
     "photo_url": "https://example.com/open-door-baptist-anchorage.jpg"
   },
@@ -835,7 +835,7 @@
     "state": "Alaska",
     "address": "740 W 10th St, Juneau, AK 99801",
     "phone": "(907) 586-2380",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Lutheran church focused on community and faith in Juneau.",
     "photo_url": "https://example.com/resurrection-lutheran-juneau.jpg"
   },
@@ -845,7 +845,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving the Juneau community.",
     "photo_url": "https://example.com/riverside-baptist-juneau.jpg"
   },
@@ -875,7 +875,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "(907) 747-6442",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Lutheran church with roots to 1843, featuring antique furnishings and organ.",
     "photo_url": "https://example.com/sitka-lutheran.jpg"
   },
@@ -895,7 +895,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Russian Orthodox cathedral preserving traditional faith in Anchorage.",
     "photo_url": "https://example.com/st-innocent-anchorage.jpg"
   },
@@ -925,7 +925,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Russian Orthodox church in Anchorage preserving traditional faith.",
     "photo_url": "https://example.com/st-nicholas-anchorage.jpg"
   },
@@ -935,7 +935,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Russian Orthodox church preserving traditional liturgy and Alaskan Orthodox heritage.",
     "photo_url": "https://example.com/st-nicholas-juneau.jpg"
   },
@@ -995,7 +995,7 @@
     "state": "Alaska",
     "address": "Not publicly listed",
     "phone": "Not publicly listed",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church in the Mat-Su Valley.",
     "photo_url": "https://example.com/valley-fellowship-wasilla.jpg"
   },
@@ -1043,7 +1043,7 @@
     "name": "Canyon del Oro Assembly of God",
     "city": "Tucson",
     "state": "Arizona",
-    "address": "5655 N La Ca\u00f1ada Dr, Tucson, AZ 85704",
+    "address": "5655 N La Cañada Dr, Tucson, AZ 85704",
     "phone": "(520) 742-3816",
     "website": "https://cdoag.org",
     "short_description": "Pentecostal church with vibrant worship in northwest Tucson.",
@@ -1105,7 +1105,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(520) 296-8501",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Covenant church focused on community in east Tucson.",
     "photo_url": "https://example.com/eastside-covenant-tucson.jpg"
   },
@@ -1135,7 +1135,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(928) 774-5562",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church serving Flagstaff community.",
     "photo_url": "https://example.com/flagstaff-christian-church.jpg"
   },
@@ -1225,7 +1225,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(520) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church in Marana focused on worship and outreach.",
     "photo_url": "https://example.com/marana-community-church.jpg"
   },
@@ -1285,7 +1285,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(520) 742-3816",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of Christ congregation serving Oro Valley.",
     "photo_url": "https://example.com/oro-valley-church-christ.jpg"
   },
@@ -1325,7 +1325,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(928) 445-1480",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Christian church serving Prescott with worship and outreach.",
     "photo_url": "https://example.com/prescott-christian.jpg"
   },
@@ -1345,7 +1345,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(928) 772-6363",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Prescott Valley.",
     "photo_url": "https://example.com/prescott-valley-umc.jpg"
   },
@@ -1365,7 +1365,7 @@
     "state": "Arizona",
     "address": "Not publicly listed (SaddleBrooke area)",
     "phone": "(520) 825-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving SaddleBrooke retirement area.",
     "photo_url": "https://example.com/saddlebrooke-church.jpg"
   },
@@ -1445,7 +1445,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(520) 296-8501",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Tucson with worship and outreach.",
     "photo_url": "https://example.com/tucson-church-international.jpg"
   },
@@ -1465,7 +1465,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(520) 762-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the Vail area.",
     "photo_url": "https://example.com/vail-church-az.jpg"
   },
@@ -1485,7 +1485,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(928) 782-4480",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of Christ serving Yuma.",
     "photo_url": "https://example.com/yuma-church-of-christ.jpg"
   },
@@ -1505,7 +1505,7 @@
     "state": "Arizona",
     "address": "Not publicly listed",
     "phone": "(928) 783-4421",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Southern Baptist congregation in Yuma.",
     "photo_url": "https://example.com/yuma-southern-baptist.jpg"
   },
@@ -1545,7 +1545,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 227-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational community church in Little Rock.",
     "photo_url": "https://example.com/christ-community-lr.jpg"
   },
@@ -1585,7 +1585,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 227-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Pentecostal church with vibrant worship in Little Rock.",
     "photo_url": "https://example.com/first-ag-little-rock.jpg"
   },
@@ -1595,7 +1595,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(870) 793-4141",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Batesville.",
     "photo_url": "https://example.com/first-baptist-batesville.jpg"
   },
@@ -1665,7 +1665,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 982-4541",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving Jacksonville.",
     "photo_url": "https://example.com/first-baptist-jacksonville-ar.jpg"
   },
@@ -1685,7 +1685,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 332-3661",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Malvern.",
     "photo_url": "https://example.com/first-baptist-malvern.jpg"
   },
@@ -1705,7 +1705,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(870) 425-6951",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Mountain Home.",
     "photo_url": "https://example.com/first-baptist-mountain-home.jpg"
   },
@@ -1715,7 +1715,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(870) 236-3343",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Paragould.",
     "photo_url": "https://example.com/first-baptist-paragould.jpg"
   },
@@ -1735,7 +1735,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(479) 636-4421",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Rogers with community ministries.",
     "photo_url": "https://example.com/first-baptist-rogers.jpg"
   },
@@ -1765,7 +1765,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(479) 751-4681",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Springdale.",
     "photo_url": "https://example.com/first-baptist-springdale.jpg"
   },
@@ -1775,7 +1775,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(479) 442-4411",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Disciples of Christ congregation in Fayetteville.",
     "photo_url": "https://example.com/first-christian-fayetteville.jpg"
   },
@@ -1785,7 +1785,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(479) 782-4216",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Fort Smith.",
     "photo_url": "https://example.com/first-pres-fort-smith.jpg"
   },
@@ -1795,7 +1795,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 623-8592",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Hot Springs.",
     "photo_url": "https://example.com/first-pres-hot-springs.jpg"
   },
@@ -1825,7 +1825,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(479) 443-5454",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Methodist church serving Fayetteville.",
     "photo_url": "https://example.com/first-umc-fayetteville.jpg"
   },
@@ -1845,7 +1845,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(870) 932-1052",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Methodist church in Jonesboro.",
     "photo_url": "https://example.com/first-umc-jonesboro.jpg"
   },
@@ -1855,7 +1855,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(870) 425-3444",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Methodist church in Mountain Home.",
     "photo_url": "https://example.com/first-umc-mountain-home.jpg"
   },
@@ -1865,7 +1865,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 225-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Nazarene church focused on holiness and community in Little Rock.",
     "photo_url": "https://example.com/grace-nazarene-lr.jpg"
   },
@@ -1885,7 +1885,7 @@
     "state": "Arkansas",
     "address": "Not publicly listed",
     "phone": "(501) 835-3122",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist congregation serving Sherwood with community outreach.",
     "photo_url": "https://example.com/immanuel-sherwood-ar.jpg"
   },
@@ -1924,7 +1924,7 @@
     "city": "Fort Smith",
     "state": "Arkansas",
     "address": "Not publicly listed (Fort Smith location)",
-    "phone": "(479) 783-5148 (regional contact)",
+    "phone": "(479) 783-5148",
     "website": "https://ocbfchurch.org",
     "short_description": "Multi-campus church focused on biblical teaching and community transformation.",
     "photo_url": "https://ocbfchurch.org/wp-content/uploads/2023/09/ocbf-fort-smith.jpg"
@@ -2025,7 +2025,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(408) 265-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Growing church serving the Silicon Valley area.",
     "photo_url": "https://example.com/bay-area-christian-san-jose.jpg"
   },
@@ -2055,7 +2055,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(805) 983-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Calvary Chapel serving Oxnard and Ventura County.",
     "photo_url": "https://example.com/calvary-oxnard.jpg"
   },
@@ -2155,7 +2155,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(661) 323-3581",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Southern Baptist congregation in Bakersfield.",
     "photo_url": "https://example.com/first-baptist-bakersfield.jpg"
   },
@@ -2175,7 +2175,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(408) 297-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in San Jose.",
     "photo_url": "https://example.com/first-baptist-san-jose.jpg"
   },
@@ -2215,7 +2215,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(510) 848-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church near UC Berkeley.",
     "photo_url": "https://example.com/first-pres-berkeley.jpg"
   },
@@ -2415,7 +2415,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(619) 222-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community-focused church in San Diego.",
     "photo_url": "https://example.com/church-at-the-well-sd.jpg"
   },
@@ -2435,7 +2435,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(626) 335-1195",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church with strong community presence in the San Gabriel Valley.",
     "photo_url": "https://example.com/open-door-glendora.jpg"
   },
@@ -2445,7 +2445,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(661) 831-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic church serving Bakersfield.",
     "photo_url": "https://example.com/open-door-bakersfield.jpg"
   },
@@ -2455,7 +2455,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(805) 643-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Ventura.",
     "photo_url": "https://example.com/church-on-the-hill-ventura.jpg"
   },
@@ -2475,7 +2475,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(925) 277-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the East Bay.",
     "photo_url": "https://example.com/the-crossing-san-ramon.jpg"
   },
@@ -2485,7 +2485,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(562) 433-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Long Beach.",
     "photo_url": "https://example.com/garden-church-long-beach.jpg"
   },
@@ -2515,7 +2515,7 @@
     "state": "California",
     "address": "Not publicly listed",
     "phone": "(559) 432-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church focused on community in Fresno.",
     "photo_url": "https://example.com/the-well-fresno.jpg"
   },
@@ -2555,7 +2555,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(970) 453-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Breckenridge and Summit County.",
     "photo_url": "https://example.com/breckenridge-community.jpg"
   },
@@ -2575,7 +2575,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 617-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Calvary Chapel serving Aurora and east Denver.",
     "photo_url": "https://example.com/calvary-aurora.jpg"
   },
@@ -2585,7 +2585,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 770-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Covenant church serving Centennial and south metro Denver.",
     "photo_url": "https://example.com/centennial-covenant.jpg"
   },
@@ -2615,7 +2615,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(970) 586-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Estes Park and Rocky Mountain National Park area.",
     "photo_url": "https://example.com/church-of-the-rockies.jpg"
   },
@@ -2655,7 +2655,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 733-3737",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist congregation serving central Denver.",
     "photo_url": "https://example.com/denver-umc.jpg"
   },
@@ -2695,7 +2695,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 451-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Thornton and north metro.",
     "photo_url": "https://example.com/first-baptist-thornton.jpg"
   },
@@ -2705,7 +2705,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 442-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Boulder.",
     "photo_url": "https://example.com/first-pres-boulder.jpg"
   },
@@ -2775,7 +2775,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 789-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Englewood and south Denver.",
     "photo_url": "https://example.com/greenwood-community.jpg"
   },
@@ -2785,7 +2785,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(970) 668-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church serving Summit County.",
     "photo_url": "https://example.com/high-country-umc.jpg"
   },
@@ -2845,7 +2845,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 255-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving north Denver suburbs.",
     "photo_url": "https://example.com/north-metro-thornton.jpg"
   },
@@ -2855,7 +2855,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 841-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Evangelical Presbyterian church in Parker.",
     "photo_url": "https://example.com/parker-epc.jpg"
   },
@@ -2865,7 +2865,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(719) 544-1111",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Southern Baptist congregation serving Pueblo.",
     "photo_url": "https://example.com/first-baptist-pueblo.jpg"
   },
@@ -2885,7 +2885,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(303) 455-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving northwest Denver.",
     "photo_url": "https://example.com/riverside-baptist-denver.jpg"
   },
@@ -2935,7 +2935,7 @@
     "state": "Colorado",
     "address": "Not publicly listed",
     "phone": "(970) 476-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Interdenominational chapel serving the Vail Valley.",
     "photo_url": "https://example.com/vail-chapel.jpg"
   },
@@ -2975,7 +2975,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed (Bridgeport area)",
     "phone": "(203) 333-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist congregation serving the Bridgeport community with worship and outreach.",
     "photo_url": "https://example.com/bridgeport-baptist.jpg"
   },
@@ -3005,7 +3005,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(860) 525-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving Hartford.",
     "photo_url": "https://example.com/central-baptist-hartford.jpg"
   },
@@ -3035,7 +3035,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 777-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church focused on community and worship in New Haven.",
     "photo_url": "https://example.com/crossroads-new-haven.jpg"
   },
@@ -3045,7 +3045,7 @@
     "state": "Connecticut",
     "address": "130 Connecticut Ave, Norwalk, CT 06854",
     "phone": "(203) 838-8476",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Vibrant Baptist church serving Norwalk with strong gospel preaching and community ministries.",
     "photo_url": "https://example.com/faith-tabernacle-norwalk.jpg"
   },
@@ -3055,7 +3055,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(860) 887-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Norwich.",
     "photo_url": "https://example.com/first-baptist-norwich.jpg"
   },
@@ -3065,7 +3065,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 288-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near New Haven.",
     "photo_url": "https://example.com/first-baptist-hamden.jpg"
   },
@@ -3075,7 +3075,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(860) 646-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Manchester.",
     "photo_url": "https://example.com/first-baptist-manchester-ct.jpg"
   },
@@ -3085,7 +3085,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 624-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving New Haven.",
     "photo_url": "https://example.com/first-baptist-new-haven.jpg"
   },
@@ -3095,7 +3095,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 756-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Waterbury with community outreach.",
     "photo_url": "https://example.com/first-baptist-waterbury.jpg"
   },
@@ -3105,7 +3105,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 227-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Westport.",
     "photo_url": "https://example.com/first-baptist-westport.jpg"
   },
@@ -3115,7 +3115,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(860) 529-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Congregational church in Wethersfield.",
     "photo_url": "https://example.com/first-church-wethersfield.jpg"
   },
@@ -3205,7 +3205,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed (Stamford area)",
     "phone": "(203) 348-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church focused on contemporary worship and community outreach in Stamford.",
     "photo_url": "https://example.com/harvest-time-stamford.jpg"
   },
@@ -3215,7 +3215,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 754-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Waterbury.",
     "photo_url": "https://example.com/immaculate-conception-waterbury.jpg"
   },
@@ -3245,7 +3245,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 655-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Darien and Noroton.",
     "photo_url": "https://example.com/noroton-presbyterian.jpg"
   },
@@ -3255,7 +3255,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(860) 528-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Congregational church serving East Hartford.",
     "photo_url": "https://example.com/south-congregational-east-hartford.jpg"
   },
@@ -3355,7 +3355,7 @@
     "state": "Connecticut",
     "address": "Not publicly listed",
     "phone": "(203) 288-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "UCC congregation in Hamden.",
     "photo_url": "https://example.com/ucc-hamden.jpg"
   },
@@ -3375,7 +3375,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 684-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Milton.",
     "photo_url": "https://example.com/asbury-umc-milton.jpg"
   },
@@ -3385,7 +3385,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 422-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Bible chapel serving Lincoln and Milford area.",
     "photo_url": "https://example.com/bethany-bible-lincoln.jpg"
   },
@@ -3395,7 +3395,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 999-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Wesleyan church in the Wilmington area.",
     "photo_url": "https://example.com/bethany-wesleyan.jpg"
   },
@@ -3405,7 +3405,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 875-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Wesleyan church in Bethel.",
     "photo_url": "https://example.com/bethel-wesleyan.jpg"
   },
@@ -3445,7 +3445,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 856-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational Bible church in Georgetown.",
     "photo_url": "https://example.com/community-bible-georgetown.jpg"
   },
@@ -3455,7 +3455,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 945-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Millsboro and Sussex County.",
     "photo_url": "https://example.com/community-of-praise-millsboro.jpg"
   },
@@ -3465,7 +3465,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 834-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Delaware City.",
     "photo_url": "https://example.com/delaware-city-presbyterian.jpg"
   },
@@ -3475,7 +3475,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 945-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving the Delmarva peninsula.",
     "photo_url": "https://example.com/delmarva-church-millsboro.jpg"
   },
@@ -3485,7 +3485,7 @@
     "state": "Delaware",
     "address": "19288 Seashore Hwy, Georgetown, DE 19947",
     "phone": "(302) 856-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church serving Georgetown and surrounding Sussex County.",
     "photo_url": "https://example.com/epworth-umc-georgetown.jpg"
   },
@@ -3495,7 +3495,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 629-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Blades.",
     "photo_url": "https://example.com/first-baptist-blades.jpg"
   },
@@ -3505,7 +3505,7 @@
     "state": "Delaware",
     "address": "110 N Bradford St, Dover, DE 19904",
     "phone": "(302) 678-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church serving the capital city of Dover.",
     "photo_url": "https://example.com/first-baptist-dover.jpg"
   },
@@ -3515,7 +3515,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 856-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church in Georgetown.",
     "photo_url": "https://example.com/first-baptist-georgetown.jpg"
   },
@@ -3525,7 +3525,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 422-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Milford.",
     "photo_url": "https://example.com/first-baptist-milford-de.jpg"
   },
@@ -3535,7 +3535,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 875-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Laurel.",
     "photo_url": "https://example.com/first-pres-laurel-de.jpg"
   },
@@ -3545,7 +3545,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 422-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Milford.",
     "photo_url": "https://example.com/first-pres-milford-de.jpg"
   },
@@ -3555,7 +3555,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 368-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Newark.",
     "photo_url": "https://example.com/first-pres-newark-de.jpg"
   },
@@ -3565,7 +3565,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 653-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Smyrna.",
     "photo_url": "https://example.com/first-umc-smyrna.jpg"
   },
@@ -3575,7 +3575,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 732-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Frankford.",
     "photo_url": "https://example.com/frankford-umc.jpg"
   },
@@ -3585,7 +3585,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 764-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist congregation in Wilmington.",
     "photo_url": "https://example.com/grace-umc-wilmington-de.jpg"
   },
@@ -3595,7 +3595,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 349-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Wesleyan church serving Greenwood and Milton.",
     "photo_url": "https://example.com/greenwood-milton-wesleyan.jpg"
   },
@@ -3635,7 +3635,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 378-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving the growing Middletown community.",
     "photo_url": "https://example.com/middletown-baptist.jpg"
   },
@@ -3645,7 +3645,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 422-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of the Nazarene in Milford.",
     "photo_url": "https://example.com/nazarene-milford.jpg"
   },
@@ -3655,7 +3655,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 368-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church near Newark.",
     "photo_url": "https://example.com/new-hope-newark-de.jpg"
   },
@@ -3665,7 +3665,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 368-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of Christ congregation near University of Delaware.",
     "photo_url": "https://example.com/newark-church-of-christ.jpg"
   },
@@ -3675,7 +3675,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 539-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Community church serving Ocean View and Bethany Beach area.",
     "photo_url": "https://example.com/ocean-view-community.jpg"
   },
@@ -3685,7 +3685,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 239-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church serving Pike Creek / Newark area.",
     "photo_url": "https://example.com/pike-creek-presbyterian.jpg"
   },
@@ -3705,7 +3705,7 @@
     "state": "Delaware",
     "address": "101 Rehoboth Ave, Rehoboth Beach, DE 19971",
     "phone": "(302) 227-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church serving the Rehoboth Beach community and seasonal visitors.",
     "photo_url": "https://example.com/rehoboth-presbyterian.jpg"
   },
@@ -3715,7 +3715,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 629-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of God congregation in Seaford.",
     "photo_url": "https://example.com/seaford-church-of-god.jpg"
   },
@@ -3725,7 +3725,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of God in Selbyville.",
     "photo_url": "https://example.com/selbyville-church-of-god.jpg"
   },
@@ -3735,7 +3735,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 378-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Middletown.",
     "photo_url": "https://example.com/st-andrews-middletown-de.jpg"
   },
@@ -3765,7 +3765,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 684-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish near Lewes and Rehoboth Beach.",
     "photo_url": "https://example.com/st-george-harbeson.jpg"
   },
@@ -3775,7 +3775,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 537-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Clarksville.",
     "photo_url": "https://example.com/st-george-clarksville.jpg"
   },
@@ -3785,7 +3785,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 368-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish near University of Delaware.",
     "photo_url": "https://example.com/st-john-neumann-newark.jpg"
   },
@@ -3805,7 +3805,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 629-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church serving Seaford.",
     "photo_url": "https://example.com/st-johns-seaford.jpg"
   },
@@ -3815,7 +3815,7 @@
     "state": "Delaware",
     "address": "1700 Limestone Rd, Wilmington, DE 19805 (Newark area)",
     "phone": "(302) 998-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Active United Methodist congregation serving the Newark/Wilmington area.",
     "photo_url": "https://example.com/st-marks-umc-newark-de.jpg"
   },
@@ -3825,7 +3825,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 945-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist congregation in Millsboro.",
     "photo_url": "https://example.com/st-marks-millsboro.jpg"
   },
@@ -3835,7 +3835,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 239-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Hockessin.",
     "photo_url": "https://example.com/st-mary-hockessin.jpg"
   },
@@ -3845,7 +3845,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 856-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Georgetown area.",
     "photo_url": "https://example.com/st-michael-georgetown-de.jpg"
   },
@@ -3855,7 +3855,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 856-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "United Methodist church in Georgetown.",
     "photo_url": "https://example.com/st-pauls-georgetown-de.jpg"
   },
@@ -3875,7 +3875,7 @@
     "state": "Delaware",
     "address": "Not publicly listed",
     "phone": "(302) 875-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Union church serving Laurel.",
     "photo_url": "https://example.com/union-church-laurel.jpg"
   },
@@ -3905,7 +3905,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(850) 477-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving the Brent area of Pensacola.",
     "photo_url": "https://example.com/brentwood-baptist-pensacola.jpg"
   },
@@ -3925,7 +3925,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(321) 254-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Calvary Chapel congregation in Melbourne.",
     "photo_url": "https://example.com/calvary-melbourne.jpg"
   },
@@ -3975,7 +3975,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(352) 368-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Ocala.",
     "photo_url": "https://example.com/church-of-hope-ocala.jpg"
   },
@@ -4015,7 +4015,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(850) 837-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Church of Christ congregation in Destin.",
     "photo_url": "https://example.com/destin-church-of-christ.jpg"
   },
@@ -4035,7 +4035,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(386) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Daytona Beach.",
     "photo_url": "https://example.com/first-baptist-daytona.jpg"
   },
@@ -4055,7 +4055,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(863) 682-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church serving Lakeland.",
     "photo_url": "https://example.com/first-baptist-lakeland.jpg"
   },
@@ -4065,7 +4065,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(321) 723-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Melbourne.",
     "photo_url": "https://example.com/first-baptist-melbourne.jpg"
   },
@@ -4095,7 +4095,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(941) 955-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Sarasota.",
     "photo_url": "https://example.com/first-baptist-sarasota.jpg"
   },
@@ -4115,7 +4115,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(772) 562-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Vero Beach.",
     "photo_url": "https://example.com/first-baptist-vero-beach.jpg"
   },
@@ -4125,7 +4125,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(850) 243-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church serving the Emerald Coast area.",
     "photo_url": "https://example.com/first-baptist-fort-walton.jpg"
   },
@@ -4145,7 +4145,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(863) 686-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Lakeland.",
     "photo_url": "https://example.com/first-pres-lakeland.jpg"
   },
@@ -4155,7 +4155,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(352) 629-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Ocala.",
     "photo_url": "https://example.com/first-pres-ocala.jpg"
   },
@@ -4225,7 +4225,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(772) 562-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Vero Beach.",
     "photo_url": "https://example.com/st-helen-vero-beach.jpg"
   },
@@ -4255,7 +4255,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(941) 955-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Catholic parish in Sarasota.",
     "photo_url": "https://example.com/st-martha-sarasota.jpg"
   },
@@ -4285,7 +4285,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(386) 252-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving Daytona Beach.",
     "photo_url": "https://example.com/st-paul-daytona.jpg"
   },
@@ -4295,7 +4295,7 @@
     "state": "Florida",
     "address": "Not publicly listed",
     "phone": "(407) 892-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish serving St. Cloud near Orlando.",
     "photo_url": "https://example.com/st-thomas-aquinas-st-cloud.jpg"
   },
@@ -4355,7 +4355,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(404) 755-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic United Methodist church in Atlanta.",
     "photo_url": "https://example.com/cascade-umc-atlanta.jpg"
   },
@@ -4405,7 +4405,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(770) 497-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Non-denominational church serving Gwinnett County.",
     "photo_url": "https://example.com/crosspointe-gwinnett.jpg"
   },
@@ -4435,7 +4435,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(229) 436-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Albany.",
     "photo_url": "https://example.com/first-baptist-albany-ga.jpg"
   },
@@ -4445,7 +4445,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(706) 543-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Athens.",
     "photo_url": "https://example.com/first-baptist-athens-ga.jpg"
   },
@@ -4465,7 +4465,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(706) 722-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Augusta.",
     "photo_url": "https://example.com/first-baptist-augusta.jpg"
   },
@@ -4495,7 +4495,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(478) 746-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Baptist church in Macon.",
     "photo_url": "https://example.com/first-baptist-macon.jpg"
   },
@@ -4525,7 +4525,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(229) 242-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Baptist church in Valdosta.",
     "photo_url": "https://example.com/first-baptist-valdosta.jpg"
   },
@@ -4535,7 +4535,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(478) 923-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church near Robins Air Force Base.",
     "photo_url": "https://example.com/first-baptist-warner-robins.jpg"
   },
@@ -4555,7 +4555,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(770) 478-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Baptist church serving Jonesboro and Clayton County.",
     "photo_url": "https://example.com/first-baptist-jonesboro-ga.jpg"
   },
@@ -4565,7 +4565,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(706) 543-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Presbyterian church in Athens near UGA.",
     "photo_url": "https://example.com/first-pres-athens-ga.jpg"
   },
@@ -4575,7 +4575,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(770) 427-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Historic Methodist church in Marietta.",
     "photo_url": "https://example.com/first-umc-marietta.jpg"
   },
@@ -4645,7 +4645,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(770) 963-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Large Southern Baptist church serving Gwinnett County and north metro Atlanta.",
     "photo_url": "https://example.com/north-metro-first-baptist.jpg"
   },
@@ -4705,7 +4705,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(678) 474-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Catholic parish in Johns Creek.",
     "photo_url": "https://example.com/st-benedict-johns-creek.jpg"
   },
@@ -4715,7 +4715,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(404) 873-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Episcopal church in Atlanta.",
     "photo_url": "https://example.com/st-lukes-atlanta.jpg"
   },
@@ -4735,7 +4735,7 @@
     "state": "Georgia",
     "address": "Not publicly listed",
     "phone": "(404) 355-7777",
-    "website": "Not publicly listed",
+    "website": null,
     "short_description": "Presbyterian church in Atlanta.",
     "photo_url": "https://example.com/westminster-pres-atlanta.jpg"
   }

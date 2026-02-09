@@ -494,12 +494,35 @@ export function AppProvider({ children }) {
   }
 
   // =========================================================================
-  // CHURCH SEARCH (client-side filtering)
+  // CHURCH SEARCH (server-side with pagination)
   // =========================================================================
-  // Churches are loaded once from the API. Filtering happens locally
-  // as the user types, which gives instant results without API calls
-  // on every keystroke.
+  // With 1,500+ real churches, search is done server-side.
+  // Returns 5 results at a time with a "show more" option.
 
+  const [churchSearchResults, setChurchSearchResults] = useState([])
+  const [churchSearchTotal, setChurchSearchTotal] = useState(0)
+  const [churchSearchHasMore, setChurchSearchHasMore] = useState(false)
+
+  async function searchChurches(query, offset = 0) {
+    if (!query.trim()) {
+      setChurchSearchResults([])
+      setChurchSearchTotal(0)
+      setChurchSearchHasMore(false)
+      return
+    }
+    const data = await api.get(`/churches?q=${encodeURIComponent(query)}&limit=5&offset=${offset}`)
+    if (offset === 0) {
+      // New search — replace results
+      setChurchSearchResults(data.churches)
+    } else {
+      // "Show more" — append to existing results
+      setChurchSearchResults(prev => [...prev, ...data.churches])
+    }
+    setChurchSearchTotal(data.total)
+    setChurchSearchHasMore(data.hasMore)
+  }
+
+  // Keep the old filtered list for backwards compatibility (favorites filter, etc.)
   const filteredChurches = churchSearchQuery
     ? churches.filter(c =>
         c.city.toLowerCase().includes(churchSearchQuery.toLowerCase()) ||
@@ -699,6 +722,10 @@ export function AppProvider({ children }) {
     allChurches: churches,
     churchSearchQuery,
     setChurchSearchQuery,
+    searchChurches,
+    churchSearchResults,
+    churchSearchTotal,
+    churchSearchHasMore,
 
     // Notes
     notes,

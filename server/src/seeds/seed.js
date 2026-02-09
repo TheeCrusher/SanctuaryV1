@@ -148,8 +148,8 @@ async function seed() {
     }
     console.log('')
 
-    // ---- Step 5: Insert churches ----
-    console.log('⛪ Inserting churches...')
+    // ---- Step 5: Insert sample churches (original 5 for demo data) ----
+    console.log('⛪ Inserting sample churches...')
     for (const church of CHURCHES) {
       await client.query(
         `INSERT INTO churches (name, address, city, zip, sunday_school, recommended_ages,
@@ -165,6 +165,40 @@ async function seed() {
       )
       console.log(`   ✅ ${church.name} (${church.city})`)
     }
+
+    // ---- Step 5b: Insert real churches from JSON files ----
+    // These are 1,575 real churches across all 50 US states,
+    // stored in 5 JSON files (10 states each, alphabetically).
+    console.log('\n⛪ Loading real churches from JSON files...')
+    const churchesDir = join(__dirname, 'churches')
+    const churchFiles = ['churches_1.json', 'churches_2.json', 'churches_3.json', 'churches_4.json', 'churches_5.json']
+    let realChurchCount = 0
+
+    for (const file of churchFiles) {
+      const filePath = join(churchesDir, file)
+      const churches = JSON.parse(readFileSync(filePath, 'utf8'))
+
+      for (const c of churches) {
+        // Extract zip code from address (e.g., "Nashville, TN 37207" → "37207")
+        const zipMatch = c.address?.match(/(\d{5})/) || []
+        const zip = zipMatch[1] || '00000'
+
+        // Truncate phone to 20 chars if it has extra text
+        let phone = c.phone || null
+        if (phone && phone.length > 20) {
+          phone = phone.replace(/\s*\(.*$/, '').substring(0, 20)
+        }
+
+        await client.query(
+          `INSERT INTO churches (name, address, city, state, zip, phone, website, short_description, photo_url)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+          [c.name, c.address, c.city, c.state, zip, phone, c.website || null, c.short_description || null, c.photo_url || null]
+        )
+        realChurchCount++
+      }
+      console.log(`   ✅ ${file}: ${churches.length} churches loaded`)
+    }
+    console.log(`   ✅ Total real churches: ${realChurchCount}`)
     console.log('')
 
     // ---- Step 6: Insert Bible quotes ----
@@ -389,7 +423,7 @@ async function seed() {
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     console.log(`   Users:          ${2 + AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
-    console.log(`   Churches:       ${CHURCHES.length}`)
+    console.log(`   Churches:       ${CHURCHES.length} sample + ${realChurchCount} real`)
     console.log(`   Quotes:         ${BIBLE_QUOTES.length}`)
     console.log(`   Appointments:   ${SAMPLE_APPOINTMENTS.length}`)
     console.log(`   Verses:         ${SCRIPTURE_VERSES.length}`)
