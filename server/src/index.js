@@ -25,7 +25,6 @@ import quoteRoutes from './routes/quotes.js'
 import noteRoutes from './routes/notes.js'
 import favoriteRoutes from './routes/favorites.js'
 import scriptureRoutes from './routes/scripture.js'
-import reviewRoutes from './routes/reviews.js'
 import prayerRoutes from './routes/prayers.js'
 import bibleRoutes from './routes/bible.js'
 import communityRoutes from './routes/community.js'
@@ -93,7 +92,6 @@ app.use('/api/quotes', quoteRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/favorites', favoriteRoutes)
 app.use('/api/scripture', scriptureRoutes)
-app.use('/api/churches', reviewRoutes)
 app.use('/api/prayers', prayerRoutes)
 app.use('/api/bible', bibleRoutes)
 app.use('/api/community', communityRoutes)

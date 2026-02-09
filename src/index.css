@@ -14,7 +14,7 @@
    9. Dashboard
    10. Empty States
    11. Appointments / Calendar
-   12. Messages & Chat
+   12. Conversations, Chat & Community
    13. Churches
    14. Profile
    15. Bottom Navigation
@@ -889,7 +889,7 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   12. MESSAGES & CHAT
+   12. CONVERSATIONS, CHAT & COMMUNITY
    --------------------------------------------------------------------------- */
 .conv-row {
   display: flex;

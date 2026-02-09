@@ -6,7 +6,6 @@
 export { default as LoginScreen } from './LoginScreen'
 export { default as Dashboard } from './Dashboard'
 export { default as Appointments } from './Appointments'
-export { default as Messages } from './Messages'
 export { default as Chat } from './Chat'
 export { default as Churches } from './Churches'
 export { default as ChurchDetail } from './ChurchDetail'
