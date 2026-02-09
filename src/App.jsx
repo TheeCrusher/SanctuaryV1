@@ -39,6 +39,8 @@ import CalendarView from './components/screens/CalendarView'
 import BibleSelect from './components/screens/BibleSelect'
 import BibleReader from './components/screens/BibleReader'
 import CommunityScreen from './components/screens/CommunityScreen'
+import EventsScreen from './components/screens/EventsScreen'
+import EventDetail from './components/screens/EventDetail'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -251,6 +253,24 @@ function App() {
           element={
             <ProtectedRoute>
               <PrayerBoard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/events"
+          element={
+            <ProtectedRoute>
+              <EventsScreen />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/events/:id"
+          element={
+            <ProtectedRoute>
+              <EventDetail />
             </ProtectedRoute>
           }
         />

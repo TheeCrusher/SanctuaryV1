@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, TappableName } from '../common'
-import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2, Users } from 'lucide-react'
+import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2, Users, Megaphone } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function ChurchDetail() {
@@ -29,11 +29,20 @@ function ChurchDetail() {
   const [editingReview, setEditingReview] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
-  // Load reviews and members when component mounts
+  // Bulletin board state
+  const [announcements, setAnnouncements] = useState([])
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false)
+  const [annTitle, setAnnTitle] = useState('')
+  const [annMessage, setAnnMessage] = useState('')
+  const [annCategory, setAnnCategory] = useState('Announcement')
+  const [annSubmitting, setAnnSubmitting] = useState(false)
+
+  // Load reviews, members, and announcements when component mounts
   useEffect(() => {
     if (church) {
       loadReviews()
       loadMembers()
+      loadAnnouncements()
     }
   }, [church?.id])
 
@@ -52,6 +61,36 @@ function ChurchDetail() {
       setMembers(data)
     } catch (error) {
       console.error('Failed to load members:', error)
+    }
+  }
+
+  async function loadAnnouncements() {
+    try {
+      const { announcements: data } = await api.get(`/churches/${id}/announcements`)
+      setAnnouncements(data)
+    } catch (error) {
+      console.error('Failed to load announcements:', error)
+    }
+  }
+
+  async function handleCreateAnnouncement() {
+    if (!annTitle.trim() || !annMessage.trim()) return
+    setAnnSubmitting(true)
+    try {
+      await api.post(`/churches/${id}/announcements`, {
+        title: annTitle.trim(),
+        message: annMessage.trim(),
+        category: annCategory
+      })
+      setAnnTitle('')
+      setAnnMessage('')
+      setAnnCategory('Announcement')
+      setShowAnnouncementModal(false)
+      loadAnnouncements()
+    } catch (error) {
+      console.error('Failed to create announcement:', error)
+    } finally {
+      setAnnSubmitting(false)
     }
   }
 
@@ -250,6 +289,43 @@ function ChurchDetail() {
           </div>
         )}
 
+        {/* Bulletin Board */}
+        {(announcements.length > 0 || user?.role === 'guide') && (
+          <div className="bulletin-section">
+            <div className="section-header">
+              <h3 className="section-title">
+                <Megaphone size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                Bulletin Board
+              </h3>
+              {user?.role === 'guide' && (
+                <button className="view-all-btn" onClick={() => setShowAnnouncementModal(true)}>
+                  + Post
+                </button>
+              )}
+            </div>
+            {announcements.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '16px 0', color: 'var(--text-faint)', fontSize: '14px' }}>
+                No announcements yet
+              </div>
+            ) : (
+              announcements.map(ann => (
+                <div key={ann.id} className="bulletin-card">
+                  <div className="bulletin-card-header">
+                    <span className="bulletin-card-title">{ann.title}</span>
+                    <span className={`bulletin-category bulletin-category-${ann.category.toLowerCase().replace(/[\s/]+/g, '-')}`}>
+                      {ann.category}
+                    </span>
+                  </div>
+                  <div className="bulletin-card-message">{ann.message}</div>
+                  <div className="bulletin-card-meta">
+                    {ann.authorName} · {relativeTime(ann.createdAt)}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
         {/* Reviews Section */}
         <div className="section-header">
           <h3 className="section-title">Reviews</h3>
@@ -328,6 +404,58 @@ function ChurchDetail() {
               Delete Review
             </button>
           )}
+        </Modal>
+      )}
+
+      {/* Create Announcement Modal */}
+      {showAnnouncementModal && (
+        <Modal onClose={() => setShowAnnouncementModal(false)}>
+          <div className="modal-title">Post Announcement</div>
+
+          <div className="create-announcement-form">
+            <div>
+              <label>Title</label>
+              <input
+                type="text"
+                value={annTitle}
+                onChange={e => setAnnTitle(e.target.value)}
+                placeholder="Announcement title"
+                maxLength={200}
+              />
+            </div>
+
+            <div>
+              <label>Message</label>
+              <textarea
+                value={annMessage}
+                onChange={e => setAnnMessage(e.target.value)}
+                placeholder="What would you like to share?"
+                maxLength={1000}
+              />
+            </div>
+
+            <div>
+              <label>Category</label>
+              <select value={annCategory} onChange={e => setAnnCategory(e.target.value)}>
+                <option value="Announcement">Announcement</option>
+                <option value="Upcoming Sermon">Upcoming Sermon</option>
+                <option value="Schedule Change">Schedule Change</option>
+                <option value="Church Need">Church Need</option>
+                <option value="Event">Event</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="modal-buttons" style={{ marginTop: '16px' }}>
+            <button className="btn-secondary" onClick={() => setShowAnnouncementModal(false)}>Cancel</button>
+            <button
+              className="btn-primary"
+              onClick={handleCreateAnnouncement}
+              disabled={!annTitle.trim() || !annMessage.trim() || annSubmitting}
+            >
+              {annSubmitting ? 'Posting...' : 'Post'}
+            </button>
+          </div>
         </Modal>
       )}
     </div>

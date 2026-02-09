@@ -350,8 +350,11 @@ CREATE TABLE IF NOT EXISTS prayer_requests (
                 CHECK (category IN ('Health', 'Family', 'Guidance', 'Gratitude', 'Financial', 'Other')),
   is_anonymous  BOOLEAN DEFAULT false,
   prayer_count  INTEGER DEFAULT 0,
-  status        VARCHAR(20) DEFAULT 'active'
-                CHECK (status IN ('active', 'answered')),
+  status          VARCHAR(20) DEFAULT 'active'
+                  CHECK (status IN ('active', 'answered')),
+  type            VARCHAR(20) NOT NULL DEFAULT 'prayer'
+                  CHECK (type IN ('prayer', 'testimony')),
+  linked_prayer_id INTEGER REFERENCES prayer_requests(id) ON DELETE SET NULL,
   created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -412,3 +415,65 @@ CREATE TABLE IF NOT EXISTS user_bible_bookmarks (
 );
 
 CREATE INDEX IF NOT EXISTS idx_bible_bookmarks_user ON user_bible_bookmarks(user_id);
+
+-- ============================================================
+-- EVENTS TABLE
+-- ============================================================
+-- Community events that users can browse, create, and RSVP to.
+-- Optionally linked to a church.
+--
+-- Maps to: /api/events endpoints
+
+CREATE TABLE IF NOT EXISTS events (
+  id          SERIAL PRIMARY KEY,
+  title       VARCHAR(200) NOT NULL,
+  description TEXT,
+  date_time   TIMESTAMP NOT NULL,
+  location    VARCHAR(300),
+  category    VARCHAR(50) NOT NULL DEFAULT 'Social'
+              CHECK (category IN ('Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor')),
+  created_by  INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  church_id   INTEGER REFERENCES churches(id) ON DELETE SET NULL,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_events_date ON events(date_time);
+CREATE INDEX IF NOT EXISTS idx_events_church ON events(church_id);
+
+-- ============================================================
+-- EVENT RSVPS TABLE
+-- ============================================================
+-- Tracks which users have RSVP'd to which events.
+-- One RSVP per user per event (UNIQUE constraint).
+
+CREATE TABLE IF NOT EXISTS event_rsvps (
+  id         SERIAL PRIMARY KEY,
+  event_id   INTEGER NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(event_id, user_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_event_rsvps_event ON event_rsvps(event_id);
+CREATE INDEX IF NOT EXISTS idx_event_rsvps_user ON event_rsvps(user_id);
+
+-- ============================================================
+-- CHURCH ANNOUNCEMENTS TABLE
+-- ============================================================
+-- Bulletin board announcements posted by guides for a church.
+-- Categories help organize announcement types.
+--
+-- Maps to: /api/churches/:id/announcements endpoints
+
+CREATE TABLE IF NOT EXISTS church_announcements (
+  id         SERIAL PRIMARY KEY,
+  church_id  INTEGER NOT NULL REFERENCES churches(id) ON DELETE CASCADE,
+  author_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title      VARCHAR(200) NOT NULL,
+  message    TEXT NOT NULL,
+  category   VARCHAR(50) NOT NULL DEFAULT 'Announcement'
+             CHECK (category IN ('Announcement', 'Upcoming Sermon', 'Schedule Change', 'Church Need', 'Event')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_announcements_church ON church_announcements(church_id);

@@ -28,7 +28,8 @@ router.get('/', async (req, res, next) => {
       pendingSessionsResult,
       upcomingResult,
       communityActivityResult,
-      statsResult
+      statsResult,
+      upcomingEventsResult
     ] = await Promise.all([
 
       // 1. Unread messages count
@@ -114,6 +115,19 @@ router.get('/', async (req, res, next) => {
          FROM appointments
          WHERE (guide_id = $1 OR seeker_id = $1)`,
         [userId]
+      ),
+
+      // 8. Upcoming RSVP'd events (next 5)
+      pool.query(
+        `SELECT e.id, e.title, e.date_time, e.location, e.category,
+                c.name AS church_name
+         FROM events e
+         JOIN event_rsvps r ON r.event_id = e.id
+         LEFT JOIN churches c ON c.id = e.church_id
+         WHERE r.user_id = $1 AND e.date_time > NOW()
+         ORDER BY e.date_time ASC
+         LIMIT 5`,
+        [userId]
       )
     ])
 
@@ -154,7 +168,15 @@ router.get('/', async (req, res, next) => {
         upcoming: statsResult.rows[0].upcoming,
         completed: statsResult.rows[0].completed,
         uniqueSeekers: parseInt(statsResult.rows[0].unique_seekers)
-      }
+      },
+      upcomingEvents: upcomingEventsResult.rows.map(e => ({
+        id: e.id,
+        title: e.title,
+        dateTime: e.date_time,
+        location: e.location,
+        category: e.category,
+        churchName: e.church_name
+      }))
     })
   } catch (error) {
     next(error)

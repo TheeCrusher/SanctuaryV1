@@ -218,3 +218,116 @@ export const SAMPLE_APPOINTMENTS = [
     status: 'pending'
   }
 ]
+
+// ============================================================
+// Community Events
+// ============================================================
+// Sample events for the Community Events feature.
+// creatorKey maps to userIdMap in seed.js (e.g., 'guide', 'seeker', 'maria', or a full name)
+// churchName maps to churchIdMap (null = informal event, no church)
+export const SAMPLE_EVENTS = [
+  {
+    title: 'Community Prayer Walk',
+    description: 'Join us for a peaceful prayer walk through Grant Park. All are welcome! We will meet at the main fountain and walk together for about an hour.',
+    dateTime: '2026-02-15 10:00:00',
+    location: 'Grant Park, Chicago',
+    category: 'Worship',
+    creatorKey: 'guide',
+    churchName: 'Willow Creek Church'
+  },
+  {
+    title: 'Youth Game Night',
+    description: 'Fun-filled evening with board games, snacks, and fellowship for teens and young adults ages 13-25.',
+    dateTime: '2026-02-20 18:30:00',
+    location: 'Holy Name Cathedral Hall',
+    category: 'Youth',
+    creatorKey: 'maria',
+    churchName: 'Holy Name Cathedral'
+  },
+  {
+    title: 'Neighborhood Cleanup',
+    description: 'Let\'s serve our community! Gloves and bags provided. Meet in the church parking lot.',
+    dateTime: '2026-02-22 09:00:00',
+    location: 'Willow Creek Church Parking Lot',
+    category: 'Service/Mission',
+    creatorKey: 'Grace Okafor',
+    churchName: 'Willow Creek Church'
+  },
+  {
+    title: 'Hiking & Devotional',
+    description: 'A morning hike followed by a short outdoor devotional. Moderate trail, about 3 miles. Bring water!',
+    dateTime: '2026-03-01 08:00:00',
+    location: 'Starved Rock State Park',
+    category: 'Active/Outdoor',
+    creatorKey: 'david',
+    churchName: null
+  },
+  {
+    title: 'Potluck Fellowship Dinner',
+    description: 'Bring a dish to share and enjoy an evening of food and community. Sign up sheet for dishes in the lobby.',
+    dateTime: '2026-02-28 17:00:00',
+    location: 'Willow Creek Church Fellowship Hall',
+    category: 'Social',
+    creatorKey: 'guide',
+    churchName: 'Willow Creek Church'
+  }
+]
+
+// ============================================================
+// Church Announcements (Bulletin Board)
+// ============================================================
+// Seed announcements for the bulletin board on ChurchDetail.
+// authorKey maps to userIdMap in seed.js.
+// Only guides should post announcements in the app, but seed data sets them up.
+export const SAMPLE_ANNOUNCEMENTS = [
+  {
+    churchName: 'Willow Creek Church',
+    authorKey: 'guide',
+    title: 'New Service Time Starting March',
+    message: 'Beginning March 1st, our Sunday morning service times will change to 9:30 AM and 11:30 AM. Wednesday evening services remain at 7:00 PM.',
+    category: 'Schedule Change'
+  },
+  {
+    churchName: 'Willow Creek Church',
+    authorKey: 'guide',
+    title: 'Volunteers Needed for Spring Festival',
+    message: 'We need 20 volunteers for our annual Spring Festival on March 15th. Sign up at the welcome desk or contact the office.',
+    category: 'Church Need'
+  },
+  {
+    churchName: 'Holy Name Cathedral',
+    authorKey: 'maria',
+    title: 'Youth Retreat Registration Open',
+    message: 'Registration is now open for our spring youth retreat, April 10-12. Cost is $75 per student. Scholarships available.',
+    category: 'Announcement'
+  },
+  {
+    churchName: 'Willow Creek Church',
+    authorKey: 'Grace Okafor',
+    title: 'This Sunday: Guest Speaker Rev. Thomas',
+    message: 'We are excited to welcome Reverend James Thomas as our guest speaker this Sunday. He will be sharing on "Finding Rest in a Restless World."',
+    category: 'Upcoming Sermon'
+  }
+]
+
+// ============================================================
+// Testimonies (Praise Reports)
+// ============================================================
+// These are seeded as prayer_requests with type='testimony'.
+// They appear in the "Testimonies" tab on the Prayer Board.
+export const SAMPLE_TESTIMONIES = [
+  {
+    title: 'God answered my prayer for healing!',
+    description: 'After months of treatment and prayer from this community, I am officially in remission. Thank you all for your prayers and support. God is faithful!',
+    category: 'Gratitude',
+    creatorKey: 'Sarah Johnson',
+    isAnonymous: false
+  },
+  {
+    title: 'New job after months of searching',
+    description: 'I posted a prayer request here 3 months ago about finding employment. I am happy to share that I received an offer this week for my dream position. Never stop praying!',
+    category: 'Gratitude',
+    creatorKey: 'seeker',
+    isAnonymous: false
+  }
+]

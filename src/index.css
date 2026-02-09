@@ -4743,3 +4743,573 @@ textarea {
 [data-theme="dark"] .profile-limited-hint {
   background: rgba(99, 102, 241, 0.15);
 }
+
+/* =============================================================================
+   34. EVENTS SCREEN
+   ============================================================================= */
+
+.events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.events-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.events-create-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Category filter tabs — horizontal scrollable pills */
+.events-category-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.events-category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.events-category-tab {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.events-category-tab.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* Event cards */
+.event-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.event-card:active {
+  transform: scale(0.98);
+}
+
+.event-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.event-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.event-card-category {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.event-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.event-card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.event-card-meta-row svg {
+  flex-shrink: 0;
+  color: var(--text-faint);
+}
+
+.event-card-church {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.event-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+.event-rsvp-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.event-rsvp-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.event-rsvp-btn.active {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+/* Event Detail screen */
+.event-detail-screen {
+  padding-bottom: 100px;
+}
+
+.event-detail-card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+}
+
+.event-detail-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.event-detail-category {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  margin-bottom: 16px;
+}
+
+.event-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.event-detail-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.event-detail-info-row svg {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.event-detail-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.event-detail-creator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.event-detail-rsvp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--brand-primary);
+  color: white;
+  margin-bottom: 16px;
+}
+
+.event-detail-rsvp-btn.active {
+  background: #10b981;
+}
+
+/* Attendees section */
+.event-attendees-section {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+}
+
+.event-attendees-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.event-attendee-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.event-attendee-row + .event-attendee-row {
+  border-top: 1px solid var(--border-light);
+}
+
+.event-attendee-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.event-attendee-role {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Create Event Modal form */
+.create-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-event-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.create-event-form input,
+.create-event-form textarea,
+.create-event-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.create-event-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .event-card-category {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .event-detail-category {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .event-rsvp-btn:not(.active) {
+  background: var(--bg-muted);
+  border-color: var(--border-light);
+}
+
+/* =============================================================================
+   35. TESTIMONIES (Prayer Board Extension)
+   ============================================================================= */
+
+/* Top toggle — reuses community-top-toggle pattern */
+.prayer-top-toggle {
+  display: flex;
+  background: var(--bg-muted);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.prayer-top-toggle button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prayer-top-toggle button.active {
+  background: var(--brand-primary);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Celebrate button (amber) — replaces blue "Prayed" button for testimonies */
+.celebrate-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.celebrate-btn:hover {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.celebrate-btn.active {
+  color: #f59e0b;
+}
+
+.celebrate-btn.active svg {
+  fill: #f59e0b;
+}
+
+/* Linked prayer reference on testimony cards */
+.testimony-linked {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.testimony-linked svg {
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .testimony-linked {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+/* =============================================================================
+   36. CHURCH BULLETIN BOARD
+   ============================================================================= */
+
+.bulletin-section {
+  margin-top: 24px;
+}
+
+.bulletin-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+}
+
+.bulletin-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bulletin-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.bulletin-category {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Category colors */
+.bulletin-category-announcement {
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+}
+
+.bulletin-category-upcoming-sermon {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+.bulletin-category-schedule-change {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.bulletin-category-church-need {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.bulletin-category-event {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.bulletin-card-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.bulletin-card-meta {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Create announcement form */
+.create-announcement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-announcement-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.create-announcement-form input,
+.create-announcement-form textarea,
+.create-announcement-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.create-announcement-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .bulletin-category-announcement {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .bulletin-category-upcoming-sermon {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+}
+
+[data-theme="dark"] .bulletin-category-schedule-change {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .bulletin-category-church-need {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .bulletin-category-event {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+}

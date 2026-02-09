@@ -28,7 +28,10 @@ import {
   SEED_CHURCH_FAVORITES,
   CHURCHES,
   BIBLE_QUOTES,
-  SAMPLE_APPOINTMENTS
+  SAMPLE_APPOINTMENTS,
+  SAMPLE_EVENTS,
+  SAMPLE_ANNOUNCEMENTS,
+  SAMPLE_TESTIMONIES
 } from './seedData.js'
 
 import { SCRIPTURE_VERSES, READING_PLANS } from './scriptureData.js'
@@ -55,6 +58,9 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS church_announcements CASCADE;
+      DROP TABLE IF EXISTS event_rsvps CASCADE;
+      DROP TABLE IF EXISTS events CASCADE;
       DROP TABLE IF EXISTS user_connections CASCADE;
       DROP TABLE IF EXISTS user_bible_bookmarks CASCADE;
       DROP TABLE IF EXISTS user_bible_highlights CASCADE;
@@ -82,7 +88,7 @@ async function seed() {
     const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
     const schema = readFileSync(schemaPath, 'utf8')
     await client.query(schema)
-    console.log('   ✅ 20 tables created\n')
+    console.log('   ✅ 23 tables created\n')
 
     // ---- Step 3: Insert test user ----
     console.log('👤 Creating test user...')
@@ -316,16 +322,83 @@ async function seed() {
       }
     }
 
+    // ---- Step 12: Insert sample events ----
+    console.log('\n📅 Inserting community events...')
+    for (const evt of SAMPLE_EVENTS) {
+      const creatorId = userIdMap[evt.creatorKey]
+      const churchId = evt.churchName ? churchIdMap[evt.churchName] : null
+      const result = await client.query(
+        `INSERT INTO events (title, description, date_time, location, category, created_by, church_id)
+         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        [evt.title, evt.description, evt.dateTime, evt.location, evt.category, creatorId, churchId]
+      )
+      // Auto-RSVP the creator
+      await client.query(
+        'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2)',
+        [result.rows[0].id, creatorId]
+      )
+      console.log(`   ✅ ${evt.title} (${evt.category})`)
+    }
+
+    // Also RSVP the guide and seeker to a couple extra events for demo variety
+    // Event IDs are sequential: 1=Prayer Walk, 2=Game Night, 3=Cleanup, 4=Hiking, 5=Potluck
+    // RSVP seeker (Jordan) to Prayer Walk (event 1)
+    const eventsResult = await client.query('SELECT id FROM events ORDER BY id')
+    const eventIds = eventsResult.rows.map(r => r.id)
+    await client.query(
+      'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+      [eventIds[0], seekerId]
+    )
+    // RSVP seeker to Potluck (event 5)
+    await client.query(
+      'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+      [eventIds[4], seekerId]
+    )
+    // RSVP guide to Game Night (event 2)
+    await client.query(
+      'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+      [eventIds[1], guideId]
+    )
+    console.log('   ✅ Extra RSVPs for guide and seeker')
+
+    // ---- Step 13: Insert sample announcements ----
+    console.log('\n📢 Inserting church announcements...')
+    for (const ann of SAMPLE_ANNOUNCEMENTS) {
+      const authorId = userIdMap[ann.authorKey]
+      const churchId = churchIdMap[ann.churchName]
+      await client.query(
+        `INSERT INTO church_announcements (church_id, author_id, title, message, category)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [churchId, authorId, ann.title, ann.message, ann.category]
+      )
+      console.log(`   ✅ ${ann.title} (${ann.category})`)
+    }
+
+    // ---- Step 14: Insert sample testimonies ----
+    console.log('\n🎉 Inserting testimonies...')
+    for (const test of SAMPLE_TESTIMONIES) {
+      const userId = userIdMap[test.creatorKey]
+      await client.query(
+        `INSERT INTO prayer_requests (user_id, title, description, category, is_anonymous, type)
+         VALUES ($1, $2, $3, $4, $5, 'testimony')`,
+        [userId, test.title, test.description, test.category, test.isAnonymous]
+      )
+      console.log(`   ✅ ${test.title}`)
+    }
+
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    console.log(`   Users:        ${2 + AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
-    console.log(`   Churches:     ${CHURCHES.length}`)
-    console.log(`   Quotes:       ${BIBLE_QUOTES.length}`)
-    console.log(`   Appointments: ${SAMPLE_APPOINTMENTS.length}`)
-    console.log(`   Verses:       ${SCRIPTURE_VERSES.length}`)
-    console.log(`   Plans:        ${READING_PLANS.length} (${totalPlanDays} days)`)
-    console.log(`   Connections:  6 (5 accepted, 1 pending)`)
-    console.log(`   Favorites:    ${favCount} church favorites`)
+    console.log(`   Users:          ${2 + AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
+    console.log(`   Churches:       ${CHURCHES.length}`)
+    console.log(`   Quotes:         ${BIBLE_QUOTES.length}`)
+    console.log(`   Appointments:   ${SAMPLE_APPOINTMENTS.length}`)
+    console.log(`   Verses:         ${SCRIPTURE_VERSES.length}`)
+    console.log(`   Plans:          ${READING_PLANS.length} (${totalPlanDays} days)`)
+    console.log(`   Connections:    6 (5 accepted, 1 pending)`)
+    console.log(`   Favorites:      ${favCount} church favorites`)
+    console.log(`   Events:         ${SAMPLE_EVENTS.length} (+ extra RSVPs)`)
+    console.log(`   Announcements:  ${SAMPLE_ANNOUNCEMENTS.length}`)
+    console.log(`   Testimonies:    ${SAMPLE_TESTIMONIES.length}`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {

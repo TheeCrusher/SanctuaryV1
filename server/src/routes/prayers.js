@@ -1,9 +1,10 @@
 // ============================================================
 // Prayer Request Routes
 // ============================================================
-// GET    /api/prayers              - List active prayer requests
-// POST   /api/prayers              - Create new prayer request
-// POST   /api/prayers/:id/pray     - Pray for a request
+// GET    /api/prayers              - List prayer requests or testimonies (?type=prayer|testimony)
+// POST   /api/prayers              - Create new prayer request or testimony
+// GET    /api/prayers/user-requests - Get current user's prayer requests (for linking testimonies)
+// POST   /api/prayers/:id/pray     - Pray for a request / Celebrate a testimony
 // GET    /api/prayers/:id/comments - Get comments for a request
 // POST   /api/prayers/:id/comments - Add comment
 // PATCH  /api/prayers/:id          - Mark as answered (owner only)
@@ -18,25 +19,35 @@ const router = Router()
 router.use(authenticate)
 
 // GET /api/prayers
+// Supports ?type=prayer (default) or ?type=testimony
 router.get('/', async (req, res, next) => {
   try {
-    const { category, status } = req.query
+    const { category, status, type } = req.query
+    const requestType = type === 'testimony' ? 'testimony' : 'prayer'
 
     let query = `
       SELECT pr.id, pr.title, pr.description, pr.category, pr.is_anonymous,
-             pr.prayer_count, pr.status, pr.created_at, pr.user_id,
+             pr.prayer_count, pr.status, pr.type, pr.linked_prayer_id,
+             pr.created_at, pr.user_id,
              u.name as user_name, u.avatar as user_avatar, u.photo_url as user_photo,
              (SELECT COUNT(*) FROM prayer_interactions
               WHERE request_id = pr.id AND type = 'comment') as comment_count,
              EXISTS(SELECT 1 FROM prayer_interactions
-              WHERE request_id = pr.id AND user_id = $1 AND type = 'prayed') as has_prayed
+              WHERE request_id = pr.id AND user_id = $1 AND type = 'prayed') as has_prayed,
+             lp.title as linked_prayer_title
       FROM prayer_requests pr
       JOIN users u ON pr.user_id = u.id
+      LEFT JOIN prayer_requests lp ON lp.id = pr.linked_prayer_id
     `
 
     const conditions = []
     const values = [req.user.id]
     let paramCount = 1
+
+    // Filter by type (prayer or testimony)
+    paramCount++
+    conditions.push(`pr.type = $${paramCount}`)
+    values.push(requestType)
 
     if (status) {
       paramCount++
@@ -69,6 +80,9 @@ router.get('/', async (req, res, next) => {
       prayerCount: r.prayer_count,
       commentCount: parseInt(r.comment_count),
       status: r.status,
+      type: r.type,
+      linkedPrayerId: r.linked_prayer_id,
+      linkedPrayerTitle: r.linked_prayer_title,
       createdAt: r.created_at,
       userId: r.user_id,
       userName: r.is_anonymous ? 'Anonymous' : r.user_name,
@@ -84,9 +98,11 @@ router.get('/', async (req, res, next) => {
 })
 
 // POST /api/prayers
+// Accepts optional type ('prayer' or 'testimony') and linkedPrayerId
 router.post('/', async (req, res, next) => {
   try {
-    const { title, description, category, isAnonymous } = req.body
+    const { title, description, category, isAnonymous, type, linkedPrayerId } = req.body
+    const requestType = type === 'testimony' ? 'testimony' : 'prayer'
 
     if (!title || !category) {
       return res.status(400).json({ error: 'Title and category are required.' })
@@ -98,10 +114,10 @@ router.post('/', async (req, res, next) => {
     }
 
     const result = await pool.query(
-      `INSERT INTO prayer_requests (user_id, title, description, category, is_anonymous)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO prayer_requests (user_id, title, description, category, is_anonymous, type, linked_prayer_id)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING *`,
-      [req.user.id, title, description || null, category, isAnonymous || false]
+      [req.user.id, title, description || null, category, isAnonymous || false, requestType, linkedPrayerId || null]
     )
 
     const r = result.rows[0]
@@ -115,11 +131,37 @@ router.post('/', async (req, res, next) => {
         prayerCount: r.prayer_count,
         commentCount: 0,
         status: r.status,
+        type: r.type,
+        linkedPrayerId: r.linked_prayer_id,
         createdAt: r.created_at,
         userId: r.user_id,
         hasPrayed: false
       }
     })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET /api/prayers/user-requests (MUST be before /:id routes)
+// Returns the current user's own prayer requests for the "link to prayer" dropdown
+router.get('/user-requests', async (req, res, next) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, title, created_at
+       FROM prayer_requests
+       WHERE user_id = $1 AND type = 'prayer'
+       ORDER BY created_at DESC`,
+      [req.user.id]
+    )
+
+    const requests = result.rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      createdAt: r.created_at
+    }))
+
+    res.json({ requests })
   } catch (error) {
     next(error)
   }

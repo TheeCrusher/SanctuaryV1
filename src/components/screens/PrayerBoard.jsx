@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Modal, Avatar, EmptyState, TappableName } from '../common'
-import { ArrowLeft, HandHeart, MessageCircle, Plus, Check, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowLeft, HandHeart, MessageCircle, Plus, Check, ChevronDown, ChevronUp, PartyPopper, Link } from 'lucide-react'
 import { api } from '../../utils/api'
 
 const CATEGORIES = ['All', 'Health', 'Family', 'Guidance', 'Gratitude', 'Financial', 'Other']
@@ -25,6 +25,7 @@ function PrayerBoard() {
   const navigate = useNavigate()
   const { user } = useApp()
 
+  const [topTab, setTopTab] = useState('prayer') // 'prayer' or 'testimony'
   const [requests, setRequests] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [showCreateModal, setShowCreateModal] = useState(false)
@@ -38,16 +39,32 @@ function PrayerBoard() {
   const [formDescription, setFormDescription] = useState('')
   const [formCategory, setFormCategory] = useState('Guidance')
   const [formAnonymous, setFormAnonymous] = useState(false)
+  const [formLinkedPrayerId, setFormLinkedPrayerId] = useState('')
   const [submitting, setSubmitting] = useState(false)
+
+  // User's prayer requests (for linking testimonies)
+  const [userPrayers, setUserPrayers] = useState([])
+
+  const isTestimony = topTab === 'testimony'
 
   useEffect(() => {
     loadRequests()
-  }, [selectedCategory])
+  }, [selectedCategory, topTab])
+
+  // Load user's prayer requests when switching to testimony tab (for "link to prayer" dropdown)
+  useEffect(() => {
+    if (topTab === 'testimony') {
+      api.get('/prayers/user-requests').then(data => {
+        setUserPrayers(data.requests || [])
+      }).catch(() => setUserPrayers([]))
+    }
+  }, [topTab])
 
   async function loadRequests() {
     try {
-      const params = selectedCategory !== 'All' ? `?category=${selectedCategory}` : ''
-      const result = await api.get(`/prayers${params}`)
+      setLoading(true)
+      const catParam = selectedCategory !== 'All' ? `&category=${selectedCategory}` : ''
+      const result = await api.get(`/prayers?type=${topTab}${catParam}`)
       setRequests(result?.requests || [])
     } catch (error) {
       console.error('Failed to load prayers:', error)
@@ -61,12 +78,17 @@ function PrayerBoard() {
     if (!formTitle.trim()) return
     setSubmitting(true)
     try {
-      const { request } = await api.post('/prayers', {
+      const body = {
         title: formTitle.trim(),
         description: formDescription.trim() || null,
         category: formCategory,
-        isAnonymous: formAnonymous
-      })
+        isAnonymous: formAnonymous,
+        type: topTab
+      }
+      if (isTestimony && formLinkedPrayerId) {
+        body.linkedPrayerId = parseInt(formLinkedPrayerId)
+      }
+      const { request } = await api.post('/prayers', body)
       // Add user info to the new request for display
       request.userName = formAnonymous ? 'Anonymous' : user.name
       request.userAvatar = formAnonymous ? '🙏' : user.avatar
@@ -77,8 +99,9 @@ function PrayerBoard() {
       setFormDescription('')
       setFormCategory('Guidance')
       setFormAnonymous(false)
+      setFormLinkedPrayerId('')
     } catch (error) {
-      console.error('Failed to create prayer:', error)
+      console.error('Failed to create:', error)
     } finally {
       setSubmitting(false)
     }
@@ -168,6 +191,16 @@ function PrayerBoard() {
           </button>
         </div>
 
+        {/* Prayer / Testimony toggle */}
+        <div className="prayer-top-toggle" style={{ marginTop: 12 }}>
+          <button className={topTab === 'prayer' ? 'active' : ''} onClick={() => setTopTab('prayer')}>
+            Prayer Requests
+          </button>
+          <button className={topTab === 'testimony' ? 'active' : ''} onClick={() => setTopTab('testimony')}>
+            Testimonies
+          </button>
+        </div>
+
         {/* Category pills */}
         <div className="category-pills" style={{ marginTop: 12 }}>
           {CATEGORIES.map(cat => (
@@ -188,10 +221,10 @@ function PrayerBoard() {
           <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>Loading...</div>
         ) : requests.length === 0 ? (
           <EmptyState
-            icon={HandHeart}
-            title="No prayer requests yet"
-            subtitle="Be the first to share a prayer request"
-            actionLabel="New Request"
+            icon={isTestimony ? PartyPopper : HandHeart}
+            title={isTestimony ? 'No testimonies yet' : 'No prayer requests yet'}
+            subtitle={isTestimony ? 'Be the first to share a testimony' : 'Be the first to share a prayer request'}
+            actionLabel={isTestimony ? 'Share Testimony' : 'New Request'}
             onAction={() => setShowCreateModal(true)}
           />
         ) : (
@@ -215,23 +248,43 @@ function PrayerBoard() {
               </div>
 
               <div className="prayer-card-title">{req.title}</div>
+
+              {/* Linked prayer reference (testimonies only) */}
+              {isTestimony && req.linkedPrayerTitle && (
+                <div className="testimony-linked">
+                  <Link size={12} />
+                  Answered prayer: {req.linkedPrayerTitle}
+                </div>
+              )}
+
               {req.description && <div className="prayer-card-desc">{req.description}</div>}
 
               <div className="prayer-card-actions">
-                <button
-                  className={`prayer-action-btn ${req.hasPrayed ? 'prayed' : ''}`}
-                  onClick={() => !req.hasPrayed && handlePray(req.id)}
-                  disabled={req.hasPrayed}
-                >
-                  <HandHeart size={16} />
-                  {req.prayerCount} {req.prayerCount === 1 ? 'Prayer' : 'Prayers'}
-                </button>
+                {isTestimony ? (
+                  <button
+                    className={`celebrate-btn ${req.hasPrayed ? 'active' : ''}`}
+                    onClick={() => !req.hasPrayed && handlePray(req.id)}
+                    disabled={req.hasPrayed}
+                  >
+                    <PartyPopper size={16} />
+                    {req.prayerCount} {req.prayerCount === 1 ? 'Celebration' : 'Celebrations'}
+                  </button>
+                ) : (
+                  <button
+                    className={`prayer-action-btn ${req.hasPrayed ? 'prayed' : ''}`}
+                    onClick={() => !req.hasPrayed && handlePray(req.id)}
+                    disabled={req.hasPrayed}
+                  >
+                    <HandHeart size={16} />
+                    {req.prayerCount} {req.prayerCount === 1 ? 'Prayer' : 'Prayers'}
+                  </button>
+                )}
                 <button className="prayer-action-btn" onClick={() => toggleExpand(req.id)}>
                   <MessageCircle size={16} />
                   {req.commentCount} {req.commentCount === 1 ? 'Comment' : 'Comments'}
                   {expandedId === req.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
-                {req.userId === user?.id && (
+                {!isTestimony && req.userId === user?.id && (
                   <button className="prayer-action-btn answered" onClick={() => handleMarkAnswered(req.id)}>
                     <Check size={16} /> Answered
                   </button>
@@ -274,10 +327,10 @@ function PrayerBoard() {
         )}
       </div>
 
-      {/* Create Prayer Modal */}
+      {/* Create Prayer/Testimony Modal */}
       {showCreateModal && (
         <Modal onClose={() => setShowCreateModal(false)}>
-          <div className="modal-title">New Prayer Request</div>
+          <div className="modal-title">{isTestimony ? 'Share Testimony' : 'New Prayer Request'}</div>
 
           <div className="form-group">
             <label className="form-label">Title</label>
@@ -285,7 +338,7 @@ function PrayerBoard() {
               type="text"
               value={formTitle}
               onChange={e => setFormTitle(e.target.value)}
-              placeholder="What would you like prayer for?"
+              placeholder={isTestimony ? 'What is God doing in your life?' : 'What would you like prayer for?'}
               maxLength={200}
             />
           </div>
@@ -295,7 +348,7 @@ function PrayerBoard() {
             <textarea
               value={formDescription}
               onChange={e => setFormDescription(e.target.value)}
-              placeholder="Share more details if you'd like..."
+              placeholder={isTestimony ? 'Share your praise report...' : 'Share more details if you\'d like...'}
               maxLength={1000}
               rows={4}
             />
@@ -310,6 +363,19 @@ function PrayerBoard() {
             </select>
           </div>
 
+          {/* Link to prayer request (testimonies only) */}
+          {isTestimony && userPrayers.length > 0 && (
+            <div className="form-group">
+              <label className="form-label">Link to Prayer Request (optional)</label>
+              <select value={formLinkedPrayerId} onChange={e => setFormLinkedPrayerId(e.target.value)}>
+                <option value="">None</option>
+                {userPrayers.map(p => (
+                  <option key={p.id} value={p.id}>{p.title}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           <label className="prayer-anon-label">
             <input
               type="checkbox"
@@ -322,7 +388,7 @@ function PrayerBoard() {
           <div className="modal-buttons">
             <button className="btn-secondary" onClick={() => setShowCreateModal(false)}>Cancel</button>
             <button className="btn-primary" onClick={handleCreate} disabled={!formTitle.trim() || submitting}>
-              {submitting ? 'Posting...' : 'Post Request'}
+              {submitting ? 'Posting...' : isTestimony ? 'Share' : 'Post Request'}
             </button>
           </div>
         </Modal>

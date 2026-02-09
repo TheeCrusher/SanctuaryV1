@@ -182,7 +182,7 @@ function Dashboard() {
                 </button>
               </div>
 
-              {homeData.upcomingAppointments.length === 0 ? (
+              {homeData.upcomingAppointments.length === 0 && (!homeData.upcomingEvents || homeData.upcomingEvents.length === 0) ? (
                 <Card>
                   <div className="empty-state" style={{ padding: '24px' }}>
                     <div className="empty-icon"><Calendar size={40} /></div>
@@ -191,25 +191,45 @@ function Dashboard() {
                   </div>
                 </Card>
               ) : (
-                homeData.upcomingAppointments.map(apt => (
-                  <Card key={apt.id} onClick={() => navigate('/appointments')}>
-                    <div className="home-upcoming-row">
-                      <div className="home-upcoming-icon">{apt.avatar}</div>
-                      <div className="home-upcoming-info">
-                        <div className="home-upcoming-name">
-                          {user?.role === 'guide'
-                            ? apt.seekerName
-                            : apt.guideName || apt.seekerName
-                          }
+                <>
+                  {homeData.upcomingAppointments.map(apt => (
+                    <Card key={`apt-${apt.id}`} onClick={() => navigate('/appointments')}>
+                      <div className="home-upcoming-row">
+                        <div className="home-upcoming-icon">{apt.avatar}</div>
+                        <div className="home-upcoming-info">
+                          <div className="home-upcoming-name">
+                            {user?.role === 'guide'
+                              ? apt.seekerName
+                              : apt.guideName || apt.seekerName
+                            }
+                          </div>
+                          <div className="home-upcoming-meta">
+                            {apt.type} · {formatDate(apt.date)} at {apt.time}
+                          </div>
                         </div>
-                        <div className="home-upcoming-meta">
-                          {apt.type} · {formatDate(apt.date)} at {apt.time}
-                        </div>
+                        <Badge status={apt.status} />
                       </div>
-                      <Badge status={apt.status} />
-                    </div>
-                  </Card>
-                ))
+                    </Card>
+                  ))}
+
+                  {/* RSVP'd events */}
+                  {homeData.upcomingEvents?.map(evt => (
+                    <Card key={`evt-${evt.id}`} onClick={() => navigate(`/events/${evt.id}`)}>
+                      <div className="home-upcoming-row">
+                        <div className="home-upcoming-icon" style={{ fontSize: '16px' }}>
+                          <Calendar size={18} style={{ color: 'var(--brand-primary)' }} />
+                        </div>
+                        <div className="home-upcoming-info">
+                          <div className="home-upcoming-name">{evt.title}</div>
+                          <div className="home-upcoming-meta">
+                            {formatDate(evt.dateTime)}{evt.location ? ` · ${evt.location}` : ''}
+                          </div>
+                        </div>
+                        <span className="home-activity-badge">{evt.category}</span>
+                      </div>
+                    </Card>
+                  ))}
+                </>
               )}
             </div>
 

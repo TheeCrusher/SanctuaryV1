@@ -1,11 +1,14 @@
 // ============================================================
 // Church Routes
 // ============================================================
-// GET /api/churches       - List all churches (with optional search)
-// GET /api/churches/:id   - Get a single church's details
+// GET    /api/churches                          - List all churches (with optional search)
+// GET    /api/churches/:id                      - Get a single church's details
+// GET    /api/churches/:id/members              - Get people at this church
+// GET    /api/churches/:id/announcements        - Get bulletin board announcements
+// POST   /api/churches/:id/announcements        - Create announcement (guides only)
+// DELETE /api/churches/:id/announcements/:annId - Delete announcement (author only)
 //
 // All routes are protected (require JWT token).
-// Replaces: ALL_CHURCHES array and filter logic in AppContext.jsx
 // ============================================================
 
 import { Router } from 'express'
@@ -148,6 +151,109 @@ router.get('/:id/members', async (req, res, next) => {
     })
 
     res.json({ members })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// GET /api/churches/:id/announcements
+// ============================================================
+// Returns bulletin board announcements for a church, newest first.
+
+router.get('/:id/announcements', async (req, res, next) => {
+  try {
+    const result = await pool.query(`
+      SELECT ca.id, ca.title, ca.message, ca.category, ca.created_at,
+             u.name AS author_name, u.avatar AS author_avatar, u.photo_url AS author_photo
+      FROM church_announcements ca
+      JOIN users u ON u.id = ca.author_id
+      WHERE ca.church_id = $1
+      ORDER BY ca.created_at DESC
+    `, [req.params.id])
+
+    const announcements = result.rows.map(r => ({
+      id: r.id,
+      title: r.title,
+      message: r.message,
+      category: r.category,
+      createdAt: r.created_at,
+      authorName: r.author_name,
+      authorAvatar: r.author_avatar,
+      authorPhoto: r.author_photo
+    }))
+
+    res.json({ announcements })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// POST /api/churches/:id/announcements
+// ============================================================
+// Create a new announcement (guides only).
+
+const VALID_ANNOUNCEMENT_CATEGORIES = ['Announcement', 'Upcoming Sermon', 'Schedule Change', 'Church Need', 'Event']
+
+router.post('/:id/announcements', async (req, res, next) => {
+  try {
+    if (req.user.role !== 'guide') {
+      return res.status(403).json({ error: 'Only guides can post announcements.' })
+    }
+
+    const { title, message, category } = req.body
+
+    if (!title || !message || !category) {
+      return res.status(400).json({ error: 'Title, message, and category are required.' })
+    }
+
+    if (!VALID_ANNOUNCEMENT_CATEGORIES.includes(category)) {
+      return res.status(400).json({ error: 'Invalid announcement category.' })
+    }
+
+    const result = await pool.query(
+      `INSERT INTO church_announcements (church_id, author_id, title, message, category)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id, title, message, category, created_at`,
+      [req.params.id, req.user.id, title, message, category]
+    )
+
+    const r = result.rows[0]
+    res.status(201).json({
+      announcement: {
+        id: r.id,
+        title: r.title,
+        message: r.message,
+        category: r.category,
+        createdAt: r.created_at,
+        authorName: req.user.name,
+        authorAvatar: req.user.avatar,
+        authorPhoto: req.user.photoUrl
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// DELETE /api/churches/:id/announcements/:annId
+// ============================================================
+// Delete an announcement (author only).
+
+router.delete('/:id/announcements/:annId', async (req, res, next) => {
+  try {
+    const result = await pool.query(
+      'DELETE FROM church_announcements WHERE id = $1 AND author_id = $2 RETURNING id',
+      [req.params.annId, req.user.id]
+    )
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Announcement not found or not yours.' })
+    }
+
+    res.json({ success: true })
   } catch (error) {
     next(error)
   }
