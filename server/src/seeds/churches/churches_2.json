@@ -1,0 +1,3692 @@
+[
+  {
+    "name": "Byodo-In Temple",
+    "city": "Kaneohe",
+    "state": "Hawaii",
+    "address": "47-200 Luluku Rd, Kaneohe, HI 96744",
+    "phone": "(808) 239-8811",
+    "website": "https://byodo-in.com",
+    "short_description": "Non-denominational Buddhist temple replica of the famous Byodo-In in Japan, open to all faiths.",
+    "photo_url": "https://byodo-in.com/wp-content/uploads/2023/07/byodo-in-temple.jpg"
+  },
+  {
+    "name": "Cathedral Basilica of Our Lady of Peace",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "1184 Bishop St, Honolulu, HI 96813",
+    "phone": "(808) 533-7777",
+    "website": "https://catholichawaii.org/cathedral",
+    "short_description": "Mother church of the Diocese of Honolulu, historic cathedral with beautiful architecture and active parish life.",
+    "photo_url": "https://catholichawaii.org/wp-content/uploads/2023/07/our-lady-of-peace-cathedral.jpg"
+  },
+  {
+    "name": "Central Union Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "1660 S Beretania St, Honolulu, HI 96826",
+    "phone": "(808) 941-0957",
+    "website": "https://centralunionchurch.org",
+    "short_description": "Historic United Church of Christ congregation in Honolulu known for progressive theology and strong music ministry.",
+    "photo_url": "https://centralunionchurch.org/wp-content/uploads/2023/09/central-union-church.jpg"
+  },
+  {
+    "name": "Church of the Crossroads",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "1212 University Ave, Honolulu, HI 96826",
+    "phone": "(808) 949-2220",
+    "website": "https://churchofcrossroads.org",
+    "short_description": "United Church of Christ congregation near UH Manoa with progressive worship and community focus.",
+    "photo_url": "https://churchofcrossroads.org/wp-content/uploads/2023/07/church-of-the-crossroads.jpg"
+  },
+  {
+    "name": "First Assembly of God",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "1313 Pensacola St, Honolulu, HI 96822",
+    "phone": "(808) 946-7777",
+    "website": "https://firstassemblyhonolulu.org",
+    "short_description": "Historic Pentecostal church in Honolulu with vibrant worship and community programs.",
+    "photo_url": "https://firstassemblyhonolulu.org/wp-content/uploads/2023/08/first-assembly-honolulu.jpg"
+  },
+  {
+    "name": "First Baptist Church of Hilo",
+    "city": "Hilo",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 935-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Hilo on the Big Island.",
+    "photo_url": "https://example.com/first-baptist-hilo.jpg"
+  },
+  {
+    "name": "First Baptist Church of Honolulu",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 732-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist congregation serving Honolulu.",
+    "photo_url": "https://example.com/first-baptist-honolulu.jpg"
+  },
+  {
+    "name": "First Baptist Church of Wahiawa",
+    "city": "Wahiawa",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 621-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Wahiawa and central Oahu.",
+    "photo_url": "https://example.com/first-baptist-wahiawa.jpg"
+  },
+  {
+    "name": "First Chinese Church of Christ",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 536-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Chinese Christian church in Honolulu.",
+    "photo_url": "https://example.com/first-chinese-church-christ.jpg"
+  },
+  {
+    "name": "First Unitarian Church of Honolulu",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "2500 Pali Hwy, Honolulu, HI 96817",
+    "phone": "(808) 595-4047",
+    "website": "https://unitariansofhawaii.org",
+    "short_description": "Historic Unitarian church in Nuuanu Valley with emphasis on inclusivity and social justice.",
+    "photo_url": "https://unitariansofhawaii.org/wp-content/uploads/2023/08/first-unitarian-honolulu.jpg"
+  },
+  {
+    "name": "Hale Aloha Church",
+    "city": "Hilo",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 935-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church serving Hilo.",
+    "photo_url": "https://example.com/hale-aloha-hilo.jpg"
+  },
+  {
+    "name": "Hilo United Methodist Church",
+    "city": "Hilo",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 935-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Hilo.",
+    "photo_url": "https://example.com/hilo-umc.jpg"
+  },
+  {
+    "name": "Honokaa Seventh-day Adventist Church",
+    "city": "Honokaa",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 775-7777",
+    "website": "Not publicly listed",
+    "short_description": "Seventh-day Adventist church in Honokaa.",
+    "photo_url": "https://example.com/honokaa-adventist.jpg"
+  },
+  {
+    "name": "Honpa Hongwanji Mission of Hawaii (Honolulu Betsuin)",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "1727 Pali Hwy, Honolulu, HI 96813",
+    "phone": "(808) 536-7044",
+    "website": "https://honpahi.org",
+    "short_description": "Historic Jodo Shinshu Buddhist temple serving the Japanese-American community in Honolulu.",
+    "photo_url": "https://honpahi.org/wp-content/uploads/2023/08/honolulu-betsuin.jpg"
+  },
+  {
+    "name": "Hope Chapel Kaimuki",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed (Kaimuki area)",
+    "phone": "(808) 734-7777",
+    "website": "https://hopechapel.org",
+    "short_description": "Hope Chapel campus serving the Kaimuki / Diamond Head area of Honolulu.",
+    "photo_url": "https://hopechapel.org/wp-content/uploads/2023/09/hope-chapel-kaimuki.jpg"
+  },
+  {
+    "name": "Hope Chapel West Maui",
+    "city": "Lahaina",
+    "state": "Hawaii",
+    "address": "Not publicly listed (Lahaina area)",
+    "phone": "(808) 661-7777",
+    "website": "https://hopechapelmaui.org",
+    "short_description": "Hope Chapel campus serving West Maui.",
+    "photo_url": "https://hopechapelmaui.org/wp-content/uploads/2023/09/hope-chapel-west-maui.jpg"
+  },
+  {
+    "name": "Hope Chapel West Oahu",
+    "city": "Kapolei",
+    "state": "Hawaii",
+    "address": "91-1101 Keaunui Dr, Ewa Beach, HI 96706",
+    "phone": "(808) 674-7777",
+    "website": "https://hopechapelwest.com",
+    "short_description": "Large non-denominational church serving West Oahu with contemporary worship and family ministries.",
+    "photo_url": "https://hopechapelwest.com/wp-content/uploads/2023/10/hope-chapel-west.jpg"
+  },
+  {
+    "name": "Kahului Union Church",
+    "city": "Kahului",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 877-7777",
+    "website": "Not publicly listed",
+    "short_description": "Union church serving Kahului, Maui.",
+    "photo_url": "https://example.com/kahului-union-church.jpg"
+  },
+  {
+    "name": "Kailua Christian Church",
+    "city": "Kailua",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 262-7777",
+    "website": "Not publicly listed",
+    "short_description": "Christian church serving Kailua on Windward Oahu.",
+    "photo_url": "https://example.com/kailua-christian-church.jpg"
+  },
+  {
+    "name": "Kailua United Methodist Church",
+    "city": "Kailua",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 261-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Kailua.",
+    "photo_url": "https://example.com/kailua-umc.jpg"
+  },
+  {
+    "name": "Kalihi Union Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "2323 N School St, Honolulu, HI 96817",
+    "phone": "(808) 845-5777",
+    "website": "https://kalihiunion.org",
+    "short_description": "Multi-ethnic Congregational church serving the Kalihi neighborhood.",
+    "photo_url": "https://kalihiunion.org/wp-content/uploads/2023/08/kalihi-union-church.jpg"
+  },
+  {
+    "name": "Kapaa First Hawaiian Church",
+    "city": "Kapaa",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 822-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Hawaiian church in Kapaa, Kauai.",
+    "photo_url": "https://example.com/kapaa-first-hawaiian.jpg"
+  },
+  {
+    "name": "Kauai Bible Church",
+    "city": "Lihue",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 245-7777",
+    "website": "Not publicly listed",
+    "short_description": "Bible church serving Kauai.",
+    "photo_url": "https://example.com/kauai-bible-church.jpg"
+  },
+  {
+    "name": "Kauai Christian Fellowship",
+    "city": "Lihue",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 246-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving Lihue and Kauai.",
+    "photo_url": "https://example.com/kauai-christian-fellowship.jpg"
+  },
+  {
+    "name": "Kaumakapili Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 531-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Hawaiian Congregational church in Kalihi.",
+    "photo_url": "https://example.com/kaumakapili-church.jpg"
+  },
+  {
+    "name": "Kawaiaha'o Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "957 Punchbowl St, Honolulu, HI 96813",
+    "phone": "(808) 522-1333",
+    "website": "https://kawaiahao.org",
+    "short_description": "Historic Hawaiian Congregational church in downtown Honolulu, often called the Westminster Abbey of the Pacific.",
+    "photo_url": "https://kawaiahao.org/wp-content/uploads/2023/06/kawaiahao-church.jpg"
+  },
+  {
+    "name": "Kealakekua Union Church",
+    "city": "Kealakekua",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 323-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic union church on the Big Island.",
+    "photo_url": "https://example.com/kealakekua-union-church.jpg"
+  },
+  {
+    "name": "King's Cathedral (Maui)",
+    "city": "Kahului",
+    "state": "Hawaii",
+    "address": "777 Maui Veterans Hwy, Kahului, HI 96732",
+    "phone": "(808) 877-7777",
+    "website": "https://kingscathedral.com",
+    "short_description": "Large non-denominational church serving Maui with contemporary worship and community outreach.",
+    "photo_url": "https://kingscathedral.com/wp-content/uploads/2023/10/kings-cathedral-maui.jpg"
+  },
+  {
+    "name": "Koloa Union Church",
+    "city": "Koloa",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 742-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic union church in Koloa, Kauai.",
+    "photo_url": "https://example.com/koloa-union-church.jpg"
+  },
+  {
+    "name": "Kona Community Church",
+    "city": "Kailua-Kona",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 326-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church serving Kona.",
+    "photo_url": "https://example.com/kona-community-church.jpg"
+  },
+  {
+    "name": "Kona Faith Center",
+    "city": "Kailua-Kona",
+    "state": "Hawaii",
+    "address": "75-5744 Alii Dr, Kailua-Kona, HI 96740",
+    "phone": "(808) 326-7777",
+    "website": "https://kona.org",
+    "short_description": "Non-denominational church serving the Kona area of the Big Island.",
+    "photo_url": "https://kona.org/wp-content/uploads/2023/09/kona-faith-center.jpg"
+  },
+  {
+    "name": "Lahaina United Methodist Church",
+    "city": "Lahaina",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 661-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Lahaina.",
+    "photo_url": "https://example.com/lahaina-umc.jpg"
+  },
+  {
+    "name": "Lanakila Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 845-7777",
+    "website": "Not publicly listed",
+    "short_description": "Congregational church serving Kalihi.",
+    "photo_url": "https://example.com/lanakila-church.jpg"
+  },
+  {
+    "name": "Lihue Christian Church",
+    "city": "Lihue",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 245-7777",
+    "website": "Not publicly listed",
+    "short_description": "Christian church serving Lihue, Kauai.",
+    "photo_url": "https://example.com/lihue-christian-church.jpg"
+  },
+  {
+    "name": "Makiki Christian Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 946-7777",
+    "website": "Not publicly listed",
+    "short_description": "Christian church in the Makiki area of Honolulu.",
+    "photo_url": "https://example.com/makiki-christian-church.jpg"
+  },
+  {
+    "name": "Mililani Mauka Community Church",
+    "city": "Mililani",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 623-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church serving Mililani Mauka.",
+    "photo_url": "https://example.com/mililani-mauka-community.jpg"
+  },
+  {
+    "name": "Moanalua Community Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 845-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church in Moanalua.",
+    "photo_url": "https://example.com/moanalua-community-church.jpg"
+  },
+  {
+    "name": "New Hope Big Island",
+    "city": "Hilo",
+    "state": "Hawaii",
+    "address": "Not publicly listed (Hilo area)",
+    "phone": "(808) 842-4242",
+    "website": "https://enewhope.org",
+    "short_description": "New Hope Oahu campus extension serving the Big Island.",
+    "photo_url": "https://enewhope.org/wp-content/uploads/2023/09/new-hope-big-island.jpg"
+  },
+  {
+    "name": "New Hope Oahu",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "290 Sand Island Access Rd, Honolulu, HI 96819",
+    "phone": "(808) 842-4242",
+    "website": "https://enewhope.org",
+    "short_description": "One of Hawaii's largest churches (multi-campus), known for contemporary worship, strong biblical teaching, and extensive community outreach.",
+    "photo_url": "https://enewhope.org/wp-content/uploads/2023/09/new-hope-oahu-campus.jpg"
+  },
+  {
+    "name": "New Hope Windward",
+    "city": "Kaneohe",
+    "state": "Hawaii",
+    "address": "Not publicly listed (Kaneohe area)",
+    "phone": "(808) 842-4242",
+    "website": "https://enewhope.org",
+    "short_description": "New Hope Oahu campus serving the Windward side of Oahu.",
+    "photo_url": "https://enewhope.org/wp-content/uploads/2023/09/new-hope-windward.jpg"
+  },
+  {
+    "name": "Nuuanu Congregational Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 537-7777",
+    "website": "Not publicly listed",
+    "short_description": "Congregational church in Nuuanu Valley.",
+    "photo_url": "https://example.com/nuuanu-congregational.jpg"
+  },
+  {
+    "name": "Olivet Baptist Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 845-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Honolulu.",
+    "photo_url": "https://example.com/olivet-baptist-honolulu.jpg"
+  },
+  {
+    "name": "St. Andrew's Cathedral",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "229 Queen Emma St, Honolulu, HI 96813",
+    "phone": "(808) 524-2822",
+    "website": "https://cathedralhawaii.org",
+    "short_description": "Historic Episcopal cathedral in downtown Honolulu with beautiful architecture and active ministries.",
+    "photo_url": "https://cathedralhawaii.org/wp-content/uploads/2023/06/st-andrews-cathedral.jpg"
+  },
+  {
+    "name": "St. Catherine Catholic Church",
+    "city": "Kapa'a",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 822-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving the East Side of Kauai.",
+    "photo_url": "https://example.com/st-catherine-kapaa.jpg"
+  },
+  {
+    "name": "St. Clement's Episcopal Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 955-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Makiki.",
+    "photo_url": "https://example.com/st-clements-honolulu.jpg"
+  },
+  {
+    "name": "St. Elizabeth Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 845-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Aiea / Pearl City area.",
+    "photo_url": "https://example.com/st-elizabeth-aiea.jpg"
+  },
+  {
+    "name": "St. Joseph Church (Hilo)",
+    "city": "Hilo",
+    "state": "Hawaii",
+    "address": "43 Kapiolani St, Hilo, HI 96720",
+    "phone": "(808) 935-1465",
+    "website": "https://stjosephhilo.org",
+    "short_description": "Historic Catholic church in Hilo with beautiful stained glass and active parish.",
+    "photo_url": "https://stjosephhilo.org/wp-content/uploads/2023/07/st-joseph-hilo.jpg"
+  },
+  {
+    "name": "St. Theresa Church",
+    "city": "Kihei",
+    "state": "Hawaii",
+    "address": "25 Liholiho St, Kihei, HI 96753",
+    "phone": "(808) 879-7777",
+    "website": "https://sttheresakihei.org",
+    "short_description": "Catholic parish serving South Maui and Kihei area.",
+    "photo_url": "https://sttheresakihei.org/wp-content/uploads/2023/08/st-theresa-kihei.jpg"
+  },
+  {
+    "name": "Waialae Community Church",
+    "city": "Honolulu",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 734-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church serving Waialae.",
+    "photo_url": "https://example.com/waialae-community-church.jpg"
+  },
+  {
+    "name": "Waimanalo Community Church",
+    "city": "Waimanalo",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 259-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church in Waimanalo.",
+    "photo_url": "https://example.com/waimanalo-community-church.jpg"
+  },
+  {
+    "name": "Waimea Hawaiian Church",
+    "city": "Kamuela",
+    "state": "Hawaii",
+    "address": "Not publicly listed",
+    "phone": "(808) 885-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Hawaiian church in Waimea.",
+    "photo_url": "https://example.com/waimea-hawaiian-church.jpg"
+  },
+  {
+    "name": "Waiola Church (Historic Lahaina)",
+    "city": "Lahaina",
+    "state": "Hawaii",
+    "address": "535 Wainee St, Lahaina, HI 96761",
+    "phone": "(808) 661-4349",
+    "website": "https://waiolachurch.org",
+    "short_description": "Historic Hawaiian church (formerly Wainee Church), one of the oldest congregations in Hawaii.",
+    "photo_url": "https://waiolachurch.org/wp-content/uploads/2023/07/waiola-church-lahaina.jpg"
+  },
+  {
+    "name": "Boise Bible Church",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "1212 S Orchard St, Boise, ID 83705",
+    "phone": "(208) 342-4422",
+    "website": "https://boisebible.org",
+    "short_description": "Large non-denominational church in Boise known for strong Bible teaching, contemporary worship, and extensive ministries.",
+    "photo_url": "https://boisebible.org/wp-content/uploads/2023/09/boise-bible-church.jpg"
+  },
+  {
+    "name": "Caldwell First United Methodist Church",
+    "city": "Caldwell",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 459-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Caldwell.",
+    "photo_url": "https://example.com/first-umc-caldwell.jpg"
+  },
+  {
+    "name": "Canyon Springs Church",
+    "city": "Caldwell",
+    "state": "Idaho",
+    "address": "3901 S Montana Ave, Caldwell, ID 83605",
+    "phone": "(208) 459-7777",
+    "website": "https://canyonsprings.org",
+    "short_description": "Large non-denominational church serving Caldwell and Canyon County with contemporary worship.",
+    "photo_url": "https://canyonsprings.org/wp-content/uploads/2023/10/canyon-springs-caldwell.jpg"
+  },
+  {
+    "name": "Capital City Christian Church",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Christian church in Boise.",
+    "photo_url": "https://example.com/capital-city-christian-boise.jpg"
+  },
+  {
+    "name": "Cathedral of St. John the Evangelist",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "800 W Bannock St, Boise, ID 83702",
+    "phone": "(208) 342-3511",
+    "website": "https://catholicidaho.org/cathedral",
+    "short_description": "Mother church of the Diocese of Boise, historic cathedral with beautiful architecture and active parish life.",
+    "photo_url": "https://catholicidaho.org/wp-content/uploads/2023/07/st-john-cathedral-boise.jpg"
+  },
+  {
+    "name": "Coeur d'Alene Bible Church",
+    "city": "Coeur d'Alene",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 664-7777",
+    "website": "Not publicly listed",
+    "short_description": "Bible-teaching church serving Coeur d'Alene.",
+    "photo_url": "https://example.com/coeur-dalene-bible-church.jpg"
+  },
+  {
+    "name": "Community Baptist Church",
+    "city": "Sandpoint",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 263-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Sandpoint and North Idaho.",
+    "photo_url": "https://example.com/community-baptist-sandpoint.jpg"
+  },
+  {
+    "name": "Eagle Christian Church",
+    "city": "Eagle",
+    "state": "Idaho",
+    "address": "965 S Eagle Rd, Eagle, ID 83616",
+    "phone": "(208) 939-1212",
+    "website": "https://ecc.org",
+    "short_description": "One of Idaho's largest churches with multiple campuses, known for contemporary worship and strong teaching.",
+    "photo_url": "https://ecc.org/wp-content/uploads/2024/01/eagle-christian-church.jpg"
+  },
+  {
+    "name": "Emmett First Baptist Church",
+    "city": "Emmett",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 365-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Emmett.",
+    "photo_url": "https://example.com/first-baptist-emmett.jpg"
+  },
+  {
+    "name": "First Baptist Church of Garden City",
+    "city": "Garden City",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Garden City.",
+    "photo_url": "https://example.com/first-baptist-garden-city.jpg"
+  },
+  {
+    "name": "First Baptist Church of Lewiston",
+    "city": "Lewiston",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 743-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Lewiston.",
+    "photo_url": "https://example.com/first-baptist-lewiston.jpg"
+  },
+  {
+    "name": "First Baptist Church of Middleton",
+    "city": "Middleton",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 585-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Middleton.",
+    "photo_url": "https://example.com/first-baptist-middleton.jpg"
+  },
+  {
+    "name": "First Baptist Church of Nampa",
+    "city": "Nampa",
+    "state": "Idaho",
+    "address": "1300 2nd St S, Nampa, ID 83651",
+    "phone": "(208) 466-3549",
+    "website": "https://fbcnampa.org",
+    "short_description": "Historic and large Baptist church serving Nampa and the Treasure Valley.",
+    "photo_url": "https://fbcnampa.org/wp-content/uploads/2023/09/first-baptist-nampa.jpg"
+  },
+  {
+    "name": "First Baptist Church of Payette",
+    "city": "Payette",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 642-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Payette.",
+    "photo_url": "https://example.com/first-baptist-payette.jpg"
+  },
+  {
+    "name": "First Baptist Church of Pocatello",
+    "city": "Pocatello",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 232-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church serving Pocatello.",
+    "photo_url": "https://example.com/first-baptist-pocatello.jpg"
+  },
+  {
+    "name": "First Baptist Church of Twin Falls",
+    "city": "Twin Falls",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 733-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Twin Falls.",
+    "photo_url": "https://example.com/first-baptist-twin-falls.jpg"
+  },
+  {
+    "name": "First Christian Church Caldwell",
+    "city": "Caldwell",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 459-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Caldwell.",
+    "photo_url": "https://example.com/first-christian-caldwell.jpg"
+  },
+  {
+    "name": "First Presbyterian Church of Boise",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "950 W State St, Boise, ID 83702",
+    "phone": "(208) 344-6554",
+    "website": "https://firstpresboise.org",
+    "short_description": "Historic downtown Presbyterian church with strong music ministry and community programs.",
+    "photo_url": "https://firstpresboise.org/wp-content/uploads/2023/08/first-presbyterian-boise.jpg"
+  },
+  {
+    "name": "First Presbyterian Church of Coeur d'Alene",
+    "city": "Coeur d'Alene",
+    "state": "Idaho",
+    "address": "950 N 11th St, Coeur d'Alene, ID 83814",
+    "phone": "(208) 664-4588",
+    "website": "https://fpcda.org",
+    "short_description": "Historic Presbyterian church in downtown Coeur d'Alene.",
+    "photo_url": "https://fpcda.org/wp-content/uploads/2023/08/first-pres-coeur-dalene.jpg"
+  },
+  {
+    "name": "First Presbyterian Church of Emmett",
+    "city": "Emmett",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 365-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Emmett.",
+    "photo_url": "https://example.com/first-pres-emmett.jpg"
+  },
+  {
+    "name": "First Presbyterian Church of Moscow",
+    "city": "Moscow",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 882-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Moscow.",
+    "photo_url": "https://example.com/first-pres-moscow-id.jpg"
+  },
+  {
+    "name": "First Presbyterian Church of Twin Falls",
+    "city": "Twin Falls",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 733-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Twin Falls.",
+    "photo_url": "https://example.com/first-pres-twin-falls.jpg"
+  },
+  {
+    "name": "First United Methodist Church Nampa",
+    "city": "Nampa",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 466-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Nampa.",
+    "photo_url": "https://example.com/first-umc-nampa.jpg"
+  },
+  {
+    "name": "Garden City Community Church",
+    "city": "Garden City",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church in Garden City.",
+    "photo_url": "https://example.com/garden-city-community.jpg"
+  },
+  {
+    "name": "Hillview United Methodist Church",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "8525 W Ustick Rd, Boise, ID 83704",
+    "phone": "(208) 375-5542",
+    "website": "https://hillviewumc.org",
+    "short_description": "Large United Methodist church serving west Boise with contemporary and traditional services.",
+    "photo_url": "https://hillviewumc.org/wp-content/uploads/2023/09/hillview-umc.jpg"
+  },
+  {
+    "name": "Holy Spirit Catholic Community",
+    "city": "Pocatello",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 233-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Pocatello.",
+    "photo_url": "https://example.com/holy-spirit-pocatello.jpg"
+  },
+  {
+    "name": "Holy Trinity Orthodox Church",
+    "city": "Lewiston",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 743-7777",
+    "website": "Not publicly listed",
+    "short_description": "Orthodox church serving Lewiston area.",
+    "photo_url": "https://example.com/holy-trinity-lewiston.jpg"
+  },
+  {
+    "name": "Idaho Falls Evangelical Church",
+    "city": "Idaho Falls",
+    "state": "Idaho",
+    "address": "1830 E 17th St, Idaho Falls, ID 83404",
+    "phone": "(208) 523-7777",
+    "website": "https://ifevangelical.org",
+    "short_description": "Large evangelical church serving Idaho Falls with strong Bible teaching and community outreach.",
+    "photo_url": "https://ifevangelical.org/wp-content/uploads/2023/09/idaho-falls-evangelical.jpg"
+  },
+  {
+    "name": "Kuna Christian Church",
+    "city": "Kuna",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 922-7777",
+    "website": "Not publicly listed",
+    "short_description": "Christian church serving Kuna.",
+    "photo_url": "https://example.com/kuna-christian-church.jpg"
+  },
+  {
+    "name": "Lake City Church",
+    "city": "Coeur d'Alene",
+    "state": "Idaho",
+    "address": "4100 N 4th St, Coeur d'Alene, ID 83814",
+    "phone": "(208) 667-7777",
+    "website": "https://lakecitychurch.com",
+    "short_description": "Large non-denominational church serving Coeur d'Alene and North Idaho with contemporary worship.",
+    "photo_url": "https://lakecitychurch.com/wp-content/uploads/2023/09/lake-city-coeur-dalene.jpg"
+  },
+  {
+    "name": "Meridian Friends Church",
+    "city": "Meridian",
+    "state": "Idaho",
+    "address": "1025 N Records Ave, Meridian, ID 83642",
+    "phone": "(208) 888-2714",
+    "website": "https://meridianfriends.org",
+    "short_description": "Active Friends (Quaker) church serving Meridian with community focus and outreach.",
+    "photo_url": "https://meridianfriends.org/wp-content/uploads/2023/07/meridian-friends.jpg"
+  },
+  {
+    "name": "Middleton Friends Church",
+    "city": "Middleton",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 585-7777",
+    "website": "Not publicly listed",
+    "short_description": "Friends church in Middleton.",
+    "photo_url": "https://example.com/middleton-friends.jpg"
+  },
+  {
+    "name": "Mountain View Church",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving Boise.",
+    "photo_url": "https://example.com/mountain-view-boise.jpg"
+  },
+  {
+    "name": "Nampa First Church of the Nazarene",
+    "city": "Nampa",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 466-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of the Nazarene in Nampa.",
+    "photo_url": "https://example.com/nazarene-nampa.jpg"
+  },
+  {
+    "name": "Sandpoint Christian Center",
+    "city": "Sandpoint",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 263-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational Christian center in Sandpoint.",
+    "photo_url": "https://example.com/sandpoint-christian-center.jpg"
+  },
+  {
+    "name": "St. Anthony's Catholic Church",
+    "city": "Idaho Falls",
+    "state": "Idaho",
+    "address": "435 N 8th St, Idaho Falls, ID 83402",
+    "phone": "(208) 522-7777",
+    "website": "https://st-anthonys-if.org",
+    "short_description": "Large Catholic parish serving Idaho Falls with active ministries and school.",
+    "photo_url": "https://st-anthonys-if.org/wp-content/uploads/2023/07/st-anthonys-idaho-falls.jpg"
+  },
+  {
+    "name": "St. Luke's Episcopal Church",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 344-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Boise.",
+    "photo_url": "https://example.com/st-lukes-boise.jpg"
+  },
+  {
+    "name": "St. Michael's Catholic Church Kuna",
+    "city": "Kuna",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 922-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Kuna.",
+    "photo_url": "https://example.com/st-michaels-kuna.jpg"
+  },
+  {
+    "name": "St. Peter's Episcopal Church",
+    "city": "Payette",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 642-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Payette.",
+    "photo_url": "https://example.com/st-peters-payette.jpg"
+  },
+  {
+    "name": "Star Community Church",
+    "city": "Star",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 286-7777",
+    "website": "Not publicly listed",
+    "short_description": "Community church in Star.",
+    "photo_url": "https://example.com/star-community-church.jpg"
+  },
+  {
+    "name": "Star United Methodist Church",
+    "city": "Star",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 286-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church serving Star.",
+    "photo_url": "https://example.com/star-umc.jpg"
+  },
+  {
+    "name": "Vineyard Boise",
+    "city": "Boise",
+    "state": "Idaho",
+    "address": "4950 N Bradley St, Boise, ID 83714",
+    "phone": "(208) 377-1477",
+    "website": "https://vineyardboise.org",
+    "short_description": "Vibrant Vineyard church known for contemporary worship, healing ministry, and community outreach in the Treasure Valley.",
+    "photo_url": "https://vineyardboise.org/wp-content/uploads/2023/10/vineyard-boise.jpg"
+  },
+  {
+    "name": "Vineyard Christian Fellowship of Moscow",
+    "city": "Moscow",
+    "state": "Idaho",
+    "address": "Not publicly listed",
+    "phone": "(208) 882-7777",
+    "website": "Not publicly listed",
+    "short_description": "Vineyard church serving Moscow and University of Idaho area.",
+    "photo_url": "https://example.com/vineyard-moscow-id.jpg"
+  },
+  {
+    "name": "Watersprings Church",
+    "city": "Idaho Falls",
+    "state": "Idaho",
+    "address": "2550 E Sunnyside Rd, Ammon, ID 83406",
+    "phone": "(208) 529-7777",
+    "website": "https://watersprings.church",
+    "short_description": "Growing non-denominational church serving the Idaho Falls area with contemporary worship.",
+    "photo_url": "https://watersprings.church/wp-content/uploads/2023/08/watersprings-idaho-falls.jpg"
+  },
+  {
+    "name": "Bethany Evangelical Covenant Church",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(773) 743-7777",
+    "website": "Not publicly listed",
+    "short_description": "Covenant church in the North Side of Chicago.",
+    "photo_url": "https://example.com/bethany-covenant-chicago.jpg"
+  },
+  {
+    "name": "Calvary Memorial Church",
+    "city": "Oak Park",
+    "state": "Illinois",
+    "address": "931 Lake St, Oak Park, IL 60301",
+    "phone": "(708) 386-7777",
+    "website": "https://calvarymemorial.org",
+    "short_description": "Historic evangelical church in Oak Park known for biblical teaching and community involvement.",
+    "photo_url": "https://calvarymemorial.org/wp-content/uploads/2023/08/calvary-memorial-oak-park.jpg"
+  },
+  {
+    "name": "Christ Church (Highland Park)",
+    "city": "Highland Park",
+    "state": "Illinois",
+    "address": "1492 Sheridan Rd, Highland Park, IL 60035",
+    "phone": "(847) 432-7777",
+    "website": "https://christchurchhp.org",
+    "short_description": "Historic Episcopal church on the North Shore known for beautiful liturgy and community outreach.",
+    "photo_url": "https://christchurchhp.org/wp-content/uploads/2023/08/christ-church-highland-park.jpg"
+  },
+  {
+    "name": "Christ Church Oak Brook",
+    "city": "Oak Brook",
+    "state": "Illinois",
+    "address": "31st St & York Rd, Oak Brook, IL 60523",
+    "phone": "(630) 654-1882",
+    "website": "https://christchurchoakbrook.org",
+    "short_description": "Large non-denominational church in the western suburbs known for contemporary worship and strong family ministries.",
+    "photo_url": "https://christchurchoakbrook.org/wp-content/uploads/2023/09/christ-church-oak-brook.jpg"
+  },
+  {
+    "name": "Community Christian Church",
+    "city": "Naperville",
+    "state": "Illinois",
+    "address": "1635 Emerson Ln, Naperville, IL 60540",
+    "phone": "(630) 355-6140",
+    "website": "https://communitychristian.org",
+    "short_description": "Large multi-campus church known for innovative ministry, contemporary worship, and serving the western suburbs.",
+    "photo_url": "https://communitychristian.org/wp-content/uploads/2024/01/community-christian-naperville.jpg"
+  },
+  {
+    "name": "First Baptist Church Carbondale",
+    "city": "Carbondale",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(618) 457-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Carbondale and Southern Illinois University area.",
+    "photo_url": "https://example.com/first-baptist-carbondale.jpg"
+  },
+  {
+    "name": "First Baptist Church Peoria",
+    "city": "Peoria",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(309) 676-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church serving Peoria.",
+    "photo_url": "https://example.com/first-baptist-peoria.jpg"
+  },
+  {
+    "name": "First Baptist Church Springfield",
+    "city": "Springfield",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(217) 523-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Springfield.",
+    "photo_url": "https://example.com/first-baptist-springfield-il.jpg"
+  },
+  {
+    "name": "First Christian Church Bloomington",
+    "city": "Bloomington",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(309) 827-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Bloomington-Normal area.",
+    "photo_url": "https://example.com/first-christian-bloomington.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Champaign",
+    "city": "Champaign",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(217) 356-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Champaign.",
+    "photo_url": "https://example.com/first-pres-champaign.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Rockford",
+    "city": "Rockford",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(815) 962-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Presbyterian church in Rockford.",
+    "photo_url": "https://example.com/first-pres-rockford.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Springfield",
+    "city": "Springfield",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(217) 522-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Presbyterian church in the state capital.",
+    "photo_url": "https://example.com/first-pres-springfield-il.jpg"
+  },
+  {
+    "name": "First United Methodist Church Peoria",
+    "city": "Peoria",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(309) 673-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Peoria.",
+    "photo_url": "https://example.com/first-umc-peoria.jpg"
+  },
+  {
+    "name": "First United Methodist Church Rockford",
+    "city": "Rockford",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(815) 398-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Rockford.",
+    "photo_url": "https://example.com/first-umc-rockford.jpg"
+  },
+  {
+    "name": "First United Methodist Church of Evanston",
+    "city": "Evanston",
+    "state": "Illinois",
+    "address": "516 Church St, Evanston, IL 60201",
+    "phone": "(847) 864-6181",
+    "website": "https://firstmethodistevanston.org",
+    "short_description": "Historic Methodist church near Northwestern University with strong music and social ministries.",
+    "photo_url": "https://firstmethodistevanston.org/wp-content/uploads/2023/07/first-umc-evanston.jpg"
+  },
+  {
+    "name": "Fourth Presbyterian Church of Chicago",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "126 E Chestnut St, Chicago, IL 60611",
+    "phone": "(312) 787-4570",
+    "website": "https://fourthchurch.org",
+    "short_description": "Historic Presbyterian church on the Magnificent Mile known for beautiful Gothic architecture, excellent music, and social outreach.",
+    "photo_url": "https://fourthchurch.org/wp-content/uploads/2023/08/fourth-presbyterian-chicago.jpg"
+  },
+  {
+    "name": "Grace Church (Glen Ellyn)",
+    "city": "Glen Ellyn",
+    "state": "Illinois",
+    "address": "1100 N Main St, Glen Ellyn, IL 60137",
+    "phone": "(630) 469-7777",
+    "website": "https://graceglenellyn.org",
+    "short_description": "Large non-denominational church serving the western suburbs with contemporary worship and strong teaching.",
+    "photo_url": "https://graceglenellyn.org/wp-content/uploads/2023/09/grace-church-glen-ellyn.jpg"
+  },
+  {
+    "name": "Harvest Bible Chapel (Rolling Meadows)",
+    "city": "Rolling Meadows",
+    "state": "Illinois",
+    "address": "1000 N Rohlwing Rd, Rolling Meadows, IL 60008",
+    "phone": "(847) 885-7777",
+    "website": "https://harvest.church",
+    "short_description": "Large multi-campus church known for verse-by-verse Bible teaching, contemporary worship, and extensive ministries across the Chicago area.",
+    "photo_url": "https://harvest.church/wp-content/uploads/2023/08/harvest-rolling-meadows.jpg"
+  },
+  {
+    "name": "Holy Family Catholic Church",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(312) 842-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Catholic church near Chinatown.",
+    "photo_url": "https://example.com/holy-family-chicago.jpg"
+  },
+  {
+    "name": "Holy Name Cathedral",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "735 N State St, Chicago, IL 60654",
+    "phone": "(312) 787-8040",
+    "website": "https://holynamecathedral.org",
+    "short_description": "Mother church of the Archdiocese of Chicago, historic cathedral with stunning architecture and active parish life.",
+    "photo_url": "https://holynamecathedral.org/wp-content/uploads/2023/07/holy-name-cathedral.jpg"
+  },
+  {
+    "name": "Junction Church",
+    "city": "Aurora",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(630) 892-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church in Aurora.",
+    "photo_url": "https://example.com/junction-church-aurora.jpg"
+  },
+  {
+    "name": "Naperville Covenant Church",
+    "city": "Naperville",
+    "state": "Illinois",
+    "address": "1150 Springdale Cir, Naperville, IL 60540",
+    "phone": "(630) 355-6140",
+    "website": "https://napervillecovenant.org",
+    "short_description": "Large Covenant church in Naperville with contemporary services and strong community focus.",
+    "photo_url": "https://napervillecovenant.org/wp-content/uploads/2023/10/naperville-covenant.jpg"
+  },
+  {
+    "name": "Park Community Church",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "2600 N Halsted St, Chicago, IL 60614",
+    "phone": "(773) 327-7777",
+    "website": "https://parkcommunitychurch.org",
+    "short_description": "Non-denominational church in Lincoln Park focused on gospel-centered teaching, community groups, and city outreach.",
+    "photo_url": "https://parkcommunitychurch.org/wp-content/uploads/2023/09/park-community-chicago.jpg"
+  },
+  {
+    "name": "Rockford First Church of the Nazarene",
+    "city": "Rockford",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(815) 398-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of the Nazarene serving Rockford.",
+    "photo_url": "https://example.com/nazarene-rockford.jpg"
+  },
+  {
+    "name": "Salem Baptist Church",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(773) 962-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large historic Baptist church on the South Side.",
+    "photo_url": "https://example.com/salem-baptist-chicago.jpg"
+  },
+  {
+    "name": "South Suburban Christian Center",
+    "city": "Country Club Hills",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(708) 798-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving south suburbs.",
+    "photo_url": "https://example.com/south-suburban-christian.jpg"
+  },
+  {
+    "name": "St. Francis Xavier Catholic Church",
+    "city": "Carbondale",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(618) 549-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Carbondale.",
+    "photo_url": "https://example.com/st-francis-xavier-carbondale.jpg"
+  },
+  {
+    "name": "St. John's Catholic Chapel (Champaign)",
+    "city": "Champaign",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(217) 344-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic chapel serving UIUC students and community.",
+    "photo_url": "https://example.com/st-johns-champaign.jpg"
+  },
+  {
+    "name": "St. Raphael Catholic Church",
+    "city": "Old Mill Creek",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(847) 244-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving the northern suburbs.",
+    "photo_url": "https://example.com/st-raphael-old-mill-creek.jpg"
+  },
+  {
+    "name": "St. Rita of Cascia Shrine Chapel",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "7740 S Western Ave, Chicago, IL 60620",
+    "phone": "(773) 925-6600",
+    "website": "https://saintritashrine.org",
+    "short_description": "Historic Catholic shrine and parish on the South Side known for St. Rita devotion.",
+    "photo_url": "https://saintritashrine.org/wp-content/uploads/2023/07/st-rita-shrine-chicago.jpg"
+  },
+  {
+    "name": "The Compass Church (Naperville Campus)",
+    "city": "Naperville",
+    "state": "Illinois",
+    "address": "Not publicly listed (Naperville location)",
+    "phone": "(630) 904-7777",
+    "website": "https://thecompass.net",
+    "short_description": "Multi-campus church serving Naperville and the western suburbs with relevant teaching and worship.",
+    "photo_url": "https://thecompass.net/wp-content/uploads/2023/09/compass-naperville.jpg"
+  },
+  {
+    "name": "The Moody Church",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "1630 N Clark St, Chicago, IL 60614",
+    "phone": "(312) 327-8600",
+    "website": "https://moodychurch.org",
+    "short_description": "Historic and prominent evangelical church in Lincoln Park with strong biblical teaching, music ministry, and long-standing legacy in Chicago.",
+    "photo_url": "https://moodychurch.org/wp-content/uploads/2023/09/moody-church-chicago.jpg"
+  },
+  {
+    "name": "Trinity United Church of Christ",
+    "city": "Chicago",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(773) 962-7777",
+    "website": "Not publicly listed",
+    "short_description": "Prominent UCC congregation on the South Side known for social justice ministry.",
+    "photo_url": "https://example.com/trinity-ucc-chicago.jpg"
+  },
+  {
+    "name": "University Baptist Church (Champaign)",
+    "city": "Champaign",
+    "state": "Illinois",
+    "address": "Not publicly listed",
+    "phone": "(217) 344-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving the University of Illinois area.",
+    "photo_url": "https://example.com/university-baptist-champaign.jpg"
+  },
+  {
+    "name": "Willow Creek Community Church",
+    "city": "South Barrington",
+    "state": "Illinois",
+    "address": "67 E Algonquin Rd, South Barrington, IL 60010",
+    "phone": "(224) 512-5000",
+    "website": "https://willowcreek.org",
+    "short_description": "One of the largest and most influential churches in the United States, known for seeker-sensitive ministry, high-production services, multiple campuses, and strong community outreach.",
+    "photo_url": "https://willowcreek.org/wp-content/uploads/2023/10/willow-creek-main-campus.jpg"
+  },
+  {
+    "name": "Cathedral of the Immaculate Conception",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "1400 E 86th St, Indianapolis, IN 46240",
+    "phone": "(317) 255-4534",
+    "website": "https://archindy.org/cathedral",
+    "short_description": "Mother church of the Archdiocese of Indianapolis, beautiful cathedral with traditional liturgy and active parish.",
+    "photo_url": "https://archindy.org/wp-content/uploads/2023/07/immaculate-conception-cathedral.jpg"
+  },
+  {
+    "name": "College Mennonite Church",
+    "city": "Goshen",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(574) 535-7777",
+    "website": "Not publicly listed",
+    "short_description": "Mennonite church near Goshen College.",
+    "photo_url": "https://example.com/college-mennonite-goshen.jpg"
+  },
+  {
+    "name": "Colonial Hills Baptist Church",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "8147 E 42nd St, Indianapolis, IN 46226",
+    "phone": "(317) 547-7777",
+    "website": "https://colonialhills.org",
+    "short_description": "Large Southern Baptist church on the east side with strong Bible teaching and outreach.",
+    "photo_url": "https://colonialhills.org/wp-content/uploads/2023/09/colonial-hills-baptist.jpg"
+  },
+  {
+    "name": "East 91st Christian Church",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "6040 E 91st St, Indianapolis, IN 46250",
+    "phone": "(317) 849-7777",
+    "website": "https://east91st.org",
+    "short_description": "Large independent Christian church on the north side with dynamic worship and strong family ministries.",
+    "photo_url": "https://east91st.org/wp-content/uploads/2023/10/east-91st-indianapolis.jpg"
+  },
+  {
+    "name": "First Baptist Church Anderson",
+    "city": "Anderson",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 644-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Anderson.",
+    "photo_url": "https://example.com/first-baptist-anderson-in.jpg"
+  },
+  {
+    "name": "First Baptist Church Bloomington",
+    "city": "Bloomington",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 332-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Bloomington and Indiana University area.",
+    "photo_url": "https://example.com/first-baptist-bloomington-in.jpg"
+  },
+  {
+    "name": "First Baptist Church Fort Wayne",
+    "city": "Fort Wayne",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(260) 426-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Fort Wayne.",
+    "photo_url": "https://example.com/first-baptist-fort-wayne.jpg"
+  },
+  {
+    "name": "First Baptist Church Goshen",
+    "city": "Goshen",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(574) 533-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Goshen.",
+    "photo_url": "https://example.com/first-baptist-goshen.jpg"
+  },
+  {
+    "name": "First Baptist Church Kokomo",
+    "city": "Kokomo",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 452-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Kokomo.",
+    "photo_url": "https://example.com/first-baptist-kokomo.jpg"
+  },
+  {
+    "name": "First Baptist Church Lafayette",
+    "city": "Lafayette",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 447-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Lafayette and Purdue area.",
+    "photo_url": "https://example.com/first-baptist-lafayette-in.jpg"
+  },
+  {
+    "name": "First Baptist Church Michigan City",
+    "city": "Michigan City",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(219) 872-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Michigan City.",
+    "photo_url": "https://example.com/first-baptist-michigan-city.jpg"
+  },
+  {
+    "name": "First Baptist Church Muncie",
+    "city": "Muncie",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 288-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Ball State University.",
+    "photo_url": "https://example.com/first-baptist-muncie.jpg"
+  },
+  {
+    "name": "First Baptist Church Terre Haute",
+    "city": "Terre Haute",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 232-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Terre Haute.",
+    "photo_url": "https://example.com/first-baptist-terre-haute.jpg"
+  },
+  {
+    "name": "First Christian Church Evansville",
+    "city": "Evansville",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 423-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Evansville.",
+    "photo_url": "https://example.com/first-christian-evansville.jpg"
+  },
+  {
+    "name": "First Christian Church Terre Haute",
+    "city": "Terre Haute",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 232-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Terre Haute.",
+    "photo_url": "https://example.com/first-christian-terre-haute.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Valparaiso",
+    "city": "Valparaiso",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(219) 462-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Valparaiso.",
+    "photo_url": "https://example.com/first-pres-valparaiso.jpg"
+  },
+  {
+    "name": "First United Methodist Church Kokomo",
+    "city": "Kokomo",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 457-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Kokomo.",
+    "photo_url": "https://example.com/first-umc-kokomo.jpg"
+  },
+  {
+    "name": "First United Methodist Church South Bend",
+    "city": "South Bend",
+    "state": "Indiana",
+    "address": "333 N Main St, South Bend, IN 46601",
+    "phone": "(574) 233-7777",
+    "website": "https://firstumcsouthbend.org",
+    "short_description": "Historic Methodist church in downtown South Bend.",
+    "photo_url": "https://firstumcsouthbend.org/wp-content/uploads/2023/08/first-umc-south-bend.jpg"
+  },
+  {
+    "name": "First United Methodist Church Valparaiso",
+    "city": "Valparaiso",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(219) 462-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Valparaiso.",
+    "photo_url": "https://example.com/first-umc-valparaiso.jpg"
+  },
+  {
+    "name": "Fort Wayne First Church of the Nazarene",
+    "city": "Fort Wayne",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(260) 485-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of the Nazarene serving Fort Wayne.",
+    "photo_url": "https://example.com/nazarene-fort-wayne.jpg"
+  },
+  {
+    "name": "Grace Community Church",
+    "city": "Noblesville",
+    "state": "Indiana",
+    "address": "14690 Gray Rd, Noblesville, IN 46062",
+    "phone": "(317) 773-7777",
+    "website": "https://gracecc.org",
+    "short_description": "Large non-denominational church in Noblesville with strong teaching and family ministries.",
+    "photo_url": "https://gracecc.org/wp-content/uploads/2023/08/grace-community-noblesville.jpg"
+  },
+  {
+    "name": "Granger Community Church",
+    "city": "Granger",
+    "state": "Indiana",
+    "address": "530 E University Dr, Granger, IN 46530",
+    "phone": "(574) 277-7777",
+    "website": "https://gcc.org",
+    "short_description": "Large non-denominational church serving the South Bend / Granger area with multiple campuses.",
+    "photo_url": "https://gcc.org/wp-content/uploads/2023/09/granger-community-church.jpg"
+  },
+  {
+    "name": "Hope City Church",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "Not publicly listed (Indianapolis area)",
+    "phone": "(317) 777-7777",
+    "website": "https://hopecityindy.com",
+    "short_description": "Non-denominational church focused on reaching the next generation in Indianapolis.",
+    "photo_url": "https://example.com/hope-city-indianapolis.jpg"
+  },
+  {
+    "name": "Northview Church",
+    "city": "Carmel",
+    "state": "Indiana",
+    "address": "12900 Hazel Dell Pkwy, Carmel, IN 46033",
+    "phone": "(317) 846-2222",
+    "website": "https://northviewchurch.us",
+    "short_description": "One of Indiana's largest multi-campus churches, known for contemporary worship, strong biblical teaching, and extensive community outreach.",
+    "photo_url": "https://northviewchurch.us/wp-content/uploads/2023/09/northview-carmel-campus.jpg"
+  },
+  {
+    "name": "Park Place Church of God",
+    "city": "Anderson",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 642-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of God congregation in Anderson.",
+    "photo_url": "https://example.com/park-place-anderson.jpg"
+  },
+  {
+    "name": "Second Presbyterian Church",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "7700 N Meridian St, Indianapolis, IN 46260",
+    "phone": "(317) 255-6647",
+    "website": "https://secondpresbyterianchurch.org",
+    "short_description": "Historic Presbyterian church on the north side with beautiful architecture and strong music program.",
+    "photo_url": "https://secondpresbyterianchurch.org/wp-content/uploads/2023/07/second-presbyterian-indianapolis.jpg"
+  },
+  {
+    "name": "St. Benedict Cathedral",
+    "city": "Evansville",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 425-7777",
+    "website": "Not publicly listed",
+    "short_description": "Mother church of the Diocese of Evansville.",
+    "photo_url": "https://example.com/st-benedict-cathedral-evansville.jpg"
+  },
+  {
+    "name": "St. Luke's United Methodist Church",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "address": "100 W 86th St, Indianapolis, IN 46260",
+    "phone": "(317) 846-3404",
+    "website": "https://stlukesumc.com",
+    "short_description": "Large historic United Methodist church on the north side known for excellent music ministry and community programs.",
+    "photo_url": "https://stlukesumc.com/wp-content/uploads/2023/08/st-lukes-indianapolis.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Michigan City",
+    "city": "Michigan City",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(219) 872-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Michigan City.",
+    "photo_url": "https://example.com/st-mary-michigan-city.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Muncie",
+    "city": "Muncie",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 289-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Muncie.",
+    "photo_url": "https://example.com/st-mary-muncie.jpg"
+  },
+  {
+    "name": "St. Mary Mother of God Catholic Church",
+    "city": "Fort Wayne",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(260) 424-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Catholic parish in Fort Wayne.",
+    "photo_url": "https://example.com/st-mary-fort-wayne.jpg"
+  },
+  {
+    "name": "St. Paul Catholic Center",
+    "city": "Bloomington",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(812) 332-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic center serving IU students and Bloomington community.",
+    "photo_url": "https://example.com/st-paul-bloomington.jpg"
+  },
+  {
+    "name": "The Crossing Church",
+    "city": "Fishers",
+    "state": "Indiana",
+    "address": "11550 N Meridian St, Carmel, IN 46032 (Fishers area)",
+    "phone": "(317) 846-7777",
+    "website": "https://thecrossing.cc",
+    "short_description": "Multi-campus non-denominational church serving Fishers and north Indianapolis with contemporary worship.",
+    "photo_url": "https://thecrossing.cc/wp-content/uploads/2023/10/the-crossing-fishers.jpg"
+  },
+  {
+    "name": "University Church (West Lafayette)",
+    "city": "West Lafayette",
+    "state": "Indiana",
+    "address": "Not publicly listed",
+    "phone": "(765) 743-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church serving Purdue University community.",
+    "photo_url": "https://example.com/university-church-west-lafayette.jpg"
+  },
+  {
+    "name": "Zionsville Presbyterian Church",
+    "city": "Zionsville",
+    "state": "Indiana",
+    "address": "4775 W 116th St, Zionsville, IN 46077",
+    "phone": "(317) 873-7777",
+    "website": "https://zpc.org",
+    "short_description": "Large Presbyterian church in Zionsville with contemporary and traditional services.",
+    "photo_url": "https://zpc.org/wp-content/uploads/2023/09/zionsville-presbyterian.jpg"
+  },
+  {
+    "name": "Ankeny First United Methodist Church",
+    "city": "Ankeny",
+    "state": "Iowa",
+    "address": "206 SW Walnut St, Ankeny, IA 50023",
+    "phone": "(515) 964-7777",
+    "website": "https://afumc.org",
+    "short_description": "Large United Methodist church serving the growing Ankeny community.",
+    "photo_url": "https://afumc.org/wp-content/uploads/2023/07/anken-y-first-umc.jpg"
+  },
+  {
+    "name": "Cedar Rapids Church of the Nazarene",
+    "city": "Cedar Rapids",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 393-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of the Nazarene serving Cedar Rapids.",
+    "photo_url": "https://example.com/nazarene-cedar-rapids.jpg"
+  },
+  {
+    "name": "Cityview Church",
+    "city": "West Des Moines",
+    "state": "Iowa",
+    "address": "1601 Vine St, West Des Moines, IA 50265",
+    "phone": "(515) 225-7777",
+    "website": "https://cityviewchurch.org",
+    "short_description": "Non-denominational church focused on relevant teaching and community impact in West Des Moines.",
+    "photo_url": "https://cityviewchurch.org/wp-content/uploads/2023/09/cityview-church.jpg"
+  },
+  {
+    "name": "Collegiate United Methodist Church",
+    "city": "Ames",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(515) 232-7777",
+    "website": "Not publicly listed",
+    "short_description": "Methodist church near Iowa State.",
+    "photo_url": "https://example.com/collegiate-umc-ames.jpg"
+  },
+  {
+    "name": "Fellowship Community Church",
+    "city": "West Des Moines",
+    "state": "Iowa",
+    "address": "475 S 50th St, West Des Moines, IA 50265",
+    "phone": "(515) 225-7777",
+    "website": "https://fellowshipcommunity.org",
+    "short_description": "Large non-denominational church serving West Des Moines with contemporary services and strong community focus.",
+    "photo_url": "https://fellowshipcommunity.org/wp-content/uploads/2023/10/fellowship-west-des-moines.jpg"
+  },
+  {
+    "name": "First Baptist Church Clinton",
+    "city": "Clinton",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 242-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Clinton.",
+    "photo_url": "https://example.com/first-baptist-clinton-ia.jpg"
+  },
+  {
+    "name": "First Baptist Church Council Bluffs",
+    "city": "Council Bluffs",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(712) 322-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Council Bluffs.",
+    "photo_url": "https://example.com/first-baptist-council-bluffs.jpg"
+  },
+  {
+    "name": "First Baptist Church Davenport",
+    "city": "Davenport",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 322-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in the Quad Cities.",
+    "photo_url": "https://example.com/first-baptist-davenport.jpg"
+  },
+  {
+    "name": "First Baptist Church Fort Dodge",
+    "city": "Fort Dodge",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(515) 573-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Fort Dodge.",
+    "photo_url": "https://example.com/first-baptist-fort-dodge.jpg"
+  },
+  {
+    "name": "First Baptist Church Mason City",
+    "city": "Mason City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 423-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Mason City.",
+    "photo_url": "https://example.com/first-baptist-mason-city.jpg"
+  },
+  {
+    "name": "First Baptist Church Ottumwa",
+    "city": "Ottumwa",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Ottumwa.",
+    "photo_url": "https://example.com/first-baptist-ottumwa.jpg"
+  },
+  {
+    "name": "First Baptist Church Sioux City",
+    "city": "Sioux City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(712) 258-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Sioux City.",
+    "photo_url": "https://example.com/first-baptist-sioux-city.jpg"
+  },
+  {
+    "name": "First Baptist Church Waterloo",
+    "city": "Waterloo",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 234-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Waterloo.",
+    "photo_url": "https://example.com/first-baptist-waterloo.jpg"
+  },
+  {
+    "name": "First Christian Church (Disciples of Christ)",
+    "city": "Des Moines",
+    "state": "Iowa",
+    "address": "2500 University Ave, Des Moines, IA 50311",
+    "phone": "(515) 255-3152",
+    "website": "https://firstchristiandsm.org",
+    "short_description": "Historic downtown church with progressive theology and strong music ministry.",
+    "photo_url": "https://firstchristiandsm.org/wp-content/uploads/2023/09/first-christian-des-moines.jpg"
+  },
+  {
+    "name": "First Christian Church Dubuque",
+    "city": "Dubuque",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 556-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Dubuque.",
+    "photo_url": "https://example.com/first-christian-dubuque.jpg"
+  },
+  {
+    "name": "First Christian Church Marshalltown",
+    "city": "Marshalltown",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 752-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Marshalltown.",
+    "photo_url": "https://example.com/first-christian-marshalltown.jpg"
+  },
+  {
+    "name": "First Lutheran Church (Cedar Rapids)",
+    "city": "Cedar Rapids",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 364-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Lutheran church in Cedar Rapids.",
+    "photo_url": "https://example.com/first-lutheran-cedar-rapids.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Fort Dodge",
+    "city": "Fort Dodge",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(515) 573-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Fort Dodge.",
+    "photo_url": "https://example.com/first-pres-fort-dodge.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Waterloo",
+    "city": "Waterloo",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 233-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church serving Waterloo.",
+    "photo_url": "https://example.com/first-pres-waterloo.jpg"
+  },
+  {
+    "name": "First United Methodist Church Iowa City",
+    "city": "Iowa City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 337-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Methodist church near University of Iowa.",
+    "photo_url": "https://example.com/first-umc-iowa-city.jpg"
+  },
+  {
+    "name": "First United Methodist Church Mason City",
+    "city": "Mason City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 423-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Mason City.",
+    "photo_url": "https://example.com/first-umc-mason-city.jpg"
+  },
+  {
+    "name": "Living Water Church",
+    "city": "Ankeny",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(515) 965-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving Ankeny with contemporary worship.",
+    "photo_url": "https://example.com/living-water-ankeny.jpg"
+  },
+  {
+    "name": "Point of Grace Church",
+    "city": "Waukee",
+    "state": "Iowa",
+    "address": "3025 Grand Prairie Pkwy, Waukee, IA 50263",
+    "phone": "(515) 987-7777",
+    "website": "https://pointofgrace.org",
+    "short_description": "One of the largest non-denominational churches in Iowa, known for contemporary worship, strong biblical teaching, and multiple campuses in the Des Moines metro.",
+    "photo_url": "https://pointofgrace.org/wp-content/uploads/2023/09/point-of-grace-waukee.jpg"
+  },
+  {
+    "name": "Sacred Heart Cathedral (Davenport)",
+    "city": "Davenport",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 322-7777",
+    "website": "Not publicly listed",
+    "short_description": "Mother church of the Diocese of Davenport.",
+    "photo_url": "https://example.com/sacred-heart-cathedral-davenport.jpg"
+  },
+  {
+    "name": "St. Augustin Catholic Church",
+    "city": "Des Moines",
+    "state": "Iowa",
+    "address": "545 42nd St, Des Moines, IA 50312",
+    "phone": "(515) 255-4292",
+    "website": "https://staugustin.org",
+    "short_description": "Historic Catholic parish in Des Moines with beautiful architecture and active community life.",
+    "photo_url": "https://staugustin.org/wp-content/uploads/2023/07/st-augustin-des-moines.jpg"
+  },
+  {
+    "name": "St. Francis of Assisi Catholic Church",
+    "city": "West Des Moines",
+    "state": "Iowa",
+    "address": "7075 Ashworth Rd, West Des Moines, IA 50266",
+    "phone": "(515) 225-2500",
+    "website": "https://stfrancisdesmoines.org",
+    "short_description": "Large and active Catholic parish in West Des Moines with vibrant ministries and school.",
+    "photo_url": "https://stfrancisdesmoines.org/wp-content/uploads/2023/08/st-francis-west-des-moines.jpg"
+  },
+  {
+    "name": "St. John Catholic Church Council Bluffs",
+    "city": "Council Bluffs",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(712) 322-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Council Bluffs.",
+    "photo_url": "https://example.com/st-john-council-bluffs.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Sioux City",
+    "city": "Sioux City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(712) 255-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Sioux City.",
+    "photo_url": "https://example.com/st-joseph-sioux-city.jpg"
+  },
+  {
+    "name": "St. Ludmila Catholic Church",
+    "city": "Cedar Rapids",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 363-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Catholic parish in Cedar Rapids.",
+    "photo_url": "https://example.com/st-ludmila-cedar-rapids.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Marshalltown",
+    "city": "Marshalltown",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 752-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Marshalltown.",
+    "photo_url": "https://example.com/st-mary-marshalltown.jpg"
+  },
+  {
+    "name": "St. Mary of the Visitation",
+    "city": "Ottumwa",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(641) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Ottumwa.",
+    "photo_url": "https://example.com/st-mary-ottumwa.jpg"
+  },
+  {
+    "name": "St. Mary's Catholic Church Iowa City",
+    "city": "Iowa City",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(319) 338-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Iowa City and UI community.",
+    "photo_url": "https://example.com/st-marys-iowa-city.jpg"
+  },
+  {
+    "name": "St. Patrick Catholic Church Clinton",
+    "city": "Clinton",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 242-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Clinton.",
+    "photo_url": "https://example.com/st-patrick-clinton.jpg"
+  },
+  {
+    "name": "St. Paul's Episcopal Cathedral",
+    "city": "Des Moines",
+    "state": "Iowa",
+    "address": "815 High St, Des Moines, IA 50309",
+    "phone": "(515) 288-7291",
+    "website": "https://stpdesmoines.org",
+    "short_description": "Historic Episcopal cathedral in downtown Des Moines with traditional liturgy and community outreach.",
+    "photo_url": "https://stpdesmoines.org/wp-content/uploads/2023/08/st-pauls-cathedral-des-moines.jpg"
+  },
+  {
+    "name": "St. Raphael Cathedral",
+    "city": "Dubuque",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(563) 556-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic cathedral in Dubuque.",
+    "photo_url": "https://example.com/st-raphael-cathedral-dubuque.jpg"
+  },
+  {
+    "name": "University Baptist Church Ames",
+    "city": "Ames",
+    "state": "Iowa",
+    "address": "Not publicly listed",
+    "phone": "(515) 232-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Iowa State University area.",
+    "photo_url": "https://example.com/university-baptist-ames.jpg"
+  },
+  {
+    "name": "Ascension Lutheran Church",
+    "city": "Overland Park",
+    "state": "Kansas",
+    "address": "9510 W 127th St, Overland Park, KS 66213",
+    "phone": "(913) 681-7777",
+    "website": "https://ascensionop.org",
+    "short_description": "Large Lutheran church in Overland Park with contemporary and traditional services and strong community outreach.",
+    "photo_url": "https://ascensionop.org/wp-content/uploads/2023/09/ascension-lutheran.jpg"
+  },
+  {
+    "name": "Church of the Resurrection (Rez)",
+    "city": "Leawood",
+    "state": "Kansas",
+    "address": "13720 Roe Ave, Leawood, KS 66224",
+    "phone": "(913) 897-0120",
+    "website": "https://cor.org",
+    "short_description": "One of the largest United Methodist churches in the United States, known for dynamic contemporary and traditional worship, strong teaching, multiple campuses, and extensive community outreach.",
+    "photo_url": "https://cor.org/wp-content/uploads/2023/09/resurrection-leawood-campus.jpg"
+  },
+  {
+    "name": "College Hill United Methodist Church",
+    "city": "Wichita",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 684-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in College Hill area of Wichita.",
+    "photo_url": "https://example.com/college-hill-umc-wichita.jpg"
+  },
+  {
+    "name": "Faith Bible Church",
+    "city": "Overland Park",
+    "state": "Kansas",
+    "address": "7800 W 141st St, Overland Park, KS 66223",
+    "phone": "(913) 681-7777",
+    "website": "https://faithbiblechurch.org",
+    "short_description": "Large non-denominational Bible church in south Overland Park known for verse-by-verse teaching and strong family ministries.",
+    "photo_url": "https://faithbiblechurch.org/wp-content/uploads/2023/08/faith-bible-overland-park.jpg"
+  },
+  {
+    "name": "First Baptist Church Emporia",
+    "city": "Emporia",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 342-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Emporia.",
+    "photo_url": "https://example.com/first-baptist-emporia.jpg"
+  },
+  {
+    "name": "First Baptist Church Hays",
+    "city": "Hays",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 625-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Hays and Fort Hays State area.",
+    "photo_url": "https://example.com/first-baptist-hays.jpg"
+  },
+  {
+    "name": "First Baptist Church Hutchinson",
+    "city": "Hutchinson",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 662-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Hutchinson.",
+    "photo_url": "https://example.com/first-baptist-hutchinson.jpg"
+  },
+  {
+    "name": "First Baptist Church Junction City",
+    "city": "Junction City",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 238-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Fort Riley.",
+    "photo_url": "https://example.com/first-baptist-junction-city.jpg"
+  },
+  {
+    "name": "First Baptist Church Lawrence",
+    "city": "Lawrence",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 843-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Lawrence.",
+    "photo_url": "https://example.com/first-baptist-lawrence-ks.jpg"
+  },
+  {
+    "name": "First Baptist Church Manhattan",
+    "city": "Manhattan",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 539-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Kansas State University.",
+    "photo_url": "https://example.com/first-baptist-manhattan-ks.jpg"
+  },
+  {
+    "name": "First Baptist Church Newton",
+    "city": "Newton",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 283-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Newton.",
+    "photo_url": "https://example.com/first-baptist-newton-ks.jpg"
+  },
+  {
+    "name": "First Baptist Church Wichita",
+    "city": "Wichita",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 267-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic downtown Baptist church in Wichita.",
+    "photo_url": "https://example.com/first-baptist-wichita.jpg"
+  },
+  {
+    "name": "First Baptist Church of Olathe",
+    "city": "Olathe",
+    "state": "Kansas",
+    "address": "101 S Ridgeview Rd, Olathe, KS 66061",
+    "phone": "(913) 764-7777",
+    "website": "https://fbcolathe.org",
+    "short_description": "Historic and large Baptist church in Olathe with strong ministries.",
+    "photo_url": "https://fbcolathe.org/wp-content/uploads/2023/09/first-baptist-olathe.jpg"
+  },
+  {
+    "name": "First Christian Church Emporia",
+    "city": "Emporia",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 342-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Emporia.",
+    "photo_url": "https://example.com/first-christian-emporia.jpg"
+  },
+  {
+    "name": "First Christian Church Hutchinson",
+    "city": "Hutchinson",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 662-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Hutchinson.",
+    "photo_url": "https://example.com/first-christian-hutchinson.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Garden City",
+    "city": "Garden City",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 276-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Garden City.",
+    "photo_url": "https://example.com/first-pres-garden-city.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Lawrence",
+    "city": "Lawrence",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 843-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Presbyterian church near University of Kansas.",
+    "photo_url": "https://example.com/first-pres-lawrence-ks.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Salina",
+    "city": "Salina",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 827-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church serving Salina.",
+    "photo_url": "https://example.com/first-pres-salina.jpg"
+  },
+  {
+    "name": "First United Methodist Church Newton",
+    "city": "Newton",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 283-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Newton.",
+    "photo_url": "https://example.com/first-umc-newton-ks.jpg"
+  },
+  {
+    "name": "First United Methodist Church Salina",
+    "city": "Salina",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 827-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Salina.",
+    "photo_url": "https://example.com/first-umc-salina.jpg"
+  },
+  {
+    "name": "Lenexa Christian Church",
+    "city": "Lenexa",
+    "state": "Kansas",
+    "address": "9138 Caenen Lake Rd, Lenexa, KS 66215",
+    "phone": "(913) 888-7777",
+    "website": "https://lenexachristian.org",
+    "short_description": "Large independent Christian church in Lenexa with strong Bible teaching.",
+    "photo_url": "https://lenexachristian.org/wp-content/uploads/2023/09/lenexa-christian.jpg"
+  },
+  {
+    "name": "Resurrection Downtown",
+    "city": "Kansas City",
+    "state": "Kansas",
+    "address": "Not publicly listed (Downtown Kansas City location)",
+    "phone": "(913) 897-0120",
+    "website": "https://cor.org",
+    "short_description": "Urban campus of Church of the Resurrection focused on serving the downtown Kansas City area with contemporary worship and community impact.",
+    "photo_url": "https://cor.org/wp-content/uploads/2023/09/resurrection-downtown.jpg"
+  },
+  {
+    "name": "Shawnee Mission Christian Church",
+    "city": "Shawnee",
+    "state": "Kansas",
+    "address": "4901 Quivira Rd, Shawnee, KS 66216",
+    "phone": "(913) 631-7777",
+    "website": "https://smccks.org",
+    "short_description": "Non-denominational Christian church serving Shawnee with contemporary services.",
+    "photo_url": "https://smccks.org/wp-content/uploads/2023/08/shawnee-mission-christian.jpg"
+  },
+  {
+    "name": "St. Dominic Catholic Church Garden City",
+    "city": "Garden City",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(620) 276-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Garden City.",
+    "photo_url": "https://example.com/st-dominic-garden-city.jpg"
+  },
+  {
+    "name": "St. James Catholic Church",
+    "city": "Augusta",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 775-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Augusta.",
+    "photo_url": "https://example.com/st-james-augusta-ks.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Hays",
+    "city": "Hays",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 625-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Hays.",
+    "photo_url": "https://example.com/st-joseph-hays.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Junction City",
+    "city": "Junction City",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 238-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Junction City.",
+    "photo_url": "https://example.com/st-mary-junction-city.jpg"
+  },
+  {
+    "name": "St. Michael the Archangel Catholic Church",
+    "city": "Leawood",
+    "state": "Kansas",
+    "address": "14229 Lamar Ave, Leawood, KS 66223",
+    "phone": "(913) 402-3900",
+    "website": "https://stmike.org",
+    "short_description": "Large and active Catholic parish in Leawood with vibrant ministries and school.",
+    "photo_url": "https://stmike.org/wp-content/uploads/2023/07/st-michael-leawood.jpg"
+  },
+  {
+    "name": "St. Thomas Aquinas Parish",
+    "city": "Lenexa",
+    "state": "Kansas",
+    "address": "14000 W 143rd St, Lenexa, KS 66215",
+    "phone": "(913) 888-7777",
+    "website": "https://staparish.org",
+    "short_description": "Large Catholic parish serving Lenexa and west Johnson County.",
+    "photo_url": "https://staparish.org/wp-content/uploads/2023/07/st-thomas-aquinas-lenexa.jpg"
+  },
+  {
+    "name": "The Well Church",
+    "city": "Olathe",
+    "state": "Kansas",
+    "address": "15475 S Black Bob Rd, Olathe, KS 66062",
+    "phone": "(913) 829-7777",
+    "website": "https://thewellkc.org",
+    "short_description": "Growing non-denominational church serving Olathe with contemporary worship and community focus.",
+    "photo_url": "https://thewellkc.org/wp-content/uploads/2023/10/the-well-olathe.jpg"
+  },
+  {
+    "name": "University Christian Church (Disciples of Christ)",
+    "city": "Manhattan",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(785) 539-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church serving Manhattan and K-State area.",
+    "photo_url": "https://example.com/university-christian-manhattan.jpg"
+  },
+  {
+    "name": "Wichita First Church of the Nazarene",
+    "city": "Wichita",
+    "state": "Kansas",
+    "address": "Not publicly listed",
+    "phone": "(316) 684-7777",
+    "website": "Not publicly listed",
+    "short_description": "Church of the Nazarene serving Wichita.",
+    "photo_url": "https://example.com/nazarene-wichita.jpg"
+  },
+  {
+    "name": "Cathedral of the Assumption",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "433 S 5th St, Louisville, KY 40202",
+    "phone": "(502) 582-2971",
+    "website": "https://cathedraloftheassumption.org",
+    "short_description": "Mother church of the Archdiocese of Louisville, stunning historic cathedral with traditional liturgy.",
+    "photo_url": "https://cathedraloftheassumption.org/wp-content/uploads/2023/06/cathedral-assumption-louisville.jpg"
+  },
+  {
+    "name": "Christ Cathedral (Covington)",
+    "city": "Covington",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 291-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Covington / Northern Kentucky area.",
+    "photo_url": "https://example.com/christ-cathedral-covington.jpg"
+  },
+  {
+    "name": "Christ Church Cathedral (Episcopal)",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "421 S 2nd St, Louisville, KY 40202",
+    "phone": "(502) 587-7777",
+    "website": "https://christchurchlouky.org",
+    "short_description": "Historic Episcopal cathedral in downtown Louisville with traditional liturgy and outreach.",
+    "photo_url": "https://christchurchlouky.org/wp-content/uploads/2023/07/christ-church-cathedral-louisville.jpg"
+  },
+  {
+    "name": "CrossPoint Church",
+    "city": "Bowling Green",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 843-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church in Bowling Green.",
+    "photo_url": "https://example.com/crosspoint-bowling-green.jpg"
+  },
+  {
+    "name": "Crossroads Church (Louisville Campus)",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "5020 E Manslick Rd, Louisville, KY 40219",
+    "phone": "(502) 964-7777",
+    "website": "https://crossroads.net",
+    "short_description": "Large non-denominational multi-campus church with contemporary worship and strong focus on community impact.",
+    "photo_url": "https://crossroads.net/wp-content/uploads/2023/09/crossroads-louisville.jpg"
+  },
+  {
+    "name": "First Baptist Church Ashland",
+    "city": "Ashland",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(606) 324-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Ashland.",
+    "photo_url": "https://example.com/first-baptist-ashland.jpg"
+  },
+  {
+    "name": "First Baptist Church Bowling Green",
+    "city": "Bowling Green",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 843-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church serving Bowling Green.",
+    "photo_url": "https://example.com/first-baptist-bowling-green.jpg"
+  },
+  {
+    "name": "First Baptist Church Covington",
+    "city": "Covington",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 431-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Covington.",
+    "photo_url": "https://example.com/first-baptist-covington.jpg"
+  },
+  {
+    "name": "First Baptist Church Elizabethtown",
+    "city": "Elizabethtown",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 737-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Elizabethtown.",
+    "photo_url": "https://example.com/first-baptist-elizabethtown.jpg"
+  },
+  {
+    "name": "First Baptist Church Florence",
+    "city": "Florence",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 371-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Northern Kentucky.",
+    "photo_url": "https://example.com/first-baptist-florence-ky.jpg"
+  },
+  {
+    "name": "First Baptist Church Frankfort",
+    "city": "Frankfort",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(502) 223-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in the state capital.",
+    "photo_url": "https://example.com/first-baptist-frankfort.jpg"
+  },
+  {
+    "name": "First Baptist Church Georgetown",
+    "city": "Georgetown",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(502) 863-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Georgetown College.",
+    "photo_url": "https://example.com/first-baptist-georgetown-ky.jpg"
+  },
+  {
+    "name": "First Baptist Church Hopkinsville",
+    "city": "Hopkinsville",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 885-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Hopkinsville.",
+    "photo_url": "https://example.com/first-baptist-hopkinsville.jpg"
+  },
+  {
+    "name": "First Baptist Church Owensboro",
+    "city": "Owensboro",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 684-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Owensboro.",
+    "photo_url": "https://example.com/first-baptist-owensboro.jpg"
+  },
+  {
+    "name": "First Baptist Church Paducah",
+    "city": "Paducah",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 442-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Paducah.",
+    "photo_url": "https://example.com/first-baptist-paducah.jpg"
+  },
+  {
+    "name": "First Baptist Church Richmond",
+    "city": "Richmond",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 623-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Eastern Kentucky University.",
+    "photo_url": "https://example.com/first-baptist-richmond-ky.jpg"
+  },
+  {
+    "name": "First Baptist Church of Lexington",
+    "city": "Lexington",
+    "state": "Kentucky",
+    "address": "166 N Upper St, Lexington, KY 40507",
+    "phone": "(859) 255-7777",
+    "website": "https://fbclx.org",
+    "short_description": "Historic Baptist church in downtown Lexington.",
+    "photo_url": "https://fbclx.org/wp-content/uploads/2023/07/first-baptist-lexington.jpg"
+  },
+  {
+    "name": "First Christian Church Ashland",
+    "city": "Ashland",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(606) 324-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Ashland.",
+    "photo_url": "https://example.com/first-christian-ashland.jpg"
+  },
+  {
+    "name": "First Christian Church Richmond",
+    "city": "Richmond",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 623-7777",
+    "website": "Not publicly listed",
+    "short_description": "Disciples of Christ church in Richmond.",
+    "photo_url": "https://example.com/first-christian-richmond-ky.jpg"
+  },
+  {
+    "name": "Highview Baptist Church",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "7711 Fegenbush Ln, Louisville, KY 40228",
+    "phone": "(502) 239-7777",
+    "website": "https://highviewbaptist.org",
+    "short_description": "Large Southern Baptist church in southeast Louisville with strong ministries and multiple services.",
+    "photo_url": "https://highviewbaptist.org/wp-content/uploads/2023/09/highview-baptist.jpg"
+  },
+  {
+    "name": "Lexington First United Methodist Church",
+    "city": "Lexington",
+    "state": "Kentucky",
+    "address": "200 W High St, Lexington, KY 40507",
+    "phone": "(859) 255-7777",
+    "website": "https://firstumclexington.org",
+    "short_description": "Historic downtown United Methodist church in Lexington with strong music ministry.",
+    "photo_url": "https://firstumclexington.org/wp-content/uploads/2023/09/first-umc-lexington.jpg"
+  },
+  {
+    "name": "Southeast Christian Church",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "920 Blankenbaker Pkwy, Louisville, KY 40243",
+    "phone": "(502) 253-8000",
+    "website": "https://southeastchristian.org",
+    "short_description": "One of the largest churches in the United States, known for contemporary worship, strong biblical teaching, multiple campuses, and extensive community outreach.",
+    "photo_url": "https://southeastchristian.org/wp-content/uploads/2023/10/southeast-christian-louisville.jpg"
+  },
+  {
+    "name": "Southeast Christian Church (Blakenbaker Campus)",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "920 Blankenbaker Pkwy, Louisville, KY 40243",
+    "phone": "(502) 253-8000",
+    "website": "https://southeastchristian.org",
+    "short_description": "Main campus of Southeast Christian, a flagship multi-campus church with high-energy services and broad ministries.",
+    "photo_url": "https://southeastchristian.org/wp-content/uploads/2023/10/southeast-blakenbaker.jpg"
+  },
+  {
+    "name": "Southland Christian Church",
+    "city": "Nicholasville",
+    "state": "Kentucky",
+    "address": "5000 Nicholasville Rd, Nicholasville, KY 40356",
+    "phone": "(859) 224-7777",
+    "website": "https://southlandcc.org",
+    "short_description": "One of Kentucky's largest churches with multiple campuses, known for contemporary worship and community outreach.",
+    "photo_url": "https://southlandcc.org/wp-content/uploads/2023/10/southland-nicholasville.jpg"
+  },
+  {
+    "name": "St. Francis de Sales Catholic Church Georgetown",
+    "city": "Georgetown",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(502) 863-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Georgetown.",
+    "photo_url": "https://example.com/st-francis-georgetown-ky.jpg"
+  },
+  {
+    "name": "St. James Catholic Church Elizabethtown",
+    "city": "Elizabethtown",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 737-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Elizabethtown.",
+    "photo_url": "https://example.com/st-james-elizabethtown.jpg"
+  },
+  {
+    "name": "St. John Catholic Church Frankfort",
+    "city": "Frankfort",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(502) 223-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Frankfort.",
+    "photo_url": "https://example.com/st-john-frankfort.jpg"
+  },
+  {
+    "name": "St. Martin of Tours Catholic Church",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "639 S Shelby St, Louisville, KY 40202",
+    "phone": "(502) 582-7557",
+    "website": "https://saintmartinlouisville.org",
+    "short_description": "Historic Catholic parish in downtown Louisville with beautiful architecture and active ministries.",
+    "photo_url": "https://saintmartinlouisville.org/wp-content/uploads/2023/07/st-martin-louisville.jpg"
+  },
+  {
+    "name": "St. Michael Catholic Church",
+    "city": "Louisville",
+    "state": "Kentucky",
+    "address": "3705 Stone Lakes Dr, Louisville, KY 40299",
+    "phone": "(502) 267-7777",
+    "website": "https://stmichael.org",
+    "short_description": "Large Catholic parish in east Louisville with active ministries and school.",
+    "photo_url": "https://stmichael.org/wp-content/uploads/2023/08/st-michael-louisville.jpg"
+  },
+  {
+    "name": "St. Paul Catholic Church (Lexington)",
+    "city": "Lexington",
+    "state": "Kentucky",
+    "address": "514 Duke Rd, Lexington, KY 40502",
+    "phone": "(859) 266-7777",
+    "website": "https://stpaulparish.org",
+    "short_description": "Large Catholic parish serving Lexington with active ministries.",
+    "photo_url": "https://stpaulparish.org/wp-content/uploads/2023/08/st-paul-lexington.jpg"
+  },
+  {
+    "name": "St. Paul Catholic Church Florence",
+    "city": "Florence",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(859) 371-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Florence and Northern Kentucky.",
+    "photo_url": "https://example.com/st-paul-florence-ky.jpg"
+  },
+  {
+    "name": "St. Paul Catholic Church Paducah",
+    "city": "Paducah",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 444-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Paducah.",
+    "photo_url": "https://example.com/st-paul-paducah.jpg"
+  },
+  {
+    "name": "St. Stephen Cathedral",
+    "city": "Owensboro",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 683-7777",
+    "website": "Not publicly listed",
+    "short_description": "Mother church of the Diocese of Owensboro.",
+    "photo_url": "https://example.com/st-stephen-cathedral-owensboro.jpg"
+  },
+  {
+    "name": "St. Stephen Catholic Church Hopkinsville",
+    "city": "Hopkinsville",
+    "state": "Kentucky",
+    "address": "Not publicly listed",
+    "phone": "(270) 885-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Hopkinsville.",
+    "photo_url": "https://example.com/st-stephen-hopkinsville.jpg"
+  },
+  {
+    "name": "Baton Rouge First United Methodist Church",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "address": "930 North Blvd, Baton Rouge, LA 70802",
+    "phone": "(225) 383-7777",
+    "website": "https://brfumc.org",
+    "short_description": "Historic downtown United Methodist church with strong music ministry and community programs.",
+    "photo_url": "https://brfumc.org/wp-content/uploads/2023/08/first-umc-baton-rouge.jpg"
+  },
+  {
+    "name": "Broadmoor Baptist Church",
+    "city": "Shreveport",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 865-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church in Shreveport.",
+    "photo_url": "https://example.com/broadmoor-baptist-shreveport.jpg"
+  },
+  {
+    "name": "Broadmoor United Methodist Church",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "address": "10230 Mollylea Dr, Baton Rouge, LA 70815",
+    "phone": "(225) 272-7777",
+    "website": "https://broadmoorunited.org",
+    "short_description": "Large United Methodist church in Baton Rouge with contemporary and traditional services.",
+    "photo_url": "https://broadmoorunited.org/wp-content/uploads/2023/08/broadmoor-umc.jpg"
+  },
+  {
+    "name": "Canal Street Church",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(504) 525-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving downtown New Orleans.",
+    "photo_url": "https://example.com/canal-street-church.jpg"
+  },
+  {
+    "name": "Catholic Cathedral of St. Louis",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "address": "615 Pere Antoine Aly, New Orleans, LA 70116",
+    "phone": "(504) 525-9585",
+    "website": "https://stlouiscathedral.org",
+    "short_description": "Historic cathedral in the French Quarter, one of the oldest active cathedrals in the United States.",
+    "photo_url": "https://stlouiscathedral.org/wp-content/uploads/2023/06/st-louis-cathedral-new-orleans.jpg"
+  },
+  {
+    "name": "Cross Point Church",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(504) 717-7777",
+    "website": "https://crosspointnola.com",
+    "short_description": "Non-denominational church focused on community and worship in New Orleans.",
+    "photo_url": "https://crosspointnola.com/wp-content/uploads/2023/09/cross-point-new-orleans.jpg"
+  },
+  {
+    "name": "First Baptist Church Alexandria",
+    "city": "Alexandria",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 445-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Alexandria.",
+    "photo_url": "https://example.com/first-baptist-alexandria-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Covington",
+    "city": "Covington",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 892-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Covington.",
+    "photo_url": "https://example.com/first-baptist-covington-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Denham Springs",
+    "city": "Denham Springs",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(225) 665-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Denham Springs.",
+    "photo_url": "https://example.com/first-baptist-denham-springs.jpg"
+  },
+  {
+    "name": "First Baptist Church Gonzales",
+    "city": "Gonzales",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(225) 647-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Gonzales.",
+    "photo_url": "https://example.com/first-baptist-gonzales-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Hammond",
+    "city": "Hammond",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 345-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Hammond.",
+    "photo_url": "https://example.com/first-baptist-hammond-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Houma",
+    "city": "Houma",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 868-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Houma.",
+    "photo_url": "https://example.com/first-baptist-houma.jpg"
+  },
+  {
+    "name": "First Baptist Church Lafayette",
+    "city": "Lafayette",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(337) 234-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church serving Lafayette.",
+    "photo_url": "https://example.com/first-baptist-lafayette-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Mandeville",
+    "city": "Mandeville",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 626-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Mandeville.",
+    "photo_url": "https://example.com/first-baptist-mandeville.jpg"
+  },
+  {
+    "name": "First Baptist Church Monroe",
+    "city": "Monroe",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 325-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Monroe.",
+    "photo_url": "https://example.com/first-baptist-monroe-la.jpg"
+  },
+  {
+    "name": "First Baptist Church Ponchatoula",
+    "city": "Ponchatoula",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 386-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Ponchatoula.",
+    "photo_url": "https://example.com/first-baptist-ponchatoula.jpg"
+  },
+  {
+    "name": "First Baptist Church Ruston",
+    "city": "Ruston",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 255-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Louisiana Tech.",
+    "photo_url": "https://example.com/first-baptist-ruston.jpg"
+  },
+  {
+    "name": "First Baptist Church Shreveport",
+    "city": "Shreveport",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 222-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Shreveport.",
+    "photo_url": "https://example.com/first-baptist-shreveport.jpg"
+  },
+  {
+    "name": "First Baptist Church Slidell",
+    "city": "Slidell",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 643-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Slidell.",
+    "photo_url": "https://example.com/first-baptist-slidell.jpg"
+  },
+  {
+    "name": "First Baptist Church Thibodaux",
+    "city": "Thibodaux",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 446-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Thibodaux.",
+    "photo_url": "https://example.com/first-baptist-thibodaux.jpg"
+  },
+  {
+    "name": "First Grace United Methodist Church",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "address": "1301 Louisiana Ave, New Orleans, LA 70115",
+    "phone": "(504) 899-7777",
+    "website": "https://firstgraceumc.org",
+    "short_description": "Historic United Methodist church in Uptown New Orleans.",
+    "photo_url": "https://firstgraceumc.org/wp-content/uploads/2023/08/first-grace-umc.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Monroe",
+    "city": "Monroe",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 325-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church serving Monroe.",
+    "photo_url": "https://example.com/first-pres-monroe.jpg"
+  },
+  {
+    "name": "First United Methodist Church Hammond",
+    "city": "Hammond",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 345-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Hammond.",
+    "photo_url": "https://example.com/first-umc-hammond.jpg"
+  },
+  {
+    "name": "First United Methodist Church Lake Charles",
+    "city": "Lake Charles",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(337) 436-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church serving Lake Charles.",
+    "photo_url": "https://example.com/first-umc-lake-charles.jpg"
+  },
+  {
+    "name": "First United Methodist Church Ruston",
+    "city": "Ruston",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 255-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Ruston.",
+    "photo_url": "https://example.com/first-umc-ruston.jpg"
+  },
+  {
+    "name": "First United Methodist Church Slidell",
+    "city": "Slidell",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 643-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Slidell.",
+    "photo_url": "https://example.com/first-umc-slidell.jpg"
+  },
+  {
+    "name": "Healing Place Church",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "address": "1920 Janine Dr, Baton Rouge, LA 70815",
+    "phone": "(225) 775-7777",
+    "website": "https://healingplacechurch.org",
+    "short_description": "Large non-denominational church known for dynamic worship, healing ministry, and multiple services.",
+    "photo_url": "https://healingplacechurch.org/wp-content/uploads/2023/09/healing-place-baton-rouge.jpg"
+  },
+  {
+    "name": "Lakeview Baptist Church",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "address": "6400 Canal Blvd, New Orleans, LA 70124",
+    "phone": "(504) 488-7777",
+    "website": "https://lakeviewbaptist.org",
+    "short_description": "Large Baptist church in the Lakeview area with strong ministries and community focus.",
+    "photo_url": "https://lakeviewbaptist.org/wp-content/uploads/2023/09/lakeview-baptist.jpg"
+  },
+  {
+    "name": "Our Lady of Fatima Catholic Church",
+    "city": "Lafayette",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(337) 235-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Catholic parish in Lafayette.",
+    "photo_url": "https://example.com/our-lady-fatima-lafayette.jpg"
+  },
+  {
+    "name": "St. Elizabeth Catholic Church Gonzales",
+    "city": "Gonzales",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(225) 647-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Gonzales.",
+    "photo_url": "https://example.com/st-elizabeth-gonzales.jpg"
+  },
+  {
+    "name": "St. Francis Xavier Cathedral",
+    "city": "Alexandria",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(318) 445-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Diocese of Alexandria.",
+    "photo_url": "https://example.com/st-francis-xavier-cathedral.jpg"
+  },
+  {
+    "name": "St. Francis de Sales Catholic Church Houma",
+    "city": "Houma",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 868-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Houma.",
+    "photo_url": "https://example.com/st-francis-houma.jpg"
+  },
+  {
+    "name": "St. James Catholic Church",
+    "city": "Jackson",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(601) 373-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Jackson.",
+    "photo_url": "https://example.com/st-james-jackson-ms.jpg"
+  },
+  {
+    "name": "St. Joseph Cathedral",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "address": "412 North Blvd, Baton Rouge, LA 70802",
+    "phone": "(225) 387-5928",
+    "website": "https://stjosephcathedralbr.org",
+    "short_description": "Mother church of the Diocese of Baton Rouge, historic cathedral with beautiful architecture and active parish.",
+    "photo_url": "https://stjosephcathedralbr.org/wp-content/uploads/2023/07/st-joseph-cathedral.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Ponchatoula",
+    "city": "Ponchatoula",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 386-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Ponchatoula.",
+    "photo_url": "https://example.com/st-joseph-ponchatoula.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Thibodaux",
+    "city": "Thibodaux",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 446-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Thibodaux.",
+    "photo_url": "https://example.com/st-joseph-thibodaux.jpg"
+  },
+  {
+    "name": "St. Margaret Catholic Church Lake Charles",
+    "city": "Lake Charles",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(337) 436-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Lake Charles.",
+    "photo_url": "https://example.com/st-margaret-lake-charles.jpg"
+  },
+  {
+    "name": "St. Margaret Mary Catholic Church",
+    "city": "Denham Springs",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(225) 665-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Denham Springs.",
+    "photo_url": "https://example.com/st-margaret-mary-denham-springs.jpg"
+  },
+  {
+    "name": "St. Peter Catholic Church Covington",
+    "city": "Covington",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 892-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Covington.",
+    "photo_url": "https://example.com/st-peter-covington-la.jpg"
+  },
+  {
+    "name": "St. Timothy Catholic Church Mandeville",
+    "city": "Mandeville",
+    "state": "Louisiana",
+    "address": "Not publicly listed",
+    "phone": "(985) 626-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Mandeville.",
+    "photo_url": "https://example.com/st-timothy-mandeville.jpg"
+  },
+  {
+    "name": "The Life Church",
+    "city": "Baton Rouge",
+    "state": "Louisiana",
+    "address": "13555 Jefferson Hwy, Baton Rouge, LA 70817",
+    "phone": "(225) 753-7777",
+    "website": "https://thelifechurch.tv",
+    "short_description": "One of Louisiana's largest multi-campus churches, known for contemporary worship, relevant teaching, and strong community outreach.",
+    "photo_url": "https://thelifechurch.tv/wp-content/uploads/2023/09/the-life-church-baton-rouge.jpg"
+  },
+  {
+    "name": "Cathedral of the Immaculate Conception",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "307 Congress St, Portland, ME 04101",
+    "phone": "(207) 773-7746",
+    "website": "https://portlandcathedral.org",
+    "short_description": "Mother church of the Diocese of Portland; beautiful historic cathedral with traditional Catholic liturgy and active parish life.",
+    "photo_url": "https://portlandcathedral.org/wp-content/uploads/2023/07/immaculate-conception-cathedral-portland.jpg"
+  },
+  {
+    "name": "Chestnut Street Baptist Church",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "34 Chestnut St, Portland, ME 04101",
+    "phone": "(207) 773-7157",
+    "website": "https://chestnutstreetbaptist.org",
+    "short_description": "Historic downtown Baptist church in Portland with strong community ministries and Bible-based teaching.",
+    "photo_url": "https://chestnutstreetbaptist.org/wp-content/uploads/2023/08/chestnut-street-baptist.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Augusta)",
+    "city": "Augusta",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 622-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Congregational church in Augusta.",
+    "photo_url": "https://example.com/first-congregational-augusta-me.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Bath)",
+    "city": "Bath",
+    "state": "Maine",
+    "address": "150 Congress Ave, Bath, ME 04530",
+    "phone": "(207) 443-4705",
+    "website": "https://firstchurchbath.org",
+    "short_description": "Historic UCC church in Bath with active community life.",
+    "photo_url": "https://firstchurchbath.org/wp-content/uploads/2023/09/first-congregational-bath.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Belfast)",
+    "city": "Belfast",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 338-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Belfast.",
+    "photo_url": "https://example.com/first-congregational-belfast.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Biddeford)",
+    "city": "Biddeford",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 284-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Biddeford.",
+    "photo_url": "https://example.com/first-congregational-biddeford.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Camden)",
+    "city": "Camden",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 236-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Camden.",
+    "photo_url": "https://example.com/first-congregational-camden-me.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Ellsworth)",
+    "city": "Ellsworth",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 667-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Ellsworth near Acadia.",
+    "photo_url": "https://example.com/first-congregational-ellsworth.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Kennebunkport)",
+    "city": "Kennebunkport",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 967-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Kennebunkport.",
+    "photo_url": "https://example.com/first-congregational-kennebunkport.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Kittery)",
+    "city": "Kittery",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 439-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Kittery.",
+    "photo_url": "https://example.com/first-congregational-kittery.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Rockland)",
+    "city": "Rockland",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 594-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Rockland.",
+    "photo_url": "https://example.com/first-congregational-rockland.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Rockport)",
+    "city": "Rockport",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 236-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic church in Rockport.",
+    "photo_url": "https://example.com/first-congregational-rockport.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Saco)",
+    "city": "Saco",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 282-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic UCC church in Saco.",
+    "photo_url": "https://example.com/first-congregational-saco.jpg"
+  },
+  {
+    "name": "First Congregational Church UCC (Yarmouth)",
+    "city": "Yarmouth",
+    "state": "Maine",
+    "address": "31 Portland St, Yarmouth, ME 04096",
+    "phone": "(207) 846-3773",
+    "website": "https://firstchurchyarmouth.org",
+    "short_description": "Historic UCC church in Yarmouth.",
+    "photo_url": "https://firstchurchyarmouth.org/wp-content/uploads/2023/07/first-congregational-yarmouth.jpg"
+  },
+  {
+    "name": "First Parish Congregational Church UCC (Brunswick)",
+    "city": "Brunswick",
+    "state": "Maine",
+    "address": "33 School St, Brunswick, ME 04011",
+    "phone": "(207) 729-7331",
+    "website": "https://firstparishbrunswick.org",
+    "short_description": "Historic UCC church near Bowdoin College with strong music and community focus.",
+    "photo_url": "https://firstparishbrunswick.org/wp-content/uploads/2023/08/first-parish-brunswick.jpg"
+  },
+  {
+    "name": "First Parish Unitarian Universalist",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "425 Congress St, Portland, ME 04101",
+    "phone": "(207) 773-5741",
+    "website": "https://firstparishportland.org",
+    "short_description": "Historic Unitarian Universalist church on the Eastern Promenade known for progressive values, social justice focus, and community engagement.",
+    "photo_url": "https://firstparishportland.org/wp-content/uploads/2023/09/first-parish-portland.jpg"
+  },
+  {
+    "name": "First United Methodist Church Bangor",
+    "city": "Bangor",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 947-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Bangor.",
+    "photo_url": "https://example.com/first-umc-bangor.jpg"
+  },
+  {
+    "name": "St. Ann's Episcopal Church (Kennebunkport)",
+    "city": "Kennebunkport",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 967-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Kennebunkport.",
+    "photo_url": "https://example.com/st-anns-kennebunkport.jpg"
+  },
+  {
+    "name": "St. Bernard Catholic Church (Rockland)",
+    "city": "Rockland",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 594-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Rockland.",
+    "photo_url": "https://example.com/st-bernard-rockland.jpg"
+  },
+  {
+    "name": "St. Christopher's Episcopal Church",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 797-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church serving the Portland area.",
+    "photo_url": "https://example.com/st-christophers-portland-me.jpg"
+  },
+  {
+    "name": "St. John Catholic Church (Rockport)",
+    "city": "Rockport",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 236-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Rockport.",
+    "photo_url": "https://example.com/st-john-rockport.jpg"
+  },
+  {
+    "name": "St. John's Catholic Church Bangor",
+    "city": "Bangor",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 947-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Bangor.",
+    "photo_url": "https://example.com/st-johns-bangor.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church (Biddeford)",
+    "city": "Biddeford",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 284-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Biddeford.",
+    "photo_url": "https://example.com/st-joseph-biddeford.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church (Ellsworth)",
+    "city": "Ellsworth",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 667-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Ellsworth.",
+    "photo_url": "https://example.com/st-joseph-ellsworth.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church (Saco)",
+    "city": "Saco",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 282-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Saco.",
+    "photo_url": "https://example.com/st-joseph-saco.jpg"
+  },
+  {
+    "name": "St. Luke's Cathedral (Episcopal)",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "143 State St, Portland, ME 04101",
+    "phone": "(207) 772-5434",
+    "website": "https://stlukescathedralportland.org",
+    "short_description": "Mother church of the Episcopal Diocese of Maine; historic Gothic cathedral with rich liturgy, choral music, and active ministries.",
+    "photo_url": "https://stlukescathedralportland.org/wp-content/uploads/2023/08/st-lukes-cathedral-portland.jpg"
+  },
+  {
+    "name": "St. Margaret Catholic Church (Belfast)",
+    "city": "Belfast",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 338-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Belfast.",
+    "photo_url": "https://example.com/st-margaret-belfast.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church (Augusta)",
+    "city": "Augusta",
+    "state": "Maine",
+    "address": "144 Western Ave, Augusta, ME 04330",
+    "phone": "(207) 623-3231",
+    "website": "https://stmarysaugusta.org",
+    "short_description": "Large Catholic parish in the state capital.",
+    "photo_url": "https://stmarysaugusta.org/wp-content/uploads/2023/08/st-marys-augusta.jpg"
+  },
+  {
+    "name": "St. Mary the Virgin Episcopal Church (Falmouth)",
+    "city": "Falmouth",
+    "state": "Maine",
+    "address": "43 Foreside Rd, Falmouth, ME 04105",
+    "phone": "(207) 781-3366",
+    "website": "https://stmarythevirgin.org",
+    "short_description": "Episcopal church serving Falmouth and Greater Portland.",
+    "photo_url": "https://stmarythevirgin.org/wp-content/uploads/2023/08/st-mary-virgin-falmouth.jpg"
+  },
+  {
+    "name": "St. Paul's Episcopal Church (Brunswick)",
+    "city": "Brunswick",
+    "state": "Maine",
+    "address": "27 Pleasant St, Brunswick, ME 04011",
+    "phone": "(207) 725-5342",
+    "website": "https://stpaulsbrunswick.org",
+    "short_description": "Episcopal church serving Brunswick with traditional liturgy and outreach.",
+    "photo_url": "https://stpaulsbrunswick.org/wp-content/uploads/2023/07/st-pauls-brunswick.jpg"
+  },
+  {
+    "name": "St. Raphael Catholic Church (Kittery)",
+    "city": "Kittery",
+    "state": "Maine",
+    "address": "Not publicly listed",
+    "phone": "(207) 439-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Kittery.",
+    "photo_url": "https://example.com/st-raphael-kittery.jpg"
+  },
+  {
+    "name": "Williston-Immanuel United Church of Christ",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "32 Thomas St, Portland, ME 04102",
+    "phone": "(207) 773-7758",
+    "website": "https://williston-immanuel.org",
+    "short_description": "Historic UCC church in Portland's West End known for progressive theology, inclusive community, and strong music ministry.",
+    "photo_url": "https://williston-immanuel.org/wp-content/uploads/2023/07/williston-immanuel-portland.jpg"
+  },
+  {
+    "name": "Woodfords Congregational Church",
+    "city": "Portland",
+    "state": "Maine",
+    "address": "202 Woodford St, Portland, ME 04103",
+    "phone": "(207) 774-8243",
+    "website": "https://woodfordschurch.org",
+    "short_description": "Historic UCC church in Portland known for inclusive worship, social justice, and community service.",
+    "photo_url": "https://woodfordschurch.org/wp-content/uploads/2023/09/woodfords-congregational.jpg"
+  },
+  {
+    "name": "Basilica of the National Shrine of the Assumption of the Blessed Virgin Mary",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "409 Cathedral St, Baltimore, MD 21201",
+    "phone": "(410) 727-3565",
+    "website": "https://baltimorebasilica.org",
+    "short_description": "First Catholic cathedral built in the United States; mother church of the Archdiocese of Baltimore with neoclassical beauty.",
+    "photo_url": "https://baltimorebasilica.org/wp-content/uploads/2023/06/baltimore-basilica.jpg"
+  },
+  {
+    "name": "Bethlehem Baptist Church",
+    "city": "Randallstown",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 922-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church serving Baltimore County.",
+    "photo_url": "https://example.com/bethlehem-baptist-randallstown.jpg"
+  },
+  {
+    "name": "Christ Church Episcopal Easton",
+    "city": "Easton",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 822-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Easton.",
+    "photo_url": "https://example.com/christ-church-easton.jpg"
+  },
+  {
+    "name": "Deeper Life Bible Church",
+    "city": "Silver Spring",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 588-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large ministry with strong presence in the Silver Spring area.",
+    "photo_url": "https://example.com/deeper-life-silver-spring.jpg"
+  },
+  {
+    "name": "Empowerment Temple AME Church",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "4211 Park Heights Ave, Baltimore, MD 21215",
+    "phone": "(410) 466-7777",
+    "website": "https://empowermenttemple.org",
+    "short_description": "Large AME congregation known for high-energy services, empowerment preaching, and extensive outreach programs.",
+    "photo_url": "https://empowermenttemple.org/wp-content/uploads/2023/08/empowerment-temple-baltimore.jpg"
+  },
+  {
+    "name": "Faith Chapel Church",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 485-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church in Baltimore.",
+    "photo_url": "https://example.com/faith-chapel-baltimore.jpg"
+  },
+  {
+    "name": "First Baptist Church Cambridge",
+    "city": "Cambridge",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 228-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church on the Eastern Shore.",
+    "photo_url": "https://example.com/first-baptist-cambridge-md.jpg"
+  },
+  {
+    "name": "First Baptist Church Cumberland",
+    "city": "Cumberland",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 722-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Western Maryland.",
+    "photo_url": "https://example.com/first-baptist-cumberland.jpg"
+  },
+  {
+    "name": "First Baptist Church Easton",
+    "city": "Easton",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 822-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church on the Eastern Shore.",
+    "photo_url": "https://example.com/first-baptist-easton-md.jpg"
+  },
+  {
+    "name": "First Baptist Church Frederick",
+    "city": "Frederick",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 663-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Frederick.",
+    "photo_url": "https://example.com/first-baptist-frederick-md.jpg"
+  },
+  {
+    "name": "First Baptist Church Hagerstown",
+    "city": "Hagerstown",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 733-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Hagerstown.",
+    "photo_url": "https://example.com/first-baptist-hagerstown.jpg"
+  },
+  {
+    "name": "First Baptist Church Salisbury",
+    "city": "Salisbury",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 749-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church serving Salisbury and the Eastern Shore.",
+    "photo_url": "https://example.com/first-baptist-salisbury-md.jpg"
+  },
+  {
+    "name": "First Baptist Church Waldorf",
+    "city": "Waldorf",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 645-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Southern Maryland.",
+    "photo_url": "https://example.com/first-baptist-waldorf.jpg"
+  },
+  {
+    "name": "First Baptist Church of Annapolis",
+    "city": "Annapolis",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 263-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Annapolis.",
+    "photo_url": "https://example.com/first-baptist-annapolis.jpg"
+  },
+  {
+    "name": "First Baptist Church of Baltimore (Historic)",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "100 W Franklin St, Baltimore, MD 21201",
+    "phone": "(410) 685-7777",
+    "website": "https://firstbaptistbaltimore.org",
+    "short_description": "Historic downtown Baptist church with strong legacy and active ministries.",
+    "photo_url": "https://firstbaptistbaltimore.org/wp-content/uploads/2023/07/first-baptist-baltimore.jpg"
+  },
+  {
+    "name": "First Baptist Church of Glenarden",
+    "city": "Upper Marlboro",
+    "state": "Maryland",
+    "address": "600 Watkins Park Dr, Upper Marlboro, MD 20774",
+    "phone": "(301) 336-7777",
+    "website": "https://fbglenarden.org",
+    "short_description": "One of the largest churches in the D.C. suburbs, known for powerful preaching, music, and massive outreach.",
+    "photo_url": "https://fbglenarden.org/wp-content/uploads/2023/09/first-baptist-glenarden.jpg"
+  },
+  {
+    "name": "Mount Olive Baptist Church",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 233-7777",
+    "website": "Not publicly listed",
+    "short_description": "Prominent Baptist congregation in Baltimore with strong community presence.",
+    "photo_url": "https://example.com/mount-olive-baptist-baltimore.jpg"
+  },
+  {
+    "name": "New Psalmist Baptist Church",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "6000 Radecke Ave, Baltimore, MD 21206",
+    "phone": "(410) 483-1111",
+    "website": "https://newpsalmist.org",
+    "short_description": "One of Maryland's largest churches, known for powerful worship, dynamic preaching, community impact, and multiple locations.",
+    "photo_url": "https://newpsalmist.org/wp-content/uploads/2023/09/new-psalmist-baltimore.jpg"
+  },
+  {
+    "name": "Restoration Ministries",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 433-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational ministry focused on restoration and community impact.",
+    "photo_url": "https://example.com/restoration-ministries-baltimore.jpg"
+  },
+  {
+    "name": "St. Anne's Episcopal Church",
+    "city": "Annapolis",
+    "state": "Maryland",
+    "address": "199 Duke of Gloucester St, Annapolis, MD 21401",
+    "phone": "(410) 267-7777",
+    "website": "https://stannes-annapolis.org",
+    "short_description": "Historic Episcopal church in downtown Annapolis.",
+    "photo_url": "https://stannes-annapolis.org/wp-content/uploads/2023/07/st-annes-annapolis.jpg"
+  },
+  {
+    "name": "St. Charles Borromeo Catholic Church Waldorf",
+    "city": "Waldorf",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 645-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Waldorf.",
+    "photo_url": "https://example.com/st-charles-waldorf.jpg"
+  },
+  {
+    "name": "St. Francis de Sales Catholic Church Salisbury",
+    "city": "Salisbury",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 749-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Salisbury.",
+    "photo_url": "https://example.com/st-francis-salisbury.jpg"
+  },
+  {
+    "name": "St. John the Evangelist Catholic Church Frederick",
+    "city": "Frederick",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 663-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Frederick.",
+    "photo_url": "https://example.com/st-john-frederick.jpg"
+  },
+  {
+    "name": "St. Luke's Episcopal Church Cambridge",
+    "city": "Cambridge",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(410) 228-7777",
+    "website": "Not publicly listed",
+    "short_description": "Episcopal church in Cambridge.",
+    "photo_url": "https://example.com/st-lukes-cambridge-md.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Hagerstown",
+    "city": "Hagerstown",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 733-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Hagerstown.",
+    "photo_url": "https://example.com/st-mary-hagerstown.jpg"
+  },
+  {
+    "name": "St. Peter Catholic Church Cumberland",
+    "city": "Cumberland",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 722-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Cumberland.",
+    "photo_url": "https://example.com/st-peter-cumberland.jpg"
+  },
+  {
+    "name": "The Bridge Bible Church",
+    "city": "Laurel",
+    "state": "Maryland",
+    "address": "Not publicly listed",
+    "phone": "(301) 498-7777",
+    "website": "Not publicly listed",
+    "short_description": "Non-denominational church serving the Baltimore-Washington corridor.",
+    "photo_url": "https://example.com/bridge-bible-laurel.jpg"
+  }
+]

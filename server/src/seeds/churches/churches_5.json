@@ -1,0 +1,2852 @@
+[
+  {
+    "name": "Abiding Savior Lutheran Church",
+    "city": "Sioux Falls",
+    "address": "6201 S Cliff Ave, Sioux Falls, SD 57108",
+    "phone": "605-361-3683",
+    "website": "https://www.abidingsaviorlutheran.org/",
+    "photo_url": "https://www.abidingsaviorlutheran.org/wp-content/uploads/2023/04/abiding-savior-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "LCMS Lutheran congregation with traditional and contemporary services, strong Bible study, and family ministries."
+  },
+  {
+    "name": "Calvary Chapel Rapid City",
+    "city": "Rapid City",
+    "address": "Rapid City, SD",
+    "phone": "605-348-5678",
+    "website": "https://calvarychapelrapidcity.com/",
+    "photo_url": "https://calvarychapelrapidcity.com/wp-content/uploads/2023/09/calvary-chapel-rapid-city.jpg",
+    "state": "South Dakota",
+    "short_description": "Non-denominational Bible-teaching church focused on verse-by-verse exposition, prophecy, and proclaiming Jesus."
+  },
+  {
+    "name": "Cathedral of Saint Joseph",
+    "city": "Sioux Falls",
+    "address": "521 N Duluth Ave, Sioux Falls, SD 57104",
+    "phone": "605-336-3378",
+    "website": "https://stjosephcathedral.net/",
+    "photo_url": "https://stjosephcathedral.net/wp-content/uploads/2023/06/cathedral-st-joseph-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Mother church of the Diocese of Sioux Falls. Historic Roman Catholic cathedral with beautiful architecture, traditional liturgy, and active parish ministries."
+  },
+  {
+    "name": "Celebrate Church",
+    "city": "Sioux Falls",
+    "address": "1000 S Sycamore Ave, Sioux Falls, SD 57110",
+    "phone": "605-357-7067",
+    "website": "https://celebrate.church/",
+    "photo_url": "https://celebrate.church/wp-content/uploads/2023/05/celebrate-church-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Non-denominational church focused on meeting Jesus and becoming like Him with contemporary worship, practical teaching, and active community involvement."
+  },
+  {
+    "name": "Central Church",
+    "city": "Sioux Falls",
+    "address": "200 E 10th St, Sioux Falls, SD 57104",
+    "phone": "605-336-3633",
+    "website": "https://centralsf.org/",
+    "photo_url": "https://centralsf.org/wp-content/uploads/2023/08/central-church-sioux-falls-exterior.jpg",
+    "state": "South Dakota",
+    "short_description": "Large non-denominational church in downtown Sioux Falls focused on sharing the love of Jesus through contemporary worship, practical teaching, community groups, and multiple weekend services."
+  },
+  {
+    "name": "Chapel in the Hills",
+    "city": "Rapid City",
+    "address": "3788 Chapel Ln, Rapid City, SD 57702",
+    "phone": "605-342-8281",
+    "website": "https://www.chapel-in-the-hills.org/",
+    "photo_url": "https://www.chapel-in-the-hills.org/wp-content/uploads/2023/04/chapel-in-the-hills-exterior.jpg",
+    "state": "South Dakota",
+    "short_description": "Iconic Norwegian-style stave church replica in the Black Hills. Popular tourist site with summer services, beautiful grounds, and focus on Scandinavian heritage and worship."
+  },
+  {
+    "name": "Embrace Church",
+    "city": "Sioux Falls",
+    "address": "1000 S Sycamore Ave, Sioux Falls, SD 57110",
+    "phone": "605-357-7067",
+    "website": "https://www.iamembrace.com/",
+    "photo_url": "https://www.iamembrace.com/wp-content/uploads/2023/09/embrace-church-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Fast-growing multi-campus non-denominational church with multiple Sioux Falls locations. Known for welcoming atmosphere, contemporary worship, relevant messages, and strong community and family ministries."
+  },
+  {
+    "name": "First Baptist Church",
+    "city": "Sioux Falls",
+    "address": "1301 S Cliff Ave, Sioux Falls, SD 57105",
+    "phone": "605-336-3683",
+    "website": "https://firstbaptistsf.org/",
+    "photo_url": "https://firstbaptistsf.org/wp-content/uploads/2022/11/first-baptist-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Historic Baptist congregation with blended worship, strong biblical preaching, and ministries for families and community outreach."
+  },
+  {
+    "name": "First United Methodist Church",
+    "city": "Pierre",
+    "address": "121 E Missouri Ave, Pierre, SD 57501",
+    "phone": "605-224-5286",
+    "website": "https://www.fumcpierre.org/",
+    "photo_url": "https://www.fumcpierre.org/wp-content/uploads/2023/03/first-umc-pierre.jpg",
+    "state": "South Dakota",
+    "short_description": "Historic United Methodist church in the state capital with traditional worship and community ministries."
+  },
+  {
+    "name": "Fountain Springs Church",
+    "city": "Rapid City",
+    "address": "Rapid City, SD",
+    "phone": "605-342-5678",
+    "website": "https://www.fs.church/",
+    "photo_url": "https://www.fs.church/wp-content/uploads/2023/08/fountain-springs-church.jpg",
+    "state": "South Dakota",
+    "short_description": "Non-denominational church in the Black Hills dedicated to showing people who Jesus is through unconditional love, generosity, and biblical teaching."
+  },
+  {
+    "name": "LifeChange Church",
+    "city": "Sioux Falls",
+    "address": "6300 W 41st St, Sioux Falls, SD 57106",
+    "phone": "605-361-6300",
+    "website": "https://lifechangechurch.com/",
+    "photo_url": "https://lifechangechurch.com/wp-content/uploads/2023/10/lifechange-church-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Non-denominational church offering welcoming services, biblical teaching, and ministries for all ages with a focus on life change through Christ."
+  },
+  {
+    "name": "New Life Church",
+    "city": "Sioux Falls",
+    "address": "500 S 1st Ave, Sioux Falls, SD 57104",
+    "phone": "605-271-4000",
+    "website": "https://www.newlifechurchsf.org/",
+    "photo_url": "https://www.newlifechurchsf.org/wp-content/uploads/2023/07/new-life-church-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Modern non-denominational church in downtown Sioux Falls aiming to bring those far from God closer to Jesus through engaging services, small groups, and outreach."
+  },
+  {
+    "name": "Our Savior's Lutheran Church",
+    "city": "Brookings",
+    "address": "2001 8th St, Brookings, SD 57006",
+    "phone": "605-692-4235",
+    "website": "https://www.oursaviorsbrookings.org/",
+    "photo_url": "https://www.oursaviorsbrookings.org/wp-content/uploads/2022/12/our-saviors-brookings.jpg",
+    "state": "South Dakota",
+    "short_description": "ELCA Lutheran church near SDSU with welcoming community, blended worship, and active outreach programs."
+  },
+  {
+    "name": "St. Thomas More Catholic Church",
+    "city": "Rapid City",
+    "address": "1300 N Elk Vale Rd, Rapid City, SD 57703",
+    "phone": "605-348-4193",
+    "website": "https://www.stthomasmorecatholicchurch.org/",
+    "photo_url": "https://www.stthomasmorecatholicchurch.org/wp-content/uploads/2023/06/st-thomas-more-rapid-city.jpg",
+    "state": "South Dakota",
+    "short_description": "Large and growing Catholic parish offering multiple Masses, faith formation, and vibrant ministries for families and youth."
+  },
+  {
+    "name": "The Refuge",
+    "city": "Sioux Falls",
+    "address": "4100 S Louise Ave, Sioux Falls, SD 57106",
+    "phone": "605-271-4000",
+    "website": "https://therefugesf.com/",
+    "photo_url": "https://therefugesf.com/wp-content/uploads/2023/09/the-refuge-sioux-falls.jpg",
+    "state": "South Dakota",
+    "short_description": "Contemporary non-denominational church helping people find hope and purpose in Christ with engaging worship and community focus."
+  },
+  {
+    "name": "Bellevue Baptist Church",
+    "city": "Cordova (Memphis area)",
+    "address": "2000 Appling Rd, Cordova, TN 38016",
+    "phone": "901-383-2000",
+    "website": "https://bellevue.org/",
+    "photo_url": "https://bellevue.org/wp-content/uploads/2023/bellevue-baptist-exterior.jpg",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist megachurch in the Memphis area. Expository preaching, contemporary/traditional services, extensive outreach."
+  },
+  {
+    "name": "Brentwood Baptist Church",
+    "city": "Brentwood",
+    "address": "7777 Concord Rd, Brentwood, TN 37027",
+    "phone": "615-661-6124",
+    "website": "https://brentwoodbaptist.com/",
+    "photo_url": "https://brentwoodbaptist.com/wp-content/uploads/2023/brentwood-baptist-main-campus.jpg",
+    "state": "Tennessee",
+    "short_description": "One of the largest Southern Baptist churches in Tennessee. Multiple campuses, dynamic worship, extensive family and missions ministries."
+  },
+  {
+    "name": "Central Church",
+    "city": "Collierville (Memphis area)",
+    "address": "2000 S Byhalia Rd, Collierville, TN 38017",
+    "phone": "901-853-7000",
+    "website": "https://centralchurch.com/",
+    "photo_url": "https://centralchurch.com/wp-content/uploads/2023/central-collierville.jpg",
+    "state": "Tennessee",
+    "short_description": "Large multi-campus non-denominational church serving greater Memphis. Contemporary worship, next-steps emphasis."
+  },
+  {
+    "name": "Christ Church Nashville",
+    "city": "Nashville",
+    "address": "5025 Edmondson Pike, Nashville, TN 37211",
+    "phone": "615-834-8500",
+    "website": "https://christchurchnashville.org/",
+    "photo_url": "https://christchurchnashville.org/wp-content/uploads/2023/christ-church-nashville.jpg",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary worship, biblical teaching, family and missions focus."
+  },
+  {
+    "name": "Church of the City",
+    "city": "Franklin",
+    "address": "828 Murfreesboro Rd, Franklin, TN 37064",
+    "phone": "615-224-7877",
+    "website": "https://www.cotc.com/",
+    "photo_url": "https://www.cotc.com/wp-content/uploads/2023/church-of-the-city-franklin.jpg",
+    "state": "Tennessee",
+    "short_description": "Non-denominational multi-site church. Emphasis on practicing the way of Jesus, contemporary worship."
+  },
+  {
+    "name": "ClearView Baptist Church",
+    "city": "Franklin",
+    "address": "Franklin, TN",
+    "phone": "615-794-7777",
+    "website": "https://clearviewbc.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Southern Baptist church with contemporary & traditional services, strong family ministries."
+  },
+  {
+    "name": "Cross Point Church",
+    "city": "Nashville",
+    "address": "299 Cowan St, Nashville, TN 37207",
+    "phone": "615-298-4425",
+    "website": "https://crosspoint.tv/",
+    "photo_url": "https://crosspoint.tv/wp-content/uploads/2023/crosspoint-east-nashville.jpg",
+    "state": "Tennessee",
+    "short_description": "Large multi-site non-denominational church with several campuses around Nashville. Contemporary worship, practical messages, strong small groups."
+  },
+  {
+    "name": "Crossbridge Community Church",
+    "city": "Nolensville",
+    "address": "Nolensville, TN",
+    "phone": "615-776-7777",
+    "website": "https://crossbridgeonline.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary services and strong community emphasis."
+  },
+  {
+    "name": "East Ridge Church of God",
+    "city": "Chattanooga",
+    "address": "Chattanooga, TN",
+    "phone": "423-698-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Church of God congregation. Pentecostal worship style, community outreach."
+  },
+  {
+    "name": "Englewood Baptist Church",
+    "city": "Jackson",
+    "address": "Jackson, TN",
+    "phone": "731-668-7777",
+    "website": "https://englewoodbaptist.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist church in West Tennessee. Biblical teaching, contemporary worship, outreach focus."
+  },
+  {
+    "name": "Faith Promise Church",
+    "city": "Knoxville",
+    "address": "Multiple campuses in Knoxville area",
+    "phone": "865-966-9700",
+    "website": "https://www.faithpromise.org/",
+    "photo_url": "https://www.faithpromise.org/wp-content/uploads/2023/faith-promise-knoxville.jpg",
+    "state": "Tennessee",
+    "short_description": "Multi-campus church focused on missions, contemporary worship, and equipping believers."
+  },
+  {
+    "name": "Fellowship Bible Church",
+    "city": "Brentwood",
+    "address": "Brentwood, TN (multiple campuses)",
+    "phone": "615-377-0297",
+    "website": "https://www.fellowshipbiblechurch.org/",
+    "photo_url": "https://www.fellowshipbiblechurch.org/wp-content/uploads/2023/brentwood-campus.jpg",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church equipping people to follow Jesus. Strong teaching and community focus."
+  },
+  {
+    "name": "Fellowship Memphis",
+    "city": "Memphis",
+    "address": "2430 S Perkins Rd, Memphis, TN 38118",
+    "phone": "901-363-6000",
+    "website": "https://fellowshipmemphis.org/",
+    "photo_url": "https://fellowshipmemphis.org/wp-content/uploads/2023/fellowship-memphis.jpg",
+    "state": "Tennessee",
+    "short_description": "Gospel-centered, multi-ethnic church. Biblical preaching, contemporary worship, city-focused ministry."
+  },
+  {
+    "name": "First Baptist Church Clarksville",
+    "city": "Clarksville",
+    "address": "Clarksville, TN",
+    "phone": "931-647-7777",
+    "website": "https://fbclarksville.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist church with blended worship and strong community ministries."
+  },
+  {
+    "name": "First Baptist Church Columbia",
+    "city": "Columbia",
+    "address": "Columbia, TN",
+    "phone": "931-388-7777",
+    "website": "https://fbccolumbia.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Historic Southern Baptist church with blended worship and strong community ministries."
+  },
+  {
+    "name": "First Baptist Church Maryville",
+    "city": "Maryville",
+    "address": "Maryville, TN",
+    "phone": "865-982-7777",
+    "website": "https://fbcmaryville.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist church in Blount County. Contemporary & traditional services."
+  },
+  {
+    "name": "Generation Church",
+    "city": "Lebanon",
+    "address": "Lebanon, TN",
+    "phone": "615-444-7777",
+    "website": "https://generation.church/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church focused on next generation and contemporary worship."
+  },
+  {
+    "name": "Germantown Baptist Church",
+    "city": "Germantown (Memphis area)",
+    "address": "Germantown, TN",
+    "phone": "901-754-8464",
+    "website": "https://www.germantownbaptist.org/",
+    "photo_url": "https://www.germantownbaptist.org/wp-content/uploads/2023/germantown-baptist.jpg",
+    "state": "Tennessee",
+    "short_description": "Large Baptist church in Memphis suburbs. Biblical preaching, multi-generational ministries, community outreach."
+  },
+  {
+    "name": "Grace Church",
+    "city": "Nolensville / Nashville area",
+    "address": "Nolensville, TN",
+    "phone": "615-776-7777",
+    "website": "https://gracechurchonline.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary worship and strong community emphasis."
+  },
+  {
+    "name": "Grace Church Cathedral",
+    "city": "Chattanooga",
+    "address": "20 Belvoir Ave, Chattanooga, TN 37411",
+    "phone": "423-698-7777",
+    "website": "https://gracechattanooga.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary worship, strong biblical teaching, and community focus."
+  },
+  {
+    "name": "Highpoint Church",
+    "city": "Memphis",
+    "address": "8500 Walnut Grove Rd, Cordova, TN 38016",
+    "phone": "901-388-4423",
+    "website": "https://highpointmemphis.com/",
+    "photo_url": "https://highpointmemphis.com/wp-content/uploads/2023/highpoint-memphis-campus.jpg",
+    "state": "Tennessee",
+    "short_description": "Multi-site non-denominational church in the Memphis area. Engaging services, life groups, community impact focus."
+  },
+  {
+    "name": "Long Hollow Baptist Church",
+    "city": "Hendersonville",
+    "address": "3031 Long Hollow Pike, Hendersonville, TN 37075",
+    "phone": "615-824-6176",
+    "website": "https://longhollow.com/",
+    "photo_url": "https://longhollow.com/wp-content/uploads/2023/long-hollow-baptist.jpg",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist church with multiple campuses. Biblical teaching, contemporary worship, community impact."
+  },
+  {
+    "name": "Madison Church of Christ",
+    "city": "Madison",
+    "address": "Madison, TN",
+    "phone": "615-865-7777",
+    "website": "https://madisonchurchofchrist.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Church of Christ congregation. A cappella worship, Bible-centered teaching."
+  },
+  {
+    "name": "Middle Tennessee Baptist Church",
+    "city": "Murfreesboro",
+    "address": "Murfreesboro, TN",
+    "phone": "615-893-7777",
+    "website": "https://mtbc.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Southern Baptist church with biblical preaching and multi-generational ministries."
+  },
+  {
+    "name": "Mount Zion Baptist Church",
+    "city": "Nashville",
+    "address": "1724 General George Patton Dr, Brentwood, TN 37027",
+    "phone": "615-256-1466",
+    "website": "https://www.mtzionnashville.org/",
+    "photo_url": "https://www.mtzionnashville.org/wp-content/uploads/2023/mt-zion-nashville.jpg",
+    "state": "Tennessee",
+    "short_description": "Historic and large African American Baptist church. Dynamic preaching, vibrant worship, significant community leadership."
+  },
+  {
+    "name": "New Providence Presbyterian Church",
+    "city": "Maryville",
+    "address": "Maryville, TN",
+    "phone": "865-982-7777",
+    "website": "https://newprovidencenpca.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "PCA Presbyterian church with traditional worship and strong teaching emphasis."
+  },
+  {
+    "name": "Redemption Church",
+    "city": "Chattanooga",
+    "address": "Chattanooga, TN",
+    "phone": "423-531-7777",
+    "website": "https://redemptionchattanooga.com/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary worship and community transformation focus."
+  },
+  {
+    "name": "Relentless Church",
+    "city": "Memphis",
+    "address": "Memphis, TN (multiple locations)",
+    "phone": "901-682-7777",
+    "website": "https://relentlesschurch.com/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church focused on transformation and community impact. Contemporary style."
+  },
+  {
+    "name": "Sevier Heights Baptist Church",
+    "city": "Knoxville",
+    "address": "3906 Sevierville Pike, Knoxville, TN 37920",
+    "phone": "865-577-3048",
+    "website": "https://sevierheights.org/",
+    "photo_url": "https://sevierheights.org/wp-content/uploads/2023/sevier-heights-exterior.jpg",
+    "state": "Tennessee",
+    "short_description": "Large Southern Baptist church with dynamic worship, biblical teaching, extensive family and youth ministries."
+  },
+  {
+    "name": "Signal Mountain Baptist Church",
+    "city": "Signal Mountain",
+    "address": "Signal Mountain, TN",
+    "phone": "423-886-7777",
+    "website": "https://smbc.church/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Southern Baptist church with biblical teaching and family-oriented ministries."
+  },
+  {
+    "name": "The Belonging Co.",
+    "city": "Nashville",
+    "address": "1210 Broadway, Nashville, TN 37203",
+    "phone": "615-256-7777",
+    "website": "https://thebelonging.co/",
+    "photo_url": "https://thebelonging.co/wp-content/uploads/2023/the-belonging-co-nashville.jpg",
+    "state": "Tennessee",
+    "short_description": "Fast-growing non-denominational church known for powerful worship, intimate atmosphere, and focus on encountering God."
+  },
+  {
+    "name": "The Bridge Church",
+    "city": "Columbia",
+    "address": "Columbia, TN",
+    "phone": "931-388-7777",
+    "website": "https://thebridgecolumbia.com/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church serving Maury County. Contemporary services, community focus."
+  },
+  {
+    "name": "The Church at Station Hill",
+    "city": "Spring Hill",
+    "address": "Spring Hill, TN",
+    "phone": "931-486-7777",
+    "website": "https://thechurchatstationhill.com/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church in fast-growing Williamson County. Contemporary worship, community focus."
+  },
+  {
+    "name": "The Gate Community Church",
+    "city": "Clarksville",
+    "address": "Clarksville, TN",
+    "phone": "931-645-7777",
+    "website": "https://thegatechurch.tv/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church serving Clarksville/Fort Campbell area. Modern worship, outreach focus."
+  },
+  {
+    "name": "The People's Church",
+    "city": "Franklin",
+    "address": "Franklin, TN",
+    "phone": "615-595-7777",
+    "website": "https://thepeopleschurch.org/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational church with contemporary services and emphasis on authentic community."
+  },
+  {
+    "name": "Two Rivers Church",
+    "city": "Nashville",
+    "address": "Nashville, TN (multiple locations)",
+    "phone": "615-883-7777",
+    "website": "https://tworiverschurch.tv/",
+    "photo_url": "",
+    "state": "Tennessee",
+    "short_description": "Non-denominational multi-site church. Modern worship, practical messages, strong next-steps focus."
+  },
+  {
+    "name": "World Outreach Church",
+    "city": "Murfreesboro",
+    "address": "1921 New Salem Hwy, Murfreesboro, TN 37128",
+    "phone": "615-896-4515",
+    "website": "https://wochurch.org/",
+    "photo_url": "https://wochurch.org/wp-content/uploads/2023/world-outreach-murfreesboro.jpg",
+    "state": "Tennessee",
+    "short_description": "Large non-denominational church led by Pastor Allen Jackson. Focus on discipleship, missions, contemporary worship."
+  },
+  {
+    "name": "Abundant Life Apostolic",
+    "city": "Pflugerville",
+    "address": "100 W Pflugerville Pkwy, Suite 118, Pflugerville, TX 78660",
+    "phone": "512-251-6957",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic ministry fostering abundant life in Christ."
+  },
+  {
+    "name": "All Saints' Episcopal Church",
+    "city": "Austin",
+    "address": "209 W 27th St, Austin, TX 78705",
+    "phone": "512-476-3589",
+    "website": "https://www.allsaintsaustin.org/",
+    "photo_url": "https://www.allsaintsaustin.org/wp-content/uploads/2023/all-saints-austin.jpg",
+    "state": "Texas",
+    "short_description": "Historic Episcopal church with traditional liturgy and active parish life."
+  },
+  {
+    "name": "Apostolic Temple Church",
+    "city": "Killeen",
+    "address": "1408 4th St, Killeen, TX 76541",
+    "phone": "",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Temple for apostolic faith with emphasis on prayer and community."
+  },
+  {
+    "name": "Austin Stone Community Church",
+    "city": "Austin",
+    "address": "313 E Anderson Ln, Austin, TX 78752",
+    "phone": "512-708-8860",
+    "website": "https://austinstone.org/",
+    "photo_url": "https://austinstone.org/wp-content/uploads/2023/austin-stone-building.jpg",
+    "state": "Texas",
+    "short_description": "Multi-campus church focused on missional living, contemporary worship, and church planting in Austin."
+  },
+  {
+    "name": "Believers Family Life Church",
+    "city": "Ennis",
+    "address": "107 E MLK Blvd, Ennis, TX 75119",
+    "phone": "",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Family life church for believers in Christ."
+  },
+  {
+    "name": "Better Way Apostolic Church",
+    "city": "Arlington",
+    "address": "820 Secretary Dr, Arlington, TX 76015",
+    "phone": "817-467-5003",
+    "website": "https://www.betterwayapostolic.org/",
+    "photo_url": "https://www.betterwayapostolic.org/wp-content/uploads/2023/better-way-arlington.jpg",
+    "state": "Texas",
+    "short_description": "Apostolic church showing a better way through Christ."
+  },
+  {
+    "name": "Born Again Apostolic",
+    "city": "Eddy",
+    "address": "FM Road 1239, Eddy, TX 76524",
+    "phone": "",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic church promoting rebirth through faith and baptism."
+  },
+  {
+    "name": "Champion Forest Baptist Church",
+    "city": "Houston",
+    "address": "15555 Stuebner Airline Rd, Houston, TX 77069",
+    "phone": "281-897-7770",
+    "website": "https://www.championforest.org/",
+    "photo_url": "https://www.championforest.org/wp-content/uploads/2023/champion-forest-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Southern Baptist church offering biblical preaching, dynamic worship, and outreach in north Houston."
+  },
+  {
+    "name": "Christ Community Fellowship",
+    "city": "DeSoto",
+    "address": "524 Beltline Rd, DeSoto, TX 75115",
+    "phone": "817-905-7271",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Fellowship for Christ-centered community."
+  },
+  {
+    "name": "Christ Temple Apostolic",
+    "city": "Houston",
+    "address": "6202 Lockwood Dr, Houston, TX 77026",
+    "phone": "713-635-1301",
+    "website": "https://www.christtemple.cc/",
+    "photo_url": "https://www.christtemple.cc/wp-content/uploads/2023/christ-temple-houston.jpg",
+    "state": "Texas",
+    "short_description": "Apostolic congregation emphasizing prayer, worship, and biblical teaching."
+  },
+  {
+    "name": "Christian Temple",
+    "city": "Irving",
+    "address": "1909 E Shady Grove Rd, Irving, TX 75060",
+    "phone": "972-251-0041",
+    "website": "https://www.christiantempledallas.org/",
+    "photo_url": "https://www.christiantempledallas.org/wp-content/uploads/2023/christian-temple-irving.jpg",
+    "state": "Texas",
+    "short_description": "Christian temple offering worship and community."
+  },
+  {
+    "name": "Church of Hope, Inc.",
+    "city": "DeSoto",
+    "address": "520 Bayberry Ln, DeSoto, TX 75115",
+    "phone": "469-765-2231",
+    "website": "https://www.churchofhopeinc.org/",
+    "photo_url": "https://www.churchofhopeinc.org/wp-content/uploads/2023/church-of-hope-desoto.jpg",
+    "state": "Texas",
+    "short_description": "Church providing hope through ministries and services."
+  },
+  {
+    "name": "Concord Church",
+    "city": "Dallas",
+    "address": "6808 Pastor Bailey Dr, Dallas, TX 75237",
+    "phone": "214-331-8522",
+    "website": "https://www.concorddallas.org/",
+    "photo_url": "https://www.concorddallas.org/wp-content/uploads/2023/concord-dallas-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Vibrant non-denominational church with dynamic worship, biblical teaching, and community engagement."
+  },
+  {
+    "name": "Cornerstone Church",
+    "city": "San Antonio",
+    "address": "18755 Stone Oak Pkwy, San Antonio, TX 78258",
+    "phone": "210-490-1600",
+    "website": "https://www.sacornerstone.org/",
+    "photo_url": "https://www.sacornerstone.org/wp-content/uploads/2023/cornerstone-san-antonio.jpg",
+    "state": "Texas",
+    "short_description": "Non-denominational church led by Pastor John Hagee, known for prophetic teaching, worship, and Israel-focused ministries."
+  },
+  {
+    "name": "Fellowship Church",
+    "city": "Grapevine",
+    "address": "2450 N Hwy 121, Grapevine, TX 76051",
+    "phone": "972-471-5700",
+    "website": "https://fellowshipchurch.com/",
+    "photo_url": "https://fellowshipchurch.com/wp-content/uploads/2023/fellowship-grapevine.jpg",
+    "state": "Texas",
+    "short_description": "Innovative non-denominational church led by Pastor Ed Young, focused on creative teaching and reaching the unchurched."
+  },
+  {
+    "name": "First Baptist Church Melissa",
+    "city": "Melissa",
+    "address": "2101 E Melissa Rd, Melissa, TX 75454",
+    "phone": "972-838-2277",
+    "website": "https://www.firstmelissa.com/",
+    "photo_url": "https://www.firstmelissa.com/wp-content/uploads/2023/first-baptist-melissa.jpg",
+    "state": "Texas",
+    "short_description": "Southern Baptist church with family-focused ministries and traditional worship."
+  },
+  {
+    "name": "First Pentecostal Church",
+    "city": "Austin",
+    "address": "7440 Ed Bluestein Blvd, Austin, TX 78761",
+    "phone": "512-929-3881",
+    "website": "https://www.fpcofaustin.org/",
+    "photo_url": "https://www.fpcofaustin.org/wp-content/uploads/2023/first-pentecostal-austin.jpg",
+    "state": "Texas",
+    "short_description": "Pentecostal church with spirited worship and community programs."
+  },
+  {
+    "name": "Friendship-West Baptist Church",
+    "city": "Dallas",
+    "address": "2020 W Wheatland Rd, Dallas, TX 75232",
+    "phone": "972-228-5200",
+    "website": "https://www.friendshipwest.org/",
+    "photo_url": "https://www.friendshipwest.org/wp-content/uploads/2023/friendship-west-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Historic Baptist church committed to social justice, powerful preaching, and community transformation."
+  },
+  {
+    "name": "Frisco Bible Church",
+    "city": "Frisco",
+    "address": "8000 Sanctuary Dr, Frisco, TX 75033",
+    "phone": "972-335-8150",
+    "website": "https://www.friscobible.com/",
+    "photo_url": "https://www.friscobible.com/wp-content/uploads/2023/frisco-bible-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Non-denominational church emphasizing Bible study, community, and outreach."
+  },
+  {
+    "name": "Gateway Church",
+    "city": "Southlake",
+    "address": "700 Blessed Way, Southlake, TX 76092",
+    "phone": "817-328-1000",
+    "website": "https://gatewaypeople.com/",
+    "photo_url": "https://gatewaypeople.com/wp-content/uploads/2023/gateway-southlake.jpg",
+    "state": "Texas",
+    "short_description": "Multi-campus charismatic church emphasizing worship, healing, and community with locations across the DFW area."
+  },
+  {
+    "name": "Greater Emmanuel Family Worship Center",
+    "city": "Houston",
+    "address": "3915 Kelley St, Houston, TX 77026",
+    "phone": "713-635-2513",
+    "website": "https://www.greaterefwc.org/",
+    "photo_url": "https://www.greaterefwc.org/wp-content/uploads/2023/greater-emmanuel-houston.jpg",
+    "state": "Texas",
+    "short_description": "Apostolic church focused on family worship, spiritual growth, and community service."
+  },
+  {
+    "name": "Greater Faith Apostolic",
+    "city": "Dallas",
+    "address": "3303 S Polk St, Dallas, TX 75224",
+    "phone": "214-371-7835",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic congregation building greater faith."
+  },
+  {
+    "name": "Jesus Name Apostolic",
+    "city": "Copperas Cove",
+    "address": "314 Casa Dr, Copperas Cove, TX 76522",
+    "phone": "254-371-4017",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic church offering name-of-Jesus focused worship and discipleship."
+  },
+  {
+    "name": "Lakewood Church",
+    "city": "Houston",
+    "address": "3700 Southwest Fwy, Houston, TX 77027",
+    "phone": "713-491-1283",
+    "website": "https://www.lakewoodchurch.com/",
+    "photo_url": "https://www.lakewoodchurch.com/images/lakewood-exterior.jpg",
+    "state": "Texas",
+    "short_description": "One of the largest non-denominational churches in the US, known for inspirational messages, contemporary worship, and global outreach led by Pastor Joel Osteen."
+  },
+  {
+    "name": "Life Changers Worship Center",
+    "city": "Greenville",
+    "address": "3401 Johnson St, Greenville, TX 75401",
+    "phone": "",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Worship center changing lives through faith."
+  },
+  {
+    "name": "New Genesis Christian Center",
+    "city": "San Antonio",
+    "address": "110 Hanna St, San Antonio, TX 78210",
+    "phone": "210-291-7112",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Christian center dedicated to spiritual renewal and family ministries."
+  },
+  {
+    "name": "New Harvest Apostolic Ministries P.A.W.",
+    "city": "Killeen",
+    "address": "205 E Avenue C, Killeen, TX 76541",
+    "phone": "254-245-8408",
+    "website": "https://www.newharvestapostolicministries.com/",
+    "photo_url": "https://www.newharvestapostolicministries.com/wp-content/uploads/2023/new-harvest-killeen.jpg",
+    "state": "Texas",
+    "short_description": "Apostolic ministries focused on harvest and spiritual growth."
+  },
+  {
+    "name": "New Hope Church",
+    "city": "Manvel",
+    "address": "3640 CR 58, Manvel, TX 77578",
+    "phone": "281-604-9100",
+    "website": "https://newhopechurch.tv/",
+    "photo_url": "https://newhopechurch.tv/wp-content/uploads/2023/new-hope-manvel.jpg",
+    "state": "Texas",
+    "short_description": "Multi-campus non-denominational church helping people find hope in Christ through contemporary services."
+  },
+  {
+    "name": "New Life Apostolic Fellowship",
+    "city": "Temple",
+    "address": "1509 E Ave E, Temple, TX 76503",
+    "phone": "254-421-0842",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Fellowship offering new life through apostolic teachings."
+  },
+  {
+    "name": "Oak Hills Church",
+    "city": "San Antonio",
+    "address": "19595 IH 10 W, San Antonio, TX 78257",
+    "phone": "210-698-6868",
+    "website": "https://oakhillschurch.com/",
+    "photo_url": "https://oakhillschurch.com/wp-content/uploads/2023/oak-hills-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Non-denominational church emphasizing grace, contemporary worship, and family ministries."
+  },
+  {
+    "name": "Oasis of Hope Worship Center",
+    "city": "Houston",
+    "address": "9103 Ley Rd, Houston, TX 77078",
+    "phone": "713-367-4182",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Worship center providing hope through Gospel teaching and community support."
+  },
+  {
+    "name": "Prestonwood Baptist Church",
+    "city": "Plano",
+    "address": "6801 W Parker Rd, Plano, TX 75093",
+    "phone": "972-930-4000",
+    "website": "https://prestonwood.org/",
+    "photo_url": "https://prestonwood.org/wp-content/uploads/2023/prestonwood-plano-campus.jpg",
+    "state": "Texas",
+    "short_description": "Large Southern Baptist congregation with contemporary and traditional services, extensive ministries, and global missions."
+  },
+  {
+    "name": "Rehoboth Faith Tabernacle Church",
+    "city": "Houston",
+    "address": "11914 7th St, Houston, TX 77072",
+    "phone": "832-449-6952",
+    "website": "https://www.rftkaty.org/",
+    "photo_url": "https://www.rftkaty.org/wp-content/uploads/2023/rehoboth-houston.jpg",
+    "state": "Texas",
+    "short_description": "Faith-based tabernacle offering spiritual guidance, community events, and worship services."
+  },
+  {
+    "name": "Restoration Church",
+    "city": "Waco",
+    "address": "2225 Cumberland Ave, Waco, TX 76707",
+    "phone": "254-654-2228",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Church dedicated to restoration through faith and community."
+  },
+  {
+    "name": "Sagemont Church",
+    "city": "Houston",
+    "address": "11300 S Sam Houston Pkwy E, Houston, TX 77089",
+    "phone": "281-481-8770",
+    "website": "https://www.sagemontchurch.org/",
+    "photo_url": "https://www.sagemontchurch.org/wp-content/uploads/2023/sagemont-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Southern Baptist congregation focused on evangelism, discipleship, and community service in southeast Houston."
+  },
+  {
+    "name": "Second Baptist Church",
+    "city": "Houston",
+    "address": "6400 Woodway Dr, Houston, TX 77057",
+    "phone": "713-365-3400",
+    "website": "https://www.second.org/",
+    "photo_url": "https://www.second.org/wp-content/uploads/2023/second-baptist-houston.jpg",
+    "state": "Texas",
+    "short_description": "Multi-campus Southern Baptist church emphasizing Bible teaching, family ministries, and community outreach."
+  },
+  {
+    "name": "Souls of Christ Apostolic",
+    "city": "Dallas",
+    "address": "2636 Britton Dr, Dallas, TX 75216",
+    "phone": "",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic church saving souls through Christ."
+  },
+  {
+    "name": "Temple of Faith Apostolic",
+    "city": "Killeen",
+    "address": "808 N 8th St, Killeen, TX 76541",
+    "phone": "254-247-1904",
+    "website": "https://www.templeoffaithapostolicchurch.com/",
+    "photo_url": "https://www.templeoffaithapostolicchurch.com/wp-content/uploads/2023/temple-of-faith-killeen.jpg",
+    "state": "Texas",
+    "short_description": "Apostolic temple dedicated to faith-building and outreach."
+  },
+  {
+    "name": "Temple of Refuge",
+    "city": "Temple",
+    "address": "2520 Lavendusky Dr, Temple, TX 76501",
+    "phone": "254-760-5079",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Refuge for spiritual seekers with welcoming services and support ministries."
+  },
+  {
+    "name": "The Chosen Vessel Cathedral",
+    "city": "Fort Worth",
+    "address": "4650 Campus Dr, Fort Worth, TX 76119",
+    "phone": "682-587-1389",
+    "website": "https://www.thechosenvessel.org/",
+    "photo_url": "https://www.thechosenvessel.org/wp-content/uploads/2023/chosen-vessel-fort-worth.jpg",
+    "state": "Texas",
+    "short_description": "Cathedral focused on spiritual empowerment and community worship."
+  },
+  {
+    "name": "The Potter's House",
+    "city": "Dallas",
+    "address": "6777 W Kiest Blvd, Dallas, TX 75236",
+    "phone": "214-331-0954",
+    "website": "https://www.thepottershouse.org/",
+    "photo_url": "https://www.thepottershouse.org/wp-content/uploads/2023/potters-house-exterior.jpg",
+    "state": "Texas",
+    "short_description": "Non-denominational megachurch led by Bishop T.D. Jakes, focused on empowerment, community service, and dynamic worship experiences."
+  },
+  {
+    "name": "The Village Church",
+    "city": "Flower Mound",
+    "address": "2101 Justin Rd, Flower Mound, TX 75028",
+    "phone": "972-899-5151",
+    "website": "https://thevillagechurch.net/",
+    "photo_url": "https://thevillagechurch.net/wp-content/uploads/2023/village-flower-mound.jpg",
+    "state": "Texas",
+    "short_description": "Gospel-centered church with multiple campuses, known for expository preaching and deep discipleship programs."
+  },
+  {
+    "name": "The Woodlands Church",
+    "city": "The Woodlands",
+    "address": "1 Fellowship Dr, The Woodlands, TX 77384",
+    "phone": "281-363-4550",
+    "website": "https://www.thewoodlands.church/",
+    "photo_url": "https://www.thewoodlands.church/wp-content/uploads/2023/woodlands-campus.jpg",
+    "state": "Texas",
+    "short_description": "Multi-campus non-denominational church with contemporary worship and practical Bible-based messages."
+  },
+  {
+    "name": "Tree Of Life Apostolic Church",
+    "city": "Arlington",
+    "address": "619 W Main St, Arlington, TX 76010",
+    "phone": "214-228-8808",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic church as the tree of life for believers."
+  },
+  {
+    "name": "True Covenant Family Worship Center",
+    "city": "Houston",
+    "address": "4933 Carmen St, Houston, TX 77033",
+    "phone": "713-705-5746",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Family-oriented worship center with contemporary services and outreach."
+  },
+  {
+    "name": "True Holiness #2",
+    "city": "Wharton",
+    "address": "1130 Westgate St, Wharton, TX 77488",
+    "phone": "979-282-9145",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Holiness church focused on biblical purity and spiritual growth."
+  },
+  {
+    "name": "Victory In Jesus Apostolic",
+    "city": "Harker Heights",
+    "address": "1704 Comanche Dr, Harker Heights, TX 76548",
+    "phone": "254-554-7640",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Apostolic church emphasizing victory through faith and community service."
+  },
+  {
+    "name": "Zion Apostolic Temple",
+    "city": "Dallas",
+    "address": "3940 Blue Ridge Blvd, Dallas, TX 75233",
+    "phone": "214-339-1190",
+    "website": "",
+    "photo_url": "",
+    "state": "Texas",
+    "short_description": "Temple for zion-focused apostolic worship."
+  },
+  {
+    "name": "Ascent Church",
+    "city": "Orem",
+    "address": "1450 North State Street, Orem, UT 84057",
+    "phone": "801-225-7777",
+    "website": "https://ascentutah.org/",
+    "photo_url": "https://ascentutah.org/wp-content/uploads/2023/ascent-orem.jpg",
+    "state": "Utah",
+    "short_description": "Non-denominational church serving Utah County with community focus."
+  },
+  {
+    "name": "Cathedral of the Madeleine",
+    "city": "Salt Lake City",
+    "address": "331 East South Temple, Salt Lake City, UT 84111",
+    "phone": "801-328-8941",
+    "website": "https://www.utcatholic.org/cathedral",
+    "photo_url": "https://www.utcatholic.org/wp-content/uploads/2023/cathedral-madeleine-exterior.jpg",
+    "state": "Utah",
+    "short_description": "Historic Roman Catholic cathedral, seat of the Diocese of Salt Lake City. Famous for its architecture and choir."
+  },
+  {
+    "name": "CenterPoint Church",
+    "city": "Ogden",
+    "address": "867 24th Street, Ogden, UT 84401",
+    "phone": "801-394-7777",
+    "website": "https://centerpointutah.com/",
+    "photo_url": "https://centerpointutah.com/wp-content/uploads/2023/centerpoint-ogden.jpg",
+    "state": "Utah",
+    "short_description": "Non-denominational church in Ogden with modern worship style."
+  },
+  {
+    "name": "Cross of Christ Lutheran Church",
+    "city": "Bountiful",
+    "address": "2450 South 400 East, Bountiful, UT 84010",
+    "phone": "801-292-5511",
+    "website": "https://www.crossofchristlutheran.org/",
+    "photo_url": "https://www.crossofchristlutheran.org/wp-content/uploads/2023/cross-of-christ-bountiful.jpg",
+    "state": "Utah",
+    "short_description": "ELCA Lutheran church with blended services and active outreach."
+  },
+  {
+    "name": "Draper Utah Temple",
+    "city": "Draper",
+    "address": "12161 South 1000 East, Draper, UT 84020",
+    "phone": "801-576-5777",
+    "website": "https://churchofjesuschrist.org/temples/details/draper-utah-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/draper-temple-exterior/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "Prominent LDS temple with panoramic views of the valley."
+  },
+  {
+    "name": "First Baptist Church of Salt Lake City",
+    "city": "Salt Lake City",
+    "address": "777 East South Temple, Salt Lake City, UT 84102",
+    "phone": "801-355-3281",
+    "website": "https://www.firstbaptistslc.org/",
+    "photo_url": "https://www.firstbaptistslc.org/wp-content/uploads/2023/first-baptist-slc.jpg",
+    "state": "Utah",
+    "short_description": "Historic downtown Baptist church with blended services."
+  },
+  {
+    "name": "First Presbyterian Church of Salt Lake City",
+    "city": "Salt Lake City",
+    "address": "12 West South Temple, Salt Lake City, UT 84101",
+    "phone": "801-363-3889",
+    "website": "https://www.firstpresSLC.org/",
+    "photo_url": "https://www.firstpresSLC.org/wp-content/uploads/2023/first-presbyterian-slc.jpg",
+    "state": "Utah",
+    "short_description": "Historic downtown Presbyterian church with traditional worship."
+  },
+  {
+    "name": "Genesis Church",
+    "city": "Provo",
+    "address": "1750 North 400 East, Provo, UT 84604",
+    "phone": "801-373-7777",
+    "website": "https://genesisutah.com/",
+    "photo_url": "https://genesisutah.com/wp-content/uploads/2023/genesis-provo-exterior.jpg",
+    "state": "Utah",
+    "short_description": "Non-denominational church near BYU with contemporary services."
+  },
+  {
+    "name": "Grace Baptist Church",
+    "city": "West Jordan",
+    "address": "7825 South 2700 West, West Jordan, UT 84084",
+    "phone": "801-561-7777",
+    "website": "https://gracebaptistutah.org/",
+    "photo_url": "https://gracebaptistutah.org/wp-content/uploads/2023/grace-west-jordan.jpg",
+    "state": "Utah",
+    "short_description": "Independent Baptist church with traditional services and Bible teaching."
+  },
+  {
+    "name": "Harvest Christian Fellowship",
+    "city": "Riverton",
+    "address": "Riverton, UT (meeting at local venues)",
+    "phone": "801-254-7777",
+    "website": "https://harvestutah.org/",
+    "photo_url": "",
+    "state": "Utah",
+    "short_description": "Non-denominational church with contemporary worship style."
+  },
+  {
+    "name": "Iglesia Ni Cristo - Salt Lake Congregation",
+    "city": "West Valley City",
+    "address": "3540 South 6000 West, West Valley City, UT 84128",
+    "phone": "",
+    "website": "https://iglesianicristo.net/",
+    "photo_url": "",
+    "state": "Utah",
+    "short_description": "Church of Christ (Iglesia Ni Cristo) serving local Filipino and other communities."
+  },
+  {
+    "name": "Jordan River Utah Temple",
+    "city": "South Jordan",
+    "address": "10295 South 1300 West, South Jordan, UT 84095",
+    "phone": "801-254-3000",
+    "website": "https://churchofjesuschrist.org/temples/details/jordan-river-utah-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/jordan-river-temple-exterior/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "High-volume LDS temple serving the dense Salt Lake Valley population."
+  },
+  {
+    "name": "Life Church Utah",
+    "city": "West Jordan",
+    "address": "West Jordan, UT",
+    "phone": "801-280-7777",
+    "website": "https://lifechurchutah.com/",
+    "photo_url": "",
+    "state": "Utah",
+    "short_description": "Non-denominational church with modern services and small groups."
+  },
+  {
+    "name": "Mount Timpanogos Utah Temple",
+    "city": "American Fork",
+    "address": "50 South Center Street, American Fork, UT 84003",
+    "phone": "801-763-5777",
+    "website": "https://churchofjesuschrist.org/temples/details/mount-timpanogos-utah-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/mount-timpanogos-temple-exterior/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "Iconic LDS temple near Provo, known for its mountain backdrop."
+  },
+  {
+    "name": "Mountain Life Church",
+    "city": "Park City",
+    "address": "5501 Newpark Blvd, Park City, UT 84098",
+    "phone": "435-649-7777",
+    "website": "https://mountainlife.church/",
+    "photo_url": "https://mountainlife.church/wp-content/uploads/2023/mountain-life-park-city.jpg",
+    "state": "Utah",
+    "short_description": "Non-denominational church serving the Park City mountain community."
+  },
+  {
+    "name": "New Hope Fellowship",
+    "city": "Ogden",
+    "address": "3450 Harrison Blvd, Ogden, UT 84403",
+    "phone": "801-392-7777",
+    "website": "https://newhopeogden.com/",
+    "photo_url": "https://newhopeogden.com/wp-content/uploads/2023/new-hope-ogden.jpg",
+    "state": "Utah",
+    "short_description": "Non-denominational church emphasizing hope and community support."
+  },
+  {
+    "name": "Oquirrh Mountain Utah Temple",
+    "city": "South Jordan",
+    "address": "11859 South Redwood Road, South Jordan, UT 84095",
+    "phone": "801-254-3000",
+    "website": "https://churchofjesuschrist.org/temples/details/oquirrh-mountain-utah-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/oquirrh-mountain-temple-exterior/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "Modern LDS temple with distinctive design and beautiful grounds."
+  },
+  {
+    "name": "Provo City Center Temple",
+    "city": "Provo",
+    "address": "50 South University Avenue, Provo, UT 84601",
+    "phone": "801-851-5777",
+    "website": "https://churchofjesuschrist.org/temples/details/provo-city-center-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/provo-city-center-temple-exterior/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "LDS temple built from the former Provo Tabernacle, central to Utah County."
+  },
+  {
+    "name": "Real Life Church",
+    "city": "Layton",
+    "address": "Layton, UT (multiple meeting locations)",
+    "phone": "801-773-7777",
+    "website": "https://reallifeutah.com/",
+    "photo_url": "",
+    "state": "Utah",
+    "short_description": "Non-denominational church focused on practical faith and community."
+  },
+  {
+    "name": "Salt Lake Christian Center",
+    "city": "Salt Lake City",
+    "address": "4900 South 900 East, Salt Lake City, UT 84117",
+    "phone": "801-261-2222",
+    "website": "https://slcchristiancenter.org/",
+    "photo_url": "https://slcchristiancenter.org/wp-content/uploads/2023/salt-lake-christian-center.jpg",
+    "state": "Utah",
+    "short_description": "Charismatic non-denominational church with contemporary worship."
+  },
+  {
+    "name": "Salt Lake Temple",
+    "city": "Salt Lake City",
+    "address": "50 North West Temple Street, Salt Lake City, UT 84150",
+    "phone": "801-240-1002",
+    "website": "https://churchofjesuschrist.org/temples/details/salt-lake-temple",
+    "photo_url": "https://www.churchofjesuschrist.org/imgs/salt-lake-temple-exterior-full/full/320%2C/0/default",
+    "state": "Utah",
+    "short_description": "Flagship temple of The Church of Jesus Christ of Latter-day Saints. Historic structure and global spiritual center (under major renovation)."
+  },
+  {
+    "name": "South Mountain Community Church",
+    "city": "Draper",
+    "address": "12286 South 1000 East, Draper, UT 84020",
+    "phone": "801-571-7777",
+    "website": "https://southmountaincc.org/",
+    "photo_url": "https://southmountaincc.org/wp-content/uploads/2023/south-mountain-draper.jpg",
+    "state": "Utah",
+    "short_description": "Large non-denominational church with family and next-gen ministries."
+  },
+  {
+    "name": "St. Francis Xavier Catholic Church",
+    "city": "Kearns",
+    "address": "4500 West 5215 South, Kearns, UT 84118",
+    "phone": "801-966-1641",
+    "website": "https://www.dioslc.org/parishes/st-francis-xavier",
+    "photo_url": "https://www.dioslc.org/wp-content/uploads/2023/st-francis-xavier-kearns.jpg",
+    "state": "Utah",
+    "short_description": "Catholic parish with school and community programs."
+  },
+  {
+    "name": "St. James Episcopal Church",
+    "city": "Midvale",
+    "address": "7486 South Union Park Ave, Midvale, UT 84047",
+    "phone": "801-255-3141",
+    "website": "https://www.stjamesutah.org/",
+    "photo_url": "https://www.stjamesutah.org/wp-content/uploads/2023/st-james-midvale.jpg",
+    "state": "Utah",
+    "short_description": "Episcopal parish with liturgical worship and community ministries."
+  },
+  {
+    "name": "St. Thomas More Catholic Church",
+    "city": "Sandy",
+    "address": "9201 South 1300 East, Sandy, UT 84094",
+    "phone": "801-571-1111",
+    "website": "https://www.stthomasmoreutah.org/",
+    "photo_url": "https://www.stthomasmoreutah.org/wp-content/uploads/2023/st-thomas-more-sandy.jpg",
+    "state": "Utah",
+    "short_description": "Active Catholic parish with school and multiple Mass times."
+  },
+  {
+    "name": "Summit Church Utah",
+    "city": "Sandy",
+    "address": "Sandy, UT (rotating venues)",
+    "phone": "",
+    "website": "https://summitchurchutah.com/",
+    "photo_url": "",
+    "state": "Utah",
+    "short_description": "Contemporary non-denominational church plant in the valley."
+  },
+  {
+    "name": "The Point Church",
+    "city": "Lehi",
+    "address": "1750 West Traverse Parkway, Lehi, UT 84043",
+    "phone": "801-768-7777",
+    "website": "https://thepointchurch.org/",
+    "photo_url": "https://thepointchurch.org/wp-content/uploads/2023/point-lehi-exterior.jpg",
+    "state": "Utah",
+    "short_description": "Contemporary non-denominational church in the rapidly growing Lehi area."
+  },
+  {
+    "name": "Trinity United Methodist Church",
+    "city": "Salt Lake City",
+    "address": "237 South 700 East, Salt Lake City, UT 84102",
+    "phone": "801-355-5923",
+    "website": "https://www.trinityumcslc.org/",
+    "photo_url": "https://www.trinityumcslc.org/wp-content/uploads/2023/trinity-umc-slc.jpg",
+    "state": "Utah",
+    "short_description": "United Methodist church with welcoming community and outreach."
+  },
+  {
+    "name": "Vineyard Salt Lake City",
+    "city": "Salt Lake City",
+    "address": "Salt Lake City (multi-site / rotating locations)",
+    "phone": "",
+    "website": "https://vineyardslc.com/",
+    "photo_url": "",
+    "short_description": "Vineyard movement church focused on contemporary worship and healing.",
+    "state": "Utah"
+  },
+  {
+    "name": "Wasatch Hills Church",
+    "city": "Salt Lake City",
+    "address": "1305 East 2100 South, Salt Lake City, UT 84105",
+    "phone": "801-484-8877",
+    "website": "https://wasatchhills.org/",
+    "photo_url": "https://wasatchhills.org/wp-content/uploads/2023/wasatch-hills-exterior.jpg",
+    "state": "Utah",
+    "short_description": "Progressive UCC congregation in a historic building. Inclusive, community-focused."
+  },
+  {
+    "name": "Bethany Church",
+    "city": "Montpelier",
+    "address": "115 Main St, Montpelier, VT 05602",
+    "phone": "802-223-2423",
+    "website": "https://bethanychurchvt.org/",
+    "photo_url": "https://bethanychurchvt.org/wp-content/uploads/2023/bethany-montpelier.jpg",
+    "state": "Vermont",
+    "short_description": "Non-denominational / evangelical church in downtown Montpelier. Contemporary worship, biblical teaching, and community focus."
+  },
+  {
+    "name": "Burlington United Methodist Church",
+    "city": "Burlington",
+    "address": "159 Main St, Burlington, VT 05401",
+    "phone": "802-862-3455",
+    "website": "https://www.burlingtonumc.org/",
+    "photo_url": "https://www.burlingtonumc.org/wp-content/uploads/2023/burlington-umc.jpg",
+    "state": "Vermont",
+    "short_description": "Welcoming United Methodist congregation in downtown Burlington. Blended worship, active small groups and community service."
+  },
+  {
+    "name": "Cathedral of the Immaculate Conception",
+    "city": "Burlington",
+    "address": "153 St Paul St, Burlington, VT 05401",
+    "phone": "802-658-6110",
+    "website": "https://www.smucc.org/cathedral",
+    "photo_url": "https://www.smucc.org/wp-content/uploads/2023/cathedral-burlington-exterior.jpg",
+    "state": "Vermont",
+    "short_description": "Mother church of the Diocese of Burlington. Historic Roman Catholic cathedral (completed 1972) with beautiful stained glass and active parish ministries."
+  },
+  {
+    "name": "Christ Church Cathedral (Episcopal)",
+    "city": "Burlington",
+    "address": "142 St Paul St, Burlington, VT 05401",
+    "phone": "802-862-9367",
+    "website": "https://www.ccburlington.org/",
+    "photo_url": "https://www.ccburlington.org/wp-content/uploads/2023/christ-church-cathedral-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "Cathedral church of the Episcopal Diocese of Vermont. Historic building, liturgical worship, strong music program and community engagement."
+  },
+  {
+    "name": "College Street Congregational Church (UCC)",
+    "city": "Burlington",
+    "address": "265 College St, Burlington, VT 05401",
+    "phone": "802-862-2600",
+    "website": "https://www.collegestreetchurch.org/",
+    "photo_url": "https://www.collegestreetchurch.org/wp-content/uploads/2023/college-street-ucc-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "Open and Affirming United Church of Christ congregation. Progressive theology, beautiful historic building, active social justice ministries."
+  },
+  {
+    "name": "First Baptist Church of Brattleboro",
+    "city": "Brattleboro",
+    "address": "30 Main St, Brattleboro, VT 05301",
+    "phone": "802-254-5290",
+    "website": "https://www.firstbaptistbrattleboro.org/",
+    "photo_url": "https://www.firstbaptistbrattleboro.org/wp-content/uploads/2023/first-baptist-brattleboro.jpg",
+    "state": "Vermont",
+    "short_description": "American Baptist church with blended worship, strong music ministry, and community engagement."
+  },
+  {
+    "name": "First Baptist Church of Burlington",
+    "city": "Burlington",
+    "address": "95 St Paul St, Burlington, VT 05401",
+    "phone": "802-862-2525",
+    "website": "https://www.firstchurchburlington.org/",
+    "photo_url": "https://www.firstchurchburlington.org/wp-content/uploads/2023/first-baptist-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "Historic American Baptist congregation in downtown Burlington. Blended worship, strong music program, and community outreach."
+  },
+  {
+    "name": "First Congregational Church of Bennington (UCC)",
+    "city": "Bennington",
+    "address": "1 Monument Circle, Bennington, VT 05201",
+    "phone": "802-442-2874",
+    "website": "https://www.benningtonucc.org/",
+    "photo_url": "https://www.benningtonucc.org/wp-content/uploads/2023/first-congregational-bennington.jpg",
+    "state": "Vermont",
+    "short_description": "Historic UCC church on the Bennington Monument green. Progressive theology, beautiful sanctuary, active community ministries."
+  },
+  {
+    "name": "First Congregational Church of Burlington (UCC)",
+    "city": "Burlington",
+    "address": "38 S Winooski Ave, Burlington, VT 05401",
+    "phone": "802-862-2600",
+    "website": "https://www.fcc-burlington.org/",
+    "photo_url": "https://www.fcc-burlington.org/wp-content/uploads/2023/first-congregational-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "Historic UCC church with progressive values, beautiful sanctuary, and strong emphasis on music and community involvement."
+  },
+  {
+    "name": "First Presbyterian Church of Burlington",
+    "city": "Burlington",
+    "address": "116 S Willard St, Burlington, VT 05401",
+    "phone": "802-862-6516",
+    "website": "https://www.fpcburlington.org/",
+    "photo_url": "https://www.fpcburlington.org/wp-content/uploads/2023/first-presbyterian-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "PC(USA) congregation offering traditional and contemporary worship, strong music ministry, and community engagement."
+  },
+  {
+    "name": "Grace Congregational Church (UCC)",
+    "city": "Rutland",
+    "address": "8 Court St, Rutland, VT 05701",
+    "phone": "802-775-4301",
+    "website": "https://www.gracechurchrutland.org/",
+    "photo_url": "https://www.gracechurchrutland.org/wp-content/uploads/2023/grace-congregational-rutland.jpg",
+    "state": "Vermont",
+    "short_description": "Open and affirming UCC congregation in downtown Rutland. Progressive, community-focused, historic building."
+  },
+  {
+    "name": "St. John's Episcopal Church",
+    "city": "Montpelier",
+    "address": "72 S Main St, Montpelier, VT 05602",
+    "phone": "802-223-7538",
+    "website": "https://stjohnsmontpelier.org/",
+    "photo_url": "https://stjohnsmontpelier.org/wp-content/uploads/2023/st-johns-montpelier.jpg",
+    "state": "Vermont",
+    "short_description": "Welcoming Episcopal church in Vermont's capital city. Liturgical worship, active outreach, and historic building."
+  },
+  {
+    "name": "St. Mark Church",
+    "city": "Burlington",
+    "address": "1251 North Ave, Burlington, VT 05408",
+    "phone": "802-864-6253",
+    "website": "https://www.saintmarkvt.org/",
+    "photo_url": "https://www.saintmarkvt.org/wp-content/uploads/2023/st-mark-burlington.jpg",
+    "state": "Vermont",
+    "short_description": "Active Roman Catholic parish in the New North End of Burlington. Multiple Masses, faith formation, and community outreach."
+  },
+  {
+    "name": "St. Peter's Cathedral",
+    "city": "Rutland",
+    "address": "67 South St, Rutland, VT 05701",
+    "phone": "802-773-3244",
+    "website": "https://www.stpeterscathedralvt.org/",
+    "photo_url": "https://www.stpeterscathedralvt.org/wp-content/uploads/2023/st-peters-cathedral-rutland.jpg",
+    "state": "Vermont",
+    "short_description": "Roman Catholic cathedral and mother church for central Vermont. Active parish, beautiful architecture."
+  },
+  {
+    "name": "United Church of Bellows Falls",
+    "city": "Bellows Falls",
+    "address": "14 School St, Bellows Falls, VT 05101",
+    "phone": "802-463-4528",
+    "website": "https://ucbf.org/",
+    "photo_url": "https://ucbf.org/wp-content/uploads/2023/united-church-bellows-falls.jpg",
+    "state": "Vermont",
+    "short_description": "UCC congregation in southern Vermont. Open and affirming, community-oriented, historic building."
+  },
+  {
+    "name": "West Brattleboro Congregational Church (UCC)",
+    "city": "Brattleboro",
+    "address": "34 Oak St, Brattleboro, VT 05301",
+    "phone": "802-257-1047",
+    "website": "https://westbrattleboroucc.org/",
+    "photo_url": "https://westbrattleboroucc.org/wp-content/uploads/2023/west-brattleboro-ucc.jpg",
+    "state": "Vermont",
+    "short_description": "Progressive UCC congregation in Brattleboro. Welcoming, social justice oriented, active community life."
+  },
+  {
+    "name": "Bon Air Baptist Church",
+    "city": "Richmond",
+    "address": "2530 Buford Rd, Richmond, VA 23235",
+    "phone": "804-320-6767",
+    "website": "https://bonairbaptist.org/",
+    "photo_url": "https://bonairbaptist.org/wp-content/uploads/2023/bon-air-richmond.jpg",
+    "state": "Virginia",
+    "short_description": "Large Southern Baptist church in the Richmond area. Dynamic worship, biblical preaching, extensive family ministries."
+  },
+  {
+    "name": "Bridgeway Church",
+    "city": "Ashburn",
+    "address": "Ashburn, VA (multi-site)",
+    "phone": "703-858-7777",
+    "website": "https://bridgewaychurch.com/",
+    "photo_url": "https://bridgewaychurch.com/wp-content/uploads/2023/bridgeway-ashburn.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational multi-site church in Northern Virginia. Modern worship, practical messages, strong small groups."
+  },
+  {
+    "name": "Calvary Baptist Church",
+    "city": "Fredericksburg",
+    "address": "1000 Princess Anne St, Fredericksburg, VA 22401",
+    "phone": "540-373-3133",
+    "website": "https://calvaryfredericksburg.org/",
+    "photo_url": "https://calvaryfredericksburg.org/wp-content/uploads/2023/calvary-fredericksburg.jpg",
+    "state": "Virginia",
+    "short_description": "Southern Baptist church in historic Fredericksburg with biblical preaching and family ministries."
+  },
+  {
+    "name": "Cornerstone Chapel",
+    "city": "Leesburg",
+    "address": "19525 Evergreen Mills Rd, Leesburg, VA 20175",
+    "phone": "703-771-1500",
+    "website": "https://cornerstonechapel.net/",
+    "photo_url": "https://cornerstonechapel.net/wp-content/uploads/2023/cornerstone-leesburg.jpg",
+    "state": "Virginia",
+    "short_description": "Large non-denominational church in Loudoun County. Contemporary services, biblical teaching, multi-generational ministries."
+  },
+  {
+    "name": "Crossroads Church",
+    "city": "Manassas",
+    "address": "10000 Nokesville Rd, Manassas, VA 20110",
+    "phone": "703-753-7777",
+    "website": "https://crossroadschurch.com/",
+    "photo_url": "https://crossroadschurch.com/wp-content/uploads/2023/crossroads-manassas.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church serving Prince William County. Contemporary worship and community focus."
+  },
+  {
+    "name": "Emmanuel Episcopal Church",
+    "city": "Middleburg",
+    "address": "105 E Washington St, Middleburg, VA 20117",
+    "phone": "540-687-6295",
+    "website": "https://www.emmanuelmiddleburg.org/",
+    "photo_url": "https://www.emmanuelmiddleburg.org/wp-content/uploads/2023/emmanuel-middleburg.jpg",
+    "state": "Virginia",
+    "short_description": "Historic Episcopal church in horse country with traditional worship and community outreach."
+  },
+  {
+    "name": "First Baptist Church of Charlottesville",
+    "city": "Charlottesville",
+    "address": "735 Park St, Charlottesville, VA 22902",
+    "phone": "434-296-6197",
+    "website": "https://fbccville.org/",
+    "photo_url": "https://fbccville.org/wp-content/uploads/2023/first-baptist-charlottesville.jpg",
+    "state": "Virginia",
+    "short_description": "Historic Baptist church near UVA with blended worship and strong community ministries."
+  },
+  {
+    "name": "First Baptist Church of Roanoke",
+    "city": "Roanoke",
+    "address": "318 Church Ave SW, Roanoke, VA 24016",
+    "phone": "540-343-3027",
+    "website": "https://www.firstroanoke.org/",
+    "photo_url": "https://www.firstroanoke.org/wp-content/uploads/2023/first-baptist-roanoke.jpg",
+    "state": "Virginia",
+    "short_description": "Historic downtown Baptist church with blended worship and strong community presence."
+  },
+  {
+    "name": "First Presbyterian Church of Virginia Beach",
+    "city": "Virginia Beach",
+    "address": "4815 First Colonial Rd, Virginia Beach, VA 23455",
+    "phone": "757-460-2222",
+    "website": "https://www.fpcvb.org/",
+    "photo_url": "https://www.fpcvb.org/wp-content/uploads/2023/first-presbyterian-vb.jpg",
+    "state": "Virginia",
+    "short_description": "PC(USA) congregation with traditional and contemporary services and strong community involvement."
+  },
+  {
+    "name": "Forest Baptist Church",
+    "city": "Forest",
+    "address": "1840 Graves Mill Rd, Forest, VA 24551",
+    "phone": "434-385-1024",
+    "website": "https://forestbaptist.org/",
+    "photo_url": "https://forestbaptist.org/wp-content/uploads/2023/forest-baptist.jpg",
+    "state": "Virginia",
+    "short_description": "Growing Southern Baptist church near Lynchburg with contemporary worship and family ministries."
+  },
+  {
+    "name": "Grace Covenant Church",
+    "city": "Winchester",
+    "address": "Winchester, VA (multiple locations)",
+    "phone": "540-667-7777",
+    "website": "https://gracecovenant.net/",
+    "photo_url": "https://gracecovenant.net/wp-content/uploads/2023/grace-covenant-winchester.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church serving the Shenandoah Valley. Contemporary services and community focus."
+  },
+  {
+    "name": "Hope Community Church",
+    "city": "Alexandria",
+    "address": "5500 N Morgan St, Alexandria, VA 22312",
+    "phone": "703-941-4673",
+    "website": "https://hopecommunitychurch.org/",
+    "photo_url": "https://hopecommunitychurch.org/wp-content/uploads/2023/hope-alexandria.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church focused on hope, contemporary worship, and multi-ethnic community."
+  },
+  {
+    "name": "Immanuel Bible Church",
+    "city": "Springfield",
+    "address": "6911 Braddock Rd, Springfield, VA 22151",
+    "phone": "703-941-4124",
+    "website": "https://www.ibcva.org/",
+    "photo_url": "https://www.ibcva.org/wp-content/uploads/2023/immanuel-bible-springfield.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational Bible church with expository preaching, contemporary worship, and strong discipleship focus."
+  },
+  {
+    "name": "London Bridge Baptist Church",
+    "city": "Virginia Beach",
+    "address": "1548 Laskin Rd, Virginia Beach, VA 23451",
+    "phone": "757-428-4248",
+    "website": "https://www.lbbc.org/",
+    "photo_url": "https://www.lbbc.org/wp-content/uploads/2023/london-bridge-virginia-beach.jpg",
+    "state": "Virginia",
+    "short_description": "Large Southern Baptist church with blended services, biblical teaching, and community outreach."
+  },
+  {
+    "name": "McLean Bible Church",
+    "city": "Vienna",
+    "address": "8925 Leesburg Pike, Vienna, VA 22182",
+    "phone": "703-790-5590",
+    "website": "https://www.mcleanbible.org/",
+    "photo_url": "https://www.mcleanbible.org/wp-content/uploads/2023/mclean-bible-vienna-campus.jpg",
+    "state": "Virginia",
+    "short_description": "Large multi-campus non-denominational church serving the DC metro area. Contemporary worship, biblical teaching, extensive small groups and outreach."
+  },
+  {
+    "name": "National Community Church",
+    "city": "Arlington / multiple campuses",
+    "address": "Multiple locations in Northern Virginia & DC",
+    "phone": "202-544-0700",
+    "website": "https://theaterchurch.com/",
+    "photo_url": "https://theaterchurch.com/wp-content/uploads/2023/ncc-arlington-campus.jpg",
+    "short_description": "Innovative multi-site non-denominational church. Contemporary services, creative teaching, strong young adult and next-gen focus.",
+    "state": "Virginia"
+  },
+  {
+    "name": "New Life Christian Church",
+    "city": "Centreville",
+    "address": "14141 Braddock Rd, Centreville, VA 20120",
+    "phone": "703-818-8000",
+    "website": "https://www.newlifeva.com/",
+    "photo_url": "https://www.newlifeva.com/wp-content/uploads/2023/new-life-centreville.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church with contemporary services, biblical teaching, and community impact."
+  },
+  {
+    "name": "Reston Bible Church",
+    "city": "Reston",
+    "address": "11575 N Shore Dr, Reston, VA 20190",
+    "phone": "703-709-2000",
+    "website": "https://restonbible.org/",
+    "photo_url": "https://restonbible.org/wp-content/uploads/2023/reston-bible-exterior.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church in Reston with expository preaching, contemporary worship, and community groups."
+  },
+  {
+    "name": "River Church",
+    "city": "Richmond",
+    "address": "Multiple campuses in Greater Richmond",
+    "phone": "804-447-7777",
+    "website": "https://river.church/",
+    "photo_url": "https://river.church/wp-content/uploads/2023/river-richmond.jpg",
+    "short_description": "Non-denominational multi-site church focused on contemporary worship, relevant teaching, and community impact.",
+    "state": "Virginia"
+  },
+  {
+    "name": "Solid Rock Church",
+    "city": "Chester",
+    "address": "Chester, VA (multiple campuses)",
+    "phone": "804-777-7777",
+    "website": "https://solidrockva.com/",
+    "photo_url": "https://solidrockva.com/wp-content/uploads/2023/solid-rock-chester.jpg",
+    "state": "Virginia",
+    "short_description": "Non-denominational church in the Richmond suburbs with contemporary worship and family ministries."
+  },
+  {
+    "name": "St. Andrew's Episcopal Church",
+    "city": "Roanoke",
+    "address": "2141 Jefferson St SE, Roanoke, VA 24014",
+    "phone": "540-343-9341",
+    "website": "https://standrewsroanoke.org/",
+    "photo_url": "https://standrewsroanoke.org/wp-content/uploads/2023/st-andrews-roanoke.jpg",
+    "state": "Virginia",
+    "short_description": "Historic Episcopal church with traditional liturgy, beautiful music, and community outreach."
+  },
+  {
+    "name": "St. Benedict Catholic Church",
+    "city": "Richmond",
+    "address": "300 N Sheppard St, Richmond, VA 23220",
+    "phone": "804-359-5661",
+    "website": "https://www.stbenedictva.org/",
+    "photo_url": "https://www.stbenedictva.org/wp-content/uploads/2023/st-benedict-richmond.jpg",
+    "state": "Virginia",
+    "short_description": "Active Catholic parish in the Fan District. Multiple Masses, faith formation programs, community outreach."
+  },
+  {
+    "name": "St. Gregory the Great Catholic Church",
+    "city": "Virginia Beach",
+    "address": "5345 Virginia Beach Blvd, Virginia Beach, VA 23462",
+    "phone": "757-497-9691",
+    "website": "https://www.stgregoryvb.org/",
+    "photo_url": "https://www.stgregoryvb.org/wp-content/uploads/2023/st-gregory-virginia-beach.jpg",
+    "state": "Virginia",
+    "short_description": "Large Catholic parish with school, multiple Masses, and active ministries."
+  },
+  {
+    "name": "St. Paul's Episcopal Church",
+    "city": "Richmond",
+    "address": "815 E Grace St, Richmond, VA 23219",
+    "phone": "804-643-3589",
+    "website": "https://stpaulsrva.org/",
+    "photo_url": "https://stpaulsrva.org/wp-content/uploads/2023/st-pauls-richmond.jpg",
+    "state": "Virginia",
+    "short_description": "Historic Episcopal church in downtown Richmond with traditional liturgy and active outreach."
+  },
+  {
+    "name": "The Falls Church Anglican",
+    "city": "Falls Church",
+    "address": "3606 Seminary Rd, Falls Church, VA 22041",
+    "phone": "703-820-1200",
+    "website": "https://www.tfcanglican.org/",
+    "photo_url": "https://www.tfcanglican.org/wp-content/uploads/2023/falls-church-anglican-exterior.jpg",
+    "state": "Virginia",
+    "short_description": "Historic Anglican congregation (1732) known for rich liturgy, excellent music, and strong community life."
+  },
+  {
+    "name": "Thomas Road Baptist Church",
+    "city": "Lynchburg",
+    "address": "6205 Timberlake Rd, Lynchburg, VA 24502",
+    "phone": "434-239-6000",
+    "website": "https://trbc.org/",
+    "photo_url": "https://trbc.org/wp-content/uploads/2023/thomas-road-baptist.jpg",
+    "state": "Virginia",
+    "short_description": "Large Baptist church with contemporary and traditional services, strong teaching, and global outreach."
+  },
+  {
+    "name": "Trinity Lutheran Church",
+    "city": "Richmond",
+    "address": "3601 Seminary Ave, Richmond, VA 23227",
+    "phone": "804-355-5715",
+    "website": "https://www.trinityrichmond.org/",
+    "photo_url": "https://www.trinityrichmond.org/wp-content/uploads/2023/trinity-lutheran-richmond.jpg",
+    "state": "Virginia",
+    "short_description": "ELCA Lutheran church with blended worship, strong music ministry, and social justice involvement."
+  },
+  {
+    "name": "Wave Church",
+    "city": "Virginia Beach",
+    "address": "1000 N Great Neck Rd, Virginia Beach, VA 23454",
+    "phone": "757-627-7777",
+    "website": "https://wavechurch.com/",
+    "photo_url": "https://wavechurch.com/wp-content/uploads/2023/wave-church-virginia-beach.jpg",
+    "state": "Virginia",
+    "short_description": "Large non-denominational church in Hampton Roads. Contemporary worship, practical teaching, strong youth ministry."
+  },
+  {
+    "name": "Cascade Community Church",
+    "city": "Monroe",
+    "address": "Monroe, WA",
+    "phone": "360-794-7777",
+    "website": "https://cascadecommunitychurch.org/",
+    "photo_url": "https://cascadecommunitychurch.org/wp-content/uploads/2023/cascade-monroe.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church serving Snohomish County. Contemporary worship, biblical teaching, family ministries."
+  },
+  {
+    "name": "Cathedral of St. James",
+    "city": "Seattle",
+    "address": "804 9th Ave, Seattle, WA 98104",
+    "phone": "206-622-3559",
+    "website": "https://stjames-cathedral.org/",
+    "photo_url": "https://stjames-cathedral.org/wp-content/uploads/2023/st-james-cathedral-seattle.jpg",
+    "state": "Washington",
+    "short_description": "Mother church of the Archdiocese of Seattle. Historic Catholic cathedral with rich liturgy and renowned music program."
+  },
+  {
+    "name": "Cedar Park Church",
+    "city": "Bothell",
+    "address": "16300 112th Ave NE, Bothell, WA 98011",
+    "phone": "425-488-6000",
+    "website": "https://www.cedarpark.org/",
+    "photo_url": "https://www.cedarpark.org/wp-content/uploads/2023/cedar-park-bothell.jpg",
+    "state": "Washington",
+    "short_description": "Large non-denominational church in North King/Snohomish. Dynamic worship, extensive ministries, multi-generational focus."
+  },
+  {
+    "name": "Christ the King Community Church",
+    "city": "Burlington",
+    "address": "Burlington / Mount Vernon area",
+    "phone": "360-755-7777",
+    "website": "https://ctkchurch.org/",
+    "photo_url": "https://ctkchurch.org/wp-content/uploads/2023/ctk-burlington.jpg",
+    "short_description": "Non-denominational multi-site church serving Skagit County. Contemporary services, strong discipleship focus.",
+    "state": "Washington"
+  },
+  {
+    "name": "City Church Seattle",
+    "city": "Seattle",
+    "address": "1300 E Aloha St, Seattle, WA 98102",
+    "phone": "206-325-2421",
+    "website": "https://thecity.org/",
+    "photo_url": "https://thecity.org/wp-content/uploads/2023/city-church-seattle.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church with contemporary worship, strong community groups, and active city engagement in Capitol Hill."
+  },
+  {
+    "name": "Eastside Christian Church",
+    "city": "Bellevue",
+    "address": "2650 148th Ave SE, Bellevue, WA 98007",
+    "phone": "425-746-0909",
+    "website": "https://eastsidechristian.org/",
+    "photo_url": "https://eastsidechristian.org/wp-content/uploads/2023/eastside-bellevue-campus.jpg",
+    "state": "Washington",
+    "short_description": "Large non-denominational multi-campus church serving the Eastside. Contemporary services, practical teaching, strong next-gen focus."
+  },
+  {
+    "name": "Everett First Presbyterian Church",
+    "city": "Everett",
+    "address": "2936 Rockefeller Ave, Everett, WA 98201",
+    "phone": "425-259-5147",
+    "website": "https://everettfirstpres.org/",
+    "photo_url": "https://everettfirstpres.org/wp-content/uploads/2023/everett-first-presbyterian.jpg",
+    "state": "Washington",
+    "short_description": "Historic PC(USA) church in downtown Everett. Traditional and contemporary elements, active community ministries."
+  },
+  {
+    "name": "First Covenant Church",
+    "city": "Seattle",
+    "address": "400 E Pike St, Seattle, WA 98122",
+    "phone": "206-324-1522",
+    "website": "https://firstcovenantseattle.org/",
+    "photo_url": "https://firstcovenantseattle.org/wp-content/uploads/2023/first-covenant-seattle.jpg",
+    "state": "Washington",
+    "short_description": "Evangelical Covenant church in Capitol Hill. Inclusive, blended worship, strong social justice and community involvement."
+  },
+  {
+    "name": "Grace Baptist Church",
+    "city": "Wenatchee",
+    "address": "Wenatchee, WA",
+    "phone": "509-884-7777",
+    "website": "https://gracewenatchee.org/",
+    "photo_url": "",
+    "state": "Washington",
+    "short_description": "Baptist church in the Wenatchee Valley. Biblical preaching, blended worship, community focus."
+  },
+  {
+    "name": "Life Center Tacoma",
+    "city": "Tacoma",
+    "address": "1717 S Union Ave, Tacoma, WA 98405",
+    "phone": "253-383-2000",
+    "website": "https://lifecenter.net/",
+    "photo_url": "https://lifecenter.net/wp-content/uploads/2023/life-center-tacoma.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational multi-campus church. Contemporary worship, practical messages, strong family and youth emphasis."
+  },
+  {
+    "name": "New Life Church",
+    "city": "Vancouver",
+    "address": "12400 NE 95th St, Vancouver, WA 98682",
+    "phone": "360-882-7777",
+    "website": "https://www.newlifevancouver.org/",
+    "photo_url": "https://www.newlifevancouver.org/wp-content/uploads/2023/new-life-vancouver.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church in Clark County. Contemporary services, practical teaching, strong small groups."
+  },
+  {
+    "name": "Northwest Church",
+    "city": "Federal Way",
+    "address": "34205 16th Ave S, Federal Way, WA 98003",
+    "phone": "253-945-1880",
+    "website": "https://www.northwestchurch.org/",
+    "photo_url": "https://www.northwestchurch.org/wp-content/uploads/2023/northwest-federal-way.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church in South King County. Contemporary services, family ministries, community outreach."
+  },
+  {
+    "name": "Northwest Church of Christ",
+    "city": "Federal Way",
+    "address": "Federal Way, WA",
+    "phone": "253-839-7777",
+    "website": "https://nwchurchofchrist.org/",
+    "photo_url": "",
+    "state": "Washington",
+    "short_description": "Church of Christ congregation emphasizing New Testament Christianity, a cappella worship, and service."
+  },
+  {
+    "name": "Olympia First Baptist Church",
+    "city": "Olympia",
+    "address": "701 Franklin St SE, Olympia, WA 98501",
+    "phone": "360-754-7777",
+    "website": "https://olympiafbc.org/",
+    "photo_url": "https://olympiafbc.org/wp-content/uploads/2023/olympia-first-baptist.jpg",
+    "state": "Washington",
+    "short_description": "American Baptist church in the state capital. Blended worship, biblical teaching, community outreach."
+  },
+  {
+    "name": "Overlake Christian Church",
+    "city": "Redmond",
+    "address": "9900 Willows Rd NE, Redmond, WA 98052",
+    "phone": "425-882-0431",
+    "website": "https://www.oc.org/",
+    "photo_url": "https://www.oc.org/wp-content/uploads/2023/overlake-redmond.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church in the tech corridor. Modern worship, biblical teaching, large community life programs."
+  },
+  {
+    "name": "Quest Church",
+    "city": "Seattle",
+    "address": "Seattle, WA (multiple venues)",
+    "phone": "206-789-7777",
+    "website": "https://questchurch.org/",
+    "photo_url": "https://questchurch.org/wp-content/uploads/2023/quest-seattle.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church focused on urban mission, contemporary worship, and community transformation."
+  },
+  {
+    "name": "Real Life Ministries",
+    "city": "Spokane / Post Falls area",
+    "address": "Multiple campuses in Eastern Washington & North Idaho",
+    "phone": "208-777-1212",
+    "website": "https://www.reallifeministries.com/",
+    "photo_url": "https://www.reallifeministries.com/wp-content/uploads/2023/real-life-spokane-area.jpg",
+    "short_description": "Large non-denominational network known for intentional discipleship through small groups and contemporary services.",
+    "state": "Washington"
+  },
+  {
+    "name": "Spokane First Church of the Nazarene",
+    "city": "Spokane",
+    "address": "9004 N Country Homes Blvd, Spokane, WA 99218",
+    "phone": "509-467-7101",
+    "website": "https://spokanefirstnaz.org/",
+    "photo_url": "https://spokanefirstnaz.org/wp-content/uploads/2023/spokane-first-nazarene.jpg",
+    "state": "Washington",
+    "short_description": "Large Nazarene church with contemporary and traditional services, strong family and youth programs."
+  },
+  {
+    "name": "St. Mark's Cathedral (Episcopal)",
+    "city": "Seattle",
+    "address": "1245 10th Ave E, Seattle, WA 98102",
+    "phone": "206-720-3636",
+    "website": "https://saintmarks.org/",
+    "photo_url": "https://saintmarks.org/wp-content/uploads/2023/st-marks-cathedral-seattle.jpg",
+    "state": "Washington",
+    "short_description": "Cathedral of the Episcopal Diocese of Olympia. Gothic Revival architecture, exceptional music, liturgical worship."
+  },
+  {
+    "name": "Summit Christian Fellowship",
+    "city": "Spokane Valley",
+    "address": "15420 E Sprague Ave, Spokane Valley, WA 99037",
+    "phone": "509-927-7777",
+    "website": "https://summitchristian.org/",
+    "photo_url": "https://summitchristian.org/wp-content/uploads/2023/summit-spokane-valley.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church serving Spokane Valley. Modern worship, biblical teaching, community-oriented."
+  },
+  {
+    "name": "The Gathering Church",
+    "city": "Vancouver",
+    "address": "Vancouver, WA (multiple locations)",
+    "phone": "360-567-7777",
+    "website": "https://thegatheringnw.com/",
+    "photo_url": "https://thegatheringnw.com/wp-content/uploads/2023/gathering-vancouver.jpg",
+    "state": "Washington",
+    "short_description": "Non-denominational church focused on authentic community, contemporary worship, and reaching the Vancouver area."
+  },
+  {
+    "name": "Tri-Cities Baptist Church",
+    "city": "Kennewick",
+    "address": "Kennewick, WA",
+    "phone": "509-783-7777",
+    "website": "https://tricitiesbaptist.com/",
+    "photo_url": "",
+    "state": "Washington",
+    "short_description": "Southern Baptist church serving the Tri-Cities area. Contemporary and traditional services, family ministries."
+  },
+  {
+    "name": "Vineyard Community Church",
+    "city": "Bellingham",
+    "address": "Bellingham, WA (multiple venues)",
+    "phone": "360-734-7777",
+    "website": "https://vineyardbellingham.org/",
+    "photo_url": "",
+    "state": "Washington",
+    "short_description": "Vineyard movement church with contemporary worship, healing ministry emphasis, and community focus."
+  },
+  {
+    "name": "Yakima Foursquare Church",
+    "city": "Yakima",
+    "address": "Yakima, WA",
+    "phone": "509-248-7777",
+    "website": "https://yakimafoursquare.org/",
+    "photo_url": "",
+    "state": "Washington",
+    "short_description": "Foursquare church with contemporary worship, strong community outreach, and family programs."
+  },
+  {
+    "name": "Beverly Hills Church of Christ",
+    "city": "Huntington",
+    "address": "2500 Washington Ave, Huntington, WV 25704",
+    "phone": "304-429-2241",
+    "website": "https://beverlyhillschurchofchrist.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Church of Christ congregation. A cappella worship, Bible-centered teaching, community outreach."
+  },
+  {
+    "name": "Bridgeport United Methodist Church",
+    "city": "Bridgeport",
+    "address": "Bridgeport, WV",
+    "phone": "304-842-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "United Methodist congregation serving Bridgeport area. Blended worship, community outreach."
+  },
+  {
+    "name": "Calvary Baptist Church",
+    "city": "Beckley",
+    "address": "409 N Kanawha St, Beckley, WV 25801",
+    "phone": "304-252-7777",
+    "website": "https://calvarybeckley.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Southern Baptist church with biblical preaching, contemporary/traditional worship, family ministries."
+  },
+  {
+    "name": "Calvary Chapel of the Panhandle",
+    "city": "Charles Town",
+    "address": "Charles Town, WV",
+    "phone": "304-725-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Non-denominational Calvary Chapel. Verse-by-verse Bible teaching, contemporary worship."
+  },
+  {
+    "name": "Cathedral of St. Joseph",
+    "city": "Wheeling",
+    "address": "1218 Eoff St, Wheeling, WV 26003",
+    "phone": "304-233-4121",
+    "website": "https://www.saintjosephcathedral.com/",
+    "photo_url": "https://www.saintjosephcathedral.com/wp-content/uploads/2023/st-joseph-cathedral-wheeling.jpg",
+    "state": "West Virginia",
+    "short_description": "Mother church of the Diocese of Wheeling-Charleston. Historic Roman Catholic cathedral with beautiful architecture and active parish."
+  },
+  {
+    "name": "Christ Church Episcopal",
+    "city": "Clarksburg",
+    "address": "227 S Chestnut St, Clarksburg, WV 26301",
+    "phone": "304-622-7777",
+    "website": "https://christchurchclarksburg.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Episcopal congregation with traditional liturgy, music program, community involvement."
+  },
+  {
+    "name": "Christ Church United Methodist",
+    "city": "Charleston",
+    "address": "1200 Quarrier St, Charleston, WV 25301",
+    "phone": "304-342-8836",
+    "website": "https://www.christchurchwv.org/",
+    "photo_url": "https://www.christchurchwv.org/wp-content/uploads/2023/christ-church-charleston-exterior.jpg",
+    "state": "West Virginia",
+    "short_description": "Large, historic United Methodist church in downtown Charleston. Blended worship, excellent music program, active community ministries and outreach."
+  },
+  {
+    "name": "Creston Avenue Church of Christ",
+    "city": "Morgantown",
+    "address": "120 Creston Ave, Morgantown, WV 26501",
+    "phone": "304-296-5555",
+    "website": "https://crestonavechurch.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Church of Christ with a cappella worship, Bible-centered teaching, community focus."
+  },
+  {
+    "name": "First Baptist Church of Charleston",
+    "city": "Charleston",
+    "address": "16 Leon Sullivan Way, Charleston, WV 25301",
+    "phone": "304-343-2157",
+    "website": "https://fbccharleston.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Historic downtown Baptist church (founded 1865). Blended worship, biblical teaching, long-standing community presence."
+  },
+  {
+    "name": "First Baptist Church of Clarksburg",
+    "city": "Clarksburg",
+    "address": "Clarksburg, WV",
+    "phone": "304-624-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Southern Baptist church with blended worship and active community ministries."
+  },
+  {
+    "name": "First Baptist Church of Princeton",
+    "city": "Princeton",
+    "address": "Princeton, WV",
+    "phone": "304-425-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Southern Baptist church with community ministries and blended worship."
+  },
+  {
+    "name": "First Christian Church (Disciples of Christ)",
+    "city": "Huntington",
+    "address": "Huntington, WV",
+    "phone": "304-523-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Disciples of Christ congregation. Open communion, community-oriented ministries."
+  },
+  {
+    "name": "First Presbyterian Church of Beckley",
+    "city": "Beckley",
+    "address": "201 N Kanawha St, Beckley, WV 25801",
+    "phone": "304-252-7331",
+    "website": "https://firstpresbeckley.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "PC(USA) congregation in downtown Beckley. Traditional worship, music program, community outreach."
+  },
+  {
+    "name": "First Presbyterian Church of Fairmont",
+    "city": "Fairmont",
+    "address": "Fairmont, WV",
+    "phone": "304-363-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "PC(USA) church with traditional worship and strong music ministry."
+  },
+  {
+    "name": "First Presbyterian Church of Huntington",
+    "city": "Huntington",
+    "address": "1015 5th Ave, Huntington, WV 25701",
+    "phone": "304-523-6491",
+    "website": "https://firstpreshuntington.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Historic PC(USA) church in downtown Huntington. Traditional liturgy, music program, active community ministries."
+  },
+  {
+    "name": "First United Methodist Church of Parkersburg",
+    "city": "Parkersburg",
+    "address": "401 11th St, Parkersburg, WV 26101",
+    "phone": "304-422-4581",
+    "website": "https://www.firstumcparkersburg.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Historic downtown United Methodist church. Blended worship, music ministry, community service."
+  },
+  {
+    "name": "First United Methodist Church of Weirton",
+    "city": "Weirton",
+    "address": "Weirton, WV",
+    "phone": "304-748-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "United Methodist church with blended worship and community service."
+  },
+  {
+    "name": "Grace Bible Church",
+    "city": "Charleston",
+    "address": "1601 Oakhurst Dr, Charleston, WV 25314",
+    "phone": "304-346-0624",
+    "website": "https://gracebiblewv.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Non-denominational Bible church. Expository preaching, contemporary worship style, strong small group focus."
+  },
+  {
+    "name": "Grace Fellowship Church",
+    "city": "Morgantown",
+    "address": "Morgantown, WV",
+    "phone": "304-599-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Non-denominational church with contemporary worship and small group focus."
+  },
+  {
+    "name": "Grace Gospel Church",
+    "city": "Martinsburg",
+    "address": "Martinsburg, WV",
+    "phone": "304-263-7777",
+    "website": "https://gracegospelwv.com/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Non-denominational church in the Eastern Panhandle. Contemporary worship, Bible teaching, community focus."
+  },
+  {
+    "name": "Johnson Memorial United Methodist Church",
+    "city": "Huntington",
+    "address": "513 10th St, Huntington, WV 25701",
+    "phone": "304-523-3408",
+    "website": "https://johnsonmemorialumc.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Historic downtown United Methodist church. Blended worship, strong music ministry, community service programs."
+  },
+  {
+    "name": "New Hope Baptist Church",
+    "city": "Bluefield",
+    "address": "Bluefield, WV",
+    "phone": "304-327-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Southern Baptist church serving the Bluefield area. Biblical teaching, family ministries."
+  },
+  {
+    "name": "New Martinsville Church of Christ",
+    "city": "New Martinsville",
+    "address": "New Martinsville, WV",
+    "phone": "304-455-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Church of Christ congregation with a cappella worship and Bible study focus."
+  },
+  {
+    "name": "Parkersburg First Church of the Nazarene",
+    "city": "Parkersburg",
+    "address": "2600 36th St, Parkersburg, WV 26104",
+    "phone": "304-422-7777",
+    "website": "https://parkersburgnazarene.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Nazarene church with contemporary and traditional services, strong family and youth ministries."
+  },
+  {
+    "name": "St. Ann Catholic Church",
+    "city": "Weirton",
+    "address": "Weirton, WV",
+    "phone": "304-748-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Catholic parish in the Northern Panhandle. Masses, faith formation programs."
+  },
+  {
+    "name": "St. Francis de Sales Catholic Church",
+    "city": "Morgantown",
+    "address": "31 Saint Francis Way, Morgantown, WV 26501",
+    "phone": "304-296-6511",
+    "website": "https://www.sfdsmorgantown.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Active Catholic parish near WVU. Multiple Masses, campus ministry, faith formation programs."
+  },
+  {
+    "name": "St. John United Methodist Church",
+    "city": "South Charleston",
+    "address": "410 D St, South Charleston, WV 25303",
+    "phone": "304-744-1651",
+    "website": "https://stjohnumc.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "United Methodist congregation in South Charleston. Traditional and contemporary elements, active community ministries."
+  },
+  {
+    "name": "St. Joseph Catholic Church",
+    "city": "Martinsburg",
+    "address": "408 W Stephen St, Martinsburg, WV 25401",
+    "phone": "304-267-2315",
+    "website": "https://stjosephmartinsburg.org/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Active Roman Catholic parish. Multiple Masses, school affiliation, community ministries."
+  },
+  {
+    "name": "Sunrise Church",
+    "city": "Morgantown",
+    "address": "Morgantown, WV (multiple locations)",
+    "phone": "304-292-7777",
+    "website": "https://sunrisechurchwv.com/",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Non-denominational church serving Morgantown area. Contemporary worship, practical teaching, strong community groups."
+  },
+  {
+    "name": "Temple Baptist Church",
+    "city": "Fairmont",
+    "address": "Fairmont, WV",
+    "phone": "304-366-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "West Virginia",
+    "short_description": "Independent Baptist church. Biblical preaching, traditional worship style."
+  },
+  {
+    "name": "Calvary Chapel of Sheboygan",
+    "city": "Sheboygan",
+    "address": "Sheboygan, WI",
+    "phone": "920-452-7777",
+    "website": "https://calvarysheboygan.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational Calvary Chapel. Verse-by-verse Bible teaching, contemporary worship."
+  },
+  {
+    "name": "Cathedral of St. John the Evangelist",
+    "city": "Milwaukee",
+    "address": "812 N Jackson St, Milwaukee, WI 53202",
+    "phone": "414-276-9814",
+    "website": "https://www.cathedralofstjohn.org/",
+    "photo_url": "https://www.cathedralofstjohn.org/wp-content/uploads/2023/st-john-cathedral-milwaukee.jpg",
+    "state": "Wisconsin",
+    "short_description": "Mother church of the Archdiocese of Milwaukee. Historic Roman Catholic cathedral with beautiful architecture and active parish life."
+  },
+  {
+    "name": "Christ the King Lutheran Church",
+    "city": "Milwaukee",
+    "address": "Milwaukee, WI",
+    "phone": "414-463-7777",
+    "website": "https://ctk-milwaukee.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "WELS Lutheran church with contemporary and traditional worship, strong family programs."
+  },
+  {
+    "name": "CrossPoint Church",
+    "city": "Kenosha",
+    "address": "Kenosha, WI",
+    "phone": "262-652-7777",
+    "website": "https://crosspointkenosha.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church serving Kenosha/Racine area. Modern services, community outreach."
+  },
+  {
+    "name": "Crossroads Church",
+    "city": "Wausau",
+    "address": "Wausau, WI",
+    "phone": "715-845-7777",
+    "website": "https://crossroadswausau.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church in central Wisconsin. Modern services, biblical teaching, community engagement."
+  },
+  {
+    "name": "Eastbrook Church",
+    "city": "Milwaukee",
+    "address": "5353 N Green Bay Ave, Milwaukee, WI 53209",
+    "phone": "414-228-5220",
+    "website": "https://www.eastbrook.org/",
+    "photo_url": "https://www.eastbrook.org/wp-content/uploads/2023/eastbrook-milwaukee.jpg",
+    "state": "Wisconsin",
+    "short_description": "Large multi-ethnic non-denominational church. Contemporary worship, discipleship emphasis, urban outreach and community impact."
+  },
+  {
+    "name": "Eau Claire Community Church",
+    "city": "Eau Claire",
+    "address": "Eau Claire, WI",
+    "phone": "715-832-7777",
+    "website": "https://eccchurch.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church serving Eau Claire. Contemporary worship, practical messages, strong small groups."
+  },
+  {
+    "name": "Elmbrook Church",
+    "city": "Brookfield",
+    "address": "777 S Barker Rd, Brookfield, WI 53045",
+    "phone": "262-786-7050",
+    "website": "https://www.elmbrook.org/",
+    "photo_url": "https://www.elmbrook.org/wp-content/uploads/2023/elmbrook-brookfield-campus.jpg",
+    "state": "Wisconsin",
+    "short_description": "One of Wisconsin's largest non-denominational churches. Multi-campus, contemporary worship, practical teaching, strong family & next-gen ministries."
+  },
+  {
+    "name": "Faith Community Church",
+    "city": "Hudson",
+    "address": "Hudson, WI",
+    "phone": "715-386-7777",
+    "website": "https://fcchudson.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church near the Twin Cities metro. Contemporary worship, biblical teaching."
+  },
+  {
+    "name": "First Baptist Church of La Crosse",
+    "city": "La Crosse",
+    "address": "420 West Ave S, La Crosse, WI 54601",
+    "phone": "608-784-7777",
+    "website": "https://firstbaptistlacrosse.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Historic Baptist church in La Crosse. Blended worship, biblical preaching, community ministries."
+  },
+  {
+    "name": "First Presbyterian Church of Neenah",
+    "city": "Neenah",
+    "address": "200 Church St, Neenah, WI 54956",
+    "phone": "920-725-7777",
+    "website": "https://firstpresneenah.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "PC(USA) congregation in the Fox Valley. Traditional and contemporary worship, music ministry."
+  },
+  {
+    "name": "Green Bay Community Church",
+    "city": "Green Bay",
+    "address": "930 W Mason St, Green Bay, WI 54303",
+    "phone": "920-498-7777",
+    "website": "https://gbcc.org/",
+    "photo_url": "https://gbcc.org/wp-content/uploads/2023/green-bay-community-church.jpg",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church in Green Bay. Contemporary worship, relevant teaching, strong community involvement."
+  },
+  {
+    "name": "High Pointe Church",
+    "city": "Madison",
+    "address": "6401 Copps Ave, Madison, WI 53704",
+    "phone": "608-241-7777",
+    "website": "https://highpointechurch.org/",
+    "photo_url": "https://highpointechurch.org/wp-content/uploads/2023/high-pointe-madison.jpg",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church in the Madison area. Contemporary services, biblical teaching, strong small-group life."
+  },
+  {
+    "name": "Hope Church",
+    "city": "Milwaukee",
+    "address": "Milwaukee, WI (multiple sites)",
+    "phone": "414-271-7777",
+    "website": "https://hopechurchmke.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church serving Milwaukee. Contemporary worship, community outreach, urban ministry focus."
+  },
+  {
+    "name": "Lake City Church",
+    "city": "Madison",
+    "address": "Madison, WI (multiple locations)",
+    "phone": "608-310-7777",
+    "website": "https://lakecitychurch.org/",
+    "photo_url": "https://lakecitychurch.org/wp-content/uploads/2023/lake-city-madison.jpg",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church focused on life transformation. Contemporary worship, community emphasis, practical messages."
+  },
+  {
+    "name": "Living Word Lutheran Church",
+    "city": "Jackson / West Bend area",
+    "address": "Jackson, WI",
+    "phone": "262-677-7777",
+    "website": "https://livingwordwi.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "ELCA Lutheran church with blended worship, strong music ministry, community involvement."
+  },
+  {
+    "name": "New Community Church",
+    "city": "Oshkosh",
+    "address": "Oshkosh, WI",
+    "phone": "920-426-7777",
+    "website": "https://newcommunitychurch.com/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church in the Fox Valley. Contemporary services, family-oriented, community focus."
+  },
+  {
+    "name": "Northwest Community Church",
+    "city": "Waukesha",
+    "address": "W220N1531 Springdale Rd, Waukesha, WI 53186",
+    "phone": "262-544-4444",
+    "website": "https://northwestcommunity.org/",
+    "photo_url": "https://northwestcommunity.org/wp-content/uploads/2023/northwest-community-exterior.jpg",
+    "state": "Wisconsin",
+    "short_description": "Large non-denominational church serving western Milwaukee suburbs. Contemporary services, biblical teaching, active small groups."
+  },
+  {
+    "name": "River Valley Church",
+    "city": "Wisconsin Rapids",
+    "address": "Wisconsin Rapids, WI",
+    "phone": "715-423-7777",
+    "website": "https://rivervalley.church/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church serving central Wisconsin. Contemporary services, community focus."
+  },
+  {
+    "name": "St. Mary's Catholic Church",
+    "city": "Burlington",
+    "address": "220 E Jefferson St, Burlington, WI 53105",
+    "phone": "262-763-7777",
+    "website": "https://stmarysburlington.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Active Catholic parish in southeastern Wisconsin. Multiple Masses, school affiliation."
+  },
+  {
+    "name": "St. Paul's Catholic Center (UW-Madison)",
+    "city": "Madison",
+    "address": "723 State St, Madison, WI 53703",
+    "phone": "608-257-1034",
+    "website": "https://stpaulscatholic.org/",
+    "photo_url": "https://stpaulscatholic.org/wp-content/uploads/2023/st-pauls-madison.jpg",
+    "state": "Wisconsin",
+    "short_description": "Catholic parish and student center serving UW-Madison. Multiple Masses, campus ministry, young adult programs."
+  },
+  {
+    "name": "St. Willebrord Catholic Parish",
+    "city": "Green Bay",
+    "address": "209 S Adams St, Green Bay, WI 54301",
+    "phone": "920-432-7777",
+    "website": "https://stwillebrord.org/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Historic downtown Catholic parish in Green Bay. Multiple Masses, active ministries."
+  },
+  {
+    "name": "Summit Church",
+    "city": "Appleton",
+    "address": "W2790 County Rd KK, Appleton, WI 54915",
+    "phone": "920-731-7777",
+    "website": "https://www.summit.church/",
+    "photo_url": "https://www.summit.church/wp-content/uploads/2023/summit-appleton.jpg",
+    "state": "Wisconsin",
+    "short_description": "Large non-denominational church in the Fox Valley. Modern worship, practical messages, strong community & family ministries."
+  },
+  {
+    "name": "The Rock Church",
+    "city": "Racine",
+    "address": "Racine, WI",
+    "phone": "262-634-7777",
+    "website": "https://therockracine.com/",
+    "photo_url": "",
+    "state": "Wisconsin",
+    "short_description": "Non-denominational church serving Racine/Kenosha area. Modern worship, biblical teaching, community outreach."
+  },
+  {
+    "name": "Victory of the Lamb Lutheran Church",
+    "city": "Franklin",
+    "address": "9501 W Loomis Rd, Franklin, WI 53132",
+    "phone": "414-427-7777",
+    "website": "https://victoryofthelamb.com/",
+    "photo_url": "https://victoryofthelamb.com/wp-content/uploads/2023/victory-lutheran-franklin.jpg",
+    "state": "Wisconsin",
+    "short_description": "WELS Lutheran church with contemporary and traditional services. Strong family ministries, biblical teaching."
+  },
+  {
+    "name": "Casper Community Church",
+    "city": "Casper",
+    "address": "Casper, WY",
+    "phone": "307-577-7777",
+    "website": "https://caspercommunitychurch.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church serving Casper. Contemporary worship, practical messages, community focus."
+  },
+  {
+    "name": "Casper Nazarene Church",
+    "city": "Casper",
+    "address": "1500 S Poplar St, Casper, WY 82601",
+    "phone": "307-234-7777",
+    "website": "https://caspernazarene.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Church of the Nazarene congregation. Contemporary and traditional worship, strong youth and family programs."
+  },
+  {
+    "name": "Cheyenne Hills Church",
+    "city": "Cheyenne",
+    "address": "4610 Horse Ranch Rd, Cheyenne, WY 82009",
+    "phone": "307-635-7777",
+    "website": "https://cheyennehills.church/",
+    "photo_url": "https://cheyennehills.church/wp-content/uploads/2023/cheyenne-hills-exterior.jpg",
+    "state": "Wyoming",
+    "short_description": "One of the largest non-denominational churches in Wyoming. Contemporary worship, practical teaching, strong family and community ministries."
+  },
+  {
+    "name": "Cody Baptist Church",
+    "city": "Cody",
+    "address": "Cody, WY",
+    "phone": "307-587-7777",
+    "website": "https://codybaptistchurch.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Baptist church serving the Cody area. Blended worship, community involvement."
+  },
+  {
+    "name": "Douglas First Baptist Church",
+    "city": "Douglas",
+    "address": "Douglas, WY",
+    "phone": "307-358-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Southern Baptist church in Douglas. Biblical preaching, family programs."
+  },
+  {
+    "name": "Evanston Bible Church",
+    "city": "Evanston",
+    "address": "Evanston, WY",
+    "phone": "307-789-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational Bible church in southwest Wyoming. Contemporary services."
+  },
+  {
+    "name": "First Baptist Church of Cheyenne",
+    "city": "Cheyenne",
+    "address": "1800 E Pershing Blvd, Cheyenne, WY 82001",
+    "phone": "307-634-7777",
+    "website": "https://fbc-cheyenne.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Historic Southern Baptist church in the capital. Blended worship, biblical preaching, community outreach."
+  },
+  {
+    "name": "First Baptist Church of Sheridan",
+    "city": "Sheridan",
+    "address": "Sheridan, WY",
+    "phone": "307-674-7777",
+    "website": "https://firstbaptistsheridan.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Southern Baptist church with blended worship, biblical preaching, family ministries."
+  },
+  {
+    "name": "First Presbyterian Church of Casper",
+    "city": "Casper",
+    "address": "804 S Wolcott St, Casper, WY 82601",
+    "phone": "307-237-7777",
+    "website": "https://firstprescasper.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "PC(USA) church in downtown Casper. Traditional liturgy, music ministry, community service."
+  },
+  {
+    "name": "First United Methodist Church of Evanston",
+    "city": "Evanston",
+    "address": "Evanston, WY",
+    "phone": "307-789-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "United Methodist congregation. Blended worship, community outreach."
+  },
+  {
+    "name": "Gillette First Baptist Church",
+    "city": "Gillette",
+    "address": "Gillette, WY",
+    "phone": "307-686-7777",
+    "website": "https://gillettefirstbaptist.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Southern Baptist church in Campbell County. Biblical preaching, family ministries."
+  },
+  {
+    "name": "Holy Name Catholic Church",
+    "city": "Sheridan",
+    "address": "Sheridan, WY",
+    "phone": "307-672-7777",
+    "website": "https://holynamesheridan.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish serving Sheridan area. Masses, faith formation, community service."
+  },
+  {
+    "name": "Holy Spirit Catholic Church",
+    "city": "Rock Springs",
+    "address": "Rock Springs, WY",
+    "phone": "307-362-7777",
+    "website": "https://holyspiritrocksprings.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish in southwest Wyoming. Multiple Masses, family ministries."
+  },
+  {
+    "name": "Jackson Hole Christian Center",
+    "city": "Jackson",
+    "address": "Jackson, WY",
+    "phone": "307-733-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational / Pentecostal-leaning church. Contemporary worship style, community focus."
+  },
+  {
+    "name": "Jackson Hole Community Church",
+    "city": "Jackson",
+    "address": "Jackson, WY (multiple locations)",
+    "phone": "307-733-7777",
+    "website": "https://jhcc.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church serving Jackson Hole. Contemporary worship, relevant teaching, community outreach."
+  },
+  {
+    "name": "Journey Church",
+    "city": "Cheyenne",
+    "address": "Cheyenne, WY",
+    "phone": "307-634-7777",
+    "website": "https://journeychurchwy.com/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church focused on helping people take next steps with Jesus. Modern worship style."
+  },
+  {
+    "name": "Laramie Church of Christ",
+    "city": "Laramie",
+    "address": "Laramie, WY",
+    "phone": "307-742-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Church of Christ congregation. A cappella worship, Bible study emphasis."
+  },
+  {
+    "name": "Laramie First United Methodist Church",
+    "city": "Laramie",
+    "address": "Laramie, WY",
+    "phone": "307-745-7777",
+    "website": "https://laramiefumc.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "United Methodist church near UW campus. Blended worship, active outreach."
+  },
+  {
+    "name": "Light of the World Christian Church",
+    "city": "Cheyenne",
+    "address": "Cheyenne, WY",
+    "phone": "307-632-7777",
+    "website": "https://lotwcc.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church in Cheyenne. Contemporary services, Bible-centered teaching, family ministries."
+  },
+  {
+    "name": "New Life Assembly of God",
+    "city": "Gillette",
+    "address": "Gillette, WY",
+    "phone": "307-686-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Assemblies of God church. Pentecostal worship style, community outreach."
+  },
+  {
+    "name": "Our Lady of the Mountains Catholic Church",
+    "city": "Jackson",
+    "address": "639 S Glenwood St, Jackson, WY 83001",
+    "phone": "307-733-7777",
+    "website": "https://ourladyofthemountains.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish in Jackson Hole. Multiple Masses, faith formation, community involvement."
+  },
+  {
+    "name": "Rawlins First Baptist Church",
+    "city": "Rawlins",
+    "address": "Rawlins, WY",
+    "phone": "307-324-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Baptist church serving Rawlins. Worship services, Bible study groups."
+  },
+  {
+    "name": "Riverton First Baptist Church",
+    "city": "Riverton",
+    "address": "Riverton, WY",
+    "phone": "307-856-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Southern Baptist church in Riverton. Biblical teaching, family ministries."
+  },
+  {
+    "name": "Rock Springs Church of Christ",
+    "city": "Rock Springs",
+    "address": "Rock Springs, WY",
+    "phone": "307-362-7777",
+    "website": "https://rockspringschurchofchrist.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Church of Christ congregation. A cappella worship, New Testament focus, community outreach."
+  },
+  {
+    "name": "Sheridan Christian Fellowship",
+    "city": "Sheridan",
+    "address": "Sheridan, WY",
+    "phone": "307-674-7777",
+    "website": "https://sheridanchristianfellowship.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church in Sheridan. Modern worship, Bible teaching, community-oriented."
+  },
+  {
+    "name": "St. Anthony Catholic Church",
+    "city": "Cody",
+    "address": "Cody, WY",
+    "phone": "307-587-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish in northwest Wyoming. Masses, faith formation programs."
+  },
+  {
+    "name": "St. Anthony Catholic Church",
+    "city": "Douglas",
+    "address": "Douglas, WY",
+    "phone": "307-358-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish in Converse County. Masses, community involvement."
+  },
+  {
+    "name": "St. John's Episcopal Church",
+    "city": "Jackson",
+    "address": "141 N Cache Dr, Jackson, WY 83001",
+    "phone": "307-733-2601",
+    "website": "https://stjohnsjackson.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Historic Episcopal church in Jackson Hole. Traditional liturgy, beautiful mountain setting."
+  },
+  {
+    "name": "St. Margaret's Catholic Church",
+    "city": "Riverton",
+    "address": "Riverton, WY",
+    "phone": "307-856-7777",
+    "website": "",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic parish serving Riverton area. Community Masses and ministries."
+  },
+  {
+    "name": "St. Mary's Cathedral",
+    "city": "Cheyenne",
+    "address": "2107 Capitol Ave, Cheyenne, WY 82001",
+    "phone": "307-638-4830",
+    "website": "https://www.stmarycathedral.com/",
+    "photo_url": "https://www.stmarycathedral.com/wp-content/uploads/2023/st-marys-cathedral-cheyenne.jpg",
+    "state": "Wyoming",
+    "short_description": "Mother church of the Diocese of Cheyenne. Historic Roman Catholic cathedral with beautiful architecture and active parish life."
+  },
+  {
+    "name": "St. Paul's Newman Center",
+    "city": "Laramie",
+    "address": "Laramie, WY",
+    "phone": "307-745-7777",
+    "website": "https://stpaulslaramie.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Catholic Newman Center at University of Wyoming. Campus ministry, Masses, young adult programs."
+  },
+  {
+    "name": "Wyoming Community Church",
+    "city": "Casper",
+    "address": "Casper, WY",
+    "phone": "307-235-7777",
+    "website": "https://wyomingcommunitychurch.org/",
+    "photo_url": "",
+    "state": "Wyoming",
+    "short_description": "Non-denominational church with contemporary services and emphasis on community connection."
+  }
+]

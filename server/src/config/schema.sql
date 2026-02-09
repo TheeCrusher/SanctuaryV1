@@ -175,7 +175,12 @@ CREATE TABLE IF NOT EXISTS churches (
   name              VARCHAR(200) NOT NULL,
   address           VARCHAR(300) NOT NULL,
   city              VARCHAR(100) NOT NULL,
+  state             VARCHAR(50),
   zip               VARCHAR(10) NOT NULL,
+  phone             VARCHAR(20),
+  website           TEXT,
+  short_description TEXT,
+  photo_url         TEXT,
   sunday_school     BOOLEAN DEFAULT false,
   recommended_ages  VARCHAR(50),
   hours             VARCHAR(100),
@@ -189,6 +194,7 @@ CREATE TABLE IF NOT EXISTS churches (
 );
 
 CREATE INDEX IF NOT EXISTS idx_churches_city ON churches(city);
+CREATE INDEX IF NOT EXISTS idx_churches_state ON churches(state);
 CREATE INDEX IF NOT EXISTS idx_churches_zip ON churches(zip);
 
 -- ============================================================

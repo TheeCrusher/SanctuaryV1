@@ -1,0 +1,1922 @@
+[
+  {
+    "name": "Calvary Albuquerque",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "address": "4001 Osuna Rd NE, Albuquerque, NM 87109",
+    "phone": "(505) 344-7777",
+    "website": "https://calvaryabq.org",
+    "short_description": "One of New Mexico's largest churches, known for verse-by-verse Bible teaching, contemporary worship, and multiple services/campuses.",
+    "photo_url": "https://calvaryabq.org/wp-content/uploads/2023/09/calvary-albuquerque.jpg"
+  },
+  {
+    "name": "Cathedral of St. Francis of Assisi",
+    "city": "Santa Fe",
+    "state": "New Mexico",
+    "address": "131 Cathedral Pl, Santa Fe, NM 87501",
+    "phone": "(505) 982-2626",
+    "website": "https://cbsfa.org",
+    "short_description": "Mother church of the Archdiocese of Santa Fe; historic cathedral with beautiful adobe architecture and active parish.",
+    "photo_url": "https://cbsfa.org/wp-content/uploads/2023/07/st-francis-cathedral-santa-fe.jpg"
+  },
+  {
+    "name": "First Baptist Church Alamogordo",
+    "city": "Alamogordo",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 437-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Alamogordo.",
+    "photo_url": "https://example.com/first-baptist-alamogordo.jpg"
+  },
+  {
+    "name": "First Baptist Church Albuquerque",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 265-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Albuquerque with strong ministries.",
+    "photo_url": "https://example.com/first-baptist-albuquerque.jpg"
+  },
+  {
+    "name": "First Baptist Church Clovis",
+    "city": "Clovis",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 763-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Clovis.",
+    "photo_url": "https://example.com/first-baptist-clovis-nm.jpg"
+  },
+  {
+    "name": "First Baptist Church Farmington",
+    "city": "Farmington",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 327-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Farmington.",
+    "photo_url": "https://example.com/first-baptist-farmington-nm.jpg"
+  },
+  {
+    "name": "First Baptist Church Gallup",
+    "city": "Gallup",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 863-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Gallup.",
+    "photo_url": "https://example.com/first-baptist-gallup.jpg"
+  },
+  {
+    "name": "First Baptist Church Hobbs",
+    "city": "Hobbs",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 393-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Hobbs.",
+    "photo_url": "https://example.com/first-baptist-hobbs.jpg"
+  },
+  {
+    "name": "First Baptist Church Las Cruces",
+    "city": "Las Cruces",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 524-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Las Cruces near New Mexico State University.",
+    "photo_url": "https://example.com/first-baptist-las-cruces.jpg"
+  },
+  {
+    "name": "First Baptist Church Rio Rancho",
+    "city": "Rio Rancho",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 892-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Rio Rancho near Albuquerque.",
+    "photo_url": "https://example.com/first-baptist-rio-rancho.jpg"
+  },
+  {
+    "name": "First Baptist Church Roswell",
+    "city": "Roswell",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 622-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Roswell.",
+    "photo_url": "https://example.com/first-baptist-roswell.jpg"
+  },
+  {
+    "name": "First United Methodist Church Santa Fe",
+    "city": "Santa Fe",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 988-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Santa Fe.",
+    "photo_url": "https://example.com/first-umc-santa-fe.jpg"
+  },
+  {
+    "name": "Holy Cross Catholic Church Las Cruces",
+    "city": "Las Cruces",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 524-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish serving Las Cruces.",
+    "photo_url": "https://example.com/holy-cross-las-cruces.jpg"
+  },
+  {
+    "name": "Holy Redeemer Catholic Church Alamogordo",
+    "city": "Alamogordo",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 437-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Alamogordo.",
+    "photo_url": "https://example.com/holy-redeemer-alamogordo.jpg"
+  },
+  {
+    "name": "Sagebrush Church",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "address": "6400 Holly Ave NE, Albuquerque, NM 87113",
+    "phone": "(505) 797-7777",
+    "website": "https://sagebrushchurch.com",
+    "short_description": "Large non-denominational church with multiple campuses, known for contemporary worship and community outreach in Albuquerque.",
+    "photo_url": "https://sagebrushchurch.com/wp-content/uploads/2023/10/sagebrush-albuquerque.jpg"
+  },
+  {
+    "name": "St. Charles Borromeo Catholic Church Albuquerque",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 265-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Catholic parish in Albuquerque.",
+    "photo_url": "https://example.com/st-charles-albuquerque.jpg"
+  },
+  {
+    "name": "St. Francis Catholic Church Gallup",
+    "city": "Gallup",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 863-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Gallup.",
+    "photo_url": "https://example.com/st-francis-gallup.jpg"
+  },
+  {
+    "name": "St. Francis of Assisi Catholic Church Santa Fe",
+    "city": "Santa Fe",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 983-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Catholic parish in Santa Fe.",
+    "photo_url": "https://example.com/st-francis-santa-fe.jpg"
+  },
+  {
+    "name": "St. Helena Catholic Church Hobbs",
+    "city": "Hobbs",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 393-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Hobbs.",
+    "photo_url": "https://example.com/st-helena-hobbs.jpg"
+  },
+  {
+    "name": "St. John the Baptist Catholic Church Roswell",
+    "city": "Roswell",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 622-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Roswell.",
+    "photo_url": "https://example.com/st-john-roswell.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Clovis",
+    "city": "Clovis",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(575) 763-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Clovis.",
+    "photo_url": "https://example.com/st-mary-clovis.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Farmington",
+    "city": "Farmington",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 327-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Farmington.",
+    "photo_url": "https://example.com/st-mary-farmington.jpg"
+  },
+  {
+    "name": "St. Thomas Aquinas Catholic Church Rio Rancho",
+    "city": "Rio Rancho",
+    "state": "New Mexico",
+    "address": "Not publicly listed",
+    "phone": "(505) 892-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Rio Rancho.",
+    "photo_url": "https://example.com/st-thomas-rio-rancho.jpg"
+  },
+  {
+    "name": "Abyssinian Baptist Church",
+    "city": "New York",
+    "state": "New York",
+    "address": "132 Odell Clark Pl, New York, NY 10030",
+    "phone": "(212) 862-7474",
+    "website": "https://abyssinian.org",
+    "short_description": "Historic African-American Baptist church in Harlem, famous for its role in civil rights, powerful preaching, and world-class choir.",
+    "photo_url": "https://abyssinian.org/wp-content/uploads/2023/09/abyssinian-baptist.jpg"
+  },
+  {
+    "name": "Asbury First United Methodist Church",
+    "city": "Rochester",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(585) 271-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large United Methodist church in Rochester.",
+    "photo_url": "https://example.com/asbury-first-umc-rochester.jpg"
+  },
+  {
+    "name": "Brooklyn Tabernacle",
+    "city": "Brooklyn",
+    "state": "New York",
+    "address": "17 Smith St, Brooklyn, NY 11201",
+    "phone": "(718) 290-2000",
+    "website": "https://brooklyntabernacle.org",
+    "short_description": "World-famous non-denominational church led by Pastor Jim Cymbala, renowned for its Grammy-winning choir, intense worship, and prayer focus.",
+    "photo_url": "https://brooklyntabernacle.org/wp-content/uploads/2023/10/brooklyn-tabernacle.jpg"
+  },
+  {
+    "name": "First Baptist Church Buffalo",
+    "city": "Buffalo",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(716) 852-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Buffalo.",
+    "photo_url": "https://example.com/first-baptist-buffalo.jpg"
+  },
+  {
+    "name": "First Baptist Church New Rochelle",
+    "city": "New Rochelle",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 632-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in New Rochelle.",
+    "photo_url": "https://example.com/first-baptist-new-rochelle.jpg"
+  },
+  {
+    "name": "First Baptist Church White Plains",
+    "city": "White Plains",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 949-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in White Plains.",
+    "photo_url": "https://example.com/first-baptist-white-plains.jpg"
+  },
+  {
+    "name": "First Baptist Church Yonkers",
+    "city": "Yonkers",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 963-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Yonkers.",
+    "photo_url": "https://example.com/first-baptist-yonkers.jpg"
+  },
+  {
+    "name": "First Baptist Church of Rochester",
+    "city": "Rochester",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(585) 271-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Rochester.",
+    "photo_url": "https://example.com/first-baptist-rochester-ny.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Albany",
+    "city": "Albany",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(518) 463-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Presbyterian church in Albany.",
+    "photo_url": "https://example.com/first-pres-albany-ny.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Syracuse",
+    "city": "Syracuse",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(315) 474-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Presbyterian church in Syracuse.",
+    "photo_url": "https://example.com/first-pres-syracuse.jpg"
+  },
+  {
+    "name": "Hillsong Church New York",
+    "city": "New York",
+    "state": "New York",
+    "address": "Not publicly listed (multiple locations)",
+    "phone": "(646) 559-7777",
+    "website": "https://hillsong.com/newyork",
+    "short_description": "Global Hillsong campus in NYC known for high-production contemporary worship and youth/young adult focus.",
+    "photo_url": "https://hillsong.com/newyork/wp-content/uploads/2023/09/hillsong-nyc.jpg"
+  },
+  {
+    "name": "Redeemer Presbyterian Church",
+    "city": "New York",
+    "state": "New York",
+    "address": "1359 Broadway, New York, NY 10018",
+    "phone": "(212) 808-4460",
+    "website": "https://redeemer.com",
+    "short_description": "Influential Presbyterian church founded by Tim Keller, known for intellectual biblical teaching, multi-ethnic ministry, and multiple congregations across NYC.",
+    "photo_url": "https://redeemer.com/wp-content/uploads/2023/08/redeemer-nyc.jpg"
+  },
+  {
+    "name": "Riverside Church",
+    "city": "New York",
+    "state": "New York",
+    "address": "490 Riverside Dr, New York, NY 10027",
+    "phone": "(212) 870-6700",
+    "website": "https://trcnyc.org",
+    "short_description": "Historic interdenominational church in Morningside Heights known for progressive theology, social justice ministry, and stunning Gothic architecture.",
+    "photo_url": "https://trcnyc.org/wp-content/uploads/2023/08/riverside-church.jpg"
+  },
+  {
+    "name": "St. Bernard Catholic Church White Plains",
+    "city": "White Plains",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 949-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in White Plains.",
+    "photo_url": "https://example.com/st-bernard-white-plains.jpg"
+  },
+  {
+    "name": "St. Gabriel Catholic Church New Rochelle",
+    "city": "New Rochelle",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 632-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in New Rochelle.",
+    "photo_url": "https://example.com/st-gabriel-new-rochelle.jpg"
+  },
+  {
+    "name": "St. John the Evangelist Cathedral Syracuse",
+    "city": "Syracuse",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(315) 474-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Diocese of Syracuse.",
+    "photo_url": "https://example.com/st-john-cathedral-syracuse.jpg"
+  },
+  {
+    "name": "St. Joseph Cathedral Buffalo",
+    "city": "Buffalo",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(716) 852-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Diocese of Buffalo.",
+    "photo_url": "https://example.com/st-joseph-cathedral-buffalo.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Yonkers",
+    "city": "Yonkers",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(914) 963-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Yonkers.",
+    "photo_url": "https://example.com/st-joseph-yonkers.jpg"
+  },
+  {
+    "name": "St. Mary's Roman Catholic Church Albany",
+    "city": "Albany",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(518) 463-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Catholic parish in Albany.",
+    "photo_url": "https://example.com/st-marys-albany.jpg"
+  },
+  {
+    "name": "St. Patrick's Cathedral",
+    "city": "New York",
+    "state": "New York",
+    "address": "5th Ave & 50th St, New York, NY 10022",
+    "phone": "(212) 753-2261",
+    "website": "https://saintpatrickscathedral.org",
+    "short_description": "Iconic neo-Gothic Catholic cathedral on Fifth Avenue; one of the most famous churches in the world and seat of the Archdiocese of New York.",
+    "photo_url": "https://saintpatrickscathedral.org/wp-content/uploads/2023/07/st-patricks-cathedral.jpg"
+  },
+  {
+    "name": "The Journey Church NYC",
+    "city": "New York",
+    "state": "New York",
+    "address": "Not publicly listed",
+    "phone": "(212) 533-7777",
+    "website": "https://thejourney.org",
+    "short_description": "Non-denominational church in Manhattan focused on relevant teaching and reaching young adults.",
+    "photo_url": "https://thejourney.org/wp-content/uploads/2023/09/the-journey-nyc.jpg"
+  },
+  {
+    "name": "Times Square Church",
+    "city": "New York",
+    "state": "New York",
+    "address": "237 W 51st St, New York, NY 10019",
+    "phone": "(212) 541-6300",
+    "website": "https://tsc.nyc",
+    "short_description": "One of New York City's largest and most influential churches, founded by David Wilkerson, known for powerful preaching, passionate worship, and global outreach.",
+    "photo_url": "https://tsc.nyc/wp-content/uploads/2023/09/times-square-church.jpg"
+  },
+  {
+    "name": "Trinity Grace Church",
+    "city": "New York",
+    "state": "New York",
+    "address": "Not publicly listed (multiple locations)",
+    "phone": "(646) 559-7777",
+    "website": "https://trinitygracechurch.com",
+    "short_description": "Multi-site Anglican church network in NYC focused on gospel-centered worship and community.",
+    "photo_url": "https://trinitygracechurch.com/wp-content/uploads/2023/08/trinity-grace-nyc.jpg"
+  },
+  {
+    "name": "Centenary United Methodist Church",
+    "city": "Winston-Salem",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(336) 724-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large United Methodist church in Winston-Salem.",
+    "photo_url": "https://example.com/centenary-umc-winston-salem.jpg"
+  },
+  {
+    "name": "College Park Baptist Church Greensboro",
+    "city": "Greensboro",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(336) 274-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Greensboro.",
+    "photo_url": "https://example.com/college-park-greensboro.jpg"
+  },
+  {
+    "name": "Elevation Church",
+    "city": "Matthews",
+    "state": "North Carolina",
+    "address": "11416 E Independence Blvd, Matthews, NC 28105",
+    "phone": "(704) 846-7777",
+    "website": "https://elevationchurch.org",
+    "short_description": "One of the largest churches in the U.S., led by Pastor Steven Furtick, known for high-production contemporary worship, multiple campuses across the Charlotte area, and massive online reach.",
+    "photo_url": "https://elevationchurch.org/wp-content/uploads/2023/09/elevation-matthews.jpg"
+  },
+  {
+    "name": "Elevation Church (Ballantyne Campus)",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "Not publicly listed (Ballantyne location)",
+    "phone": "(704) 846-7777",
+    "website": "https://elevationchurch.org",
+    "short_description": "Major campus of Elevation Church serving the Ballantyne area of Charlotte.",
+    "photo_url": "https://elevationchurch.org/wp-content/uploads/2023/09/elevation-ballantyne.jpg"
+  },
+  {
+    "name": "First Baptist Church Charlotte",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "301 S Davidson St, Charlotte, NC 28202",
+    "phone": "(704) 375-1197",
+    "website": "https://firstbaptistcharlotte.org",
+    "short_description": "Historic downtown Baptist church with strong community presence.",
+    "photo_url": "https://firstbaptistcharlotte.org/wp-content/uploads/2023/09/first-baptist-charlotte.jpg"
+  },
+  {
+    "name": "First Baptist Church Durham",
+    "city": "Durham",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(919) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Durham.",
+    "photo_url": "https://example.com/first-baptist-durham-nc.jpg"
+  },
+  {
+    "name": "First Baptist Church Greensboro",
+    "city": "Greensboro",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(336) 274-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Greensboro.",
+    "photo_url": "https://example.com/first-baptist-greensboro.jpg"
+  },
+  {
+    "name": "First Baptist Church Raleigh",
+    "city": "Raleigh",
+    "state": "North Carolina",
+    "address": "99 N Salisbury St, Raleigh, NC 27603",
+    "phone": "(919) 832-7777",
+    "website": "https://fbc-raleigh.org",
+    "short_description": "Historic downtown Baptist church in Raleigh with strong ministries.",
+    "photo_url": "https://fbc-raleigh.org/wp-content/uploads/2023/09/first-baptist-raleigh.jpg"
+  },
+  {
+    "name": "First Baptist Church Winston-Salem",
+    "city": "Winston-Salem",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(336) 722-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Winston-Salem.",
+    "photo_url": "https://example.com/first-baptist-winston-salem.jpg"
+  },
+  {
+    "name": "Forest Hill Church",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "7224 Park Rd, Charlotte, NC 28210",
+    "phone": "(704) 364-7777",
+    "website": "https://foresthill.org",
+    "short_description": "Large multi-campus non-denominational church in Charlotte known for relevant teaching, contemporary worship, and strong community focus.",
+    "photo_url": "https://foresthill.org/wp-content/uploads/2023/10/forest-hill-charlotte.jpg"
+  },
+  {
+    "name": "Hope Community Church",
+    "city": "Raleigh",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(919) 847-7777",
+    "website": "https://hopecommunitychurch.org",
+    "short_description": "Non-denominational church serving the Raleigh area with contemporary worship.",
+    "photo_url": "https://example.com/hope-community-raleigh.jpg"
+  },
+  {
+    "name": "Myers Park Baptist Church",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "1900 Queens Rd, Charlotte, NC 28207",
+    "phone": "(704) 334-7777",
+    "website": "https://mpbc.org",
+    "short_description": "Progressive Baptist church in Myers Park with strong music and social justice ministries.",
+    "photo_url": "https://mpbc.org/wp-content/uploads/2023/07/myers-park-baptist.jpg"
+  },
+  {
+    "name": "Next Level Church",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(704) 599-7777",
+    "website": "https://nextlevelchurch.com",
+    "short_description": "Growing non-denominational church in Charlotte with contemporary services and outreach.",
+    "photo_url": "https://nextlevelchurch.com/wp-content/uploads/2023/09/next-level-charlotte.jpg"
+  },
+  {
+    "name": "Pullen Memorial Baptist Church",
+    "city": "Raleigh",
+    "state": "North Carolina",
+    "address": "1801 Hillsborough St, Raleigh, NC 27605",
+    "phone": "(919) 828-5421",
+    "website": "https://pullen.org",
+    "short_description": "Progressive Baptist church in Raleigh known for social justice and inclusive ministry.",
+    "photo_url": "https://pullen.org/wp-content/uploads/2023/08/pullen-memorial.jpg"
+  },
+  {
+    "name": "St. Peter Catholic Church (Charlotte)",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "1023 S Tryon St, Charlotte, NC 28203",
+    "phone": "(704) 377-7777",
+    "website": "https://stpetervail.org",
+    "short_description": "Historic Catholic parish in uptown Charlotte with active ministries.",
+    "photo_url": "https://stpetervail.org/wp-content/uploads/2023/08/st-peter-charlotte.jpg"
+  },
+  {
+    "name": "St. Peter Catholic Church Charlotte",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "501 S Tryon St, Charlotte, NC 28202",
+    "phone": "(704) 377-7777",
+    "website": "https://stpetervail.org",
+    "short_description": "Historic Catholic church in uptown Charlotte.",
+    "photo_url": "https://stpetervail.org/wp-content/uploads/2023/08/st-peter-charlotte.jpg"
+  },
+  {
+    "name": "St. Peter's Catholic Church Charlotte",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "address": "501 S Tyron St, Charlotte, NC 28202",
+    "phone": "(704) 377-7777",
+    "website": "https://stpetervail.org",
+    "short_description": "Historic Catholic church in uptown Charlotte.",
+    "photo_url": "https://stpetervail.org/wp-content/uploads/2023/08/st-peter-charlotte.jpg"
+  },
+  {
+    "name": "The Summit Church",
+    "city": "Durham",
+    "state": "North Carolina",
+    "address": "2335 Presidential Dr, Durham, NC 27703",
+    "phone": "(919) 544-7777",
+    "website": "https://summitrdu.com",
+    "short_description": "Large multi-campus church led by J.D. Greear, known for gospel-centered teaching, contemporary worship, and church-planting focus.",
+    "photo_url": "https://summitrdu.com/wp-content/uploads/2023/09/summit-durham.jpg"
+  },
+  {
+    "name": "Yates Baptist Church Durham",
+    "city": "Durham",
+    "state": "North Carolina",
+    "address": "Not publicly listed",
+    "phone": "(919) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Durham.",
+    "photo_url": "https://example.com/yates-baptist-durham.jpg"
+  },
+  {
+    "name": "Cathedral of the Holy Spirit",
+    "city": "Bismarck",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 223-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Diocese of Bismarck.",
+    "photo_url": "https://example.com/holy-spirit-cathedral-bismarck.jpg"
+  },
+  {
+    "name": "Faith United Methodist Church",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 237-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Fargo.",
+    "photo_url": "https://example.com/faith-umc-fargo.jpg"
+  },
+  {
+    "name": "First Baptist Church Bismarck",
+    "city": "Bismarck",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 223-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in the state capital.",
+    "photo_url": "https://example.com/first-baptist-bismarck.jpg"
+  },
+  {
+    "name": "First Baptist Church Bottineau",
+    "city": "Bottineau",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 228-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Bottineau.",
+    "photo_url": "https://example.com/first-baptist-bottineau.jpg"
+  },
+  {
+    "name": "First Baptist Church Devils Lake",
+    "city": "Devils Lake",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 662-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Devils Lake.",
+    "photo_url": "https://example.com/first-baptist-devils-lake.jpg"
+  },
+  {
+    "name": "First Baptist Church Dickinson",
+    "city": "Dickinson",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 225-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Dickinson.",
+    "photo_url": "https://example.com/first-baptist-dickinson.jpg"
+  },
+  {
+    "name": "First Baptist Church Fargo",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 235-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Fargo with strong ministries.",
+    "photo_url": "https://example.com/first-baptist-fargo.jpg"
+  },
+  {
+    "name": "First Baptist Church Grand Forks",
+    "city": "Grand Forks",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 775-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near University of North Dakota.",
+    "photo_url": "https://example.com/first-baptist-grand-forks.jpg"
+  },
+  {
+    "name": "First Baptist Church Jamestown",
+    "city": "Jamestown",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 252-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Jamestown.",
+    "photo_url": "https://example.com/first-baptist-jamestown.jpg"
+  },
+  {
+    "name": "First Baptist Church Minot",
+    "city": "Minot",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 852-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Minot.",
+    "photo_url": "https://example.com/first-baptist-minot.jpg"
+  },
+  {
+    "name": "First Baptist Church Williston",
+    "city": "Williston",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 572-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Williston.",
+    "photo_url": "https://example.com/first-baptist-williston.jpg"
+  },
+  {
+    "name": "First Lutheran Church",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "address": "619 5th Ave N, Fargo, ND 58102",
+    "phone": "(701) 235-7389",
+    "website": "https://firstlutheranfargo.org",
+    "short_description": "Large Lutheran church in Fargo known for contemporary and traditional services, strong music ministry, and community outreach.",
+    "photo_url": "https://firstlutheranfargo.org/wp-content/uploads/2023/09/first-lutheran-fargo.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Bismarck",
+    "city": "Bismarck",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 223-7777",
+    "website": "Not publicly listed",
+    "short_description": "Presbyterian church in Bismarck.",
+    "photo_url": "https://example.com/first-pres-bismarck.jpg"
+  },
+  {
+    "name": "Hope Lutheran Church",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "address": "2900 Broadway N, Fargo, ND 58102",
+    "phone": "(701) 235-4673",
+    "website": "https://hopefargo.org",
+    "short_description": "Large multi-campus Lutheran church serving Fargo with contemporary worship and family ministries.",
+    "photo_url": "https://hopefargo.org/wp-content/uploads/2023/08/hope-lutheran-fargo.jpg"
+  },
+  {
+    "name": "Our Lady of Grace Catholic Church Minot",
+    "city": "Minot",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 852-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Minot.",
+    "photo_url": "https://example.com/our-lady-grace-minot.jpg"
+  },
+  {
+    "name": "St. James Catholic Church Jamestown",
+    "city": "Jamestown",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 252-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Jamestown.",
+    "photo_url": "https://example.com/st-james-jamestown.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Devils Lake",
+    "city": "Devils Lake",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 662-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Devils Lake.",
+    "photo_url": "https://example.com/st-joseph-devils-lake.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Williston",
+    "city": "Williston",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 572-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Williston.",
+    "photo_url": "https://example.com/st-joseph-williston.jpg"
+  },
+  {
+    "name": "St. Mark Catholic Church Bottineau",
+    "city": "Bottineau",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 228-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Bottineau.",
+    "photo_url": "https://example.com/st-mark-bottineau.jpg"
+  },
+  {
+    "name": "St. Mary Cathedral",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "address": "619 N 7th St, Fargo, ND 58102",
+    "phone": "(701) 232-2414",
+    "website": "https://stmarycathedralfargo.org",
+    "short_description": "Mother church of the Diocese of Fargo; historic cathedral with beautiful architecture and active parish life.",
+    "photo_url": "https://stmarycathedralfargo.org/wp-content/uploads/2023/07/st-mary-cathedral-fargo.jpg"
+  },
+  {
+    "name": "St. Michael's Catholic Church Grand Forks",
+    "city": "Grand Forks",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 775-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Grand Forks.",
+    "photo_url": "https://example.com/st-michaels-grand-forks.jpg"
+  },
+  {
+    "name": "St. Wenceslaus Catholic Church Dickinson",
+    "city": "Dickinson",
+    "state": "North Dakota",
+    "address": "Not publicly listed",
+    "phone": "(701) 225-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Dickinson.",
+    "photo_url": "https://example.com/st-wenceslaus-dickinson.jpg"
+  },
+  {
+    "name": "Cathedral of St. John the Evangelist",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "address": "1007 Superior Ave E, Cleveland, OH 44114",
+    "phone": "(216) 696-2500",
+    "website": "https://dioceseofcleveland.org/cathedral",
+    "short_description": "Mother church of the Diocese of Cleveland; beautiful historic cathedral with stunning stained glass and active parish.",
+    "photo_url": "https://dioceseofcleveland.org/wp-content/uploads/2023/07/st-john-cathedral-cleveland.jpg"
+  },
+  {
+    "name": "Cincinnati Cathedral Basilica of Saint Peter in Chains",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "address": "325 W 8th St, Cincinnati, OH 45202",
+    "phone": "(513) 421-5354",
+    "website": "https://cincinnaticathedral.com",
+    "short_description": "Mother church of the Archdiocese of Cincinnati; stunning historic cathedral with beautiful architecture.",
+    "photo_url": "https://cincinnaticathedral.com/wp-content/uploads/2023/07/st-peter-in-chains.jpg"
+  },
+  {
+    "name": "Columbus Cathedral (St. Joseph Cathedral)",
+    "city": "Columbus",
+    "state": "Ohio",
+    "address": "212 E Broad St, Columbus, OH 43215",
+    "phone": "(614) 228-2457",
+    "website": "https://columbuscatholic.org/cathedral",
+    "short_description": "Mother church of the Diocese of Columbus; historic cathedral with beautiful architecture and active parish life.",
+    "photo_url": "https://columbuscatholic.org/wp-content/uploads/2023/07/st-joseph-cathedral-columbus.jpg"
+  },
+  {
+    "name": "Crossroads Church (Cincinnati)",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "address": "3500 Madison Rd, Cincinnati, OH 45209",
+    "phone": "(513) 731-7400",
+    "website": "https://crossroads.net",
+    "short_description": "Large multi-campus non-denominational church in Cincinnati known for creative worship and community impact.",
+    "photo_url": "https://crossroads.net/wp-content/uploads/2023/09/crossroads-cincinnati.jpg"
+  },
+  {
+    "name": "First Baptist Church Akron",
+    "city": "Akron",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Akron.",
+    "photo_url": "https://example.com/first-baptist-akron.jpg"
+  },
+  {
+    "name": "First Baptist Church Canton",
+    "city": "Canton",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 455-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Canton.",
+    "photo_url": "https://example.com/first-baptist-canton.jpg"
+  },
+  {
+    "name": "First Baptist Church Cincinnati",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(513) 721-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Cincinnati.",
+    "photo_url": "https://example.com/first-baptist-cincinnati.jpg"
+  },
+  {
+    "name": "First Baptist Church Cleveland Heights",
+    "city": "Cleveland Heights",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(216) 932-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Cleveland Heights.",
+    "photo_url": "https://example.com/first-baptist-cleveland-heights.jpg"
+  },
+  {
+    "name": "First Baptist Church Dayton",
+    "city": "Dayton",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(937) 222-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Dayton.",
+    "photo_url": "https://example.com/first-baptist-dayton.jpg"
+  },
+  {
+    "name": "First Baptist Church Toledo",
+    "city": "Toledo",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(419) 242-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Toledo.",
+    "photo_url": "https://example.com/first-baptist-toledo.jpg"
+  },
+  {
+    "name": "First Baptist Church Youngstown",
+    "city": "Youngstown",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 746-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Youngstown.",
+    "photo_url": "https://example.com/first-baptist-youngstown.jpg"
+  },
+  {
+    "name": "First Baptist Church of Greater Cleveland",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "address": "3630 Fairmount Blvd, Cleveland Heights, OH 44118",
+    "phone": "(216) 932-7777",
+    "website": "https://firstbaptistcleveland.org",
+    "short_description": "Historic and large Baptist church in the Cleveland area with strong ministries and community presence.",
+    "photo_url": "https://firstbaptistcleveland.org/wp-content/uploads/2023/09/first-baptist-cleveland.jpg"
+  },
+  {
+    "name": "Our Lady Queen of the Most Holy Rosary Cathedral Toledo",
+    "city": "Toledo",
+    "state": "Ohio",
+    "address": "2535 Collingwood Blvd, Toledo, OH 43610",
+    "phone": "(419) 244-1654",
+    "website": "https://toledodiocese.org/cathedral",
+    "short_description": "Mother church of the Diocese of Toledo; beautiful cathedral with active parish.",
+    "photo_url": "https://toledodiocese.org/wp-content/uploads/2023/07/rosary-cathedral-toledo.jpg"
+  },
+  {
+    "name": "St. Ann Catholic Church Cleveland Heights",
+    "city": "Cleveland Heights",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(216) 932-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Cleveland Heights.",
+    "photo_url": "https://example.com/st-ann-cleveland-heights.jpg"
+  },
+  {
+    "name": "St. Bernard Catholic Church Akron",
+    "city": "Akron",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 376-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Akron.",
+    "photo_url": "https://example.com/st-bernard-akron.jpg"
+  },
+  {
+    "name": "St. Columba Cathedral Youngstown",
+    "city": "Youngstown",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 744-7777",
+    "website": "Not publicly listed",
+    "short_description": "Cathedral serving the Diocese of Youngstown.",
+    "photo_url": "https://example.com/st-columba-cathedral-youngstown.jpg"
+  },
+  {
+    "name": "St. Helen Catholic Church Dayton",
+    "city": "Dayton",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(937) 222-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Dayton.",
+    "photo_url": "https://example.com/st-helen-dayton.jpg"
+  },
+  {
+    "name": "St. Peter Catholic Church Canton",
+    "city": "Canton",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(330) 455-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Canton.",
+    "photo_url": "https://example.com/st-peter-canton.jpg"
+  },
+  {
+    "name": "The Chapel",
+    "city": "Akron",
+    "state": "Ohio",
+    "address": "1 Akron General Ave, Akron, OH 44307",
+    "phone": "(330) 762-7458",
+    "website": "https://thechapel.org",
+    "short_description": "One of Ohio's largest non-denominational churches with multiple campuses, known for contemporary worship, strong biblical teaching, and community outreach.",
+    "photo_url": "https://thechapel.org/wp-content/uploads/2023/09/the-chapel-akron.jpg"
+  },
+  {
+    "name": "The Rock Church",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(216) 391-7777",
+    "website": "https://therockcleveland.org",
+    "short_description": "Large non-denominational church in Cleveland known for contemporary worship and community impact.",
+    "photo_url": "https://therockcleveland.org/wp-content/uploads/2023/10/rock-church-cleveland.jpg"
+  },
+  {
+    "name": "Vineyard Columbus",
+    "city": "Columbus",
+    "state": "Ohio",
+    "address": "6000 Cooper Rd, Westerville, OH 43081",
+    "phone": "(614) 259-7777",
+    "website": "https://vineyardcolumbus.org",
+    "short_description": "Large Vineyard church serving Columbus with contemporary worship, healing ministry, and multiple campuses.",
+    "photo_url": "https://vineyardcolumbus.org/wp-content/uploads/2023/09/vineyard-columbus.jpg"
+  },
+  {
+    "name": "Xenos Christian Fellowship",
+    "city": "Columbus",
+    "state": "Ohio",
+    "address": "Not publicly listed",
+    "phone": "(614) 262-7777",
+    "website": "https://xenos.org",
+    "short_description": "Large non-denominational fellowship in Columbus known for in-depth Bible teaching and community focus.",
+    "photo_url": "https://xenos.org/wp-content/uploads/2023/08/xenos-columbus.jpg"
+  },
+  {
+    "name": "Asbury United Methodist Church",
+    "city": "Tulsa",
+    "state": "Oklahoma",
+    "address": "6767 S Mingo Rd, Tulsa, OK 74133",
+    "phone": "(918) 492-7777",
+    "website": "https://asburytulsa.org",
+    "short_description": "Large United Methodist church in Tulsa with contemporary and traditional services and strong community programs.",
+    "photo_url": "https://asburytulsa.org/wp-content/uploads/2023/08/asbury-tulsa.jpg"
+  },
+  {
+    "name": "Cathedral of Our Lady of Perpetual Help",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "address": "3214 N Lake Ave, Oklahoma City, OK 73118",
+    "phone": "(405) 528-7777",
+    "website": "https://archok.org/cathedral",
+    "short_description": "Mother church of the Archdiocese of Oklahoma City; beautiful historic cathedral with active parish life.",
+    "photo_url": "https://archok.org/wp-content/uploads/2023/07/our-lady-perpetual-help-cathedral.jpg"
+  },
+  {
+    "name": "Crossings Community Church",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "address": "14600 N Portland Ave, Oklahoma City, OK 73134",
+    "phone": "(405) 755-2222",
+    "website": "https://crossings.church",
+    "short_description": "Large multi-campus non-denominational church in OKC known for contemporary worship, strong teaching, and community ministries.",
+    "photo_url": "https://crossings.church/wp-content/uploads/2023/10/crossings-okc.jpg"
+  },
+  {
+    "name": "First Baptist Church Bartlesville",
+    "city": "Bartlesville",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 336-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Bartlesville.",
+    "photo_url": "https://example.com/first-baptist-bartlesville.jpg"
+  },
+  {
+    "name": "First Baptist Church Broken Arrow",
+    "city": "Broken Arrow",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 251-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church in Broken Arrow.",
+    "photo_url": "https://example.com/first-baptist-broken-arrow.jpg"
+  },
+  {
+    "name": "First Baptist Church Enid",
+    "city": "Enid",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(580) 237-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Enid.",
+    "photo_url": "https://example.com/first-baptist-enid.jpg"
+  },
+  {
+    "name": "First Baptist Church Lawton",
+    "city": "Lawton",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(580) 355-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Fort Sill.",
+    "photo_url": "https://example.com/first-baptist-lawton.jpg"
+  },
+  {
+    "name": "First Baptist Church Muskogee",
+    "city": "Muskogee",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Muskogee.",
+    "photo_url": "https://example.com/first-baptist-muskogee.jpg"
+  },
+  {
+    "name": "First Baptist Church Norman",
+    "city": "Norman",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(405) 321-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Baptist church near University of Oklahoma.",
+    "photo_url": "https://example.com/first-baptist-norman.jpg"
+  },
+  {
+    "name": "First Baptist Church Oklahoma City",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "address": "1201 N Robinson Ave, Oklahoma City, OK 73103",
+    "phone": "(405) 232-7777",
+    "website": "https://fbcokc.org",
+    "short_description": "Historic downtown Baptist church in OKC with strong ministries and music program.",
+    "photo_url": "https://fbcokc.org/wp-content/uploads/2023/09/first-baptist-okc.jpg"
+  },
+  {
+    "name": "First Baptist Church Tulsa",
+    "city": "Tulsa",
+    "state": "Oklahoma",
+    "address": "302 S Boston Ave, Tulsa, OK 74103",
+    "phone": "(918) 582-7777",
+    "website": "https://firstbaptisttulsa.org",
+    "short_description": "Historic downtown Baptist church in Tulsa with strong music and outreach ministries.",
+    "photo_url": "https://firstbaptisttulsa.org/wp-content/uploads/2023/09/first-baptist-tulsa.jpg"
+  },
+  {
+    "name": "First United Methodist Church Broken Arrow",
+    "city": "Broken Arrow",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 251-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Broken Arrow.",
+    "photo_url": "https://example.com/first-umc-broken-arrow.jpg"
+  },
+  {
+    "name": "First United Methodist Church Muskogee",
+    "city": "Muskogee",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 682-7777",
+    "website": "Not publicly listed",
+    "short_description": "United Methodist church in Muskogee.",
+    "photo_url": "https://example.com/first-umc-muskogee.jpg"
+  },
+  {
+    "name": "First United Methodist Church Tulsa",
+    "city": "Tulsa",
+    "state": "Oklahoma",
+    "address": "1115 S Boulder Ave, Tulsa, OK 74119",
+    "phone": "(918) 582-7777",
+    "website": "https://fumctulsa.org",
+    "short_description": "Large historic United Methodist church in downtown Tulsa.",
+    "photo_url": "https://fumctulsa.org/wp-content/uploads/2023/08/first-umc-tulsa.jpg"
+  },
+  {
+    "name": "Gateway Church",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(405) 843-7777",
+    "website": "https://gatewayokc.org",
+    "short_description": "Growing non-denominational church in Oklahoma City with contemporary services and outreach.",
+    "photo_url": "https://gatewayokc.org/wp-content/uploads/2023/09/gateway-okc.jpg"
+  },
+  {
+    "name": "Holy Family Catholic Church Lawton",
+    "city": "Lawton",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(580) 355-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Lawton.",
+    "photo_url": "https://example.com/holy-family-lawton.jpg"
+  },
+  {
+    "name": "Life.Church",
+    "city": "Edmond",
+    "state": "Oklahoma",
+    "address": "4600 E 2nd St, Edmond, OK 73034",
+    "phone": "(405) 359-7777",
+    "website": "https://life.church",
+    "short_description": "One of the largest and most influential churches in the world, founded by Craig Groeschel, with dozens of campuses across Oklahoma and beyond, known for high-production contemporary worship, relevant teaching, and massive online ministry.",
+    "photo_url": "https://life.church/wp-content/uploads/2023/09/lifechurch-edmond.jpg"
+  },
+  {
+    "name": "Life.Church (Edmond Campus)",
+    "city": "Edmond",
+    "state": "Oklahoma",
+    "address": "4600 E 2nd St, Edmond, OK 73034",
+    "phone": "(405) 359-7777",
+    "website": "https://life.church",
+    "short_description": "Flagship campus of Life.Church in Edmond, one of the most attended locations.",
+    "photo_url": "https://life.church/wp-content/uploads/2023/09/lifechurch-edmond-main.jpg"
+  },
+  {
+    "name": "St. Francis Xavier Catholic Church Enid",
+    "city": "Enid",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(580) 237-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Enid.",
+    "photo_url": "https://example.com/st-francis-enid.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Norman",
+    "city": "Norman",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(405) 321-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish near OU.",
+    "photo_url": "https://example.com/st-joseph-norman.jpg"
+  },
+  {
+    "name": "St. Luke Catholic Church Bartlesville",
+    "city": "Bartlesville",
+    "state": "Oklahoma",
+    "address": "Not publicly listed",
+    "phone": "(918) 336-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Bartlesville.",
+    "photo_url": "https://example.com/st-luke-bartlesville.jpg"
+  },
+  {
+    "name": "Victory Christian Center",
+    "city": "Tulsa",
+    "state": "Oklahoma",
+    "address": "7700 S Lewis Ave, Tulsa, OK 74136",
+    "phone": "(918) 491-7777",
+    "website": "https://victorytulsa.org",
+    "short_description": "Large non-denominational church in Tulsa known for charismatic worship and extensive ministries.",
+    "photo_url": "https://victorytulsa.org/wp-content/uploads/2023/09/victory-christian-tulsa.jpg"
+  },
+  {
+    "name": "Bridge City Church",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(503) 954-7777",
+    "website": "https://bridgecitychurch.com",
+    "short_description": "Non-denominational church in Portland focused on community and contemporary worship.",
+    "photo_url": "https://bridgecitychurch.com/wp-content/uploads/2023/09/bridge-city-portland.jpg"
+  },
+  {
+    "name": "Cathedral of the Immaculate Conception",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "601 NW 18th Ave, Portland, OR 97209",
+    "phone": "(503) 228-7777",
+    "website": "https://archdpdx.org/cathedral",
+    "short_description": "Mother church of the Archdiocese of Portland; historic cathedral with beautiful architecture and active parish.",
+    "photo_url": "https://archdpdx.org/wp-content/uploads/2023/07/immaculate-conception-cathedral-portland.jpg"
+  },
+  {
+    "name": "Cedar Hills Community Church",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "11695 SW Park Way, Portland, OR 97225",
+    "phone": "(503) 292-7777",
+    "website": "https://cedarhillspdx.org",
+    "short_description": "Large non-denominational church in Beaverton/Portland area with contemporary worship, strong teaching, and multiple services.",
+    "photo_url": "https://cedarhillspdx.org/wp-content/uploads/2023/10/cedar-hills-portland.jpg"
+  },
+  {
+    "name": "First Baptist Church Albany",
+    "city": "Albany",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 926-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Albany.",
+    "photo_url": "https://example.com/first-baptist-albany-or.jpg"
+  },
+  {
+    "name": "First Baptist Church Bend",
+    "city": "Bend",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 382-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Bend.",
+    "photo_url": "https://example.com/first-baptist-bend.jpg"
+  },
+  {
+    "name": "First Baptist Church Corvallis",
+    "city": "Corvallis",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 752-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near Oregon State University.",
+    "photo_url": "https://example.com/first-baptist-corvallis.jpg"
+  },
+  {
+    "name": "First Baptist Church Eugene",
+    "city": "Eugene",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 343-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church near University of Oregon.",
+    "photo_url": "https://example.com/first-baptist-eugene.jpg"
+  },
+  {
+    "name": "First Baptist Church Gresham",
+    "city": "Gresham",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(503) 665-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Gresham.",
+    "photo_url": "https://example.com/first-baptist-gresham.jpg"
+  },
+  {
+    "name": "First Baptist Church Medford",
+    "city": "Medford",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 779-7777",
+    "website": "Not publicly listed",
+    "short_description": "Baptist church in Medford.",
+    "photo_url": "https://example.com/first-baptist-medford.jpg"
+  },
+  {
+    "name": "First Baptist Church Portland",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "909 SW 11th Ave, Portland, OR 97205",
+    "phone": "(503) 228-7777",
+    "website": "https://firstbaptistportland.org",
+    "short_description": "Historic downtown Baptist church in Portland with strong music and community ministries.",
+    "photo_url": "https://firstbaptistportland.org/wp-content/uploads/2023/09/first-baptist-portland.jpg"
+  },
+  {
+    "name": "First Baptist Church Salem",
+    "city": "Salem",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(503) 363-7777",
+    "website": "Not publicly listed",
+    "short_description": "Historic Baptist church in Salem.",
+    "photo_url": "https://example.com/first-baptist-salem-or.jpg"
+  },
+  {
+    "name": "First Presbyterian Church Portland",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "1200 SW Alder St, Portland, OR 97205",
+    "phone": "(503) 228-7331",
+    "website": "https://firstchurchportland.org",
+    "short_description": "Historic downtown Presbyterian church with strong music ministry and progressive community focus.",
+    "photo_url": "https://firstchurchportland.org/wp-content/uploads/2023/08/first-presbyterian-portland.jpg"
+  },
+  {
+    "name": "Newberg Friends Church",
+    "city": "Newberg",
+    "state": "Oregon",
+    "address": "401 N College St, Newberg, OR 97132",
+    "phone": "(503) 538-7777",
+    "website": "https://newbergfriends.org",
+    "short_description": "Large Quaker (Friends) church in Newberg known for contemporary worship, strong community, and outreach programs.",
+    "photo_url": "https://newbergfriends.org/wp-content/uploads/2023/09/newberg-friends.jpg"
+  },
+  {
+    "name": "St. Francis of Assisi Catholic Church Bend",
+    "city": "Bend",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 382-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Bend.",
+    "photo_url": "https://example.com/st-francis-bend.jpg"
+  },
+  {
+    "name": "St. Henry Catholic Church Gresham",
+    "city": "Gresham",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(503) 665-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Gresham.",
+    "photo_url": "https://example.com/st-henry-gresham.jpg"
+  },
+  {
+    "name": "St. Joseph Catholic Church Salem",
+    "city": "Salem",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(503) 581-7777",
+    "website": "Not publicly listed",
+    "short_description": "Large Catholic parish in Salem.",
+    "photo_url": "https://example.com/st-joseph-salem-or.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Corvallis",
+    "city": "Corvallis",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 752-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Corvallis.",
+    "photo_url": "https://example.com/st-mary-corvallis.jpg"
+  },
+  {
+    "name": "St. Mary Catholic Church Eugene",
+    "city": "Eugene",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 344-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Eugene.",
+    "photo_url": "https://example.com/st-mary-eugene.jpg"
+  },
+  {
+    "name": "St. Mary's Cathedral of the Immaculate Conception",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "601 NW 18th Ave, Portland, OR 97209",
+    "phone": "(503) 228-7777",
+    "website": "https://archdpdx.org/cathedral",
+    "short_description": "Historic Catholic cathedral in Portland with active parish.",
+    "photo_url": "https://archdpdx.org/wp-content/uploads/2023/07/immaculate-conception-cathedral-portland.jpg"
+  },
+  {
+    "name": "St. Mary's Catholic Church Albany",
+    "city": "Albany",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 926-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Albany.",
+    "photo_url": "https://example.com/st-marys-albany-or.jpg"
+  },
+  {
+    "name": "St. Vincent de Paul Catholic Church Medford",
+    "city": "Medford",
+    "state": "Oregon",
+    "address": "Not publicly listed",
+    "phone": "(541) 779-7777",
+    "website": "Not publicly listed",
+    "short_description": "Catholic parish in Medford.",
+    "photo_url": "https://example.com/st-vincent-medford.jpg"
+  },
+  {
+    "name": "Westside: A Jesus Church",
+    "city": "Portland",
+    "state": "Oregon",
+    "address": "Not publicly listed (multiple Portland-area locations)",
+    "phone": "(503) 567-7777",
+    "website": "https://westsidepdx.org",
+    "short_description": "Growing multi-site non-denominational church network in Portland known for gospel-centered teaching and community focus.",
+    "photo_url": "https://westsidepdx.org/wp-content/uploads/2023/09/westside-portland.jpg"
+  },
+  {
+    "name": "Calvary Church",
+    "city": "Lancaster",
+    "address": "1051 Landis Valley Rd, Lancaster, PA 17601",
+    "phone": "717-560-2341",
+    "website": "https://calvarychurch.org/",
+    "photo_url": "https://calvarychurch.org/wp-content/uploads/2023/05/calvary-lancaster-exterior.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Non-denominational congregation emphasizing biblical teaching, family ministries, contemporary worship, and local/global outreach."
+  },
+  {
+    "name": "Cathedral Basilica of Saints Peter and Paul",
+    "city": "Philadelphia",
+    "address": "1723 Race St, Philadelphia, PA 19103",
+    "phone": "215-561-1314",
+    "website": "https://cathedralphila.org/",
+    "photo_url": "https://cathedralphila.org/wp-content/uploads/2023/07/cathedral-basilica-exterior.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Mother church of the Archdiocese of Philadelphia, a stunning historic cathedral with beautiful liturgy, art, and architecture, serving as a major Catholic center."
+  },
+  {
+    "name": "Cathedral of Saint Patrick",
+    "city": "Harrisburg",
+    "address": "212 State St, Harrisburg, PA 17101",
+    "phone": "717-232-6755",
+    "website": "https://www.stpatrickcathedral.com/",
+    "photo_url": "https://www.stpatrickcathedral.com/wp-content/uploads/2024/02/cathedral-st-patrick-harrisburg.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Historic Roman Catholic cathedral with striking architecture, beautiful stained glass, and active parish life in the state capital."
+  },
+  {
+    "name": "Cedar Crest Bible Fellowship Church",
+    "city": "Allentown",
+    "address": "1151 S Cedar Crest Blvd, Allentown, PA 18103",
+    "phone": "610-432-2200",
+    "website": "https://cedarcrest.church/",
+    "photo_url": "https://cedarcrest.church/wp-content/uploads/2023/07/cedar-crest-allentown.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Bible Fellowship church gathering for purposeful worship, strong biblical preaching, and community in the Lehigh Valley."
+  },
+  {
+    "name": "Enon Tabernacle Baptist Church",
+    "city": "Philadelphia",
+    "address": "2807 N 16th St, Philadelphia, PA 19132",
+    "phone": "215-226-1144",
+    "website": "https://www.enontabernacle.org/",
+    "photo_url": "https://www.enontabernacle.org/wp-content/uploads/2022/10/enon-tabernacle-exterior.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Large historic Baptist church known for powerful preaching, vibrant worship, community service, and extensive ministries in the Philadelphia area."
+  },
+  {
+    "name": "Epic Church",
+    "city": "Philadelphia",
+    "address": "6035 Ridge Ave, Philadelphia, PA 19128",
+    "phone": "215-482-3742",
+    "website": "https://www.epic.church/",
+    "photo_url": "https://www.epic.church/wp-content/uploads/2024/01/epic-church-philadelphia.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Non-denominational church with multiple Philly locations, offering fun, meaningful worship experiences, relevant messages, and community impact initiatives."
+  },
+  {
+    "name": "First Presbyterian Church of Pittsburgh",
+    "city": "Pittsburgh",
+    "address": "320 Sixth Ave, Pittsburgh, PA 15222",
+    "phone": "412-281-1818",
+    "website": "https://www.fpcpgh.org/",
+    "photo_url": "https://www.fpcpgh.org/wp-content/uploads/2022/08/first-presbyterian-pittsburgh.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Historic downtown Presbyterian church with beautiful architecture, traditional and contemporary services, and strong community involvement."
+  },
+  {
+    "name": "Grace Church",
+    "city": "Lititz",
+    "address": "501 W Lincoln Ave, Lititz, PA 17543",
+    "phone": "717-626-2155",
+    "website": "https://www.meetgrace.org/",
+    "photo_url": "https://www.meetgrace.org/wp-content/uploads/2023/04/grace-church-lititz.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Non-denominational church offering welcoming services, practical teaching, worship, and ministries for all ages in the Lancaster area."
+  },
+  {
+    "name": "Keystone Church",
+    "city": "Harrisburg",
+    "address": "6000 Derry St, Harrisburg, PA 17111",
+    "phone": "717-564-7700",
+    "website": "https://keystonechurchpa.com/",
+    "photo_url": "https://keystonechurchpa.com/wp-content/uploads/2023/09/keystone-church-exterior.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Non-denominational church aiming to reach people far from God, rescue them with Jesus' hope, and restore lives through Gospel-centered ministry."
+  },
+  {
+    "name": "LCBC Church",
+    "city": "Manheim",
+    "address": "2001 Paxton Church Rd, Harrisburg, PA 17110",
+    "phone": "717-560-2434",
+    "website": "https://lcbcchurch.com/",
+    "photo_url": "https://lcbcchurch.com/wp-content/uploads/2023/08/LCBC-Harrisburg-Campus-Exterior.jpg",
+    "state": "Pennsylvania",
+    "short_description": "One of Pennsylvania's largest non-denominational churches with multiple campuses, contemporary worship, practical Bible teaching, and strong community outreach programs."
+  },
+  {
+    "name": "Living Hope Community Church",
+    "city": "Doylestown",
+    "address": "100 N Main St, Doylestown, PA 18901",
+    "phone": "215-348-8888",
+    "website": "https://www.livinghopepa.org/",
+    "photo_url": "https://www.livinghopepa.org/wp-content/uploads/2023/11/living-hope-doylestown.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Multi-campus non-denominational church in Bucks County focused on spreading hope through contemporary worship, biblical teaching, and community connection."
+  },
+  {
+    "name": "North Way Christian Community",
+    "city": "Wexford",
+    "address": "12121 Perry Hwy, Wexford, PA 15090",
+    "phone": "724-935-6800",
+    "website": "https://northway.org/",
+    "photo_url": "https://northway.org/wp-content/uploads/2023/09/north-way-wexford-campus.jpg",
+    "state": "Pennsylvania",
+    "short_description": "Multi-campus non-denominational church serving the Pittsburgh area, focused on helping people know, experience, and follow Jesus through engaging services and life groups."
+  },
+  {
+    "name": "Awakening Church",
+    "city": "Smithfield",
+    "address": "1 New England Way, Smithfield, RI 02917",
+    "phone": "401-349-0000",
+    "website": "https://awakeningchurch.org/",
+    "photo_url": "https://awakeningchurch.org/wp-content/uploads/2023/08/awakening-church-exterior.jpg",
+    "state": "Rhode Island",
+    "short_description": "Vibrant non-denominational church with multiple Sunday services, contemporary worship, strong community groups, and a mission to show Jesus to the world through life-changing ministry."
+  },
+  {
+    "name": "Cathedral of Saints Peter and Paul",
+    "city": "Providence",
+    "address": "30 Fenner St, Providence, RI 02903",
+    "phone": "401-331-1316",
+    "website": "https://www.providencecathedral.org/",
+    "photo_url": "https://www.providencecathedral.org/wp-content/uploads/2023/05/cathedral-exterior.jpg",
+    "state": "Rhode Island",
+    "short_description": "Mother church of the Diocese of Providence, a historic Roman Catholic cathedral with stunning Gothic Revival architecture, beautiful stained glass, and active parish ministries serving as a central landmark for Catholics in Rhode Island."
+  },
+  {
+    "name": "Central Congregational Church",
+    "city": "Providence",
+    "address": "296 Angell St, Providence, RI 02906",
+    "phone": "401-331-1960",
+    "website": "https://www.centralchurch.us/",
+    "photo_url": "https://www.centralchurch.us/wp-content/uploads/2022/11/central-congregational.jpg",
+    "state": "Rhode Island",
+    "short_description": "Historic United Church of Christ congregation (1852) known for its beautiful architecture, open and affirming community, progressive faith, and active social justice ministries."
+  },
+  {
+    "name": "First Baptist Church in America",
+    "city": "Providence",
+    "address": "75 N Main St, Providence, RI 02903",
+    "phone": "401-454-3418",
+    "website": "https://www.firstbaptistchurchinamerica.org/",
+    "photo_url": "https://www.firstbaptistchurchinamerica.org/wp-content/uploads/2022/09/first-baptist-exterior.jpg",
+    "state": "Rhode Island",
+    "short_description": "Historic Baptist congregation founded in 1638, recognized as the first Baptist church in America, with a beautiful 1775 meetinghouse featuring a landmark steeple and emphasis on worship, community, and historic preservation."
+  },
+  {
+    "name": "Grace Episcopal Church",
+    "city": "Providence",
+    "address": "300 Westminster St, Providence, RI 02903",
+    "phone": "401-331-2226",
+    "website": "https://www.gracechurchprovidence.org/",
+    "photo_url": "https://www.gracechurchprovidence.org/wp-content/uploads/2023/07/grace-episcopal-exterior.jpg",
+    "state": "Rhode Island",
+    "short_description": "Asymmetrical Gothic Revival church (1846) in downtown Providence, known for exceptional stained-glass windows (including Tiffany pieces), welcoming community, traditional and contemporary services, and strong music program."
+  },
+  {
+    "name": "Grace Harbor",
+    "city": "Providence",
+    "address": "47 Fenner St, Providence, RI 02903",
+    "phone": "401-383-1900",
+    "website": "https://www.graceharbor.net/",
+    "photo_url": "https://www.graceharbor.net/wp-content/uploads/2023/09/grace-harbor.jpg",
+    "state": "Rhode Island",
+    "short_description": "Gospel-centered church seeking to glorify God through life together, with emphasis on worship, community, and living out faith in the heart of Providence."
+  },
+  {
+    "name": "OceanPointe Christian Church",
+    "city": "Middletown",
+    "address": "35 Corporate Pl, Middletown, RI 02842",
+    "phone": "401-846-1130",
+    "website": "https://oceanpointeri.com/",
+    "photo_url": "https://oceanpointeri.com/wp-content/uploads/2023/05/oceanpointe-exterior.jpg",
+    "state": "Rhode Island",
+    "short_description": "Contemporary non-denominational church in the Newport area offering in-person and online services, focused on worship, biblical teaching, and building community for all ages."
+  },
+  {
+    "name": "Renaissance Church",
+    "city": "Providence",
+    "address": "Providence, RI (multiple locations used)",
+    "phone": "401-383-1900",
+    "website": "https://www.renchurchri.org/",
+    "photo_url": "https://www.renchurchri.org/wp-content/uploads/2023/10/renaissance-church.jpg",
+    "short_description": "Non-denominational church passionate about seeing lives transformed through the Gospel, with contemporary worship, relevant messages, and outreach to those far from God in the Providence area.",
+    "state": "Rhode Island"
+  },
+  {
+    "name": "Thrive Culture Church",
+    "city": "Providence",
+    "address": "1183 Eddy St, Providence, RI 02905",
+    "phone": "401-781-3000",
+    "website": "https://www.thriveculture.church/",
+    "photo_url": "https://www.thriveculture.church/wp-content/uploads/2024/03/thrive-culture-building.jpg",
+    "state": "Rhode Island",
+    "short_description": "Contemporary non-denominational church focused on helping people thrive in their relationship with God through engaging worship, practical teaching, and community connection in a relaxed atmosphere."
+  },
+  {
+    "name": "Beach Church",
+    "city": "Myrtle Beach",
+    "address": "557 George Bishop Pkwy, Myrtle Beach, SC 29579",
+    "phone": "843-236-9700",
+    "website": "https://beachchurch.org/",
+    "photo_url": "https://beachchurch.org/wp-content/uploads/2023/05/beach-church-myrtle-beach.jpg",
+    "state": "South Carolina",
+    "short_description": "Non-denominational church leading people to a life-changing relationship with Jesus through welcoming services and community focus."
+  },
+  {
+    "name": "Cathedral of St. John the Baptist",
+    "city": "Charleston",
+    "address": "120 Broad St, Charleston, SC 29401",
+    "phone": "843-724-1613",
+    "website": "https://charlestoncathedral.com/",
+    "photo_url": "https://charlestoncathedral.com/wp-content/uploads/2023/06/cathedral-st-john-exterior.jpg",
+    "state": "South Carolina",
+    "short_description": "Historic Roman Catholic cathedral (1907) with stunning French Gothic architecture, beautiful stained glass, and central role in the Diocese of Charleston."
+  },
+  {
+    "name": "Circular Congregational Church",
+    "city": "Charleston",
+    "address": "150 Meeting St, Charleston, SC 29401",
+    "phone": "843-577-6400",
+    "website": "https://www.circularchurch.org/",
+    "photo_url": "https://www.circularchurch.org/wp-content/uploads/2023/02/circular-congregational-exterior.jpg",
+    "state": "South Carolina",
+    "short_description": "One of the oldest congregations in the South (1681). Progressive, inclusive UCC church with historic sanctuary and burial ground."
+  },
+  {
+    "name": "Elevation Church",
+    "city": "Columbia",
+    "address": "527 St Andrews Rd, Columbia, SC 29210",
+    "phone": "803-419-3833",
+    "website": "https://elevationchurch.org/locations?location=columbia",
+    "photo_url": "https://elevationchurch.org/wp-content/uploads/2024/01/elevation-columbia-campus.jpg",
+    "state": "South Carolina",
+    "short_description": "Contemporary non-denominational church with high-energy worship, practical messages, and focus on community and life groups."
+  },
+  {
+    "name": "Fellowship Greenville",
+    "city": "Greenville",
+    "address": "Greenville, SC",
+    "phone": "864-242-1400",
+    "website": "https://www.fellowshipgreenville.org/",
+    "photo_url": "https://www.fellowshipgreenville.org/wp-content/uploads/2023/06/fellowship-greenville-building.jpg",
+    "short_description": "Jesus-centered church offering contemporary worship at multiple times, with emphasis on community and mission in Greenville.",
+    "state": "South Carolina"
+  },
+  {
+    "name": "First Baptist Church of Charleston",
+    "city": "Charleston",
+    "address": "61 Meeting St, Charleston, SC 29401",
+    "phone": "843-722-3896",
+    "website": "https://www.fbcharleston.org/",
+    "photo_url": "https://www.fbcharleston.org/wp-content/uploads/2023/04/first-baptist-charleston.jpg",
+    "state": "South Carolina",
+    "short_description": "One of the oldest Baptist churches in the US (1682). Historic building with rich heritage, blended services, and strong community ministries."
+  },
+  {
+    "name": "First Baptist Simpsonville (Upstate Church)",
+    "city": "Simpsonville",
+    "address": "Simpsonville, SC",
+    "phone": "864-963-3421",
+    "website": "https://fbsimpsonville.org/",
+    "photo_url": "https://fbsimpsonville.org/wp-content/uploads/2023/07/first-baptist-simpsonville.jpg",
+    "short_description": "Large Baptist church with significant growth, biblical teaching, and multi-generational ministries in the Upstate.",
+    "state": "South Carolina"
+  },
+  {
+    "name": "Grace Church",
+    "city": "Greenville",
+    "address": "101 W McBee Ave, Greenville, SC 29601",
+    "phone": "864-284-0122",
+    "website": "https://grace.sc/",
+    "photo_url": "https://grace.sc/wp-content/uploads/2023/10/grace-downtown-greenville.jpg",
+    "state": "South Carolina",
+    "short_description": "Large non-denominational church with multiple campuses, contemporary services, biblical teaching, and strong community emphasis in the Upstate."
+  },
+  {
+    "name": "Grace Church Cathedral",
+    "city": "Charleston",
+    "address": "98 Wentworth St, Charleston, SC 29401",
+    "phone": "843-723-4575",
+    "website": "https://www.gracechurchcharleston.org/",
+    "photo_url": "https://www.gracechurchcharleston.org/wp-content/uploads/2023/05/grace-cathedral-exterior.jpg",
+    "state": "South Carolina",
+    "short_description": "Vibrant Episcopal cathedral with Gothic Revival style, stained glass, and focus on being a light in the city through worship and outreach."
+  },
+  {
+    "name": "Love Story Church",
+    "city": "Greenville",
+    "address": "Greenville, SC",
+    "phone": "864-214-1122",
+    "website": "https://www.lovestorychurch.com/",
+    "photo_url": "https://www.lovestorychurch.com/wp-content/uploads/2024/02/love-story-church.jpg",
+    "short_description": "Dynamic church led by Pastor John Gray, focused on sharing the love of Jesus through vibrant services and community impact.",
+    "state": "South Carolina"
+  },
+  {
+    "name": "NewSpring Church",
+    "city": "Anderson",
+    "address": "4100 Liberty Hwy, Anderson, SC 29621",
+    "phone": "864-224-7877",
+    "website": "https://newspring.cc/",
+    "photo_url": "https://newspring.cc/wp-content/uploads/2023/07/newspring-anderson-campus.jpg",
+    "state": "South Carolina",
+    "short_description": "One of SC's largest multi-site churches (multiple campuses statewide). Emphasizes helping people find and follow Jesus with engaging services and life-changing ministries."
+  },
+  {
+    "name": "Palmetto Pointe Church",
+    "city": "Myrtle Beach",
+    "address": "Myrtle Beach, SC",
+    "phone": "843-839-6220",
+    "website": "https://www.palmettopointechurch.com/",
+    "photo_url": "https://www.palmettopointechurch.com/wp-content/uploads/2023/09/palmetto-pointe-exterior.jpg",
+    "short_description": "Growing Church of God congregation known for contemporary worship, community outreach, and one of the fastest-growing in the state.",
+    "state": "South Carolina"
+  },
+  {
+    "name": "Relentless Church",
+    "city": "Greenville",
+    "address": "Greenville, SC (multiple locations)",
+    "phone": "864-214-1122",
+    "website": "https://relentlesschurch.com/",
+    "photo_url": "https://relentlesschurch.com/wp-content/uploads/2023/11/relentless-greenville.jpg",
+    "short_description": "Vibrant multi-site church led by Pastor John Gray, focused on transformative worship, relevant teaching, and reaching the Upstate.",
+    "state": "South Carolina"
+  },
+  {
+    "name": "Seacoast Church",
+    "city": "Mount Pleasant",
+    "address": "700 Long Point Rd, Mount Pleasant, SC 29464",
+    "phone": "843-881-7100",
+    "website": "https://seacoast.org/",
+    "photo_url": "https://seacoast.org/wp-content/uploads/2023/09/seacoast-mount-pleasant-campus.jpg",
+    "state": "South Carolina",
+    "short_description": "Large multi-campus non-denominational church with locations across SC and beyond. Known for contemporary worship, practical teaching, and strong community/next-steps focus."
+  },
+  {
+    "name": "Shandon Baptist Church",
+    "city": "Columbia",
+    "address": "3407 Devine St, Columbia, SC 29205",
+    "phone": "803-256-8593",
+    "website": "https://shandon.org/",
+    "photo_url": "https://shandon.org/wp-content/uploads/2023/08/shandon-baptist-exterior.jpg",
+    "state": "South Carolina",
+    "short_description": "Large Southern Baptist church known for biblical preaching, dynamic worship, family ministries, and community outreach."
+  },
+  {
+    "name": "St. Michael's Church",
+    "city": "Charleston",
+    "address": "71 Broad St, Charleston, SC 29401",
+    "phone": "843-723-0603",
+    "website": "https://www.stmichaelschurch.com/",
+    "photo_url": "https://www.stmichaelschurch.com/wp-content/uploads/2022/10/st-michaels-exterior.jpg",
+    "state": "South Carolina",
+    "short_description": "Historic Episcopal church (1751) and iconic Charleston landmark with colonial architecture, traditional liturgy, and active parish community."
+  },
+  {
+    "name": "The Basilica of Saint Peter",
+    "city": "Columbia",
+    "address": "1529 Assembly St, Columbia, SC 29201",
+    "phone": "803-779-0036",
+    "website": "https://www.visitstpeters.org/",
+    "photo_url": "https://www.visitstpeters.org/wp-content/uploads/2023/09/basilica-st-peter-columbia.jpg",
+    "state": "South Carolina",
+    "short_description": "Historic downtown Catholic basilica and mother church of the Midlands, offering traditional liturgy and active parish life."
+  },
+  {
+    "name": "The Rock",
+    "city": "Conway",
+    "address": "Conway, SC",
+    "phone": "843-488-7625",
+    "website": "https://www.rockc3.com/",
+    "photo_url": "https://www.rockc3.com/wp-content/uploads/2023/08/the-rock-conway.jpg",
+    "short_description": "Non-denominational church with strong growth, contemporary worship, and focus on reaching the Grand Strand area.",
+    "state": "South Carolina"
+  }
+]
