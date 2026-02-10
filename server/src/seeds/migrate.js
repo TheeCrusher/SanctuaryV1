@@ -42,6 +42,25 @@ async function migrate() {
     await client.query(schema)
     console.log('   ✅ All tables verified\n')
 
+    // ---- Step 1b: Add any missing columns to existing tables ----
+    // CREATE TABLE IF NOT EXISTS skips tables that already exist,
+    // so if Render has an old schema, new columns won't be added.
+    // ALTER TABLE ADD COLUMN IF NOT EXISTS safely handles this.
+    console.log('🔧 Ensuring all columns exist on churches table...')
+    const columnMigrations = [
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS state VARCHAR(50)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS phone VARCHAR(20)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS website TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS short_description TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS photo_url TEXT',
+    ]
+    for (const sql of columnMigrations) {
+      await client.query(sql)
+    }
+    // Ensure index exists for the state column
+    await client.query('CREATE INDEX IF NOT EXISTS idx_churches_state ON churches(state)')
+    console.log('   ✅ All columns verified\n')
+
     // ---- Step 2: Load real churches if table is empty ----
     // Check how many churches are in the database already.
     // If there are churches, skip — don't insert duplicates.
