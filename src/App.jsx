@@ -4,9 +4,10 @@
 // This is the root component of your application.
 // It defines all the routes (URLs) and which components to show for each.
 
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from './context/AppContext'
 import { Loader2 } from 'lucide-react'
+import { useSwipeable } from 'react-swipeable'
 
 // Layout components
 import { BottomNav } from './components/layout'
@@ -100,8 +101,31 @@ function App() {
   const noNavPages = ['/login', '/signup', '/chat', '/bibles/reader']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
+  // Swipe navigation between the 4 main tabs
+  const navigate = useNavigate()
+  const mainTabs = ['/dashboard', '/community', '/more', '/profile']
+  const currentTabIndex = mainTabs.indexOf(location.pathname)
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      // Only swipe if we're on a main tab and there's a next tab
+      if (currentTabIndex >= 0 && currentTabIndex < mainTabs.length - 1) {
+        navigate(mainTabs[currentTabIndex + 1])
+      }
+    },
+    onSwipedRight: () => {
+      // Only swipe if we're on a main tab and there's a previous tab
+      if (currentTabIndex > 0) {
+        navigate(mainTabs[currentTabIndex - 1])
+      }
+    },
+    preventScrollOnSwipe: false,  // Don't block vertical scrolling
+    trackMouse: false,            // Touch only, not mouse drags
+    delta: 50,                    // Minimum 50px swipe to trigger (prevents accidental swipes)
+  })
+
   return (
-    <div className="app-container">
+    <div className="app-container" {...swipeHandlers}>
       <Routes>
         {/* ====== PUBLIC ROUTES ====== */}
         {/* These don't require authentication */}
