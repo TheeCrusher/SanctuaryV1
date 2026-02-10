@@ -33,20 +33,11 @@ async function migrate() {
     await client.connect()
     console.log('📦 Connected to database\n')
 
-    // ---- Step 1: Ensure all tables exist ----
-    // schema.sql uses CREATE TABLE IF NOT EXISTS, so this is safe.
-    // It will create any new tables without touching existing ones.
-    console.log('📋 Ensuring all tables exist (CREATE IF NOT EXISTS)...')
-    const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
-    const schema = readFileSync(schemaPath, 'utf8')
-    await client.query(schema)
-    console.log('   ✅ All tables verified\n')
-
-    // ---- Step 1b: Add any missing columns to existing tables ----
-    // CREATE TABLE IF NOT EXISTS skips tables that already exist,
-    // so if Render has an old schema, new columns won't be added.
-    // ALTER TABLE ADD COLUMN IF NOT EXISTS safely handles this.
-    console.log('🔧 Ensuring all columns exist on churches table...')
+    // ---- Step 1: Add missing columns to existing tables ----
+    // Must run BEFORE schema.sql because schema.sql creates indexes
+    // on new columns (like idx_churches_state). If the column doesn't
+    // exist yet, the index creation fails. So we add columns first.
+    console.log('🔧 Adding any missing columns to existing tables...')
     const columnMigrations = [
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS state VARCHAR(50)',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS phone VARCHAR(20)',
@@ -55,11 +46,20 @@ async function migrate() {
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS photo_url TEXT',
     ]
     for (const sql of columnMigrations) {
-      await client.query(sql)
+      // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
+      try { await client.query(sql) } catch (e) { /* table may not exist yet — that's OK */ }
     }
-    // Ensure index exists for the state column
-    await client.query('CREATE INDEX IF NOT EXISTS idx_churches_state ON churches(state)')
-    console.log('   ✅ All columns verified\n')
+    console.log('   ✅ Column check complete\n')
+
+    // ---- Step 2: Ensure all tables exist ----
+    // schema.sql uses CREATE TABLE IF NOT EXISTS, so this is safe.
+    // It will create any new tables without touching existing ones.
+    // Now safe to run because missing columns were added above.
+    console.log('📋 Ensuring all tables exist (CREATE IF NOT EXISTS)...')
+    const schemaPath = join(__dirname, '..', 'config', 'schema.sql')
+    const schema = readFileSync(schemaPath, 'utf8')
+    await client.query(schema)
+    console.log('   ✅ All tables verified\n')
 
     // ---- Step 2: Load real churches if table is empty ----
     // Check how many churches are in the database already.
