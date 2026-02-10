@@ -178,7 +178,7 @@ router.put('/me', async (req, res, next) => {
 router.get('/available', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, avatar, role FROM users WHERE id != $1 ORDER BY name ASC',
+      'SELECT id, name, avatar, photo_url, role FROM users WHERE id != $1 ORDER BY name ASC',
       [req.user.id]
     )
 
@@ -186,6 +186,7 @@ router.get('/available', async (req, res, next) => {
       id: row.id,
       name: row.name,
       avatar: row.avatar,
+      photoUrl: row.photo_url,
       role: row.role.charAt(0).toUpperCase() + row.role.slice(1) // "seeker" → "Seeker"
     }))
 

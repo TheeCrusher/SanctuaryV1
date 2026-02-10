@@ -5,10 +5,11 @@
 // Step 2: About you (location, denomination, church) — skippable
 // Step 3: Your interests (tappable chips) — skippable
 
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart } from 'lucide-react'
+import { compressImage } from '../../utils/imageCompress'
+import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera } from 'lucide-react'
 
 const LOGO = "/sanctuary-logo.png"
 
@@ -49,6 +50,8 @@ function SignUpScreen() {
   const [onboarding, setOnboarding] = useState(false)
 
   // ----- STEP 2 STATE -----
+  const [photoPreview, setPhotoPreview] = useState(null)
+  const fileInputRef = useRef(null)
   const [location, setLocation] = useState('')
   const [denomination, setDenomination] = useState('')
   const [churchName, setChurchName] = useState('')
@@ -56,7 +59,7 @@ function SignUpScreen() {
   // ----- STEP 3 STATE -----
   const [selectedInterests, setSelectedInterests] = useState([])
 
-  const { user, register, updateProfile } = useApp()
+  const { user, register, updateProfile, updateUserPhoto } = useApp()
   const navigate = useNavigate()
 
   // If already logged in and NOT in the onboarding flow, redirect to dashboard
@@ -91,9 +94,25 @@ function SignUpScreen() {
     }
   }
 
+  // ----- STEP 2: Photo upload -----
+  async function handlePhotoChange(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    try {
+      const compressed = await compressImage(file)
+      setPhotoPreview(compressed)
+    } catch (err) {
+      console.error('Image compression failed:', err)
+    }
+    e.target.value = ''
+  }
+
   // ----- STEP 2: Save profile info -----
   async function handleSaveProfile() {
     setLoading(true)
+    if (photoPreview) {
+      await updateUserPhoto(photoPreview)
+    }
     await updateProfile({
       location: location || undefined,
       denomination: denomination || undefined,
@@ -251,6 +270,29 @@ function SignUpScreen() {
         <div className="login-card">
           <h2>About You</h2>
           <div className="login-subtitle">Help us personalize your experience</div>
+
+          {/* Optional Photo Upload */}
+          <div className="signup-photo-section">
+            <button
+              type="button"
+              className="signup-photo-picker"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              {photoPreview ? (
+                <img src={photoPreview} alt="Profile preview" />
+              ) : (
+                <Camera size={28} color="#9ca3af" />
+              )}
+            </button>
+            <div className="signup-photo-label">Add a profile photo</div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handlePhotoChange}
+            />
+          </div>
 
           {/* City / Area */}
           <div className="login-input-group">

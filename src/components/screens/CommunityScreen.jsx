@@ -440,7 +440,7 @@ function CommunityScreen() {
                 >
                   <div className="conv-row">
                     <div className="conv-avatar-wrap">
-                      <Avatar emoji={conv.avatar} size="md" variant="blue" />
+                      <Avatar src={conv.photoUrl} emoji={conv.avatar} name={conv.name} size="md" variant="blue" />
                       {onlineUsers.has(conv.personId) && (
                         <span className="online-dot" />
                       )}
@@ -500,7 +500,7 @@ function CommunityScreen() {
               onClick={() => handleNewConversation(person.id)}
             >
               <div style={{ position: 'relative' }}>
-                <Avatar emoji={person.avatar} size="md" variant="blue" />
+                <Avatar src={person.photoUrl} emoji={person.avatar} name={person.name} size="md" variant="blue" />
                 {onlineUsers.has(person.id) && <span className="online-dot" />}
               </div>
               <div className="new-conv-info">

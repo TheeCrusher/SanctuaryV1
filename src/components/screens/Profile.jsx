@@ -4,11 +4,12 @@
 // Shows user profile info with editable bio, specialization, and location.
 // Allows photo upload, dark mode toggle, and logout.
 
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
 import { Avatar } from '../common'
+import { compressImage } from '../../utils/imageCompress'
 import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X } from 'lucide-react'
 
 const SPECIALIZATIONS = [
@@ -47,14 +48,15 @@ function Profile() {
     setShowPhoto(true)
   }
 
-  function handleFileChange(e) {
+  async function handleFileChange(e) {
     const file = e.target.files?.[0]
     if (!file) return
-    const reader = new FileReader()
-    reader.onloadend = () => {
-      updateUserPhoto(reader.result)
+    try {
+      const compressed = await compressImage(file)
+      updateUserPhoto(compressed)
+    } catch (err) {
+      console.error('Image compression failed:', err)
     }
-    reader.readAsDataURL(file)
     e.target.value = ''
   }
 

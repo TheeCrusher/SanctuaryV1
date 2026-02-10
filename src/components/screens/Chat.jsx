@@ -88,7 +88,9 @@ function Chat() {
         </button>
         <div style={{ position: 'relative' }}>
           <Avatar
+            src={selectedConversation.photoUrl}
             emoji={selectedConversation.avatar}
+            name={selectedConversation.name}
             size="sm"
             variant="blue"
           />

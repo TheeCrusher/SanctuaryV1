@@ -31,7 +31,7 @@ router.get('/', async (req, res, next) => {
   try {
     const result = await pool.query(
       `SELECT c.id, c.person_id, c.last_message, c.last_time, c.unread_count,
-              u.name, u.avatar
+              u.name, u.avatar, u.photo_url
        FROM conversations c
        JOIN users u ON u.id = c.person_id
        WHERE c.owner_id = $1
@@ -44,6 +44,7 @@ router.get('/', async (req, res, next) => {
       personId: row.person_id,
       name: row.name,
       avatar: row.avatar,
+      photoUrl: row.photo_url,
       last: row.last_message || 'Tap to start a conversation',
       time: row.last_time || 'Now',
       unread: row.unread_count
@@ -74,7 +75,7 @@ router.post('/', async (req, res, next) => {
 
     // Check if the person exists
     const personResult = await pool.query(
-      'SELECT id, name, avatar FROM users WHERE id = $1',
+      'SELECT id, name, avatar, photo_url FROM users WHERE id = $1',
       [personId]
     )
     if (personResult.rows.length === 0) {
@@ -98,6 +99,7 @@ router.post('/', async (req, res, next) => {
           personId: person.id,
           name: person.name,
           avatar: person.avatar,
+          photoUrl: person.photo_url,
           last: 'Tap to start a conversation',
           time: 'Now',
           unread: 0,
@@ -120,6 +122,7 @@ router.post('/', async (req, res, next) => {
         personId: person.id,
         name: person.name,
         avatar: person.avatar,
+        photoUrl: person.photo_url,
         last: 'Tap to start a conversation',
         time: 'Now',
         unread: 0,

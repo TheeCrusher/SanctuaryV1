@@ -2245,6 +2245,44 @@ textarea {
   color: #1e293b;
 }
 
+/* Signup photo picker — circular tappable area in Step 2 */
+.signup-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.signup-photo-picker {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.signup-photo-picker:active {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.signup-photo-picker img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signup-photo-label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 /* Interest chips grid — wrapping rows of tappable pills */
 .signup-interests-grid {
   display: flex;
