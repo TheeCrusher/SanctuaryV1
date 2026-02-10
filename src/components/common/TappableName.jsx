@@ -1,15 +1,14 @@
 // =============================================================================
 // TAPPABLE NAME COMPONENT
 // =============================================================================
-// Wraps a user's name so tapping it navigates to their public profile.
+// Wraps a user's name so tapping it opens the User Action Menu.
 // Renders as plain text for: anonymous users, the current user's own name.
+// Props: userId, name, isAnonymous, className, photoUrl, avatar, showMessage
 
-import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 
-function TappableName({ userId, name, isAnonymous = false, className = '' }) {
-  const navigate = useNavigate()
-  const { user } = useApp()
+function TappableName({ userId, name, isAnonymous = false, className = '', photoUrl, avatar, showMessage = true }) {
+  const { user, showUserActionMenu } = useApp()
 
   const isTappable = !isAnonymous && userId && userId !== user?.id
 
@@ -22,7 +21,7 @@ function TappableName({ userId, name, isAnonymous = false, className = '' }) {
       className={`${className} tappable-name`}
       onClick={(e) => {
         e.stopPropagation()
-        navigate(`/user/${userId}`)
+        showUserActionMenu({ userId, userName: name, photoUrl, avatar, showMessage })
       }}
       role="button"
       tabIndex={0}

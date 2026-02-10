@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Modal, Avatar, EmptyState, TappableName } from '../common'
+import { Modal, Avatar, EmptyState } from '../common'
 import { ArrowLeft, HandHeart, MessageCircle, Plus, Check, ChevronDown, ChevronUp, PartyPopper, Link } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -23,7 +23,7 @@ const CATEGORY_COLORS = {
 
 function PrayerBoard() {
   const navigate = useNavigate()
-  const { user } = useApp()
+  const { user, showUserActionMenu } = useApp()
 
   const [topTab, setTopTab] = useState('prayer') // 'prayer' or 'testimony'
   const [requests, setRequests] = useState([])
@@ -231,10 +231,19 @@ function PrayerBoard() {
           requests.map(req => (
             <div key={req.id} className="prayer-card">
               <div className="prayer-card-header">
-                <Avatar emoji={req.userAvatar} src={req.userPhoto} size="sm" variant="blue" />
-                <div className="prayer-card-info">
-                  <TappableName userId={req.userId} name={req.userName} isAnonymous={req.isAnonymous} className="prayer-card-name" />
-                  <div className="prayer-card-time">{relativeTime(req.createdAt)}</div>
+                <div
+                  className="prayer-card-user"
+                  style={{ cursor: !req.isAnonymous && req.userId !== user?.id ? 'pointer' : 'default' }}
+                  onClick={() => !req.isAnonymous && req.userId !== user?.id && showUserActionMenu({
+                    userId: req.userId, userName: req.userName,
+                    photoUrl: req.userPhoto, avatar: req.userAvatar
+                  })}
+                >
+                  <Avatar emoji={req.userAvatar} src={req.userPhoto} size="sm" variant="blue" />
+                  <div className="prayer-card-info">
+                    <span className={`prayer-card-name ${!req.isAnonymous && req.userId !== user?.id ? 'tappable-name' : ''}`}>{req.userName}</span>
+                    <div className="prayer-card-time">{relativeTime(req.createdAt)}</div>
+                  </div>
                 </div>
                 <span
                   className="prayer-category-badge"
@@ -296,11 +305,18 @@ function PrayerBoard() {
                 <div className="prayer-comments">
                   {(comments[req.id] || []).map(c => (
                     <div key={c.id} className="prayer-comment">
-                      <Avatar emoji={c.userAvatar} src={c.userPhoto} size="sm" variant="blue" />
-                      <div>
-                        <TappableName userId={c.userId} name={c.userName} className="prayer-comment-name" />
-                        <span className="prayer-comment-text">{c.text}</span>
+                      <div
+                        className="prayer-comment-user"
+                        style={{ cursor: c.userId !== user?.id ? 'pointer' : 'default' }}
+                        onClick={() => c.userId !== user?.id && showUserActionMenu({
+                          userId: c.userId, userName: c.userName,
+                          photoUrl: c.userPhoto, avatar: c.userAvatar
+                        })}
+                      >
+                        <Avatar emoji={c.userAvatar} src={c.userPhoto} size="sm" variant="blue" />
+                        <span className={`prayer-comment-name ${c.userId !== user?.id ? 'tappable-name' : ''}`}>{c.userName}</span>
                       </div>
+                      <span className="prayer-comment-text">{c.text}</span>
                     </div>
                   ))}
                   <div className="prayer-comment-input">

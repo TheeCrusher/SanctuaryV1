@@ -1,13 +1,14 @@
 // ============================================================
-// Conversation & Message Routes
+// Conversation & Message Routes (Bidirectional)
 // ============================================================
 // GET  /api/conversations              - List user's conversations
 // POST /api/conversations              - Start a new conversation
 // GET  /api/conversations/:id/messages - Get messages in a conversation
 // POST /api/conversations/:id/messages - Send a message
 //
-// All routes are protected (require JWT token).
-// Replaces: conversations state and message functions in AppContext.jsx
+// Conversations are SHARED between two users. One row per pair.
+// Both owner_id and person_id can read and send messages.
+// last_sender_id tracks who sent the last message for unread logic.
 // ============================================================
 
 import { Router } from 'express'
@@ -16,43 +17,54 @@ import { authenticate } from '../middleware/auth.js'
 
 const router = Router()
 
-// All conversation routes require authentication
 router.use(authenticate)
 
 // ============================================================
 // GET /api/conversations
 // ============================================================
-// Returns all conversations for the logged-in user.
-// Includes the other person's name and avatar (via JOIN).
-//
-// Replaces: conversations state in AppContext.jsx
+// Returns all conversations where the logged-in user is EITHER
+// owner_id or person_id. Shows the OTHER person's info.
 
 router.get('/', async (req, res, next) => {
   try {
+    const userId = req.user.id
+
     const result = await pool.query(
-      `SELECT c.id, c.person_id, c.last_message, c.last_time, c.unread_count,
-              u.name, u.avatar, u.photo_url
+      `SELECT
+         c.id,
+         c.owner_id,
+         c.person_id,
+         c.last_message,
+         c.last_time,
+         c.last_sender_id,
+         c.unread_count,
+         -- Get the OTHER person's info
+         CASE WHEN c.owner_id = $1 THEN c.person_id ELSE c.owner_id END AS other_id,
+         u.name,
+         u.avatar,
+         u.photo_url
        FROM conversations c
-       JOIN users u ON u.id = c.person_id
-       WHERE c.owner_id = $1
-         AND c.person_id NOT IN (
+       JOIN users u ON u.id = CASE WHEN c.owner_id = $1 THEN c.person_id ELSE c.owner_id END
+       WHERE (c.owner_id = $1 OR c.person_id = $1)
+         AND CASE WHEN c.owner_id = $1 THEN c.person_id ELSE c.owner_id END NOT IN (
            SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
            UNION
            SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
          )
        ORDER BY c.updated_at DESC`,
-      [req.user.id]
+      [userId]
     )
 
     const conversations = result.rows.map(row => ({
       id: row.id,
-      personId: row.person_id,
+      personId: row.other_id,
       name: row.name,
       avatar: row.avatar,
       photoUrl: row.photo_url,
       last: row.last_message || 'Tap to start a conversation',
       time: row.last_time || 'Now',
-      unread: row.unread_count
+      // Only show unread if the OTHER person sent the last message
+      unread: row.last_sender_id && row.last_sender_id !== userId ? row.unread_count : 0
     }))
 
     res.json({ conversations })
@@ -65,13 +77,11 @@ router.get('/', async (req, res, next) => {
 // POST /api/conversations
 // ============================================================
 // Starts a new conversation with another user.
-// If a conversation already exists with that person, returns it.
-//
-// Request body: { personId: 2 }
-// Replaces: startNewConversation() in AppContext.jsx
+// Checks BOTH directions so only ONE conversation exists per pair.
 
 router.post('/', async (req, res, next) => {
   try {
+    const userId = req.user.id
     const { personId } = req.body
 
     if (!personId) {
@@ -92,7 +102,7 @@ router.post('/', async (req, res, next) => {
       `SELECT id FROM user_blocks
        WHERE (blocker_id = $1 AND blocked_id = $2)
           OR (blocker_id = $2 AND blocked_id = $1)`,
-      [req.user.id, personId]
+      [userId, personId]
     )
     if (blockCheck.rows.length > 0) {
       return res.status(404).json({ error: 'Person not found.' })
@@ -100,14 +110,15 @@ router.post('/', async (req, res, next) => {
 
     const person = personResult.rows[0]
 
-    // Check if conversation already exists
+    // Check BOTH directions for existing conversation
     const existing = await pool.query(
-      'SELECT id FROM conversations WHERE owner_id = $1 AND person_id = $2',
-      [req.user.id, personId]
+      `SELECT id FROM conversations
+       WHERE (owner_id = $1 AND person_id = $2)
+          OR (owner_id = $2 AND person_id = $1)`,
+      [userId, personId]
     )
 
     if (existing.rows.length > 0) {
-      // Return the existing conversation
       const convId = existing.rows[0].id
       return res.json({
         conversation: {
@@ -124,12 +135,12 @@ router.post('/', async (req, res, next) => {
       })
     }
 
-    // Create new conversation
+    // Create new conversation (one row for the pair)
     const result = await pool.query(
       `INSERT INTO conversations (owner_id, person_id, last_time)
        VALUES ($1, $2, 'Now')
        RETURNING id`,
-      [req.user.id, personId]
+      [userId, personId]
     )
 
     res.status(201).json({
@@ -153,25 +164,24 @@ router.post('/', async (req, res, next) => {
 // ============================================================
 // GET /api/conversations/:id/messages
 // ============================================================
-// Returns all messages in a conversation.
-// Only the conversation owner can read messages.
-//
-// Replaces: selectedConversation.msgs in AppContext.jsx
+// Returns all messages. Either participant can read.
+// Resets unread if the reader is NOT the last sender.
 
 router.get('/:id/messages', async (req, res, next) => {
   try {
     const { id } = req.params
+    const userId = req.user.id
 
-    // Verify this conversation belongs to the logged-in user
+    // Verify this user is a participant (either side)
     const convCheck = await pool.query(
-      'SELECT id FROM conversations WHERE id = $1 AND owner_id = $2',
-      [id, req.user.id]
+      'SELECT id, last_sender_id FROM conversations WHERE id = $1 AND (owner_id = $2 OR person_id = $2)',
+      [id, userId]
     )
     if (convCheck.rows.length === 0) {
       return res.status(404).json({ error: 'Conversation not found.' })
     }
 
-    // Get all messages, ordered by time
+    // Get all messages
     const result = await pool.query(
       `SELECT m.id, m.sender_id, m.text, m.created_at, u.name AS sender_name
        FROM messages m
@@ -186,14 +196,17 @@ router.get('/:id/messages', async (req, res, next) => {
       sender: row.sender_name,
       text: row.text,
       time: new Date(row.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      own: row.sender_id === req.user.id
+      own: row.sender_id === userId
     }))
 
-    // Mark as read (reset unread count)
-    await pool.query(
-      'UPDATE conversations SET unread_count = 0 WHERE id = $1',
-      [id]
-    )
+    // Reset unread only if the other person sent the last messages
+    const lastSenderId = convCheck.rows[0].last_sender_id
+    if (lastSenderId && lastSenderId !== userId) {
+      await pool.query(
+        'UPDATE conversations SET unread_count = 0 WHERE id = $1',
+        [id]
+      )
+    }
 
     res.json({ messages })
   } catch (error) {
@@ -204,25 +217,23 @@ router.get('/:id/messages', async (req, res, next) => {
 // ============================================================
 // POST /api/conversations/:id/messages
 // ============================================================
-// Sends a message in a conversation.
-// Updates the conversation's last_message and last_time.
-//
-// Request body: { text: "Hello!" }
-// Replaces: sendMessage() in AppContext.jsx
+// Send a message. Either participant can send.
+// Updates last_message, last_time, last_sender_id, unread_count.
 
 router.post('/:id/messages', async (req, res, next) => {
   try {
     const { id } = req.params
+    const userId = req.user.id
     const { text } = req.body
 
     if (!text || !text.trim()) {
       return res.status(400).json({ error: 'Message text is required.' })
     }
 
-    // Verify this conversation belongs to the logged-in user
+    // Verify this user is a participant (either side)
     const convCheck = await pool.query(
-      'SELECT id FROM conversations WHERE id = $1 AND owner_id = $2',
-      [id, req.user.id]
+      'SELECT id FROM conversations WHERE id = $1 AND (owner_id = $2 OR person_id = $2)',
+      [id, userId]
     )
     if (convCheck.rows.length === 0) {
       return res.status(404).json({ error: 'Conversation not found.' })
@@ -233,23 +244,27 @@ router.post('/:id/messages', async (req, res, next) => {
       `INSERT INTO messages (conversation_id, sender_id, text)
        VALUES ($1, $2, $3)
        RETURNING id, created_at`,
-      [id, req.user.id, text.trim()]
+      [id, userId, text.trim()]
     )
 
     const msg = result.rows[0]
 
-    // Update the conversation's last message preview
+    // Update conversation: last message preview + track who sent it + increment unread
     await pool.query(
       `UPDATE conversations
-       SET last_message = $1, last_time = 'Just now', updated_at = NOW()
-       WHERE id = $2`,
-      [text.trim(), id]
+       SET last_message = $1,
+           last_time = 'Just now',
+           last_sender_id = $2,
+           unread_count = unread_count + 1,
+           updated_at = NOW()
+       WHERE id = $3`,
+      [text.trim(), userId, id]
     )
 
-    // Get the sender's name for the response
+    // Get sender name for response
     const userResult = await pool.query(
       'SELECT name FROM users WHERE id = $1',
-      [req.user.id]
+      [userId]
     )
 
     res.status(201).json({

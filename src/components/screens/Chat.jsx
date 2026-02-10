@@ -25,7 +25,8 @@ function Chat() {
     emitTypingStop,
     joinConversationRoom,
     leaveConversationRoom,
-    user
+    user,
+    showUserActionMenu
   } = useApp()
 
   // Scroll to bottom when messages change
@@ -86,27 +87,38 @@ function Chat() {
         <button className="back-btn" onClick={() => navigate('/community')}>
           <ArrowLeft size={20} />
         </button>
-        <div style={{ position: 'relative' }}>
-          <Avatar
-            src={selectedConversation.photoUrl}
-            emoji={selectedConversation.avatar}
-            name={selectedConversation.name}
-            size="sm"
-            variant="blue"
-          />
-          {isOnline && <span className="online-dot online-dot-sm" />}
-        </div>
-        <div>
-          <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
-            {selectedConversation.name}
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', flex: 1 }}
+          onClick={() => showUserActionMenu({
+            userId: otherPersonId,
+            userName: selectedConversation.name,
+            photoUrl: selectedConversation.photoUrl,
+            avatar: selectedConversation.avatar,
+            showMessage: false
+          })}
+        >
+          <div style={{ position: 'relative' }}>
+            <Avatar
+              src={selectedConversation.photoUrl}
+              emoji={selectedConversation.avatar}
+              name={selectedConversation.name}
+              size="sm"
+              variant="blue"
+            />
+            {isOnline && <span className="online-dot online-dot-sm" />}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-            {convTyping.length > 0
-              ? <span className="typing-text">typing...</span>
-              : isOnline
-                ? 'Online'
-                : 'Offline'
-            }
+          <div>
+            <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
+              {selectedConversation.name}
+            </div>
+            <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+              {convTyping.length > 0
+                ? <span className="typing-text">typing...</span>
+                : isOnline
+                  ? 'Online'
+                  : 'Offline'
+              }
+            </div>
           </div>
         </div>
       </div>

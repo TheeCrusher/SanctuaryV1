@@ -87,20 +87,24 @@ CREATE INDEX IF NOT EXISTS idx_appointments_series ON appointments(series_id);
 -- Maps to: AppContext.jsx → conversations state
 
 CREATE TABLE IF NOT EXISTS conversations (
-  id            SERIAL PRIMARY KEY,
-  owner_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  person_id     INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  last_message  TEXT,
-  last_time     VARCHAR(20),
-  unread_count  INTEGER DEFAULT 0,
-  is_group      BOOLEAN DEFAULT false,
-  group_name    VARCHAR(100),
-  created_by    INTEGER REFERENCES users(id) ON DELETE SET NULL,
-  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id              SERIAL PRIMARY KEY,
+  owner_id        INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  person_id       INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  last_message    TEXT,
+  last_time       VARCHAR(20),
+  last_sender_id  INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  unread_count    INTEGER DEFAULT 0,
+  is_group        BOOLEAN DEFAULT false,
+  group_name      VARCHAR(100),
+  created_by      INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_conversations_owner ON conversations(owner_id);
+CREATE INDEX IF NOT EXISTS idx_conversations_person ON conversations(person_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_conversations_pair
+  ON conversations(LEAST(owner_id, person_id), GREATEST(owner_id, person_id));
 
 -- ============================================================
 -- CONVERSATION PARTICIPANTS TABLE

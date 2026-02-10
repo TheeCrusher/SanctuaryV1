@@ -10,11 +10,13 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Calendar, MapPin, Clock, Tag, Users, User } from 'lucide-react'
 import { api } from '../../utils/api'
-import Avatar from '../common/Avatar'
+import { useApp } from '../../context/AppContext'
+import { Avatar } from '../common'
 
 function EventDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { showUserActionMenu, user } = useApp()
 
   const [event, setEvent] = useState(null)
   const [attendees, setAttendees] = useState([])
@@ -128,10 +130,18 @@ function EventDetail() {
           <div className="event-detail-desc">{event.description}</div>
         )}
 
-        <div className="event-detail-creator">
+        <div
+          className="event-detail-creator"
+          style={{ cursor: event.creatorId !== user?.id ? 'pointer' : 'default' }}
+          onClick={() => event.creatorId !== user?.id && showUserActionMenu({
+            userId: event.creatorId, userName: event.creatorName,
+            photoUrl: event.creatorPhoto, avatar: event.creatorAvatar
+          })}
+        >
           <Avatar
             src={event.creatorPhoto}
             emoji={event.creatorAvatar}
+            name={event.creatorName}
             size="sm"
           />
           <span>Created by {event.creatorName}</span>
@@ -155,12 +165,22 @@ function EventDetail() {
           </div>
           {attendees.map(a => (
             <div key={a.id} className="event-attendee-row">
-              <Avatar
-                src={a.photoUrl}
-                emoji={a.avatar}
-                size="sm"
-              />
-              <span className="event-attendee-name">{a.name}</span>
+              <div
+                className="event-attendee-user"
+                style={{ cursor: a.id !== user?.id ? 'pointer' : 'default' }}
+                onClick={() => a.id !== user?.id && showUserActionMenu({
+                  userId: a.id, userName: a.name,
+                  photoUrl: a.photoUrl, avatar: a.avatar
+                })}
+              >
+                <Avatar
+                  src={a.photoUrl}
+                  emoji={a.avatar}
+                  name={a.name}
+                  size="sm"
+                />
+                <span className="event-attendee-name">{a.name}</span>
+              </div>
               <span
                 className="event-attendee-role"
                 style={{

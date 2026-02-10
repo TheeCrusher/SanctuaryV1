@@ -21,7 +21,8 @@ function CommunityScreen() {
     availablePeople,
     selectConversation,
     startNewConversation,
-    onlineUsers
+    onlineUsers,
+    showUserActionMenu
   } = useApp()
 
   // Top-level toggle: 'community' or 'messages'
@@ -295,12 +296,15 @@ function CommunityScreen() {
                       <button
                         key={person.id}
                         className="suggested-card"
-                        onClick={() => navigate(`/user/${person.id}`)}
+                        onClick={() => showUserActionMenu({
+                          userId: person.id, userName: person.name,
+                          photoUrl: person.photoUrl, avatar: person.avatar
+                        })}
                       >
                         <Avatar emoji={person.avatar} src={person.photoUrl} size="md" />
                         <div className="suggested-card-info">
                           <div className="suggested-card-top">
-                            <span className="suggested-card-name">{person.name}</span>
+                            <span className="suggested-card-name tappable-name">{person.name}</span>
                             <span className={`role-badge role-badge-${person.role.toLowerCase()}`}>
                               {person.role}
                             </span>
@@ -333,10 +337,13 @@ function CommunityScreen() {
                   <div className="pending-list">
                     {pending.incoming.map(person => (
                       <div key={person.connectionId} className="pending-card">
-                        <div className="pending-card-left" onClick={() => navigate(`/user/${person.id}`)}>
+                        <div className="pending-card-left" onClick={() => showUserActionMenu({
+                          userId: person.id, userName: person.name,
+                          photoUrl: person.photoUrl, avatar: person.avatar
+                        })}>
                           <Avatar src={person.photoUrl} emoji={person.avatar} size="sm" />
                           <div>
-                            <div className="pending-card-name">{person.name}</div>
+                            <span className="pending-card-name tappable-name">{person.name}</span>
                             <span className={`role-badge role-badge-${person.role.toLowerCase()}`}>
                               {person.role}
                             </span>
@@ -389,12 +396,15 @@ function CommunityScreen() {
                     <button
                       key={person.id}
                       className="community-card"
-                      onClick={() => navigate(`/user/${person.id}`)}
+                      onClick={() => showUserActionMenu({
+                        userId: person.id, userName: person.name,
+                        photoUrl: person.photoUrl, avatar: person.avatar
+                      })}
                     >
                       <Avatar src={person.photoUrl} emoji={person.avatar} size="md" />
                       <div className="community-card-info">
                         <div className="community-card-top">
-                          <span className="community-card-name">{person.name}</span>
+                          <span className="community-card-name tappable-name">{person.name}</span>
                           <span className={`role-badge role-badge-${person.role.toLowerCase()}`}>
                             {person.role}
                           </span>

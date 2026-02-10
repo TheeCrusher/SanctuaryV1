@@ -61,6 +61,18 @@ export function AppProvider({ children }) {
   // ----- MODAL STATE -----
   const [modal, setModal] = useState(null)
 
+  // ----- USER ACTION MENU STATE -----
+  // { userId, userName, photoUrl, avatar, showMessage } or null
+  const [userActionMenu, setUserActionMenu] = useState(null)
+
+  function showUserActionMenu({ userId, userName, photoUrl, avatar, showMessage = true }) {
+    setUserActionMenu({ userId, userName, photoUrl, avatar, showMessage })
+  }
+
+  function hideUserActionMenu() {
+    setUserActionMenu(null)
+  }
+
   // ----- REAL-TIME STATE -----
   const [onlineUsers, setOnlineUsers] = useState(new Set())
   const [typingUsers, setTypingUsers] = useState({}) // { conversationId: [{ userId, userName }] }
@@ -761,6 +773,11 @@ export function AppProvider({ children }) {
     // Modal
     modal,
     setModal,
+
+    // User Action Menu
+    userActionMenu,
+    showUserActionMenu,
+    hideUserActionMenu,
 
     // Utils
     getDailyQuote: () => dailyQuote

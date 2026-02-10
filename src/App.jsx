@@ -43,6 +43,7 @@ import CommunityScreen from './components/screens/CommunityScreen'
 import EventsScreen from './components/screens/EventsScreen'
 import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
+import { UserActionMenu } from './components/common'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -416,6 +417,9 @@ function App() {
 
       {/* Show bottom navigation on appropriate pages */}
       {showNav && <BottomNav />}
+
+      {/* Global user action menu (triggered from any tappable name) */}
+      <UserActionMenu />
     </div>
   )
 }

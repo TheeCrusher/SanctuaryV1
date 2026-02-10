@@ -5585,3 +5585,107 @@ textarea {
 [data-theme="dark"] .three-dot-dropdown {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
+
+/* =============================================================================
+   38. USER ACTION MENU
+   =============================================================================
+   Small popup overlay when tapping a user's name anywhere in the app.
+   Shows quick actions: Visit Profile, Message.
+   ============================================================================= */
+
+.user-action-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease;
+}
+
+.user-action-card {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 240px;
+  max-width: 300px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.15s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.user-action-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.user-action-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.user-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 8px;
+}
+
+.user-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--text-primary);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.user-action-btn:hover {
+  background: var(--bg-hover);
+}
+
+.user-action-btn:active {
+  background: var(--bg-active, rgba(0, 0, 0, 0.08));
+}
+
+/* Clickable avatar+name areas (photo + name = one tap target) */
+.event-attendee-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.prayer-card-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.prayer-comment-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Dark mode */
+[data-theme="dark"] .user-action-card {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}

@@ -7,14 +7,14 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Card, Modal, Avatar, TappableName } from '../common'
+import { Card, Modal, Avatar } from '../common'
 import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2, Users, Megaphone } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function ChurchDetail() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { allChurches, toggleFavoriteChurch, isChurchFavorited, user } = useApp()
+  const { allChurches, toggleFavoriteChurch, isChurchFavorited, user, showUserActionMenu } = useApp()
 
   const church = allChurches.find(c => c.id === parseInt(id))
 
@@ -271,10 +271,14 @@ function ChurchDetail() {
                 <button
                   key={member.id}
                   className="church-member-card"
-                  onClick={() => navigate(`/user/${member.id}`)}
+                  onClick={() => member.id !== user?.id && showUserActionMenu({
+                    userId: member.id, userName: member.name,
+                    photoUrl: member.photoUrl, avatar: member.avatar
+                  })}
+                  style={{ cursor: member.id !== user?.id ? 'pointer' : 'default' }}
                 >
-                  <Avatar emoji={member.avatar} src={member.photoUrl} size="md" />
-                  <div className="church-member-name">{member.name}</div>
+                  <Avatar emoji={member.avatar} src={member.photoUrl} name={member.name} size="md" />
+                  <div className={`church-member-name ${member.id !== user?.id ? 'tappable-name' : ''}`}>{member.name}</div>
                   <span className={`role-badge role-badge-${member.role.toLowerCase()}`}>
                     {member.role}
                   </span>
@@ -341,10 +345,17 @@ function ChurchDetail() {
         ) : (
           reviews.map(review => (
             <div key={review.id} className="review-card">
-              <div className="review-header">
+              <div
+                className="review-header"
+                style={{ cursor: review.userId !== user?.id ? 'pointer' : 'default' }}
+                onClick={() => review.userId !== user?.id && showUserActionMenu({
+                  userId: review.userId, userName: review.userName,
+                  photoUrl: review.userPhoto, avatar: review.userAvatar
+                })}
+              >
                 <Avatar emoji={review.userAvatar} src={review.userPhoto} size="sm" variant="blue" />
                 <div className="review-info">
-                  <TappableName userId={review.userId} name={review.userName} className="review-name" />
+                  <span className={`review-name ${review.userId !== user?.id ? 'tappable-name' : ''}`}>{review.userName}</span>
                   <div className="review-meta">
                     <span className="stars stars-sm" style={{ fontSize: '12px' }}>{renderStars(review.rating)}</span>
                     <span>{relativeTime(review.createdAt)}</span>
