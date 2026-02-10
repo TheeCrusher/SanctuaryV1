@@ -5444,3 +5444,144 @@ textarea {
   background: rgba(16, 185, 129, 0.2);
   color: #6ee7b7;
 }
+
+/* ============================================================
+   37. BLOCK USER FEATURE
+   ============================================================ */
+
+/* 3-dot menu button in UserProfile header */
+.three-dot-menu {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+}
+
+.three-dot-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+
+.three-dot-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown menu */
+.three-dot-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.three-dot-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: background 0.15s;
+}
+
+.three-dot-item:hover {
+  background: var(--bg-secondary);
+}
+
+.three-dot-item.danger {
+  color: #ef4444;
+}
+
+.three-dot-item.danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Blocked Users Screen */
+.blocked-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.blocked-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.blocked-user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.blocked-user-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.blocked-user-role {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.unblock-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.unblock-btn:hover {
+  background: var(--bg-primary);
+  border-color: var(--text-secondary);
+}
+
+.unblock-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .three-dot-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .three-dot-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .three-dot-dropdown {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}

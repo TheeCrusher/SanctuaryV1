@@ -10,7 +10,7 @@ import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
 import { Avatar } from '../common'
 import { compressImage } from '../../utils/imageCompress'
-import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X } from 'lucide-react'
+import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff } from 'lucide-react'
 
 const SPECIALIZATIONS = [
   'Bible Study',
@@ -88,7 +88,8 @@ function Profile() {
   const accountItems = [
     { icon: User, text: 'Account Details', path: '/account-details' },
     { icon: Bell, text: 'Notifications', path: '/notifications' },
-    { icon: CreditCard, text: 'Payment Method', path: '/payment-method' }
+    { icon: CreditCard, text: 'Payment Method', path: '/payment-method' },
+    { icon: ShieldOff, text: 'Blocked Users', path: '/blocked-users' }
   ]
 
   const supportItems = [

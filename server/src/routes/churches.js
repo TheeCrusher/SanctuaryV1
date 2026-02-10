@@ -161,6 +161,11 @@ router.get('/:id/members', async (req, res, next) => {
           WHERE (requester_id = $1 OR recipient_id = $1)
             AND status IN ('accepted', 'pending')
         )
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+        )
       ORDER BY u.name ASC
     `, [userId, id])
 
@@ -210,8 +215,13 @@ router.get('/:id/reviews', async (req, res, next) => {
        FROM church_reviews r
        JOIN users u ON r.user_id = u.id
        WHERE r.church_id = $1
+         AND u.id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $2
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $2
+         )
        ORDER BY r.created_at DESC`,
-      [req.params.id]
+      [req.params.id, req.user.id]
     )
 
     const reviews = result.rows.map(r => ({

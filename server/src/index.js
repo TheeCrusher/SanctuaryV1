@@ -30,6 +30,7 @@ import bibleRoutes from './routes/bible.js'
 import communityRoutes from './routes/community.js'
 import homeRoutes from './routes/home.js'
 import eventRoutes from './routes/events.js'
+import blockRoutes from './routes/blocks.js'
 
 // Load environment variables from .env
 dotenv.config()
@@ -97,6 +98,7 @@ app.use('/api/bible', bibleRoutes)
 app.use('/api/community', communityRoutes)
 app.use('/api/home', homeRoutes)
 app.use('/api/events', eventRoutes)
+app.use('/api/blocks', blockRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE

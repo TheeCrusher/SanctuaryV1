@@ -42,6 +42,7 @@ import BibleReader from './components/screens/BibleReader'
 import CommunityScreen from './components/screens/CommunityScreen'
 import EventsScreen from './components/screens/EventsScreen'
 import EventDetail from './components/screens/EventDetail'
+import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 
 // =============================================================================
 // PROTECTED ROUTE COMPONENT
@@ -295,6 +296,15 @@ function App() {
           element={
             <ProtectedRoute>
               <EventDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/blocked-users"
+          element={
+            <ProtectedRoute>
+              <BlockedUsersScreen />
             </ProtectedRoute>
           }
         />

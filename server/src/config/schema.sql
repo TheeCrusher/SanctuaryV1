@@ -162,6 +162,25 @@ CREATE INDEX IF NOT EXISTS idx_connections_recipient ON user_connections(recipie
 CREATE INDEX IF NOT EXISTS idx_connections_status ON user_connections(status);
 
 -- ============================================================
+-- USER BLOCKS TABLE
+-- ============================================================
+-- Tracks which users have blocked each other.
+-- Blocking is bidirectional: if A blocks B, both become invisible
+-- to each other across the entire app (community, messages, etc).
+-- All block checks happen server-side in SQL queries.
+
+CREATE TABLE IF NOT EXISTS user_blocks (
+  id          SERIAL PRIMARY KEY,
+  blocker_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  blocked_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(blocker_id, blocked_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_user_blocks_blocker ON user_blocks(blocker_id);
+CREATE INDEX IF NOT EXISTS idx_user_blocks_blocked ON user_blocks(blocked_id);
+
+-- ============================================================
 -- CHURCHES TABLE
 -- ============================================================
 -- Stores church listings with ratings.

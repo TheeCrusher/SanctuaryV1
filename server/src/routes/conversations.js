@@ -35,6 +35,11 @@ router.get('/', async (req, res, next) => {
        FROM conversations c
        JOIN users u ON u.id = c.person_id
        WHERE c.owner_id = $1
+         AND c.person_id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
        ORDER BY c.updated_at DESC`,
       [req.user.id]
     )
@@ -79,6 +84,17 @@ router.post('/', async (req, res, next) => {
       [personId]
     )
     if (personResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Person not found.' })
+    }
+
+    // Check if either user has blocked the other
+    const blockCheck = await pool.query(
+      `SELECT id FROM user_blocks
+       WHERE (blocker_id = $1 AND blocked_id = $2)
+          OR (blocker_id = $2 AND blocked_id = $1)`,
+      [req.user.id, personId]
+    )
+    if (blockCheck.rows.length > 0) {
       return res.status(404).json({ error: 'Person not found.' })
     }
 

@@ -101,6 +101,11 @@ router.get('/', async (req, res, next) => {
              WHERE (uc.requester_id = $1 OR uc.recipient_id = $1)
                AND uc.status = 'accepted'
            )
+           AND u.id NOT IN (
+             SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+             UNION
+             SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+           )
          ORDER BY pr.created_at DESC
          LIMIT 5`,
         [userId]

@@ -178,7 +178,14 @@ router.put('/me', async (req, res, next) => {
 router.get('/available', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, avatar, photo_url, role FROM users WHERE id != $1 ORDER BY name ASC',
+      `SELECT id, name, avatar, photo_url, role FROM users
+       WHERE id != $1
+         AND id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
+       ORDER BY name ASC`,
       [req.user.id]
     )
 
@@ -215,6 +222,11 @@ router.get('/search', async (req, res, next) => {
       `SELECT id, name, avatar, photo_url, role
        FROM users
        WHERE id != $1 AND name ILIKE $2
+         AND id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
        ORDER BY name ASC
        LIMIT 20`,
       [req.user.id, `%${q.trim()}%`]
@@ -272,6 +284,11 @@ router.get('/suggested', async (req, res, next) => {
           FROM user_connections
           WHERE (requester_id = $1 OR recipient_id = $1)
             AND status IN ('accepted', 'pending')
+        )
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
         )
       ORDER BY u.name ASC
     `, [userId])
@@ -335,6 +352,17 @@ router.get('/:id', async (req, res, next) => {
   try {
     const userId = req.user.id
     const profileId = req.params.id
+
+    // Check if blocked (bidirectional)
+    const blockCheck = await pool.query(
+      `SELECT id FROM user_blocks
+       WHERE (blocker_id = $1 AND blocked_id = $2)
+          OR (blocker_id = $2 AND blocked_id = $1)`,
+      [userId, profileId]
+    )
+    if (blockCheck.rows.length > 0) {
+      return res.status(404).json({ error: 'User not found.' })
+    }
 
     const result = await pool.query(
       'SELECT id, name, avatar, photo_url, role, bio, specialization, location, denomination, church_name, interests, created_at FROM users WHERE id = $1',

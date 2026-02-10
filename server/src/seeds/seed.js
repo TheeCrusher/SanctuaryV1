@@ -61,6 +61,7 @@ async function seed() {
       DROP TABLE IF EXISTS church_announcements CASCADE;
       DROP TABLE IF EXISTS event_rsvps CASCADE;
       DROP TABLE IF EXISTS events CASCADE;
+      DROP TABLE IF EXISTS user_blocks CASCADE;
       DROP TABLE IF EXISTS user_connections CASCADE;
       DROP TABLE IF EXISTS user_bible_bookmarks CASCADE;
       DROP TABLE IF EXISTS user_bible_highlights CASCADE;

@@ -55,6 +55,11 @@ router.get('/', async (req, res, next) => {
        )
        WHERE (uc.requester_id = $1 OR uc.recipient_id = $1)
          AND uc.status = 'accepted'
+         AND u.id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
        ORDER BY u.name ASC`,
       [userId]
     )
@@ -82,6 +87,11 @@ router.get('/pending', async (req, res, next) => {
        FROM user_connections uc
        JOIN users u ON u.id = uc.requester_id
        WHERE uc.recipient_id = $1 AND uc.status = 'pending'
+         AND u.id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
        ORDER BY uc.created_at DESC`,
       [userId]
     )
@@ -94,6 +104,11 @@ router.get('/pending', async (req, res, next) => {
        FROM user_connections uc
        JOIN users u ON u.id = uc.recipient_id
        WHERE uc.requester_id = $1 AND uc.status = 'pending'
+         AND u.id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+         )
        ORDER BY uc.created_at DESC`,
       [userId]
     )

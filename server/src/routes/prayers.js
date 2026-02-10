@@ -44,6 +44,13 @@ router.get('/', async (req, res, next) => {
     const values = [req.user.id]
     let paramCount = 1
 
+    // Filter out blocked users (bidirectional)
+    conditions.push(`u.id NOT IN (
+      SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+      UNION
+      SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+    )`)
+
     // Filter by type (prayer or testimony)
     paramCount++
     conditions.push(`pr.type = $${paramCount}`)
@@ -208,8 +215,13 @@ router.get('/:id/comments', async (req, res, next) => {
        FROM prayer_interactions pi
        JOIN users u ON pi.user_id = u.id
        WHERE pi.request_id = $1 AND pi.type = 'comment'
+         AND u.id NOT IN (
+           SELECT blocked_id FROM user_blocks WHERE blocker_id = $2
+           UNION
+           SELECT blocker_id FROM user_blocks WHERE blocked_id = $2
+         )
        ORDER BY pi.created_at ASC`,
-      [req.params.id]
+      [req.params.id, req.user.id]
     )
 
     const comments = result.rows.map(c => ({

@@ -35,6 +35,11 @@ router.get('/', async (req, res, next) => {
       LEFT JOIN churches c ON c.id = e.church_id
       JOIN users u ON u.id = e.created_by
       WHERE e.date_time > NOW()
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+        )
     `
 
     const values = [req.user.id]
@@ -148,8 +153,13 @@ router.get('/:id', async (req, res, next) => {
       FROM event_rsvps r
       JOIN users u ON u.id = r.user_id
       WHERE r.event_id = $1
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $2
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $2
+        )
       ORDER BY r.created_at ASC
-    `, [req.params.id])
+    `, [req.params.id, req.user.id])
 
     const attendees = attendeesResult.rows.map(a => ({
       id: a.id,

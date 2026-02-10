@@ -5,12 +5,13 @@
 // - "Add to Community" / "Request Pending" / "In Your Community" based on status
 // - "Send Message" for everyone
 // - "Book Session" only when a Seeker views a Guide's profile
+// - 3-dot menu with "Block User" option
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock } from 'lucide-react'
+import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function UserProfile() {
@@ -21,6 +22,9 @@ function UserProfile() {
   const [loading, setLoading] = useState(true)
   const [connectionStatus, setConnectionStatus] = useState('none')
   const [connectionLoading, setConnectionLoading] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
+  const [blocking, setBlocking] = useState(false)
+  const menuRef = useRef(null)
 
   useEffect(() => {
     async function loadProfile() {
@@ -40,6 +44,19 @@ function UserProfile() {
     loadProfile()
   }, [id])
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowMenu(false)
+      }
+    }
+    if (showMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showMenu])
+
   async function handleMessage() {
     const conv = await startNewConversation(Number(id))
     if (conv) navigate('/chat')
@@ -54,6 +71,21 @@ function UserProfile() {
       console.error('Failed to send connection request:', error)
     } finally {
       setConnectionLoading(false)
+    }
+  }
+
+  async function handleBlock() {
+    if (!confirm(`Block ${profile.name}? They won't be able to see your profile, messages, or activity.`)) {
+      return
+    }
+    setBlocking(true)
+    setShowMenu(false)
+    try {
+      await api.post('/blocks', { blockedId: Number(id) })
+      navigate(-1)
+    } catch (error) {
+      console.error('Failed to block user:', error)
+      setBlocking(false)
     }
   }
 
@@ -95,6 +127,28 @@ function UserProfile() {
         <button className="back-btn" onClick={() => navigate(-1)} style={{ position: 'absolute', top: 16, left: 16 }}>
           <ArrowLeft size={20} />
         </button>
+
+        {/* 3-dot menu (only for other users' profiles) */}
+        {connectionStatus !== 'self' && (
+          <div className="three-dot-menu" ref={menuRef}>
+            <button
+              className="three-dot-btn"
+              onClick={() => setShowMenu(!showMenu)}
+              disabled={blocking}
+            >
+              <MoreVertical size={20} />
+            </button>
+            {showMenu && (
+              <div className="three-dot-dropdown">
+                <button className="three-dot-item danger" onClick={handleBlock}>
+                  <ShieldOff size={16} />
+                  Block User
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         <Avatar
           src={profile.photoUrl}
           emoji={profile.avatar}
