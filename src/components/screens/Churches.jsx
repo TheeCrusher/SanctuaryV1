@@ -81,26 +81,27 @@ function Churches() {
         </h1>
 
         {/* Search Input */}
-        <div className="search-row">
+        <div className="church-search-bar">
+          <Search size={18} className="church-search-icon" />
           <input
-            type="text"
-            placeholder="Search by name, city, state, or ZIP..."
+            type="search"
+            enterKeyHint="search"
+            placeholder="Search by city, state, or ZIP..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
           {query ? (
-            <button className="search-clear" onClick={handleClear}>
+            <button className="church-search-clear" onClick={handleClear}>
               <X size={18} />
             </button>
           ) : null}
           <button
-            className="btn-primary"
+            className="church-search-submit"
             onClick={handleSearch}
-            disabled={!query.trim() || loading}
-            style={{ marginLeft: '8px', padding: '8px 16px', borderRadius: '12px', minWidth: 'auto' }}
+            disabled={!query.trim()}
           >
-            <Search size={18} />
+            Search
           </button>
         </div>
 
@@ -151,37 +152,18 @@ function Churches() {
               >
                 {/* Photo + Info Row */}
                 <div style={{ display: 'flex', gap: '12px' }}>
-                  {/* Church Photo */}
-                  {church.photoUrl ? (
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      borderRadius: '12px',
-                      overflow: 'hidden',
-                      flexShrink: 0,
-                      backgroundColor: '#f3f4f6'
-                    }}>
+                  {/* Church Photo (icon always underneath as fallback) */}
+                  <div className="church-photo-container">
+                    <Church size={32} color="#9ca3af" className="church-photo-fallback" />
+                    {church.photoUrl && (
                       <img
                         src={church.photoUrl}
                         alt={church.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        className="church-photo-img"
                         onError={(e) => { e.target.style.display = 'none' }}
                       />
-                    </div>
-                  ) : (
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      borderRadius: '12px',
-                      flexShrink: 0,
-                      backgroundColor: '#f3f4f6',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <Church size={32} color="#9ca3af" />
-                    </div>
-                  )}
+                    )}
+                  </div>
 
                   {/* Church Info */}
                   <div style={{ flex: 1, minWidth: 0 }}>

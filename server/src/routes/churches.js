@@ -90,7 +90,7 @@ router.get('/', async (req, res, next) => {
     // Get the paginated results
     const dataParams = [...params, limit, offset]
     const result = await pool.query(
-      `SELECT * ${baseQuery} ORDER BY name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      `SELECT * ${baseQuery} ORDER BY (photo_url IS NULL) ASC, name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
       dataParams
     )
     const churches = result.rows.map(formatChurch)
