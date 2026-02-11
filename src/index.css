@@ -574,23 +574,24 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   margin-left: 8px;
   vertical-align: middle;
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .home-role-guide {
-  background: rgba(234, 179, 8, 0.25);
-  color: #b45309;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 .home-role-seeker {
-  background: rgba(59, 130, 246, 0.25);
-  color: #1d4ed8;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 /* --- Notification Cards --- */
@@ -725,6 +726,9 @@ textarea {
 .home-activity-info {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .home-activity-name {
@@ -5122,18 +5126,20 @@ textarea {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  border: none;
+  border: 2px solid var(--brand-primary);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: var(--brand-primary);
-  color: white;
+  background: white;
+  color: var(--brand-primary);
   margin-bottom: 16px;
 }
 
 .event-detail-rsvp-btn.active {
   background: #10b981;
+  border-color: #10b981;
+  color: white;
 }
 
 /* Attendees section */

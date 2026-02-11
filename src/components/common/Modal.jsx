@@ -11,9 +11,9 @@
 //   - children: The content inside the modal
 
 function Modal({ isOpen, onClose, title, children }) {
-  // If not open, don't render anything
-  // This is called "conditional rendering" in React
-  if (!isOpen) return null
+  // If explicitly set to false, don't render anything
+  // Supports both patterns: <Modal isOpen={bool}> and {bool && <Modal>}
+  if (isOpen === false) return null
 
   // Handle clicking the dark overlay (background) to close
   function handleOverlayClick(e) {

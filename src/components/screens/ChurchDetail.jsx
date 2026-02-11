@@ -8,15 +8,17 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar } from '../common'
-import { ArrowLeft, Church, Check, X, Heart, Star, Edit3, Trash2, Users, Megaphone } from 'lucide-react'
+import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function ChurchDetail() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { allChurches, toggleFavoriteChurch, isChurchFavorited, user, showUserActionMenu } = useApp()
+  const { toggleFavoriteChurch, isChurchFavorited, user, showUserActionMenu } = useApp()
 
-  const church = allChurches.find(c => c.id === parseInt(id))
+  // Fetch church by ID from the API (not from local cache)
+  const [church, setChurch] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   // Church members state (people who favorited/reviewed this church)
   const [members, setMembers] = useState([])
@@ -37,14 +39,24 @@ function ChurchDetail() {
   const [annCategory, setAnnCategory] = useState('Announcement')
   const [annSubmitting, setAnnSubmitting] = useState(false)
 
-  // Load reviews, members, and announcements when component mounts
+  // Load church data, reviews, members, and announcements when component mounts
   useEffect(() => {
-    if (church) {
-      loadReviews()
-      loadMembers()
-      loadAnnouncements()
+    async function loadChurch() {
+      try {
+        const data = await api.get(`/churches/${id}`)
+        setChurch(data.church)
+      } catch (error) {
+        console.error('Failed to load church:', error)
+        setChurch(null)
+      } finally {
+        setLoading(false)
+      }
     }
-  }, [church?.id])
+    loadChurch()
+    loadReviews()
+    loadMembers()
+    loadAnnouncements()
+  }, [id])
 
   async function loadReviews() {
     try {
@@ -160,6 +172,14 @@ function ChurchDetail() {
     return date.toLocaleDateString()
   }
 
+  if (loading) {
+    return (
+      <div className="screen" style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-faint)' }}>
+        Loading church...
+      </div>
+    )
+  }
+
   if (!church) {
     return (
       <div className="screen">
@@ -208,54 +228,70 @@ function ChurchDetail() {
 
       {/* Content */}
       <div className="screen-content">
+        {/* Church Photo */}
+        {church.photoUrl && (
+          <div style={{ borderRadius: '12px', overflow: 'hidden', marginBottom: '12px' }}>
+            <img
+              src={church.photoUrl}
+              alt={church.name}
+              style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
+              onError={(e) => { e.target.style.display = 'none' }}
+            />
+          </div>
+        )}
+
         {/* Church Name & Address */}
         <Card>
           <h2 className="church-name" style={{ marginBottom: '8px' }}>{church.name}</h2>
+          {church.shortDescription && (
+            <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '12px' }}>{church.shortDescription}</p>
+          )}
           <p className="church-address">
-            {church.address}<br />{church.city}, {church.zip}
+            {church.address}
+            {church.state && <><br />{church.city}, {church.state} {church.zip !== '00000' ? church.zip : ''}</>}
+            {!church.state && <><br />{church.city}{church.zip ? `, ${church.zip}` : ''}</>}
           </p>
-          <div className="church-overall" style={{ marginTop: '16px' }}>
-            <span className="stars stars-lg">{renderStars(church.overallRating)}</span>
-            <span className="star-score" style={{ fontSize: '18px' }}>{church.overallRating}</span>
-            <span style={{ color: 'var(--text-faint)' }}>({church.reviewCount} reviews)</span>
-          </div>
+          {church.phone && (
+            <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '8px' }}>
+              Phone: <a href={`tel:${church.phone}`} style={{ color: 'var(--brand-primary)' }}>{church.phone}</a>
+            </p>
+          )}
+          {church.website && (
+            <p style={{ fontSize: '14px', marginTop: '4px' }}>
+              <a href={church.website} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-primary)' }}>
+                Visit Website
+              </a>
+            </p>
+          )}
+          {church.reviewCount > 0 && (
+            <div className="church-overall" style={{ marginTop: '16px' }}>
+              <span className="stars stars-lg">{renderStars(church.overallRating)}</span>
+              <span className="star-score" style={{ fontSize: '18px' }}>{church.overallRating}</span>
+              <span style={{ color: 'var(--text-faint)' }}>({church.reviewCount} reviews)</span>
+            </div>
+          )}
         </Card>
 
-        {/* Service Times */}
-        <Card>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Service Times</h3>
-          <p style={{ color: 'var(--text-secondary)' }}>{church.hours}</p>
-        </Card>
+        {/* Service Times (only show if data exists) */}
+        {church.hours && (
+          <Card>
+            <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Service Times</h3>
+            <p style={{ color: 'var(--text-secondary)' }}>{church.hours}</p>
+          </Card>
+        )}
 
-        {/* Ratings Breakdown */}
-        <Card>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Ratings</h3>
-          <div className="rating-grid">
-            {['singing', 'preaching', 'openness', 'space'].map(cat => (
-              <div key={cat}>
-                <div className="rating-label">{cat.charAt(0).toUpperCase() + cat.slice(1)}</div>
-                <div>
-                  <span className="stars stars-sm">{renderStars(church.ratings[cat])}</span>
-                  <span style={{ marginLeft: '8px', fontWeight: '600' }}>{church.ratings[cat]}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* Programs */}
-        <Card>
-          <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Programs</h3>
-          <div className="church-meta">
-            <span className={`meta-tag ${church.sundaySchool ? 'meta-tag-yes' : 'meta-tag-no'}`}>
-              {church.sundaySchool
-                ? <><Check size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Sunday School</>
-                : <><X size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> No Sunday School</>
-              }
-            </span>
-            {church.sundaySchool && <span className="meta-tag">{church.recommendedAges}</span>}
-          </div>
-        </Card>
+        {/* Programs (only show if sundaySchool data exists) */}
+        {church.sundaySchool && (
+          <Card>
+            <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Programs</h3>
+            <div className="church-meta">
+              <span className="meta-tag meta-tag-yes">
+                <Check size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Sunday School
+              </span>
+              {church.recommendedAges && <span className="meta-tag">{church.recommendedAges}</span>}
+            </div>
+          </Card>
+        )}
 
         {/* People at This Church */}
         {members.length > 0 && (

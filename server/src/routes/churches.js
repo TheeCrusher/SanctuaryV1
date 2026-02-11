@@ -71,7 +71,7 @@ function formatChurch(row) {
 router.get('/', async (req, res, next) => {
   try {
     const { q } = req.query
-    const limit = parseInt(req.query.limit) || 5
+    const limit = parseInt(req.query.limit) || 20
     const offset = parseInt(req.query.offset) || 0
 
     let baseQuery = 'FROM churches'

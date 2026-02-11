@@ -522,7 +522,7 @@ export function AppProvider({ children }) {
       setChurchSearchHasMore(false)
       return
     }
-    const data = await api.get(`/churches?q=${encodeURIComponent(query)}&limit=5&offset=${offset}`)
+    const data = await api.get(`/churches?q=${encodeURIComponent(query)}&limit=20&offset=${offset}`)
     if (offset === 0) {
       // New search — replace results
       setChurchSearchResults(data.churches)

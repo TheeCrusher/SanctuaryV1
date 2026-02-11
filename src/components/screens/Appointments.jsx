@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
-import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download, ChevronDown } from 'lucide-react'
+import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download, ArrowLeft } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function Appointments() {
@@ -244,6 +244,9 @@ function Appointments() {
       {/* Header */}
       <div className="screen-header">
         <div className="screen-header-top">
+          <button className="back-btn" onClick={() => navigate(-1)}>
+            <ArrowLeft size={20} />
+          </button>
           <h1 style={{ fontSize: '24px', fontWeight: '700' }}>Sessions</h1>
           <div style={{ display: 'flex', gap: '8px' }}>
             <button className="icon-btn" onClick={() => navigate('/calendar')} title="Calendar">

@@ -154,7 +154,7 @@ function EventDetail() {
         onClick={handleRsvp}
       >
         <Users size={20} />
-        {event.hasRsvpd ? `Going (${event.rsvpCount})` : `I'm Going (${event.rsvpCount})`}
+        {event.hasRsvpd ? `I'm Going \u2713 (${event.rsvpCount})` : `RSVP (${event.rsvpCount})`}
       </button>
 
       {/* Attendees */}
