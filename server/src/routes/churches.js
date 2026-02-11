@@ -18,6 +18,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -403,6 +404,26 @@ router.post('/:id/announcements', async (req, res, next) => {
     )
 
     const r = result.rows[0]
+
+    // Notify all users who favorited this church
+    const churchInfo = await pool.query('SELECT name FROM churches WHERE id = $1', [req.params.id])
+    const favResult = await pool.query(
+      'SELECT user_id FROM church_favorites WHERE church_id = $1',
+      [req.params.id]
+    )
+    const io = req.app.get('io')
+    for (const fav of favResult.rows) {
+      await createNotification(io, {
+        userId: fav.user_id,
+        actorId: req.user.id,
+        type: 'church_announcement',
+        title: `New announcement from ${churchInfo.rows[0].name}`,
+        body: title,
+        referenceType: 'church',
+        referenceId: parseInt(req.params.id)
+      })
+    }
+
     res.status(201).json({
       announcement: {
         id: r.id,

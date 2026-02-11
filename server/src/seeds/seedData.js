@@ -11,7 +11,7 @@
 // Test user account (the spiritual guide)
 // Password will be hashed with bcrypt before inserting
 export const TEST_USER = {
-  name: 'Spiritual Guide',
+  name: 'Pastor Mike',
   email: 'test@sanctuary.com',
   password: 'Sanctuary123',
   avatar: '🙏',
@@ -153,8 +153,8 @@ export const BIBLE_QUOTES = [
 // Sample appointments for the demo
 // These link to the test user (guide_id will be set during seeding)
 // Discovery seed users — NOT connected to anyone, so they appear in "Suggested for You"
-// David shares interests with Spiritual Guide (Bible Study, Worship)
-// Maria shares denomination with Jordan (Catholic) and interests with Spiritual Guide (Youth Ministry)
+// David shares interests with Pastor Mike (Bible Study, Worship)
+// Maria shares denomination with Jordan (Catholic) and interests with Pastor Mike (Youth Ministry)
 export const DISCOVERY_USERS = [
   {
     name: 'David Kim',

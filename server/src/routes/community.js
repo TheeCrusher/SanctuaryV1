@@ -13,6 +13,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -216,6 +217,17 @@ router.post('/request', async (req, res, next) => {
            RETURNING id`,
           [requesterId, recipientId, conn.id]
         )
+        // Notify recipient of re-request
+        const requesterInfo = await pool.query('SELECT name FROM users WHERE id = $1', [requesterId])
+        const io = req.app.get('io')
+        await createNotification(io, {
+          userId: recipientId,
+          actorId: requesterId,
+          type: 'connection_request',
+          title: `${requesterInfo.rows[0].name} wants to connect`,
+          referenceType: 'user',
+          referenceId: requesterId
+        })
         return res.status(201).json({ connectionId: result.rows[0].id, status: 'pending' })
       }
     }
@@ -227,6 +239,18 @@ router.post('/request', async (req, res, next) => {
        RETURNING id`,
       [requesterId, recipientId]
     )
+
+    // Notify recipient of new connection request
+    const requesterInfo = await pool.query('SELECT name FROM users WHERE id = $1', [requesterId])
+    const io = req.app.get('io')
+    await createNotification(io, {
+      userId: recipientId,
+      actorId: requesterId,
+      type: 'connection_request',
+      title: `${requesterInfo.rows[0].name} wants to connect`,
+      referenceType: 'user',
+      referenceId: requesterId
+    })
 
     res.status(201).json({ connectionId: result.rows[0].id, status: 'pending' })
   } catch (error) {
@@ -261,6 +285,24 @@ router.patch('/:id', async (req, res, next) => {
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Pending request not found.' })
+    }
+
+    // If accepted, notify the requester
+    if (status === 'accepted') {
+      const connInfo = await pool.query(
+        'SELECT requester_id FROM user_connections WHERE id = $1',
+        [connectionId]
+      )
+      const accepterInfo = await pool.query('SELECT name FROM users WHERE id = $1', [userId])
+      const io = req.app.get('io')
+      await createNotification(io, {
+        userId: connInfo.rows[0].requester_id,
+        actorId: userId,
+        type: 'connection_accepted',
+        title: `${accepterInfo.rows[0].name} accepted your connection`,
+        referenceType: 'user',
+        referenceId: userId
+      })
     }
 
     res.json({ connectionId: result.rows[0].id, status })

@@ -506,3 +506,41 @@ CREATE TABLE IF NOT EXISTS church_announcements (
 );
 
 CREATE INDEX IF NOT EXISTS idx_announcements_church ON church_announcements(church_id);
+
+-- ============================================================
+-- NOTIFICATIONS TABLE
+-- ============================================================
+-- In-app notifications for user activity (messages, connections,
+-- prayers, events, appointments, church announcements).
+-- Each notification belongs to one user and optionally references
+-- a related entity so the frontend can navigate on tap.
+--
+-- Maps to: /api/notifications endpoints
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id              SERIAL PRIMARY KEY,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  actor_id        INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  type            VARCHAR(50) NOT NULL
+                  CHECK (type IN (
+                    'new_message',
+                    'connection_request',
+                    'connection_accepted',
+                    'prayer_prayed',
+                    'prayer_comment',
+                    'testimony_celebration',
+                    'event_rsvp',
+                    'appointment_request',
+                    'church_announcement'
+                  )),
+  title           VARCHAR(200) NOT NULL,
+  body            TEXT,
+  reference_type  VARCHAR(50),
+  reference_id    INTEGER,
+  is_read         BOOLEAN DEFAULT false,
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);
+CREATE INDEX IF NOT EXISTS idx_notifications_unread ON notifications(user_id, is_read);
+CREATE INDEX IF NOT EXISTS idx_notifications_created ON notifications(created_at DESC);

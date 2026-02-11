@@ -73,6 +73,10 @@ export function AppProvider({ children }) {
     setUserActionMenu(null)
   }
 
+  // ----- NOTIFICATIONS STATE -----
+  const [notifications, setNotifications] = useState([])
+  const [unreadNotifCount, setUnreadNotifCount] = useState(0)
+
   // ----- REAL-TIME STATE -----
   const [onlineUsers, setOnlineUsers] = useState(new Set())
   const [typingUsers, setTypingUsers] = useState({}) // { conversationId: [{ userId, userName }] }
@@ -136,6 +140,12 @@ export function AppProvider({ children }) {
         return { ...prev, [conversationId]: current.filter(t => t.userId !== userId) }
       })
     })
+
+    // Real-time notification badge update
+    socket.on('new_notification', ({ notification, unreadCount }) => {
+      setNotifications(prev => [notification, ...prev])
+      setUnreadNotifCount(unreadCount)
+    })
   }
 
   // =========================================================================
@@ -160,7 +170,8 @@ export function AppProvider({ children }) {
         verseBookmarksRes,
         plansRes,
         bibleHighlightsRes,
-        bibleBookmarksRes
+        bibleBookmarksRes,
+        unreadCountRes
       ] = await Promise.all([
         api.get('/appointments'),
         api.get('/conversations'),
@@ -174,7 +185,8 @@ export function AppProvider({ children }) {
         api.get('/scripture/bookmarks'),
         api.get('/scripture/plans'),
         api.get('/bible/highlights'),
-        api.get('/bible/bookmarks')
+        api.get('/bible/bookmarks'),
+        api.get('/notifications/unread-count')
       ])
 
       setAppointments(appointmentsRes.appointments)
@@ -190,6 +202,7 @@ export function AppProvider({ children }) {
       setReadingPlans(plansRes.plans)
       setBibleHighlights(bibleHighlightsRes.highlights)
       setBibleBookmarks(bibleBookmarksRes.bookmarks)
+      setUnreadNotifCount(unreadCountRes.count)
     } catch (error) {
       console.error('Failed to load data:', error)
     }
@@ -302,6 +315,8 @@ export function AppProvider({ children }) {
     setReadingPlans([])
     setOnlineUsers(new Set())
     setTypingUsers({})
+    setNotifications([])
+    setUnreadNotifCount(0)
   }
 
   async function updateUserPhoto(photoUrl) {
@@ -685,6 +700,53 @@ export function AppProvider({ children }) {
   }
 
   // =========================================================================
+  // NOTIFICATION FUNCTIONS
+  // =========================================================================
+
+  async function fetchNotifications() {
+    try {
+      const data = await api.get('/notifications')
+      setNotifications(data.notifications)
+      setUnreadNotifCount(data.unreadCount)
+    } catch (error) {
+      console.error('Failed to load notifications:', error)
+    }
+  }
+
+  async function markNotificationRead(id) {
+    try {
+      await api.patch(`/notifications/${id}/read`)
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n))
+      setUnreadNotifCount(prev => Math.max(0, prev - 1))
+    } catch (error) {
+      console.error('Failed to mark notification read:', error)
+    }
+  }
+
+  async function markAllNotificationsRead() {
+    try {
+      await api.patch('/notifications/read-all')
+      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })))
+      setUnreadNotifCount(0)
+    } catch (error) {
+      console.error('Failed to mark all read:', error)
+    }
+  }
+
+  async function deleteNotification(id) {
+    try {
+      const removed = notifications.find(n => n.id === id)
+      await api.delete(`/notifications/${id}`)
+      setNotifications(prev => prev.filter(n => n.id !== id))
+      if (removed && !removed.isRead) {
+        setUnreadNotifCount(prev => Math.max(0, prev - 1))
+      }
+    } catch (error) {
+      console.error('Failed to delete notification:', error)
+    }
+  }
+
+  // =========================================================================
   // CONTEXT VALUE
   // =========================================================================
   // This is what every screen gets when it calls useApp().
@@ -778,6 +840,14 @@ export function AppProvider({ children }) {
     userActionMenu,
     showUserActionMenu,
     hideUserActionMenu,
+
+    // Notifications
+    notifications,
+    unreadNotifCount,
+    fetchNotifications,
+    markNotificationRead,
+    markAllNotificationsRead,
+    deleteNotification,
 
     // Utils
     getDailyQuote: () => dailyQuote

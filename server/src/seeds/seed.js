@@ -266,42 +266,42 @@ async function seed() {
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
       [guideId, peopleIds[0]]
     )
-    console.log('   ✅ Spiritual Guide ↔ Sarah Johnson (accepted)')
+    console.log('   ✅ Pastor Mike ↔ Sarah Johnson (accepted)')
 
     // Test user connected to Emily Rodriguez (accepted)
     await client.query(
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
       [guideId, peopleIds[2]]
     )
-    console.log('   ✅ Spiritual Guide ↔ Emily Rodriguez (accepted)')
+    console.log('   ✅ Pastor Mike ↔ Emily Rodriguez (accepted)')
 
     // Test user connected to James Wilson (accepted)
     await client.query(
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
       [guideId, peopleIds[3]]
     )
-    console.log('   ✅ Spiritual Guide ↔ James Wilson (accepted)')
+    console.log('   ✅ Pastor Mike ↔ James Wilson (accepted)')
 
     // Test user connected to Grace Okafor (accepted)
     await client.query(
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
       [guideId, peopleIds[4]]
     )
-    console.log('   ✅ Spiritual Guide ↔ Grace Okafor (accepted)')
+    console.log('   ✅ Pastor Mike ↔ Grace Okafor (accepted)')
 
     // Michael Chen sent a pending request to test user
     await client.query(
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'pending')`,
       [peopleIds[1], guideId]
     )
-    console.log('   ✅ Michael Chen → Spiritual Guide (pending)')
+    console.log('   ✅ Michael Chen → Pastor Mike (pending)')
 
-    // Jordan Rivera connected to Spiritual Guide (accepted)
+    // Jordan Rivera connected to Pastor Mike (accepted)
     await client.query(
       `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted')`,
       [seekerId, guideId]
     )
-    console.log('   ✅ Jordan Rivera ↔ Spiritual Guide (accepted)')
+    console.log('   ✅ Jordan Rivera ↔ Pastor Mike (accepted)')
 
     // ---- Step 10b: Insert discovery users (unconnected) ----
     console.log('\n🔍 Creating discovery users (unconnected)...')

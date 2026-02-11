@@ -13,6 +13,7 @@ import { Router } from 'express'
 import { randomUUID } from 'crypto'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -177,6 +178,21 @@ router.post('/', async (req, res, next) => {
         )
         appointments.push(formatRow(rResult.rows[0]))
       }
+    }
+
+    // If a seeker booked with a guide, notify the guide
+    if (guideId) {
+      const seekerInfo = await pool.query('SELECT name FROM users WHERE id = $1', [req.user.id])
+      const io = req.app.get('io')
+      await createNotification(io, {
+        userId: guideId,
+        actorId: req.user.id,
+        type: 'appointment_request',
+        title: `${seekerInfo.rows[0].name} requested a session`,
+        body: `${type} on ${date}`,
+        referenceType: 'appointment',
+        referenceId: appointments[0].id
+      })
     }
 
     res.status(201).json({ appointments })

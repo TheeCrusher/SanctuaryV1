@@ -12,6 +12,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -221,6 +222,23 @@ router.post('/:id/rsvp', async (req, res, next) => {
       'SELECT COUNT(*) AS count FROM event_rsvps WHERE event_id = $1',
       [req.params.id]
     )
+
+    // Notify event creator about the RSVP
+    const eventInfo = await pool.query(
+      'SELECT created_by, title FROM events WHERE id = $1',
+      [req.params.id]
+    )
+    const rsvpUserInfo = await pool.query('SELECT name FROM users WHERE id = $1', [req.user.id])
+    const io = req.app.get('io')
+    await createNotification(io, {
+      userId: eventInfo.rows[0].created_by,
+      actorId: req.user.id,
+      type: 'event_rsvp',
+      title: `${rsvpUserInfo.rows[0].name} is going to your event`,
+      body: eventInfo.rows[0].title,
+      referenceType: 'event',
+      referenceId: parseInt(req.params.id)
+    })
 
     res.json({ rsvpCount: parseInt(result.rows[0].count) })
   } catch (error) {

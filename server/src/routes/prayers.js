@@ -13,6 +13,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -200,6 +201,27 @@ router.post('/:id/pray', async (req, res, next) => {
       [requestId]
     )
 
+    // Notify the prayer/testimony author
+    const prayerInfo = await pool.query(
+      'SELECT user_id, title, type FROM prayer_requests WHERE id = $1',
+      [requestId]
+    )
+    const prayer = prayerInfo.rows[0]
+    const actorInfo = await pool.query('SELECT name FROM users WHERE id = $1', [req.user.id])
+    const isTestimony = prayer.type === 'testimony'
+    const io = req.app.get('io')
+    await createNotification(io, {
+      userId: prayer.user_id,
+      actorId: req.user.id,
+      type: isTestimony ? 'testimony_celebration' : 'prayer_prayed',
+      title: isTestimony
+        ? `${actorInfo.rows[0].name} celebrated your testimony`
+        : `${actorInfo.rows[0].name} prayed for your request`,
+      body: prayer.title,
+      referenceType: 'prayer',
+      referenceId: parseInt(requestId)
+    })
+
     res.json({ prayerCount: result.rows[0].prayer_count })
   } catch (error) {
     next(error)
@@ -256,6 +278,24 @@ router.post('/:id/comments', async (req, res, next) => {
     )
 
     const c = result.rows[0]
+
+    // Notify the prayer author about the comment
+    const prayerInfo = await pool.query(
+      'SELECT user_id, title FROM prayer_requests WHERE id = $1',
+      [req.params.id]
+    )
+    const commenterInfo = await pool.query('SELECT name FROM users WHERE id = $1', [req.user.id])
+    const io = req.app.get('io')
+    await createNotification(io, {
+      userId: prayerInfo.rows[0].user_id,
+      actorId: req.user.id,
+      type: 'prayer_comment',
+      title: `${commenterInfo.rows[0].name} commented on your prayer`,
+      body: prayerInfo.rows[0].title,
+      referenceType: 'prayer',
+      referenceId: parseInt(req.params.id)
+    })
+
     res.status(201).json({
       comment: {
         id: c.id,

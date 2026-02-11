@@ -32,11 +32,14 @@ router.get('/', async (req, res, next) => {
       upcomingEventsResult
     ] = await Promise.all([
 
-      // 1. Unread messages count
+      // 1. Unread messages count (only where someone ELSE sent the last message)
       pool.query(
         `SELECT COALESCE(SUM(unread_count), 0) AS count
          FROM conversations
-         WHERE owner_id = $1 AND unread_count > 0`,
+         WHERE (owner_id = $1 OR person_id = $1)
+           AND unread_count > 0
+           AND last_sender_id IS NOT NULL
+           AND last_sender_id != $1`,
         [userId]
       ),
 

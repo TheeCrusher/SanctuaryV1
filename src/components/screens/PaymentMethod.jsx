@@ -6,8 +6,10 @@
 
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useApp } from '../../context/AppContext'
 
 function PaymentMethod() {
+  const { user } = useApp()
   const navigate = useNavigate()
 
   return (
@@ -35,7 +37,7 @@ function PaymentMethod() {
           <div className="payment-card-row">
             <div>
               <div style={{ marginBottom: '4px' }}>Card Holder</div>
-              <div style={{ fontWeight: '600', fontSize: '14px', opacity: 1 }}>Spiritual Guide</div>
+              <div style={{ fontWeight: '600', fontSize: '14px', opacity: 1 }}>{user?.name || 'Card Holder'}</div>
             </div>
             <div>
               <div style={{ marginBottom: '4px' }}>Expires</div>

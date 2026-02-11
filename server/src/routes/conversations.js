@@ -14,6 +14,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
@@ -266,6 +267,24 @@ router.post('/:id/messages', async (req, res, next) => {
       'SELECT name FROM users WHERE id = $1',
       [userId]
     )
+
+    // Notify the other person in the conversation
+    const convInfo = await pool.query(
+      'SELECT owner_id, person_id FROM conversations WHERE id = $1',
+      [id]
+    )
+    const conv = convInfo.rows[0]
+    const recipientId = conv.owner_id === userId ? conv.person_id : conv.owner_id
+    const io = req.app.get('io')
+    await createNotification(io, {
+      userId: recipientId,
+      actorId: userId,
+      type: 'new_message',
+      title: `${userResult.rows[0].name} sent you a message`,
+      body: text.trim().substring(0, 100),
+      referenceType: 'conversation',
+      referenceId: parseInt(id)
+    })
 
     res.status(201).json({
       message: {

@@ -19,12 +19,12 @@ import { api } from '../../utils/api'
 import {
   MessageCircle, Users, Heart, Calendar,
   CheckCircle, ChevronRight, Clock, Star,
-  BookOpen, Loader
+  BookOpen, Loader, Bell
 } from 'lucide-react'
 
 function Dashboard() {
   const navigate = useNavigate()
-  const { user, getDailyQuote } = useApp()
+  const { user, getDailyQuote, unreadNotifCount } = useApp()
 
   // Home data from the aggregated endpoint
   const [homeData, setHomeData] = useState(null)
@@ -81,12 +81,22 @@ function Dashboard() {
               </span>
             </h1>
           </div>
-          <Avatar
-            src={user?.photoUrl}
-            emoji={user?.avatar}
-            size="lg"
-            variant="white"
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button className="notif-bell-btn" onClick={() => navigate('/notifications')}>
+              <Bell size={24} />
+              {unreadNotifCount > 0 && (
+                <span className="notif-bell-badge">
+                  {unreadNotifCount > 99 ? '99+' : unreadNotifCount}
+                </span>
+              )}
+            </button>
+            <Avatar
+              src={user?.photoUrl}
+              emoji={user?.avatar}
+              size="lg"
+              variant="white"
+            />
+          </div>
         </div>
       </div>
 
