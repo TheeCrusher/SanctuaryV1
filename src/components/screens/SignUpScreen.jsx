@@ -9,7 +9,7 @@ import { useState, useRef } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { compressImage } from '../../utils/imageCompress'
-import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera, Phone } from 'lucide-react'
 
 const LOGO = "/sanctuary-logo.png"
 
@@ -45,6 +45,7 @@ function SignUpScreen() {
   const [role, setRole] = useState('seeker')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [onboarding, setOnboarding] = useState(false)
@@ -84,7 +85,7 @@ function SignUpScreen() {
 
     setLoading(true)
     setOnboarding(true)
-    const result = await register(name, email, password, role)
+    const result = await register(name, email, password, role, phoneNumber || undefined)
     setLoading(false)
 
     if (result.success) {
@@ -187,6 +188,18 @@ function SignUpScreen() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
                   required
+                />
+              </div>
+
+              {/* Phone Number (optional) */}
+              <div className="login-input-group">
+                <Phone size={18} className="login-input-icon" />
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value.replace(/[^\d()-\s+]/g, ''))}
+                  placeholder="Phone number (optional)"
+                  inputMode="tel"
                 />
               </div>
 

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS users (
   denomination    VARCHAR(100),
   church_name     VARCHAR(100),
   interests       TEXT[] DEFAULT '{}',
+  phone_number    VARCHAR(20),
   created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -546,3 +547,27 @@ CREATE TABLE IF NOT EXISTS notifications (
 CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);
 CREATE INDEX IF NOT EXISTS idx_notifications_unread ON notifications(user_id, is_read);
 CREATE INDEX IF NOT EXISTS idx_notifications_created ON notifications(created_at DESC);
+
+-- ============================================================
+-- PASSWORD RESETS TABLE
+-- ============================================================
+-- Stores hashed 6-digit recovery codes for password reset flow.
+-- Codes expire after 15 minutes. After 5 failed attempts the
+-- record is locked for 30 minutes. Old codes are invalidated
+-- when a new one is requested.
+--
+-- Maps to: /api/auth/forgot-password, verify-code, reset-password
+
+CREATE TABLE IF NOT EXISTS password_resets (
+  id              SERIAL PRIMARY KEY,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  code_hash       VARCHAR(255) NOT NULL,
+  method          VARCHAR(10) NOT NULL CHECK (method IN ('email', 'phone')),
+  expires_at      TIMESTAMP WITH TIME ZONE NOT NULL,
+  used            BOOLEAN DEFAULT FALSE,
+  attempts        INTEGER DEFAULT 0,
+  locked_until    TIMESTAMP WITH TIME ZONE,
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_password_resets_user ON password_resets(user_id);

@@ -43,6 +43,7 @@ import CommunityScreen from './components/screens/CommunityScreen'
 import EventsScreen from './components/screens/EventsScreen'
 import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
+import ForgotPassword from './components/screens/ForgotPassword'
 import { UserActionMenu } from './components/common'
 
 // =============================================================================
@@ -100,7 +101,7 @@ function App() {
   const location = useLocation()
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/signup', '/chat', '/bibles/reader']
+  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   // Swipe navigation between the 4 main tabs
@@ -143,6 +144,13 @@ function App() {
         <Route
           path="/signup"
           element={<SignUpScreen />}
+        />
+
+        <Route
+          path="/forgot-password"
+          element={
+            user ? <Navigate to="/dashboard" replace /> : <ForgotPassword />
+          }
         />
 
         {/* ====== PROTECTED ROUTES ====== */}

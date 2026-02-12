@@ -104,6 +104,11 @@ function LoginScreen() {
             </button>
           </div>
 
+          {/* Forgot Password Link */}
+          <div className="fp-forgot-link">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+
           {/* Submit Button */}
           <button type="submit" className="login-btn">
             Sign In

@@ -17,6 +17,7 @@ function AccountDetails() {
   const details = [
     { label: 'Full Name', value: user?.name || 'N/A' },
     { label: 'Email', value: user?.email || 'N/A' },
+    { label: 'Phone', value: user?.phoneNumber || 'Not set' },
     { label: 'Role', value: user?.role === 'guide' ? 'Guide' : 'Seeker' },
     { label: 'Member Since', value: 'February 2026' },
     { label: 'Status', value: 'Active' }

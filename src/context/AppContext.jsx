@@ -252,9 +252,9 @@ export function AppProvider({ children }) {
   // AUTHENTICATION FUNCTIONS
   // =========================================================================
 
-  async function register(name, email, password, role) {
+  async function register(name, email, password, role, phoneNumber) {
     try {
-      const data = await api.post('/auth/register', { name, email, password, role })
+      const data = await api.post('/auth/register', { name, email, password, role, phoneNumber })
       setToken(data.token)
       setUser(data.user)
       await loadAllData()

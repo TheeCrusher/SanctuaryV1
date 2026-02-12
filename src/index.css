@@ -5879,3 +5879,332 @@ textarea {
 [data-theme="dark"] .notif-bell-btn {
   color: white;
 }
+
+/* ---------------------------------------------------------------------------
+   40. FORGOT PASSWORD / ACCOUNT RECOVERY
+   --------------------------------------------------------------------------- */
+
+/* Step indicator dots */
+.fp-step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.fp-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-primary);
+  transition: all 0.3s;
+}
+
+.fp-step-dot.fp-step-active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--brand-primary);
+}
+
+.fp-step-dot.fp-step-done {
+  background: var(--brand-primary);
+}
+
+/* Description text */
+.fp-description {
+  color: var(--text-secondary);
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Method selection cards */
+.fp-method-cards {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.fp-method-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  border: 2px solid var(--border-primary);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fp-method-card.fp-method-selected {
+  border-color: var(--brand-primary);
+  background: rgba(30, 58, 138, 0.06);
+  color: var(--brand-primary);
+}
+
+.fp-method-card.fp-method-disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.fp-coming-soon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #f59e0b;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Input section */
+.fp-input-section {
+  margin-bottom: 16px;
+}
+
+/* Disabled phone message */
+.fp-disabled-msg {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-tertiary, #f3f4f6);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.fp-disabled-msg p {
+  margin: 0;
+}
+
+/* Back to Sign In link */
+.fp-back-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.fp-back-link:active {
+  color: var(--brand-primary);
+}
+
+/* Forgot password link on login screen */
+.fp-forgot-link {
+  text-align: right;
+  margin: -4px 0 16px;
+}
+
+.fp-forgot-link a {
+  color: var(--brand-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fp-forgot-link a:active {
+  opacity: 0.7;
+}
+
+/* ---- Step 2: Code entry ---- */
+
+.fp-code-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.fp-code-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(30, 58, 138, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
+  margin-bottom: 16px;
+}
+
+.fp-code-icon-success {
+  background: rgba(22, 163, 74, 0.1);
+  color: #16a34a;
+}
+
+/* 6-digit code boxes */
+.fp-code-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.fp-code-box {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 2px solid var(--border-primary);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  caret-color: var(--brand-primary);
+  transition: border-color 0.2s;
+  padding: 0;
+}
+
+.fp-code-box:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+/* Verifying text */
+.fp-verifying {
+  text-align: center;
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Resend section */
+.fp-resend {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.fp-resend-btn {
+  background: none;
+  border: none;
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.fp-resend-btn:active {
+  opacity: 0.7;
+}
+
+.fp-cooldown {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.fp-expires-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+/* ---- Step 3: Password requirements ---- */
+
+.fp-requirements {
+  margin-bottom: 20px;
+}
+
+.fp-req-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-faint);
+  padding: 4px 0;
+}
+
+.fp-req-item.fp-req-met {
+  color: #16a34a;
+}
+
+/* ---- Step 4: Success ---- */
+
+.fp-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.fp-success-icon {
+  color: #16a34a;
+  margin-bottom: 20px;
+}
+
+.fp-success-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.fp-success-text {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+/* ---- Dark mode overrides ---- */
+
+[data-theme="dark"] .fp-method-card {
+  background: var(--bg-card);
+  border-color: var(--border-light, #374151);
+}
+
+[data-theme="dark"] .fp-method-card.fp-method-selected {
+  border-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .fp-code-icon {
+  background: rgba(96, 165, 250, 0.15);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .fp-code-box {
+  border-color: var(--border-light, #374151);
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .fp-code-box:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+[data-theme="dark"] .fp-disabled-msg {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .fp-forgot-link a {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .fp-resend-btn {
+  color: #60a5fa;
+}
