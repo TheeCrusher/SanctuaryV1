@@ -523,30 +523,33 @@ export function AppProvider({ children }) {
   // =========================================================================
   // CHURCH SEARCH (server-side with pagination)
   // =========================================================================
-  // With 1,500+ real churches, search is done server-side.
-  // Returns 5 results at a time with a "show more" option.
+  // Church search is powered by Google Places API.
+  // The backend searches Google, checks our local DB for each result,
+  // and returns merged data (Google info + Sanctuary ratings if available).
 
   const [churchSearchResults, setChurchSearchResults] = useState([])
   const [churchSearchTotal, setChurchSearchTotal] = useState(0)
   const [churchSearchHasMore, setChurchSearchHasMore] = useState(false)
 
-  async function searchChurches(query, offset = 0) {
+  async function searchChurches(query) {
     if (!query.trim()) {
       setChurchSearchResults([])
       setChurchSearchTotal(0)
       setChurchSearchHasMore(false)
       return
     }
-    const data = await api.get(`/churches?q=${encodeURIComponent(query)}&limit=20&offset=${offset}`)
-    if (offset === 0) {
-      // New search — replace results
-      setChurchSearchResults(data.churches)
-    } else {
-      // "Show more" — append to existing results
-      setChurchSearchResults(prev => [...prev, ...data.churches])
-    }
-    setChurchSearchTotal(data.total)
-    setChurchSearchHasMore(data.hasMore)
+    const data = await api.get(`/churches/search?q=${encodeURIComponent(query)}`)
+    setChurchSearchResults(data.results)
+    setChurchSearchTotal(data.results.length)
+    setChurchSearchHasMore(false) // Google returns all results at once
+  }
+
+  // Save a church from Google search results to our database.
+  // Called when a user taps a church that isn't in Sanctuary yet.
+  // Returns the new church object with its Sanctuary ID.
+  async function saveChurchFromGoogle(churchData) {
+    const data = await api.post('/churches/save-from-google', churchData)
+    return data.church
   }
 
   // Keep the old filtered list for backwards compatibility (favorites filter, etc.)
@@ -797,6 +800,7 @@ export function AppProvider({ children }) {
     churchSearchQuery,
     setChurchSearchQuery,
     searchChurches,
+    saveChurchFromGoogle,
     churchSearchResults,
     churchSearchTotal,
     churchSearchHasMore,

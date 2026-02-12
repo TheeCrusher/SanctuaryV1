@@ -1,6 +1,9 @@
 // ============================================================
 // Church Routes (includes Reviews & Announcements)
 // ============================================================
+// GET    /api/churches/search?q=term            - Search via Google Places API
+// GET    /api/churches/photo/:googlePlaceId     - Proxy photo from Google Places
+// POST   /api/churches/save-from-google         - Auto-save church from Google result
 // GET    /api/churches                          - List all churches (with optional search)
 // GET    /api/churches/:id                      - Get a single church's details
 // GET    /api/churches/:id/members              - Get people at this church
@@ -12,7 +15,8 @@
 // POST   /api/churches/:id/announcements        - Create announcement (guides only)
 // DELETE /api/churches/:id/announcements/:annId - Delete announcement (author only)
 //
-// All routes are protected (require JWT token).
+// Photo route is unauthenticated (img tags can't send JWT).
+// All other routes require JWT token.
 // ============================================================
 
 import { Router } from 'express'
@@ -22,7 +26,69 @@ import { createNotification } from '../utils/createNotification.js'
 
 const router = Router()
 
-// All church routes require authentication
+// ============================================================
+// UNAUTHENTICATED ROUTES (must come before router.use(authenticate))
+// ============================================================
+
+// GET /api/churches/photo/:googlePlaceId
+// Proxies a church photo from Google Places API.
+// Unauthenticated because <img src="..."> tags can't send JWT headers.
+// Church photos are public data (available on Google anyway).
+router.get('/photo/:googlePlaceId', async (req, res, next) => {
+  try {
+    const { googlePlaceId } = req.params
+    const apiKey = process.env.GOOGLE_PLACES_API_KEY
+
+    if (!apiKey) {
+      return res.status(503).json({ error: 'Photo service unavailable' })
+    }
+
+    // Step 1: Get the place details to find photo references
+    const detailsResponse = await fetch(
+      `https://places.googleapis.com/v1/places/${googlePlaceId}`,
+      {
+        headers: {
+          'X-Goog-Api-Key': apiKey,
+          'X-Goog-FieldMask': 'photos'
+        }
+      }
+    )
+
+    if (!detailsResponse.ok) {
+      return res.status(404).json({ error: 'Place not found' })
+    }
+
+    const detailsData = await detailsResponse.json()
+
+    if (!detailsData.photos || detailsData.photos.length === 0) {
+      return res.status(404).json({ error: 'No photo available' })
+    }
+
+    // Step 2: Fetch the actual photo using the first photo reference
+    const photoName = detailsData.photos[0].name
+    const photoUrl = `https://places.googleapis.com/v1/${photoName}/media?maxHeightPx=400&key=${apiKey}`
+    const photoResponse = await fetch(photoUrl)
+
+    if (!photoResponse.ok) {
+      return res.status(502).json({ error: 'Failed to fetch photo' })
+    }
+
+    // Stream the image back to the client
+    const contentType = photoResponse.headers.get('content-type') || 'image/jpeg'
+    res.set('Content-Type', contentType)
+    res.set('Cache-Control', 'public, max-age=86400') // Browser caches for 24 hours
+
+    const buffer = await photoResponse.arrayBuffer()
+    res.send(Buffer.from(buffer))
+  } catch (error) {
+    console.error('Photo proxy error:', error.message)
+    next(error)
+  }
+})
+
+// ============================================================
+// AUTHENTICATED ROUTES
+// ============================================================
 router.use(authenticate)
 
 // Helper: transform a database row to match the frontend's expected format
@@ -40,6 +106,7 @@ function formatChurch(row) {
     website: row.website,
     shortDescription: row.short_description,
     photoUrl: row.photo_url,
+    googlePlaceId: row.google_place_id,
     sundaySchool: row.sunday_school,
     recommendedAges: row.recommended_ages,
     hours: row.hours,
@@ -54,6 +121,176 @@ function formatChurch(row) {
     rated: true
   }
 }
+
+// ============================================================
+// GET /api/churches/search?q=term
+// ============================================================
+// Searches Google Places API for churches, then checks our local
+// database for each result to merge in Sanctuary ratings.
+//
+// This is the main search endpoint the frontend uses. It replaces
+// the old local-only search for the search flow.
+//
+// Returns: { results: [{ googlePlaceId, name, address, ... sanctuaryId, sanctuaryRating }] }
+
+router.get('/search', async (req, res, next) => {
+  try {
+    const { q } = req.query
+    const apiKey = process.env.GOOGLE_PLACES_API_KEY
+
+    if (!q || !q.trim()) {
+      return res.json({ results: [] })
+    }
+
+    if (!apiKey) {
+      return res.status(503).json({ error: 'Search service unavailable' })
+    }
+
+    // Search Google Places for churches matching the query
+    const searchResponse = await fetch(
+      'https://places.googleapis.com/v1/places:searchText',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': apiKey,
+          'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.photos,places.addressComponents,places.regularOpeningHours'
+        },
+        body: JSON.stringify({
+          // Append "churches" if the query doesn't already mention it,
+          // so users can search by just city name (e.g. "St. Louis")
+          textQuery: /church/i.test(q) ? q : `${q} churches`,
+          languageCode: 'en'
+        })
+      }
+    )
+
+    if (!searchResponse.ok) {
+      const errText = await searchResponse.text()
+      console.error('Google Places search failed:', searchResponse.status, errText)
+      return res.status(502).json({ error: 'Search service error' })
+    }
+
+    const searchData = await searchResponse.json()
+    const places = searchData.places || []
+
+    // For each Google result, check if we have it in our database
+    const results = []
+    for (const place of places) {
+      // Parse city and state from addressComponents
+      let city = ''
+      let state = ''
+      let zip = ''
+      if (place.addressComponents) {
+        for (const comp of place.addressComponents) {
+          if (comp.types?.includes('locality')) city = comp.longText || ''
+          if (comp.types?.includes('administrative_area_level_1')) state = comp.shortText || ''
+          if (comp.types?.includes('postal_code')) zip = comp.longText || ''
+        }
+      }
+
+      // Check our local database for this church
+      let sanctuaryId = null
+      let sanctuaryRating = null
+      let sanctuaryReviewCount = 0
+
+      const localResult = await pool.query(
+        'SELECT id, overall_rating, review_count FROM churches WHERE google_place_id = $1',
+        [place.id]
+      )
+
+      if (localResult.rows.length > 0) {
+        const local = localResult.rows[0]
+        sanctuaryId = local.id
+        sanctuaryRating = parseFloat(local.overall_rating)
+        sanctuaryReviewCount = local.review_count
+      }
+
+      results.push({
+        googlePlaceId: place.id,
+        name: place.displayName?.text || 'Unknown Church',
+        address: place.formattedAddress || '',
+        city,
+        state,
+        zip,
+        phone: place.nationalPhoneNumber || null,
+        website: place.websiteUri || null,
+        googleRating: place.rating || null,
+        hasPhoto: !!(place.photos && place.photos.length > 0),
+        hours: place.regularOpeningHours?.weekdayDescriptions || null,
+        sanctuaryId,
+        sanctuaryRating,
+        sanctuaryReviewCount
+      })
+    }
+
+    res.json({ results })
+  } catch (error) {
+    console.error('Church search error:', error.message)
+    next(error)
+  }
+})
+
+// ============================================================
+// POST /api/churches/save-from-google
+// ============================================================
+// When a user taps a church from Google search results that isn't
+// already in our database, this endpoint saves it automatically.
+// The church then exists in Sanctuary permanently with zero reviews
+// and an empty bulletin board.
+//
+// If the church already exists (matched by google_place_id),
+// returns the existing church instead of creating a duplicate.
+
+router.post('/save-from-google', async (req, res, next) => {
+  try {
+    const { googlePlaceId, name, address, city, state, zip, phone, website, hours } = req.body
+
+    if (!googlePlaceId || !name) {
+      return res.status(400).json({ error: 'googlePlaceId and name are required.' })
+    }
+
+    // Check if this church already exists
+    const existing = await pool.query(
+      'SELECT * FROM churches WHERE google_place_id = $1',
+      [googlePlaceId]
+    )
+
+    if (existing.rows.length > 0) {
+      return res.json({ church: formatChurch(existing.rows[0]) })
+    }
+
+    // Insert new church
+    const result = await pool.query(
+      `INSERT INTO churches (name, address, city, state, zip, phone, website, hours, google_place_id)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+       RETURNING *`,
+      [
+        name,
+        address || '',
+        city || '',
+        state || '',
+        zip || '',
+        phone || null,
+        website || null,
+        hours || null,
+        googlePlaceId
+      ]
+    )
+
+    res.status(201).json({ church: formatChurch(result.rows[0]) })
+  } catch (error) {
+    // Handle race condition: if two users tap the same church simultaneously
+    if (error.code === '23505') {
+      const existing = await pool.query(
+        'SELECT * FROM churches WHERE google_place_id = $1',
+        [req.body.googlePlaceId]
+      )
+      return res.json({ church: formatChurch(existing.rows[0]) })
+    }
+    next(error)
+  }
+})
 
 // ============================================================
 // GET /api/churches

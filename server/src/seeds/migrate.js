@@ -44,6 +44,7 @@ async function migrate() {
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS website TEXT',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS short_description TEXT',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS photo_url TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_place_id VARCHAR(255)',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

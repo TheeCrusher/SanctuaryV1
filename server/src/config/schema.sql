@@ -204,6 +204,7 @@ CREATE TABLE IF NOT EXISTS churches (
   website           TEXT,
   short_description TEXT,
   photo_url         TEXT,
+  google_place_id   VARCHAR(255),
   sunday_school     BOOLEAN DEFAULT false,
   recommended_ages  VARCHAR(50),
   hours             VARCHAR(100),
@@ -219,6 +220,7 @@ CREATE TABLE IF NOT EXISTS churches (
 CREATE INDEX IF NOT EXISTS idx_churches_city ON churches(city);
 CREATE INDEX IF NOT EXISTS idx_churches_state ON churches(state);
 CREATE INDEX IF NOT EXISTS idx_churches_zip ON churches(zip);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_churches_google_place_id ON churches(google_place_id) WHERE google_place_id IS NOT NULL;
 
 -- ============================================================
 -- BIBLE QUOTES TABLE

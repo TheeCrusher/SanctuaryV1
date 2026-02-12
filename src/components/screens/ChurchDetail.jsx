@@ -228,14 +228,17 @@ function ChurchDetail() {
 
       {/* Content */}
       <div className="screen-content">
-        {/* Church Photo */}
-        {church.photoUrl && (
+        {/* Church Photo (Google Places proxy or legacy photo_url) */}
+        {(church.googlePlaceId || church.photoUrl) && (
           <div style={{ borderRadius: '12px', overflow: 'hidden', marginBottom: '12px' }}>
             <img
-              src={church.photoUrl}
+              src={church.googlePlaceId
+                ? `${import.meta.env.VITE_API_URL || ''}/api/churches/photo/${church.googlePlaceId}`
+                : church.photoUrl
+              }
               alt={church.name}
               style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
-              onError={(e) => { e.target.style.display = 'none' }}
+              onError={(e) => { e.target.parentElement.style.display = 'none' }}
             />
           </div>
         )}
