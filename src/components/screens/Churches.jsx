@@ -76,7 +76,8 @@ function Churches() {
           zip: result.zip,
           phone: result.phone,
           website: result.website,
-          hours: result.hours ? result.hours.join(', ') : null
+          hours: result.hours ? result.hours.join('\n') : null,
+          googleRating: result.googleRating || null
         })
         navigate(`/churches/${church.id}`)
       } catch (err) {

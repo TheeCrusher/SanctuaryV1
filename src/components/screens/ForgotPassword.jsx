@@ -12,7 +12,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../utils/api'
 import {
-  ArrowLeft, Mail, Phone, Send, KeyRound, Lock,
+  ArrowLeft, Mail, Phone, KeyRound,
   Eye, EyeOff, CheckCircle, ShieldCheck
 } from 'lucide-react'
 
@@ -25,7 +25,6 @@ function ForgotPassword() {
   // Step 1 state
   const [method, setMethod] = useState('email') // 'email' or 'phone'
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
 
   // Step 2 state
   const [code, setCode] = useState(['', '', '', '', '', ''])
@@ -254,16 +253,14 @@ function ForgotPassword() {
             {method === 'email' && (
               <div className="fp-input-section">
                 <label className="form-label">Email Address</label>
-                <div className="login-input-group">
-                  <Mail size={18} className="login-input-icon" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    autoComplete="email"
-                  />
-                </div>
+                <input
+                  className="fp-input"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                />
               </div>
             )}
 
@@ -277,10 +274,10 @@ function ForgotPassword() {
               </div>
             )}
 
-            {error && <p className="login-error">{error}</p>}
+            {error && <p className="fp-error">{error}</p>}
 
             <button
-              className="login-btn"
+              className="fp-btn"
               onClick={handleSendCode}
               disabled={loading || (method === 'email' && !email.trim()) || method === 'phone'}
             >
@@ -323,7 +320,7 @@ function ForgotPassword() {
               ))}
             </div>
 
-            {error && <p className="login-error">{error}</p>}
+            {error && <p className="fp-error">{error}</p>}
 
             {loading && <p className="fp-verifying">Verifying code...</p>}
 
@@ -357,9 +354,9 @@ function ForgotPassword() {
 
             <div className="fp-input-section">
               <label className="form-label">New Password</label>
-              <div className="login-input-group">
-                <Lock size={18} className="login-input-icon" />
+              <div className="fp-input-wrapper">
                 <input
+                  className="fp-input fp-input-password"
                   type={showPassword ? 'text' : 'password'}
                   value={newPassword}
                   onChange={e => setNewPassword(e.target.value)}
@@ -367,7 +364,7 @@ function ForgotPassword() {
                 />
                 <button
                   type="button"
-                  className="login-toggle-password"
+                  className="fp-toggle-password"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -377,9 +374,9 @@ function ForgotPassword() {
 
             <div className="fp-input-section">
               <label className="form-label">Confirm Password</label>
-              <div className="login-input-group">
-                <Lock size={18} className="login-input-icon" />
+              <div className="fp-input-wrapper">
                 <input
+                  className="fp-input fp-input-password"
                   type={showPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
@@ -396,10 +393,10 @@ function ForgotPassword() {
               </div>
             </div>
 
-            {error && <p className="login-error">{error}</p>}
+            {error && <p className="fp-error">{error}</p>}
 
             <button
-              className="login-btn"
+              className="fp-btn"
               onClick={handleResetPassword}
               disabled={loading || !newPassword || !confirmPassword}
             >
@@ -418,7 +415,7 @@ function ForgotPassword() {
             <p className="fp-success-text">
               You can now sign in with your new password.
             </p>
-            <button className="login-btn" onClick={() => navigate('/login')}>
+            <button className="fp-btn" onClick={() => navigate('/login')}>
               Back to Sign In
             </button>
           </div>

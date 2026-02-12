@@ -111,6 +111,7 @@ function formatChurch(row) {
     sundaySchool: row.sunday_school,
     recommendedAges: row.recommended_ages,
     hours: row.hours,
+    googleRating: toFloat(row.google_rating),
     categoryRatings: {
       worship:    toFloat(row.avg_worship),
       sermon:     toFloat(row.avg_sermon),
@@ -249,7 +250,7 @@ router.get('/search', async (req, res, next) => {
 
 router.post('/save-from-google', async (req, res, next) => {
   try {
-    const { googlePlaceId, name, address, city, state, zip, phone, website, hours } = req.body
+    const { googlePlaceId, name, address, city, state, zip, phone, website, hours, googleRating } = req.body
 
     if (!googlePlaceId || !name) {
       return res.status(400).json({ error: 'googlePlaceId and name are required.' })
@@ -267,8 +268,8 @@ router.post('/save-from-google', async (req, res, next) => {
 
     // Insert new church
     const result = await pool.query(
-      `INSERT INTO churches (name, address, city, state, zip, phone, website, hours, google_place_id)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      `INSERT INTO churches (name, address, city, state, zip, phone, website, hours, google_place_id, google_rating)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
        RETURNING *`,
       [
         name,
@@ -279,7 +280,8 @@ router.post('/save-from-google', async (req, res, next) => {
         phone || null,
         website || null,
         hours || null,
-        googlePlaceId
+        googlePlaceId,
+        googleRating || null
       ]
     )
 

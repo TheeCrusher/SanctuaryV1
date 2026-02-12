@@ -63,6 +63,9 @@ async function migrate() {
       'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_biblestudy INTEGER',
       'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_parking INTEGER',
       'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_facilities INTEGER',
+      // Phase 3: Google rating + widen hours column
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_rating DECIMAL(2,1)',
+      'ALTER TABLE churches ALTER COLUMN hours TYPE TEXT',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

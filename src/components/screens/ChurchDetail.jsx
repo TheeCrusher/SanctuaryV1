@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar } from '../common'
-import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building } from 'lucide-react'
+import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock } from 'lucide-react'
 import { api } from '../../utils/api'
 
 // The 8 rating categories — each has a key (matches backend), display label, and icon
@@ -300,11 +300,39 @@ function ChurchDetail() {
               </a>
             </p>
           )}
-          {church.reviewCount > 0 && (
-            <div className="church-overall" style={{ marginTop: '16px' }}>
-              <span className="stars stars-lg">{renderStars(church.overallRating)}</span>
-              <span className="star-score" style={{ fontSize: '18px' }}>{church.overallRating}</span>
-              <span style={{ color: 'var(--text-faint)' }}>({church.reviewCount} reviews)</span>
+
+          {/* Get Directions link */}
+          <p style={{ fontSize: '14px', marginTop: '4px' }}>
+            <a
+              href={church.googlePlaceId
+                ? `https://www.google.com/maps/place/?q=place_id:${church.googlePlaceId}`
+                : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.address + ', ' + church.city + ', ' + church.state)}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--brand-primary)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+            >
+              <Navigation size={14} /> Get Directions
+            </a>
+          </p>
+
+          {/* Ratings — Google + Sanctuary side by side */}
+          {(church.googleRating || church.reviewCount > 0) && (
+            <div className="church-ratings-row" style={{ marginTop: '16px' }}>
+              {church.googleRating && (
+                <div className="church-rating-badge">
+                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
+                  <span style={{ fontWeight: '600' }}>{church.googleRating.toFixed(1)}</span>
+                  <span style={{ color: 'var(--text-faint)', fontSize: '12px' }}>Google</span>
+                </div>
+              )}
+              {church.reviewCount > 0 && (
+                <div className="church-rating-badge">
+                  <span className="stars stars-sm">{renderStars(church.overallRating)}</span>
+                  <span style={{ fontWeight: '600' }}>{church.overallRating}</span>
+                  <span style={{ color: 'var(--text-faint)', fontSize: '12px' }}>({church.reviewCount}) Sanctuary</span>
+                </div>
+              )}
             </div>
           )}
         </Card>
@@ -312,8 +340,14 @@ function ChurchDetail() {
         {/* Service Times (only show if data exists) */}
         {church.hours && (
           <Card>
-            <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px' }}>Service Times</h3>
-            <p style={{ color: 'var(--text-secondary)' }}>{church.hours}</p>
+            <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Clock size={16} /> Service Times
+            </h3>
+            <div className="church-hours-list">
+              {church.hours.split('\n').map((line, i) => (
+                <div key={i} className="church-hours-line">{line}</div>
+              ))}
+            </div>
           </Card>
         )}
 
