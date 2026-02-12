@@ -8,8 +8,33 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar } from '../common'
-import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone } from 'lucide-react'
+import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building } from 'lucide-react'
 import { api } from '../../utils/api'
+
+// The 8 rating categories — each has a key (matches backend), display label, and icon
+const RATING_CATEGORIES = [
+  { key: 'worship',    label: 'Worship',      icon: Music },
+  { key: 'sermon',     label: 'Sermon',       icon: BookOpen },
+  { key: 'community',  label: 'Community',    icon: Users },
+  { key: 'youth',      label: 'Youth',        icon: GraduationCap },
+  { key: 'children',   label: 'Children',     icon: Baby },
+  { key: 'bibleStudy', label: 'Bible Study',  icon: Book },
+  { key: 'parking',    label: 'Parking',      icon: Car },
+  { key: 'facilities', label: 'Facilities',   icon: Building },
+]
+
+// Blank categories object (all null = nothing rated)
+const EMPTY_CATEGORIES = {
+  worship: null, sermon: null, community: null, youth: null,
+  children: null, bibleStudy: null, parking: null, facilities: null,
+}
+
+// Compute overall from whichever categories are rated (non-null)
+function computeOverall(cats) {
+  const rated = Object.values(cats).filter(v => v !== null)
+  if (rated.length === 0) return 0
+  return rated.reduce((sum, v) => sum + v, 0) / rated.length
+}
 
 function ChurchDetail() {
   const navigate = useNavigate()
@@ -26,7 +51,7 @@ function ChurchDetail() {
   // Reviews state
   const [reviews, setReviews] = useState([])
   const [showReviewModal, setShowReviewModal] = useState(false)
-  const [reviewRating, setReviewRating] = useState(0)
+  const [reviewCategories, setReviewCategories] = useState({ ...EMPTY_CATEGORIES })
   const [reviewText, setReviewText] = useState('')
   const [editingReview, setEditingReview] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -39,19 +64,20 @@ function ChurchDetail() {
   const [annCategory, setAnnCategory] = useState('Announcement')
   const [annSubmitting, setAnnSubmitting] = useState(false)
 
+  async function loadChurch() {
+    try {
+      const data = await api.get(`/churches/${id}`)
+      setChurch(data.church)
+    } catch (error) {
+      console.error('Failed to load church:', error)
+      setChurch(null)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   // Load church data, reviews, members, and announcements when component mounts
   useEffect(() => {
-    async function loadChurch() {
-      try {
-        const data = await api.get(`/churches/${id}`)
-        setChurch(data.church)
-      } catch (error) {
-        console.error('Failed to load church:', error)
-        setChurch(null)
-      } finally {
-        setLoading(false)
-      }
-    }
     loadChurch()
     loadReviews()
     loadMembers()
@@ -111,11 +137,16 @@ function ChurchDetail() {
 
   function openWriteReview() {
     if (myReview) {
-      setReviewRating(myReview.rating)
+      // If existing review has category data, use it; otherwise start fresh
+      if (myReview.categories && Object.values(myReview.categories).some(v => v !== null)) {
+        setReviewCategories({ ...myReview.categories })
+      } else {
+        setReviewCategories({ ...EMPTY_CATEGORIES })
+      }
       setReviewText(myReview.text || '')
       setEditingReview(true)
     } else {
-      setReviewRating(0)
+      setReviewCategories({ ...EMPTY_CATEGORIES })
       setReviewText('')
       setEditingReview(false)
     }
@@ -123,15 +154,18 @@ function ChurchDetail() {
   }
 
   async function handleSubmitReview() {
-    if (reviewRating === 0) return
+    const overall = computeOverall(reviewCategories)
+    if (overall === 0) return // No categories rated
     setSubmitting(true)
     try {
+      const payload = { categories: reviewCategories, text: reviewText }
       if (editingReview) {
-        await api.put(`/churches/${id}/reviews`, { rating: reviewRating, text: reviewText })
+        await api.put(`/churches/${id}/reviews`, payload)
       } else {
-        await api.post(`/churches/${id}/reviews`, { rating: reviewRating, text: reviewText })
+        await api.post(`/churches/${id}/reviews`, payload)
       }
-      await loadReviews()
+      // Reload both reviews and church data (category averages changed)
+      await Promise.all([loadReviews(), loadChurch()])
       setShowReviewModal(false)
     } catch (error) {
       console.error('Failed to submit review:', error)
@@ -143,7 +177,7 @@ function ChurchDetail() {
   async function handleDeleteReview() {
     try {
       await api.delete(`/churches/${id}/reviews`)
-      await loadReviews()
+      await Promise.all([loadReviews(), loadChurch()])
       setShowReviewModal(false)
     } catch (error) {
       console.error('Failed to delete review:', error)
@@ -296,6 +330,33 @@ function ChurchDetail() {
           </Card>
         )}
 
+        {/* Rating Breakdown — bar chart showing per-category averages */}
+        {church.reviewCount > 0 && church.categoryRatings &&
+         Object.values(church.categoryRatings).some(v => v !== null) && (
+          <Card>
+            <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '16px' }}>Rating Breakdown</h3>
+            {RATING_CATEGORIES.map(({ key, label, icon: Icon }) => {
+              const avg = church.categoryRatings[key]
+              if (avg === null) return null
+              return (
+                <div key={key} className="category-breakdown-row">
+                  <div className="category-breakdown-label">
+                    <Icon size={14} />
+                    <span>{label}</span>
+                  </div>
+                  <div className="category-breakdown-bar-wrapper">
+                    <div
+                      className="category-breakdown-bar"
+                      style={{ width: `${(avg / 5) * 100}%` }}
+                    />
+                  </div>
+                  <span className="category-breakdown-value">{avg.toFixed(1)}</span>
+                </div>
+              )
+            })}
+          </Card>
+        )}
+
         {/* People at This Church */}
         {members.length > 0 && (
           <div className="church-members-section">
@@ -402,27 +463,68 @@ function ChurchDetail() {
                 </div>
               </div>
               {review.text && <div className="review-text">{review.text}</div>}
+              {/* Category mini-ratings (only for reviews with category data) */}
+              {review.categories && Object.values(review.categories).some(v => v !== null) && (
+                <div className="review-categories-mini">
+                  {RATING_CATEGORIES.map(({ key, label }) => {
+                    const val = review.categories[key]
+                    if (val === null || val === undefined) return null
+                    return (
+                      <span key={key} className="review-category-tag">
+                        {label}: <span className="stars stars-sm">{renderStars(val)}</span>
+                      </span>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           ))
         )}
       </div>
 
-      {/* Review Modal */}
+      {/* Review Modal — 8 category rows with star pickers */}
       {showReviewModal && (
         <Modal onClose={() => setShowReviewModal(false)}>
           <div className="modal-title">{editingReview ? 'Edit Review' : 'Write a Review'}</div>
+          <p style={{ textAlign: 'center', fontSize: '13px', color: 'var(--text-faint)', margin: '0 0 12px' }}>
+            Rate the categories you experienced (all optional)
+          </p>
 
-          {/* Star Selector */}
-          <div className="review-star-selector">
-            {[1, 2, 3, 4, 5].map(n => (
-              <button key={n} className="review-star-btn" onClick={() => setReviewRating(n)}>
-                <Star size={32} fill={n <= reviewRating ? '#fbbf24' : 'none'} color={n <= reviewRating ? '#fbbf24' : 'var(--text-faint)'} />
-              </button>
+          {/* Category Star Rows */}
+          <div className="category-rating-list">
+            {RATING_CATEGORIES.map(({ key, label, icon: Icon }) => (
+              <div key={key} className="category-rating-row">
+                <div className="category-rating-label">
+                  <Icon size={16} />
+                  <span>{label}</span>
+                </div>
+                <div className="category-rating-stars">
+                  {[1, 2, 3, 4, 5].map(n => (
+                    <button
+                      key={n}
+                      className="review-star-btn"
+                      onClick={() => setReviewCategories(prev => ({
+                        ...prev,
+                        [key]: prev[key] === n ? null : n
+                      }))}
+                    >
+                      <Star
+                        size={22}
+                        fill={reviewCategories[key] && n <= reviewCategories[key] ? '#fbbf24' : 'none'}
+                        color={reviewCategories[key] && n <= reviewCategories[key] ? '#fbbf24' : 'var(--text-faint)'}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-          {reviewRating > 0 && (
-            <div style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-muted)', marginBottom: '16px' }}>
-              {['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'][reviewRating]}
+
+          {/* Live computed overall */}
+          {computeOverall(reviewCategories) > 0 && (
+            <div className="review-computed-overall">
+              <span className="stars" style={{ marginRight: '6px' }}>{renderStars(computeOverall(reviewCategories))}</span>
+              {computeOverall(reviewCategories).toFixed(1)} overall
             </div>
           )}
 
@@ -433,7 +535,7 @@ function ChurchDetail() {
               onChange={e => setReviewText(e.target.value)}
               placeholder="Share your experience..."
               maxLength={500}
-              rows={4}
+              rows={3}
             />
           </div>
 
@@ -442,7 +544,7 @@ function ChurchDetail() {
             <button
               className="btn-primary"
               onClick={handleSubmitReview}
-              disabled={reviewRating === 0 || submitting}
+              disabled={computeOverall(reviewCategories) === 0 || submitting}
             >
               {submitting ? 'Saving...' : editingReview ? 'Update' : 'Submit'}
             </button>

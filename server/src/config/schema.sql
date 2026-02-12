@@ -209,10 +209,14 @@ CREATE TABLE IF NOT EXISTS churches (
   sunday_school     BOOLEAN DEFAULT false,
   recommended_ages  VARCHAR(50),
   hours             VARCHAR(100),
-  rating_singing    DECIMAL(2,1) DEFAULT 0,
-  rating_preaching  DECIMAL(2,1) DEFAULT 0,
-  rating_openness   DECIMAL(2,1) DEFAULT 0,
-  rating_space      DECIMAL(2,1) DEFAULT 0,
+  avg_worship       DECIMAL(2,1) DEFAULT NULL,
+  avg_sermon        DECIMAL(2,1) DEFAULT NULL,
+  avg_community     DECIMAL(2,1) DEFAULT NULL,
+  avg_youth         DECIMAL(2,1) DEFAULT NULL,
+  avg_children      DECIMAL(2,1) DEFAULT NULL,
+  avg_biblestudy    DECIMAL(2,1) DEFAULT NULL,
+  avg_parking       DECIMAL(2,1) DEFAULT NULL,
+  avg_facilities    DECIMAL(2,1) DEFAULT NULL,
   overall_rating    DECIMAL(2,1) DEFAULT 0,
   review_count      INTEGER DEFAULT 0,
   created_at        TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -355,13 +359,21 @@ CREATE INDEX IF NOT EXISTS idx_reading_progress_user ON user_reading_progress(us
 -- One review per user per church (UNIQUE constraint).
 
 CREATE TABLE IF NOT EXISTS church_reviews (
-  id          SERIAL PRIMARY KEY,
-  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  church_id   INTEGER NOT NULL REFERENCES churches(id) ON DELETE CASCADE,
-  rating      INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-  review_text TEXT,
-  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  id                 SERIAL PRIMARY KEY,
+  user_id            INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  church_id          INTEGER NOT NULL REFERENCES churches(id) ON DELETE CASCADE,
+  rating             INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  rating_worship     INTEGER CHECK (rating_worship >= 1 AND rating_worship <= 5),
+  rating_sermon      INTEGER CHECK (rating_sermon >= 1 AND rating_sermon <= 5),
+  rating_community   INTEGER CHECK (rating_community >= 1 AND rating_community <= 5),
+  rating_youth       INTEGER CHECK (rating_youth >= 1 AND rating_youth <= 5),
+  rating_children    INTEGER CHECK (rating_children >= 1 AND rating_children <= 5),
+  rating_biblestudy  INTEGER CHECK (rating_biblestudy >= 1 AND rating_biblestudy <= 5),
+  rating_parking     INTEGER CHECK (rating_parking >= 1 AND rating_parking <= 5),
+  rating_facilities  INTEGER CHECK (rating_facilities >= 1 AND rating_facilities <= 5),
+  review_text        TEXT,
+  created_at         TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at         TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   UNIQUE(user_id, church_id)
 );
 

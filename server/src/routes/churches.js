@@ -92,9 +92,10 @@ router.get('/photo/:googlePlaceId', async (req, res, next) => {
 router.use(authenticate)
 
 // Helper: transform a database row to match the frontend's expected format
-// The frontend expects nested ratings: { singing: 4.5, preaching: 5.0, ... }
-// But in the database, these are flat columns: rating_singing, rating_preaching, etc.
+// Category averages are stored as avg_worship, avg_sermon, etc. on the churches table.
+// These are computed from individual review ratings via recalculateChurchRating().
 function formatChurch(row) {
+  const toFloat = (val) => val != null ? parseFloat(val) : null
   return {
     id: row.id,
     name: row.name,
@@ -110,11 +111,15 @@ function formatChurch(row) {
     sundaySchool: row.sunday_school,
     recommendedAges: row.recommended_ages,
     hours: row.hours,
-    ratings: {
-      singing: parseFloat(row.rating_singing),
-      preaching: parseFloat(row.rating_preaching),
-      openness: parseFloat(row.rating_openness),
-      space: parseFloat(row.rating_space)
+    categoryRatings: {
+      worship:    toFloat(row.avg_worship),
+      sermon:     toFloat(row.avg_sermon),
+      community:  toFloat(row.avg_community),
+      youth:      toFloat(row.avg_youth),
+      children:   toFloat(row.avg_children),
+      bibleStudy: toFloat(row.avg_biblestudy),
+      parking:    toFloat(row.avg_parking),
+      facilities: toFloat(row.avg_facilities),
     },
     overallRating: parseFloat(row.overall_rating),
     reviewCount: row.review_count,
@@ -430,17 +435,48 @@ router.get('/:id/members', async (req, res, next) => {
 // REVIEWS
 // ============================================================
 
-// Helper: recalculate a church's overall rating from reviews
+// Helper: recalculate a church's overall rating + category averages from reviews.
+// PostgreSQL AVG() ignores NULLs, so categories only reflect reviews that rated them.
 async function recalculateChurchRating(churchId) {
   const result = await pool.query(
-    `SELECT COALESCE(AVG(rating), 0) as avg_rating, COUNT(*) as review_count
+    `SELECT
+       COUNT(*) as review_count,
+       COALESCE(AVG(rating), 0) as avg_overall,
+       AVG(rating_worship) as avg_worship,
+       AVG(rating_sermon) as avg_sermon,
+       AVG(rating_community) as avg_community,
+       AVG(rating_youth) as avg_youth,
+       AVG(rating_children) as avg_children,
+       AVG(rating_biblestudy) as avg_biblestudy,
+       AVG(rating_parking) as avg_parking,
+       AVG(rating_facilities) as avg_facilities
      FROM church_reviews WHERE church_id = $1`,
     [churchId]
   )
-  const { avg_rating, review_count } = result.rows[0]
+
+  const row = result.rows[0]
+  const toDecimal = (val) => val != null ? parseFloat(val).toFixed(1) : null
+
   await pool.query(
-    'UPDATE churches SET overall_rating = $1, review_count = $2 WHERE id = $3',
-    [parseFloat(avg_rating).toFixed(1), parseInt(review_count), churchId]
+    `UPDATE churches SET
+       overall_rating = $1, review_count = $2,
+       avg_worship = $3, avg_sermon = $4, avg_community = $5,
+       avg_youth = $6, avg_children = $7, avg_biblestudy = $8,
+       avg_parking = $9, avg_facilities = $10
+     WHERE id = $11`,
+    [
+      toDecimal(row.avg_overall) || 0,
+      parseInt(row.review_count),
+      toDecimal(row.avg_worship),
+      toDecimal(row.avg_sermon),
+      toDecimal(row.avg_community),
+      toDecimal(row.avg_youth),
+      toDecimal(row.avg_children),
+      toDecimal(row.avg_biblestudy),
+      toDecimal(row.avg_parking),
+      toDecimal(row.avg_facilities),
+      churchId
+    ]
   )
 }
 
@@ -449,6 +485,8 @@ router.get('/:id/reviews', async (req, res, next) => {
   try {
     const result = await pool.query(
       `SELECT r.id, r.rating, r.review_text, r.created_at, r.updated_at,
+              r.rating_worship, r.rating_sermon, r.rating_community, r.rating_youth,
+              r.rating_children, r.rating_biblestudy, r.rating_parking, r.rating_facilities,
               r.user_id, u.name as user_name, u.avatar as user_avatar, u.photo_url as user_photo
        FROM church_reviews r
        JOIN users u ON r.user_id = u.id
@@ -471,7 +509,17 @@ router.get('/:id/reviews', async (req, res, next) => {
       userId: r.user_id,
       userName: r.user_name,
       userAvatar: r.user_avatar,
-      userPhoto: r.user_photo
+      userPhoto: r.user_photo,
+      categories: {
+        worship: r.rating_worship,
+        sermon: r.rating_sermon,
+        community: r.rating_community,
+        youth: r.rating_youth,
+        children: r.rating_children,
+        bibleStudy: r.rating_biblestudy,
+        parking: r.rating_parking,
+        facilities: r.rating_facilities,
+      }
     }))
 
     res.json({ reviews })
@@ -481,20 +529,51 @@ router.get('/:id/reviews', async (req, res, next) => {
 })
 
 // POST /api/churches/:id/reviews
+// Accepts { categories: { worship: 5, sermon: 4, ... }, text: "..." }
+// All categories are optional but at least one must be rated.
+// The overall `rating` is computed as the rounded average of rated categories.
 router.post('/:id/reviews', async (req, res, next) => {
   try {
-    const { rating, text } = req.body
+    const { categories, text } = req.body
     const churchId = req.params.id
 
-    if (!rating || rating < 1 || rating > 5) {
-      return res.status(400).json({ error: 'Rating must be between 1 and 5.' })
+    // Extract category values, validate each is 1-5 or null
+    const cats = categories || {}
+    const catKeys = ['worship', 'sermon', 'community', 'youth', 'children', 'bibleStudy', 'parking', 'facilities']
+    const catValues = {}
+    const ratedValues = []
+
+    for (const key of catKeys) {
+      const val = cats[key]
+      if (val != null) {
+        if (val < 1 || val > 5 || !Number.isInteger(val)) {
+          return res.status(400).json({ error: `${key} rating must be an integer between 1 and 5.` })
+        }
+        catValues[key] = val
+        ratedValues.push(val)
+      } else {
+        catValues[key] = null
+      }
     }
 
+    if (ratedValues.length === 0) {
+      return res.status(400).json({ error: 'Please rate at least one category.' })
+    }
+
+    // Compute overall rating from rated categories
+    const overall = Math.round(ratedValues.reduce((a, b) => a + b, 0) / ratedValues.length)
+
     const result = await pool.query(
-      `INSERT INTO church_reviews (user_id, church_id, rating, review_text)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO church_reviews (user_id, church_id, rating, review_text,
+         rating_worship, rating_sermon, rating_community, rating_youth,
+         rating_children, rating_biblestudy, rating_parking, rating_facilities)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
        RETURNING id, rating, review_text, created_at`,
-      [req.user.id, churchId, rating, text || null]
+      [
+        req.user.id, churchId, overall, text || null,
+        catValues.worship, catValues.sermon, catValues.community, catValues.youth,
+        catValues.children, catValues.bibleStudy, catValues.parking, catValues.facilities
+      ]
     )
 
     await recalculateChurchRating(churchId)
@@ -517,20 +596,49 @@ router.post('/:id/reviews', async (req, res, next) => {
 })
 
 // PUT /api/churches/:id/reviews
+// Same category format as POST — updates all category columns + recomputes overall.
 router.put('/:id/reviews', async (req, res, next) => {
   try {
-    const { rating, text } = req.body
+    const { categories, text } = req.body
     const churchId = req.params.id
 
-    if (!rating || rating < 1 || rating > 5) {
-      return res.status(400).json({ error: 'Rating must be between 1 and 5.' })
+    const cats = categories || {}
+    const catKeys = ['worship', 'sermon', 'community', 'youth', 'children', 'bibleStudy', 'parking', 'facilities']
+    const catValues = {}
+    const ratedValues = []
+
+    for (const key of catKeys) {
+      const val = cats[key]
+      if (val != null) {
+        if (val < 1 || val > 5 || !Number.isInteger(val)) {
+          return res.status(400).json({ error: `${key} rating must be an integer between 1 and 5.` })
+        }
+        catValues[key] = val
+        ratedValues.push(val)
+      } else {
+        catValues[key] = null
+      }
     }
 
+    if (ratedValues.length === 0) {
+      return res.status(400).json({ error: 'Please rate at least one category.' })
+    }
+
+    const overall = Math.round(ratedValues.reduce((a, b) => a + b, 0) / ratedValues.length)
+
     const result = await pool.query(
-      `UPDATE church_reviews SET rating = $1, review_text = $2, updated_at = NOW()
-       WHERE user_id = $3 AND church_id = $4
+      `UPDATE church_reviews SET
+         rating = $1, review_text = $2, updated_at = NOW(),
+         rating_worship = $3, rating_sermon = $4, rating_community = $5, rating_youth = $6,
+         rating_children = $7, rating_biblestudy = $8, rating_parking = $9, rating_facilities = $10
+       WHERE user_id = $11 AND church_id = $12
        RETURNING id, rating, review_text, created_at, updated_at`,
-      [rating, text || null, req.user.id, churchId]
+      [
+        overall, text || null,
+        catValues.worship, catValues.sermon, catValues.community, catValues.youth,
+        catValues.children, catValues.bibleStudy, catValues.parking, catValues.facilities,
+        req.user.id, churchId
+      ]
     )
 
     if (result.rows.length === 0) {

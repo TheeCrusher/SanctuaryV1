@@ -55,10 +55,6 @@ export const CHURCHES = [
     sundaySchool: true,
     recommendedAges: 'Ages 3–12',
     hours: 'Sun 9:00 & 11:00 AM',
-    ratingSinging: 4.5,
-    ratingPreaching: 5.0,
-    ratingOpenness: 4.0,
-    ratingSpace: 4.5,
     overallRating: 4.5,
     reviewCount: 88
   },
@@ -70,10 +66,6 @@ export const CHURCHES = [
     sundaySchool: true,
     recommendedAges: 'Ages 5–14',
     hours: 'Sun 8:00 & 10:30 AM',
-    ratingSinging: 4.0,
-    ratingPreaching: 4.5,
-    ratingOpenness: 4.5,
-    ratingSpace: 5.0,
     overallRating: 4.5,
     reviewCount: 142
   },
@@ -85,10 +77,6 @@ export const CHURCHES = [
     sundaySchool: true,
     recommendedAges: 'Ages 3–12',
     hours: 'Sun 9:00 & 11:30 AM',
-    ratingSinging: 5.0,
-    ratingPreaching: 5.0,
-    ratingOpenness: 4.5,
-    ratingSpace: 4.0,
     overallRating: 4.8,
     reviewCount: 445
   },
@@ -100,10 +88,6 @@ export const CHURCHES = [
     sundaySchool: true,
     recommendedAges: 'Ages 3–16',
     hours: 'Sun 8:45 & 10:45 AM',
-    ratingSinging: 5.0,
-    ratingPreaching: 5.0,
-    ratingOpenness: 4.5,
-    ratingSpace: 5.0,
     overallRating: 4.8,
     reviewCount: 621
   },
@@ -115,10 +99,6 @@ export const CHURCHES = [
     sundaySchool: true,
     recommendedAges: 'Ages 5–16',
     hours: 'Sun 8:30 & 11:00 AM',
-    ratingSinging: 5.0,
-    ratingPreaching: 5.0,
-    ratingOpenness: 4.5,
-    ratingSpace: 5.0,
     overallRating: 4.8,
     reviewCount: 267
   }

@@ -3019,23 +3019,125 @@ textarea {
   line-height: 1.5;
 }
 
-.review-star-selector {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 8px 0 16px;
-}
-
 .review-star-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 2px;
   transition: transform 0.15s ease;
 }
 
 .review-star-btn:active {
   transform: scale(1.2);
+}
+
+/* Category rating rows in review form modal */
+.category-rating-list {
+  margin-bottom: 12px;
+}
+
+.category-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.category-rating-row:last-child {
+  border-bottom: none;
+}
+
+.category-rating-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 105px;
+}
+
+.category-rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+/* Computed overall display in review form */
+.review-computed-overall {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 12px;
+}
+
+/* Category breakdown bars on church detail page */
+.category-breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.category-breakdown-row:last-child {
+  margin-bottom: 0;
+}
+
+.category-breakdown-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.category-breakdown-bar-wrapper {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-muted);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-breakdown-bar {
+  height: 100%;
+  background: #fbbf24;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.category-breakdown-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 28px;
+  text-align: right;
+}
+
+/* Mini category tags on individual review cards */
+.review-categories-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.review-category-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-muted);
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.review-category-tag .stars-sm {
+  font-size: 11px;
 }
 
 /* ---------------------------------------------------------------------------

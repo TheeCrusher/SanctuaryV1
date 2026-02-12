@@ -154,14 +154,12 @@ async function seed() {
     for (const church of CHURCHES) {
       await client.query(
         `INSERT INTO churches (name, address, city, zip, sunday_school, recommended_ages,
-         hours, rating_singing, rating_preaching, rating_openness, rating_space,
-         overall_rating, review_count)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+         hours, overall_rating, review_count)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
         [
           church.name, church.address, church.city, church.zip,
           church.sundaySchool, church.recommendedAges, church.hours,
-          church.ratingSinging, church.ratingPreaching, church.ratingOpenness,
-          church.ratingSpace, church.overallRating, church.reviewCount
+          church.overallRating, church.reviewCount
         ]
       )
       console.log(`   ✅ ${church.name} (${church.city})`)

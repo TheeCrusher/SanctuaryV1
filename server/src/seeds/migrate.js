@@ -45,6 +45,24 @@ async function migrate() {
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS short_description TEXT',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS photo_url TEXT',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_place_id VARCHAR(255)',
+      // Phase 2: Category averages on churches table
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_worship DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_sermon DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_community DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_youth DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_children DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_biblestudy DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_parking DECIMAL(2,1)',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS avg_facilities DECIMAL(2,1)',
+      // Phase 2: Category ratings on church_reviews table
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_worship INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_sermon INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_community INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_youth INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_children INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_biblestudy INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_parking INTEGER',
+      'ALTER TABLE church_reviews ADD COLUMN IF NOT EXISTS rating_facilities INTEGER',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
