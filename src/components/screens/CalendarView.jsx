@@ -15,7 +15,8 @@ const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 function CalendarView() {
   const navigate = useNavigate()
-  const { appointments } = useApp()
+  const { appointments, user } = useApp()
+  const isSeeker = user?.role?.toLowerCase() === 'seeker'
 
   const today = new Date()
   const [currentMonth, setCurrentMonth] = useState(today.getMonth())
@@ -99,6 +100,7 @@ function CalendarView() {
   function dotColor(status) {
     if (status === 'confirmed') return 'var(--alert-text)'
     if (status === 'completed') return 'var(--text-faint)'
+    if (status === 'declined') return 'var(--badge-declined-text)'
     return 'var(--brand-primary)'
   }
 
@@ -188,7 +190,9 @@ function CalendarView() {
                   <Avatar emoji={apt.avatar} size="sm" variant="blue" />
                   <div className="apt-info">
                     <div className="apt-header">
-                      <span className="apt-name" style={{ fontSize: '14px' }}>{apt.name}</span>
+                      <span className="apt-name" style={{ fontSize: '14px' }}>
+                        {isSeeker ? (apt.guideName || apt.seekerName) : apt.seekerName}
+                      </span>
                       <Badge status={apt.status} />
                     </div>
                     <div className="apt-meta" style={{ fontSize: '12px' }}>

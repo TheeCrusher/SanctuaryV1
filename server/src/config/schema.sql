@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS appointments (
                                       'Counseling', 'General Guidance')),
   notes               TEXT,
   status              VARCHAR(20) NOT NULL DEFAULT 'pending'
-                      CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled')),
+                      CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled', 'declined')),
   recurrence_rule     VARCHAR(20) DEFAULT 'none'
                       CHECK (recurrence_rule IN ('none', 'weekly', 'biweekly', 'monthly')),
   series_id           UUID,
@@ -547,6 +547,9 @@ CREATE TABLE IF NOT EXISTS notifications (
                     'testimony_celebration',
                     'event_rsvp',
                     'appointment_request',
+                    'appointment_confirmed',
+                    'appointment_declined',
+                    'appointment_scheduled',
                     'church_announcement'
                   )),
   title           VARCHAR(200) NOT NULL,

@@ -80,7 +80,7 @@ router.get('/', async (req, res, next) => {
          LEFT JOIN users ug ON a.guide_id = ug.id
          LEFT JOIN users us ON a.seeker_id = us.id
          WHERE (a.guide_id = $1 OR a.seeker_id = $1)
-           AND a.status NOT IN ('completed', 'cancelled')
+           AND a.status NOT IN ('completed', 'cancelled', 'declined')
            AND a.date >= CURRENT_DATE
          ORDER BY a.date ASC, a.time ASC
          LIMIT 5`,
@@ -117,7 +117,7 @@ router.get('/', async (req, res, next) => {
       // 7. Session stats
       pool.query(
         `SELECT
-           COUNT(*) FILTER (WHERE status NOT IN ('completed', 'cancelled'))::int AS upcoming,
+           COUNT(*) FILTER (WHERE status NOT IN ('completed', 'cancelled', 'declined'))::int AS upcoming,
            COUNT(*) FILTER (WHERE status = 'completed')::int AS completed,
            COUNT(DISTINCT seeker_name) AS unique_seekers
          FROM appointments

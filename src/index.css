@@ -69,6 +69,8 @@
   --badge-confirmed-text: #065f46;
   --badge-completed-bg: #dbeafe;
   --badge-completed-text: #1e40af;
+  --badge-declined-bg: #fef2f2;
+  --badge-declined-text: #dc2626;
 
   --alert-error-bg: #fef2f2;
   --alert-error-border: #fecaca;
@@ -118,6 +120,8 @@
   --badge-confirmed-text: #4ade80;
   --badge-completed-bg: rgba(59, 130, 246, 0.15);
   --badge-completed-text: #60a5fa;
+  --badge-declined-bg: rgba(239, 68, 68, 0.15);
+  --badge-declined-text: #ef4444;
 
   --alert-error-bg: rgba(239, 68, 68, 0.15);
   --alert-error-border: rgba(239, 68, 68, 0.3);
@@ -389,6 +393,11 @@ textarea {
 .badge-completed {
   background: var(--badge-completed-bg);
   color: var(--badge-completed-text);
+}
+
+.badge-declined {
+  background: var(--badge-declined-bg);
+  color: var(--badge-declined-text);
 }
 
 .unread-badge {

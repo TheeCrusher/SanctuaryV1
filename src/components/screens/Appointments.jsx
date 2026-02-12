@@ -1,10 +1,11 @@
 // =============================================================================
 // APPOINTMENTS SCREEN
 // =============================================================================
-// Shows all appointments grouped by status (pending, confirmed, completed).
+// Shows all appointments grouped by status (pending, confirmed, completed, declined).
 // Allows creating new appointments with optional recurrence.
 // Supports cancelling individual or entire series of recurring appointments.
-// Role-aware: Guides enter a seeker name, Seekers select a Guide from community.
+// Role-aware: Guides select a Seeker, Seekers select a Guide from community.
+// Only guides can confirm/decline pending appointment requests.
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -18,10 +19,13 @@ function Appointments() {
   const [showModal, setShowModal] = useState(false)
   const [showCancelConfirm, setShowCancelConfirm] = useState(null)
   const [communityGuides, setCommunityGuides] = useState([])
+  const [communitySeekers, setCommunitySeekers] = useState([])
+  const [confirmError, setConfirmError] = useState(null)
 
   const [formData, setFormData] = useState({
     name: '',
     guideId: '',
+    seekerId: '',
     date: '',
     time: '',
     duration: '60',
@@ -36,6 +40,7 @@ function Appointments() {
     appointments,
     createAppointment,
     confirmAppointment,
+    declineAppointment,
     completeAppointment,
     cancelAppointment,
     cancelSeries
@@ -43,10 +48,12 @@ function Appointments() {
 
   const isSeeker = user?.role?.toLowerCase() === 'seeker'
 
-  // Seekers: load Guides from community connections
+  // Load community connections for the dropdown
   useEffect(() => {
     if (isSeeker) {
       loadGuides()
+    } else {
+      loadSeekers()
     }
   }, [isSeeker])
 
@@ -60,10 +67,28 @@ function Appointments() {
     }
   }
 
+  async function loadSeekers() {
+    try {
+      const data = await api.get('/community')
+      const seekers = (data.community || []).filter(p => p.role === 'Seeker')
+      setCommunitySeekers(seekers)
+    } catch (error) {
+      console.error('Failed to load community seekers:', error)
+    }
+  }
+
   // Group appointments by status
   const pendingApts = appointments.filter(a => a.status === 'pending')
   const confirmedApts = appointments.filter(a => a.status === 'confirmed')
   const completedApts = appointments.filter(a => a.status === 'completed')
+  const declinedApts = appointments.filter(a => a.status === 'declined')
+
+  // Smart display name: show the OTHER person's name
+  function getDisplayName(apt) {
+    return isSeeker
+      ? (apt.guideName || apt.seekerName)
+      : apt.seekerName
+  }
 
   function formatDate(dateStr) {
     const date = new Date(dateStr)
@@ -82,17 +107,18 @@ function Appointments() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    // Build the data to send
     const submitData = { ...formData }
 
     if (isSeeker) {
       // Seeker: auto-fill their name, send the selected guideId
       submitData.name = user.name
       submitData.guideId = Number(formData.guideId)
-    }
-
-    // Remove guideId from payload if Guide is creating (backend uses their own ID)
-    if (!isSeeker) {
+      delete submitData.seekerId
+    } else {
+      // Guide: look up seeker name from the dropdown selection
+      const selectedSeeker = communitySeekers.find(s => s.id === Number(formData.seekerId))
+      submitData.name = selectedSeeker ? selectedSeeker.name : formData.name
+      submitData.seekerId = Number(formData.seekerId)
       delete submitData.guideId
     }
 
@@ -101,6 +127,7 @@ function Appointments() {
     setFormData({
       name: '',
       guideId: '',
+      seekerId: '',
       date: '',
       time: '',
       duration: '60',
@@ -119,6 +146,7 @@ function Appointments() {
 
   // Build a Google Calendar "Add Event" URL
   function googleCalendarUrl(apt) {
+    const otherName = getDisplayName(apt)
     const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
     const [h, m] = apt.time.split(':').map(Number)
     const endMinutes = h * 60 + m + Number(apt.duration)
@@ -128,15 +156,16 @@ function Appointments() {
 
     const params = new URLSearchParams({
       action: 'TEMPLATE',
-      text: `Sanctuary: ${apt.type} with ${apt.name}`,
+      text: `Sanctuary: ${apt.type} with ${otherName}`,
       dates: `${startDt}/${endDt}`,
-      details: apt.notes || `${apt.type} session with ${apt.name}`,
+      details: apt.notes || `${apt.type} session with ${otherName}`,
     })
     return `https://calendar.google.com/calendar/render?${params.toString()}`
   }
 
   // Generate and download an .ics file
   function downloadIcs(apt) {
+    const otherName = getDisplayName(apt)
     const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
     const [h, m] = apt.time.split(':').map(Number)
     const endMinutes = h * 60 + m + Number(apt.duration)
@@ -151,7 +180,7 @@ function Appointments() {
       'BEGIN:VEVENT',
       `DTSTART:${startDt}`,
       `DTEND:${endDt}`,
-      `SUMMARY:Sanctuary: ${apt.type} with ${apt.name}`,
+      `SUMMARY:Sanctuary: ${apt.type} with ${otherName}`,
       `DESCRIPTION:${apt.notes || apt.type + ' session'}`,
       'END:VEVENT',
       'END:VCALENDAR'
@@ -167,13 +196,16 @@ function Appointments() {
   }
 
   function AppointmentCard({ apt }) {
+    const displayName = getDisplayName(apt)
+    const isGuideOnThis = user?.id === apt.guideId
+
     return (
       <Card>
         <div className="apt-row">
           <Avatar emoji={apt.avatar} size="md" variant="blue" />
           <div className="apt-info">
             <div className="apt-header">
-              <span className="apt-name">{apt.name}</span>
+              <span className="apt-name">{displayName}</span>
               <Badge status={apt.status} />
             </div>
             <div className="apt-meta">
@@ -205,18 +237,40 @@ function Appointments() {
               </button>
             </div>
 
-            {apt.status !== 'completed' && (
+            {apt.status !== 'completed' && apt.status !== 'declined' && (
               <div className="apt-actions">
-                {apt.status === 'pending' && (
-                  <button
-                    className="btn-primary"
-                    style={{ padding: '8px 16px', fontSize: '14px' }}
-                    onClick={() => confirmAppointment(apt.id)}
-                  >
-                    Confirm
-                  </button>
+                {/* Only the guide can confirm/decline pending appointments */}
+                {apt.status === 'pending' && isGuideOnThis && (
+                  <>
+                    <button
+                      className="btn-primary"
+                      style={{ padding: '8px 16px', fontSize: '14px' }}
+                      onClick={async () => {
+                        try {
+                          setConfirmError(null)
+                          await confirmAppointment(apt.id)
+                        } catch (err) {
+                          setConfirmError(err.message || 'Failed to confirm')
+                        }
+                      }}
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      className="btn-cancel-apt"
+                      onClick={async () => {
+                        try {
+                          await declineAppointment(apt.id)
+                        } catch (err) {
+                          console.error('Failed to decline:', err)
+                        }
+                      }}
+                    >
+                      Decline
+                    </button>
+                  </>
                 )}
-                {apt.status === 'confirmed' && (
+                {apt.status === 'confirmed' && isGuideOnThis && (
                   <button
                     className="btn-primary"
                     style={{ padding: '8px 16px', fontSize: '14px' }}
@@ -261,6 +315,30 @@ function Appointments() {
 
       {/* Content */}
       <div className="screen-content">
+        {/* Conflict error message */}
+        {confirmError && (
+          <div style={{
+            background: 'var(--alert-error-bg)',
+            border: '1px solid var(--alert-error-text)',
+            color: 'var(--alert-error-text)',
+            padding: '12px 16px',
+            borderRadius: '10px',
+            marginBottom: '12px',
+            fontSize: '14px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span>{confirmError}</span>
+            <button
+              onClick={() => setConfirmError(null)}
+              style={{ background: 'none', border: 'none', color: 'var(--alert-error-text)', cursor: 'pointer', fontWeight: 'bold', fontSize: '18px', padding: '0 4px' }}
+            >
+              &times;
+            </button>
+          </div>
+        )}
+
         {appointments.length === 0 ? (
           <EmptyState
             icon={Calendar}
@@ -293,6 +371,15 @@ function Appointments() {
               <>
                 <div className="section-divider">Completed ({completedApts.length})</div>
                 {completedApts.map(apt => (
+                  <AppointmentCard key={apt.id} apt={apt} />
+                ))}
+              </>
+            )}
+
+            {declinedApts.length > 0 && (
+              <>
+                <div className="section-divider">Declined ({declinedApts.length})</div>
+                {declinedApts.map(apt => (
                   <AppointmentCard key={apt.id} apt={apt} />
                 ))}
               </>
@@ -334,16 +421,26 @@ function Appointments() {
             </div>
           ) : (
             <div className="form-group">
-              <label className="form-label" htmlFor="name">Seeker Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+              <label className="form-label" htmlFor="seekerId">Which Seeker?</label>
+              <select
+                id="seekerId"
+                name="seekerId"
+                value={formData.seekerId}
                 onChange={handleInputChange}
-                placeholder="Enter name"
                 required
-              />
+              >
+                <option value="">Select a Seeker...</option>
+                {communitySeekers.map(seeker => (
+                  <option key={seeker.id} value={seeker.id}>
+                    {seeker.name}
+                  </option>
+                ))}
+              </select>
+              {communitySeekers.length === 0 && (
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
+                  Add Seekers to your Community first
+                </div>
+              )}
             </div>
           )}
 
@@ -462,7 +559,7 @@ function Appointments() {
         <Modal onClose={() => setShowCancelConfirm(null)}>
           <div className="modal-title">Cancel Session</div>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
-            Cancel the session with <strong>{showCancelConfirm.name}</strong> on {formatDate(showCancelConfirm.date)}?
+            Cancel the session with <strong>{getDisplayName(showCancelConfirm)}</strong> on {formatDate(showCancelConfirm.date)}?
           </p>
 
           <div className="modal-buttons" style={{ flexDirection: 'column', gap: '8px' }}>

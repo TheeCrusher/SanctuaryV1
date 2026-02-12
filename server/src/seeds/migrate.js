@@ -66,6 +66,12 @@ async function migrate() {
       // Phase 3: Google rating + widen hours column
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_rating DECIMAL(2,1)',
       'ALTER TABLE churches ALTER COLUMN hours TYPE TEXT',
+      // Appointments rework: add 'declined' status
+      `ALTER TABLE appointments DROP CONSTRAINT IF EXISTS appointments_status_check`,
+      `ALTER TABLE appointments ADD CONSTRAINT appointments_status_check CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled', 'declined'))`,
+      // Appointments rework: expand notification types
+      `ALTER TABLE notifications DROP CONSTRAINT IF EXISTS notifications_type_check`,
+      `ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN ('new_message', 'connection_request', 'connection_accepted', 'prayer_prayed', 'prayer_comment', 'testimony_celebration', 'event_rsvp', 'appointment_request', 'appointment_confirmed', 'appointment_declined', 'appointment_scheduled', 'church_announcement'))`,
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

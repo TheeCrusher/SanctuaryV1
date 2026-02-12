@@ -360,6 +360,17 @@ export function AppProvider({ children }) {
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
     } catch (error) {
       console.error('Failed to confirm appointment:', error)
+      throw error
+    }
+  }
+
+  async function declineAppointment(id) {
+    try {
+      const { appointment } = await api.patch(`/appointments/${id}/status`, { status: 'declined' })
+      setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
+    } catch (error) {
+      console.error('Failed to decline appointment:', error)
+      throw error
     }
   }
 
@@ -392,9 +403,9 @@ export function AppProvider({ children }) {
   }
 
   // Computed values for appointments (same logic as before)
-  const upcomingCount = appointments.filter(a => a.status !== "completed").length
+  const upcomingCount = appointments.filter(a => a.status !== "completed" && a.status !== "declined").length
   const completedCount = appointments.filter(a => a.status === "completed").length
-  const uniqueSeekersCount = [...new Set(appointments.map(a => a.name))].length
+  const uniqueSeekersCount = [...new Set(appointments.map(a => a.seekerName))].length
 
   // =========================================================================
   // CONVERSATION FUNCTIONS
@@ -770,6 +781,7 @@ export function AppProvider({ children }) {
     appointments,
     createAppointment,
     confirmAppointment,
+    declineAppointment,
     completeAppointment,
     cancelAppointment,
     cancelSeries,

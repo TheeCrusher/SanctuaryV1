@@ -3,7 +3,7 @@
 // ============================================================
 // GET    /api/appointments              - List all appointments for the logged-in user (guide or seeker)
 // POST   /api/appointments              - Create a new appointment (with optional recurrence)
-// PATCH  /api/appointments/:id/status   - Update appointment status
+// PATCH  /api/appointments/:id/status   - Update appointment status (role-aware: only guides confirm/decline)
 // DELETE /api/appointments/:id          - Cancel a single appointment
 // DELETE /api/appointments/series/:sid  - Cancel all future appointments in a series
 //
@@ -23,7 +23,10 @@ router.use(authenticate)
 function formatRow(row) {
   return {
     id: row.id,
-    name: row.seeker_name,
+    guideId: row.guide_id,
+    seekerId: row.seeker_id,
+    seekerName: row.seeker_name,
+    guideName: row.guide_name || null,
     avatar: row.avatar,
     date: row.date.toISOString().split('T')[0],
     time: row.time.slice(0, 5),
@@ -62,33 +65,40 @@ function generateRecurringDates(startDate, rule, endDate) {
 // ============================================================
 // GET /api/appointments
 // ============================================================
+// Returns appointments with both guide and seeker names so the
+// frontend can display the OTHER person's name on each card.
 router.get('/', async (req, res, next) => {
   try {
     const { status, from, to } = req.query
 
-    let query = "SELECT * FROM appointments WHERE (guide_id = $1 OR seeker_id = $1) AND status != 'cancelled'"
+    let query = `
+      SELECT a.*, u.name AS guide_name
+      FROM appointments a
+      LEFT JOIN users u ON a.guide_id = u.id
+      WHERE (a.guide_id = $1 OR a.seeker_id = $1)
+        AND a.status != 'cancelled'`
     const params = [req.user.id]
     let paramCount = 1
 
     if (status) {
       paramCount++
-      query += ` AND status = $${paramCount}`
+      query += ` AND a.status = $${paramCount}`
       params.push(status)
     }
 
     if (from) {
       paramCount++
-      query += ` AND date >= $${paramCount}`
+      query += ` AND a.date >= $${paramCount}`
       params.push(from)
     }
 
     if (to) {
       paramCount++
-      query += ` AND date <= $${paramCount}`
+      query += ` AND a.date <= $${paramCount}`
       params.push(to)
     }
 
-    query += ' ORDER BY date ASC, time ASC'
+    query += ' ORDER BY a.date ASC, a.time ASC'
 
     const result = await pool.query(query, params)
     const appointments = result.rows.map(formatRow)
@@ -102,15 +112,16 @@ router.get('/', async (req, res, next) => {
 // ============================================================
 // POST /api/appointments
 // ============================================================
-// Creates a new appointment. If recurrenceRule is set (weekly/biweekly/monthly),
-// generates multiple rows linked by a shared series_id UUID.
+// Two flows:
+//   1. Seeker creates → sends guideId → status='pending' → guide notified
+//   2. Guide creates → sends seekerId → status='confirmed' → seeker notified
 //
 // Request body: { name, date, time, duration, type, notes?,
-//                 recurrenceRule?, recurrenceEndDate? }
+//                 recurrenceRule?, recurrenceEndDate?, guideId?, seekerId? }
 
 router.post('/', async (req, res, next) => {
   try {
-    const { name, date, time, duration, type, notes, recurrenceRule, recurrenceEndDate, guideId } = req.body
+    const { name, date, time, duration, type, notes, recurrenceRule, recurrenceEndDate, guideId, seekerId } = req.body
 
     if (!name || !date || !time || !duration || !type) {
       return res.status(400).json({
@@ -118,10 +129,25 @@ router.post('/', async (req, res, next) => {
       })
     }
 
-    // Determine guide_id and seeker_id based on who is creating
-    // If guideId is provided, a Seeker is booking with a specific Guide
-    const appointmentGuideId = guideId || req.user.id
-    const seekerId = guideId ? req.user.id : null
+    // Determine guide_id, seeker_id, and initial status based on who is creating
+    let appointmentGuideId, appointmentSeekerId, initialStatus
+
+    if (guideId) {
+      // Seeker is booking with a specific Guide → pending until guide confirms
+      appointmentGuideId = guideId
+      appointmentSeekerId = req.user.id
+      initialStatus = 'pending'
+    } else if (seekerId) {
+      // Guide is creating appointment with a seeker → auto-confirmed
+      appointmentGuideId = req.user.id
+      appointmentSeekerId = seekerId
+      initialStatus = 'confirmed'
+    } else {
+      // Fallback: guide creating without a linked seeker
+      appointmentGuideId = req.user.id
+      appointmentSeekerId = null
+      initialStatus = 'pending'
+    }
 
     const validDurations = [30, 60, 90, 120]
     if (!validDurations.includes(Number(duration))) {
@@ -151,17 +177,21 @@ router.post('/', async (req, res, next) => {
     const seriesId = rule !== 'none' ? randomUUID() : null
     const endDate = rule !== 'none' ? recurrenceEndDate : null
 
+    // Look up guide name for the response
+    const guideInfo = await pool.query('SELECT name FROM users WHERE id = $1', [appointmentGuideId])
+    const guideName = guideInfo.rows[0]?.name || null
+
     // Insert the first (original) appointment
     const result = await pool.query(
       `INSERT INTO appointments (guide_id, seeker_id, seeker_name, date, time, duration, type, notes,
-                                  recurrence_rule, series_id, recurrence_end_date)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                                  recurrence_rule, series_id, recurrence_end_date, status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
        RETURNING *`,
-      [appointmentGuideId, seekerId, name, date, time, Number(duration), type, notes || '',
-       rule, seriesId, endDate]
+      [appointmentGuideId, appointmentSeekerId, name, date, time, Number(duration), type, notes || '',
+       rule, seriesId, endDate, initialStatus]
     )
 
-    const appointments = [formatRow(result.rows[0])]
+    const appointments = [{ ...formatRow(result.rows[0]), guideName }]
 
     // Generate recurring instances if applicable
     if (rule !== 'none') {
@@ -170,25 +200,39 @@ router.post('/', async (req, res, next) => {
       for (const rDate of recurringDates) {
         const rResult = await pool.query(
           `INSERT INTO appointments (guide_id, seeker_id, seeker_name, date, time, duration, type, notes,
-                                      recurrence_rule, series_id, recurrence_end_date)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                                      recurrence_rule, series_id, recurrence_end_date, status)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
            RETURNING *`,
-          [appointmentGuideId, seekerId, name, rDate, time, Number(duration), type, notes || '',
-           rule, seriesId, endDate]
+          [appointmentGuideId, appointmentSeekerId, name, rDate, time, Number(duration), type, notes || '',
+           rule, seriesId, endDate, initialStatus]
         )
-        appointments.push(formatRow(rResult.rows[0]))
+        appointments.push({ ...formatRow(rResult.rows[0]), guideName })
       }
     }
+
+    const io = req.app.get('io')
 
     // If a seeker booked with a guide, notify the guide
     if (guideId) {
       const seekerInfo = await pool.query('SELECT name FROM users WHERE id = $1', [req.user.id])
-      const io = req.app.get('io')
       await createNotification(io, {
         userId: guideId,
         actorId: req.user.id,
         type: 'appointment_request',
         title: `${seekerInfo.rows[0].name} requested a session`,
+        body: `${type} on ${date}`,
+        referenceType: 'appointment',
+        referenceId: appointments[0].id
+      })
+    }
+
+    // If a guide created appointment with a seeker, notify the seeker
+    if (seekerId && !guideId) {
+      await createNotification(io, {
+        userId: seekerId,
+        actorId: req.user.id,
+        type: 'appointment_scheduled',
+        title: `${guideName} scheduled a session with you`,
         body: `${type} on ${date}`,
         referenceType: 'appointment',
         referenceId: appointments[0].id
@@ -204,31 +248,109 @@ router.post('/', async (req, res, next) => {
 // ============================================================
 // PATCH /api/appointments/:id/status
 // ============================================================
+// Role-aware: only the guide can confirm or decline.
+// Conflict detection: prevents double-booking when confirming.
+// Sends notifications to the other party on status changes.
 router.patch('/:id/status', async (req, res, next) => {
   try {
     const { id } = req.params
     const { status } = req.body
+    const userId = req.user.id
 
-    const validStatuses = ['pending', 'confirmed', 'completed', 'cancelled']
+    const validStatuses = ['pending', 'confirmed', 'completed', 'cancelled', 'declined']
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
         error: `Status must be one of: ${validStatuses.join(', ')}`
       })
     }
 
+    // Fetch the appointment to check ownership and current state
+    const aptResult = await pool.query(
+      `SELECT a.*, u.name AS guide_name
+       FROM appointments a
+       LEFT JOIN users u ON a.guide_id = u.id
+       WHERE a.id = $1 AND (a.guide_id = $2 OR a.seeker_id = $2)`,
+      [id, userId]
+    )
+
+    if (aptResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Appointment not found.' })
+    }
+
+    const apt = aptResult.rows[0]
+
+    // Only the guide can confirm or decline
+    if ((status === 'confirmed' || status === 'declined') && apt.guide_id !== userId) {
+      return res.status(403).json({ error: 'Only the guide can confirm or decline appointments.' })
+    }
+
+    // Conflict detection when confirming
+    if (status === 'confirmed') {
+      const [h, m] = apt.time.split(':').map(Number)
+      const startMinutes = h * 60 + m
+      const endMinutes = startMinutes + apt.duration
+
+      const conflicts = await pool.query(
+        `SELECT id, time, duration, seeker_name
+         FROM appointments
+         WHERE guide_id = $1
+           AND date = $2
+           AND status = 'confirmed'
+           AND id != $3`,
+        [apt.guide_id, apt.date.toISOString().split('T')[0], id]
+      )
+
+      for (const c of conflicts.rows) {
+        const [ch, cm] = c.time.split(':').map(Number)
+        const cStart = ch * 60 + cm
+        const cEnd = cStart + c.duration
+        if (startMinutes < cEnd && endMinutes > cStart) {
+          return res.status(409).json({
+            error: `Time conflict: you already have a confirmed session with ${c.seeker_name} at that time.`
+          })
+        }
+      }
+    }
+
+    // Update the status
     const result = await pool.query(
       `UPDATE appointments
        SET status = $1, updated_at = NOW()
        WHERE id = $2 AND (guide_id = $3 OR seeker_id = $3)
        RETURNING *`,
-      [status, id, req.user.id]
+      [status, id, userId]
     )
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Appointment not found.' })
+    const appointment = { ...formatRow(result.rows[0]), guideName: apt.guide_name }
+
+    // Send notifications on status changes
+    const io = req.app.get('io')
+
+    if (status === 'confirmed' && apt.seeker_id) {
+      await createNotification(io, {
+        userId: apt.seeker_id,
+        actorId: apt.guide_id,
+        type: 'appointment_confirmed',
+        title: `${apt.guide_name} confirmed your session`,
+        body: `${apt.type} on ${apt.date.toISOString().split('T')[0]}`,
+        referenceType: 'appointment',
+        referenceId: apt.id
+      })
     }
 
-    res.json({ appointment: formatRow(result.rows[0]) })
+    if (status === 'declined' && apt.seeker_id) {
+      await createNotification(io, {
+        userId: apt.seeker_id,
+        actorId: apt.guide_id,
+        type: 'appointment_declined',
+        title: `${apt.guide_name} declined your session request`,
+        body: `${apt.type} on ${apt.date.toISOString().split('T')[0]}`,
+        referenceType: 'appointment',
+        referenceId: apt.id
+      })
+    }
+
+    res.json({ appointment })
   } catch (error) {
     next(error)
   }
