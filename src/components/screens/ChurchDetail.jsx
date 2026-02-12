@@ -253,8 +253,8 @@ function ChurchDetail() {
           <button className="favorite-btn" onClick={() => toggleFavoriteChurch(church.id)}>
             <Heart
               size={22}
-              fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
-              color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
+              fill={isChurchFavorited(church.id) ? '#722F37' : 'none'}
+              color={isChurchFavorited(church.id) ? '#722F37' : '#9ca3af'}
             />
           </button>
         </div>
@@ -321,7 +321,7 @@ function ChurchDetail() {
             <div className="church-ratings-row" style={{ marginTop: '16px' }}>
               {church.googleRating && (
                 <div className="church-rating-badge">
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
+                  <Star size={14} fill="#C9A227" color="#C9A227" />
                   <span style={{ fontWeight: '600' }}>{church.googleRating.toFixed(1)}</span>
                   <span style={{ color: 'var(--text-faint)', fontSize: '12px' }}>Google</span>
                 </div>
@@ -544,8 +544,8 @@ function ChurchDetail() {
                     >
                       <Star
                         size={22}
-                        fill={reviewCategories[key] && n <= reviewCategories[key] ? '#fbbf24' : 'none'}
-                        color={reviewCategories[key] && n <= reviewCategories[key] ? '#fbbf24' : 'var(--text-faint)'}
+                        fill={reviewCategories[key] && n <= reviewCategories[key] ? '#C9A227' : 'none'}
+                        color={reviewCategories[key] && n <= reviewCategories[key] ? '#C9A227' : 'var(--text-faint)'}
                       />
                     </button>
                   ))}

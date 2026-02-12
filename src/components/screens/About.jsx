@@ -59,7 +59,7 @@ function About() {
 
         <div style={{ textAlign: 'center', marginTop: '32px', color: '#9ca3af' }}>
           <p>Version 1.0.0</p>
-          <p style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>Made with <Heart size={14} style={{ color: '#ef4444' }} /> and faith</p>
+          <p style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>Made with <Heart size={14} style={{ color: '#722F37' }} /> and faith</p>
         </div>
       </div>
     </div>

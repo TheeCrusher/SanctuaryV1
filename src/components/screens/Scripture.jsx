@@ -149,11 +149,11 @@ function Scripture() {
                 <button
                   className="verse-action-btn"
                   onClick={() => toggleVerseBookmark(verse.id)}
-                  style={scriptureBookmarkIds.has(verse.id) ? { color: '#f59e0b' } : {}}
+                  style={scriptureBookmarkIds.has(verse.id) ? { color: '#C9A227' } : {}}
                 >
                   <Star
                     size={18}
-                    fill={scriptureBookmarkIds.has(verse.id) ? '#f59e0b' : 'none'}
+                    fill={scriptureBookmarkIds.has(verse.id) ? '#C9A227' : 'none'}
                   />
                 </button>
                 <button

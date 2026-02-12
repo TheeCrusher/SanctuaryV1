@@ -156,7 +156,7 @@ function UserProfile() {
           variant="gradient"
         />
         <div className="profile-name" style={{ marginTop: 12 }}>{profile.name}</div>
-        <div className="profile-role-badge">{profile.role}</div>
+        <div className={`profile-role-badge ${profile.role?.toLowerCase() === 'guide' ? 'role-guide' : 'role-seeker'}`}>{profile.role}</div>
 
         <div className="profile-details">
           {profile.specialization && (
@@ -220,9 +220,8 @@ function UserProfile() {
 
             {showBookSession && (
               <button
-                className="btn-secondary"
+                className="btn-gold"
                 onClick={() => navigate('/appointments')}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
               >
                 <Calendar size={18} /> Book Session
               </button>

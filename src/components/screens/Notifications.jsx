@@ -29,9 +29,9 @@ const NOTIF_CONFIG = {
   new_message:             { icon: MessageCircle, color: '#3b82f6', bg: 'rgba(59,130,246,0.1)' },
   connection_request:      { icon: UserPlus,      color: '#8b5cf6', bg: 'rgba(139,92,246,0.1)' },
   connection_accepted:     { icon: Users,         color: '#16a34a', bg: 'rgba(22,163,74,0.1)' },
-  prayer_prayed:           { icon: Heart,         color: '#ef4444', bg: 'rgba(239,68,68,0.1)' },
+  prayer_prayed:           { icon: Heart,         color: '#722F37', bg: 'rgba(114,47,55,0.1)' },
   prayer_comment:          { icon: MessageCircle, color: '#f97316', bg: 'rgba(249,115,22,0.1)' },
-  testimony_celebration:   { icon: PartyPopper,   color: '#eab308', bg: 'rgba(234,179,8,0.1)' },
+  testimony_celebration:   { icon: PartyPopper,   color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
   event_rsvp:              { icon: Calendar,      color: '#06b6d4', bg: 'rgba(6,182,212,0.1)' },
   appointment_request:     { icon: Clock,         color: '#1e3a8a', bg: 'rgba(30,58,138,0.1)' },
   church_announcement:     { icon: Megaphone,     color: '#059669', bg: 'rgba(5,150,105,0.1)' }

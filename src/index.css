@@ -86,6 +86,16 @@
   --meta-no-bg: #fef2f2;
   --meta-no-text: #991b1b;
   --meta-tag-bg: #f3f4f6;
+
+  /* Accent colors — Gold (guides, ratings, scripture, prestige) */
+  --accent-gold: #C9A227;
+  --accent-gold-light: rgba(201, 162, 39, 0.12);
+  --accent-gold-text: #8B6914;
+
+  /* Accent colors — Burgundy (prayer, devotion, community warmth) */
+  --accent-burgundy: #722F37;
+  --accent-burgundy-light: rgba(114, 47, 55, 0.12);
+  --accent-burgundy-text: #722F37;
 }
 
 [data-theme="dark"] {
@@ -137,6 +147,14 @@
   --meta-no-bg: rgba(239, 68, 68, 0.15);
   --meta-no-text: #fca5a5;
   --meta-tag-bg: #334155;
+
+  --accent-gold: #D4AF37;
+  --accent-gold-light: rgba(212, 175, 55, 0.15);
+  --accent-gold-text: #D4AF37;
+
+  --accent-burgundy: #9B4D56;
+  --accent-burgundy-light: rgba(155, 77, 86, 0.15);
+  --accent-burgundy-text: #C97A83;
 }
 
 /* ---------------------------------------------------------------------------
@@ -258,6 +276,29 @@ input:focus, textarea:focus, select:focus {
 
 .btn-secondary:active {
   background: var(--bg-muted);
+}
+
+.btn-gold {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent-gold);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.btn-gold:active {
+  opacity: 0.85;
+  transform: scale(0.98);
 }
 
 .back-btn {
@@ -594,8 +635,8 @@ textarea {
 }
 
 .home-role-guide {
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  background: rgba(201, 162, 39, 0.3);
+  color: #FFD700;
 }
 
 .home-role-seeker {
@@ -641,13 +682,13 @@ textarea {
 }
 
 .home-notif-prayers {
-  background: rgba(236, 72, 153, 0.12);
-  color: #db2777;
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
 }
 
 .home-notif-sessions {
-  background: rgba(234, 179, 8, 0.12);
-  color: #b45309;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
 }
 
 .home-notif-text {
@@ -767,8 +808,9 @@ textarea {
 
 /* --- Daily Word --- */
 .home-daily-word {
-  text-align: center;
-  padding: 4px 0;
+  text-align: left;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .home-daily-text {
@@ -781,13 +823,13 @@ textarea {
 .home-daily-ref {
   font-size: 13px;
   font-weight: 600;
-  color: var(--brand-light-text);
+  color: var(--accent-gold-text);
 }
 
 /* --- Dark Mode Overrides for Home --- */
 [data-theme="dark"] .home-role-guide {
-  background: rgba(234, 179, 8, 0.2);
-  color: #fbbf24;
+  background: rgba(212, 175, 55, 0.25);
+  color: var(--accent-gold);
 }
 
 [data-theme="dark"] .home-role-seeker {
@@ -806,13 +848,13 @@ textarea {
 }
 
 [data-theme="dark"] .home-notif-prayers {
-  background: rgba(236, 72, 153, 0.15);
-  color: #f472b6;
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
 }
 
 [data-theme="dark"] .home-notif-sessions {
-  background: rgba(234, 179, 8, 0.15);
-  color: #fbbf24;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
 }
 
 /* ---------------------------------------------------------------------------
@@ -1163,7 +1205,7 @@ textarea {
 }
 
 .stars {
-  color: #fbbf24;
+  color: var(--accent-gold);
   letter-spacing: 1px;
 }
 
@@ -2019,6 +2061,16 @@ textarea {
   z-index: 1;
 }
 
+.login-logo-area::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #C9A227, #D4AF37);
+  margin: 4px auto 0;
+  border-radius: 2px;
+}
+
 .login-logo-image {
   width: 220px;
   height: auto;
@@ -2045,6 +2097,7 @@ textarea {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 2px solid rgba(201, 162, 39, 0.5);
   border-radius: 20px;
   padding: 32px 24px;
   width: 100%;
@@ -2651,9 +2704,9 @@ textarea {
 }
 
 .favorites-filter-btn.active {
-  background: var(--danger-light-bg);
-  border-color: var(--danger-light-border);
-  color: #ef4444;
+  background: var(--accent-burgundy-light);
+  border-color: var(--accent-burgundy);
+  color: var(--accent-burgundy);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3016,6 +3069,11 @@ textarea {
   margin-top: 4px;
 }
 
+.profile-role-badge.role-guide {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
 /* ---------------------------------------------------------------------------
    28. CHURCH REVIEWS
    --------------------------------------------------------------------------- */
@@ -3142,7 +3200,7 @@ textarea {
 
 .category-breakdown-bar {
   height: 100%;
-  background: #fbbf24;
+  background: var(--accent-gold);
   border-radius: 4px;
   transition: width 0.3s ease;
 }
@@ -3406,6 +3464,7 @@ textarea {
   margin-bottom: 12px;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent-burgundy);
 }
 
 .prayer-card-header {
@@ -3479,7 +3538,7 @@ textarea {
 }
 
 .prayer-action-btn.prayed {
-  color: var(--brand-primary);
+  color: var(--accent-burgundy);
 }
 
 .prayer-answered-tag {
@@ -4579,8 +4638,8 @@ textarea {
 }
 
 .role-badge-guide {
-  background: rgba(30, 58, 138, 0.12);
-  color: #1e3a8a;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
 }
 
 .role-badge-seeker {
@@ -4589,8 +4648,8 @@ textarea {
 }
 
 [data-theme="dark"] .role-badge-guide {
-  background: rgba(96, 165, 250, 0.2);
-  color: #93bbfd;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
 }
 
 [data-theme="dark"] .role-badge-seeker {
@@ -5418,16 +5477,16 @@ textarea {
 }
 
 .celebrate-btn:hover {
-  background: rgba(245, 158, 11, 0.1);
-  color: #f59e0b;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
 }
 
 .celebrate-btn.active {
-  color: #f59e0b;
+  color: var(--accent-gold);
 }
 
 .celebrate-btn.active svg {
-  fill: #f59e0b;
+  fill: var(--accent-gold);
 }
 
 /* Linked prayer reference on testimony cards */
@@ -5436,8 +5495,8 @@ textarea {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
+  color: var(--accent-gold);
+  background: var(--accent-gold-light);
   padding: 6px 10px;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -5448,8 +5507,8 @@ textarea {
 }
 
 [data-theme="dark"] .testimony-linked {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
 }
 
 /* =============================================================================

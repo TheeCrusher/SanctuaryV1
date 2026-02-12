@@ -147,8 +147,8 @@ function Churches() {
           >
             <Heart
               size={16}
-              fill={showFavoritesOnly ? '#ef4444' : 'none'}
-              color={showFavoritesOnly ? '#ef4444' : '#6b7280'}
+              fill={showFavoritesOnly ? '#722F37' : 'none'}
+              color={showFavoritesOnly ? '#722F37' : '#6b7280'}
             />
             My Favorites ({favoriteChurchIds.size})
           </button>
@@ -210,8 +210,8 @@ function Churches() {
                           >
                             <Heart
                               size={20}
-                              fill={isChurchFavorited(result.sanctuaryId) ? '#ef4444' : 'none'}
-                              color={isChurchFavorited(result.sanctuaryId) ? '#ef4444' : '#9ca3af'}
+                              fill={isChurchFavorited(result.sanctuaryId) ? '#722F37' : 'none'}
+                              color={isChurchFavorited(result.sanctuaryId) ? '#722F37' : '#9ca3af'}
                             />
                           </button>
                         )}
@@ -241,7 +241,7 @@ function Churches() {
                         {/* Google rating */}
                         {result.googleRating && (
                           <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#6b7280' }}>
-                            <Star size={12} fill="#f59e0b" color="#f59e0b" />
+                            <Star size={12} fill="#C9A227" color="#C9A227" />
                             <span>{result.googleRating.toFixed(1)}</span>
                             <span style={{ fontSize: '11px' }}>Google</span>
                           </div>
@@ -249,7 +249,7 @@ function Churches() {
                         {/* Sanctuary rating (if church exists in our DB with reviews) */}
                         {result.sanctuaryReviewCount > 0 && (
                           <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#4f46e5' }}>
-                            <span className="stars stars-sm" style={{ color: '#f59e0b' }}>
+                            <span className="stars stars-sm" style={{ color: '#C9A227' }}>
                               {renderStars(result.sanctuaryRating)}
                             </span>
                             <span>({result.sanctuaryReviewCount}) Sanctuary</span>
@@ -343,8 +343,8 @@ function Churches() {
                         >
                           <Heart
                             size={20}
-                            fill={isChurchFavorited(church.id) ? '#ef4444' : 'none'}
-                            color={isChurchFavorited(church.id) ? '#ef4444' : '#9ca3af'}
+                            fill={isChurchFavorited(church.id) ? '#722F37' : 'none'}
+                            color={isChurchFavorited(church.id) ? '#722F37' : '#9ca3af'}
                           />
                         </button>
                       </div>
@@ -373,7 +373,7 @@ function Churches() {
                       {/* Rating */}
                       {church.reviewCount > 0 && (
                         <div style={{ marginTop: '4px', fontSize: '13px' }}>
-                          <span className="stars stars-sm" style={{ color: '#f59e0b' }}>
+                          <span className="stars stars-sm" style={{ color: '#C9A227' }}>
                             {renderStars(church.overallRating)}
                           </span>
                           <span style={{ color: '#9ca3af', marginLeft: '4px' }}>
