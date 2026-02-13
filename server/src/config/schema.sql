@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS users (
   state           VARCHAR(2),
   city            VARCHAR(100),
   preferred_church_id INTEGER,
+  accepting_seekers   BOOLEAN DEFAULT true,
+  max_pending_requests INTEGER DEFAULT 5,
   created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -554,7 +556,8 @@ CREATE TABLE IF NOT EXISTS notifications (
                     'appointment_confirmed',
                     'appointment_declined',
                     'appointment_scheduled',
-                    'church_announcement'
+                    'church_announcement',
+                    'waitlist_spot_open'
                   )),
   title           VARCHAR(200) NOT NULL,
   body            TEXT,
@@ -591,6 +594,25 @@ CREATE TABLE IF NOT EXISTS password_resets (
 );
 
 CREATE INDEX IF NOT EXISTS idx_password_resets_user ON password_resets(user_id);
+
+-- ============================================================
+-- GUIDE WAITLIST TABLE
+-- ============================================================
+-- Tracks seekers waiting for a spot with a guide whose
+-- pending requests are at capacity. When the guide's count
+-- drops below max, the oldest waitlisted seeker gets notified.
+
+CREATE TABLE IF NOT EXISTS guide_waitlist (
+  id          SERIAL PRIMARY KEY,
+  guide_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  seeker_id   INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  notified_at TIMESTAMP WITH TIME ZONE,
+  UNIQUE(guide_id, seeker_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_guide_waitlist_guide ON guide_waitlist(guide_id);
+CREATE INDEX IF NOT EXISTS idx_guide_waitlist_seeker ON guide_waitlist(seeker_id);
 
 -- ============================================================
 -- DEFERRED FOREIGN KEYS (added after all tables exist)

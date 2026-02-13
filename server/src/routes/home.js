@@ -75,7 +75,9 @@ router.get('/', async (req, res, next) => {
         `SELECT a.id, a.seeker_name, a.avatar, a.date, a.time, a.type,
                 a.status, a.guide_id, a.seeker_id,
                 COALESCE(ug.name, '') AS guide_name,
-                COALESCE(us.name, a.seeker_name) AS display_name
+                COALESCE(us.name, a.seeker_name) AS display_name,
+                COALESCE(us.photo_url, '') AS seeker_photo,
+                COALESCE(ug.photo_url, '') AS guide_photo
          FROM appointments a
          LEFT JOIN users ug ON a.guide_id = ug.id
          LEFT JOIN users us ON a.seeker_id = us.id
@@ -158,7 +160,9 @@ router.get('/', async (req, res, next) => {
         guideId: a.guide_id,
         seekerId: a.seeker_id,
         guideName: a.guide_name,
-        displayName: a.display_name
+        displayName: a.display_name,
+        seekerPhoto: a.seeker_photo || null,
+        guidePhoto: a.guide_photo || null
       })),
       communityActivity: communityActivityResult.rows.map(r => ({
         id: r.id,

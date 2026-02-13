@@ -187,7 +187,7 @@ function CalendarView() {
             selectedDayAppointments.map(apt => (
               <Card key={apt.id}>
                 <div className="apt-row">
-                  <Avatar emoji={apt.avatar} size="sm" variant="blue" />
+                  <Avatar src={isSeeker ? apt.guidePhoto : apt.seekerPhoto} emoji={apt.avatar} size="sm" variant="blue" />
                   <div className="apt-info">
                     <div className="apt-header">
                       <span className="apt-name" style={{ fontSize: '14px' }}>

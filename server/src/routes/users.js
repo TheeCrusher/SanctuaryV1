@@ -30,7 +30,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -57,6 +57,8 @@ router.get('/me', async (req, res, next) => {
         churchName: user.church_name,
         interests: user.interests || [],
         phoneNumber: user.phone_number,
+        acceptingSeekers: user.accepting_seekers,
+        maxPendingRequests: user.max_pending_requests,
         createdAt: user.created_at
       }
     })
@@ -76,7 +78,7 @@ router.get('/me', async (req, res, next) => {
 
 router.put('/me', async (req, res, next) => {
   try {
-    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber } = req.body
+    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber, acceptingSeekers, maxPendingRequests } = req.body
 
     // Build the UPDATE query dynamically based on which fields were provided
     const updates = []
@@ -148,6 +150,16 @@ router.put('/me', async (req, res, next) => {
       updates.push(`preferred_church_id = $${paramCount}`)
       values.push(preferredChurchId || null)
     }
+    if (acceptingSeekers !== undefined) {
+      paramCount++
+      updates.push(`accepting_seekers = $${paramCount}`)
+      values.push(acceptingSeekers)
+    }
+    if (maxPendingRequests !== undefined) {
+      paramCount++
+      updates.push(`max_pending_requests = $${paramCount}`)
+      values.push(Math.max(1, Math.min(20, Number(maxPendingRequests))))
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ error: 'No fields to update.' })
@@ -162,7 +174,7 @@ router.put('/me', async (req, res, next) => {
 
     const result = await pool.query(
       `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramCount}
-       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number`,
+       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests`,
       values
     )
 
@@ -184,7 +196,9 @@ router.put('/me', async (req, res, next) => {
         denomination: user.denomination,
         churchName: user.church_name,
         interests: user.interests || [],
-        phoneNumber: user.phone_number
+        phoneNumber: user.phone_number,
+        acceptingSeekers: user.accepting_seekers,
+        maxPendingRequests: user.max_pending_requests
       }
     })
   } catch (error) {
@@ -371,10 +385,138 @@ router.get('/suggested', async (req, res, next) => {
 })
 
 // ============================================================
+// GET /api/users/guides
+// ============================================================
+// Returns all guides nationwide for the "Find a Guide" screen.
+// Includes availability info (accepting_seekers, pending count, max).
+// Excludes blocked users. Sorted: accepting first, then available slots, then name.
+
+router.get('/guides', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const { q } = req.query
+
+    let query = `
+      SELECT
+        u.id, u.name, u.avatar, u.photo_url, u.specialization,
+        u.denomination, u.state, u.city, u.church_name, u.bio,
+        u.accepting_seekers, u.max_pending_requests,
+        COALESCE(pending.count, 0)::int AS pending_count
+      FROM users u
+      LEFT JOIN (
+        SELECT guide_id, COUNT(*) AS count
+        FROM appointments
+        WHERE status = 'pending'
+        GROUP BY guide_id
+      ) pending ON pending.guide_id = u.id
+      WHERE u.role = 'guide'
+        AND u.id != $1
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+        )
+    `
+    const params = [userId]
+    let paramCount = 1
+
+    if (q && q.trim().length >= 2) {
+      paramCount++
+      query += ` AND (
+        u.name ILIKE $${paramCount}
+        OR u.specialization ILIKE $${paramCount}
+        OR u.denomination ILIKE $${paramCount}
+      )`
+      params.push(`%${q.trim()}%`)
+    }
+
+    query += ` ORDER BY
+      u.accepting_seekers DESC,
+      CASE WHEN COALESCE(pending.count, 0) < u.max_pending_requests THEN 0 ELSE 1 END ASC,
+      u.name ASC`
+
+    const result = await pool.query(query, params)
+
+    const guides = result.rows.map(row => ({
+      id: row.id,
+      name: row.name,
+      avatar: row.avatar,
+      photoUrl: row.photo_url,
+      specialization: row.specialization,
+      denomination: row.denomination,
+      state: row.state,
+      city: row.city,
+      churchName: row.church_name,
+      bio: row.bio,
+      acceptingSeekers: row.accepting_seekers,
+      pendingCount: row.pending_count,
+      maxPendingRequests: row.max_pending_requests
+    }))
+
+    res.json({ guides })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// POST /api/users/waitlist
+// ============================================================
+// Join a guide's waitlist. Body: { guideId }
+router.post('/waitlist', async (req, res, next) => {
+  try {
+    const seekerId = req.user.id
+    const { guideId } = req.body
+
+    if (!guideId) {
+      return res.status(400).json({ error: 'guideId is required.' })
+    }
+
+    // Verify the guide exists and is a guide
+    const guideCheck = await pool.query(
+      'SELECT id, role FROM users WHERE id = $1',
+      [guideId]
+    )
+    if (guideCheck.rows.length === 0 || guideCheck.rows[0].role !== 'guide') {
+      return res.status(404).json({ error: 'Guide not found.' })
+    }
+
+    // Insert (ignore if already exists)
+    await pool.query(
+      `INSERT INTO guide_waitlist (guide_id, seeker_id)
+       VALUES ($1, $2)
+       ON CONFLICT (guide_id, seeker_id) DO NOTHING`,
+      [guideId, seekerId]
+    )
+
+    res.status(201).json({ success: true })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// DELETE /api/users/waitlist/:guideId
+// ============================================================
+// Leave a guide's waitlist.
+router.delete('/waitlist/:guideId', async (req, res, next) => {
+  try {
+    await pool.query(
+      'DELETE FROM guide_waitlist WHERE guide_id = $1 AND seeker_id = $2',
+      [req.params.guideId, req.user.id]
+    )
+    res.json({ success: true })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
 // GET /api/users/:id
 // ============================================================
 // Returns another user's profile.
 // Privacy: bio, location, specialization are hidden for non-connected users.
+// For guides: includes availability info and waitlist status.
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -393,7 +535,7 @@ router.get('/:id', async (req, res, next) => {
     }
 
     const result = await pool.query(
-      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, created_at FROM users WHERE id = $1',
+      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, accepting_seekers, max_pending_requests, created_at FROM users WHERE id = $1',
       [profileId]
     )
 
@@ -417,6 +559,25 @@ router.get('/:id', async (req, res, next) => {
       isConnected = true // viewing own profile
     }
 
+    // For guides: get pending appointment count and check waitlist status
+    let pendingCount = 0
+    let onWaitlist = false
+    if (profile.role === 'guide' && parseInt(profileId) !== userId) {
+      const pendingResult = await pool.query(
+        `SELECT COUNT(*)::int AS count FROM appointments
+         WHERE guide_id = $1 AND status = 'pending'`,
+        [profileId]
+      )
+      pendingCount = pendingResult.rows[0].count
+
+      const waitlistCheck = await pool.query(
+        `SELECT id FROM guide_waitlist
+         WHERE guide_id = $1 AND seeker_id = $2 AND notified_at IS NULL`,
+        [profileId, userId]
+      )
+      onWaitlist = waitlistCheck.rows.length > 0
+    }
+
     res.json({
       user: {
         id: profile.id,
@@ -432,6 +593,10 @@ router.get('/:id', async (req, res, next) => {
         denomination: profile.denomination,
         churchName: profile.church_name,
         interests: profile.interests || [],
+        acceptingSeekers: profile.accepting_seekers,
+        maxPendingRequests: profile.max_pending_requests,
+        pendingCount,
+        onWaitlist,
         createdAt: profile.created_at,
         isConnected
       }

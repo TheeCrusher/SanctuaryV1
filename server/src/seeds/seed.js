@@ -58,6 +58,7 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS guide_waitlist CASCADE;
       DROP TABLE IF EXISTS password_resets CASCADE;
       DROP TABLE IF EXISTS notifications CASCADE;
       DROP TABLE IF EXISTS church_announcements CASCADE;
@@ -97,13 +98,15 @@ async function seed() {
     console.log('👤 Creating test user...')
     const passwordHash = await bcrypt.hash(TEST_USER.password, 10)
     const userResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, state, city, denomination, church_name, interests)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+      `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, accepting_seekers, max_pending_requests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
        RETURNING id`,
-      [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role,
+      [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.profilePhoto,
+       TEST_USER.role,
        'Spiritual guide dedicated to helping others find their path through prayer and scripture.',
        'General Guidance', 'Chicago, IL', TEST_USER.state, TEST_USER.city,
-       TEST_USER.denomination, TEST_USER.churchName, TEST_USER.interests]
+       TEST_USER.denomination, TEST_USER.churchName, TEST_USER.interests,
+       TEST_USER.acceptingSeekers ?? true, TEST_USER.maxPendingRequests ?? 5]
     )
     const guideId = userResult.rows[0].id
     console.log(`   ✅ Test user created (id: ${guideId})`)
@@ -114,10 +117,10 @@ async function seed() {
     console.log('👤 Creating test seeker...')
     const seekerHash = await bcrypt.hash(TEST_SEEKER.password, 10)
     const seekerResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role, location, state, city, denomination, interests)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, location, state, city, denomination, interests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
        RETURNING id`,
-      [TEST_SEEKER.name, TEST_SEEKER.email, seekerHash, TEST_SEEKER.avatar,
+      [TEST_SEEKER.name, TEST_SEEKER.email, seekerHash, TEST_SEEKER.avatar, TEST_SEEKER.profilePhoto,
        TEST_SEEKER.role, TEST_SEEKER.location, TEST_SEEKER.state, TEST_SEEKER.city,
        TEST_SEEKER.denomination, TEST_SEEKER.interests]
     )
@@ -133,18 +136,21 @@ async function seed() {
       // Give each person a dummy password (they're demo accounts)
       const hash = await bcrypt.hash('password123', 10)
       const result = await client.query(
-        `INSERT INTO users (name, email, password_hash, avatar, role, denomination, church_name, interests)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, denomination, church_name, interests, accepting_seekers, max_pending_requests)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
          RETURNING id`,
         [
           person.name,
           person.name.toLowerCase().replace(/\s+/g, '.') + '@sanctuary.com',
           hash,
           person.avatar,
+          person.profilePhoto || null,
           person.role,
           person.denomination || null,
           person.churchName || null,
-          person.interests || []
+          person.interests || [],
+          person.acceptingSeekers ?? true,
+          person.maxPendingRequests ?? 5
         ]
       )
       peopleIds.push(result.rows[0].id)
@@ -310,14 +316,16 @@ async function seed() {
     for (const person of DISCOVERY_USERS) {
       const hash = await bcrypt.hash('password123', 10)
       const result = await client.query(
-        `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, state, city, denomination, church_name, interests)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, accepting_seekers, max_pending_requests)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
          RETURNING id`,
         [
-          person.name, person.email, hash, person.avatar, person.role,
+          person.name, person.email, hash, person.avatar, person.profilePhoto || null,
+          person.role,
           person.bio || null, person.specialization || null, person.location || null,
           person.state || null, person.city || null,
-          person.denomination || null, person.churchName || null, person.interests || []
+          person.denomination || null, person.churchName || null, person.interests || [],
+          person.acceptingSeekers ?? true, person.maxPendingRequests ?? 5
         ]
       )
       discoveryIds[person.name] = result.rows[0].id

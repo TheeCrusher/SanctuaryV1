@@ -74,6 +74,8 @@ function UserProfile() {
     }
   }
 
+  const [waitlistLoading, setWaitlistLoading] = useState(false)
+
   async function handleBlock() {
     if (!confirm(`Block ${profile.name}? They won't be able to see your profile, messages, or activity.`)) {
       return
@@ -89,8 +91,29 @@ function UserProfile() {
     }
   }
 
-  // Show "Book Session" only when a Seeker views a Guide's profile
-  const showBookSession = user?.role === 'seeker' && profile?.role === 'Guide'
+  async function handleJoinWaitlist() {
+    setWaitlistLoading(true)
+    try {
+      await api.post('/users/waitlist', { guideId: Number(id) })
+      setProfile(prev => ({ ...prev, onWaitlist: true }))
+    } catch (error) {
+      console.error('Failed to join waitlist:', error)
+    } finally {
+      setWaitlistLoading(false)
+    }
+  }
+
+  // Guide availability logic for seekers
+  const isGuide = profile?.role?.toLowerCase() === 'guide'
+  const isViewerSeeker = user?.role === 'seeker'
+  const guideNotAccepting = isGuide && profile?.acceptingSeekers === false
+  const guideIsFull = isGuide && profile?.acceptingSeekers !== false &&
+    profile?.pendingCount >= profile?.maxPendingRequests
+
+  const showBookSession = isViewerSeeker && isGuide && !guideNotAccepting && !guideIsFull
+  const showWaitlist = isViewerSeeker && isGuide && guideIsFull && !profile?.onWaitlist
+  const showOnWaitlist = isViewerSeeker && isGuide && profile?.onWaitlist
+  const showNotAccepting = isViewerSeeker && isGuide && guideNotAccepting
 
   if (loading) {
     return (
@@ -221,10 +244,33 @@ function UserProfile() {
             {showBookSession && (
               <button
                 className="btn-gold"
-                onClick={() => navigate('/appointments')}
+                onClick={() => navigate(`/appointments?guideId=${profile.id}&guideName=${encodeURIComponent(profile.name)}`)}
               >
                 <Calendar size={18} /> Book Session
               </button>
+            )}
+
+            {showNotAccepting && (
+              <div style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '8px 0', fontSize: '14px' }}>
+                This guide is not currently accepting new seekers.
+              </div>
+            )}
+
+            {showWaitlist && (
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '8px' }}>
+                  Pending requests full
+                </div>
+                <button className="btn-gold" onClick={handleJoinWaitlist} disabled={waitlistLoading}>
+                  <Clock size={18} /> {waitlistLoading ? 'Joining...' : 'Join Waitlist'}
+                </button>
+              </div>
+            )}
+
+            {showOnWaitlist && (
+              <div style={{ color: '#f59e0b', textAlign: 'center', padding: '8px 0', fontSize: '14px' }}>
+                You're on the waitlist. You'll be notified when a spot opens.
+              </div>
             )}
           </div>
         )}

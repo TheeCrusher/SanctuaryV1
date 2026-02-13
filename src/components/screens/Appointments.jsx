@@ -8,7 +8,7 @@
 // Only guides can confirm/decline pending appointment requests.
 
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
 import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download, ArrowLeft } from 'lucide-react'
@@ -16,6 +16,7 @@ import { api } from '../../utils/api'
 
 function Appointments() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [showModal, setShowModal] = useState(false)
   const [showCancelConfirm, setShowCancelConfirm] = useState(null)
   const [communityGuides, setCommunityGuides] = useState([])
@@ -59,11 +60,18 @@ function Appointments() {
 
   async function loadGuides() {
     try {
-      const data = await api.get('/community')
-      const guides = (data.community || []).filter(p => p.role === 'Guide')
+      // Load ALL guides nationwide (not just community connections)
+      const data = await api.get('/users/guides')
+      const guides = (data.guides || []).map(g => ({
+        id: g.id,
+        name: g.name,
+        photoUrl: g.photoUrl,
+        avatar: g.avatar,
+        role: 'Guide'
+      }))
       setCommunityGuides(guides)
     } catch (error) {
-      console.error('Failed to load community guides:', error)
+      console.error('Failed to load guides:', error)
     }
   }
 
@@ -76,6 +84,15 @@ function Appointments() {
       console.error('Failed to load community seekers:', error)
     }
   }
+
+  // Pre-select guide from URL search params (coming from UserProfile "Book Session")
+  useEffect(() => {
+    const preGuideId = searchParams.get('guideId')
+    if (preGuideId && isSeeker) {
+      setFormData(prev => ({ ...prev, guideId: preGuideId }))
+      setShowModal(true)
+    }
+  }, [searchParams])
 
   // Group appointments by status
   const pendingApts = appointments.filter(a => a.status === 'pending')
@@ -202,7 +219,7 @@ function Appointments() {
     return (
       <Card>
         <div className="apt-row">
-          <Avatar emoji={apt.avatar} size="md" variant="blue" />
+          <Avatar src={isGuideOnThis ? apt.seekerPhoto : apt.guidePhoto} emoji={apt.avatar} size="md" variant="blue" />
           <div className="apt-info">
             <div className="apt-header">
               <span className="apt-name">{displayName}</span>
@@ -415,7 +432,7 @@ function Appointments() {
               </select>
               {communityGuides.length === 0 && (
                 <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
-                  Add Guides to your Community first
+                  No guides available
                 </div>
               )}
             </div>

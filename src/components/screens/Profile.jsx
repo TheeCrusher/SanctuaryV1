@@ -10,7 +10,7 @@ import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
 import { Avatar } from '../common'
 import { compressImage } from '../../utils/imageCompress'
-import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff } from 'lucide-react'
+import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff, Users, Clock } from 'lucide-react'
 
 const SPECIALIZATIONS = [
   'Bible Study',
@@ -198,6 +198,47 @@ function Profile() {
 
       {/* Menu Content */}
       <div className="screen-content">
+        {/* Guide Availability Settings (guide-only) */}
+        {user?.role === 'guide' && (
+          <>
+            <div className="menu-section-label">Guide Settings</div>
+            <div className="menu-item" style={{ justifyContent: 'space-between' }}>
+              <div className="menu-item-left">
+                <span className="menu-item-icon"><Users size={20} /></span>
+                <span className="menu-item-text">Accepting New Seekers</span>
+              </div>
+              <div
+                className={`theme-toggle ${user?.acceptingSeekers !== false ? 'active' : ''}`}
+                onClick={() => updateProfile({ acceptingSeekers: user?.acceptingSeekers === false })}
+              >
+                <div className="theme-toggle-thumb" />
+              </div>
+            </div>
+            <div className="menu-item" style={{ justifyContent: 'space-between' }}>
+              <div className="menu-item-left">
+                <span className="menu-item-icon"><Clock size={20} /></span>
+                <span className="menu-item-text">Max Pending Requests</span>
+              </div>
+              <select
+                value={user?.maxPendingRequests || 5}
+                onChange={e => updateProfile({ maxPendingRequests: Number(e.target.value) })}
+                style={{
+                  padding: '6px 10px',
+                  borderRadius: '8px',
+                  border: '1px solid var(--border-color)',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '14px'
+                }}
+              >
+                {Array.from({ length: 20 }, (_, i) => i + 1).map(n => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+            </div>
+          </>
+        )}
+
         {accountItems.map(item => (
           <button
             key={item.path}

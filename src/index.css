@@ -6550,3 +6550,78 @@ select.account-edit-input {
 [data-theme="dark"] .fp-resend-btn {
   color: #60a5fa;
 }
+
+/* =================================== */
+/* 41. GUIDE DISCOVERY                 */
+/* =================================== */
+
+.guide-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.guide-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.guide-card-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guide-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--accent-gold);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.guide-card-meta {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.guide-card-spec {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.availability-dot.green { background: #16a34a; }
+.availability-dot.orange { background: #f59e0b; }
+.availability-dot.gray { background: #9ca3af; }
+
+.availability-label {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.availability-label.green { color: #16a34a; }
+.availability-label.orange { color: #f59e0b; }
+.availability-label.gray { color: #9ca3af; }

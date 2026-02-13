@@ -28,6 +28,8 @@ function formatRow(row) {
     seekerName: row.seeker_name,
     guideName: row.guide_name || null,
     avatar: row.avatar,
+    seekerPhoto: row.seeker_photo || null,
+    guidePhoto: row.guide_photo || null,
     date: row.date.toISOString().split('T')[0],
     time: row.time.slice(0, 5),
     duration: String(row.duration),
@@ -62,6 +64,60 @@ function generateRecurringDates(startDate, rule, endDate) {
   return dates
 }
 
+// Helper: when a guide confirms/declines, check if a waitlist spot opened
+async function checkWaitlistSpot(io, guideId) {
+  try {
+    const guideResult = await pool.query(
+      'SELECT name, accepting_seekers, max_pending_requests FROM users WHERE id = $1',
+      [guideId]
+    )
+    const guide = guideResult.rows[0]
+    if (!guide || !guide.accepting_seekers) return
+
+    const pendingResult = await pool.query(
+      `SELECT COUNT(*)::int AS count FROM appointments
+       WHERE guide_id = $1 AND status = 'pending'`,
+      [guideId]
+    )
+    if (pendingResult.rows[0].count >= guide.max_pending_requests) return
+
+    // Pop the oldest waitlisted seeker (atomic update to prevent race conditions)
+    const waitlistResult = await pool.query(
+      `UPDATE guide_waitlist
+       SET notified_at = NOW()
+       WHERE id = (
+         SELECT id FROM guide_waitlist
+         WHERE guide_id = $1 AND notified_at IS NULL
+         ORDER BY created_at ASC
+         LIMIT 1
+       )
+       RETURNING seeker_id`,
+      [guideId]
+    )
+    if (waitlistResult.rows.length === 0) return
+
+    const seekerId = waitlistResult.rows[0].seeker_id
+
+    await createNotification(io, {
+      userId: seekerId,
+      actorId: guideId,
+      type: 'waitlist_spot_open',
+      title: `A spot opened with ${guide.name}!`,
+      body: 'You can now request a session with this guide.',
+      referenceType: 'user',
+      referenceId: guideId
+    })
+
+    // Remove from waitlist after notification
+    await pool.query(
+      'DELETE FROM guide_waitlist WHERE guide_id = $1 AND seeker_id = $2',
+      [guideId, seekerId]
+    )
+  } catch (error) {
+    console.error('Waitlist check failed:', error)
+  }
+}
+
 // ============================================================
 // GET /api/appointments
 // ============================================================
@@ -72,9 +128,12 @@ router.get('/', async (req, res, next) => {
     const { status, from, to } = req.query
 
     let query = `
-      SELECT a.*, u.name AS guide_name
+      SELECT a.*, u.name AS guide_name,
+             u.photo_url AS guide_photo,
+             us.photo_url AS seeker_photo
       FROM appointments a
       LEFT JOIN users u ON a.guide_id = u.id
+      LEFT JOIN users us ON a.seeker_id = us.id
       WHERE (a.guide_id = $1 OR a.seeker_id = $1)
         AND a.status != 'cancelled'`
     const params = [req.user.id]
@@ -134,6 +193,29 @@ router.post('/', async (req, res, next) => {
 
     if (guideId) {
       // Seeker is booking with a specific Guide → pending until guide confirms
+      // Check guide availability first
+      const guideAvail = await pool.query(
+        'SELECT accepting_seekers, max_pending_requests FROM users WHERE id = $1',
+        [guideId]
+      )
+      const g = guideAvail.rows[0]
+      if (!g) {
+        return res.status(404).json({ error: 'Guide not found.' })
+      }
+      if (!g.accepting_seekers) {
+        return res.status(400).json({ error: 'This guide is not currently accepting new seekers.' })
+      }
+      const pendingResult = await pool.query(
+        `SELECT COUNT(*)::int AS count FROM appointments
+         WHERE guide_id = $1 AND status = 'pending'`,
+        [guideId]
+      )
+      if (pendingResult.rows[0].count >= g.max_pending_requests) {
+        return res.status(400).json({
+          error: 'This guide has reached their pending request limit. You can join their waitlist instead.'
+        })
+      }
+
       appointmentGuideId = guideId
       appointmentSeekerId = req.user.id
       initialStatus = 'pending'
@@ -348,6 +430,11 @@ router.patch('/:id/status', async (req, res, next) => {
         referenceType: 'appointment',
         referenceId: apt.id
       })
+    }
+
+    // When a pending appointment is confirmed or declined, check if a waitlist spot opened
+    if (status === 'confirmed' || status === 'declined') {
+      await checkWaitlistSpot(io, apt.guide_id)
     }
 
     res.json({ appointment })

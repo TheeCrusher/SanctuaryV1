@@ -15,12 +15,15 @@ export const TEST_USER = {
   email: 'test@sanctuary.com',
   password: 'Sanctuary123',
   avatar: '🙏',
+  profilePhoto: 'https://randomuser.me/api/portraits/men/32.jpg',
   role: 'guide',
   state: 'IL',
   city: 'Chicago',
   denomination: 'Non-denominational',
   churchName: 'Willow Creek Church',
-  interests: ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering']
+  interests: ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering'],
+  acceptingSeekers: true,
+  maxPendingRequests: 3
 }
 
 // Test seeker account (Jordan Rivera)
@@ -30,6 +33,7 @@ export const TEST_SEEKER = {
   email: 'jordan@sanctuary.com',
   password: 'Sanctuary123',
   avatar: '🙏',
+  profilePhoto: 'https://randomuser.me/api/portraits/men/85.jpg',
   role: 'seeker',
   state: 'IL',
   city: 'Chicago',
@@ -41,11 +45,11 @@ export const TEST_SEEKER = {
 // Available people for conversations
 // These become user accounts in the database
 export const AVAILABLE_PEOPLE = [
-  { name: 'Sarah Johnson', avatar: '👩', role: 'seeker', denomination: 'Baptist', churchName: 'Holy Name Cathedral', interests: ['Reading', 'Music', 'Bible Study'] },
-  { name: 'Michael Chen', avatar: '👨', role: 'seeker', denomination: 'Methodist', interests: ['Hiking', 'Photography', 'Community Service'] },
-  { name: 'Emily Rodriguez', avatar: '👩‍🦱', role: 'seeker', denomination: 'Catholic', churchName: 'New Life Assembly', interests: ['Painting', 'Worship', 'Cooking'] },
-  { name: 'James Wilson', avatar: '👨‍🦳', role: 'seeker', denomination: 'Presbyterian', interests: ['Sports', 'Gardening', 'Travel'] },
-  { name: 'Grace Okafor', avatar: '👩', role: 'guide', denomination: 'Pentecostal', churchName: 'Faith Community Church', interests: ['Bible Study', 'Youth Ministry', 'Writing', 'Music'] }
+  { name: 'Sarah Johnson', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/44.jpg', role: 'seeker', denomination: 'Baptist', churchName: 'Holy Name Cathedral', interests: ['Reading', 'Music', 'Bible Study'] },
+  { name: 'Michael Chen', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/75.jpg', role: 'seeker', denomination: 'Methodist', interests: ['Hiking', 'Photography', 'Community Service'] },
+  { name: 'Emily Rodriguez', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/63.jpg', role: 'seeker', denomination: 'Catholic', churchName: 'New Life Assembly', interests: ['Painting', 'Worship', 'Cooking'] },
+  { name: 'James Wilson', avatar: '👨‍🦳', profilePhoto: 'https://randomuser.me/api/portraits/men/52.jpg', role: 'seeker', denomination: 'Presbyterian', interests: ['Sports', 'Gardening', 'Travel'] },
+  { name: 'Grace Okafor', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/25.jpg', role: 'guide', denomination: 'Pentecostal', churchName: 'Faith Community Church', interests: ['Bible Study', 'Youth Ministry', 'Writing', 'Music'], acceptingSeekers: true, maxPendingRequests: 5 }
 ]
 
 // Church listings
@@ -144,6 +148,7 @@ export const DISCOVERY_USERS = [
     name: 'David Kim',
     email: 'david@sanctuary.com',
     avatar: '👨',
+    profilePhoto: 'https://randomuser.me/api/portraits/men/79.jpg',
     role: 'seeker',
     bio: 'College student exploring my faith journey.',
     state: 'TX',
@@ -157,6 +162,7 @@ export const DISCOVERY_USERS = [
     name: 'Maria Santos',
     email: 'maria@sanctuary.com',
     avatar: '👩',
+    profilePhoto: 'https://randomuser.me/api/portraits/women/68.jpg',
     role: 'guide',
     bio: 'Youth pastor with 10 years of experience in community building.',
     specialization: 'Youth Ministry',
@@ -165,7 +171,8 @@ export const DISCOVERY_USERS = [
     location: 'Miami, FL',
     denomination: 'Catholic',
     churchName: 'Holy Name Cathedral',
-    interests: ['Youth Ministry', 'Volunteering', 'Community Service', 'Music']
+    interests: ['Youth Ministry', 'Volunteering', 'Community Service', 'Music'],
+    acceptingSeekers: false
   }
 ]
 

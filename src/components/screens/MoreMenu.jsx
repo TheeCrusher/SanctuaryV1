@@ -7,12 +7,18 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { FileText, BookOpen, Book, Church, Heart, Calendar, CalendarDays, ChevronRight, LogOut } from 'lucide-react'
+import { FileText, BookOpen, Book, Church, Heart, Calendar, CalendarDays, ChevronRight, LogOut, Users } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
   const { user, logout } = useApp()
   const menuItems = [
+    {
+      icon: Users,
+      text: 'Find a Guide',
+      subtitle: 'Browse spiritual guides nationwide',
+      path: '/guides'
+    },
     {
       icon: CalendarDays,
       text: 'Events',

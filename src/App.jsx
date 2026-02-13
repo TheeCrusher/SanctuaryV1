@@ -44,6 +44,7 @@ import EventsScreen from './components/screens/EventsScreen'
 import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 import ForgotPassword from './components/screens/ForgotPassword'
+import FindGuides from './components/screens/FindGuides'
 import { UserActionMenu } from './components/common'
 
 // =============================================================================
@@ -179,6 +180,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Appointments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/guides"
+          element={
+            <ProtectedRoute>
+              <FindGuides />
             </ProtectedRoute>
           }
         />

@@ -75,7 +75,10 @@ async function migrate() {
       `ALTER TABLE appointments ADD CONSTRAINT appointments_status_check CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled', 'declined'))`,
       // Appointments rework: expand notification types
       `ALTER TABLE notifications DROP CONSTRAINT IF EXISTS notifications_type_check`,
-      `ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN ('new_message', 'connection_request', 'connection_accepted', 'prayer_prayed', 'prayer_comment', 'testimony_celebration', 'event_rsvp', 'appointment_request', 'appointment_confirmed', 'appointment_declined', 'appointment_scheduled', 'church_announcement'))`,
+      `ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN ('new_message', 'connection_request', 'connection_accepted', 'prayer_prayed', 'prayer_comment', 'testimony_celebration', 'event_rsvp', 'appointment_request', 'appointment_confirmed', 'appointment_declined', 'appointment_scheduled', 'church_announcement', 'waitlist_spot_open'))`,
+      // Session 22: Guide discovery — availability settings on users table
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS accepting_seekers BOOLEAN DEFAULT true',
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS max_pending_requests INTEGER DEFAULT 5',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

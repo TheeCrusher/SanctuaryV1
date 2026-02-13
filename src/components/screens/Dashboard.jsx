@@ -212,7 +212,11 @@ function Dashboard() {
                       item._type === 'apt' ? (
                         <Card key={`apt-${item.id}`} onClick={() => navigate('/appointments')}>
                           <div className="home-upcoming-row">
-                            <div className="home-upcoming-icon">{item.avatar}</div>
+                            <Avatar
+                              src={user?.role === 'guide' ? item.seekerPhoto : item.guidePhoto}
+                              emoji={item.avatar}
+                              size="sm"
+                            />
                             <div className="home-upcoming-info">
                               <div className="home-upcoming-name">
                                 {user?.role === 'guide'
@@ -270,7 +274,7 @@ function Dashboard() {
                 homeData.communityActivity.map(prayer => (
                   <Card key={prayer.id} onClick={() => navigate('/prayer-board')}>
                     <div className="home-activity-row">
-                      <Avatar emoji={prayer.userAvatar} size="sm" />
+                      <Avatar src={prayer.userPhoto} emoji={prayer.userAvatar} size="sm" />
                       <div className="home-activity-info">
                         <span className="home-activity-name">{prayer.userName}</span>
                         <span className="home-activity-title">{prayer.title}</span>
