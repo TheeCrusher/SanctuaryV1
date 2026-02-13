@@ -31,12 +31,16 @@ CREATE TABLE IF NOT EXISTS users (
   church_name     VARCHAR(100),
   interests       TEXT[] DEFAULT '{}',
   phone_number    VARCHAR(20),
+  state           VARCHAR(2),
+  city            VARCHAR(100),
+  preferred_church_id INTEGER,
   created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_state ON users(state);
 
 -- ============================================================
 -- APPOINTMENTS TABLE
@@ -587,3 +591,17 @@ CREATE TABLE IF NOT EXISTS password_resets (
 );
 
 CREATE INDEX IF NOT EXISTS idx_password_resets_user ON password_resets(user_id);
+
+-- ============================================================
+-- DEFERRED FOREIGN KEYS (added after all tables exist)
+-- ============================================================
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_users_preferred_church'
+  ) THEN
+    ALTER TABLE users ADD CONSTRAINT fk_users_preferred_church
+      FOREIGN KEY (preferred_church_id) REFERENCES churches(id) ON DELETE SET NULL;
+  END IF;
+END $$;

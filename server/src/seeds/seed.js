@@ -97,12 +97,12 @@ async function seed() {
     console.log('👤 Creating test user...')
     const passwordHash = await bcrypt.hash(TEST_USER.password, 10)
     const userResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, denomination, church_name, interests)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, state, city, denomination, church_name, interests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
        RETURNING id`,
       [TEST_USER.name, TEST_USER.email, passwordHash, TEST_USER.avatar, TEST_USER.role,
        'Spiritual guide dedicated to helping others find their path through prayer and scripture.',
-       'General Guidance', 'Atlanta, GA',
+       'General Guidance', 'Chicago, IL', TEST_USER.state, TEST_USER.city,
        TEST_USER.denomination, TEST_USER.churchName, TEST_USER.interests]
     )
     const guideId = userResult.rows[0].id
@@ -114,11 +114,12 @@ async function seed() {
     console.log('👤 Creating test seeker...')
     const seekerHash = await bcrypt.hash(TEST_SEEKER.password, 10)
     const seekerResult = await client.query(
-      `INSERT INTO users (name, email, password_hash, avatar, role, location, denomination, interests)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `INSERT INTO users (name, email, password_hash, avatar, role, location, state, city, denomination, interests)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
        RETURNING id`,
       [TEST_SEEKER.name, TEST_SEEKER.email, seekerHash, TEST_SEEKER.avatar,
-       TEST_SEEKER.role, TEST_SEEKER.location, TEST_SEEKER.denomination, TEST_SEEKER.interests]
+       TEST_SEEKER.role, TEST_SEEKER.location, TEST_SEEKER.state, TEST_SEEKER.city,
+       TEST_SEEKER.denomination, TEST_SEEKER.interests]
     )
     const seekerId = seekerResult.rows[0].id
     console.log(`   ✅ Test seeker created (id: ${seekerId})`)
@@ -309,12 +310,13 @@ async function seed() {
     for (const person of DISCOVERY_USERS) {
       const hash = await bcrypt.hash('password123', 10)
       const result = await client.query(
-        `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, denomination, church_name, interests)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        `INSERT INTO users (name, email, password_hash, avatar, role, bio, specialization, location, state, city, denomination, church_name, interests)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
          RETURNING id`,
         [
           person.name, person.email, hash, person.avatar, person.role,
           person.bio || null, person.specialization || null, person.location || null,
+          person.state || null, person.city || null,
           person.denomination || null, person.churchName || null, person.interests || []
         ]
       )

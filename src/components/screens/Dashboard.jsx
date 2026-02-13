@@ -202,43 +202,49 @@ function Dashboard() {
                 </Card>
               ) : (
                 <>
-                  {homeData.upcomingAppointments.map(apt => (
-                    <Card key={`apt-${apt.id}`} onClick={() => navigate('/appointments')}>
-                      <div className="home-upcoming-row">
-                        <div className="home-upcoming-icon">{apt.avatar}</div>
-                        <div className="home-upcoming-info">
-                          <div className="home-upcoming-name">
-                            {user?.role === 'guide'
-                              ? apt.seekerName
-                              : apt.guideName || apt.seekerName
-                            }
+                  {/* Merge appointments + events, show max 5 */}
+                  {(() => {
+                    const allItems = [
+                      ...homeData.upcomingAppointments.map(apt => ({ ...apt, _type: 'apt' })),
+                      ...(homeData.upcomingEvents || []).map(evt => ({ ...evt, _type: 'evt' }))
+                    ]
+                    return allItems.slice(0, 5).map(item =>
+                      item._type === 'apt' ? (
+                        <Card key={`apt-${item.id}`} onClick={() => navigate('/appointments')}>
+                          <div className="home-upcoming-row">
+                            <div className="home-upcoming-icon">{item.avatar}</div>
+                            <div className="home-upcoming-info">
+                              <div className="home-upcoming-name">
+                                {user?.role === 'guide'
+                                  ? item.seekerName
+                                  : item.guideName || item.seekerName
+                                }
+                              </div>
+                              <div className="home-upcoming-meta">
+                                {item.type} · {formatDate(item.date)} at {item.time}
+                              </div>
+                            </div>
+                            <Badge status={item.status} />
                           </div>
-                          <div className="home-upcoming-meta">
-                            {apt.type} · {formatDate(apt.date)} at {apt.time}
+                        </Card>
+                      ) : (
+                        <Card key={`evt-${item.id}`} onClick={() => navigate(`/events/${item.id}`)}>
+                          <div className="home-upcoming-row">
+                            <div className="home-upcoming-icon" style={{ fontSize: '16px' }}>
+                              <Calendar size={18} style={{ color: 'var(--brand-primary)' }} />
+                            </div>
+                            <div className="home-upcoming-info">
+                              <div className="home-upcoming-name">{item.title}</div>
+                              <div className="home-upcoming-meta">
+                                {formatDate(item.dateTime)}{item.location ? ` · ${item.location}` : ''}
+                              </div>
+                            </div>
+                            <span className="home-activity-badge">{item.category}</span>
                           </div>
-                        </div>
-                        <Badge status={apt.status} />
-                      </div>
-                    </Card>
-                  ))}
-
-                  {/* RSVP'd events */}
-                  {homeData.upcomingEvents?.map(evt => (
-                    <Card key={`evt-${evt.id}`} onClick={() => navigate(`/events/${evt.id}`)}>
-                      <div className="home-upcoming-row">
-                        <div className="home-upcoming-icon" style={{ fontSize: '16px' }}>
-                          <Calendar size={18} style={{ color: 'var(--brand-primary)' }} />
-                        </div>
-                        <div className="home-upcoming-info">
-                          <div className="home-upcoming-name">{evt.title}</div>
-                          <div className="home-upcoming-meta">
-                            {formatDate(evt.dateTime)}{evt.location ? ` · ${evt.location}` : ''}
-                          </div>
-                        </div>
-                        <span className="home-activity-badge">{evt.category}</span>
-                      </div>
-                    </Card>
-                  ))}
+                        </Card>
+                      )
+                    )
+                  })()}
                 </>
               )}
             </div>

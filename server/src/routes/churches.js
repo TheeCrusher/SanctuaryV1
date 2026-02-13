@@ -23,8 +23,62 @@ import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
 import { createNotification } from '../utils/createNotification.js'
+import STATE_NAMES from '../utils/stateMap.js'
 
 const router = Router()
+
+// Reverse lookup: full name → abbreviation (for parsing "Chicago Illinois" → IL)
+const STATE_ABBRS = Object.fromEntries(
+  Object.entries(STATE_NAMES).map(([abbr, name]) => [name.toLowerCase(), abbr])
+)
+
+// Parse a search query to detect "city, state" patterns.
+// Returns { city, state, stateFull } if detected, or {} if single-term.
+// Handles: "Chicago, IL", "Chicago Illinois", "chicago, illinois", "Austin TX", etc.
+function parseSearchQuery(query) {
+  // Try comma-separated first: "Chicago, IL" or "Chicago, Illinois"
+  if (query.includes(',')) {
+    const parts = query.split(',').map(p => p.trim()).filter(Boolean)
+    if (parts.length === 2) {
+      const maybeState = parts[1]
+      const abbr = maybeState.toUpperCase()
+      if (STATE_NAMES[abbr]) {
+        return { city: parts[0], state: abbr, stateFull: STATE_NAMES[abbr] }
+      }
+      const abbrFromFull = STATE_ABBRS[maybeState.toLowerCase()]
+      if (abbrFromFull) {
+        return { city: parts[0], state: abbrFromFull, stateFull: maybeState }
+      }
+    }
+  }
+
+  // Try space-separated: check if last word(s) match a state
+  const words = query.split(/\s+/)
+  if (words.length >= 2) {
+    // Check if last word is a 2-letter state abbreviation
+    const lastWord = words[words.length - 1].toUpperCase()
+    if (lastWord.length === 2 && STATE_NAMES[lastWord]) {
+      const cityPart = words.slice(0, -1).join(' ')
+      return { city: cityPart, state: lastWord, stateFull: STATE_NAMES[lastWord] }
+    }
+
+    // Check if last 1-2 words match a full state name
+    // e.g., "Chicago Illinois" or "Austin New Mexico"
+    const lastOne = words[words.length - 1].toLowerCase()
+    const lastTwo = words.length >= 3 ? words.slice(-2).join(' ').toLowerCase() : null
+
+    if (lastTwo && STATE_ABBRS[lastTwo]) {
+      const cityPart = words.slice(0, -2).join(' ')
+      return { city: cityPart, state: STATE_ABBRS[lastTwo], stateFull: words.slice(-2).join(' ') }
+    }
+    if (STATE_ABBRS[lastOne]) {
+      const cityPart = words.slice(0, -1).join(' ')
+      return { city: cityPart, state: STATE_ABBRS[lastOne], stateFull: words[words.length - 1] }
+    }
+  }
+
+  return {}
+}
 
 // ============================================================
 // UNAUTHENTICATED ROUTES (must come before router.use(authenticate))
@@ -315,33 +369,92 @@ router.post('/save-from-google', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const { q } = req.query
+    const { q, state, city, preferredChurchId } = req.query
     const limit = parseInt(req.query.limit) || 20
     const offset = parseInt(req.query.offset) || 0
 
     let baseQuery = 'FROM churches'
+    const conditions = []
     const params = []
 
     if (q) {
-      // Search by city, state (case-insensitive), ZIP code, or church name
-      baseQuery += ' WHERE city ILIKE $1 OR state ILIKE $2 OR zip LIKE $3 OR name ILIKE $4'
-      params.push(`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`)
+      // Smart query parsing: detect "city state" patterns
+      // Handles: "Chicago, Illinois", "Chicago IL", "chicago illinois", etc.
+      const parsed = parseSearchQuery(q.trim())
+
+      if (parsed.city && parsed.state) {
+        // Two-part query: search city AND state together
+        const idx1 = params.length + 1
+        const idx2 = params.length + 2
+        const idx3 = params.length + 3
+        params.push(`%${parsed.city}%`, parsed.state, parsed.stateFull)
+        conditions.push(`(city ILIKE $${idx1} AND (state = $${idx2} OR state ILIKE $${idx3}))`)
+      } else {
+        // Single-term query: search across all columns (existing behavior)
+        const idx1 = params.length + 1
+        const idx2 = params.length + 2
+        const idx3 = params.length + 3
+        const idx4 = params.length + 4
+        params.push(`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`)
+        // Also check if the single term is a state name/abbreviation
+        const stateAbbr = Object.keys(STATE_NAMES).find(k => k.toLowerCase() === q.trim().toLowerCase())
+        const stateFull = Object.values(STATE_NAMES).find(v => v.toLowerCase() === q.trim().toLowerCase())
+        if (stateAbbr || stateFull) {
+          // It's a state — match both abbreviation and full name
+          const idx5 = params.length + 1
+          const idx6 = params.length + 2
+          params.push(stateAbbr || q.trim(), stateFull || STATE_NAMES[stateAbbr] || q.trim())
+          conditions.push(`(city ILIKE $${idx1} OR state ILIKE $${idx2} OR zip LIKE $${idx3} OR name ILIKE $${idx4} OR state = $${idx5} OR state = $${idx6})`)
+        } else {
+          conditions.push(`(city ILIKE $${idx1} OR state ILIKE $${idx2} OR zip LIKE $${idx3} OR name ILIKE $${idx4})`)
+        }
+      }
+    } else if (state) {
+      // Location-based filtering: match both abbreviation and full name
+      // because seeded churches use "Illinois" but Google-saved use "IL"
+      const fullName = STATE_NAMES[state.toUpperCase()] || state
+      params.push(state, fullName)
+      conditions.push(`(state = $1 OR state = $2)`)
+    }
+
+    if (conditions.length > 0) {
+      baseQuery += ' WHERE ' + conditions.join(' AND ')
     }
 
     // Get total count of matching churches
     const countResult = await pool.query(`SELECT COUNT(*) ${baseQuery}`, params)
     const total = parseInt(countResult.rows[0].count)
 
+    // Build ORDER BY: if city provided, prioritize city matches first
+    let orderClause = 'ORDER BY (photo_url IS NULL) ASC, name ASC'
+    if (city && state && !q) {
+      const cityIdx = params.length + 1
+      params.push(city)
+      orderClause = `ORDER BY (LOWER(city) = LOWER($${cityIdx})) DESC, (photo_url IS NULL) ASC, name ASC`
+    }
+
     // Get the paginated results
+    const limitIdx = params.length + 1
+    const offsetIdx = params.length + 2
     const dataParams = [...params, limit, offset]
     const result = await pool.query(
-      `SELECT * ${baseQuery} ORDER BY (photo_url IS NULL) ASC, name ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      `SELECT * ${baseQuery} ${orderClause} LIMIT $${limitIdx} OFFSET $${offsetIdx}`,
       dataParams
     )
     const churches = result.rows.map(formatChurch)
 
+    // If preferredChurchId provided, fetch it separately
+    let preferred = null
+    if (preferredChurchId) {
+      const prefResult = await pool.query('SELECT * FROM churches WHERE id = $1', [preferredChurchId])
+      if (prefResult.rows.length > 0) {
+        preferred = formatChurch(prefResult.rows[0])
+      }
+    }
+
     res.json({
       churches,
+      preferred,
       total,
       hasMore: offset + churches.length < total
     })

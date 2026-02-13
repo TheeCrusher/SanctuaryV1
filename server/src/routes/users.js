@@ -30,7 +30,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, denomination, church_name, interests, phone_number, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -50,6 +50,9 @@ router.get('/me', async (req, res, next) => {
         bio: user.bio,
         specialization: user.specialization,
         location: user.location,
+        state: user.state,
+        city: user.city,
+        preferredChurchId: user.preferred_church_id,
         denomination: user.denomination,
         churchName: user.church_name,
         interests: user.interests || [],
@@ -73,7 +76,7 @@ router.get('/me', async (req, res, next) => {
 
 router.put('/me', async (req, res, next) => {
   try {
-    const { name, avatar, photoUrl, bio, specialization, location, denomination, churchName, interests, phoneNumber } = req.body
+    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber } = req.body
 
     // Build the UPDATE query dynamically based on which fields were provided
     const updates = []
@@ -130,6 +133,21 @@ router.put('/me', async (req, res, next) => {
       updates.push(`phone_number = $${paramCount}`)
       values.push(phoneNumber || null)
     }
+    if (state !== undefined) {
+      paramCount++
+      updates.push(`state = $${paramCount}`)
+      values.push(state || null)
+    }
+    if (city !== undefined) {
+      paramCount++
+      updates.push(`city = $${paramCount}`)
+      values.push(city || null)
+    }
+    if (preferredChurchId !== undefined) {
+      paramCount++
+      updates.push(`preferred_church_id = $${paramCount}`)
+      values.push(preferredChurchId || null)
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ error: 'No fields to update.' })
@@ -144,7 +162,7 @@ router.put('/me', async (req, res, next) => {
 
     const result = await pool.query(
       `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramCount}
-       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, denomination, church_name, interests, phone_number`,
+       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number`,
       values
     )
 
@@ -160,6 +178,9 @@ router.put('/me', async (req, res, next) => {
         bio: user.bio,
         specialization: user.specialization,
         location: user.location,
+        state: user.state,
+        city: user.city,
+        preferredChurchId: user.preferred_church_id,
         denomination: user.denomination,
         churchName: user.church_name,
         interests: user.interests || [],
@@ -372,7 +393,7 @@ router.get('/:id', async (req, res, next) => {
     }
 
     const result = await pool.query(
-      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, denomination, church_name, interests, created_at FROM users WHERE id = $1',
+      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, created_at FROM users WHERE id = $1',
       [profileId]
     )
 
@@ -406,6 +427,8 @@ router.get('/:id', async (req, res, next) => {
         bio: isConnected ? profile.bio : null,
         specialization: isConnected ? profile.specialization : null,
         location: isConnected ? profile.location : null,
+        state: profile.state,
+        city: profile.city,
         denomination: profile.denomination,
         churchName: profile.church_name,
         interests: profile.interests || [],

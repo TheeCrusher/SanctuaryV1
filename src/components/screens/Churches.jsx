@@ -19,6 +19,7 @@ function Churches() {
   const navigate = useNavigate()
 
   const {
+    user,
     churches,
     searchChurches,
     saveChurchFromGoogle,
@@ -293,14 +294,25 @@ function Churches() {
           defaultChurches.length === 0 ? (
             <div className="empty-state">
               <div className="empty-icon"><Church size={48} /></div>
-              <div className="empty-text">Search for churches</div>
-              <div className="empty-subtext">
-                Enter a church name, city, or state above
-              </div>
+              {!user?.state ? (
+                <>
+                  <div className="empty-text">Set your location to see nearby churches</div>
+                  <div className="empty-subtext">
+                    Go to Profile → Account Details to set your state
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="empty-text">No churches in your area yet</div>
+                  <div className="empty-subtext">
+                    Search above to find and add churches
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             <>
-              {defaultChurches.map(church => (
+              {defaultChurches.slice(0, visibleCount).map(church => (
                 <Card
                   key={church.id}
                   onClick={() => navigate(`/churches/${church.id}`)}
@@ -330,8 +342,24 @@ function Churches() {
                     {/* Church Info */}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                        <div className="church-name" style={{ fontSize: '16px', fontWeight: '600' }}>
-                          {church.name}
+                        <div>
+                          <div className="church-name" style={{ fontSize: '16px', fontWeight: '600' }}>
+                            {church.name}
+                          </div>
+                          {user?.preferredChurchId === church.id && (
+                            <span style={{
+                              display: 'inline-block',
+                              fontSize: '11px',
+                              fontWeight: '600',
+                              color: 'var(--accent-gold)',
+                              background: 'rgba(201, 162, 39, 0.1)',
+                              padding: '2px 8px',
+                              borderRadius: '10px',
+                              marginTop: '2px'
+                            }}>
+                              Your Church
+                            </span>
+                          )}
                         </div>
                         <button
                           className="favorite-btn"
@@ -385,6 +413,24 @@ function Churches() {
                   </div>
                 </Card>
               ))}
+
+              {/* Show More button for default view */}
+              {visibleCount < defaultChurches.length && (
+                <button
+                  className="btn-secondary"
+                  onClick={() => setVisibleCount(prev => prev + 10)}
+                  style={{
+                    width: '100%',
+                    marginTop: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  Show 10 More
+                </button>
+              )}
             </>
           )
         )}

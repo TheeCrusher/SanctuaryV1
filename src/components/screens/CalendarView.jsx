@@ -109,7 +109,7 @@ function CalendarView() {
       {/* Header */}
       <div className="screen-header">
         <div className="screen-header-top">
-          <button className="back-btn" onClick={() => navigate('/appointments')}>
+          <button className="back-btn" onClick={() => navigate('/')}>
             <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '20px', fontWeight: '700', flex: 1, textAlign: 'center' }}>

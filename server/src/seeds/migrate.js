@@ -66,6 +66,10 @@ async function migrate() {
       // Phase 3: Google rating + widen hours column
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_rating DECIMAL(2,1)',
       'ALTER TABLE churches ALTER COLUMN hours TYPE TEXT',
+      // Session 21: Location fields on users table
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS state VARCHAR(2)',
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS city VARCHAR(100)',
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS preferred_church_id INTEGER',
       // Appointments rework: add 'declined' status
       `ALTER TABLE appointments DROP CONSTRAINT IF EXISTS appointments_status_check`,
       `ALTER TABLE appointments ADD CONSTRAINT appointments_status_check CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled', 'declined'))`,

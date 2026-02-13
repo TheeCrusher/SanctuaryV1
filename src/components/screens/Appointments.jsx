@@ -298,7 +298,7 @@ function Appointments() {
       {/* Header */}
       <div className="screen-header">
         <div className="screen-header-top">
-          <button className="back-btn" onClick={() => navigate(-1)}>
+          <button className="back-btn" onClick={() => navigate('/')}>
             <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '24px', fontWeight: '700' }}>Sessions</h1>

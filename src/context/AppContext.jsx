@@ -155,8 +155,22 @@ export function AppProvider({ children }) {
   // This is much faster than fetching one at a time because
   // all requests happen simultaneously.
 
-  async function loadAllData() {
+  async function loadAllData(userObj) {
     try {
+      // Build church query params from user's location
+      const churchParams = new URLSearchParams()
+      if (userObj?.state) {
+        churchParams.set('state', userObj.state)
+      }
+      if (userObj?.city) {
+        churchParams.set('city', userObj.city)
+      }
+      if (userObj?.preferredChurchId) {
+        churchParams.set('preferredChurchId', userObj.preferredChurchId)
+      }
+      const churchQuery = churchParams.toString()
+      const churchUrl = `/churches${churchQuery ? '?' + churchQuery : ''}`
+
       const [
         appointmentsRes,
         conversationsRes,
@@ -175,7 +189,7 @@ export function AppProvider({ children }) {
       ] = await Promise.all([
         api.get('/appointments'),
         api.get('/conversations'),
-        api.get('/churches'),
+        api.get(churchUrl),
         api.get('/quotes/daily'),
         api.get('/users/available'),
         api.get('/notes'),
@@ -191,7 +205,17 @@ export function AppProvider({ children }) {
 
       setAppointments(appointmentsRes.appointments)
       setConversations(conversationsRes.conversations)
-      setChurches(churchesRes.churches)
+
+      // Handle preferred church — prepend if not already in the list
+      let churchList = churchesRes.churches
+      if (churchesRes.preferred) {
+        const prefId = churchesRes.preferred.id
+        if (!churchList.find(c => c.id === prefId)) {
+          churchList = [churchesRes.preferred, ...churchList]
+        }
+      }
+      setChurches(churchList)
+
       setDailyQuote(quoteRes.quote)
       setAvailablePeople(peopleRes.people)
       setNotes(notesRes.notes)
@@ -231,7 +255,7 @@ export function AppProvider({ children }) {
         setUser(userData)
 
         // Session restored! Now load all the user's data
-        await loadAllData()
+        await loadAllData(userData)
 
         // Connect WebSocket for real-time messaging
         const sock = connectSocket()
@@ -257,7 +281,7 @@ export function AppProvider({ children }) {
       const data = await api.post('/auth/register', { name, email, password, role, phoneNumber })
       setToken(data.token)
       setUser(data.user)
-      await loadAllData()
+      await loadAllData(data.user)
       const sock = connectSocket()
       if (sock) setupSocketListeners(sock)
       return { success: true }
@@ -278,7 +302,7 @@ export function AppProvider({ children }) {
       setUser(data.user)
 
       // Load all the user's data (appointments, churches, etc.)
-      await loadAllData()
+      await loadAllData(data.user)
 
       // Connect WebSocket for real-time messaging
       const sock = connectSocket()
@@ -555,6 +579,25 @@ export function AppProvider({ children }) {
     setChurchSearchHasMore(false) // Google returns all results at once
   }
 
+  // Reload churches based on user's current location.
+  // Called after the user updates their state/city in Account Details.
+  async function reloadChurches(userObj) {
+    const params = new URLSearchParams()
+    if (userObj?.state) params.set('state', userObj.state)
+    if (userObj?.city) params.set('city', userObj.city)
+    if (userObj?.preferredChurchId) params.set('preferredChurchId', userObj.preferredChurchId)
+    const query = params.toString()
+    const res = await api.get(`/churches${query ? '?' + query : ''}`)
+    let churchList = res.churches
+    if (res.preferred) {
+      const prefId = res.preferred.id
+      if (!churchList.find(c => c.id === prefId)) {
+        churchList = [res.preferred, ...churchList]
+      }
+    }
+    setChurches(churchList)
+  }
+
   // Save a church from Google search results to our database.
   // Called when a user taps a church that isn't in Sanctuary yet.
   // Returns the new church object with its Sanctuary ID.
@@ -816,6 +859,7 @@ export function AppProvider({ children }) {
     churchSearchResults,
     churchSearchTotal,
     churchSearchHasMore,
+    reloadChurches,
 
     // Notes
     notes,

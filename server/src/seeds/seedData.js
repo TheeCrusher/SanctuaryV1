@@ -16,6 +16,8 @@ export const TEST_USER = {
   password: 'Sanctuary123',
   avatar: '🙏',
   role: 'guide',
+  state: 'IL',
+  city: 'Chicago',
   denomination: 'Non-denominational',
   churchName: 'Willow Creek Church',
   interests: ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering']
@@ -29,7 +31,9 @@ export const TEST_SEEKER = {
   password: 'Sanctuary123',
   avatar: '🙏',
   role: 'seeker',
-  location: 'St. Louis',
+  state: 'IL',
+  city: 'Chicago',
+  location: 'Chicago, IL',
   denomination: 'Catholic',
   interests: ['Hiking', 'Sports', 'Reading', 'Travel', 'Community Service']
 }
@@ -142,6 +146,8 @@ export const DISCOVERY_USERS = [
     avatar: '👨',
     role: 'seeker',
     bio: 'College student exploring my faith journey.',
+    state: 'TX',
+    city: 'Austin',
     location: 'Austin, TX',
     denomination: 'Non-denominational',
     churchName: 'Willow Creek Church',
@@ -154,6 +160,8 @@ export const DISCOVERY_USERS = [
     role: 'guide',
     bio: 'Youth pastor with 10 years of experience in community building.',
     specialization: 'Youth Ministry',
+    state: 'FL',
+    city: 'Miami',
     location: 'Miami, FL',
     denomination: 'Catholic',
     churchName: 'Holy Name Cathedral',

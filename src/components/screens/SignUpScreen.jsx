@@ -9,6 +9,7 @@ import { useState, useRef } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { compressImage } from '../../utils/imageCompress'
+import { US_STATES } from '../../utils/constants'
 import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera, Phone } from 'lucide-react'
 
 const LOGO = "/sanctuary-logo.png"
@@ -53,7 +54,8 @@ function SignUpScreen() {
   // ----- STEP 2 STATE -----
   const [photoPreview, setPhotoPreview] = useState(null)
   const fileInputRef = useRef(null)
-  const [location, setLocation] = useState('')
+  const [userState, setUserState] = useState('')
+  const [city, setCity] = useState('')
   const [denomination, setDenomination] = useState('')
   const [churchName, setChurchName] = useState('')
 
@@ -110,12 +112,21 @@ function SignUpScreen() {
 
   // ----- STEP 2: Save profile info -----
   async function handleSaveProfile() {
+    setError('')
+    if (!userState) {
+      setError('Please select your state.')
+      return
+    }
     setLoading(true)
     if (photoPreview) {
       await updateUserPhoto(photoPreview)
     }
+    // Build location string for profile display (e.g., "Chicago, IL")
+    const locationStr = city ? `${city}, ${userState}` : userState
     await updateProfile({
-      location: location || undefined,
+      state: userState,
+      city: city || undefined,
+      location: locationStr,
       denomination: denomination || undefined,
       churchName: churchName || undefined
     })
@@ -284,6 +295,8 @@ function SignUpScreen() {
           <h2>About You</h2>
           <div className="login-subtitle">Help us personalize your experience</div>
 
+          {error && <div className="login-error">{error}</div>}
+
           {/* Optional Photo Upload */}
           <div className="signup-photo-section">
             <button
@@ -307,14 +320,29 @@ function SignUpScreen() {
             />
           </div>
 
-          {/* City / Area */}
+          {/* State (required when saving) */}
+          <div className="login-input-group">
+            <MapPin size={18} className="login-input-icon" />
+            <select
+              value={userState}
+              onChange={(e) => setUserState(e.target.value)}
+              className="signup-select"
+            >
+              <option value="">Select your state *</option>
+              {US_STATES.map(s => (
+                <option key={s.abbr} value={s.abbr}>{s.name}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* City (optional) */}
           <div className="login-input-group">
             <MapPin size={18} className="login-input-icon" />
             <input
               type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              placeholder="Your city or area"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="City (optional)"
             />
           </div>
 
