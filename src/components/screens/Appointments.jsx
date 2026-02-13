@@ -217,7 +217,7 @@ function Appointments() {
     const isGuideOnThis = user?.id === apt.guideId
 
     return (
-      <Card>
+      <Card className={`apt-status-${apt.status}`}>
         <div className="apt-row">
           <Avatar src={isGuideOnThis ? apt.seekerPhoto : apt.guidePhoto} emoji={apt.avatar} size="md" variant="blue" />
           <div className="apt-info">

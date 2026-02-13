@@ -102,9 +102,9 @@ function Profile() {
   return (
     <div className="screen with-bottom-nav">
       {/* Profile Header */}
-      <div className="profile-header">
+      <div className={`profile-header ${user?.role === 'guide' ? 'profile-header-guide' : ''}`}>
         <div className="profile-avatar-wrap">
-          <div onClick={handleAvatarClick} style={{ cursor: 'pointer' }}>
+          <div onClick={handleAvatarClick} className={user?.role === 'guide' ? 'profile-avatar-guide' : 'profile-avatar-seeker'} style={{ cursor: 'pointer', borderRadius: '50%' }}>
             <Avatar
               src={user?.photoUrl}
               emoji={user?.avatar}

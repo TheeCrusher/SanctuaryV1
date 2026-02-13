@@ -229,7 +229,7 @@ function PrayerBoard() {
           />
         ) : (
           requests.map(req => (
-            <div key={req.id} className="prayer-card">
+            <div key={req.id} className={`prayer-card ${req.type === 'testimony' ? 'testimony-card' : ''}`}>
               <div className="prayer-card-header">
                 <div
                   className="prayer-card-user"

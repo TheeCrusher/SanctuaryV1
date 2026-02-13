@@ -60,8 +60,12 @@
   --brand-light: #f0f4ff;
   --brand-light-text: #1e3a8a;
 
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 1px 3px rgba(120, 80, 20, 0.06);
   --modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Warm accent borders and tints */
+  --border-warm: rgba(201, 162, 39, 0.18);
+  --bg-warm-tint: rgba(201, 162, 39, 0.04);
 
   --badge-pending-bg: #fef3c7;
   --badge-pending-text: #92400e;
@@ -99,21 +103,21 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-card: #1e293b;
-  --bg-hover: #334155;
-  --bg-input: #334155;
+  --bg-primary: #0f1520;
+  --bg-secondary: #1a2332;
+  --bg-card: #1a2332;
+  --bg-hover: #2a3545;
+  --bg-input: #2a3545;
   --bg-accent: rgba(59, 130, 246, 0.15);
-  --bg-muted: #334155;
+  --bg-muted: #2a3545;
 
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-faint: #64748b;
 
-  --border-primary: #334155;
-  --border-light: #1e293b;
+  --border-primary: #2a3545;
+  --border-light: #1a2332;
 
   --brand-primary: #3b82f6;
   --brand-hover: #2563eb;
@@ -123,6 +127,10 @@
 
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   --modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  /* Warm accent borders and tints */
+  --border-warm: rgba(212, 175, 55, 0.2);
+  --bg-warm-tint: rgba(212, 175, 55, 0.04);
 
   --badge-pending-bg: rgba(251, 191, 36, 0.15);
   --badge-pending-text: #fbbf24;
@@ -320,7 +328,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .view-all-btn {
-  color: var(--brand-primary);
+  color: var(--accent-gold);
   font-size: 14px;
   font-weight: 600;
   background: none;
@@ -397,6 +405,7 @@ textarea {
 .alert-error {
   background: var(--alert-error-bg);
   border: 1px solid var(--alert-error-border);
+  border-left: 3px solid var(--accent-burgundy);
   color: var(--alert-error-text);
   padding: 12px;
   border-radius: 10px;
@@ -447,7 +456,7 @@ textarea {
   right: -4px;
   min-width: 22px;
   height: 22px;
-  background: #ef4444;
+  background: var(--accent-burgundy);
   color: white;
   border-radius: 11px;
   font-size: 12px;
@@ -545,6 +554,18 @@ textarea {
   font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::before {
+  content: '';
+  width: 3px;
+  height: 20px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 /* ---------------------------------------------------------------------------
@@ -564,16 +585,17 @@ textarea {
 }
 
 .stats-box {
-  background: var(--bg-accent);
+  background: var(--accent-gold-light);
   border-radius: 14px;
   padding: 16px;
   margin: 8px 0 24px;
+  border: 1px solid var(--border-warm);
 }
 
 .stats-box-title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--brand-light-text);
+  color: var(--accent-gold-text);
   margin-bottom: 10px;
 }
 
@@ -584,15 +606,16 @@ textarea {
 }
 
 .stat-card {
-  background: rgba(30, 58, 138, 0.08);
+  background: var(--bg-warm-tint);
   padding: 14px;
   border-radius: 12px;
+  border: 1px solid var(--border-warm);
 }
 
 .stat-value {
   font-size: 28px;
   font-weight: 700;
-  color: var(--brand-light-text);
+  color: var(--accent-gold-text);
   margin-bottom: 2px;
 }
 
@@ -617,6 +640,18 @@ textarea {
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-section-title::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 /* --- Role Badge in Header --- */
@@ -738,7 +773,8 @@ textarea {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: var(--bg-accent);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -800,8 +836,8 @@ textarea {
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 8px;
-  background: var(--bg-accent);
-  color: var(--brand-light-text);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -869,6 +905,7 @@ textarea {
   font-size: 48px;
   margin-bottom: 12px;
   opacity: 0.5;
+  color: var(--accent-gold);
 }
 
 .empty-text {
@@ -937,6 +974,8 @@ textarea {
   font-weight: 600;
   color: var(--text-secondary);
   margin: 20px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-warm);
 }
 
 .section-divider:first-child {
@@ -993,6 +1032,11 @@ textarea {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Gold guide name in chat header */
+.chat-header-name-guide {
+  color: var(--accent-gold);
 }
 
 .chat-messages {
@@ -1219,7 +1263,7 @@ textarea {
 
 .star-score {
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--accent-gold-text);
 }
 
 .rating-grid {
@@ -1294,7 +1338,8 @@ textarea {
 }
 
 .church-search-bar:focus-within {
-  border-color: var(--brand-primary);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 2px var(--accent-gold-light);
 }
 
 .church-search-icon {
@@ -1358,6 +1403,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--border-warm);
 }
 
 .church-photo-fallback {
@@ -1381,6 +1427,28 @@ textarea {
   padding: 24px;
   text-align: center;
   border-bottom: 1px solid var(--border-primary);
+  position: relative;
+}
+
+/* Guide profiles get a warm gold gradient tint behind avatar */
+.profile-header.profile-header-guide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-gold-light), transparent);
+  pointer-events: none;
+}
+
+/* Avatar ring colors based on role */
+.profile-avatar-guide {
+  box-shadow: 0 0 0 3px var(--accent-gold);
+}
+
+.profile-avatar-seeker {
+  box-shadow: 0 0 0 3px var(--brand-primary);
 }
 
 .profile-avatar-wrap {
@@ -1736,6 +1804,8 @@ select.account-edit-input {
   font-weight: 700;
   color: var(--text-primary);
   margin: 20px 0 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .sub-section-title:first-child {
@@ -1813,7 +1883,8 @@ select.account-edit-input {
   font-size: 24px;
   width: 44px;
   height: 44px;
-  background: var(--bg-accent);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -1933,6 +2004,7 @@ select.account-edit-input {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+  color: var(--accent-gold);
 }
 
 .fade-in {
@@ -2113,6 +2185,11 @@ select.account-edit-input {
   font-weight: 700;
   color: white;
   letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+}
+
+.login-app-name span {
+  color: #D4AF37;
 }
 
 .login-tagline {
@@ -2184,9 +2261,9 @@ select.account-edit-input {
 
 .login-card input:focus {
   outline: none;
-  border-color: #1e3a8a;
+  border-color: var(--accent-gold);
   background: white;
-  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
 }
 
 .login-toggle-password {
@@ -2223,9 +2300,9 @@ select.account-edit-input {
 
 /* Error message */
 .login-error {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
+  background: rgba(114, 47, 55, 0.2);
+  border: 1px solid rgba(155, 77, 86, 0.4);
+  color: #e8b4b8;
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 16px;
@@ -2288,8 +2365,13 @@ select.account-edit-input {
 }
 
 .signup-dot.active {
-  background: white;
+  background: #D4AF37;
   transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+.signup-dot.completed {
+  background: #D4AF37;
 }
 
 /* "I am a..." label */
@@ -2358,9 +2440,9 @@ select.account-edit-input {
 
 .signup-select:focus {
   outline: none;
-  border-color: #1e3a8a;
+  border-color: var(--accent-gold);
   background: white;
-  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
 }
 
 .signup-select option {
@@ -2426,9 +2508,9 @@ select.account-edit-input {
 }
 
 .signup-interest-chip.selected {
-  background: rgba(255, 255, 255, 0.22);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: white;
+  background: rgba(212, 175, 55, 0.25);
+  border-color: rgba(212, 175, 55, 0.6);
+  color: #D4AF37;
   font-weight: 600;
 }
 
@@ -2583,6 +2665,17 @@ select.account-edit-input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Color-coded More Menu icons */
+.more-menu-item-icon.icon-gold {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.more-menu-item-icon.icon-burgundy {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
 }
 
 .more-menu-item-text {
@@ -2748,6 +2841,7 @@ select.account-edit-input {
   border-radius: 16px;
   padding: 24px;
   margin-bottom: 20px;
+  border-top: 3px solid var(--accent-gold);
 }
 
 .verse-of-day-label {
@@ -2857,7 +2951,7 @@ select.account-edit-input {
 .verse-reference {
   font-size: 14px;
   font-weight: 700;
-  color: var(--brand-primary);
+  color: var(--accent-gold-text);
   margin-bottom: 6px;
 }
 
@@ -2890,8 +2984,8 @@ select.account-edit-input {
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 12px;
-  background: var(--bg-accent);
-  color: var(--brand-light-text);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
 }
 
 .plan-card {
@@ -2930,7 +3024,7 @@ select.account-edit-input {
 
 .plan-progress-fill {
   height: 100%;
-  background: var(--brand-primary);
+  background: var(--accent-gold);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -2953,8 +3047,8 @@ select.account-edit-input {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--bg-accent);
-  color: var(--brand-light-text);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   font-weight: 700;
   font-size: 14px;
   display: flex;
@@ -3097,6 +3191,11 @@ select.account-edit-input {
   color: var(--brand-light-text);
   text-transform: capitalize;
   margin-top: 4px;
+}
+
+.profile-role-badge.role-seeker {
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
 }
 
 .profile-role-badge.role-guide {
@@ -3276,8 +3375,8 @@ select.account-edit-input {
   border-radius: 10px;
   font-size: 11px;
   font-weight: 600;
-  background: var(--brand-light);
-  color: var(--brand-light-text);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   margin-top: 4px;
 }
 
@@ -3325,6 +3424,19 @@ select.account-edit-input {
 .apt-cal-btn:hover {
   background: var(--bg-hover);
   color: var(--text-primary);
+}
+
+/* Appointment status accent borders */
+.card.apt-status-confirmed {
+  border-left: 3px solid var(--accent-gold);
+}
+
+.card.apt-status-pending {
+  border-left: 3px solid var(--accent-burgundy);
+}
+
+.card.apt-status-completed {
+  border-left: 3px solid var(--accent-gold);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3482,9 +3594,9 @@ select.account-edit-input {
 }
 
 .prayer-filter-pill.active {
-  background: var(--brand-primary);
+  background: var(--accent-burgundy);
   color: #ffffff;
-  border-color: var(--brand-primary);
+  border-color: var(--accent-burgundy);
 }
 
 .prayer-card {
@@ -3495,6 +3607,10 @@ select.account-edit-input {
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-light);
   border-left: 3px solid var(--accent-burgundy);
+}
+
+.prayer-card.testimony-card {
+  border-left-color: var(--accent-gold);
 }
 
 .prayer-card-header {
@@ -3637,7 +3753,7 @@ select.account-edit-input {
 }
 
 .prayer-comment-input input:focus {
-  border-color: var(--brand-primary);
+  border-color: var(--accent-burgundy);
 }
 
 .prayer-comment-input button {
@@ -3663,7 +3779,7 @@ select.account-edit-input {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--accent-burgundy);
   color: #ffffff;
   border: none;
   font-size: 28px;
@@ -3671,7 +3787,7 @@ select.account-edit-input {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
   z-index: 10;
   transition: transform 0.15s ease;
 }
@@ -3692,7 +3808,7 @@ select.account-edit-input {
 .prayer-anonymous-toggle input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--brand-primary);
+  accent-color: var(--accent-burgundy);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3736,7 +3852,7 @@ select.account-edit-input {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--text-faint);
+  background: var(--accent-gold);
   animation: typingBounce 1.2s infinite ease-in-out;
 }
 
@@ -3766,6 +3882,7 @@ select.account-edit-input {
   margin-bottom: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
+  border-left: 3px solid var(--accent-gold);
   border-radius: 14px;
   cursor: pointer;
   text-align: left;
@@ -3794,7 +3911,7 @@ select.account-edit-input {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--brand-primary);
+  background: var(--accent-gold);
   color: white;
   display: flex;
   align-items: center;
@@ -3828,8 +3945,8 @@ select.account-edit-input {
 .bible-select-abbrev {
   font-size: 13px;
   font-weight: 700;
-  color: var(--brand-primary);
-  background: var(--bg-accent);
+  color: var(--accent-gold-text);
+  background: var(--accent-gold-light);
   padding: 4px 10px;
   border-radius: 8px;
 }
@@ -4001,7 +4118,8 @@ select.account-edit-input {
 }
 
 .bible-nav-btn:active {
-  background: var(--bg-accent);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
 }
 
 /* --- Verse Action Bar (appears when verse selected) --- */
@@ -4164,6 +4282,16 @@ select.account-edit-input {
   color: var(--brand-primary);
   background: var(--bg-accent);
   font-weight: 600;
+}
+
+.bible-tools-tab-active.tab-highlights {
+  color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}
+
+.bible-tools-tab-active.tab-bookmarks {
+  color: var(--accent-burgundy);
+  background: var(--accent-burgundy-light);
 }
 
 /* Tools content area */
@@ -4338,7 +4466,7 @@ select.account-edit-input {
 }
 
 .bible-bookmark-item-left svg {
-  color: var(--brand-primary);
+  color: var(--accent-burgundy);
 }
 
 .bible-bookmark-remove {
@@ -4450,7 +4578,7 @@ select.account-edit-input {
 }
 
 .bible-picker-book-active {
-  color: var(--brand-primary);
+  color: var(--accent-gold);
   font-weight: 700;
 }
 
@@ -4647,7 +4775,7 @@ select.account-edit-input {
 }
 
 .pending-btn-accept {
-  background: #16a34a;
+  background: var(--accent-gold);
   color: white;
 }
 
@@ -4673,8 +4801,8 @@ select.account-edit-input {
 }
 
 .role-badge-seeker {
-  background: rgba(22, 163, 74, 0.12);
-  color: #16a34a;
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
 }
 
 [data-theme="dark"] .role-badge-guide {
@@ -4683,8 +4811,8 @@ select.account-edit-input {
 }
 
 [data-theme="dark"] .role-badge-seeker {
-  background: rgba(74, 222, 128, 0.2);
-  color: #86efac;
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
 }
 
 /* --- Community list / cards --- */
@@ -4781,9 +4909,9 @@ select.account-edit-input {
 }
 
 .community-top-toggle button.active {
-  background: var(--brand-primary);
+  background: var(--accent-gold);
   color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(201, 162, 39, 0.2);
 }
 
 /* --- Messages sub-header inside Community --- */
@@ -4924,6 +5052,8 @@ select.account-edit-input {
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--text-primary);
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .church-members-grid {
@@ -4991,7 +5121,7 @@ select.account-edit-input {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08));
+  background: linear-gradient(135deg, var(--accent-gold-light), rgba(201, 162, 39, 0.06));
   border-radius: 12px;
   cursor: pointer;
   border: none;
@@ -5017,7 +5147,7 @@ select.account-edit-input {
 }
 
 .suggested-header-icon {
-  color: #8b5cf6;
+  color: var(--accent-gold);
 }
 
 .suggested-list {
@@ -5064,7 +5194,7 @@ select.account-edit-input {
 
 .suggested-card-reason {
   font-size: 12px;
-  color: #8b5cf6;
+  color: var(--accent-gold);
   margin-top: 2px;
 }
 
@@ -5074,11 +5204,11 @@ select.account-edit-input {
 }
 
 [data-theme="dark"] .suggested-header {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+  background: linear-gradient(135deg, var(--accent-gold-light), rgba(212, 175, 55, 0.08));
 }
 
 [data-theme="dark"] .suggested-card-reason {
-  color: #a78bfa;
+  color: var(--accent-gold);
 }
 
 /* =============================================================================
@@ -5091,7 +5221,7 @@ select.account-edit-input {
   gap: 8px;
   padding: 12px 16px;
   margin: 16px 0 0;
-  background: rgba(99, 102, 241, 0.08);
+  background: var(--accent-gold-light);
   border-radius: 10px;
   font-size: 13px;
   color: var(--text-secondary);
@@ -5099,11 +5229,11 @@ select.account-edit-input {
 
 .profile-limited-hint svg {
   flex-shrink: 0;
-  color: #8b5cf6;
+  color: var(--accent-gold);
 }
 
 [data-theme="dark"] .profile-limited-hint {
-  background: rgba(99, 102, 241, 0.15);
+  background: var(--accent-gold-light);
 }
 
 /* =============================================================================
@@ -5213,6 +5343,18 @@ select.account-edit-input {
   flex-shrink: 0;
 }
 
+/* Event category color variants */
+.event-card-category-worship {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.event-card-category-service,
+.event-card-category-mission {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
 .event-card-meta {
   display: flex;
   flex-direction: column;
@@ -5255,6 +5397,10 @@ select.account-edit-input {
   color: var(--text-secondary);
 }
 
+.event-rsvp-count svg {
+  color: var(--accent-gold);
+}
+
 .event-rsvp-btn {
   display: flex;
   align-items: center;
@@ -5271,9 +5417,9 @@ select.account-edit-input {
 }
 
 .event-rsvp-btn.active {
-  background: #10b981;
+  background: var(--accent-gold);
   color: white;
-  border-color: #10b981;
+  border-color: var(--accent-gold);
 }
 
 /* Event Detail screen */
@@ -5308,6 +5454,17 @@ select.account-edit-input {
   margin-bottom: 16px;
 }
 
+.event-detail-category-worship {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.event-detail-category-service,
+.event-detail-category-mission {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
 .event-detail-info {
   display: flex;
   flex-direction: column;
@@ -5324,7 +5481,7 @@ select.account-edit-input {
 }
 
 .event-detail-info-row svg {
-  color: var(--brand-primary);
+  color: var(--accent-gold);
   flex-shrink: 0;
 }
 
@@ -5364,8 +5521,8 @@ select.account-edit-input {
 }
 
 .event-detail-rsvp-btn.active {
-  background: #10b981;
-  border-color: #10b981;
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: white;
 }
 
@@ -5485,9 +5642,9 @@ select.account-edit-input {
 }
 
 .prayer-top-toggle button.active {
-  background: var(--brand-primary);
+  background: var(--accent-burgundy);
   color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(114, 47, 55, 0.2);
 }
 
 /* Celebrate button (amber) — replaces blue "Prayed" button for testimonies */
@@ -5547,6 +5704,10 @@ select.account-edit-input {
 
 .bulletin-section {
   margin-top: 24px;
+}
+
+.bulletin-section .sub-section-title {
+  border-left-color: var(--accent-gold);
 }
 
 .bulletin-card {
@@ -5741,11 +5902,11 @@ select.account-edit-input {
 }
 
 .three-dot-item.danger {
-  color: #ef4444;
+  color: var(--accent-burgundy);
 }
 
 .three-dot-item.danger:hover {
-  background: rgba(239, 68, 68, 0.08);
+  background: var(--accent-burgundy-light);
 }
 
 /* Blocked Users Screen */
@@ -5947,7 +6108,7 @@ select.account-edit-input {
   position: absolute;
   top: -4px;
   right: -6px;
-  background: #ef4444;
+  background: var(--accent-burgundy);
   color: white;
   font-size: 11px;
   font-weight: 700;
@@ -6004,9 +6165,9 @@ select.account-edit-input {
   background: var(--bg-hover, rgba(0, 0, 0, 0.04));
 }
 
-/* Unread notification highlight */
+/* Unread notification highlight — warm tint */
 .notif-item.notif-unread {
-  background: rgba(30, 58, 138, 0.04);
+  background: var(--bg-warm-tint);
 }
 
 /* --- Type icon circle --- */
@@ -6066,7 +6227,7 @@ select.account-edit-input {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand-primary, #1e3a8a);
+  background: var(--accent-gold);
   flex-shrink: 0;
 }
 
@@ -6096,7 +6257,7 @@ select.account-edit-input {
 }
 
 [data-theme="dark"] .notif-item.notif-unread {
-  background: rgba(59, 130, 246, 0.08);
+  background: var(--bg-warm-tint);
 }
 
 [data-theme="dark"] .notif-mark-all-btn {
@@ -6134,7 +6295,7 @@ select.account-edit-input {
 }
 
 .fp-step-dot.fp-step-done {
-  background: var(--brand-primary);
+  background: var(--accent-gold);
 }
 
 /* Description text */
@@ -6332,7 +6493,7 @@ select.account-edit-input {
 }
 
 .fp-forgot-link a {
-  color: rgba(255, 255, 255, 0.7);
+  color: #e8b4b8;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -6561,6 +6722,7 @@ select.account-edit-input {
   align-items: flex-start;
   padding: 12px;
   cursor: pointer;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .guide-card-info {

@@ -98,10 +98,10 @@ function CalendarView() {
 
   // Dot color based on appointment status
   function dotColor(status) {
-    if (status === 'confirmed') return 'var(--alert-text)'
-    if (status === 'completed') return 'var(--text-faint)'
-    if (status === 'declined') return 'var(--badge-declined-text)'
-    return 'var(--brand-primary)'
+    if (status === 'confirmed') return 'var(--accent-gold)'
+    if (status === 'completed') return 'var(--accent-gold-text)'
+    if (status === 'declined') return 'var(--accent-burgundy)'
+    return 'var(--accent-gold)'
   }
 
   return (

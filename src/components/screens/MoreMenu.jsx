@@ -17,49 +17,57 @@ function MoreMenu() {
       icon: Users,
       text: 'Find a Guide',
       subtitle: 'Browse spiritual guides nationwide',
-      path: '/guides'
+      path: '/guides',
+      colorClass: 'icon-gold'
     },
     {
       icon: CalendarDays,
       text: 'Events',
       subtitle: 'Community events & gatherings',
-      path: '/events'
+      path: '/events',
+      colorClass: 'icon-burgundy'
     },
     {
       icon: Church,
       text: 'Churches',
       subtitle: 'Find & favorite churches',
-      path: '/churches'
+      path: '/churches',
+      colorClass: 'icon-gold'
     },
     {
       icon: Book,
       text: 'Bibles',
       subtitle: 'Read the Word of God',
-      path: '/bibles'
+      path: '/bibles',
+      colorClass: 'icon-gold'
     },
     {
       icon: Heart,
       text: 'Prayer Board',
       subtitle: 'Community prayer requests',
-      path: '/prayers'
+      path: '/prayers',
+      colorClass: 'icon-burgundy'
     },
     {
       icon: FileText,
       text: 'Session Notes',
       subtitle: 'Journal your spiritual journey',
-      path: '/notes'
+      path: '/notes',
+      colorClass: ''
     },
     {
       icon: BookOpen,
       text: 'Scripture Study',
       subtitle: 'Verses, plans & daily word',
-      path: '/scripture'
+      path: '/scripture',
+      colorClass: 'icon-gold'
     },
     {
       icon: Calendar,
       text: 'Appointments',
       subtitle: 'Manage your sessions',
-      path: '/appointments'
+      path: '/appointments',
+      colorClass: ''
     }
   ]
 
@@ -90,7 +98,7 @@ function MoreMenu() {
             onClick={() => item.action ? item.action() : navigate(item.path)}
           >
             <div className="more-menu-item-left">
-              <span className="more-menu-item-icon">
+              <span className={`more-menu-item-icon ${item.colorClass || ''}`}>
                 <item.icon size={20} />
               </span>
               <div>

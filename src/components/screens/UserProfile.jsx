@@ -146,7 +146,7 @@ function UserProfile() {
 
   return (
     <div className="screen with-bottom-nav">
-      <div className="profile-header">
+      <div className={`profile-header ${profile.role?.toLowerCase() === 'guide' ? 'profile-header-guide' : ''}`}>
         <button className="back-btn" onClick={() => navigate(-1)} style={{ position: 'absolute', top: 16, left: 16 }}>
           <ArrowLeft size={20} />
         </button>
@@ -172,12 +172,14 @@ function UserProfile() {
           </div>
         )}
 
-        <Avatar
-          src={profile.photoUrl}
-          emoji={profile.avatar}
-          size="xl"
-          variant="gradient"
-        />
+        <div className={profile.role?.toLowerCase() === 'guide' ? 'profile-avatar-guide' : 'profile-avatar-seeker'} style={{ borderRadius: '50%' }}>
+          <Avatar
+            src={profile.photoUrl}
+            emoji={profile.avatar}
+            size="xl"
+            variant="gradient"
+          />
+        </div>
         <div className="profile-name" style={{ marginTop: 12 }}>{profile.name}</div>
         <div className={`profile-role-badge ${profile.role?.toLowerCase() === 'guide' ? 'role-guide' : 'role-seeker'}`}>{profile.role}</div>
 

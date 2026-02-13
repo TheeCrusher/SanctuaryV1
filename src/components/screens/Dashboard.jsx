@@ -75,7 +75,7 @@ function Dashboard() {
           <div>
             <p style={{ opacity: 0.9, marginBottom: '4px' }}>Welcome back,</p>
             <h1 style={{ fontSize: '24px', fontWeight: '700' }}>
-              {user?.name || 'Friend'}
+              <span style={{ color: '#D4AF37' }}>{user?.name || 'Friend'}</span>
               <span className={`home-role-badge ${user?.role === 'guide' ? 'home-role-guide' : 'home-role-seeker'}`}>
                 {user?.role === 'guide' ? 'G' : 'S'}
               </span>
