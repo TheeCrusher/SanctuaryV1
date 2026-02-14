@@ -253,8 +253,8 @@ function ChurchDetail() {
           <button className="favorite-btn" onClick={() => toggleFavoriteChurch(church.id)}>
             <Heart
               size={22}
-              fill={isChurchFavorited(church.id) ? '#722F37' : 'none'}
-              color={isChurchFavorited(church.id) ? '#722F37' : '#9ca3af'}
+              fill={isChurchFavorited(church.id) ? '#dc2626' : 'none'}
+              color={isChurchFavorited(church.id) ? '#dc2626' : '#9ca3af'}
             />
           </button>
         </div>

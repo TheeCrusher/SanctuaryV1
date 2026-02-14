@@ -136,8 +136,8 @@ async function seed() {
       // Give each person a dummy password (they're demo accounts)
       const hash = await bcrypt.hash('password123', 10)
       const result = await client.query(
-        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, denomination, church_name, interests, accepting_seekers, max_pending_requests)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, denomination, church_name, interests, accepting_seekers, max_pending_requests, state, city, bio, specialization, location)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
          RETURNING id`,
         [
           person.name,
@@ -150,7 +150,12 @@ async function seed() {
           person.churchName || null,
           person.interests || [],
           person.acceptingSeekers ?? true,
-          person.maxPendingRequests ?? 5
+          person.maxPendingRequests ?? 5,
+          person.state || null,
+          person.city || null,
+          person.bio || null,
+          person.specialization || null,
+          person.state && person.city ? `${person.city}, ${person.state}` : null
         ]
       )
       peopleIds.push(result.rows[0].id)

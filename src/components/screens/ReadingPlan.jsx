@@ -88,7 +88,7 @@ function ReadingPlan() {
 
       <div className="screen-content">
         {/* Plan Description */}
-        <p style={{ color: '#6b7280', marginBottom: '16px', lineHeight: '1.5' }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: '1.6', fontSize: '15px' }}>
           {plan.description}
         </p>
 

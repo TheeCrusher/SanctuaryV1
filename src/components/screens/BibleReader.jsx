@@ -27,6 +27,7 @@ const HIGHLIGHT_COLORS = [
 function BibleReader() {
   const navigate = useNavigate()
   const contentRef = useRef(null)
+  const touchStartRef = useRef({ x: 0, y: 0 })
 
   // Bible data from the custom hook (loads KJV JSON)
   const { bible, loading, getChapter, getBookNames, searchBible } = useBibleData()
@@ -104,6 +105,21 @@ function BibleReader() {
   // Can we go prev/next?
   const canGoPrev = bookIndex > 0 || chapterIndex > 0
   const canGoNext = bookIndex < books.length - 1 || (currentBook && chapterIndex < currentBook.chapterCount - 1)
+
+  // ----- SWIPE HANDLERS -----
+  function handleTouchStart(e) {
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+
+  function handleTouchEnd(e) {
+    const deltaX = e.changedTouches[0].clientX - touchStartRef.current.x
+    const deltaY = e.changedTouches[0].clientY - touchStartRef.current.y
+    // Only trigger if horizontal swipe > 50px and more horizontal than vertical
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+      if (deltaX < 0 && canGoNext) goNextChapter()
+      if (deltaX > 0 && canGoPrev) goPrevChapter()
+    }
+  }
 
   // ----- PICKER HANDLERS -----
 
@@ -224,7 +240,7 @@ function BibleReader() {
       </div>
 
       {/* ===== CHAPTER CONTENT ===== */}
-      <div className="bible-chapter-content" ref={contentRef}>
+      <div className="bible-chapter-content" ref={contentRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <h2 className="bible-chapter-title">
           {currentBook?.name} {chapterIndex + 1}
         </h2>

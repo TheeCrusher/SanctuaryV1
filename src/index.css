@@ -585,17 +585,17 @@ textarea {
 }
 
 .stats-box {
-  background: var(--accent-gold-light);
+  background: rgba(30, 58, 138, 0.06);
   border-radius: 14px;
   padding: 16px;
   margin: 8px 0 24px;
-  border: 1px solid var(--border-warm);
+  border: 1px solid rgba(30, 58, 138, 0.12);
 }
 
 .stats-box-title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent-gold-text);
+  color: var(--brand-primary);
   margin-bottom: 10px;
 }
 
@@ -606,16 +606,16 @@ textarea {
 }
 
 .stat-card {
-  background: var(--bg-warm-tint);
+  background: rgba(30, 58, 138, 0.04);
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid var(--border-warm);
+  border: 1px solid rgba(30, 58, 138, 0.1);
 }
 
 .stat-value {
   font-size: 28px;
   font-weight: 700;
-  color: var(--accent-gold-text);
+  color: var(--brand-primary);
   margin-bottom: 2px;
 }
 
@@ -770,16 +770,16 @@ textarea {
 }
 
 .home-upcoming-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--accent-gold-light);
   color: var(--accent-gold-text);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .home-upcoming-info {
@@ -834,8 +834,8 @@ textarea {
 .home-activity-badge {
   font-size: 11px;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
   background: var(--accent-gold-light);
   color: var(--accent-gold-text);
   white-space: nowrap;
@@ -891,6 +891,16 @@ textarea {
 [data-theme="dark"] .home-notif-sessions {
   background: var(--accent-gold-light);
   color: var(--accent-gold);
+}
+
+[data-theme="dark"] .stats-box {
+  background: rgba(96, 165, 250, 0.08);
+  border-color: rgba(96, 165, 250, 0.15);
+}
+
+[data-theme="dark"] .stat-card {
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.12);
 }
 
 /* ---------------------------------------------------------------------------
@@ -3037,29 +3047,37 @@ select.account-edit-input {
 .plan-day-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 0;
+  gap: 14px;
+  padding: 16px 12px;
   border-bottom: 1px solid var(--border-light);
   cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+
+.plan-day-item:active {
+  background: var(--bg-secondary);
 }
 
 .plan-day-number {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--accent-gold-light);
-  color: var(--accent-gold-text);
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--brand-primary);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border: 2px solid rgba(30, 58, 138, 0.15);
 }
 
 .plan-day-number.completed {
   background: var(--badge-confirmed-bg);
   color: var(--badge-confirmed-text);
+  border-color: transparent;
 }
 
 .plan-day-info {
@@ -3075,6 +3093,13 @@ select.account-edit-input {
 .plan-day-ref {
   font-size: 13px;
   color: var(--text-muted);
+  margin-top: 2px;
+}
+
+[data-theme="dark"] .plan-day-number {
+  background: rgba(96, 165, 250, 0.1);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.2);
 }
 
 /* ---------------------------------------------------------------------------
@@ -4796,8 +4821,8 @@ select.account-edit-input {
 }
 
 .role-badge-guide {
-  background: var(--accent-gold-light);
-  color: var(--accent-gold-text);
+  background: #b8860b;
+  color: #fff;
 }
 
 .role-badge-seeker {
@@ -4806,8 +4831,8 @@ select.account-edit-input {
 }
 
 [data-theme="dark"] .role-badge-guide {
-  background: var(--accent-gold-light);
-  color: var(--accent-gold-text);
+  background: #c9981a;
+  color: #fff;
 }
 
 [data-theme="dark"] .role-badge-seeker {

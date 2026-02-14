@@ -211,8 +211,8 @@ function Churches() {
                           >
                             <Heart
                               size={20}
-                              fill={isChurchFavorited(result.sanctuaryId) ? '#722F37' : 'none'}
-                              color={isChurchFavorited(result.sanctuaryId) ? '#722F37' : '#9ca3af'}
+                              fill={isChurchFavorited(result.sanctuaryId) ? '#dc2626' : 'none'}
+                              color={isChurchFavorited(result.sanctuaryId) ? '#dc2626' : '#9ca3af'}
                             />
                           </button>
                         )}
@@ -371,8 +371,8 @@ function Churches() {
                         >
                           <Heart
                             size={20}
-                            fill={isChurchFavorited(church.id) ? '#722F37' : 'none'}
-                            color={isChurchFavorited(church.id) ? '#722F37' : '#9ca3af'}
+                            fill={isChurchFavorited(church.id) ? '#dc2626' : 'none'}
+                            color={isChurchFavorited(church.id) ? '#dc2626' : '#9ca3af'}
                           />
                         </button>
                       </div>

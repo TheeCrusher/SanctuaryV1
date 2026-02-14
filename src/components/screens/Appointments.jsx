@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
-import { Plus, Calendar, Repeat, X, CalendarDays, CalendarPlus, Download, ArrowLeft } from 'lucide-react'
+import { Plus, Calendar, Repeat, X, CalendarDays, ArrowLeft } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function Appointments() {
@@ -19,6 +19,7 @@ function Appointments() {
   const [searchParams] = useSearchParams()
   const [showModal, setShowModal] = useState(false)
   const [showCancelConfirm, setShowCancelConfirm] = useState(null)
+  const [showCompleteConfirm, setShowCompleteConfirm] = useState(null)
   const [communityGuides, setCommunityGuides] = useState([])
   const [communitySeekers, setCommunitySeekers] = useState([])
   const [confirmError, setConfirmError] = useState(null)
@@ -161,57 +162,6 @@ function Appointments() {
     return labels[rule] || null
   }
 
-  // Build a Google Calendar "Add Event" URL
-  function googleCalendarUrl(apt) {
-    const otherName = getDisplayName(apt)
-    const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
-    const [h, m] = apt.time.split(':').map(Number)
-    const endMinutes = h * 60 + m + Number(apt.duration)
-    const endH = String(Math.floor(endMinutes / 60)).padStart(2, '0')
-    const endM = String(endMinutes % 60).padStart(2, '0')
-    const endDt = apt.date.replace(/-/g, '') + 'T' + endH + endM + '00'
-
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: `Sanctuary: ${apt.type} with ${otherName}`,
-      dates: `${startDt}/${endDt}`,
-      details: apt.notes || `${apt.type} session with ${otherName}`,
-    })
-    return `https://calendar.google.com/calendar/render?${params.toString()}`
-  }
-
-  // Generate and download an .ics file
-  function downloadIcs(apt) {
-    const otherName = getDisplayName(apt)
-    const startDt = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00'
-    const [h, m] = apt.time.split(':').map(Number)
-    const endMinutes = h * 60 + m + Number(apt.duration)
-    const endH = String(Math.floor(endMinutes / 60)).padStart(2, '0')
-    const endM = String(endMinutes % 60).padStart(2, '0')
-    const endDt = apt.date.replace(/-/g, '') + 'T' + endH + endM + '00'
-
-    const ics = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Sanctuary//EN',
-      'BEGIN:VEVENT',
-      `DTSTART:${startDt}`,
-      `DTEND:${endDt}`,
-      `SUMMARY:Sanctuary: ${apt.type} with ${otherName}`,
-      `DESCRIPTION:${apt.notes || apt.type + ' session'}`,
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n')
-
-    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `sanctuary-session-${apt.date}.ics`
-    a.click()
-    URL.revokeObjectURL(url)
-  }
-
   function AppointmentCard({ apt }) {
     const displayName = getDisplayName(apt)
     const isGuideOnThis = user?.id === apt.guideId
@@ -237,22 +187,6 @@ function Appointments() {
             {apt.notes && (
               <div className="apt-notes">{apt.notes}</div>
             )}
-
-            {/* Calendar export buttons */}
-            <div className="apt-cal-actions">
-              <a
-                href={googleCalendarUrl(apt)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="apt-cal-btn"
-                title="Add to Google Calendar"
-              >
-                <CalendarPlus size={14} /> Google
-              </a>
-              <button className="apt-cal-btn" onClick={() => downloadIcs(apt)} title="Download .ics file">
-                <Download size={14} /> .ics
-              </button>
-            </div>
 
             {apt.status !== 'completed' && apt.status !== 'declined' && (
               <div className="apt-actions">
@@ -291,7 +225,7 @@ function Appointments() {
                   <button
                     className="btn-primary"
                     style={{ padding: '8px 16px', fontSize: '14px' }}
-                    onClick={() => completeAppointment(apt.id)}
+                    onClick={() => setShowCompleteConfirm(apt)}
                   >
                     Complete
                   </button>
@@ -570,6 +504,33 @@ function Appointments() {
           </div>
         </form>
       </Modal>
+
+      {/* Complete Confirmation Modal */}
+      {showCompleteConfirm && (
+        <Modal onClose={() => setShowCompleteConfirm(null)}>
+          <div className="modal-title">Complete Session</div>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+            Mark the session with <strong>{getDisplayName(showCompleteConfirm)}</strong> on {formatDate(showCompleteConfirm.date)} as completed?
+          </p>
+          <div className="modal-buttons">
+            <button
+              className="btn-secondary"
+              onClick={() => setShowCompleteConfirm(null)}
+            >
+              Go Back
+            </button>
+            <button
+              className="btn-primary"
+              onClick={() => {
+                completeAppointment(showCompleteConfirm.id)
+                setShowCompleteConfirm(null)
+              }}
+            >
+              Yes, Complete
+            </button>
+          </div>
+        </Modal>
+      )}
 
       {/* Cancel Confirmation Modal */}
       {showCancelConfirm && (

@@ -49,7 +49,22 @@ export const AVAILABLE_PEOPLE = [
   { name: 'Michael Chen', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/75.jpg', role: 'seeker', denomination: 'Methodist', interests: ['Hiking', 'Photography', 'Community Service'] },
   { name: 'Emily Rodriguez', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/63.jpg', role: 'seeker', denomination: 'Catholic', churchName: 'New Life Assembly', interests: ['Painting', 'Worship', 'Cooking'] },
   { name: 'James Wilson', avatar: '👨‍🦳', profilePhoto: 'https://randomuser.me/api/portraits/men/52.jpg', role: 'seeker', denomination: 'Presbyterian', interests: ['Sports', 'Gardening', 'Travel'] },
-  { name: 'Grace Okafor', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/25.jpg', role: 'guide', denomination: 'Pentecostal', churchName: 'Faith Community Church', interests: ['Bible Study', 'Youth Ministry', 'Writing', 'Music'], acceptingSeekers: true, maxPendingRequests: 5 }
+  { name: 'Grace Okafor', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/25.jpg', role: 'guide', denomination: 'Pentecostal', churchName: 'Faith Community Church', interests: ['Bible Study', 'Youth Ministry', 'Writing', 'Music'], acceptingSeekers: true, maxPendingRequests: 5 },
+
+  // --- New Guides ---
+  { name: 'Pastor Thomas Wright', avatar: '👨‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/men/41.jpg', role: 'guide', bio: 'Senior pastor with 15 years leading a vibrant congregation in Atlanta.', specialization: 'Marriage & Family', state: 'GA', city: 'Atlanta', denomination: 'Baptist', churchName: 'Lakewood Church', interests: ['Bible Study', 'Counseling', 'Community Service', 'Music'], acceptingSeekers: true, maxPendingRequests: 8 },
+  { name: 'Rev. Angela Pierce', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/37.jpg', role: 'guide', bio: 'Associate minister focused on women\'s ministry and spiritual wellness.', specialization: 'Women\'s Ministry', state: 'CA', city: 'Los Angeles', denomination: 'AME', interests: ['Worship', 'Writing', 'Counseling', 'Volunteering'], acceptingSeekers: true, maxPendingRequests: 5 },
+  { name: 'Pastor Daniel Reeves', avatar: '🧔', profilePhoto: 'https://randomuser.me/api/portraits/men/22.jpg', role: 'guide', bio: 'Passionate about discipleship and helping new believers grow in their faith.', specialization: 'Discipleship', state: 'TN', city: 'Nashville', denomination: 'Methodist', churchName: 'Brooklyn Tabernacle', interests: ['Bible Study', 'Music', 'Hiking', 'Youth Ministry'], acceptingSeekers: true, maxPendingRequests: 4 },
+  { name: 'Sister Catherine Tran', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/51.jpg', role: 'guide', bio: 'Contemplative prayer guide and retreat facilitator for over a decade.', specialization: 'Prayer & Meditation', state: 'WA', city: 'Seattle', denomination: 'Catholic', churchName: 'Holy Name Cathedral', interests: ['Reading', 'Painting', 'Bible Study', 'Worship'], acceptingSeekers: true, maxPendingRequests: 6 },
+  { name: 'Elder Marcus Thompson', avatar: '👨‍🦳', profilePhoto: 'https://randomuser.me/api/portraits/men/67.jpg', role: 'guide', bio: 'Church elder and mentor with a heart for young men finding their purpose.', specialization: 'Men\'s Ministry', state: 'NY', city: 'Brooklyn', denomination: 'Pentecostal', churchName: 'Brooklyn Tabernacle', interests: ['Sports', 'Community Service', 'Bible Study', 'Volunteering'], acceptingSeekers: true, maxPendingRequests: 10 },
+
+  // --- New Seekers ---
+  { name: 'Rachel Kim', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/15.jpg', role: 'seeker', state: 'TX', city: 'Houston', denomination: 'Non-denominational', churchName: 'Lakewood Church', interests: ['Music', 'Cooking', 'Bible Study', 'Travel'] },
+  { name: 'Nathan Brooks', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/45.jpg', role: 'seeker', bio: 'Recently moved to Chicago and looking for a faith community.', state: 'IL', city: 'Chicago', denomination: 'Baptist', churchName: 'Willow Creek Church', interests: ['Sports', 'Photography', 'Community Service'] },
+  { name: 'Priya Sharma', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/82.jpg', role: 'seeker', state: 'CA', city: 'San Francisco', denomination: 'Non-denominational', interests: ['Reading', 'Hiking', 'Worship', 'Writing'] },
+  { name: 'Tyler Odom', avatar: '👦', profilePhoto: 'https://randomuser.me/api/portraits/men/11.jpg', role: 'seeker', bio: 'College junior studying theology and exploring different denominations.', state: 'FL', city: 'Orlando', denomination: 'Methodist', interests: ['Hiking', 'Music', 'Youth Ministry', 'Gardening'] },
+  { name: 'Aisha Williams', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/33.jpg', role: 'seeker', state: 'GA', city: 'Atlanta', denomination: 'Baptist', interests: ['Volunteering', 'Cooking', 'Worship', 'Community Service'] },
+  { name: 'Chris Martinez', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/91.jpg', role: 'seeker', state: 'AZ', city: 'Phoenix', denomination: 'Catholic', interests: ['Sports', 'Travel', 'Photography', 'Reading'] }
 ]
 
 // Church listings
@@ -188,7 +203,15 @@ export const SEED_CHURCH_FAVORITES = [
   { userKey: 'maria', churchName: 'Willow Creek Church' },
   { userKey: 'Emily Rodriguez', churchName: 'Willow Creek Church' },
   { userKey: 'Grace Okafor', churchName: 'Willow Creek Church' },
-  { userKey: 'Sarah Johnson', churchName: 'Holy Name Cathedral' }
+  { userKey: 'Sarah Johnson', churchName: 'Holy Name Cathedral' },
+  // New users
+  { userKey: 'Pastor Thomas Wright', churchName: 'Lakewood Church' },
+  { userKey: 'Elder Marcus Thompson', churchName: 'Brooklyn Tabernacle' },
+  { userKey: 'Sister Catherine Tran', churchName: 'Holy Name Cathedral' },
+  { userKey: 'Nathan Brooks', churchName: 'Willow Creek Church' },
+  { userKey: 'Rachel Kim', churchName: 'Lakewood Church' },
+  { userKey: 'Aisha Williams', churchName: 'Willow Creek Church' },
+  { userKey: 'Chris Martinez', churchName: 'National Cathedral' }
 ]
 
 export const SAMPLE_APPOINTMENTS = [
