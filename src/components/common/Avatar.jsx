@@ -63,7 +63,7 @@ function Avatar({
       style={initialsStyle}
     >
       {src ? (
-        <img src={src} alt="Avatar" />
+        <img src={src} alt={name ? `${name}'s avatar` : 'User avatar'} />
       ) : emoji ? (
         emoji
       ) : initials ? (

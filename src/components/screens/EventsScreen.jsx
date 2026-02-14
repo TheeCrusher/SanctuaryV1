@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Plus, Calendar, MapPin, Users, Tag, Clock } from 'lucide-react'
 import { api } from '../../utils/api'
 import { useApp } from '../../context/AppContext'
-import Modal from '../common/Modal'
+import { Modal, LoadingSpinner, ErrorState, EmptyState } from '../common'
 
 const CATEGORIES = ['All', 'Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor']
 
@@ -25,6 +25,7 @@ function EventsScreen() {
 
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('All')
 
   // Create modal state
@@ -44,11 +45,13 @@ function EventsScreen() {
   async function loadEvents() {
     try {
       setLoading(true)
+      setError(null)
       const params = selectedCategory !== 'All' ? `?category=${selectedCategory}` : ''
       const data = await api.get(`/events${params}`)
       setEvents(data.events)
-    } catch (error) {
-      console.error('Failed to load events:', error)
+    } catch (err) {
+      console.error('Failed to load events:', err)
+      setError('Failed to load events. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -142,13 +145,17 @@ function EventsScreen() {
 
       {/* Events list */}
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
-          Loading events...
-        </div>
+        <LoadingSpinner message="Loading events..." />
+      ) : error ? (
+        <ErrorState subtitle={error} onAction={loadEvents} />
       ) : events.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
-          No upcoming events{selectedCategory !== 'All' ? ` in ${selectedCategory}` : ''}
-        </div>
+        <EmptyState
+          icon={Calendar}
+          title={selectedCategory !== 'All' ? `No events in ${selectedCategory}` : 'No upcoming events'}
+          subtitle="Be the first to create an event!"
+          actionLabel="Create Event"
+          onAction={() => setShowCreateModal(true)}
+        />
       ) : (
         events.map(evt => (
           <div key={evt.id} className="event-card" onClick={() => navigate(`/events/${evt.id}`)}>

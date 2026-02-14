@@ -9,7 +9,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Avatar, Card, Modal, EmptyState } from '../common'
+import { Avatar, Card, Modal, EmptyState, LoadingSpinner, ErrorState } from '../common'
 import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -37,6 +37,7 @@ function CommunityScreen() {
   const [searchText, setSearchText] = useState('')
   const [showPending, setShowPending] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   // Messages state
   const [showNewConvModal, setShowNewConvModal] = useState(false)
@@ -72,6 +73,8 @@ function CommunityScreen() {
 
   async function loadData() {
     try {
+      setLoading(true)
+      setError(null)
       const [communityRes, pendingRes, suggestedRes] = await Promise.all([
         api.get('/community'),
         api.get('/community/pending'),
@@ -80,8 +83,9 @@ function CommunityScreen() {
       setCommunity(communityRes.community || [])
       setPending(pendingRes || { incoming: [], outgoing: [] })
       setSuggested(suggestedRes.suggested || [])
-    } catch (error) {
-      console.error('Failed to load community:', error)
+    } catch (err) {
+      console.error('Failed to load community:', err)
+      setError('Failed to load community. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -186,8 +190,16 @@ function CommunityScreen() {
 
   if (loading) {
     return (
-      <div className="screen with-bottom-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>Loading...</div>
+      <div className="screen with-bottom-nav">
+        <LoadingSpinner message="Loading community..." />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="screen with-bottom-nav">
+        <ErrorState subtitle={error} onAction={loadData} />
       </div>
     )
   }

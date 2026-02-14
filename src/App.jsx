@@ -6,7 +6,7 @@
 
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from './context/AppContext'
-import { Loader2 } from 'lucide-react'
+import { LoadingSpinner } from './components/common'
 import { useSwipeable } from 'react-swipeable'
 
 // Layout components
@@ -59,11 +59,8 @@ function ProtectedRoute({ children }) {
   // While checking authentication status, show loading
   if (isLoading) {
     return (
-      <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="text-center">
-          <Loader2 size={48} className="animate-spin" style={{ color: '#1e3a8a', marginBottom: '16px' }} />
-          <div>Loading...</div>
-        </div>
+      <div className="screen">
+        <LoadingSpinner size={48} />
       </div>
     )
   }

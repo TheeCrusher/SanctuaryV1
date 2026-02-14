@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { EmptyState } from '../common'
+import { EmptyState, LoadingSpinner, ErrorState } from '../common'
 import {
   ArrowLeft,
   Bell,
@@ -84,15 +84,23 @@ function Notifications() {
   } = useApp()
 
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Load notifications on mount
-  useEffect(() => {
-    async function load() {
+  async function loadNotifications() {
+    try {
+      setLoading(true)
+      setError(null)
       await fetchNotifications()
+    } catch (err) {
+      console.error('Failed to load notifications:', err)
+      setError('Failed to load notifications. Please try again.')
+    } finally {
       setLoading(false)
     }
-    load()
-  }, [])
+  }
+
+  // Load notifications on mount
+  useEffect(() => { loadNotifications() }, [])
 
   // Handle tapping a notification: mark read + navigate
   async function handleTap(notif) {
@@ -138,9 +146,9 @@ function Notifications() {
       {/* Content */}
       <div className="notif-content">
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-secondary)' }}>
-            Loading notifications...
-          </div>
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorState subtitle={error} onAction={loadNotifications} />
         ) : notifications.length === 0 ? (
           <EmptyState
             icon={Bell}

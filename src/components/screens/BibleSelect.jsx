@@ -51,7 +51,7 @@ function BibleSelect() {
             </div>
             <div className="bible-select-card-right">
               <span className="bible-select-abbrev">{bible.abbrev}</span>
-              <ChevronRight size={18} style={{ color: '#9ca3af' }} />
+              <ChevronRight size={18} style={{ color: 'var(--text-faint)' }} />
             </div>
           </button>
         ))}

@@ -38,6 +38,12 @@ function LoginScreen() {
     // Clear any previous error
     setError('')
 
+    // Client-side email format check before hitting the API
+    if (!email.includes('@') || !email.includes('.')) {
+      setError('Please enter a valid email address.')
+      return
+    }
+
     // Attempt to login (now async - calls the backend API)
     const result = await login(email, password)
 

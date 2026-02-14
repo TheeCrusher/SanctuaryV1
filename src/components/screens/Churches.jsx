@@ -138,7 +138,7 @@ function Churches() {
 
         {/* Result count or favorites toggle */}
         {hasSearched ? (
-          <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '8px' }}>
+          <div style={{ fontSize: '14px', color: 'var(--text-muted)', marginTop: '8px' }}>
             {loading ? 'Searching Google Places...' : `Showing ${Math.min(visibleCount, churchSearchResults.length)} of ${churchSearchResults.length} results for "${query}"`}
           </div>
         ) : favoriteChurchIds.size > 0 ? (
@@ -148,8 +148,8 @@ function Churches() {
           >
             <Heart
               size={16}
-              fill={showFavoritesOnly ? '#722F37' : 'none'}
-              color={showFavoritesOnly ? '#722F37' : '#6b7280'}
+              fill={showFavoritesOnly ? 'var(--accent-burgundy)' : 'none'}
+              color={showFavoritesOnly ? 'var(--accent-burgundy)' : 'var(--text-muted)'}
             />
             My Favorites ({favoriteChurchIds.size})
           </button>
@@ -181,7 +181,7 @@ function Churches() {
                   <div style={{ display: 'flex', gap: '12px' }}>
                     {/* Church Photo from Google (via our proxy) */}
                     <div className="church-photo-container">
-                      <Church size={32} color="#9ca3af" className="church-photo-fallback" />
+                      <Church size={32} color="var(--text-faint)" className="church-photo-fallback" />
                       {result.hasPhoto && (
                         <img
                           src={`${API_BASE}/api/churches/photo/${result.googlePlaceId}`}
@@ -211,15 +211,15 @@ function Churches() {
                           >
                             <Heart
                               size={20}
-                              fill={isChurchFavorited(result.sanctuaryId) ? '#dc2626' : 'none'}
-                              color={isChurchFavorited(result.sanctuaryId) ? '#dc2626' : '#9ca3af'}
+                              fill={isChurchFavorited(result.sanctuaryId) ? 'var(--danger)' : 'none'}
+                              color={isChurchFavorited(result.sanctuaryId) ? 'var(--danger)' : 'var(--text-faint)'}
                             />
                           </button>
                         )}
                       </div>
 
                       {/* City, State */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#6b7280', fontSize: '13px', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-muted)', fontSize: '13px', marginTop: '2px' }}>
                         <MapPin size={12} />
                         {result.city}{result.state ? `, ${result.state}` : ''}
                       </div>
@@ -227,7 +227,7 @@ function Churches() {
                       {/* Address */}
                       <div style={{
                         fontSize: '13px',
-                        color: '#6b7280',
+                        color: 'var(--text-muted)',
                         marginTop: '4px',
                         overflow: 'hidden',
                         display: '-webkit-box',
@@ -241,16 +241,16 @@ function Churches() {
                       <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px' }}>
                         {/* Google rating */}
                         {result.googleRating && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#6b7280' }}>
-                            <Star size={12} fill="#C9A227" color="#C9A227" />
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: 'var(--text-muted)' }}>
+                            <Star size={12} fill="var(--accent-gold)" color="var(--accent-gold)" />
                             <span>{result.googleRating.toFixed(1)}</span>
                             <span style={{ fontSize: '11px' }}>Google</span>
                           </div>
                         )}
                         {/* Sanctuary rating (if church exists in our DB with reviews) */}
                         {result.sanctuaryReviewCount > 0 && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#4f46e5' }}>
-                            <span className="stars stars-sm" style={{ color: '#C9A227' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: 'var(--brand-primary)' }}>
+                            <span className="stars stars-sm" style={{ color: 'var(--accent-gold)' }}>
                               {renderStars(result.sanctuaryRating)}
                             </span>
                             <span>({result.sanctuaryReviewCount}) Sanctuary</span>
@@ -260,7 +260,7 @@ function Churches() {
 
                       {/* Saving indicator */}
                       {saving === result.googlePlaceId && (
-                        <div style={{ fontSize: '12px', color: '#4f46e5', marginTop: '4px' }}>
+                        <div style={{ fontSize: '12px', color: 'var(--brand-primary)', marginTop: '4px' }}>
                           Opening...
                         </div>
                       )}
@@ -320,7 +320,7 @@ function Churches() {
                   <div style={{ display: 'flex', gap: '12px' }}>
                     {/* Church Photo */}
                     <div className="church-photo-container">
-                      <Church size={32} color="#9ca3af" className="church-photo-fallback" />
+                      <Church size={32} color="var(--text-faint)" className="church-photo-fallback" />
                       {church.googlePlaceId ? (
                         <img
                           src={`${API_BASE}/api/churches/photo/${church.googlePlaceId}`}
@@ -371,14 +371,14 @@ function Churches() {
                         >
                           <Heart
                             size={20}
-                            fill={isChurchFavorited(church.id) ? '#dc2626' : 'none'}
-                            color={isChurchFavorited(church.id) ? '#dc2626' : '#9ca3af'}
+                            fill={isChurchFavorited(church.id) ? 'var(--danger)' : 'none'}
+                            color={isChurchFavorited(church.id) ? 'var(--danger)' : 'var(--text-faint)'}
                           />
                         </button>
                       </div>
 
                       {/* City, State */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#6b7280', fontSize: '13px', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-muted)', fontSize: '13px', marginTop: '2px' }}>
                         <MapPin size={12} />
                         {church.city}{church.state ? `, ${church.state}` : ''}
                       </div>
@@ -387,7 +387,7 @@ function Churches() {
                       {church.shortDescription && (
                         <div style={{
                           fontSize: '13px',
-                          color: '#6b7280',
+                          color: 'var(--text-muted)',
                           marginTop: '4px',
                           overflow: 'hidden',
                           display: '-webkit-box',
@@ -401,10 +401,10 @@ function Churches() {
                       {/* Rating */}
                       {church.reviewCount > 0 && (
                         <div style={{ marginTop: '4px', fontSize: '13px' }}>
-                          <span className="stars stars-sm" style={{ color: '#C9A227' }}>
+                          <span className="stars stars-sm" style={{ color: 'var(--accent-gold)' }}>
                             {renderStars(church.overallRating)}
                           </span>
-                          <span style={{ color: '#9ca3af', marginLeft: '4px' }}>
+                          <span style={{ color: 'var(--text-faint)', marginLeft: '4px' }}>
                             ({church.reviewCount})
                           </span>
                         </div>

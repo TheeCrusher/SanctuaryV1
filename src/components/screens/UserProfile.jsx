@@ -10,7 +10,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Avatar } from '../common'
+import { Avatar, LoadingSpinner, ErrorState } from '../common'
 import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -20,29 +20,32 @@ function UserProfile() {
   const { user, startNewConversation } = useApp()
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [connectionStatus, setConnectionStatus] = useState('none')
   const [connectionLoading, setConnectionLoading] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const [blocking, setBlocking] = useState(false)
   const menuRef = useRef(null)
 
-  useEffect(() => {
-    async function loadProfile() {
-      try {
-        const [profileRes, statusRes] = await Promise.all([
-          api.get(`/users/${id}`),
-          api.get(`/community/status/${id}`)
-        ])
-        setProfile(profileRes.user)
-        setConnectionStatus(statusRes.status)
-      } catch (error) {
-        console.error('Failed to load profile:', error)
-      } finally {
-        setLoading(false)
-      }
+  async function loadProfile() {
+    try {
+      setLoading(true)
+      setError(null)
+      const [profileRes, statusRes] = await Promise.all([
+        api.get(`/users/${id}`),
+        api.get(`/community/status/${id}`)
+      ])
+      setProfile(profileRes.user)
+      setConnectionStatus(statusRes.status)
+    } catch (err) {
+      console.error('Failed to load profile:', err)
+      setError('Failed to load profile. Please try again.')
+    } finally {
+      setLoading(false)
     }
-    loadProfile()
-  }, [id])
+  }
+
+  useEffect(() => { loadProfile() }, [id])
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -117,8 +120,16 @@ function UserProfile() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>Loading...</div>
+      <div className="screen">
+        <LoadingSpinner />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="screen">
+        <ErrorState subtitle={error} onAction={loadProfile} />
       </div>
     )
   }
@@ -270,7 +281,7 @@ function UserProfile() {
             )}
 
             {showOnWaitlist && (
-              <div style={{ color: '#f59e0b', textAlign: 'center', padding: '8px 0', fontSize: '14px' }}>
+              <div style={{ color: 'var(--accent-gold)', textAlign: 'center', padding: '8px 0', fontSize: '14px' }}>
                 You're on the waitlist. You'll be notified when a spot opens.
               </div>
             )}

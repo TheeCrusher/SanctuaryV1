@@ -12,6 +12,7 @@ import {
   Search, Highlighter, Bookmark, BookMarked,
   X, Loader2
 } from 'lucide-react'
+import { LoadingSpinner } from '../common'
 import { useBibleData } from '../../hooks/useBibleData'
 import { useApp } from '../../context/AppContext'
 
@@ -207,11 +208,8 @@ function BibleReader() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ textAlign: 'center' }}>
-          <Loader2 size={48} className="animate-spin" style={{ color: '#1e3a8a', marginBottom: '16px' }} />
-          <div>Loading Bible...</div>
-        </div>
+      <div className="screen">
+        <LoadingSpinner message="Loading Bible..." size={48} />
       </div>
     )
   }

@@ -23,6 +23,7 @@ function Appointments() {
   const [communityGuides, setCommunityGuides] = useState([])
   const [communitySeekers, setCommunitySeekers] = useState([])
   const [confirmError, setConfirmError] = useState(null)
+  const [formError, setFormError] = useState('')
 
   const [formData, setFormData] = useState({
     name: '',
@@ -124,6 +125,25 @@ function Appointments() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    setFormError('')
+
+    // Client-side validation
+    if (isSeeker && !formData.guideId) {
+      setFormError('Please select a guide.')
+      return
+    }
+    if (!isSeeker && !formData.seekerId) {
+      setFormError('Please select a seeker.')
+      return
+    }
+    if (!formData.date) {
+      setFormError('Please select a date.')
+      return
+    }
+    if (!formData.time) {
+      setFormError('Please select a time.')
+      return
+    }
 
     const submitData = { ...formData }
 
@@ -194,8 +214,7 @@ function Appointments() {
                 {apt.status === 'pending' && isGuideOnThis && (
                   <>
                     <button
-                      className="btn-primary"
-                      style={{ padding: '8px 16px', fontSize: '14px' }}
+                      className="btn-primary-sm"
                       onClick={async () => {
                         try {
                           setConfirmError(null)
@@ -223,8 +242,7 @@ function Appointments() {
                 )}
                 {apt.status === 'confirmed' && isGuideOnThis && (
                   <button
-                    className="btn-primary"
-                    style={{ padding: '8px 16px', fontSize: '14px' }}
+                    className="btn-primary-sm"
                     onClick={() => setShowCompleteConfirm(apt)}
                   >
                     Complete
@@ -346,6 +364,7 @@ function Appointments() {
         title="New Session"
       >
         <form onSubmit={handleSubmit}>
+          {formError && <div className="login-error" style={{ marginBottom: '12px' }}>{formError}</div>}
           {/* Role-aware first field */}
           {isSeeker ? (
             <div className="form-group">

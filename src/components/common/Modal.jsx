@@ -10,7 +10,22 @@
 //   - title: The heading text at the top of the modal
 //   - children: The content inside the modal
 
+import { useEffect } from 'react'
+
 function Modal({ isOpen, onClose, title, children }) {
+  // Global Escape key listener — works reliably even when no element inside
+  // the modal has focus (e.g., on mobile or when the modal has no inputs).
+  // The old approach (onKeyDown on the overlay div) required the div to have
+  // focus, which isn't guaranteed.
+  useEffect(() => {
+    if (isOpen === false) return
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
+
   // If explicitly set to false, don't render anything
   // Supports both patterns: <Modal isOpen={bool}> and {bool && <Modal>}
   if (isOpen === false) return null
@@ -24,19 +39,11 @@ function Modal({ isOpen, onClose, title, children }) {
     }
   }
 
-  // Handle Escape key to close modal
-  function handleKeyDown(e) {
-    if (e.key === 'Escape') {
-      onClose()
-    }
-  }
-
   return (
     // The dark semi-transparent background
     <div
       className="modal-overlay"
       onClick={handleOverlayClick}
-      onKeyDown={handleKeyDown}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"

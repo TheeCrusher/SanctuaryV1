@@ -14,12 +14,12 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Avatar, Card, Badge } from '../common'
+import { Avatar, Card, Badge, LoadingSpinner, ErrorState } from '../common'
 import { api } from '../../utils/api'
 import {
   MessageCircle, Users, Heart, Calendar,
   CheckCircle, ChevronRight, Clock, Star,
-  BookOpen, Loader, Bell
+  BookOpen, Bell
 } from 'lucide-react'
 
 function Dashboard() {
@@ -29,24 +29,27 @@ function Dashboard() {
   // Home data from the aggregated endpoint
   const [homeData, setHomeData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   // Get today's Bible quote from AppContext
   const quote = getDailyQuote()
 
-  // Fetch home data on mount
-  useEffect(() => {
-    async function fetchHome() {
-      try {
-        const data = await api.get('/home')
-        setHomeData(data)
-      } catch (err) {
-        console.error('Failed to load home data:', err)
-      } finally {
-        setLoading(false)
-      }
+  // Fetch home data — extracted so it can also be called from the retry button
+  async function fetchHome() {
+    try {
+      setLoading(true)
+      setError(null)
+      const data = await api.get('/home')
+      setHomeData(data)
+    } catch (err) {
+      console.error('Failed to load home data:', err)
+      setError('Failed to load home data. Please try again.')
+    } finally {
+      setLoading(false)
     }
-    fetchHome()
-  }, [])
+  }
+
+  useEffect(() => { fetchHome() }, [])
 
   // Format date for display
   function formatDate(dateStr) {
@@ -75,7 +78,7 @@ function Dashboard() {
           <div>
             <p style={{ opacity: 0.9, marginBottom: '4px' }}>Welcome back,</p>
             <h1 style={{ fontSize: '24px', fontWeight: '700' }}>
-              <span style={{ color: '#D4AF37' }}>{user?.name || 'Friend'}</span>
+              <span style={{ color: 'var(--accent-gold)' }}>{user?.name || 'Friend'}</span>
               <span className={`home-role-badge ${user?.role === 'guide' ? 'home-role-guide' : 'home-role-seeker'}`}>
                 {user?.role === 'guide' ? 'G' : 'S'}
               </span>
@@ -104,9 +107,9 @@ function Dashboard() {
       <div className="screen-content">
 
         {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', padding: '48px' }}>
-            <Loader size={32} style={{ color: 'var(--brand-primary)', animation: 'spin 1s linear infinite' }} />
-          </div>
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorState subtitle={error} onAction={fetchHome} />
         ) : (
           <>
             {/* ===== SECTION 2: WHAT'S NEW ===== */}
@@ -176,7 +179,7 @@ function Dashboard() {
               ) : (
                 <Card>
                   <div className="home-caught-up">
-                    <CheckCircle size={32} style={{ color: '#16a34a' }} />
+                    <CheckCircle size={32} style={{ color: 'var(--success)' }} />
                     <span className="home-caught-up-text">You're all caught up!</span>
                   </div>
                 </Card>

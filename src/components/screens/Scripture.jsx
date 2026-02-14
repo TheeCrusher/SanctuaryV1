@@ -8,6 +8,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
+import { useToast } from '../../context/ToastContext'
 import { Modal } from '../common'
 import {
   ArrowLeft, BookOpen, Star, Share2, Shuffle, Bookmark
@@ -17,6 +18,7 @@ const CATEGORIES = ['All', 'Love', 'Strength', 'Hope', 'Comfort', 'Trust', 'Cour
 
 function Scripture() {
   const navigate = useNavigate()
+  const { showToast } = useToast()
   const {
     scriptureDailyVerse,
     scriptureVerses,
@@ -60,7 +62,7 @@ function Scripture() {
       }
     } else {
       await navigator.clipboard.writeText(shareText)
-      alert('Verse copied to clipboard!')
+      showToast('Verse copied to clipboard!', 'success')
     }
   }
 
@@ -134,7 +136,7 @@ function Scripture() {
 
         {/* Verses List */}
         {displayedVerses.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: '#9ca3af' }}>
+          <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
             {showBookmarksOnly ? 'No bookmarked verses yet' : 'No verses in this category'}
           </div>
         ) : (
@@ -149,11 +151,11 @@ function Scripture() {
                 <button
                   className="verse-action-btn"
                   onClick={() => toggleVerseBookmark(verse.id)}
-                  style={scriptureBookmarkIds.has(verse.id) ? { color: '#C9A227' } : {}}
+                  style={scriptureBookmarkIds.has(verse.id) ? { color: 'var(--accent-gold)' } : {}}
                 >
                   <Star
                     size={18}
-                    fill={scriptureBookmarkIds.has(verse.id) ? '#C9A227' : 'none'}
+                    fill={scriptureBookmarkIds.has(verse.id) ? 'var(--accent-gold)' : 'none'}
                   />
                 </button>
                 <button
@@ -168,7 +170,7 @@ function Scripture() {
         )}
 
         {/* Reading Plans Section */}
-        <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', margin: '28px 0 14px' }}>
+        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)', margin: '28px 0 14px' }}>
           Reading Plans
         </h3>
         {readingPlans.map(plan => (
@@ -181,8 +183,8 @@ function Scripture() {
             <div className="plan-desc">{plan.description}</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{
-                background: '#e0e7ff',
-                color: '#3730a3',
+                background: 'var(--bg-accent)',
+                color: 'var(--brand-light-text)',
                 padding: '4px 12px',
                 borderRadius: '12px',
                 fontSize: '12px',
@@ -190,7 +192,7 @@ function Scripture() {
               }}>
                 {plan.totalDays} days
               </span>
-              <BookOpen size={20} style={{ color: '#9ca3af' }} />
+              <BookOpen size={20} style={{ color: 'var(--text-faint)' }} />
             </div>
           </div>
         ))}
@@ -205,7 +207,7 @@ function Scripture() {
         {randomVerse && (
           <div>
             <div style={{
-              background: '#f3f4f6',
+              background: 'var(--bg-muted)',
               padding: '20px',
               borderRadius: '10px',
               marginBottom: '16px'
@@ -213,7 +215,7 @@ function Scripture() {
               <div style={{
                 fontSize: '16px',
                 fontWeight: '700',
-                color: '#1e3a8a',
+                color: 'var(--brand-primary)',
                 marginBottom: '12px'
               }}>
                 {randomVerse.reference}
@@ -221,7 +223,7 @@ function Scripture() {
               <p style={{
                 fontSize: '15px',
                 lineHeight: '1.7',
-                color: '#374151',
+                color: 'var(--text-secondary)',
                 fontStyle: 'italic',
                 margin: 0
               }}>

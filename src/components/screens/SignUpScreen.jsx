@@ -10,7 +10,7 @@ import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { compressImage } from '../../utils/imageCompress'
 import { US_STATES } from '../../utils/constants'
-import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera, Phone } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, User, MapPin, Church, BookOpen, Compass, Heart, Camera, Phone, CheckCircle } from 'lucide-react'
 
 const LOGO = "/sanctuary-logo.png"
 
@@ -74,6 +74,19 @@ function SignUpScreen() {
   async function handleCreateAccount(e) {
     e.preventDefault()
     setError('')
+
+    // Name minimum length
+    if (name.trim().length < 2) {
+      setError('Name must be at least 2 characters.')
+      return
+    }
+
+    // Email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailPattern.test(email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match.')
@@ -234,6 +247,16 @@ function SignUpScreen() {
                 </button>
               </div>
 
+              {/* Password strength indicator */}
+              {password && (
+                <div className="fp-requirements">
+                  <div className={`fp-req-item ${password.length >= 6 ? 'fp-req-met' : ''}`}>
+                    <CheckCircle size={14} />
+                    <span>At least 6 characters</span>
+                  </div>
+                </div>
+              )}
+
               {/* Confirm Password */}
               <div className="login-input-group">
                 <Lock size={18} className="login-input-icon" />
@@ -307,7 +330,7 @@ function SignUpScreen() {
               {photoPreview ? (
                 <img src={photoPreview} alt="Profile preview" />
               ) : (
-                <Camera size={28} color="#9ca3af" />
+                <Camera size={28} color="var(--text-faint)" />
               )}
             </button>
             <div className="signup-photo-label">Add a profile photo</div>

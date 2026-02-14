@@ -185,7 +185,7 @@ function EventDetail() {
                 className="event-attendee-role"
                 style={{
                   background: a.role === 'guide' ? 'rgba(59,130,246,0.1)' : 'rgba(16,185,129,0.1)',
-                  color: a.role === 'guide' ? '#3b82f6' : '#10b981'
+                  color: a.role === 'guide' ? 'var(--brand-primary)' : 'var(--success)'
                 }}
               >
                 {a.role.charAt(0).toUpperCase() + a.role.slice(1)}

@@ -7,9 +7,11 @@
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
+import { useToast } from '../../context/ToastContext'
 
 function PaymentMethod() {
   const { user } = useApp()
+  const { showToast } = useToast()
   const navigate = useNavigate()
 
   return (
@@ -50,21 +52,21 @@ function PaymentMethod() {
         <button
           className="btn-primary"
           style={{ marginBottom: '12px' }}
-          onClick={() => alert('Update card feature coming soon!')}
+          onClick={() => showToast('Update card feature coming soon!', 'info')}
         >
           Update Card
         </button>
 
         <button
           className="btn-secondary"
-          onClick={() => alert('Add new card feature coming soon!')}
+          onClick={() => showToast('Add new card feature coming soon!', 'info')}
         >
           Add New Card
         </button>
 
         <h2 className="sub-section-title">Billing History</h2>
 
-        <div style={{ color: '#9ca3af', fontSize: '14px', textAlign: 'center', padding: '24px' }}>
+        <div style={{ color: 'var(--text-faint)', fontSize: '14px', textAlign: 'center', padding: '24px' }}>
           No billing history yet
         </div>
       </div>

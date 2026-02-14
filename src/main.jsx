@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { AppProvider } from './context/AppContext'
 import { ThemeProvider } from './context/ThemeContext'
+import { ToastProvider } from './context/ToastContext'
 import SplashScreen from './components/screens/SplashScreen'
 import './index.css'
 
@@ -28,9 +29,11 @@ function Root() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <AppProvider>
-          <App />
-        </AppProvider>
+        <ToastProvider>
+          <AppProvider>
+            <App />
+          </AppProvider>
+        </ToastProvider>
       </BrowserRouter>
     </ThemeProvider>
   )

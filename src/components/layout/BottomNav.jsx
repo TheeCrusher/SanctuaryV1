@@ -27,9 +27,10 @@ function BottomNav() {
     return location.pathname === path || location.pathname.startsWith(path + '/')
   }
 
-  // "More" is active when on /more, /notes, /scripture, or /churches
+  // "More" is active when viewing any screen accessible from the More menu.
+  // NOTE: Update this array when adding/removing items from the More menu.
   function isMoreActive() {
-    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers', '/appointments', '/calendar']
+    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/events', '/guides', '/bibles']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )

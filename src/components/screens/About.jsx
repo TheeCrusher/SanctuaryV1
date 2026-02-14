@@ -57,9 +57,9 @@ function About() {
           <p>• Accessibility and inclusion</p>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '32px', color: '#9ca3af' }}>
+        <div style={{ textAlign: 'center', marginTop: '32px', color: 'var(--text-faint)' }}>
           <p>Version 1.0.0</p>
-          <p style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>Made with <Heart size={14} style={{ color: '#722F37' }} /> and faith</p>
+          <p style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>Made with <Heart size={14} style={{ color: 'var(--accent-burgundy)' }} /> and faith</p>
         </div>
       </div>
     </div>

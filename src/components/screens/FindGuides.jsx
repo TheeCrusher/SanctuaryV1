@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Avatar, Card } from '../common'
+import { Avatar, Card, LoadingSpinner, ErrorState, EmptyState } from '../common'
 import { api } from '../../utils/api'
 import { ArrowLeft, Search, X, MapPin, BookOpen } from 'lucide-react'
 
@@ -18,6 +18,7 @@ function FindGuides() {
   const [guides, setGuides] = useState([])
   const [query, setQuery] = useState('')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [visibleCount, setVisibleCount] = useState(10)
 
   useEffect(() => {
@@ -26,6 +27,7 @@ function FindGuides() {
 
   async function loadGuides(searchQuery = '') {
     setLoading(true)
+    setError(null)
     try {
       const url = searchQuery
         ? `/users/guides?q=${encodeURIComponent(searchQuery)}`
@@ -33,8 +35,9 @@ function FindGuides() {
       const data = await api.get(url)
       setGuides(data.guides || [])
       setVisibleCount(10)
-    } catch (error) {
-      console.error('Failed to load guides:', error)
+    } catch (err) {
+      console.error('Failed to load guides:', err)
+      setError('Failed to load guides. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -108,7 +111,7 @@ function FindGuides() {
               </button>
             )}
           </div>
-          <button className="btn-primary" onClick={handleSearch} style={{ padding: '10px 16px', whiteSpace: 'nowrap' }}>
+          <button className="btn-primary-sm" onClick={handleSearch} style={{ whiteSpace: 'nowrap' }}>
             Search
           </button>
         </div>
@@ -121,21 +124,18 @@ function FindGuides() {
         )}
 
         {/* Loading state */}
-        {loading && (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-secondary)' }}>
-            Loading guides...
-          </div>
-        )}
+        {loading && <LoadingSpinner message="Loading guides..." />}
+
+        {/* Error state */}
+        {!loading && error && <ErrorState subtitle={error} onAction={() => loadGuides(query.trim() || '')} />}
 
         {/* Empty state */}
-        {!loading && guides.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '40px 0' }}>
-            <div style={{ fontSize: '48px', marginBottom: '12px' }}>🔍</div>
-            <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '4px' }}>No guides found</div>
-            <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
-              {query ? 'Try a different search term' : 'No guides are available at this time'}
-            </div>
-          </div>
+        {!loading && !error && guides.length === 0 && (
+          <EmptyState
+            icon={Search}
+            title="No guides found"
+            subtitle={query ? 'Try a different search term' : 'No guides are available at this time'}
+          />
         )}
 
         {/* Guide cards */}

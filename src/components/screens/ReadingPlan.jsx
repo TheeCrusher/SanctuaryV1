@@ -8,7 +8,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { ArrowLeft, Check, ChevronDown, ChevronRight, Loader2 } from 'lucide-react'
+import { ArrowLeft, Check, ChevronDown, ChevronRight } from 'lucide-react'
+import { LoadingSpinner } from '../common'
 
 function ReadingPlan() {
   const navigate = useNavigate()
@@ -52,8 +53,8 @@ function ReadingPlan() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Loader2 size={48} className="animate-spin" style={{ color: '#1e3a8a' }} />
+      <div className="screen">
+        <LoadingSpinner size={48} />
       </div>
     )
   }
@@ -124,8 +125,8 @@ function ReadingPlan() {
                   <div className="plan-day-ref">{day.reference}</div>
                 </div>
                 {isExpanded
-                  ? <ChevronDown size={20} style={{ color: '#9ca3af' }} />
-                  : <ChevronRight size={20} style={{ color: '#9ca3af' }} />
+                  ? <ChevronDown size={20} style={{ color: 'var(--text-faint)' }} />
+                  : <ChevronRight size={20} style={{ color: 'var(--text-faint)' }} />
                 }
               </div>
 
@@ -134,7 +135,7 @@ function ReadingPlan() {
                 <div style={{ padding: '12px 0 12px 48px' }}>
                   <p style={{
                     fontSize: '14px',
-                    color: '#374151',
+                    color: 'var(--text-secondary)',
                     lineHeight: '1.6',
                     marginBottom: '12px'
                   }}>
@@ -158,7 +159,7 @@ function ReadingPlan() {
                   )}
                   {isCompleted && (
                     <div style={{
-                      color: '#065f46',
+                      color: 'var(--badge-confirmed-text)',
                       fontWeight: '600',
                       fontSize: '14px',
                       display: 'flex',

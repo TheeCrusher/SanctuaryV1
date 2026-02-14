@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Card, Modal, Avatar } from '../common'
+import { Card, Modal, Avatar, LoadingSpinner } from '../common'
 import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -208,8 +208,8 @@ function ChurchDetail() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-faint)' }}>
-        Loading church...
+      <div className="screen">
+        <LoadingSpinner message="Loading church..." />
       </div>
     )
   }
@@ -253,8 +253,8 @@ function ChurchDetail() {
           <button className="favorite-btn" onClick={() => toggleFavoriteChurch(church.id)}>
             <Heart
               size={22}
-              fill={isChurchFavorited(church.id) ? '#dc2626' : 'none'}
-              color={isChurchFavorited(church.id) ? '#dc2626' : '#9ca3af'}
+              fill={isChurchFavorited(church.id) ? 'var(--danger)' : 'none'}
+              color={isChurchFavorited(church.id) ? 'var(--danger)' : 'var(--text-faint)'}
             />
           </button>
         </div>
@@ -321,7 +321,7 @@ function ChurchDetail() {
             <div className="church-ratings-row" style={{ marginTop: '16px' }}>
               {church.googleRating && (
                 <div className="church-rating-badge">
-                  <Star size={14} fill="#C9A227" color="#C9A227" />
+                  <Star size={14} fill="var(--accent-gold)" color="var(--accent-gold)" />
                   <span style={{ fontWeight: '600' }}>{church.googleRating.toFixed(1)}</span>
                   <span style={{ color: 'var(--text-faint)', fontSize: '12px' }}>Google</span>
                 </div>
@@ -544,8 +544,8 @@ function ChurchDetail() {
                     >
                       <Star
                         size={22}
-                        fill={reviewCategories[key] && n <= reviewCategories[key] ? '#C9A227' : 'none'}
-                        color={reviewCategories[key] && n <= reviewCategories[key] ? '#C9A227' : 'var(--text-faint)'}
+                        fill={reviewCategories[key] && n <= reviewCategories[key] ? 'var(--accent-gold)' : 'none'}
+                        color={reviewCategories[key] && n <= reviewCategories[key] ? 'var(--accent-gold)' : 'var(--text-faint)'}
                       />
                     </button>
                   ))}

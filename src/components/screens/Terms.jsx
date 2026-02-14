@@ -24,7 +24,7 @@ function Terms() {
 
       {/* Content */}
       <div className="sub-content">
-        <div className="sub-text" style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '16px' }}>
+        <div className="sub-text" style={{ fontSize: '12px', color: 'var(--text-faint)', marginBottom: '16px' }}>
           Last updated: February 1, 2026
         </div>
 

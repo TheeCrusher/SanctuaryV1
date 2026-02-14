@@ -85,7 +85,7 @@ function MoreMenu() {
           <div className="more-profile-name">{user?.name || 'User'}</div>
           <div className="more-profile-email">{user?.email || ''}</div>
         </div>
-        <ChevronRight size={20} style={{ color: '#9ca3af' }} />
+        <ChevronRight size={20} style={{ color: 'var(--text-faint)' }} />
       </div>
 
       {/* Menu Items */}
@@ -106,7 +106,7 @@ function MoreMenu() {
                 <div className="more-menu-item-subtitle">{item.subtitle}</div>
               </div>
             </div>
-            <ChevronRight size={18} style={{ color: '#9ca3af' }} />
+            <ChevronRight size={18} style={{ color: 'var(--text-faint)' }} />
           </button>
         ))}
 
@@ -114,11 +114,11 @@ function MoreMenu() {
         <div className="more-section-label" style={{ marginTop: '24px' }}>Account</div>
         <button className="more-menu-item" onClick={handleLogout}>
           <div className="more-menu-item-left">
-            <span className="more-menu-item-icon" style={{ color: '#dc2626' }}>
+            <span className="more-menu-item-icon" style={{ color: 'var(--danger)' }}>
               <LogOut size={20} />
             </span>
             <div>
-              <div className="more-menu-item-text" style={{ color: '#dc2626' }}>Log Out</div>
+              <div className="more-menu-item-text" style={{ color: 'var(--danger)' }}>Log Out</div>
             </div>
           </div>
         </button>

@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Modal, Avatar, EmptyState } from '../common'
+import { Modal, Avatar, EmptyState, LoadingSpinner, ErrorState } from '../common'
 import { ArrowLeft, HandHeart, MessageCircle, Plus, Check, ChevronDown, ChevronUp, PartyPopper, Link } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -33,6 +33,7 @@ function PrayerBoard() {
   const [comments, setComments] = useState({})
   const [newComment, setNewComment] = useState('')
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState(null)
 
   // Create form state
   const [formTitle, setFormTitle] = useState('')
@@ -63,11 +64,13 @@ function PrayerBoard() {
   async function loadRequests() {
     try {
       setLoading(true)
+      setFetchError(null)
       const catParam = selectedCategory !== 'All' ? `&category=${selectedCategory}` : ''
       const result = await api.get(`/prayers?type=${topTab}${catParam}`)
       setRequests(result?.requests || [])
-    } catch (error) {
-      console.error('Failed to load prayers:', error)
+    } catch (err) {
+      console.error('Failed to load prayers:', err)
+      setFetchError('Failed to load prayer requests. Please try again.')
       setRequests([])
     } finally {
       setLoading(false)
@@ -218,7 +221,9 @@ function PrayerBoard() {
       {/* Content */}
       <div className="screen-content">
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>Loading...</div>
+          <LoadingSpinner />
+        ) : fetchError ? (
+          <ErrorState subtitle={fetchError} onAction={loadRequests} />
         ) : requests.length === 0 ? (
           <EmptyState
             icon={isTestimony ? PartyPopper : HandHeart}
