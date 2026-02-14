@@ -9,7 +9,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, LoadingSpinner } from '../common'
 import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock } from 'lucide-react'
-import { api } from '../../utils/api'
+import { api, API_BASE } from '../../utils/api'
 
 // The 8 rating categories — each has a key (matches backend), display label, and icon
 const RATING_CATEGORIES = [
@@ -267,7 +267,7 @@ function ChurchDetail() {
           <div style={{ borderRadius: '12px', overflow: 'hidden', marginBottom: '12px' }}>
             <img
               src={church.googlePlaceId
-                ? `${import.meta.env.VITE_API_URL || ''}/api/churches/photo/${church.googlePlaceId}`
+                ? `${API_BASE}/api/churches/photo/${church.googlePlaceId}`
                 : church.photoUrl
               }
               alt={church.name}

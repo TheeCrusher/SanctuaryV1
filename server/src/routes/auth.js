@@ -52,6 +52,11 @@ router.post('/register', async (req, res, next) => {
       return res.status(400).json({ error: 'Name, email, and password are required.' })
     }
 
+    // Validate password length (matches the reset-password requirement)
+    if (password.length < 8) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters.' })
+    }
+
     // Check if email is already in use
     const existing = await pool.query(
       'SELECT id FROM users WHERE email = $1',

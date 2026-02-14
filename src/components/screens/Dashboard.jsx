@@ -18,9 +18,9 @@ import { Avatar, Card, Badge, LoadingSpinner, ErrorState } from '../common'
 import { api } from '../../utils/api'
 import {
   MessageCircle, Users, Heart, Calendar,
-  CheckCircle, ChevronRight, Clock, Star,
-  BookOpen, Bell
+  CheckCircle, ChevronRight, Bell
 } from 'lucide-react'
+import { formatDateShort } from '../../utils/helpers'
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -50,16 +50,6 @@ function Dashboard() {
   }
 
   useEffect(() => { fetchHome() }, [])
-
-  // Format date for display
-  function formatDate(dateStr) {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    })
-  }
 
   // Determine if there are any notifications
   const notifications = homeData?.notifications
@@ -228,7 +218,7 @@ function Dashboard() {
                                 }
                               </div>
                               <div className="home-upcoming-meta">
-                                {item.type} · {formatDate(item.date)} at {item.time}
+                                {item.type} · {formatDateShort(item.date)} at {item.time}
                               </div>
                             </div>
                             <Badge status={item.status} />
@@ -243,7 +233,7 @@ function Dashboard() {
                             <div className="home-upcoming-info">
                               <div className="home-upcoming-name">{item.title}</div>
                               <div className="home-upcoming-meta">
-                                {formatDate(item.dateTime)}{item.location ? ` · ${item.location}` : ''}
+                                {formatDateShort(item.dateTime)}{item.location ? ` · ${item.location}` : ''}
                               </div>
                             </div>
                             <span className="home-activity-badge">{item.category}</span>
@@ -307,7 +297,7 @@ function Dashboard() {
                     <div className="stat-label">Seekers Helped</div>
                   </div>
                   <div className="stat-card">
-                    <div className="stat-value">4.9</div>
+                    <div className="stat-value">—</div>
                     <div className="stat-label">Rating</div>
                   </div>
                 </div>

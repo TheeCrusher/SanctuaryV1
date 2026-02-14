@@ -12,8 +12,7 @@ import { Card } from '../common'
 import { useState } from 'react'
 import { X, Church, Heart, Search, MapPin, Star } from 'lucide-react'
 
-// API base URL for photo proxy (same pattern as src/utils/api.js)
-const API_BASE = import.meta.env.VITE_API_URL || ''
+import { API_BASE } from '../../utils/api'
 
 function Churches() {
   const navigate = useNavigate()

@@ -13,6 +13,7 @@ import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
 import { Plus, Calendar, Repeat, X, CalendarDays, ArrowLeft } from 'lucide-react'
 import { api } from '../../utils/api'
+import { formatDateShort } from '../../utils/helpers'
 
 function Appointments() {
   const navigate = useNavigate()
@@ -109,14 +110,6 @@ function Appointments() {
       : apt.seekerName
   }
 
-  function formatDate(dateStr) {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    })
-  }
 
   function handleInputChange(e) {
     const { name, value } = e.target
@@ -196,7 +189,7 @@ function Appointments() {
               <Badge status={apt.status} />
             </div>
             <div className="apt-meta">
-              {apt.type} • {formatDate(apt.date)} at {apt.time} • {apt.duration} min
+              {apt.type} • {formatDateShort(apt.date)} at {apt.time} • {apt.duration} min
             </div>
             {apt.recurrenceRule && apt.recurrenceRule !== 'none' && (
               <div className="apt-recurrence-tag">
@@ -529,7 +522,7 @@ function Appointments() {
         <Modal onClose={() => setShowCompleteConfirm(null)}>
           <div className="modal-title">Complete Session</div>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
-            Mark the session with <strong>{getDisplayName(showCompleteConfirm)}</strong> on {formatDate(showCompleteConfirm.date)} as completed?
+            Mark the session with <strong>{getDisplayName(showCompleteConfirm)}</strong> on {formatDateShort(showCompleteConfirm.date)} as completed?
           </p>
           <div className="modal-buttons">
             <button
@@ -556,7 +549,7 @@ function Appointments() {
         <Modal onClose={() => setShowCancelConfirm(null)}>
           <div className="modal-title">Cancel Session</div>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
-            Cancel the session with <strong>{getDisplayName(showCancelConfirm)}</strong> on {formatDate(showCancelConfirm.date)}?
+            Cancel the session with <strong>{getDisplayName(showCancelConfirm)}</strong> on {formatDateShort(showCancelConfirm.date)}?
           </p>
 
           <div className="modal-buttons" style={{ flexDirection: 'column', gap: '8px' }}>

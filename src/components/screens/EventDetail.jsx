@@ -13,17 +13,7 @@ import { ArrowLeft, Calendar, MapPin, Clock, Tag, Users, Video, Radio, ExternalL
 import { api } from '../../utils/api'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-
-function getPlatformName(url) {
-  if (!url) return 'Online'
-  const lower = url.toLowerCase()
-  if (lower.includes('youtube') || lower.includes('youtu.be')) return 'YouTube'
-  if (lower.includes('zoom')) return 'Zoom'
-  if (lower.includes('facebook') || lower.includes('fb.')) return 'Facebook Live'
-  if (lower.includes('twitch')) return 'Twitch'
-  if (lower.includes('vimeo')) return 'Vimeo'
-  return 'Online'
-}
+import { formatDateLong, formatTime, getPlatformName } from '../../utils/helpers'
 
 function EventDetail() {
   const { id } = useParams()
@@ -63,20 +53,6 @@ function EventDetail() {
     } catch (error) {
       console.error('RSVP failed:', error)
     }
-  }
-
-  function formatDate(dateStr) {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('en-US', {
-      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
-    })
-  }
-
-  function formatTime(dateStr) {
-    const d = new Date(dateStr)
-    return d.toLocaleTimeString('en-US', {
-      hour: 'numeric', minute: '2-digit'
-    })
   }
 
   if (loading) {
@@ -141,7 +117,7 @@ function EventDetail() {
             <>
               <div className="event-detail-info-row">
                 <Calendar size={18} />
-                <span>{formatDate(event.dateTime)}</span>
+                <span>{formatDateLong(event.dateTime)}</span>
               </div>
               <div className="event-detail-info-row">
                 <Clock size={18} />

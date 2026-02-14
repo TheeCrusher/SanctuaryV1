@@ -35,7 +35,7 @@ export function removeToken() {
 // ---------- API Base URL ----------
 // In development: empty string (Vite proxy handles /api -> localhost:3001)
 // In production:  full backend URL like "https://sanctuary-api.onrender.com"
-const API_BASE = import.meta.env.VITE_API_URL || ''
+export const API_BASE = import.meta.env.VITE_API_URL || ''
 
 // ---------- Core Fetch Wrapper ----------
 // This is the main function all API calls go through.

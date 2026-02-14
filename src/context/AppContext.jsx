@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import { api, getToken, setToken, removeToken } from '../utils/api'
 import { connectSocket, disconnectSocket, getSocket } from '../utils/socket'
 
@@ -433,7 +433,6 @@ export function AppProvider({ children }) {
   // Computed values for appointments (same logic as before)
   const upcomingCount = appointments.filter(a => a.status !== "completed" && a.status !== "declined").length
   const completedCount = appointments.filter(a => a.status === "completed").length
-  const uniqueSeekersCount = [...new Set(appointments.map(a => a.seekerName))].length
 
   // =========================================================================
   // CONVERSATION FUNCTIONS
@@ -567,20 +566,14 @@ export function AppProvider({ children }) {
   // and returns merged data (Google info + Sanctuary ratings if available).
 
   const [churchSearchResults, setChurchSearchResults] = useState([])
-  const [churchSearchTotal, setChurchSearchTotal] = useState(0)
-  const [churchSearchHasMore, setChurchSearchHasMore] = useState(false)
 
   async function searchChurches(query) {
     if (!query.trim()) {
       setChurchSearchResults([])
-      setChurchSearchTotal(0)
-      setChurchSearchHasMore(false)
       return
     }
     const data = await api.get(`/churches/search?q=${encodeURIComponent(query)}`)
     setChurchSearchResults(data.results)
-    setChurchSearchTotal(data.results.length)
-    setChurchSearchHasMore(false) // Google returns all results at once
   }
 
   // Reload churches based on user's current location.
@@ -857,7 +850,6 @@ export function AppProvider({ children }) {
     cancelSeries,
     upcomingCount,
     completedCount,
-    uniqueSeekersCount,
 
     // Conversations
     conversations,
@@ -884,8 +876,6 @@ export function AppProvider({ children }) {
     searchChurches,
     saveChurchFromGoogle,
     churchSearchResults,
-    churchSearchTotal,
-    churchSearchHasMore,
     reloadChurches,
 
     // Notes

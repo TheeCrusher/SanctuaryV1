@@ -18,20 +18,10 @@ import { ArrowLeft, Plus, Calendar, MapPin, Users, Video, Radio, ExternalLink, C
 import { api } from '../../utils/api'
 import { useApp } from '../../context/AppContext'
 import { Modal, LoadingSpinner, ErrorState, EmptyState } from '../common'
+import { formatDateShort, formatTime, getPlatformName } from '../../utils/helpers'
 
 const IN_PERSON_CATEGORIES = ['All', 'Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor']
 const DIGITAL_CATEGORIES = ['All', 'Sermons/Teachings', 'Prayer', 'Worship', 'Bible Study', 'General']
-
-function getPlatformName(url) {
-  if (!url) return 'Online'
-  const lower = url.toLowerCase()
-  if (lower.includes('youtube') || lower.includes('youtu.be')) return 'YouTube'
-  if (lower.includes('zoom')) return 'Zoom'
-  if (lower.includes('facebook') || lower.includes('fb.')) return 'Facebook Live'
-  if (lower.includes('twitch')) return 'Twitch'
-  if (lower.includes('vimeo')) return 'Vimeo'
-  return 'Online'
-}
 
 function EventsScreen() {
   const navigate = useNavigate()
@@ -153,20 +143,6 @@ function EventsScreen() {
     setCategory(type === 'digital' ? 'General' : 'Social')
   }
 
-  function formatDate(dateStr) {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('en-US', {
-      weekday: 'short', month: 'short', day: 'numeric'
-    })
-  }
-
-  function formatTime(dateStr) {
-    const d = new Date(dateStr)
-    return d.toLocaleTimeString('en-US', {
-      hour: 'numeric', minute: '2-digit'
-    })
-  }
-
   const createCategories = createEventType === 'in_person'
     ? IN_PERSON_CATEGORIES.filter(c => c !== 'All')
     : DIGITAL_CATEGORIES.filter(c => c !== 'All')
@@ -274,7 +250,7 @@ function EventsScreen() {
                 ) : (
                   <div className="event-card-meta-row">
                     <Calendar size={14} />
-                    <span>{formatDate(evt.dateTime)} at {formatTime(evt.dateTime)}</span>
+                    <span>{formatDateShort(evt.dateTime)} at {formatTime(evt.dateTime)}</span>
                   </div>
                 )}
 
