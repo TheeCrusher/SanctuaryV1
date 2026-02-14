@@ -310,7 +310,9 @@ CREATE TABLE IF NOT EXISTS reading_plans (
   id          SERIAL PRIMARY KEY,
   name        VARCHAR(200) NOT NULL,
   description TEXT,
-  total_days  INTEGER NOT NULL
+  total_days  INTEGER NOT NULL,
+  created_by  INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- ============================================================
@@ -358,6 +360,38 @@ CREATE TABLE IF NOT EXISTS user_reading_progress (
 );
 
 CREATE INDEX IF NOT EXISTS idx_reading_progress_user ON user_reading_progress(user_id);
+
+-- ============================================================
+-- USER MEMORIZATION STATS TABLE
+-- ============================================================
+-- Tracks per-verse game performance for the memorization feature.
+-- One row per user + verse + mode combination.
+
+CREATE TABLE IF NOT EXISTS user_memorization_stats (
+  id              SERIAL PRIMARY KEY,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  verse_id        INTEGER NOT NULL REFERENCES scripture_verses(id) ON DELETE CASCADE,
+  mode            VARCHAR(20) NOT NULL,
+  attempts        INTEGER DEFAULT 0,
+  correct_count   INTEGER DEFAULT 0,
+  last_practiced  TIMESTAMP WITH TIME ZONE,
+  UNIQUE(user_id, verse_id, mode)
+);
+
+CREATE INDEX IF NOT EXISTS idx_memo_stats_user ON user_memorization_stats(user_id);
+
+-- ============================================================
+-- USER STUDY STREAKS TABLE
+-- ============================================================
+-- Tracks daily memorization streaks. One row per user.
+
+CREATE TABLE IF NOT EXISTS user_study_streaks (
+  id              SERIAL PRIMARY KEY,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE UNIQUE,
+  current_streak  INTEGER DEFAULT 0,
+  longest_streak  INTEGER DEFAULT 0,
+  last_study_date DATE
+);
 
 -- ============================================================
 -- CHURCH REVIEWS TABLE

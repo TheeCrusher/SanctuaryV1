@@ -53,6 +53,7 @@ export function AppProvider({ children }) {
   const [scriptureVerses, setScriptureVerses] = useState([])
   const [scriptureBookmarkIds, setScriptureBookmarkIds] = useState(new Set())
   const [readingPlans, setReadingPlans] = useState([])
+  const [memorizationStats, setMemorizationStats] = useState({ streak: { current: 0, longest: 0 }, verseStats: [] })
 
   // ----- BIBLE READER STATE -----
   const [bibleHighlights, setBibleHighlights] = useState([])
@@ -185,7 +186,8 @@ export function AppProvider({ children }) {
         plansRes,
         bibleHighlightsRes,
         bibleBookmarksRes,
-        unreadCountRes
+        unreadCountRes,
+        memoStatsRes
       ] = await Promise.all([
         api.get('/appointments'),
         api.get('/conversations'),
@@ -200,7 +202,8 @@ export function AppProvider({ children }) {
         api.get('/scripture/plans'),
         api.get('/bible/highlights'),
         api.get('/bible/bookmarks'),
-        api.get('/notifications/unread-count')
+        api.get('/notifications/unread-count'),
+        api.get('/scripture/memorization/stats')
       ])
 
       setAppointments(appointmentsRes.appointments)
@@ -227,6 +230,7 @@ export function AppProvider({ children }) {
       setBibleHighlights(bibleHighlightsRes.highlights)
       setBibleBookmarks(bibleBookmarksRes.bookmarks)
       setUnreadNotifCount(unreadCountRes.count)
+      setMemorizationStats(memoStatsRes)
     } catch (error) {
       console.error('Failed to load data:', error)
     }
@@ -716,6 +720,29 @@ export function AppProvider({ children }) {
     return progress
   }
 
+  async function createCustomPlan(name, category, duration) {
+    const { plan } = await api.post('/scripture/plans/custom', { name, category, duration })
+    setReadingPlans(prev => [plan, ...prev])
+    return plan
+  }
+
+  async function createSurprisePlan(duration = 7) {
+    const { plan } = await api.post('/scripture/plans/surprise', { duration })
+    setReadingPlans(prev => [plan, ...prev])
+    return plan
+  }
+
+  async function deleteCustomPlan(planId) {
+    await api.delete(`/scripture/plans/${planId}`)
+    setReadingPlans(prev => prev.filter(p => p.id !== planId))
+  }
+
+  async function recordGameRound(verseId, mode, correct) {
+    const data = await api.post('/scripture/memorization/record', { verseId, mode, correct })
+    setMemorizationStats(prev => ({ ...prev, streak: data.streak }))
+    return data
+  }
+
   // =========================================================================
   // BIBLE HIGHLIGHTS & BOOKMARKS
   // =========================================================================
@@ -882,6 +909,11 @@ export function AppProvider({ children }) {
     getReadingPlanDetail,
     getReadingProgress,
     markDayComplete,
+    createCustomPlan,
+    createSurprisePlan,
+    deleteCustomPlan,
+    memorizationStats,
+    recordGameRound,
 
     // Bible Reader
     bibleHighlights,

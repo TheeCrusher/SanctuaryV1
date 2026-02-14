@@ -34,6 +34,7 @@ import MoreMenu from './components/screens/MoreMenu'
 import Notes from './components/screens/Notes'
 import Scripture from './components/screens/Scripture'
 import ReadingPlan from './components/screens/ReadingPlan'
+import MemorizationGame from './components/screens/MemorizationGame'
 import UserProfile from './components/screens/UserProfile'
 import PrayerBoard from './components/screens/PrayerBoard'
 import CalendarView from './components/screens/CalendarView'
@@ -276,6 +277,15 @@ function App() {
           element={
             <ProtectedRoute>
               <ReadingPlan />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/scripture/game/:mode"
+          element={
+            <ProtectedRoute>
+              <MemorizationGame />
             </ProtectedRoute>
           }
         />

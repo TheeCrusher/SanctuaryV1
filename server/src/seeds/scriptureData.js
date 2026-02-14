@@ -46,6 +46,35 @@ export const SCRIPTURE_VERSES = [
   { reference: 'Isaiah 41:10', text: 'So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.', category: 'Courage' },
   { reference: 'Psalm 27:1', text: 'The Lord is my light and my salvation — whom shall I fear? The Lord is the stronghold of my life — of whom shall I be afraid?', category: 'Courage' },
   { reference: '1 Chronicles 28:20', text: 'Be strong and courageous, and do the work. Do not be afraid or discouraged, for the Lord God, my God, is with you.', category: 'Courage' },
+
+  // --- Faith ---
+  { reference: 'Romans 10:17', text: 'So then faith comes by hearing, and hearing by the word of God.', category: 'Faith' },
+  { reference: 'Matthew 17:20', text: 'If you have faith as small as a mustard seed, you can say to this mountain, Move from here to there, and it will move. Nothing will be impossible for you.', category: 'Faith' },
+  { reference: 'Galatians 2:20', text: 'I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.', category: 'Faith' },
+  { reference: 'Hebrews 11:6', text: 'And without faith it is impossible to please God, because anyone who comes to him must believe that he exists and that he rewards those who earnestly seek him.', category: 'Faith' },
+  { reference: 'Mark 11:22-24', text: 'Have faith in God. Truly I tell you, if anyone says to this mountain, Go, throw yourself into the sea, and does not doubt in their heart but believes that what they say will happen, it will be done for them.', category: 'Faith' },
+
+  // --- Peace ---
+  { reference: 'Philippians 4:6-7', text: 'Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.', category: 'Peace' },
+  { reference: 'John 14:27', text: 'Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.', category: 'Peace' },
+  { reference: 'Psalm 4:8', text: 'In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety.', category: 'Peace' },
+  { reference: 'Colossians 3:15', text: 'Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.', category: 'Peace' },
+  { reference: 'Romans 8:6', text: 'The mind governed by the flesh is death, but the mind governed by the Spirit is life and peace.', category: 'Peace' },
+
+  // --- Gratitude ---
+  { reference: '1 Thessalonians 5:18', text: 'Give thanks in all circumstances; for this is God\'s will for you in Christ Jesus.', category: 'Gratitude' },
+  { reference: 'Psalm 107:1', text: 'Give thanks to the Lord, for he is good; his love endures forever.', category: 'Gratitude' },
+  { reference: 'Colossians 3:17', text: 'And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.', category: 'Gratitude' },
+  { reference: 'Ephesians 5:20', text: 'Always giving thanks to God the Father for everything, in the name of our Lord Jesus Christ.', category: 'Gratitude' },
+  { reference: 'Psalm 100:4', text: 'Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.', category: 'Gratitude' },
+
+  // --- Additional verses for existing categories ---
+  { reference: 'Romans 8:38-39', text: 'For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.', category: 'Love' },
+  { reference: 'Psalm 28:7', text: 'The Lord is my strength and my shield; my heart trusts in him, and he helps me. My heart leaps for joy, and with my song I praise him.', category: 'Strength' },
+  { reference: 'Psalm 31:24', text: 'Be strong and take heart, all you who hope in the Lord.', category: 'Hope' },
+  { reference: '1 Peter 5:7', text: 'Cast all your anxiety on him because he cares for you.', category: 'Comfort' },
+  { reference: 'Psalm 91:2', text: 'I will say of the Lord, He is my refuge and my fortress, my God, in whom I trust.', category: 'Trust' },
+  { reference: 'Psalm 118:6', text: 'The Lord is with me; I will not be afraid. What can mere mortals do to me?', category: 'Courage' },
 ]
 
 export const READING_PLANS = [

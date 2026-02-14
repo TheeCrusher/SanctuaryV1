@@ -58,6 +58,8 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS user_study_streaks CASCADE;
+      DROP TABLE IF EXISTS user_memorization_stats CASCADE;
       DROP TABLE IF EXISTS guide_waitlist CASCADE;
       DROP TABLE IF EXISTS password_resets CASCADE;
       DROP TABLE IF EXISTS notifications CASCADE;

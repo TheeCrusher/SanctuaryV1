@@ -3109,6 +3109,529 @@ select.account-edit-input {
   border-color: rgba(96, 165, 250, 0.2);
 }
 
+/* --- Scripture Section Layout --- */
+.scripture-section { margin-bottom: 28px; }
+
+.scripture-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.scripture-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.scripture-section-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.scripture-small-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-warm);
+  background: var(--bg-warm-tint);
+  color: var(--accent-gold-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.scripture-small-btn:active { background: var(--accent-gold-light); }
+
+/* --- Plan Card Enhancements --- */
+.plan-card-started { border-left: 3px solid var(--accent-gold); }
+
+.plan-continue-badge {
+  background: var(--accent-gold);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan-custom-badge {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.plan-duration-badge {
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-card-badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* --- Create Plan Modal --- */
+.create-plan-form { display: flex; flex-direction: column; gap: 16px; }
+
+.create-plan-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.create-plan-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.create-plan-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+.duration-options {
+  display: flex;
+  gap: 8px;
+}
+
+.duration-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+}
+
+.duration-btn.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* --- Memorization Challenge Section --- */
+.memo-game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.memo-game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.memo-game-card:active { transform: scale(0.97); }
+
+.memo-game-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.memo-game-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.memo-game-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.streak-badge {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --- Memorization Game Screen --- */
+.game-screen-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-screen-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.game-screen-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.game-progress {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.game-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-primary);
+}
+
+.game-progress-dot.active { background: var(--accent-gold); }
+.game-progress-dot.done { background: var(--accent-gold); opacity: 0.5; }
+
+.game-verse-ref {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-gold-text);
+  margin-bottom: 16px;
+}
+
+.game-verse-display {
+  background: var(--bg-muted);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  line-height: 1.8;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.game-blank {
+  display: inline-block;
+  min-width: 60px;
+  border-bottom: 2px dashed var(--accent-burgundy);
+  margin: 0 3px;
+  padding: 2px 4px;
+  text-align: center;
+  color: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  vertical-align: baseline;
+}
+
+.game-blank.filled {
+  border-bottom: 2px solid var(--accent-gold);
+  color: var(--accent-gold-text);
+}
+
+.game-blank.correct {
+  border-bottom-color: #22c55e;
+  color: #22c55e;
+}
+
+.game-blank.incorrect {
+  border-bottom-color: #ef4444;
+  color: #ef4444;
+  text-decoration: line-through;
+}
+
+/* Word bank */
+.game-word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.game-word-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.game-word-chip.used { opacity: 0.3; pointer-events: none; }
+.game-word-chip:active { transform: scale(0.95); }
+
+/* Scramble answer area */
+.game-answer-area {
+  min-height: 80px;
+  background: var(--bg-muted);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+
+.game-answer-word {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.game-answer-word:active { transform: scale(0.95); }
+
+/* Flash card */
+.flashcard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.flashcard-reference {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-gold-text);
+  margin-bottom: 8px;
+}
+
+.flashcard-hint {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.flashcard-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.flashcard-reveal-btn {
+  margin-top: 16px;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: var(--brand-primary);
+  color: white;
+}
+
+/* Game rating / action buttons */
+.game-rating-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.game-btn-got-it {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: var(--accent-gold);
+  color: white;
+}
+
+.game-btn-got-it:active { opacity: 0.8; }
+
+.game-btn-learning {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid var(--accent-burgundy);
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+  cursor: pointer;
+}
+
+.game-btn-learning:active { opacity: 0.8; }
+
+.game-check-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: var(--brand-primary);
+  color: white;
+  margin-top: 8px;
+}
+
+.game-check-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Game results */
+.game-results {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.game-results-score {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin-bottom: 4px;
+}
+
+.game-results-label {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.game-results-message {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.game-results-streak {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.game-results-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.game-results-actions .btn-primary,
+.game-results-actions .btn-secondary { flex: 1; }
+
+/* Source selection screen */
+.game-source-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.game-source-card {
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid var(--border-primary);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+}
+
+.game-source-card.selected {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}
+
+.game-source-card:active { transform: scale(0.98); }
+
+.game-source-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.game-source-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Verse feedback (correct/wrong per verse) */
+.game-verse-feedback {
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.game-verse-feedback.correct {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.game-verse-feedback.incorrect {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Dark mode overrides for game */
+[data-theme="dark"] .memo-game-card { border-color: var(--border-primary); }
+[data-theme="dark"] .game-verse-display { background: var(--bg-secondary); }
+[data-theme="dark"] .flashcard { background: var(--bg-secondary); }
+[data-theme="dark"] .game-answer-area { background: var(--bg-secondary); }
+[data-theme="dark"] .game-source-card { background: var(--bg-secondary); }
+[data-theme="dark"] .create-plan-input { background: var(--bg-tertiary); }
+
 /* ---------------------------------------------------------------------------
    26. DARK MODE TOGGLE SWITCH
    --------------------------------------------------------------------------- */

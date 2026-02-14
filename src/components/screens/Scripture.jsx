@@ -1,8 +1,8 @@
 // =============================================================================
 // SCRIPTURE STUDY SCREEN
 // =============================================================================
-// Hub for scripture features: daily verse, browse by category,
-// bookmark verses, reading plans, random verse, and sharing.
+// Hub for scripture features: daily verse, reading plans, memorization
+// challenge, browse by category, bookmark verses, and sharing.
 // Accessed via More > Scripture Study.
 
 import { useState } from 'react'
@@ -11,10 +11,12 @@ import { useApp } from '../../context/AppContext'
 import { useToast } from '../../context/ToastContext'
 import { Modal } from '../common'
 import {
-  ArrowLeft, BookOpen, Star, Share2, Shuffle, Bookmark
+  ArrowLeft, BookOpen, Star, Share2, Shuffle, Bookmark,
+  Plus, Sparkles, Flame, Trash2
 } from 'lucide-react'
 
-const CATEGORIES = ['All', 'Love', 'Strength', 'Hope', 'Comfort', 'Trust', 'Courage']
+const CATEGORIES = ['All', 'Love', 'Strength', 'Hope', 'Comfort', 'Trust', 'Courage', 'Faith', 'Peace', 'Gratitude']
+const PLAN_CATEGORIES = CATEGORIES.filter(c => c !== 'All')
 
 function Scripture() {
   const navigate = useNavigate()
@@ -25,13 +27,27 @@ function Scripture() {
     scriptureBookmarkIds,
     readingPlans,
     toggleVerseBookmark,
-    getRandomVerse
+    getRandomVerse,
+    createCustomPlan,
+    createSurprisePlan,
+    deleteCustomPlan,
+    memorizationStats
   } = useApp()
 
+  // Browse state
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [showBookmarksOnly, setShowBookmarksOnly] = useState(false)
+
+  // Random verse modal
   const [randomVerse, setRandomVerse] = useState(null)
   const [showRandomModal, setShowRandomModal] = useState(false)
+
+  // Create plan modal
+  const [showCreatePlanModal, setShowCreatePlanModal] = useState(false)
+  const [planName, setPlanName] = useState('')
+  const [planCategory, setPlanCategory] = useState('')
+  const [planDuration, setPlanDuration] = useState(7)
+  const [creating, setCreating] = useState(false)
 
   // Filter verses by category and/or bookmarks
   let displayedVerses = scriptureVerses
@@ -41,6 +57,10 @@ function Scripture() {
   if (showBookmarksOnly) {
     displayedVerses = displayedVerses.filter(v => scriptureBookmarkIds.has(v.id))
   }
+
+  // Split plans into started vs unstarted
+  const startedPlans = readingPlans.filter(p => p.completedDays && p.completedDays.length > 0)
+  const unstartedPlans = readingPlans.filter(p => !p.completedDays || p.completedDays.length === 0)
 
   async function handleRandomVerse() {
     try {
@@ -66,6 +86,41 @@ function Scripture() {
     }
   }
 
+  async function handleCreatePlan() {
+    if (!planName.trim() || !planCategory) return
+    setCreating(true)
+    try {
+      await createCustomPlan(planName.trim(), planCategory, planDuration)
+      showToast('Custom plan created!', 'success')
+      setShowCreatePlanModal(false)
+      setPlanName('')
+      setPlanCategory('')
+      setPlanDuration(7)
+    } catch (error) {
+      showToast('Failed to create plan', 'error')
+    }
+    setCreating(false)
+  }
+
+  async function handleSurprisePlan() {
+    try {
+      await createSurprisePlan(7)
+      showToast('Surprise plan created!', 'success')
+    } catch (error) {
+      showToast('Failed to create plan', 'error')
+    }
+  }
+
+  async function handleDeletePlan(e, planId) {
+    e.stopPropagation()
+    try {
+      await deleteCustomPlan(planId)
+      showToast('Plan deleted', 'success')
+    } catch (error) {
+      showToast('Failed to delete plan', 'error')
+    }
+  }
+
   return (
     <div className="screen with-bottom-nav">
       {/* Header */}
@@ -78,7 +133,9 @@ function Scripture() {
       </div>
 
       <div className="screen-content">
-        {/* Verse of the Day */}
+        {/* ============================================================ */}
+        {/* 1. VERSE OF THE DAY (unchanged) */}
+        {/* ============================================================ */}
         {scriptureDailyVerse && (
           <div className="verse-of-day">
             <div className="verse-of-day-label">Verse of the Day</div>
@@ -106,99 +163,264 @@ function Scripture() {
           </div>
         )}
 
-        {/* Quick Actions */}
-        <div className="quick-actions">
-          <button
-            className={`quick-action-btn ${showBookmarksOnly ? 'active' : ''}`}
-            onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
-          >
-            <Bookmark size={16} />
-            My Bookmarks
-          </button>
-          <button className="quick-action-btn" onClick={handleRandomVerse}>
-            <Shuffle size={16} />
-            Random Verse
-          </button>
-        </div>
+        {/* ============================================================ */}
+        {/* 2. READING PLANS (moved from bottom, overhauled) */}
+        {/* ============================================================ */}
+        <div className="scripture-section">
+          <div className="scripture-section-header">
+            <h3 className="scripture-section-title">Reading Plans</h3>
+            <div className="scripture-section-actions">
+              <button className="scripture-small-btn" onClick={() => setShowCreatePlanModal(true)}>
+                <Plus size={12} /> Create
+              </button>
+              <button className="scripture-small-btn" onClick={handleSurprisePlan}>
+                <Sparkles size={12} /> Surprise Me
+              </button>
+            </div>
+          </div>
 
-        {/* Category Filter Pills */}
-        <div className="category-pills">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              className={`category-pill ${selectedCategory === cat ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat)}
+          {/* Started plans first — show progress */}
+          {startedPlans.map(plan => {
+            const progress = Math.round((plan.completedDays.length / plan.totalDays) * 100)
+            return (
+              <div
+                key={plan.id}
+                className="plan-card plan-card-started"
+                onClick={() => navigate(`/scripture/plan/${plan.id}`)}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div className="plan-name">{plan.name}</div>
+                  <div className="plan-card-badges">
+                    {plan.isCustom && <span className="plan-custom-badge">Custom</span>}
+                    <span className="plan-continue-badge">Continue</span>
+                  </div>
+                </div>
+                <div className="plan-progress-bar" style={{ marginTop: '10px' }}>
+                  <div className="plan-progress-fill" style={{ width: `${progress}%` }} />
+                </div>
+                <div className="plan-card-meta" style={{ marginTop: '6px' }}>
+                  <span className="plan-progress-text">
+                    Day {plan.completedDays.length} of {plan.totalDays}
+                  </span>
+                  {plan.isCustom && (
+                    <button
+                      className="verse-action-btn"
+                      onClick={(e) => handleDeletePlan(e, plan.id)}
+                      style={{ color: 'var(--text-faint)' }}
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+
+          {/* Unstarted plans */}
+          {unstartedPlans.map(plan => (
+            <div
+              key={plan.id}
+              className="plan-card"
+              onClick={() => navigate(`/scripture/plan/${plan.id}`)}
             >
-              {cat}
-            </button>
+              <div className="plan-name">{plan.name}</div>
+              <div className="plan-desc">{plan.description}</div>
+              <div className="plan-card-meta">
+                <div className="plan-card-badges">
+                  <span className="plan-duration-badge">{plan.totalDays} days</span>
+                  {plan.isCustom && <span className="plan-custom-badge">Custom</span>}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {plan.isCustom && (
+                    <button
+                      className="verse-action-btn"
+                      onClick={(e) => handleDeletePlan(e, plan.id)}
+                      style={{ color: 'var(--text-faint)' }}
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  )}
+                  <BookOpen size={20} style={{ color: 'var(--text-faint)' }} />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Verses List */}
-        {displayedVerses.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
-            {showBookmarksOnly ? 'No bookmarked verses yet' : 'No verses in this category'}
+        {/* ============================================================ */}
+        {/* 3. MEMORIZATION CHALLENGE (new section) */}
+        {/* ============================================================ */}
+        <div className="scripture-section">
+          <div className="scripture-section-header">
+            <h3 className="scripture-section-title">Memorization Challenge</h3>
+            {memorizationStats.streak.current > 0 && (
+              <div className="streak-badge">
+                <Flame size={14} />
+                {memorizationStats.streak.current} day streak
+              </div>
+            )}
           </div>
-        ) : (
-          displayedVerses.map(verse => (
-            <div key={verse.id} className="verse-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div className="verse-reference">{verse.reference}</div>
-                <span className="verse-category-badge">{verse.category}</span>
-              </div>
-              <p className="verse-text">"{verse.text}"</p>
-              <div className="verse-actions">
-                <button
-                  className="verse-action-btn"
-                  onClick={() => toggleVerseBookmark(verse.id)}
-                  style={scriptureBookmarkIds.has(verse.id) ? { color: 'var(--accent-gold)' } : {}}
-                >
-                  <Star
-                    size={18}
-                    fill={scriptureBookmarkIds.has(verse.id) ? 'var(--accent-gold)' : 'none'}
-                  />
-                </button>
-                <button
-                  className="verse-action-btn"
-                  onClick={() => handleShare(verse)}
-                >
-                  <Share2 size={18} />
-                </button>
-              </div>
-            </div>
-          ))
-        )}
 
-        {/* Reading Plans Section */}
-        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)', margin: '28px 0 14px' }}>
-          Reading Plans
-        </h3>
-        {readingPlans.map(plan => (
-          <div
-            key={plan.id}
-            className="plan-card"
-            onClick={() => navigate(`/scripture/plan/${plan.id}`)}
-          >
-            <div className="plan-name">{plan.name}</div>
-            <div className="plan-desc">{plan.description}</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{
-                background: 'var(--bg-accent)',
-                color: 'var(--brand-light-text)',
-                padding: '4px 12px',
-                borderRadius: '12px',
-                fontSize: '12px',
-                fontWeight: '600'
-              }}>
-                {plan.totalDays} days
-              </span>
-              <BookOpen size={20} style={{ color: 'var(--text-faint)' }} />
+          <div className="memo-game-grid">
+            <div className="memo-game-card" onClick={() => navigate('/scripture/game/fill_blank')}>
+              <div className="memo-game-icon">
+                <BookOpen size={28} style={{ color: 'var(--accent-gold)' }} />
+              </div>
+              <div className="memo-game-name">Fill in the Blank</div>
+              <div className="memo-game-desc">Complete missing words</div>
+            </div>
+
+            <div className="memo-game-card" onClick={() => navigate('/scripture/game/scramble')}>
+              <div className="memo-game-icon">
+                <Shuffle size={28} style={{ color: 'var(--accent-burgundy)' }} />
+              </div>
+              <div className="memo-game-name">Verse Scramble</div>
+              <div className="memo-game-desc">Reorder the words</div>
+            </div>
+
+            <div className="memo-game-card" onClick={() => navigate('/scripture/game/flashcard')}>
+              <div className="memo-game-icon">
+                <Sparkles size={28} style={{ color: 'var(--accent-gold)' }} />
+              </div>
+              <div className="memo-game-name">Flash Cards</div>
+              <div className="memo-game-desc">Test your recall</div>
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* ============================================================ */}
+        {/* 4. BROWSE VERSES (moved down) */}
+        {/* ============================================================ */}
+        <div className="scripture-section">
+          <div className="scripture-section-header">
+            <h3 className="scripture-section-title">Browse Verses</h3>
+            <div className="scripture-section-actions">
+              <button
+                className={`scripture-small-btn ${showBookmarksOnly ? 'active' : ''}`}
+                onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
+                style={showBookmarksOnly ? { background: 'var(--brand-primary)', color: 'white', borderColor: 'var(--brand-primary)' } : {}}
+              >
+                <Bookmark size={12} /> Bookmarks
+              </button>
+              <button className="scripture-small-btn" onClick={handleRandomVerse}>
+                <Shuffle size={12} /> Random
+              </button>
+            </div>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="category-pills">
+            {CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                className={`category-pill ${selectedCategory === cat ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Verses List */}
+          {displayedVerses.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
+              {showBookmarksOnly ? 'No bookmarked verses yet' : 'No verses in this category'}
+            </div>
+          ) : (
+            displayedVerses.map(verse => (
+              <div key={verse.id} className="verse-card">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div className="verse-reference">{verse.reference}</div>
+                  <span className="verse-category-badge">{verse.category}</span>
+                </div>
+                <p className="verse-text">"{verse.text}"</p>
+                <div className="verse-actions">
+                  <button
+                    className="verse-action-btn"
+                    onClick={() => toggleVerseBookmark(verse.id)}
+                    style={scriptureBookmarkIds.has(verse.id) ? { color: 'var(--accent-gold)' } : {}}
+                  >
+                    <Star
+                      size={18}
+                      fill={scriptureBookmarkIds.has(verse.id) ? 'var(--accent-gold)' : 'none'}
+                    />
+                  </button>
+                  <button
+                    className="verse-action-btn"
+                    onClick={() => handleShare(verse)}
+                  >
+                    <Share2 size={18} />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
-      {/* Random Verse Modal */}
+      {/* ============================================================ */}
+      {/* CREATE CUSTOM PLAN MODAL */}
+      {/* ============================================================ */}
+      <Modal
+        isOpen={showCreatePlanModal}
+        onClose={() => setShowCreatePlanModal(false)}
+        title="Create Custom Plan"
+      >
+        <div className="create-plan-form">
+          <div>
+            <label className="create-plan-label">Plan Name</label>
+            <input
+              className="create-plan-input"
+              value={planName}
+              onChange={e => setPlanName(e.target.value)}
+              placeholder="My Study Plan"
+              maxLength={100}
+            />
+          </div>
+
+          <div>
+            <label className="create-plan-label">Topic / Category</label>
+            <div className="category-pills">
+              {PLAN_CATEGORIES.map(cat => (
+                <button
+                  key={cat}
+                  className={`category-pill ${planCategory === cat ? 'active' : ''}`}
+                  onClick={() => setPlanCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="create-plan-label">Duration</label>
+            <div className="duration-options">
+              {[7, 14, 21, 30].map(d => (
+                <button
+                  key={d}
+                  className={`duration-btn ${planDuration === d ? 'active' : ''}`}
+                  onClick={() => setPlanDuration(d)}
+                >
+                  {d} days
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button
+            className="btn-primary"
+            onClick={handleCreatePlan}
+            disabled={!planName.trim() || !planCategory || creating}
+          >
+            {creating ? 'Creating...' : 'Create Plan'}
+          </button>
+        </div>
+      </Modal>
+
+      {/* ============================================================ */}
+      {/* RANDOM VERSE MODAL (unchanged) */}
+      {/* ============================================================ */}
       <Modal
         isOpen={showRandomModal}
         onClose={() => setShowRandomModal(false)}
