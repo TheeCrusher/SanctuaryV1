@@ -292,6 +292,69 @@ export const SAMPLE_EVENTS = [
 ]
 
 // ============================================================
+// Digital Events
+// ============================================================
+// Sample digital events (livestreams, recorded content).
+// eventType, eventLink, and isLive are the new fields for digital events.
+export const SAMPLE_DIGITAL_EVENTS = [
+  {
+    title: 'Sunday Morning Livestream',
+    description: 'Join us live for our regular Sunday morning worship service, streamed from Willow Creek Church. Worship, prayer, and a message from Pastor Mike.',
+    dateTime: '2026-02-16 10:00:00',
+    category: 'Worship',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/live/sanctuary-sunday',
+    isLive: true,
+    creatorKey: 'guide',
+    churchName: 'Willow Creek Church'
+  },
+  {
+    title: 'Faith Foundations: Gospel of John',
+    description: 'A recorded series walking through the Gospel of John. Watch at your own pace and discuss in the community.',
+    dateTime: '2026-02-10 12:00:00',
+    category: 'Sermons/Teachings',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/watch?v=gospel-of-john',
+    isLive: false,
+    creatorKey: 'Pastor Daniel Reeves',
+    churchName: 'Brooklyn Tabernacle'
+  },
+  {
+    title: 'Online Prayer Circle',
+    description: 'A weekly prayer gathering via Zoom. Everyone is welcome to share requests and pray together in a safe, supportive space.',
+    dateTime: '2026-02-18 19:00:00',
+    category: 'Prayer',
+    eventType: 'digital',
+    eventLink: 'https://zoom.us/j/sanctuary-prayer',
+    isLive: true,
+    creatorKey: 'Sister Catherine Tran',
+    churchName: null
+  },
+  {
+    title: 'Intro to Psalms - Bible Study',
+    description: 'A recorded deep-dive into the Book of Psalms. Great for personal study or small group discussion.',
+    dateTime: '2026-02-12 09:00:00',
+    category: 'Bible Study',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/watch?v=psalms-study',
+    isLive: false,
+    creatorKey: 'Elder Marcus Thompson',
+    churchName: null
+  },
+  {
+    title: 'Evening Worship & Praise',
+    description: 'Live worship session streaming from Atlanta. Grab your Bible and worship with us from anywhere!',
+    dateTime: '2026-02-21 20:00:00',
+    category: 'Worship',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/live/evening-worship',
+    isLive: true,
+    creatorKey: 'Pastor Thomas Wright',
+    churchName: 'Lakewood Church'
+  }
+]
+
+// ============================================================
 // Church Announcements (Bulletin Board)
 // ============================================================
 // Seed announcements for the bulletin board on ChurchDetail.

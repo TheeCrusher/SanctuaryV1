@@ -1,37 +1,53 @@
 // =============================================================================
 // FIND A GUIDE SCREEN
 // =============================================================================
-// Browse all verified guides nationwide. Shows guide cards with availability
-// status, search filtering, and "Show 10 More" pagination.
-// Tapping a card navigates to that guide's UserProfile page.
+// Browse guides with location-based filtering. Three scope tiers:
+//   Local    — same church, city, or state as the user
+//   Regional — guides in bordering/neighboring states
+//   National — all remaining guides
+// Shows guide cards with availability status, search filtering, and pagination.
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, LoadingSpinner, ErrorState, EmptyState } from '../common'
 import { api } from '../../utils/api'
-import { ArrowLeft, Search, X, MapPin, BookOpen } from 'lucide-react'
+import { ArrowLeft, Search, X, MapPin, BookOpen, Info } from 'lucide-react'
+
+const SCOPES = [
+  { key: 'local', label: 'Local' },
+  { key: 'regional', label: 'Regional' },
+  { key: 'national', label: 'National' }
+]
 
 function FindGuides() {
   const navigate = useNavigate()
   const { user } = useApp()
   const [guides, setGuides] = useState([])
   const [query, setQuery] = useState('')
+  const [scope, setScope] = useState('local')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [visibleCount, setVisibleCount] = useState(10)
 
   useEffect(() => {
     loadGuides()
-  }, [])
+  }, [scope])
 
   async function loadGuides(searchQuery = '') {
     setLoading(true)
     setError(null)
     try {
-      const url = searchQuery
-        ? `/users/guides?q=${encodeURIComponent(searchQuery)}`
-        : '/users/guides'
+      const params = new URLSearchParams()
+      if (searchQuery) params.set('q', searchQuery)
+      // Only send scope/location if user has a state set
+      if (user?.state) {
+        params.set('scope', scope)
+        params.set('state', user.state)
+        if (user.city) params.set('city', user.city)
+        if (user.preferredChurchId) params.set('churchId', user.preferredChurchId)
+      }
+      const url = `/users/guides${params.toString() ? '?' + params.toString() : ''}`
       const data = await api.get(url)
       setGuides(data.guides || [])
       setVisibleCount(10)
@@ -116,6 +132,27 @@ function FindGuides() {
           </button>
         </div>
 
+        {/* Scope pills (Local / Regional / National) */}
+        <div className="guide-scope-pills">
+          {SCOPES.map(s => (
+            <button
+              key={s.key}
+              className={`guide-scope-pill ${scope === s.key ? 'active' : ''}`}
+              onClick={() => { setScope(s.key); setVisibleCount(10) }}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Location banner if user hasn't set their state */}
+        {!user?.state && (
+          <div className="guide-location-banner">
+            <Info size={14} />
+            <span>Set your location in Profile for local results</span>
+          </div>
+        )}
+
         {/* Results count */}
         {!loading && (
           <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '12px' }}>
@@ -134,7 +171,11 @@ function FindGuides() {
           <EmptyState
             icon={Search}
             title="No guides found"
-            subtitle={query ? 'Try a different search term' : 'No guides are available at this time'}
+            subtitle={
+              scope === 'local' ? 'No local guides found. Try Regional or National.'
+              : scope === 'regional' ? 'No guides in neighboring states. Try National.'
+              : query ? 'Try a different search term' : 'No guides are available at this time'
+            }
           />
         )}
 

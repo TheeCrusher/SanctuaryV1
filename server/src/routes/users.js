@@ -13,6 +13,7 @@
 import { Router } from 'express'
 import pool from '../config/db.js'
 import { authenticate } from '../middleware/auth.js'
+import STATE_BORDERS from '../utils/stateBorders.js'
 
 const router = Router()
 
@@ -387,20 +388,24 @@ router.get('/suggested', async (req, res, next) => {
 // ============================================================
 // GET /api/users/guides
 // ============================================================
-// Returns all guides nationwide for the "Find a Guide" screen.
-// Includes availability info (accepting_seekers, pending count, max).
+// Returns guides for the "Find a Guide" screen.
+// Supports location-based filtering via scope parameter:
+//   local    - same state (sub-sorted: same church > same city > rest)
+//   regional - bordering/neighboring states
+//   national - all remaining guides (not local or regional)
+// If no scope or no user state, returns all guides.
 // Excludes blocked users. Sorted: accepting first, then available slots, then name.
 
 router.get('/guides', async (req, res, next) => {
   try {
     const userId = req.user.id
-    const { q } = req.query
+    const { q, scope, state: userState, city: userCity, churchId } = req.query
 
     let query = `
       SELECT
         u.id, u.name, u.avatar, u.photo_url, u.specialization,
         u.denomination, u.state, u.city, u.church_name, u.bio,
-        u.accepting_seekers, u.max_pending_requests,
+        u.accepting_seekers, u.max_pending_requests, u.preferred_church_id,
         COALESCE(pending.count, 0)::int AS pending_count
       FROM users u
       LEFT JOIN (
@@ -420,6 +425,7 @@ router.get('/guides', async (req, res, next) => {
     const params = [userId]
     let paramCount = 1
 
+    // Text search filter
     if (q && q.trim().length >= 2) {
       paramCount++
       query += ` AND (
@@ -430,10 +436,54 @@ router.get('/guides', async (req, res, next) => {
       params.push(`%${q.trim()}%`)
     }
 
-    query += ` ORDER BY
-      u.accepting_seekers DESC,
-      CASE WHEN COALESCE(pending.count, 0) < u.max_pending_requests THEN 0 ELSE 1 END ASC,
-      u.name ASC`
+    // Location scope filter (only if user has a state set)
+    if (scope && userState) {
+      if (scope === 'local') {
+        paramCount++
+        query += ` AND u.state = $${paramCount}`
+        params.push(userState)
+      } else if (scope === 'regional') {
+        const borders = STATE_BORDERS[userState] || []
+        if (borders.length > 0) {
+          paramCount++
+          query += ` AND u.state = ANY($${paramCount})`
+          params.push(borders)
+        } else {
+          // No bordering states (AK, HI) — return empty
+          query += ` AND FALSE`
+        }
+      } else if (scope === 'national') {
+        const borders = STATE_BORDERS[userState] || []
+        const excludeStates = [userState, ...borders]
+        paramCount++
+        query += ` AND (u.state IS NULL OR NOT (u.state = ANY($${paramCount})))`
+        params.push(excludeStates)
+      }
+    }
+
+    // Sorting: accepting first, available slots, then name
+    // For local scope, sub-sort by proximity (same church > same city > rest)
+    if (scope === 'local' && userState) {
+      let orderClauses = [
+        'u.accepting_seekers DESC',
+        'CASE WHEN COALESCE(pending.count, 0) < u.max_pending_requests THEN 0 ELSE 1 END ASC'
+      ]
+      if (churchId) {
+        orderClauses.push(`CASE WHEN u.preferred_church_id = ${parseInt(churchId)} THEN 0 ELSE 1 END ASC`)
+      }
+      if (userCity) {
+        paramCount++
+        orderClauses.push(`CASE WHEN LOWER(u.city) = LOWER($${paramCount}) THEN 0 ELSE 1 END ASC`)
+        params.push(userCity)
+      }
+      orderClauses.push('u.name ASC')
+      query += ` ORDER BY ${orderClauses.join(', ')}`
+    } else {
+      query += ` ORDER BY
+        u.accepting_seekers DESC,
+        CASE WHEN COALESCE(pending.count, 0) < u.max_pending_requests THEN 0 ELSE 1 END ASC,
+        u.name ASC`
+    }
 
     const result = await pool.query(query, params)
 

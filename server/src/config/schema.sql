@@ -516,7 +516,12 @@ CREATE TABLE IF NOT EXISTS events (
   date_time   TIMESTAMP NOT NULL,
   location    VARCHAR(300),
   category    VARCHAR(50) NOT NULL DEFAULT 'Social'
-              CHECK (category IN ('Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor')),
+              CHECK (category IN ('Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor',
+                                  'Sermons/Teachings', 'Prayer', 'Bible Study', 'General')),
+  event_type  VARCHAR(20) NOT NULL DEFAULT 'in_person'
+              CHECK (event_type IN ('in_person', 'digital')),
+  event_link  TEXT,
+  is_live     BOOLEAN DEFAULT false,
   created_by  INTEGER REFERENCES users(id) ON DELETE CASCADE,
   church_id   INTEGER REFERENCES churches(id) ON DELETE SET NULL,
   created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -524,6 +529,7 @@ CREATE TABLE IF NOT EXISTS events (
 
 CREATE INDEX IF NOT EXISTS idx_events_date ON events(date_time);
 CREATE INDEX IF NOT EXISTS idx_events_church ON events(church_id);
+CREATE INDEX IF NOT EXISTS idx_events_type ON events(event_type);
 
 -- ============================================================
 -- EVENT RSVPS TABLE

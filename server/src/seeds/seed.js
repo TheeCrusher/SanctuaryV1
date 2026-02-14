@@ -30,6 +30,7 @@ import {
   BIBLE_QUOTES,
   SAMPLE_APPOINTMENTS,
   SAMPLE_EVENTS,
+  SAMPLE_DIGITAL_EVENTS,
   SAMPLE_ANNOUNCEMENTS,
   SAMPLE_TESTIMONIES
 } from './seedData.js'
@@ -374,17 +375,16 @@ async function seed() {
       }
     }
 
-    // ---- Step 12: Insert sample events ----
+    // ---- Step 12: Insert sample events (in-person + digital) ----
     console.log('\n📅 Inserting community events...')
     for (const evt of SAMPLE_EVENTS) {
       const creatorId = userIdMap[evt.creatorKey]
       const churchId = evt.churchName ? churchIdMap[evt.churchName] : null
       const result = await client.query(
-        `INSERT INTO events (title, description, date_time, location, category, created_by, church_id)
-         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        `INSERT INTO events (title, description, date_time, location, category, event_type, event_link, is_live, created_by, church_id)
+         VALUES ($1, $2, $3, $4, $5, 'in_person', NULL, false, $6, $7) RETURNING id`,
         [evt.title, evt.description, evt.dateTime, evt.location, evt.category, creatorId, churchId]
       )
-      // Auto-RSVP the creator
       await client.query(
         'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2)',
         [result.rows[0].id, creatorId]
@@ -392,11 +392,27 @@ async function seed() {
       console.log(`   ✅ ${evt.title} (${evt.category})`)
     }
 
+    // Insert digital events
+    console.log('\n📹 Inserting digital events...')
+    for (const evt of SAMPLE_DIGITAL_EVENTS) {
+      const creatorId = userIdMap[evt.creatorKey]
+      const churchId = evt.churchName ? churchIdMap[evt.churchName] : null
+      const result = await client.query(
+        `INSERT INTO events (title, description, date_time, category, event_type, event_link, is_live, created_by, church_id)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+        [evt.title, evt.description, evt.dateTime, evt.category, evt.eventType, evt.eventLink, evt.isLive, creatorId, churchId]
+      )
+      await client.query(
+        'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2)',
+        [result.rows[0].id, creatorId]
+      )
+      console.log(`   ✅ ${evt.title} (${evt.category} - ${evt.isLive ? 'Live' : 'Recorded'})`)
+    }
+
     // Also RSVP the guide and seeker to a couple extra events for demo variety
-    // Event IDs are sequential: 1=Prayer Walk, 2=Game Night, 3=Cleanup, 4=Hiking, 5=Potluck
-    // RSVP seeker (Jordan) to Prayer Walk (event 1)
     const eventsResult = await client.query('SELECT id FROM events ORDER BY id')
     const eventIds = eventsResult.rows.map(r => r.id)
+    // RSVP seeker (Jordan) to Prayer Walk (event 1)
     await client.query(
       'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
       [eventIds[0], seekerId]
@@ -448,7 +464,7 @@ async function seed() {
     console.log(`   Plans:          ${READING_PLANS.length} (${totalPlanDays} days)`)
     console.log(`   Connections:    6 (5 accepted, 1 pending)`)
     console.log(`   Favorites:      ${favCount} church favorites`)
-    console.log(`   Events:         ${SAMPLE_EVENTS.length} (+ extra RSVPs)`)
+    console.log(`   Events:         ${SAMPLE_EVENTS.length} in-person + ${SAMPLE_DIGITAL_EVENTS.length} digital (+ extra RSVPs)`)
     console.log(`   Announcements:  ${SAMPLE_ANNOUNCEMENTS.length}`)
     console.log(`   Testimonies:    ${SAMPLE_TESTIMONIES.length}`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
