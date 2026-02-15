@@ -7921,3 +7921,195 @@ select.account-edit-input {
   font-size: 20px;
   font-weight: 700;
 }
+
+/* =================================== */
+/* 43. iOS INSTALL PROMPT              */
+/* =================================== */
+
+/* Banner — sits at top of login screen */
+.ios-install-banner {
+  position: relative;
+  z-index: 100;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-warm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  animation: ios-banner-slide-down 0.4s ease-out;
+}
+
+@keyframes ios-banner-slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.ios-install-banner-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.ios-install-banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.ios-install-banner-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ios-install-banner-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ios-install-banner-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.ios-install-banner-steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.ios-install-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ios-install-step strong {
+  font-weight: 600;
+}
+
+.ios-install-step-arrow {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.ios-share-icon {
+  display: inline-block;
+  vertical-align: middle;
+  color: #007AFF; /* iOS blue for the share icon */
+  width: 18px;
+  height: 18px;
+}
+
+/* Nudge Modal — appears when user taps login form */
+.ios-install-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: ios-modal-fade-in 0.25s ease-out;
+}
+
+@keyframes ios-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ios-install-modal {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 28px 24px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: ios-modal-scale-in 0.25s ease-out;
+}
+
+@keyframes ios-modal-scale-in {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ios-install-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.ios-install-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.ios-install-modal-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.ios-install-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ios-install-btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--accent-gold);
+  color: #fff;
+}
+
+.ios-install-btn-primary:active {
+  opacity: 0.85;
+}
+
+.ios-install-btn-secondary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.ios-install-btn-secondary:active {
+  background: var(--bg-muted);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .ios-install-banner {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .ios-install-modal {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .ios-share-icon {
+  color: #0A84FF; /* iOS blue in dark mode */
+}

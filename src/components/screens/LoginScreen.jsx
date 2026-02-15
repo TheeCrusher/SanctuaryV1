@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
+import { IOSInstallPrompt } from '../common'
 
 // Logo image extracted from splash video first frame
 const LOGO = "/sanctuary-logo.png"
@@ -60,6 +61,9 @@ function LoginScreen() {
 
   return (
     <div className="login-screen">
+      {/* iOS PWA install prompt (only shows on iOS Safari) */}
+      <IOSInstallPrompt />
+
       {/* Decorative background circles */}
       <div className="login-bg-circle login-bg-circle-1" />
       <div className="login-bg-circle login-bg-circle-2" />
