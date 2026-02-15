@@ -64,7 +64,33 @@ export const AVAILABLE_PEOPLE = [
   { name: 'Priya Sharma', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/82.jpg', role: 'seeker', state: 'CA', city: 'San Francisco', denomination: 'Non-denominational', interests: ['Reading', 'Hiking', 'Worship', 'Writing'] },
   { name: 'Tyler Odom', avatar: '👦', profilePhoto: 'https://randomuser.me/api/portraits/men/11.jpg', role: 'seeker', bio: 'College junior studying theology and exploring different denominations.', state: 'FL', city: 'Orlando', denomination: 'Methodist', interests: ['Hiking', 'Music', 'Youth Ministry', 'Gardening'] },
   { name: 'Aisha Williams', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/33.jpg', role: 'seeker', state: 'GA', city: 'Atlanta', denomination: 'Baptist', interests: ['Volunteering', 'Cooking', 'Worship', 'Community Service'] },
-  { name: 'Chris Martinez', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/91.jpg', role: 'seeker', state: 'AZ', city: 'Phoenix', denomination: 'Catholic', interests: ['Sports', 'Travel', 'Photography', 'Reading'] }
+  { name: 'Chris Martinez', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/91.jpg', role: 'seeker', state: 'AZ', city: 'Phoenix', denomination: 'Catholic', interests: ['Sports', 'Travel', 'Photography', 'Reading'] },
+
+  // --- Session 26: New Guides (5) ---
+  { name: 'Pastor Robert Hayes', avatar: '👨‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/men/55.jpg', role: 'guide', bio: 'Former chaplain now pastoring a growing church in Houston. Specializes in grief and loss counseling.', specialization: 'Grief & Recovery', state: 'TX', city: 'Houston', denomination: 'Baptist', churchName: 'Lakewood Church', interests: ['Counseling', 'Bible Study', 'Community Service', 'Writing'], acceptingSeekers: true, maxPendingRequests: 6 },
+  { name: 'Minister Joy Adebayo', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/72.jpg', role: 'guide', bio: 'Worship leader and spiritual mentor passionate about helping people find their voice in faith.', specialization: 'Worship & Creative Arts', state: 'TX', city: 'Dallas', denomination: 'Non-denominational', interests: ['Music', 'Worship', 'Youth Ministry', 'Painting'], acceptingSeekers: true, maxPendingRequests: 7 },
+  { name: 'Rev. Samuel Kim', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/36.jpg', role: 'guide', bio: 'Bilingual pastor serving multicultural congregations for over 12 years.', specialization: 'Multicultural Ministry', state: 'WA', city: 'Seattle', denomination: 'Presbyterian', interests: ['Bible Study', 'Travel', 'Reading', 'Community Service'], acceptingSeekers: true, maxPendingRequests: 5 },
+  { name: 'Pastor Lisa Monroe', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/42.jpg', role: 'guide', bio: 'College campus minister who loves walking with young adults through big life transitions.', specialization: 'Young Adult Ministry', state: 'MN', city: 'Minneapolis', denomination: 'Lutheran', interests: ['Hiking', 'Counseling', 'Writing', 'Bible Study'], acceptingSeekers: true, maxPendingRequests: 8 },
+  { name: 'Deacon Carlos Vega', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/18.jpg', role: 'guide', bio: 'Bilingual deacon with a heart for immigrant families and faith formation.', specialization: 'Family Ministry', state: 'TX', city: 'San Antonio', denomination: 'Catholic', interests: ['Volunteering', 'Community Service', 'Sports', 'Cooking'], acceptingSeekers: true, maxPendingRequests: 4 },
+
+  // --- Session 26: New Seekers (12) ---
+  { name: 'Olivia Bennett', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/20.jpg', role: 'seeker', bio: 'Nurse and mom of two, looking for deeper community and spiritual growth.', state: 'TN', city: 'Nashville', denomination: 'Methodist', interests: ['Reading', 'Cooking', 'Worship', 'Volunteering'] },
+  { name: 'Marcus Davis', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/34.jpg', role: 'seeker', bio: 'Youth basketball coach seeking mentorship in faith leadership.', state: 'IL', city: 'Chicago', denomination: 'Baptist', churchName: 'Willow Creek Church', interests: ['Sports', 'Youth Ministry', 'Music', 'Community Service'] },
+  { name: 'Hannah Lee', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/55.jpg', role: 'seeker', bio: 'Grad student exploring how faith intersects with social justice.', state: 'OR', city: 'Portland', denomination: 'Non-denominational', interests: ['Reading', 'Hiking', 'Writing', 'Volunteering'] },
+  { name: 'Caleb Washington', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/14.jpg', role: 'seeker', bio: 'Recently baptized and excited to grow in my walk with Christ.', state: 'GA', city: 'Atlanta', denomination: 'Pentecostal', interests: ['Music', 'Sports', 'Bible Study', 'Travel'] },
+  { name: 'Sofia Ramirez', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/47.jpg', role: 'seeker', bio: 'Bilingual teacher passionate about integrating faith and education.', state: 'FL', city: 'Miami', denomination: 'Catholic', interests: ['Reading', 'Cooking', 'Community Service', 'Music'] },
+  { name: 'Elijah Brown', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/62.jpg', role: 'seeker', bio: 'Retired military, finding peace and purpose through faith.', state: 'NC', city: 'Charlotte', denomination: 'AME', interests: ['Hiking', 'Gardening', 'Bible Study', 'Volunteering'] },
+  { name: 'Megan O\'Brien', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/28.jpg', role: 'seeker', bio: 'Freelance designer who just moved to Denver and looking for a church home.', state: 'CO', city: 'Denver', denomination: 'Lutheran', interests: ['Painting', 'Photography', 'Worship', 'Hiking'] },
+  { name: 'Isaiah Reed', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/8.jpg', role: 'seeker', bio: 'High school music teacher exploring how to lead worship at my church.', state: 'TX', city: 'Dallas', denomination: 'Baptist', interests: ['Music', 'Worship', 'Youth Ministry', 'Sports'] },
+  { name: 'Zoe Nakamura', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/10.jpg', role: 'seeker', bio: 'Yoga instructor and new believer learning to blend mindfulness with prayer.', state: 'CA', city: 'Los Angeles', denomination: 'Non-denominational', interests: ['Hiking', 'Reading', 'Worship', 'Cooking'] },
+  { name: 'Ethan Cooper', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/3.jpg', role: 'seeker', bio: 'Software engineer exploring faith after years away from church.', state: 'TX', city: 'Austin', denomination: 'Methodist', interests: ['Reading', 'Photography', 'Hiking', 'Music'] },
+  { name: 'Destiny Harris', avatar: '👩‍🦱', profilePhoto: 'https://randomuser.me/api/portraits/women/57.jpg', role: 'seeker', bio: 'Single mom building a strong spiritual foundation for my family.', state: 'MI', city: 'Detroit', denomination: 'Pentecostal', interests: ['Cooking', 'Music', 'Bible Study', 'Community Service'] },
+  { name: 'Liam Fitzgerald', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/88.jpg', role: 'seeker', bio: 'Seminary student looking for real community outside the classroom.', state: 'MA', city: 'Boston', denomination: 'Presbyterian', interests: ['Reading', 'Writing', 'Bible Study', 'Travel'] },
+
+  // --- Session 26: Final 3 to reach 40 users ---
+  { name: 'Pastor David Okonkwo', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/47.jpg', role: 'guide', bio: 'Energetic evangelist and church planter with a passion for reaching the unchurched.', specialization: 'Evangelism', state: 'NC', city: 'Charlotte', denomination: 'Pentecostal', interests: ['Community Service', 'Music', 'Volunteering', 'Bible Study'], acceptingSeekers: true, maxPendingRequests: 6 },
+  { name: 'Jasmine Torres', avatar: '👩', profilePhoto: 'https://randomuser.me/api/portraits/women/65.jpg', role: 'seeker', bio: 'Young professional navigating life and faith in the big city.', state: 'TX', city: 'Houston', denomination: 'Catholic', interests: ['Cooking', 'Travel', 'Worship', 'Volunteering'] },
+  { name: 'Ryan Mitchell', avatar: '👨', profilePhoto: 'https://randomuser.me/api/portraits/men/29.jpg', role: 'seeker', bio: 'Firefighter and new dad looking for a men\'s group and spiritual accountability.', state: 'MN', city: 'Minneapolis', denomination: 'Lutheran', interests: ['Sports', 'Hiking', 'Community Service', 'Bible Study'] }
 ]
 
 // Church listings
@@ -211,7 +237,23 @@ export const SEED_CHURCH_FAVORITES = [
   { userKey: 'Nathan Brooks', churchName: 'Willow Creek Church' },
   { userKey: 'Rachel Kim', churchName: 'Lakewood Church' },
   { userKey: 'Aisha Williams', churchName: 'Willow Creek Church' },
-  { userKey: 'Chris Martinez', churchName: 'National Cathedral' }
+  { userKey: 'Chris Martinez', churchName: 'National Cathedral' },
+  // Session 26 new users
+  { userKey: 'Pastor Robert Hayes', churchName: 'Lakewood Church' },
+  { userKey: 'Minister Joy Adebayo', churchName: 'Lakewood Church' },
+  { userKey: 'Rev. Samuel Kim', churchName: 'Holy Name Cathedral' },
+  { userKey: 'Pastor Lisa Monroe', churchName: 'Willow Creek Church' },
+  { userKey: 'Deacon Carlos Vega', churchName: 'Holy Name Cathedral' },
+  { userKey: 'Marcus Davis', churchName: 'Willow Creek Church' },
+  { userKey: 'Olivia Bennett', churchName: 'Lakewood Church' },
+  { userKey: 'Caleb Washington', churchName: 'Lakewood Church' },
+  { userKey: 'Sofia Ramirez', churchName: 'Holy Name Cathedral' },
+  { userKey: 'Destiny Harris', churchName: 'Brooklyn Tabernacle' },
+  { userKey: 'Isaiah Reed', churchName: 'Lakewood Church' },
+  { userKey: 'Liam Fitzgerald', churchName: 'National Cathedral' },
+  { userKey: 'Pastor David Okonkwo', churchName: 'Brooklyn Tabernacle' },
+  { userKey: 'Jasmine Torres', churchName: 'Lakewood Church' },
+  { userKey: 'Ryan Mitchell', churchName: 'Willow Creek Church' }
 ]
 
 export const SAMPLE_APPOINTMENTS = [
@@ -410,5 +452,304 @@ export const SAMPLE_TESTIMONIES = [
     category: 'Gratitude',
     creatorKey: 'seeker',
     isAnonymous: false
+  },
+  {
+    title: 'My marriage was restored!',
+    description: 'My husband and I were on the brink of divorce. Through counseling with our pastor and the prayers of this community, we recommitted to each other. God is a God of restoration!',
+    category: 'Gratitude',
+    creatorKey: 'Olivia Bennett',
+    isAnonymous: false
+  },
+  {
+    title: 'Baptized last Sunday!',
+    description: 'After two years of searching, I finally gave my life to Christ and was baptized at my church. Thank you to everyone who walked this journey with me.',
+    category: 'Gratitude',
+    creatorKey: 'Caleb Washington',
+    isAnonymous: false
+  },
+  {
+    title: 'Addiction-free for one year',
+    description: 'One year sober today. I could not have done it without faith, my small group, and the constant prayers from this community. If you are struggling, please reach out.',
+    category: 'Gratitude',
+    creatorKey: 'Elijah Brown',
+    isAnonymous: false
+  },
+  {
+    title: 'Daughter accepted to college!',
+    description: 'We have been praying for my daughter\'s future for years. She just received a full scholarship to study nursing. God provides!',
+    category: 'Gratitude',
+    creatorKey: 'Destiny Harris',
+    isAnonymous: false
+  }
+]
+
+// ============================================================
+// Prayer Requests
+// ============================================================
+// These are seeded as prayer_requests with type='prayer'.
+// They appear in the "Prayers" tab on the Prayer Board.
+export const SAMPLE_PRAYERS = [
+  {
+    title: 'Prayers for my father\'s surgery',
+    description: 'My dad is having heart surgery next Tuesday. Please pray for a successful operation and a smooth recovery. He is 72 and means the world to our family.',
+    category: 'Health',
+    creatorKey: 'Sofia Ramirez',
+    isAnonymous: false
+  },
+  {
+    title: 'Struggling with anxiety',
+    description: 'I have been dealing with severe anxiety lately and it is affecting my work and relationships. Please pray for peace and clarity.',
+    category: 'Health',
+    creatorKey: 'Hannah Lee',
+    isAnonymous: false
+  },
+  {
+    title: 'Pray for my marriage',
+    description: 'My wife and I are going through a rough season. We love each other but communication has broken down. Please lift us up.',
+    category: 'Family',
+    creatorKey: 'Marcus Davis',
+    isAnonymous: false
+  },
+  {
+    title: 'Job interview this Friday',
+    description: 'I have a big job interview coming up. I have been unemployed for 4 months and really need this to work out. Praying for favor and confidence.',
+    category: 'Financial',
+    creatorKey: 'Ethan Cooper',
+    isAnonymous: false
+  },
+  {
+    title: 'Guidance for a big decision',
+    description: 'I am trying to decide whether to move across the country for a new opportunity or stay close to family. Please pray for wisdom and discernment.',
+    category: 'Guidance',
+    creatorKey: 'Megan O\'Brien',
+    isAnonymous: false
+  },
+  {
+    title: 'Please pray for my son',
+    description: 'My teenage son has been pulling away from faith and making some concerning choices. Praying he finds his way back.',
+    category: 'Family',
+    creatorKey: 'guide',
+    isAnonymous: false
+  },
+  {
+    title: 'Healing from grief',
+    description: 'I lost my grandmother last month and the grief has been overwhelming. She was my rock. Please pray for comfort and strength.',
+    category: 'Health',
+    creatorKey: 'Zoe Nakamura',
+    isAnonymous: false
+  },
+  {
+    title: 'Struggling with faith',
+    description: 'I have been going through a season of doubt. I want to believe but everything feels distant. Please pray I find my way through this.',
+    category: 'Other',
+    creatorKey: 'Liam Fitzgerald',
+    isAnonymous: false
+  }
+]
+
+// ============================================================
+// Extra In-Person Events (Session 26)
+// ============================================================
+export const EXTRA_EVENTS = [
+  {
+    title: 'Women\'s Brunch & Bible Study',
+    description: 'Ladies, join us for a morning of fellowship, brunch, and a study on Proverbs 31. Bring a friend!',
+    dateTime: '2026-02-21 10:00:00',
+    location: 'Lakewood Church Fellowship Hall',
+    category: 'Social',
+    creatorKey: 'Minister Joy Adebayo',
+    churchName: 'Lakewood Church'
+  },
+  {
+    title: 'Men\'s Breakfast Fellowship',
+    description: 'Monthly men\'s breakfast. Good food, great conversation, and a short devotional. All men welcome.',
+    dateTime: '2026-03-07 08:00:00',
+    location: 'Willow Creek Church Cafe',
+    category: 'Social',
+    creatorKey: 'Pastor Robert Hayes',
+    churchName: 'Willow Creek Church'
+  },
+  {
+    title: 'Community Food Drive',
+    description: 'Help us collect non-perishable food items for local families in need. Drop-off at the church lobby or join us for sorting and delivery.',
+    dateTime: '2026-02-25 09:00:00',
+    location: 'Holy Name Cathedral Lobby',
+    category: 'Service/Mission',
+    creatorKey: 'Deacon Carlos Vega',
+    churchName: 'Holy Name Cathedral'
+  }
+]
+
+// ============================================================
+// Extra Digital Events (Session 26)
+// ============================================================
+export const EXTRA_DIGITAL_EVENTS = [
+  {
+    title: 'Parenting Through Faith',
+    description: 'A recorded talk on raising children with spiritual values in a modern world. Practical tips and encouragement for parents.',
+    dateTime: '2026-02-14 12:00:00',
+    category: 'Sermons/Teachings',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/watch?v=parenting-faith',
+    isLive: false,
+    creatorKey: 'Pastor Lisa Monroe',
+    churchName: null
+  },
+  {
+    title: 'Midweek Worship Night',
+    description: 'Live worship session every Wednesday. Unplug, tune in, and let the music carry you into God\'s presence.',
+    dateTime: '2026-02-19 20:00:00',
+    category: 'Worship',
+    eventType: 'digital',
+    eventLink: 'https://youtube.com/live/midweek-worship',
+    isLive: true,
+    creatorKey: 'Minister Joy Adebayo',
+    churchName: null
+  }
+]
+
+// ============================================================
+// Seed Conversations (Session 26)
+// ============================================================
+// Each conversation has two user keys and an array of messages.
+// Messages are in chronological order. senderKey = which user sent it.
+// These get turned into conversations + conversation_participants + messages rows.
+
+export const SEED_CONVERSATIONS = [
+  // --- Jordan Rivera's conversations ---
+  {
+    user1: 'seeker',       // Jordan
+    user2: 'Grace Okafor',
+    messages: [
+      { senderKey: 'seeker', text: 'Hi Grace! I saw your profile and noticed you lead Bible studies. I have been wanting to get deeper into scripture.' },
+      { senderKey: 'Grace Okafor', text: 'Hey Jordan! Welcome! I would love to help. Are you currently in a reading plan or just exploring on your own?' },
+      { senderKey: 'seeker', text: 'Mostly on my own right now. I started the Gospel of John plan on the app but I have a lot of questions as I go.' },
+      { senderKey: 'Grace Okafor', text: 'That is actually a great place to start. John really focuses on who Jesus is. What chapters are you on?' },
+      { senderKey: 'seeker', text: 'Just finished chapter 3. The conversation with Nicodemus is so interesting but also confusing at parts.' },
+      { senderKey: 'Grace Okafor', text: 'Born again is one of those phrases everyone uses but few understand in context! Would you want to meet up sometime this week to talk through it?' },
+      { senderKey: 'seeker', text: 'That would be amazing, thank you! I am free most evenings.' }
+    ]
+  },
+  {
+    user1: 'seeker',       // Jordan
+    user2: 'Nathan Brooks',
+    messages: [
+      { senderKey: 'Nathan Brooks', text: 'Hey Jordan! I just moved to Chicago and saw we go to the same church area. Do you know anyone at Willow Creek?' },
+      { senderKey: 'seeker', text: 'Welcome to Chicago! I do not attend Willow Creek myself but Pastor Mike on here is great. He has been my guide for a while now.' },
+      { senderKey: 'Nathan Brooks', text: 'Nice, I have seen his profile. Chicago is a big change from where I came from. Trying to find my people you know?' },
+      { senderKey: 'seeker', text: 'I totally get it. It took me a while too. Have you checked out the events on here? The prayer walk coming up is a good way to meet folks.' },
+      { senderKey: 'Nathan Brooks', text: 'Just RSVPd! Thanks for the tip. We should grab coffee sometime.' },
+      { senderKey: 'seeker', text: 'For sure! There is a great spot on Michigan Ave. Let me know when you are free.' }
+    ]
+  },
+  {
+    user1: 'seeker',       // Jordan
+    user2: 'Sofia Ramirez',
+    messages: [
+      { senderKey: 'seeker', text: 'Hi Sofia! I noticed we are both Catholic. How long have you been on Sanctuary?' },
+      { senderKey: 'Sofia Ramirez', text: 'Hey Jordan! Just a few weeks. I am in Miami and honestly was looking for more faith-based community beyond just Sunday mass.' },
+      { senderKey: 'seeker', text: 'Same! I grew up going to mass but felt like I wanted something more personal. This app has been great for that.' },
+      { senderKey: 'Sofia Ramirez', text: 'That is exactly how I feel. The prayer board has been so encouraging. I posted about my dad\'s surgery and the support was overwhelming.' },
+      { senderKey: 'seeker', text: 'I saw that and prayed for him! How is he doing?' },
+      { senderKey: 'Sofia Ramirez', text: 'Surgery is next week. We are nervous but trusting God. Thank you for praying, it really means a lot.' },
+      { senderKey: 'seeker', text: 'Of course. Keep us posted. Your family is in my prayers.' }
+    ]
+  },
+  {
+    user1: 'seeker',       // Jordan
+    user2: 'Sarah Johnson',
+    messages: [
+      { senderKey: 'Sarah Johnson', text: 'Hi Jordan! Pastor Mike mentioned you might be interested in the worship team. Is that true?' },
+      { senderKey: 'seeker', text: 'He did? Ha, I mentioned I used to play guitar but I am super rusty. I have not played in a worship setting in years.' },
+      { senderKey: 'Sarah Johnson', text: 'No pressure! We are very chill about it. A few of us meet on Thursdays to practice. You should come check it out.' },
+      { senderKey: 'seeker', text: 'That actually sounds fun. I will dust off the guitar this weekend and see if my fingers still work lol.' },
+      { senderKey: 'Sarah Johnson', text: 'Haha trust me, we have all been there. I will send you the details for Thursday.' }
+    ]
+  },
+
+  // --- Pastor Mike's conversations ---
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Pastor Thomas Wright',
+    messages: [
+      { senderKey: 'Pastor Thomas Wright', text: 'Hey Mike! Saw your profile on here. Always good to connect with fellow pastors. How long have you been at Willow Creek?' },
+      { senderKey: 'guide', text: 'Thomas! Good to meet you brother. Going on 8 years now. I see you are out in Atlanta, how is ministry going down there?' },
+      { senderKey: 'Pastor Thomas Wright', text: 'Blessed and busy. We just launched a marriage ministry that has been really impactful. Lots of couples coming in.' },
+      { senderKey: 'guide', text: 'That is awesome. Marriage and family is so needed right now. I have been thinking about starting something similar here.' },
+      { senderKey: 'Pastor Thomas Wright', text: 'Happy to share what we have learned. We made some mistakes early on but found a good rhythm. Maybe we can set up a call?' },
+      { senderKey: 'guide', text: 'I would love that. Let me check my schedule and I will set up an appointment through the app.' },
+      { senderKey: 'Pastor Thomas Wright', text: 'Sounds good! Also, your seeker Jordan seems really engaged. You are doing good work with him.' },
+      { senderKey: 'guide', text: 'He is great. Really hungry to learn and grow. Those are the ones that keep you going in ministry.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Pastor Daniel Reeves',
+    messages: [
+      { senderKey: 'guide', text: 'Daniel! Welcome to the app. How is Nashville treating you?' },
+      { senderKey: 'Pastor Daniel Reeves', text: 'Mike! Nashville is wonderful. The music scene here really enriches our worship. How are things in Chicago?' },
+      { senderKey: 'guide', text: 'Cold but the community is warm haha. I saw you specialize in discipleship. That is something I want to get better at structuring.' },
+      { senderKey: 'Pastor Daniel Reeves', text: 'It is honestly my favorite part of ministry. One on one is where the real growth happens. Small groups are great but nothing beats personal investment.' },
+      { senderKey: 'guide', text: 'Amen to that. I have been doing more one on one sessions through this app and it is been really rewarding.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Marcus Davis',
+    messages: [
+      { senderKey: 'Marcus Davis', text: 'Pastor Mike! I coach youth basketball here in Chicago and I have been wanting to find a way to integrate faith into my coaching. Any advice?' },
+      { senderKey: 'guide', text: 'Marcus, that is a great heart to have. Sports ministry is so powerful for reaching young people. What age group do you coach?' },
+      { senderKey: 'Marcus Davis', text: 'High school, mostly 14 to 17. Some of these kids are dealing with a lot at home and basketball is their escape.' },
+      { senderKey: 'guide', text: 'I hear you. You do not have to make it overtly religious. Just being a consistent, caring adult in their lives IS ministry. Maybe start with a team devotional before games?' },
+      { senderKey: 'Marcus Davis', text: 'I like that idea. Short and simple, nothing forced. A couple of the kids have actually asked me about faith on their own.' },
+      { senderKey: 'guide', text: 'That is the Holy Spirit at work brother. When they come to you, be ready. Would you want to set up a session to talk through some approaches?' },
+      { senderKey: 'Marcus Davis', text: 'Absolutely. I will book something this week. Thank you Pastor Mike.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Olivia Bennett',
+    messages: [
+      { senderKey: 'Olivia Bennett', text: 'Hi Pastor Mike! A friend recommended I connect with you. I am a nurse in Nashville and a mom of two, trying to find balance between work, family, and growing spiritually.' },
+      { senderKey: 'guide', text: 'Hi Olivia! That sounds like a lot on your plate. First off, the fact that you are even thinking about spiritual growth while juggling all that says a lot about your heart.' },
+      { senderKey: 'Olivia Bennett', text: 'Thank you, that means a lot. Some days I feel like I am failing at everything. I barely have time to read my Bible.' },
+      { senderKey: 'guide', text: 'Grace, not guilt. God sees your faithfulness in the small moments. Even a five minute prayer during your lunch break counts. Have you tried the reading plans on the app?' },
+      { senderKey: 'Olivia Bennett', text: 'I started the Psalms of Comfort one and it has been so good. Short enough that I can do it on my break.' },
+      { senderKey: 'guide', text: 'Perfect! Psalms is like a spiritual first aid kit. Keep at it and do not be hard on yourself. God meets us where we are, not where we think we should be.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Rachel Kim',
+    messages: [
+      { senderKey: 'Rachel Kim', text: 'Pastor Mike, I have a question. I have been attending a non-denominational church but grew up in a traditional Korean church. Sometimes I feel caught between two worlds.' },
+      { senderKey: 'guide', text: 'That is actually more common than you think Rachel. A lot of people navigate between their cultural faith traditions and finding their own path. What feels different between the two?' },
+      { senderKey: 'Rachel Kim', text: 'The Korean church was very structured and community focused. My current church is more relaxed but I miss the closeness.' },
+      { senderKey: 'guide', text: 'You do not have to choose one or the other. You can honor your roots while exploring what speaks to your heart now. Have you tried connecting with others from similar backgrounds on here?' },
+      { senderKey: 'Rachel Kim', text: 'Not yet, but that is a good idea. I will look into it. Thank you for listening.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Aisha Williams',
+    messages: [
+      { senderKey: 'Aisha Williams', text: 'Good morning Pastor Mike! I wanted to ask about volunteering. I feel called to serve but I am not sure where to start.' },
+      { senderKey: 'guide', text: 'Morning Aisha! I love that you are feeling that call. What are you passionate about? Sometimes our gifts point us to where we should serve.' },
+      { senderKey: 'Aisha Williams', text: 'I love cooking and I have always wanted to do something with food, like a community meal program.' },
+      { senderKey: 'guide', text: 'There is actually a food drive coming up at Holy Name Cathedral. And we do a monthly potluck at Willow Creek. Both could be great starting points!' },
+      { senderKey: 'Aisha Williams', text: 'I saw the potluck event! I already RSVPd. Maybe I can help organize the food for it?' },
+      { senderKey: 'guide', text: 'Absolutely, I will connect you with our events coordinator. Your gift of hospitality is going to bless a lot of people Aisha.' }
+    ]
+  },
+  {
+    user1: 'guide',        // Pastor Mike
+    user2: 'Caleb Washington',
+    messages: [
+      { senderKey: 'Caleb Washington', text: 'Pastor Mike! I just got baptized last month and I am on fire for God but everyone keeps telling me it will fade. Is that true?' },
+      { senderKey: 'guide', text: 'Caleb! Congratulations on your baptism! That excitement is real and it is a gift. Will it look different in 6 months? Maybe. But that does not mean it fades, it matures.' },
+      { senderKey: 'Caleb Washington', text: 'That is encouraging. I just want to make sure I keep growing. I signed up for the Gospel of John reading plan.' },
+      { senderKey: 'guide', text: 'Great choice. Here is my advice: surround yourself with people who challenge your faith. Stay in the Word daily even if it is just a few verses. And stay connected here. Community is everything.' },
+      { senderKey: 'Caleb Washington', text: 'Will do. Thank you Pastor Mike. This app has been such a blessing.' }
+    ]
   }
 ]

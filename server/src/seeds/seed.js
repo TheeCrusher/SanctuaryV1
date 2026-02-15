@@ -32,7 +32,11 @@ import {
   SAMPLE_EVENTS,
   SAMPLE_DIGITAL_EVENTS,
   SAMPLE_ANNOUNCEMENTS,
-  SAMPLE_TESTIMONIES
+  SAMPLE_TESTIMONIES,
+  SAMPLE_PRAYERS,
+  EXTRA_EVENTS,
+  EXTRA_DIGITAL_EVENTS,
+  SEED_CONVERSATIONS
 } from './seedData.js'
 
 import { SCRIPTURE_VERSES, READING_PLANS } from './scriptureData.js'
@@ -454,6 +458,213 @@ async function seed() {
       console.log(`   ✅ ${test.title}`)
     }
 
+    // ---- Step 15: Insert prayer requests ----
+    console.log('\n🙏 Inserting prayer requests...')
+    for (const prayer of SAMPLE_PRAYERS) {
+      const userId = userIdMap[prayer.creatorKey]
+      await client.query(
+        `INSERT INTO prayer_requests (user_id, title, description, category, is_anonymous, type)
+         VALUES ($1, $2, $3, $4, $5, 'prayer')`,
+        [userId, prayer.title, prayer.description, prayer.category, prayer.isAnonymous]
+      )
+      console.log(`   ✅ ${prayer.title}`)
+    }
+
+    // ---- Step 15b: Add prayer interactions (likes/praying) for engagement ----
+    console.log('\n💛 Adding prayer interactions...')
+    const prayerRows = await client.query('SELECT id FROM prayer_requests ORDER BY id')
+    const prayerIds = prayerRows.rows.map(r => r.id)
+    // Spread interactions across prayers from various users
+    const interactors = [
+      seekerId, guideId, peopleIds[0], peopleIds[2], peopleIds[4],
+      ...peopleIds.slice(10, 16), ...peopleIds.slice(16, 28)
+    ].filter(Boolean)
+    let interactionCount = 0
+    for (let i = 0; i < prayerIds.length; i++) {
+      // Each prayer gets 3-8 random "praying" interactions
+      const numInteractions = 3 + (i % 6)
+      for (let j = 0; j < numInteractions && j < interactors.length; j++) {
+        const interactorId = interactors[(i + j) % interactors.length]
+        await client.query(
+          'INSERT INTO prayer_interactions (request_id, user_id, type) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING',
+          [prayerIds[i], interactorId, 'prayed']
+        )
+        interactionCount++
+      }
+    }
+    console.log(`   ✅ ${interactionCount} prayer interactions added`)
+
+    // ---- Step 16: Insert extra events (Session 26) ----
+    console.log('\n📅 Inserting extra in-person events...')
+    for (const evt of EXTRA_EVENTS) {
+      const creatorId = userIdMap[evt.creatorKey]
+      const churchId = evt.churchName ? churchIdMap[evt.churchName] : null
+      const result = await client.query(
+        `INSERT INTO events (title, description, date_time, location, category, event_type, event_link, is_live, created_by, church_id)
+         VALUES ($1, $2, $3, $4, $5, 'in_person', NULL, false, $6, $7) RETURNING id`,
+        [evt.title, evt.description, evt.dateTime, evt.location, evt.category, creatorId, churchId]
+      )
+      await client.query(
+        'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2)',
+        [result.rows[0].id, creatorId]
+      )
+      console.log(`   ✅ ${evt.title} (${evt.category})`)
+    }
+
+    console.log('\n📹 Inserting extra digital events...')
+    for (const evt of EXTRA_DIGITAL_EVENTS) {
+      const creatorId = userIdMap[evt.creatorKey]
+      const churchId = evt.churchName ? churchIdMap[evt.churchName] : null
+      const result = await client.query(
+        `INSERT INTO events (title, description, date_time, category, event_type, event_link, is_live, created_by, church_id)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+        [evt.title, evt.description, evt.dateTime, evt.category, evt.eventType, evt.eventLink, evt.isLive, creatorId, churchId]
+      )
+      await client.query(
+        'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2)',
+        [result.rows[0].id, creatorId]
+      )
+      console.log(`   ✅ ${evt.title} (${evt.category} - ${evt.isLive ? 'Live' : 'Recorded'})`)
+    }
+
+    // ---- Step 17: Spread RSVPs across all events for engagement ----
+    console.log('\n🎟️  Spreading RSVPs across events...')
+    const allEventsResult = await client.query('SELECT id FROM events ORDER BY id')
+    const allEventIds = allEventsResult.rows.map(r => r.id)
+    // Build a pool of user IDs to RSVP (mix of old and new users)
+    const rsvpPool = [seekerId, guideId, ...peopleIds].filter(Boolean)
+    let rsvpCount = 0
+    for (let i = 0; i < allEventIds.length; i++) {
+      // Each event gets 4-10 RSVPs from various users
+      const numRsvps = 4 + (i % 7)
+      for (let j = 0; j < numRsvps && j < rsvpPool.length; j++) {
+        const userId = rsvpPool[(i * 3 + j) % rsvpPool.length]
+        await client.query(
+          'INSERT INTO event_rsvps (event_id, user_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+          [allEventIds[i], userId]
+        )
+        rsvpCount++
+      }
+    }
+    console.log(`   ✅ ${rsvpCount} RSVPs spread across ${allEventIds.length} events`)
+
+    // ---- Step 18: More community connections for engagement ----
+    console.log('\n🤝 Adding extra community connections...')
+    const extraConnections = [
+      // --- Jordan Rivera (seeker) — 3 guides + 7 seekers = 10 total ---
+      // (already has: Pastor Mike via Step 10)
+      { from: 'seeker', to: 'Grace Okafor' },
+      { from: 'seeker', to: 'Pastor Robert Hayes' },
+      { from: 'seeker', to: 'Minister Joy Adebayo' },
+      { from: 'seeker', to: 'Sarah Johnson' },
+      { from: 'seeker', to: 'Nathan Brooks' },
+      { from: 'seeker', to: 'Caleb Washington' },
+      { from: 'seeker', to: 'Sofia Ramirez' },
+      { from: 'seeker', to: 'Marcus Davis' },
+      { from: 'seeker', to: 'Olivia Bennett' },
+      { from: 'seeker', to: 'Jasmine Torres' },
+
+      // --- Pastor Mike (guide) — 3 guides + 8 seekers = 11 total ---
+      // (already has: Grace Okafor, Sarah Johnson, Emily Rodriguez, James Wilson, Jordan Rivera, + pending Michael Chen via Step 10)
+      { from: 'guide', to: 'Pastor Thomas Wright' },
+      { from: 'guide', to: 'Pastor Daniel Reeves' },
+      { from: 'guide', to: 'Olivia Bennett' },
+      { from: 'guide', to: 'Nathan Brooks' },
+      { from: 'guide', to: 'Rachel Kim' },
+      { from: 'guide', to: 'Aisha Williams' },
+      { from: 'guide', to: 'Caleb Washington' },
+      { from: 'guide', to: 'Marcus Davis' },
+
+      // --- Other cross-connections for general engagement ---
+      { from: 'Pastor Robert Hayes', to: 'Isaiah Reed' },
+      { from: 'Minister Joy Adebayo', to: 'Isaiah Reed' },
+      { from: 'Pastor Lisa Monroe', to: 'Hannah Lee' },
+      { from: 'Pastor Lisa Monroe', to: 'Megan O\'Brien' },
+      { from: 'Pastor Lisa Monroe', to: 'Ryan Mitchell' },
+      { from: 'Deacon Carlos Vega', to: 'Sofia Ramirez' },
+      { from: 'Rev. Samuel Kim', to: 'Liam Fitzgerald' },
+      { from: 'Pastor David Okonkwo', to: 'Elijah Brown' },
+      { from: 'Pastor David Okonkwo', to: 'Caleb Washington' },
+      { from: 'Marcus Davis', to: 'Nathan Brooks' },
+      { from: 'Destiny Harris', to: 'Aisha Williams' },
+      { from: 'Ethan Cooper', to: 'Tyler Odom' },
+      { from: 'Zoe Nakamura', to: 'Priya Sharma' },
+      { from: 'Elijah Brown', to: 'Caleb Washington' },
+      { from: 'Sofia Ramirez', to: 'Emily Rodriguez' },
+      { from: 'Hannah Lee', to: 'Grace Okafor' },
+      { from: 'Liam Fitzgerald', to: 'Ryan Mitchell' },
+      { from: 'Jasmine Torres', to: 'Rachel Kim' }
+    ]
+    let connCount = 0
+    for (const conn of extraConnections) {
+      const fromId = userIdMap[conn.from]
+      const toId = userIdMap[conn.to]
+      if (fromId && toId) {
+        await client.query(
+          `INSERT INTO user_connections (requester_id, recipient_id, status) VALUES ($1, $2, 'accepted') ON CONFLICT DO NOTHING`,
+          [fromId, toId]
+        )
+        connCount++
+      }
+    }
+    console.log(`   ✅ ${connCount} extra connections added`)
+
+    // ---- Step 19: Seed conversations with messages ----
+    console.log('\n💬 Inserting seed conversations...')
+    let convCount = 0
+    let msgCount = 0
+    for (const conv of SEED_CONVERSATIONS) {
+      const user1Id = userIdMap[conv.user1]
+      const user2Id = userIdMap[conv.user2]
+      if (!user1Id || !user2Id) continue
+
+      // Create the conversation row (owner_id = LEAST, person_id = GREATEST to match unique index)
+      const ownerId = Math.min(user1Id, user2Id)
+      const personId = Math.max(user1Id, user2Id)
+      const lastMsg = conv.messages[conv.messages.length - 1]
+      const lastSenderId = userIdMap[lastMsg.senderKey]
+
+      // last_time is VARCHAR(20), so use short format like "2:30 PM"
+      const lastTime = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+      const convResult = await client.query(
+        `INSERT INTO conversations (owner_id, person_id, last_message, last_time, last_sender_id)
+         VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+        [ownerId, personId, lastMsg.text, lastTime, lastSenderId]
+      )
+      const convId = convResult.rows[0].id
+
+      // Add both participants
+      await client.query(
+        'INSERT INTO conversation_participants (conversation_id, user_id) VALUES ($1, $2), ($1, $3)',
+        [convId, user1Id, user2Id]
+      )
+
+      // Insert messages with staggered timestamps (spread over the last few days)
+      const now = Date.now()
+      const msgSpacing = 3600000 * 2 // 2 hours between messages
+      const startTime = now - (conv.messages.length * msgSpacing)
+      for (let i = 0; i < conv.messages.length; i++) {
+        const msg = conv.messages[i]
+        const senderId = userIdMap[msg.senderKey]
+        const msgTime = new Date(startTime + (i * msgSpacing)).toISOString()
+        await client.query(
+          'INSERT INTO messages (conversation_id, sender_id, text, created_at) VALUES ($1, $2, $3, $4)',
+          [convId, senderId, msg.text, msgTime]
+        )
+        msgCount++
+      }
+      convCount++
+
+      // Log the conversation pair
+      const name1 = conv.user1 === 'guide' ? 'Pastor Mike' : conv.user1 === 'seeker' ? 'Jordan Rivera' : conv.user1
+      const name2 = conv.user2 === 'guide' ? 'Pastor Mike' : conv.user2 === 'seeker' ? 'Jordan Rivera' : conv.user2
+      console.log(`   ✅ ${name1} ↔ ${name2} (${conv.messages.length} messages)`)
+    }
+    console.log(`   📊 ${convCount} conversations, ${msgCount} messages total`)
+
+    const totalConnections = 6 + connCount
+    const totalEvents = SAMPLE_EVENTS.length + SAMPLE_DIGITAL_EVENTS.length + EXTRA_EVENTS.length + EXTRA_DIGITAL_EVENTS.length
+
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     console.log(`   Users:          ${2 + AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
@@ -462,11 +673,14 @@ async function seed() {
     console.log(`   Appointments:   ${SAMPLE_APPOINTMENTS.length}`)
     console.log(`   Verses:         ${SCRIPTURE_VERSES.length}`)
     console.log(`   Plans:          ${READING_PLANS.length} (${totalPlanDays} days)`)
-    console.log(`   Connections:    6 (5 accepted, 1 pending)`)
+    console.log(`   Connections:    ${totalConnections} (${totalConnections - 1} accepted, 1 pending)`)
     console.log(`   Favorites:      ${favCount} church favorites`)
-    console.log(`   Events:         ${SAMPLE_EVENTS.length} in-person + ${SAMPLE_DIGITAL_EVENTS.length} digital (+ extra RSVPs)`)
+    console.log(`   Events:         ${totalEvents} total (${SAMPLE_EVENTS.length + EXTRA_EVENTS.length} in-person + ${SAMPLE_DIGITAL_EVENTS.length + EXTRA_DIGITAL_EVENTS.length} digital)`)
+    console.log(`   RSVPs:          ${rsvpCount}+ spread across events`)
     console.log(`   Announcements:  ${SAMPLE_ANNOUNCEMENTS.length}`)
-    console.log(`   Testimonies:    ${SAMPLE_TESTIMONIES.length}`)
+    console.log(`   Prayers:        ${SAMPLE_PRAYERS.length} requests + ${SAMPLE_TESTIMONIES.length} testimonies`)
+    console.log(`   Interactions:   ${interactionCount} prayer interactions`)
+    console.log(`   Conversations:  ${convCount} (${msgCount} messages)`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {
