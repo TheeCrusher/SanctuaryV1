@@ -370,6 +370,7 @@ function ForgotPassword() {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              <p className="password-hint">Minimum 8 characters</p>
             </div>
 
             <div className="fp-input-section">

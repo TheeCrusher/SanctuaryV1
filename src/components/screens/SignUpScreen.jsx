@@ -93,8 +93,8 @@ function SignUpScreen() {
       return
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters.')
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters.')
       return
     }
 
@@ -246,13 +246,14 @@ function SignUpScreen() {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              <p className="password-hint">Minimum 8 characters</p>
 
               {/* Password strength indicator */}
               {password && (
                 <div className="fp-requirements">
-                  <div className={`fp-req-item ${password.length >= 6 ? 'fp-req-met' : ''}`}>
+                  <div className={`fp-req-item ${password.length >= 8 ? 'fp-req-met' : ''}`}>
                     <CheckCircle size={14} />
-                    <span>At least 6 characters</span>
+                    <span>At least 8 characters</span>
                   </div>
                 </div>
               )}
