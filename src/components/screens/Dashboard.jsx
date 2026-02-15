@@ -18,7 +18,8 @@ import { Avatar, Card, Badge, LoadingSpinner, ErrorState } from '../common'
 import { api } from '../../utils/api'
 import {
   MessageCircle, Users, Heart, Calendar,
-  CheckCircle, ChevronRight, Bell
+  CheckCircle, ChevronRight, Bell,
+  Flame, Trophy, CalendarCheck, CircleCheckBig, Star
 } from 'lucide-react'
 import { formatDateShort } from '../../utils/helpers'
 
@@ -279,28 +280,74 @@ function Dashboard() {
               )}
             </div>
 
-            {/* ===== SECTION 5: YOUR SESSIONS (Stats) ===== */}
+            {/* ===== SECTION 5: ROLE-SPECIFIC STATS ===== */}
             <div className="home-section">
               <div className="stats-box">
-                <div className="stats-box-title">Your Sessions</div>
-                <div className="stats-grid">
-                  <div className="stat-card">
-                    <div className="stat-value">{homeData.sessionStats.upcoming}</div>
-                    <div className="stat-label">Upcoming</div>
-                  </div>
-                  <div className="stat-card">
-                    <div className="stat-value">{homeData.sessionStats.completed}</div>
-                    <div className="stat-label">Completed</div>
-                  </div>
-                  <div className="stat-card">
-                    <div className="stat-value">{homeData.sessionStats.uniqueSeekers}</div>
-                    <div className="stat-label">Seekers Helped</div>
-                  </div>
-                  <div className="stat-card">
-                    <div className="stat-value">—</div>
-                    <div className="stat-label">Rating</div>
-                  </div>
-                </div>
+                {user?.role === 'guide' ? (
+                  <>
+                    <div className="stats-box-title">Your Ministry</div>
+                    <div className="stats-grid">
+                      <div className="stat-card">
+                        <div className="stat-value">{homeData.sessionStats.upcoming}</div>
+                        <div className="stat-label">
+                          <Calendar size={13} className="stat-icon" /> Upcoming
+                        </div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">{homeData.sessionStats.completed}</div>
+                        <div className="stat-label">
+                          <CircleCheckBig size={13} className="stat-icon" /> Completed
+                        </div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">{homeData.sessionStats.uniqueSeekers}</div>
+                        <div className="stat-label">
+                          <Users size={13} className="stat-icon" /> Seekers Helped
+                        </div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">{homeData.sessionStats.rating || '—'}</div>
+                        <div className="stat-label">
+                          <Star size={13} className="stat-icon" /> Rating
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="stats-box-title">Your Journey</div>
+                    <div className="stats-grid">
+                      <div className="stat-card">
+                        <div className="stat-value">
+                          <Flame size={20} className="stat-icon-inline stat-icon-gold" />
+                          {homeData.sessionStats.studyStreak}
+                        </div>
+                        <div className="stat-label">Study Streak</div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">
+                          <CalendarCheck size={20} className="stat-icon-inline stat-icon-gold" />
+                          {homeData.sessionStats.eventsAttending}
+                        </div>
+                        <div className="stat-label">Events Attending</div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">
+                          <Trophy size={20} className="stat-icon-inline stat-icon-gold" />
+                          {homeData.sessionStats.communityScore}
+                        </div>
+                        <div className="stat-label">Community Score</div>
+                      </div>
+                      <div className="stat-card">
+                        <div className="stat-value">
+                          <CircleCheckBig size={20} className="stat-icon-inline stat-icon-gold" />
+                          {homeData.sessionStats.sessionsCompleted}
+                        </div>
+                        <div className="stat-label">Sessions Completed</div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 

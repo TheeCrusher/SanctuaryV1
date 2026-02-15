@@ -20,17 +20,13 @@ router.get('/', async (req, res, next) => {
   try {
     const userId = req.user.id
 
-    // Run all queries in parallel for speed
-    const [
-      unreadResult,
-      pendingConnResult,
-      prayerActivityResult,
-      pendingSessionsResult,
-      upcomingResult,
-      communityActivityResult,
-      statsResult,
-      upcomingEventsResult
-    ] = await Promise.all([
+    // Fast role lookup first (indexed PK) — needed to branch stat queries
+    const { rows: [{ role: userRole }] } = await pool.query(
+      'SELECT role FROM users WHERE id = $1', [userId]
+    )
+
+    // Build shared queries (same for both roles)
+    const sharedQueries = [
 
       // 1. Unread messages count (only where someone ELSE sent the last message)
       pool.query(
@@ -116,18 +112,7 @@ router.get('/', async (req, res, next) => {
         [userId]
       ),
 
-      // 7. Session stats
-      pool.query(
-        `SELECT
-           COUNT(*) FILTER (WHERE status NOT IN ('completed', 'cancelled', 'declined'))::int AS upcoming,
-           COUNT(*) FILTER (WHERE status = 'completed')::int AS completed,
-           COUNT(DISTINCT seeker_name) AS unique_seekers
-         FROM appointments
-         WHERE (guide_id = $1 OR seeker_id = $1)`,
-        [userId]
-      ),
-
-      // 8. Upcoming RSVP'd events (next 5)
+      // 7. Upcoming RSVP'd events (next 5)
       pool.query(
         `SELECT e.id, e.title, e.date_time, e.location, e.category,
                 c.name AS church_name
@@ -139,7 +124,95 @@ router.get('/', async (req, res, next) => {
          LIMIT 5`,
         [userId]
       )
-    ])
+    ]
+
+    // Add role-specific stat queries
+    if (userRole === 'guide') {
+      // Guide stats: upcoming sessions, completed, unique seekers helped
+      sharedQueries.push(
+        pool.query(
+          `SELECT
+             COUNT(*) FILTER (WHERE status NOT IN ('completed', 'cancelled', 'declined') AND date >= CURRENT_DATE)::int AS upcoming,
+             COUNT(*) FILTER (WHERE status = 'completed')::int AS completed,
+             COUNT(DISTINCT COALESCE(seeker_id, 0)) FILTER (WHERE seeker_id IS NOT NULL AND status = 'completed') AS unique_seekers
+           FROM appointments
+           WHERE guide_id = $1`,
+          [userId]
+        )
+      )
+    } else {
+      // Seeker stats: study streak, events attending, community score, sessions completed
+      sharedQueries.push(
+        // 8a. Study streak
+        pool.query(
+          `SELECT COALESCE(current_streak, 0) AS current_streak
+           FROM user_study_streaks WHERE user_id = $1`,
+          [userId]
+        ),
+        // 8b. Events attending (future RSVP'd events)
+        pool.query(
+          `SELECT COUNT(*)::int AS count
+           FROM event_rsvps er
+           JOIN events e ON er.event_id = e.id
+           WHERE er.user_id = $1 AND e.date_time > NOW()`,
+          [userId]
+        ),
+        // 8c. Community score (calculated from activity across the app)
+        pool.query(
+          `SELECT (
+             COALESCE((SELECT COUNT(*) FROM prayer_requests WHERE user_id = $1 AND type = 'prayer'), 0) * 2 +
+             COALESCE((SELECT COUNT(*) FROM prayer_requests WHERE user_id = $1 AND type = 'testimony'), 0) * 2 +
+             COALESCE((SELECT COUNT(*) FROM prayer_interactions WHERE user_id = $1), 0) +
+             COALESCE((SELECT COUNT(*) FROM church_reviews WHERE user_id = $1), 0) * 2 +
+             COALESCE((SELECT COUNT(*) FROM event_rsvps er JOIN events e ON er.event_id = e.id WHERE er.user_id = $1 AND e.date_time > NOW()), 0) +
+             COALESCE((SELECT COUNT(*) FROM event_rsvps er JOIN events e ON er.event_id = e.id WHERE er.user_id = $1 AND e.date_time <= NOW()), 0) * 2 +
+             COALESCE((SELECT COUNT(*) FROM user_connections WHERE (requester_id = $1 OR recipient_id = $1) AND status = 'accepted'), 0) +
+             COALESCE((SELECT COUNT(DISTINCT conversation_id) FROM messages WHERE sender_id = $1), 0) +
+             COALESCE((SELECT COALESCE(SUM(array_length(completed_days, 1)), 0) FROM user_reading_progress WHERE user_id = $1), 0) +
+             COALESCE((SELECT COUNT(*) FROM user_memorization_stats WHERE user_id = $1 AND attempts > 0), 0)
+           )::int AS score`,
+          [userId]
+        ),
+        // 8d. Sessions completed (lifetime)
+        pool.query(
+          `SELECT COUNT(*)::int AS count
+           FROM appointments
+           WHERE seeker_id = $1 AND status = 'completed'`,
+          [userId]
+        )
+      )
+    }
+
+    // Run all queries in parallel for speed
+    const results = await Promise.all(sharedQueries)
+
+    // Destructure shared results (first 7 are always the same)
+    const [
+      unreadResult, pendingConnResult, prayerActivityResult,
+      pendingSessionsResult, upcomingResult, communityActivityResult,
+      upcomingEventsResult, ...roleResults
+    ] = results
+
+    // Build role-specific sessionStats
+    let sessionStats
+    if (userRole === 'guide') {
+      const guideStats = roleResults[0]
+      sessionStats = {
+        role: 'guide',
+        upcoming: guideStats.rows[0].upcoming,
+        completed: guideStats.rows[0].completed,
+        uniqueSeekers: parseInt(guideStats.rows[0].unique_seekers)
+      }
+    } else {
+      const [streakResult, eventsResult, scoreResult, sessionsResult] = roleResults
+      sessionStats = {
+        role: 'seeker',
+        studyStreak: streakResult.rows[0]?.current_streak || 0,
+        eventsAttending: eventsResult.rows[0].count,
+        communityScore: parseInt(scoreResult.rows[0].score) || 0,
+        sessionsCompleted: sessionsResult.rows[0].count
+      }
+    }
 
     // Format the response
     res.json({
@@ -176,11 +249,7 @@ router.get('/', async (req, res, next) => {
         userAvatar: r.is_anonymous ? '🙏' : r.user_avatar,
         userPhoto: r.is_anonymous ? null : r.user_photo
       })),
-      sessionStats: {
-        upcoming: statsResult.rows[0].upcoming,
-        completed: statsResult.rows[0].completed,
-        uniqueSeekers: parseInt(statsResult.rows[0].unique_seekers)
-      },
+      sessionStats,
       upcomingEvents: upcomingEventsResult.rows.map(e => ({
         id: e.id,
         title: e.title,
