@@ -1617,6 +1617,7 @@ textarea {
 .nav-items {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 12px 8px 16px;
 }
 
@@ -1631,29 +1632,79 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .nav-btn.active {
   color: white;
 }
 
+/* --- Profile photo tab --- */
 .nav-btn-profile {
-  background: white;
+  background: transparent;
   border-radius: 50%;
-  color: #1e3a8a;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  width: 36px;
+  height: 36px;
   padding: 0;
+  overflow: visible;
+  position: relative;
 }
 
 .nav-btn-profile img {
-  width: 100%;
-  height: 100%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   object-fit: cover;
+  display: block;
+}
+
+/* Initials fallback circle */
+.nav-profile-initials {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.3px;
+}
+
+/* Role-colored ring: gold for guide, blue for seeker */
+.nav-profile-guide img,
+.nav-profile-guide .nav-profile-initials {
+  box-shadow: 0 0 0 2.5px var(--accent-gold, #d4a843);
+}
+
+.nav-profile-seeker img,
+.nav-profile-seeker .nav-profile-initials {
+  box-shadow: 0 0 0 2.5px #93c5fd;
+}
+
+/* Active indicator: thicker ring + dot underneath */
+.nav-btn-profile.active.nav-profile-guide img,
+.nav-btn-profile.active.nav-profile-guide .nav-profile-initials {
+  box-shadow: 0 0 0 3px var(--accent-gold, #d4a843);
+}
+
+.nav-btn-profile.active.nav-profile-seeker img,
+.nav-btn-profile.active.nav-profile-seeker .nav-profile-initials {
+  box-shadow: 0 0 0 3px #93c5fd;
+}
+
+.nav-btn-profile.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
 }
 
 /* ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 // BOTTOM NAVIGATION COMPONENT
 // =============================================================================
 // The main navigation bar fixed at the bottom of the screen.
-// Shows 4 icons: Home, Community, More, Profile
+// Shows 5 tabs: Home, Community, Events, More, Profile Photo
 //
 // Uses React Router to:
 //   - Navigate to different screens when tapped
@@ -10,16 +10,35 @@
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Home, Users, MoreHorizontal, User } from 'lucide-react'
+import { Home, Users, CalendarDays, MoreHorizontal } from 'lucide-react'
+
+// Consistent colors for initials — matches Avatar component
+const INITIALS_COLORS = [
+  '#6366f1', '#8b5cf6', '#a855f7', '#d946ef',
+  '#ec4899', '#f43f5e', '#ef4444', '#f97316',
+  '#f59e0b', '#84cc16', '#22c55e', '#14b8a6',
+  '#06b6d4', '#3b82f6', '#2563eb', '#7c3aed'
+]
+
+function getInitials(name) {
+  if (!name) return ''
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0][0].toUpperCase()
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+}
+
+function getColorForName(name) {
+  if (!name) return INITIALS_COLORS[0]
+  let hash = 0
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  return INITIALS_COLORS[Math.abs(hash) % INITIALS_COLORS.length]
+}
 
 function BottomNav() {
-  // useNavigate gives us a function to programmatically change routes
   const navigate = useNavigate()
-
-  // useLocation tells us the current URL path
   const location = useLocation()
-
-  // Get user data for the profile avatar
   const { user } = useApp()
 
   // Helper function to check if a path is currently active
@@ -27,38 +46,63 @@ function BottomNav() {
     return location.pathname === path || location.pathname.startsWith(path + '/')
   }
 
+  // Events tab is active for /events and any sub-routes
+  function isEventsActive() {
+    return location.pathname === '/events' || location.pathname.startsWith('/events/')
+  }
+
   // "More" is active when viewing any screen accessible from the More menu.
-  // NOTE: Update this array when adding/removing items from the More menu.
+  // Events removed — it now has its own tab.
   function isMoreActive() {
-    const morePaths = ['/more', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/events', '/guides', '/bibles']
+    const morePaths = ['/more', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/guides', '/bibles']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )
   }
 
-  // Navigation items configuration (3 main tabs)
-  const navItems = [
-    { path: '/dashboard', icon: Home, label: 'Home' },
-    { path: '/community', icon: Users, label: 'Community' }
-  ]
+  // Profile is active on own profile screen
+  function isProfileActive() {
+    return location.pathname === '/profile' || location.pathname.startsWith('/profile/')
+  }
+
+  // Role-based ring color for the profile photo
+  const ringClass = user?.role === 'guide' ? 'nav-profile-guide' : 'nav-profile-seeker'
+  const initials = getInitials(user?.name)
 
   return (
     <nav className="bottom-nav">
       <div className="nav-items">
-        {/* Main nav buttons */}
-        {navItems.map((item) => (
-          <button
-            key={item.path}
-            className={`nav-btn ${isActive(item.path) ? 'active' : ''}`}
-            onClick={() => navigate(item.path)}
-            aria-label={item.label}
-            title={item.label}
-          >
-            <item.icon size={24} />
-          </button>
-        ))}
+        {/* Home */}
+        <button
+          className={`nav-btn ${isActive('/dashboard') ? 'active' : ''}`}
+          onClick={() => navigate('/dashboard')}
+          aria-label="Home"
+          title="Home"
+        >
+          <Home size={24} />
+        </button>
 
-        {/* More button - links to Notes, Scripture, Churches */}
+        {/* Community */}
+        <button
+          className={`nav-btn ${isActive('/community') ? 'active' : ''}`}
+          onClick={() => navigate('/community')}
+          aria-label="Community"
+          title="Community"
+        >
+          <Users size={24} />
+        </button>
+
+        {/* Events */}
+        <button
+          className={`nav-btn ${isEventsActive() ? 'active' : ''}`}
+          onClick={() => navigate('/events')}
+          aria-label="Events"
+          title="Events"
+        >
+          <CalendarDays size={24} />
+        </button>
+
+        {/* More */}
         <button
           className={`nav-btn ${isMoreActive() ? 'active' : ''}`}
           onClick={() => navigate('/more')}
@@ -68,17 +112,24 @@ function BottomNav() {
           <MoreHorizontal size={24} />
         </button>
 
-        {/* Profile button */}
+        {/* Profile Photo */}
         <button
-          className={`nav-btn nav-btn-profile ${isActive('/profile') ? 'active' : ''}`}
+          className={`nav-btn nav-btn-profile ${ringClass} ${isProfileActive() ? 'active' : ''}`}
           onClick={() => navigate('/profile')}
           aria-label="Profile"
           title="Profile"
         >
           {user?.photoUrl ? (
             <img src={user.photoUrl} alt="Profile" />
+          ) : initials ? (
+            <span
+              className="nav-profile-initials"
+              style={{ background: getColorForName(user?.name) }}
+            >
+              {initials}
+            </span>
           ) : (
-            <User size={22} />
+            <span className="nav-profile-initials" style={{ background: INITIALS_COLORS[0] }}>?</span>
           )}
         </button>
       </div>
