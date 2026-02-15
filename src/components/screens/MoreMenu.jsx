@@ -18,7 +18,7 @@ function MoreMenu() {
     {
       label: 'Discover',
       items: [
-        { icon: Users, text: 'Find a Guide', subtitle: 'Browse spiritual guides nationwide', path: '/guides', colorClass: 'icon-gold' },
+        { icon: Users, text: 'Find a Guide', subtitle: 'Browse spiritual guides nationwide', path: '/guides', colorClass: 'icon-gold', tourId: 'more-find-guide' },
         { icon: Church, text: 'Churches', subtitle: 'Find & favorite churches', path: '/churches', colorClass: 'icon-gold' }
       ]
     },
@@ -27,13 +27,13 @@ function MoreMenu() {
       items: [
         { icon: Book, text: 'Bible', subtitle: 'Read the Word of God', path: '/bibles', colorClass: 'icon-gold' },
         { icon: BookOpen, text: 'Scripture Study', subtitle: 'Verses, plans & daily word', path: '/scripture', colorClass: 'icon-gold' },
-        { icon: Heart, text: 'Prayer Board', subtitle: 'Community prayer requests', path: '/prayers', colorClass: 'icon-burgundy' }
+        { icon: Heart, text: 'Prayer Board', subtitle: 'Community prayer requests', path: '/prayers', colorClass: 'icon-burgundy', tourId: 'more-prayer-board' }
       ]
     },
     {
       label: 'My Stuff',
       items: [
-        { icon: Calendar, text: 'Sessions', subtitle: 'Appointments & session notes', path: '/appointments', colorClass: 'icon-gold' }
+        { icon: Calendar, text: 'Sessions', subtitle: 'Appointments & session notes', path: '/appointments', colorClass: 'icon-gold', tourId: 'more-sessions' }
       ]
     }
   ]
@@ -65,6 +65,7 @@ function MoreMenu() {
                 key={item.text}
                 className="more-menu-item"
                 onClick={() => navigate(item.path)}
+                {...(item.tourId ? { 'data-tour-id': item.tourId } : {})}
               >
                 <div className="more-menu-item-left">
                   <span className={`more-menu-item-icon ${item.colorClass || ''}`}>

@@ -31,7 +31,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -60,6 +60,7 @@ router.get('/me', async (req, res, next) => {
         phoneNumber: user.phone_number,
         acceptingSeekers: user.accepting_seekers,
         maxPendingRequests: user.max_pending_requests,
+        onboardingCompleted: user.onboarding_completed,
         createdAt: user.created_at
       }
     })
@@ -79,7 +80,7 @@ router.get('/me', async (req, res, next) => {
 
 router.put('/me', async (req, res, next) => {
   try {
-    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber, acceptingSeekers, maxPendingRequests } = req.body
+    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber, acceptingSeekers, maxPendingRequests, onboardingCompleted } = req.body
 
     // Build the UPDATE query dynamically based on which fields were provided
     const updates = []
@@ -161,6 +162,11 @@ router.put('/me', async (req, res, next) => {
       updates.push(`max_pending_requests = $${paramCount}`)
       values.push(Math.max(1, Math.min(20, Number(maxPendingRequests))))
     }
+    if (onboardingCompleted !== undefined) {
+      paramCount++
+      updates.push(`onboarding_completed = $${paramCount}`)
+      values.push(onboardingCompleted)
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ error: 'No fields to update.' })
@@ -175,7 +181,7 @@ router.put('/me', async (req, res, next) => {
 
     const result = await pool.query(
       `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramCount}
-       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests`,
+       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed`,
       values
     )
 
@@ -199,7 +205,8 @@ router.put('/me', async (req, res, next) => {
         interests: user.interests || [],
         phoneNumber: user.phone_number,
         acceptingSeekers: user.accepting_seekers,
-        maxPendingRequests: user.max_pending_requests
+        maxPendingRequests: user.max_pending_requests,
+        onboardingCompleted: user.onboarding_completed
       }
     })
   } catch (error) {

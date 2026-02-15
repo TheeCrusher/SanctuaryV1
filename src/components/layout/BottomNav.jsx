@@ -78,6 +78,7 @@ function BottomNav() {
           onClick={() => navigate('/dashboard')}
           aria-label="Home"
           title="Home"
+          data-tour-id="nav-home"
         >
           <Home size={24} />
         </button>
@@ -88,6 +89,7 @@ function BottomNav() {
           onClick={() => navigate('/community')}
           aria-label="Community"
           title="Community"
+          data-tour-id="nav-community"
         >
           <Users size={24} />
         </button>
@@ -98,6 +100,7 @@ function BottomNav() {
           onClick={() => navigate('/events')}
           aria-label="Events"
           title="Events"
+          data-tour-id="nav-events"
         >
           <CalendarDays size={24} />
         </button>
@@ -108,6 +111,7 @@ function BottomNav() {
           onClick={() => navigate('/more')}
           aria-label="More"
           title="More"
+          data-tour-id="nav-more"
         >
           <MoreHorizontal size={24} />
         </button>
@@ -118,6 +122,7 @@ function BottomNav() {
           onClick={() => navigate('/profile')}
           aria-label="Profile"
           title="Profile"
+          data-tour-id="nav-profile"
         >
           {user?.photoUrl ? (
             <img src={user.photoUrl} alt="Profile" />

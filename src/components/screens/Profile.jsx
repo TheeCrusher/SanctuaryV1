@@ -10,7 +10,7 @@ import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
 import { Avatar } from '../common'
 import { compressImage } from '../../utils/imageCompress'
-import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff, Users, Clock } from 'lucide-react'
+import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff, Users, Clock, Compass } from 'lucide-react'
 
 const SPECIALIZATIONS = [
   'Bible Study',
@@ -267,6 +267,19 @@ function Profile() {
           <div className={`theme-toggle ${theme === 'dark' ? 'active' : ''}`}>
             <div className="theme-toggle-thumb" />
           </div>
+        </button>
+
+        {/* Restart Onboarding Tour */}
+        <div className="menu-section-label">Help</div>
+        <button className="menu-item" onClick={async () => {
+          await updateProfile({ onboardingCompleted: false })
+          navigate('/dashboard')
+        }}>
+          <div className="menu-item-left">
+            <span className="menu-item-icon"><Compass size={20} /></span>
+            <span className="menu-item-text">Restart Onboarding Tour</span>
+          </div>
+          <span className="menu-item-arrow"><ChevronRight size={18} /></span>
         </button>
 
         {/* Support Section */}

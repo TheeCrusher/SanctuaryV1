@@ -157,7 +157,7 @@ function EventsScreen() {
           </button>
           <h2>Community Events</h2>
         </div>
-        <button className="events-create-btn" onClick={() => {
+        <button className="events-create-btn" data-tour-id="events-create" onClick={() => {
           setCreateEventType(eventType)
           setCategory(eventType === 'digital' ? 'General' : 'Social')
           setShowCreateModal(true)

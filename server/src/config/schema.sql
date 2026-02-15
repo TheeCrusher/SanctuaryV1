@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS users (
   preferred_church_id INTEGER,
   accepting_seekers   BOOLEAN DEFAULT true,
   max_pending_requests INTEGER DEFAULT 5,
+  onboarding_completed BOOLEAN DEFAULT false,
   created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

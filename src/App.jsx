@@ -4,9 +4,10 @@
 // This is the root component of your application.
 // It defines all the routes (URLs) and which components to show for each.
 
+import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from './context/AppContext'
-import { LoadingSpinner } from './components/common'
+import { LoadingSpinner, OnboardingTour } from './components/common'
 import { useSwipeable } from 'react-swipeable'
 
 // Layout components
@@ -99,6 +100,18 @@ function App() {
   const { user } = useApp()
   const location = useLocation()
 
+  // ----- Onboarding Tour -----
+  // Shows once for new users when they first land on the dashboard
+  const [showTour, setShowTour] = useState(false)
+
+  useEffect(() => {
+    if (user && user.onboardingCompleted === false && location.pathname === '/dashboard') {
+      // Small delay to let Dashboard render before starting the tour
+      const timer = setTimeout(() => setShowTour(true), 600)
+      return () => clearTimeout(timer)
+    }
+  }, [user, location.pathname])
+
   // Pages where we DON'T show the bottom navigation
   const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
@@ -110,12 +123,14 @@ function App() {
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
+      if (showTour) return // Disable swiping during tour
       // Only swipe if we're on a main tab and there's a next tab
       if (currentTabIndex >= 0 && currentTabIndex < mainTabs.length - 1) {
         navigate(mainTabs[currentTabIndex + 1])
       }
     },
     onSwipedRight: () => {
+      if (showTour) return // Disable swiping during tour
       // Only swipe if we're on a main tab and there's a previous tab
       if (currentTabIndex > 0) {
         navigate(mainTabs[currentTabIndex - 1])
@@ -445,6 +460,11 @@ function App() {
 
       {/* Global user action menu (triggered from any tappable name) */}
       <UserActionMenu />
+
+      {/* Onboarding Tour — renders above everything for first-time users */}
+      {showTour && (
+        <OnboardingTour onComplete={() => setShowTour(false)} />
+      )}
     </div>
   )
 }

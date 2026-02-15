@@ -75,7 +75,7 @@ router.post('/register', async (req, res, next) => {
     const result = await pool.query(
       `INSERT INTO users (name, email, password_hash, role, phone_number)
        VALUES ($1, $2, $3, $4, $5)
-       RETURNING id, name, email, avatar, photo_url, role, created_at`,
+       RETURNING id, name, email, avatar, photo_url, role, onboarding_completed, created_at`,
       [name, email, passwordHash, role || 'seeker', phoneNumber || null]
     )
 
@@ -93,7 +93,8 @@ router.post('/register', async (req, res, next) => {
         email: user.email,
         avatar: user.avatar,
         photoUrl: user.photo_url,
-        role: user.role
+        role: user.role,
+        onboardingCompleted: user.onboarding_completed
       }
     })
   } catch (error) {
@@ -125,7 +126,7 @@ router.post('/login', async (req, res, next) => {
 
     // Look up the user by email
     const result = await pool.query(
-      'SELECT id, name, email, password_hash, avatar, photo_url, role FROM users WHERE email = $1',
+      'SELECT id, name, email, password_hash, avatar, photo_url, role, onboarding_completed FROM users WHERE email = $1',
       [email]
     )
 
@@ -157,7 +158,8 @@ router.post('/login', async (req, res, next) => {
         email: user.email,
         avatar: user.avatar,
         photoUrl: user.photo_url,
-        role: user.role
+        role: user.role,
+        onboardingCompleted: user.onboarding_completed
       }
     })
   } catch (error) {
