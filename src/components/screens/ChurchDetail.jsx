@@ -10,6 +10,7 @@ import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, LoadingSpinner } from '../common'
 import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock } from 'lucide-react'
 import { api, API_BASE } from '../../utils/api'
+import { timeAgo } from '../../utils/helpers'
 
 // The 8 rating categories — each has a key (matches backend), display label, and icon
 const RATING_CATEGORIES = [
@@ -192,20 +193,6 @@ function ChurchDetail() {
     return stars
   }
 
-  function relativeTime(dateStr) {
-    const now = new Date()
-    const date = new Date(dateStr)
-    const diffMs = now - date
-    const diffMins = Math.floor(diffMs / 60000)
-    if (diffMins < 1) return 'Just now'
-    if (diffMins < 60) return `${diffMins}m ago`
-    const diffHours = Math.floor(diffMins / 60)
-    if (diffHours < 24) return `${diffHours}h ago`
-    const diffDays = Math.floor(diffHours / 24)
-    if (diffDays < 7) return `${diffDays}d ago`
-    return date.toLocaleDateString()
-  }
-
   if (loading) {
     return (
       <div className="screen">
@@ -222,8 +209,8 @@ function ChurchDetail() {
             <button className="back-btn" onClick={() => navigate('/churches')}>
               <ArrowLeft size={20} />
             </button>
-            <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Church Not Found</h1>
-            <div style={{ width: '40px' }} />
+            <h1 className="screen-header-title">Church Not Found</h1>
+            <div className="header-spacer" />
           </div>
         </div>
         <div className="screen-content">
@@ -456,7 +443,7 @@ function ChurchDetail() {
                   </div>
                   <div className="bulletin-card-message">{ann.message}</div>
                   <div className="bulletin-card-meta">
-                    {ann.authorName} · {relativeTime(ann.createdAt)}
+                    {ann.authorName} · {timeAgo(ann.createdAt)}
                   </div>
                 </div>
               ))
@@ -492,7 +479,7 @@ function ChurchDetail() {
                   <span className={`review-name ${review.userId !== user?.id ? 'tappable-name' : ''}`}>{review.userName}</span>
                   <div className="review-meta">
                     <span className="stars stars-sm" style={{ fontSize: '12px' }}>{renderStars(review.rating)}</span>
-                    <span>{relativeTime(review.createdAt)}</span>
+                    <span>{timeAgo(review.createdAt)}</span>
                   </div>
                 </div>
               </div>

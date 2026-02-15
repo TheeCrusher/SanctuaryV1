@@ -129,7 +129,7 @@ function Scripture() {
           <ArrowLeft size={20} />
         </button>
         <h1 className="screen-title">Scripture Study</h1>
-        <div style={{ width: '40px' }} />
+        <div className="header-spacer" />
       </div>
 
       <div className="screen-content">

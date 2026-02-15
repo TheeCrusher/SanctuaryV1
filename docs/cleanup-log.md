@@ -67,3 +67,53 @@ A running record of cleanup and maintenance work. Each entry documents what was 
 | `src/components/screens/Churches.jsx` | Import API_BASE |
 | `src/components/screens/ChurchDetail.jsx` | Import API_BASE |
 | `server/src/routes/auth.js` | Added password length validation |
+
+---
+
+### Round 2 (same session)
+
+### 8. Extracted duplicate `timeAgo`/`relativeTime` to shared utility
+- **What:** A "relative time" function (e.g., "2h ago", "3d ago") was copy-pasted in 4 files with nearly identical logic:
+  - `Notifications.jsx` — called `timeAgo()`
+  - `Appointments.jsx` — called `relativeTime()`
+  - `ChurchDetail.jsx` — called `relativeTime()`
+  - `PrayerBoard.jsx` — called `relativeTime()`
+- **Fix:** Added a shared `timeAgo()` function to `src/utils/helpers.js` (using the most complete version with weeks support). Removed all 4 local definitions and updated call sites.
+- **Why:** Same DRY principle as items 4-5. One place to change if the format needs updating.
+- **Files:** `src/utils/helpers.js`, `src/components/screens/Notifications.jsx`, `src/components/screens/Appointments.jsx`, `src/components/screens/ChurchDetail.jsx`, `src/components/screens/PrayerBoard.jsx`
+
+### 9. Created `.header-spacer` CSS class (replaced 16 inline spacer divs)
+- **What:** 16 screen headers used `<div style={{ width: '40px' }} />` (or `width: 40`) as an invisible spacer to balance the back button on the opposite side. All were inline styles doing the exact same thing.
+- **Fix:** Added `.header-spacer { width: 40px; }` to index.css (Section 42). Replaced all 16 inline style divs with `<div className="header-spacer" />`.
+- **Why:** One CSS class instead of 16 scattered inline styles. If the header layout ever changes (e.g., wider back button), one place to update.
+- **Files:** `src/index.css` + `About.jsx`, `AccountDetails.jsx`, `BlockedUsersScreen.jsx`, `CalendarView.jsx`, `ChurchDetail.jsx`, `Contact.jsx`, `FindGuides.jsx`, `Help.jsx`, `MemorizationGame.jsx`, `Notifications.jsx`, `PaymentMethod.jsx`, `Privacy.jsx`, `ReadingPlan.jsx`, `Scripture.jsx`, `Terms.jsx`, `UserProfile.jsx`
+
+### 10. Created `.screen-header-title` CSS class (replaced 9 inline title styles)
+- **What:** 9 screen headers used `<h1 style={{ fontSize: '20px', fontWeight: '700' }}>` — the exact same inline style on every sub-screen title.
+- **Fix:** Added `.screen-header-title { font-size: 20px; font-weight: 700; }` to index.css (Section 42). Replaced all 9 inline styles with `className="screen-header-title"`.
+- **Why:** Consistent title styling from one class. If you ever want to tweak sub-screen header font size, one place to change.
+- **Files:** `src/index.css` + `About.jsx`, `AccountDetails.jsx`, `ChurchDetail.jsx`, `Contact.jsx`, `Help.jsx`, `Notifications.jsx`, `PaymentMethod.jsx`, `Privacy.jsx`, `Terms.jsx`
+
+### All files changed in Round 2
+| File | Action |
+|------|--------|
+| `src/utils/helpers.js` | Added `timeAgo()` function |
+| `src/index.css` | Added Section 42: `.header-spacer`, `.screen-header-title` |
+| `src/components/screens/Notifications.jsx` | Import timeAgo, use header-spacer + title class |
+| `src/components/screens/Appointments.jsx` | Import timeAgo, removed local relativeTime |
+| `src/components/screens/ChurchDetail.jsx` | Import timeAgo, use header-spacer + title class |
+| `src/components/screens/PrayerBoard.jsx` | Import timeAgo, removed local relativeTime |
+| `src/components/screens/About.jsx` | Use header-spacer + title class |
+| `src/components/screens/AccountDetails.jsx` | Use header-spacer + title class |
+| `src/components/screens/BlockedUsersScreen.jsx` | Use header-spacer |
+| `src/components/screens/CalendarView.jsx` | Use header-spacer |
+| `src/components/screens/Contact.jsx` | Use header-spacer + title class |
+| `src/components/screens/FindGuides.jsx` | Use header-spacer |
+| `src/components/screens/Help.jsx` | Use header-spacer + title class |
+| `src/components/screens/MemorizationGame.jsx` | Use header-spacer |
+| `src/components/screens/PaymentMethod.jsx` | Use header-spacer + title class |
+| `src/components/screens/Privacy.jsx` | Use header-spacer + title class |
+| `src/components/screens/ReadingPlan.jsx` | Use header-spacer |
+| `src/components/screens/Scripture.jsx` | Use header-spacer |
+| `src/components/screens/Terms.jsx` | Use header-spacer + title class |
+| `src/components/screens/UserProfile.jsx` | Use header-spacer |

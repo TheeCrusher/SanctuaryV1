@@ -115,7 +115,7 @@ function CalendarView() {
           <h1 style={{ fontSize: '20px', fontWeight: '700', flex: 1, textAlign: 'center' }}>
             Calendar
           </h1>
-          <div style={{ width: '40px' }} />
+          <div className="header-spacer" />
         </div>
       </div>
 

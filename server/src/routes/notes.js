@@ -2,7 +2,7 @@
 // Notes Routes
 // ============================================================
 // GET    /api/notes      - List all notes for the logged-in user
-// POST   /api/notes      - Create a new note
+// POST   /api/notes      - Create a new note (optionally linked to an appointment)
 // PUT    /api/notes/:id  - Update a note
 // DELETE /api/notes/:id  - Delete a note
 //
@@ -23,11 +23,17 @@ router.use(authenticate)
 function formatNote(row) {
   return {
     id: row.id,
+    appointmentId: row.appointment_id || null,
     title: row.title,
     content: row.content,
     tags: row.tags || [],
     createdAt: row.created_at,
-    updatedAt: row.updated_at
+    updatedAt: row.updated_at,
+    // Linked appointment details (from JOIN)
+    appointmentDate: row.apt_date ? row.apt_date.toISOString().split('T')[0] : null,
+    appointmentType: row.apt_type || null,
+    otherPersonName: row.other_name || null,
+    otherPersonRole: row.other_role || null
   }
 }
 
@@ -35,11 +41,28 @@ function formatNote(row) {
 // GET /api/notes
 // ============================================================
 // Returns all notes for the logged-in user, newest first.
+// JOINs with appointments and users to include linked session details.
 
 router.get('/', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT * FROM notes WHERE user_id = $1 ORDER BY updated_at DESC',
+      `SELECT n.*,
+              a.date AS apt_date,
+              a.type AS apt_type,
+              CASE
+                WHEN a.guide_id = $1 THEN COALESCE(us.name, a.seeker_name)
+                ELSE COALESCE(ug.name, 'Unknown Guide')
+              END AS other_name,
+              CASE
+                WHEN a.guide_id = $1 THEN COALESCE(us.role, 'Seeker')
+                ELSE COALESCE(ug.role, 'Guide')
+              END AS other_role
+       FROM notes n
+       LEFT JOIN appointments a ON n.appointment_id = a.id
+       LEFT JOIN users ug ON a.guide_id = ug.id
+       LEFT JOIN users us ON a.seeker_id = us.id
+       WHERE n.user_id = $1
+       ORDER BY n.updated_at DESC`,
       [req.user.id]
     )
     res.json({ notes: result.rows.map(formatNote) })
@@ -51,11 +74,11 @@ router.get('/', async (req, res, next) => {
 // ============================================================
 // POST /api/notes
 // ============================================================
-// Creates a new note with title, content, and optional tags.
+// Creates a new note with title, content, optional tags, and optional appointment_id.
 
 router.post('/', async (req, res, next) => {
   try {
-    const { title, content, tags } = req.body
+    const { title, content, tags, appointmentId } = req.body
 
     if (!title || !content) {
       return res.status(400).json({ error: 'Title and content are required.' })
@@ -66,12 +89,30 @@ router.post('/', async (req, res, next) => {
     const safeTags = (tags || []).filter(t => validTags.includes(t))
 
     const result = await pool.query(
-      `INSERT INTO notes (user_id, title, content, tags)
-       VALUES ($1, $2, $3, $4) RETURNING *`,
-      [req.user.id, title.trim(), content.trim(), safeTags]
+      `INSERT INTO notes (user_id, appointment_id, title, content, tags)
+       VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      [req.user.id, appointmentId || null, title.trim(), content.trim(), safeTags]
     )
 
-    res.status(201).json({ note: formatNote(result.rows[0]) })
+    // If linked to an appointment, fetch the appointment details for the response
+    const note = result.rows[0]
+    if (note.appointment_id) {
+      const aptResult = await pool.query(
+        `SELECT a.date AS apt_date, a.type AS apt_type,
+                CASE WHEN a.guide_id = $1 THEN COALESCE(us.name, a.seeker_name) ELSE COALESCE(ug.name, 'Unknown Guide') END AS other_name,
+                CASE WHEN a.guide_id = $1 THEN COALESCE(us.role, 'Seeker') ELSE COALESCE(ug.role, 'Guide') END AS other_role
+         FROM appointments a
+         LEFT JOIN users ug ON a.guide_id = ug.id
+         LEFT JOIN users us ON a.seeker_id = us.id
+         WHERE a.id = $2`,
+        [req.user.id, note.appointment_id]
+      )
+      if (aptResult.rows[0]) {
+        Object.assign(note, aptResult.rows[0])
+      }
+    }
+
+    res.status(201).json({ note: formatNote(note) })
   } catch (error) {
     next(error)
   }
@@ -103,7 +144,25 @@ router.put('/:id', async (req, res, next) => {
       return res.status(404).json({ error: 'Note not found.' })
     }
 
-    res.json({ note: formatNote(result.rows[0]) })
+    // Fetch linked appointment details if present
+    const note = result.rows[0]
+    if (note.appointment_id) {
+      const aptResult = await pool.query(
+        `SELECT a.date AS apt_date, a.type AS apt_type,
+                CASE WHEN a.guide_id = $1 THEN COALESCE(us.name, a.seeker_name) ELSE COALESCE(ug.name, 'Unknown Guide') END AS other_name,
+                CASE WHEN a.guide_id = $1 THEN COALESCE(us.role, 'Seeker') ELSE COALESCE(ug.role, 'Guide') END AS other_role
+         FROM appointments a
+         LEFT JOIN users ug ON a.guide_id = ug.id
+         LEFT JOIN users us ON a.seeker_id = us.id
+         WHERE a.id = $2`,
+        [req.user.id, note.appointment_id]
+      )
+      if (aptResult.rows[0]) {
+        Object.assign(note, aptResult.rows[0])
+      }
+    }
+
+    res.json({ note: formatNote(note) })
   } catch (error) {
     next(error)
   }

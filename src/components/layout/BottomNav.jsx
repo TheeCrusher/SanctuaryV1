@@ -30,7 +30,7 @@ function BottomNav() {
   // "More" is active when viewing any screen accessible from the More menu.
   // NOTE: Update this array when adding/removing items from the More menu.
   function isMoreActive() {
-    const morePaths = ['/more', '/notes', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/events', '/guides', '/bibles']
+    const morePaths = ['/more', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/events', '/guides', '/bibles']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )

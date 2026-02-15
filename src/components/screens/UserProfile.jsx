@@ -143,7 +143,7 @@ function UserProfile() {
               <ArrowLeft size={20} />
             </button>
             <h1 className="section-title">Profile</h1>
-            <div style={{ width: 40 }} />
+            <div className="header-spacer" />
           </div>
         </div>
         <div className="screen-content">

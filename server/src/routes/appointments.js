@@ -40,7 +40,8 @@ function formatRow(row) {
     seriesId: row.series_id || null,
     recurrenceEndDate: row.recurrence_end_date
       ? row.recurrence_end_date.toISOString().split('T')[0]
-      : null
+      : null,
+    hasNotes: row.has_notes || false
   }
 }
 
@@ -130,7 +131,8 @@ router.get('/', async (req, res, next) => {
     let query = `
       SELECT a.*, u.name AS guide_name,
              u.photo_url AS guide_photo,
-             us.photo_url AS seeker_photo
+             us.photo_url AS seeker_photo,
+             EXISTS(SELECT 1 FROM notes n WHERE n.appointment_id = a.id AND n.user_id = $1) AS has_notes
       FROM appointments a
       LEFT JOIN users u ON a.guide_id = u.id
       LEFT JOIN users us ON a.seeker_id = us.id

@@ -98,13 +98,13 @@ function AccountDetails() {
           <button className="back-btn" onClick={() => navigate('/profile')}>
             <ArrowLeft size={20} />
           </button>
-          <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Account Details</h1>
+          <h1 className="screen-header-title">Account Details</h1>
           {isEditing ? (
             <button className="back-btn" onClick={cancelEditing}>
               <X size={20} />
             </button>
           ) : (
-            <div style={{ width: '40px' }} />
+            <div className="header-spacer" />
           )}
         </div>
       </div>

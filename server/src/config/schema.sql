@@ -257,17 +257,19 @@ CREATE TABLE IF NOT EXISTS bible_quotes (
 -- Maps to: AppContext.jsx → notes state
 
 CREATE TABLE IF NOT EXISTS notes (
-  id          SERIAL PRIMARY KEY,
-  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  title       VARCHAR(200) NOT NULL,
-  content     TEXT NOT NULL,
-  tags        TEXT[] DEFAULT '{}',
-  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id              SERIAL PRIMARY KEY,
+  user_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  appointment_id  INTEGER REFERENCES appointments(id) ON DELETE SET NULL,
+  title           VARCHAR(200) NOT NULL,
+  content         TEXT NOT NULL,
+  tags            TEXT[] DEFAULT '{}',
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_notes_user ON notes(user_id);
 CREATE INDEX IF NOT EXISTS idx_notes_created ON notes(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_notes_appointment ON notes(appointment_id);
 
 -- ============================================================
 -- CHURCH FAVORITES TABLE

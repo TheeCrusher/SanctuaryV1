@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { EmptyState, LoadingSpinner, ErrorState } from '../common'
+import { timeAgo } from '../../utils/helpers'
 import {
   ArrowLeft,
   Bell,
@@ -38,24 +39,6 @@ const NOTIF_CONFIG = {
   appointment_declined:    { icon: Clock,         color: '#722F37', bg: 'rgba(114,47,55,0.1)' },
   waitlist_spot_open:      { icon: Clock,         color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
   church_announcement:     { icon: Megaphone,     color: '#059669', bg: 'rgba(5,150,105,0.1)' }
-}
-
-// Format a timestamp into a relative string like "2 hours ago"
-function timeAgo(dateString) {
-  const now = new Date()
-  const date = new Date(dateString)
-  const seconds = Math.floor((now - date) / 1000)
-
-  if (seconds < 60) return 'Just now'
-  const minutes = Math.floor(seconds / 60)
-  if (minutes < 60) return `${minutes}m ago`
-  const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ago`
-  const days = Math.floor(hours / 24)
-  if (days < 7) return `${days}d ago`
-  const weeks = Math.floor(days / 7)
-  if (weeks < 4) return `${weeks}w ago`
-  return date.toLocaleDateString()
 }
 
 // Determine where to navigate when tapping a notification
@@ -132,13 +115,13 @@ function Notifications() {
           <button className="back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={20} />
           </button>
-          <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Notifications</h1>
+          <h1 className="screen-header-title">Notifications</h1>
           {unreadNotifCount > 0 ? (
             <button className="notif-mark-all-btn" onClick={markAllNotificationsRead}>
               <CheckCheck size={18} />
             </button>
           ) : (
-            <div style={{ width: '40px' }} />
+            <div className="header-spacer" />
           )}
         </div>
       </div>

@@ -31,7 +31,7 @@ import PaymentMethod from './components/screens/PaymentMethod'
 import Terms from './components/screens/Terms'
 import Privacy from './components/screens/Privacy'
 import MoreMenu from './components/screens/MoreMenu'
-import Notes from './components/screens/Notes'
+// Notes is now merged into Appointments screen
 import Scripture from './components/screens/Scripture'
 import ReadingPlan from './components/screens/ReadingPlan'
 import MemorizationGame from './components/screens/MemorizationGame'
@@ -258,7 +258,7 @@ function App() {
           path="/notes"
           element={
             <ProtectedRoute>
-              <Notes />
+              <Navigate to="/appointments" replace />
             </ProtectedRoute>
           }
         />

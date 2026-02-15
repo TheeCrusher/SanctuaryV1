@@ -17,8 +17,8 @@ function Privacy() {
           <button className="back-btn" onClick={() => navigate('/profile')}>
             <ArrowLeft size={20} />
           </button>
-          <h1 style={{ fontSize: '20px', fontWeight: '700' }}>Privacy Policy</h1>
-          <div style={{ width: '40px' }} />
+          <h1 className="screen-header-title">Privacy Policy</h1>
+          <div className="header-spacer" />
         </div>
       </div>
 

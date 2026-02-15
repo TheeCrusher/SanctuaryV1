@@ -51,7 +51,7 @@ function BlockedUsersScreen() {
             <ArrowLeft size={20} />
           </button>
           <h1 className="section-title">Blocked Users</h1>
-          <div style={{ width: 40 }} />
+          <div className="header-spacer" />
         </div>
       </div>
 

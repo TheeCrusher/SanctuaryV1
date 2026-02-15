@@ -2809,6 +2809,77 @@ select.account-edit-input {
   background: var(--danger-light-bg);
 }
 
+/* --- Session Notes tab additions (merged into Appointments) --- */
+
+.apt-notes-indicator {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent-gold);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s ease;
+}
+
+.apt-notes-indicator:active {
+  background: var(--bg-warm-tint);
+}
+
+.apt-linked-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.apt-linked-role {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+
+.apt-linked-role.role-guide {
+  background: var(--bg-warm-tint);
+  color: var(--accent-gold);
+}
+
+.apt-linked-role.role-seeker {
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+}
+
+.notes-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.notes-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.notes-search input::placeholder {
+  color: var(--text-muted);
+}
+
 /* ---------------------------------------------------------------------------
    24. CHURCH FAVORITES
    --------------------------------------------------------------------------- */
@@ -7785,4 +7856,17 @@ select.account-edit-input {
   font-size: 13px;
   color: var(--alert-error-text);
   margin-top: 4px;
+}
+
+/* =================================== */
+/* 42. SHARED LAYOUT UTILITIES         */
+/* =================================== */
+
+/* Header spacer — balances back-button on the opposite side */
+.header-spacer { width: 40px; }
+
+/* Screen header title — standard h1 style for sub-screens */
+.screen-header-title {
+  font-size: 20px;
+  font-weight: 700;
 }

@@ -406,6 +406,7 @@ export function AppProvider({ children }) {
     try {
       const { appointment } = await api.patch(`/appointments/${id}/status`, { status: 'completed' })
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
+      return appointment
     } catch (error) {
       console.error('Failed to complete appointment:', error)
     }

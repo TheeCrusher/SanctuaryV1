@@ -104,7 +104,7 @@ function FindGuides() {
             <ArrowLeft size={20} />
           </button>
           <h1 style={{ fontSize: '24px', fontWeight: '700' }}>Find a Guide</h1>
-          <div style={{ width: 40 }} />
+          <div className="header-spacer" />
         </div>
       </div>
 

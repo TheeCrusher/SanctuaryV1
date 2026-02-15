@@ -7,7 +7,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { FileText, BookOpen, Book, Church, Heart, Calendar, CalendarDays, ChevronRight, LogOut, Users } from 'lucide-react'
+import { BookOpen, Book, Church, Heart, Calendar, CalendarDays, ChevronRight, LogOut, Users } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
@@ -49,13 +49,6 @@ function MoreMenu() {
       colorClass: 'icon-burgundy'
     },
     {
-      icon: FileText,
-      text: 'Session Notes',
-      subtitle: 'Journal your spiritual journey',
-      path: '/notes',
-      colorClass: ''
-    },
-    {
       icon: BookOpen,
       text: 'Scripture Study',
       subtitle: 'Verses, plans & daily word',
@@ -64,10 +57,10 @@ function MoreMenu() {
     },
     {
       icon: Calendar,
-      text: 'Appointments',
-      subtitle: 'Manage your sessions',
+      text: 'Sessions',
+      subtitle: 'Appointments & session notes',
       path: '/appointments',
-      colorClass: ''
+      colorClass: 'icon-gold'
     }
   ]
 

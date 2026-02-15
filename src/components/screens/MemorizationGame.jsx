@@ -312,7 +312,7 @@ function MemorizationGame() {
           <ArrowLeft size={20} />
         </button>
         <h1 className="screen-title">{MODE_TITLES[mode] || 'Game'}</h1>
-        <div style={{ width: '40px' }} />
+        <div className="header-spacer" />
       </div>
 
       <div className="screen-content">
