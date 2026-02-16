@@ -99,6 +99,9 @@ async function migrate() {
       // Session 14: Bidirectional messaging — last_sender_id tracks who sent
       // the most recent message (used for unread logic on home + conversations)
       'ALTER TABLE conversations ADD COLUMN IF NOT EXISTS last_sender_id INTEGER',
+      // Session 24: Custom reading plans — created_by tracks plan owner (NULL = preset)
+      'ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS created_by INTEGER',
+      "ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()",
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
