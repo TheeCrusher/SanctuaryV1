@@ -96,6 +96,9 @@ async function migrate() {
       'ALTER TABLE notes ADD COLUMN IF NOT EXISTS appointment_id INTEGER',
       // Session 27: Onboarding tour
       'ALTER TABLE users ADD COLUMN IF NOT EXISTS onboarding_completed BOOLEAN DEFAULT false',
+      // Session 14: Bidirectional messaging — last_sender_id tracks who sent
+      // the most recent message (used for unread logic on home + conversations)
+      'ALTER TABLE conversations ADD COLUMN IF NOT EXISTS last_sender_id INTEGER',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
