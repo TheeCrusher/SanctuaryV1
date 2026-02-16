@@ -79,6 +79,17 @@ async function migrate() {
       // Session 22: Guide discovery — availability settings on users table
       'ALTER TABLE users ADD COLUMN IF NOT EXISTS accepting_seekers BOOLEAN DEFAULT true',
       'ALTER TABLE users ADD COLUMN IF NOT EXISTS max_pending_requests INTEGER DEFAULT 5',
+      // Session 25: Digital events — new columns on events table
+      "ALTER TABLE events ADD COLUMN IF NOT EXISTS event_type VARCHAR(20) NOT NULL DEFAULT 'in_person'",
+      'ALTER TABLE events ADD COLUMN IF NOT EXISTS event_link TEXT',
+      'ALTER TABLE events ADD COLUMN IF NOT EXISTS is_live BOOLEAN DEFAULT false',
+      // Session 25: Expand events category CHECK to include digital categories
+      'ALTER TABLE events DROP CONSTRAINT IF EXISTS events_category_check',
+      `ALTER TABLE events ADD CONSTRAINT events_category_check CHECK (category IN ('Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor', 'Sermons/Teachings', 'Prayer', 'Bible Study', 'General'))`,
+      // Session 26: Notes linked to appointments
+      'ALTER TABLE notes ADD COLUMN IF NOT EXISTS appointment_id INTEGER',
+      // Session 27: Onboarding tour
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS onboarding_completed BOOLEAN DEFAULT false',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
