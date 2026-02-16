@@ -66,6 +66,11 @@ async function migrate() {
       // Phase 3: Google rating + widen hours column
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS google_rating DECIMAL(2,1)',
       'ALTER TABLE churches ALTER COLUMN hours TYPE TEXT',
+      // Users: phone_number (added in early session, missed in migration)
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS phone_number VARCHAR(20)',
+      // Prayer requests: type + linked_prayer_id (Session 11: Testimonies)
+      "ALTER TABLE prayer_requests ADD COLUMN IF NOT EXISTS type VARCHAR(20) NOT NULL DEFAULT 'prayer'",
+      'ALTER TABLE prayer_requests ADD COLUMN IF NOT EXISTS linked_prayer_id INTEGER',
       // Session 21: Location fields on users table
       'ALTER TABLE users ADD COLUMN IF NOT EXISTS state VARCHAR(2)',
       'ALTER TABLE users ADD COLUMN IF NOT EXISTS city VARCHAR(100)',
@@ -107,7 +112,17 @@ async function migrate() {
     await client.query(schema)
     console.log('   ✅ All tables verified\n')
 
-    // ---- Step 2: Load real churches if table is empty ----
+    // ---- Step 2b: Fix onboarding for pre-existing users ----
+    // When onboarding_completed was first added (DEFAULT false), all existing
+    // users got false — triggering the tour for everyone. Set it to true for
+    // users who existed before the feature was deployed (Feb 16, 2026).
+    await client.query(
+      `UPDATE users SET onboarding_completed = true
+       WHERE onboarding_completed = false AND created_at < '2026-02-16'`
+    )
+    console.log('   ✅ Onboarding status fixed for existing users\n')
+
+    // ---- Step 3: Load real churches if table is empty ----
     // Check how many churches are in the database already.
     // If there are churches, skip — don't insert duplicates.
     const countResult = await client.query('SELECT COUNT(*) FROM churches')
