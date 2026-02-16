@@ -16,6 +16,7 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import dotenv from 'dotenv'
 import pg from 'pg'
+import bcrypt from 'bcryptjs'
 
 // Load environment variables
 dotenv.config()
@@ -121,6 +122,60 @@ async function migrate() {
        WHERE onboarding_completed = false AND created_at < '2026-02-16'`
     )
     console.log('   ✅ Onboarding status fixed for existing users\n')
+
+    // ---- Step 2c: Ensure test accounts exist ----
+    // Pastor Mike (guide) and Jordan Rivera (seeker) are the two
+    // test accounts used for development and demo purposes.
+    console.log('👤 Ensuring test accounts exist...')
+    const passwordHash = await bcrypt.hash('Sanctuary123', 10)
+
+    // Pastor Mike — if account exists, make sure name is correct
+    const mikeCheck = await client.query(
+      'SELECT id FROM users WHERE email = $1', ['test@sanctuary.com']
+    )
+    if (mikeCheck.rows.length > 0) {
+      await client.query(
+        `UPDATE users SET name = 'Pastor Mike', role = 'guide',
+         state = 'IL', city = 'Chicago', denomination = 'Non-denominational',
+         church_name = 'Willow Creek Church', onboarding_completed = true
+         WHERE email = 'test@sanctuary.com'`
+      )
+      console.log('   ✅ Pastor Mike updated (test@sanctuary.com)')
+    } else {
+      await client.query(
+        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, bio, specialization,
+         location, state, city, denomination, church_name, interests, accepting_seekers,
+         max_pending_requests, onboarding_completed)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)`,
+        ['Pastor Mike', 'test@sanctuary.com', passwordHash, '🙏',
+         'https://randomuser.me/api/portraits/men/32.jpg', 'guide',
+         'Spiritual guide dedicated to helping others find their path through prayer and scripture.',
+         'General Guidance', 'Chicago, IL', 'IL', 'Chicago', 'Non-denominational',
+         'Willow Creek Church', ['Bible Study', 'Worship', 'Youth Ministry', 'Volunteering'],
+         true, 3, true]
+      )
+      console.log('   ✅ Pastor Mike created (test@sanctuary.com)')
+    }
+
+    // Jordan Rivera — create if doesn't exist
+    const jordanCheck = await client.query(
+      'SELECT id FROM users WHERE email = $1', ['jordan@sanctuary.com']
+    )
+    if (jordanCheck.rows.length === 0) {
+      await client.query(
+        `INSERT INTO users (name, email, password_hash, avatar, photo_url, role, location,
+         state, city, denomination, interests, onboarding_completed)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+        ['Jordan Rivera', 'jordan@sanctuary.com', passwordHash, '🙏',
+         'https://randomuser.me/api/portraits/men/85.jpg', 'seeker',
+         'Chicago, IL', 'IL', 'Chicago', 'Catholic',
+         ['Hiking', 'Sports', 'Reading', 'Travel', 'Community Service'], true]
+      )
+      console.log('   ✅ Jordan Rivera created (jordan@sanctuary.com)')
+    } else {
+      console.log('   ✅ Jordan Rivera already exists (jordan@sanctuary.com)')
+    }
+    console.log('')
 
     // ---- Step 3: Load real churches if table is empty ----
     // Check how many churches are in the database already.
