@@ -129,7 +129,24 @@ async function migrate() {
     )
     console.log('   ✅ Onboarding status fixed for existing users\n')
 
-    // ---- Step 2c: Ensure test accounts exist ----
+    // ---- Step 2c: Fix churches with NULL state ----
+    // Demo churches were seeded without state values, causing them to be
+    // hidden when users filter by state. Update based on known city→state.
+    const churchStateFixes = [
+      { city: 'Chicago', state: 'IL' },
+      { city: 'Brooklyn', state: 'NY' },
+      { city: 'Houston', state: 'TX' },
+      { city: 'Washington', state: 'DC' },
+    ]
+    for (const fix of churchStateFixes) {
+      await client.query(
+        'UPDATE churches SET state = $1 WHERE city = $2 AND state IS NULL',
+        [fix.state, fix.city]
+      )
+    }
+    console.log('   ✅ Church state values fixed for NULL entries\n')
+
+    // ---- Step 2d: Ensure test accounts exist ----
     // Pastor Mike (guide) and Jordan Rivera (seeker) are the two
     // test accounts used for development and demo purposes.
     console.log('👤 Ensuring test accounts exist...')
