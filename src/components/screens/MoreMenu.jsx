@@ -7,7 +7,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { BookOpen, Book, Church, Heart, Calendar, ChevronRight, LogOut, Users } from 'lucide-react'
+import { BookOpen, Book, Church, Heart, Calendar, ChevronRight, LogOut, Users, Waves } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
@@ -27,7 +27,8 @@ function MoreMenu() {
       items: [
         { icon: Book, text: 'Bible', subtitle: 'Read the Word of God', path: '/bibles', colorClass: 'icon-gold' },
         { icon: BookOpen, text: 'Scripture Study', subtitle: 'Verses, plans & daily word', path: '/scripture', colorClass: 'icon-gold' },
-        { icon: Heart, text: 'Prayer Board', subtitle: 'Community prayer requests', path: '/prayers', colorClass: 'icon-burgundy', tourId: 'more-prayer-board' }
+        { icon: Heart, text: 'Prayer Board', subtitle: 'Community prayer requests', path: '/prayers', colorClass: 'icon-burgundy', tourId: 'more-prayer-board' },
+        { icon: Waves, text: 'Walk on Water', subtitle: 'Dodge serpents & feed the crowd', path: '/walk-on-water', colorClass: 'icon-gold' }
       ]
     },
     {

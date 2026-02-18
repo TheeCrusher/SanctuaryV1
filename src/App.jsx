@@ -47,6 +47,7 @@ import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 import ForgotPassword from './components/screens/ForgotPassword'
 import FindGuides from './components/screens/FindGuides'
+import WalkOnWater from './components/screens/WalkOnWater'
 import { UserActionMenu } from './components/common'
 
 // =============================================================================
@@ -113,7 +114,7 @@ function App() {
   }, [user, location.pathname])
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader']
+  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   // Swipe navigation between the 4 main tabs
@@ -337,6 +338,15 @@ function App() {
           element={
             <ProtectedRoute>
               <EventDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/walk-on-water"
+          element={
+            <ProtectedRoute>
+              <WalkOnWater />
             </ProtectedRoute>
           }
         />
