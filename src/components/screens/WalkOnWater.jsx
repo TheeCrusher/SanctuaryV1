@@ -462,7 +462,6 @@ export default function WalkOnWater() {
   const gs = useRef({
     jesus: { lane: 1, x: 0, targetX: 0 },
     snakes: [],
-    lastSpawnLanes: [], // track last 2 lanes to prevent 3-lane walls
     fish: null,       // { lane, state, timer, jumpProgress }
     throws: [],       // { side, isBread, progress }
     lastFeedSide: 'left',
@@ -533,26 +532,17 @@ export default function WalkOnWater() {
     g.difficulty = 1 + g.distance / 250
 
     // --- Spawn Snakes ---
-    // Track last 2 spawn lanes so consecutive snakes never block all 3 lanes.
+    // ONE snake per cycle, purely random lane. With only 1 snake spawning
+    // at a time, only 1 lane is ever blocked at any given height — Jesus
+    // always has 2 free lanes to dodge into. Difficulty = speed, not patterns.
     g.snakeTimer -= dt * 1000
     if (g.snakeTimer <= 0) {
-      const spawnY = -30 * s
-
-      let lane
-      const recentSet = new Set(g.lastSpawnLanes)
-      if (recentSet.size >= 2) {
-        // Last 2 spawns used 2 different lanes — force into one of them
-        const options = Array.from(recentSet)
-        lane = options[Math.floor(Math.random() * options.length)]
-      } else {
-        lane = Math.floor(Math.random() * 3)
-      }
-
       const speed = Math.min(SNAKE_BASE_SPEED * g.difficulty, SNAKE_MAX_SPEED)
-      g.snakes.push({ lane, y: spawnY, speed })
-      g.lastSpawnLanes.push(lane)
-      if (g.lastSpawnLanes.length > 2) g.lastSpawnLanes.shift()
-      g.snakeTimer = Math.max(SNAKE_MIN_INTERVAL, SNAKE_BASE_INTERVAL / g.difficulty)
+      const lane = Math.floor(Math.random() * 3)
+      g.snakes.push({ lane, y: -30 * s, speed })
+
+      // Spawn rate stays steady — speed is what ramps up
+      g.snakeTimer = Math.max(SNAKE_MIN_INTERVAL, SNAKE_BASE_INTERVAL / Math.sqrt(g.difficulty))
     }
 
     // --- Spawn Fish ---
@@ -694,7 +684,6 @@ export default function WalkOnWater() {
     const g = gs.current
     g.jesus = { lane: 1, x: 0, targetX: 0 }
     g.snakes = []
-    g.lastSpawnLanes = []
     g.fish = null
     g.throws = []
     g.lastFeedSide = 'left'

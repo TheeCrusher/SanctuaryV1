@@ -2,12 +2,12 @@
 // LOGIN SCREEN COMPONENT
 // =============================================================================
 // The first screen users see. Handles email/password authentication.
-// Shows email/password form with link to Sign Up.
+// Supports two login modes: User (guide/seeker) and Church (church accounts).
 
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, Church } from 'lucide-react'
 import { IOSInstallPrompt } from '../common'
 
 // Logo image extracted from splash video first frame
@@ -15,45 +15,41 @@ const LOGO = "/sanctuary-logo.png"
 
 function LoginScreen() {
   // ----- STATE -----
-  // useState creates a "state variable" that React will track
-  // When it changes, the component re-renders (updates the UI)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [loginMode, setLoginMode] = useState('user') // 'user' or 'church'
 
-  const [email, setEmail] = useState('')         // User's email input
-  const [password, setPassword] = useState('')   // User's password input
-  const [error, setError] = useState('')         // Error message to display
-  const [showPassword, setShowPassword] = useState(false)  // Toggle password visibility
-
-  // Get the login function from our app context
-  const { login } = useApp()
-
-  // Get navigate function for redirecting after login
+  // Get login functions from context
+  const { login, churchLogin } = useApp()
   const navigate = useNavigate()
 
   // ----- HANDLERS -----
 
-  // Called when the form is submitted
   async function handleSubmit(e) {
-    // Prevent the default form submission (which would reload the page)
     e.preventDefault()
-
-    // Clear any previous error
     setError('')
 
-    // Client-side email format check before hitting the API
     if (!email.includes('@') || !email.includes('.')) {
       setError('Please enter a valid email address.')
       return
     }
 
-    // Attempt to login (now async - calls the backend API)
-    const result = await login(email, password)
-
-    if (result.success) {
-      // Login successful - navigate to dashboard
-      navigate('/dashboard')
+    if (loginMode === 'church') {
+      const result = await churchLogin(email, password)
+      if (result.success) {
+        navigate('/church-dashboard')
+      } else {
+        setError(result.error)
+      }
     } else {
-      // Login failed - show error message
-      setError(result.error)
+      const result = await login(email, password)
+      if (result.success) {
+        navigate('/dashboard')
+      } else {
+        setError(result.error)
+      }
     }
   }
 
@@ -73,10 +69,29 @@ function LoginScreen() {
         <img src={LOGO} alt="Sanctuary" className="login-logo-image" />
       </div>
 
+      {/* User / Church Login Toggle */}
+      <div className="login-mode-toggle">
+        <button
+          className={`login-mode-btn ${loginMode === 'user' ? 'active' : ''}`}
+          onClick={() => { setLoginMode('user'); setError('') }}
+        >
+          User
+        </button>
+        <button
+          className={`login-mode-btn ${loginMode === 'church' ? 'active' : ''}`}
+          onClick={() => { setLoginMode('church'); setError('') }}
+        >
+          <Church size={14} />
+          Church
+        </button>
+      </div>
+
       {/* Form Card */}
       <div className="login-card">
-        <h2>Welcome Back</h2>
-        <div className="login-subtitle">Sign in to continue</div>
+        <h2>{loginMode === 'church' ? 'Church Login' : 'Welcome Back'}</h2>
+        <div className="login-subtitle">
+          {loginMode === 'church' ? 'Sign in to manage your church page' : 'Sign in to continue'}
+        </div>
 
         {/* Error Message */}
         {error && <div className="login-error">{error}</div>}
@@ -121,15 +136,17 @@ function LoginScreen() {
         </form>
       </div>
 
-      {/* Forgot Password Link */}
-      <div className="fp-forgot-link">
-        <Link to="/forgot-password">Forgot your password?</Link>
-      </div>
-
-      {/* Sign Up Link */}
-      <div className="signup-link">
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </div>
+      {/* Forgot Password & Sign Up — only shown for user mode */}
+      {loginMode === 'user' && (
+        <>
+          <div className="fp-forgot-link">
+            <Link to="/forgot-password">Forgot your password?</Link>
+          </div>
+          <div className="signup-link">
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </div>
+        </>
+      )}
     </div>
   )
 }

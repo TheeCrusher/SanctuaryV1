@@ -32,6 +32,22 @@ export function removeToken() {
   localStorage.removeItem('sanctuary_token')
 }
 
+// ---------- Church Account Token Management ----------
+// Church accounts use a separate token so they don't
+// conflict with user accounts (someone could have both).
+
+export function getChurchToken() {
+  return localStorage.getItem('sanctuary_church_token')
+}
+
+export function setChurchToken(token) {
+  localStorage.setItem('sanctuary_church_token', token)
+}
+
+export function removeChurchToken() {
+  localStorage.removeItem('sanctuary_church_token')
+}
+
 // ---------- API Base URL ----------
 // In development: empty string (Vite proxy handles /api -> localhost:3001)
 // In production:  full backend URL like "https://sanctuary-api.onrender.com"
@@ -96,6 +112,55 @@ export const api = {
   }),
 
   delete: (endpoint) => apiFetch(endpoint, {
+    method: 'DELETE',
+  }),
+}
+
+// ---------- Church API Wrapper ----------
+// Same pattern as the user API but uses the church token.
+
+async function churchApiFetch(endpoint, options = {}) {
+  const token = getChurchToken()
+
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  }
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`
+  }
+
+  const response = await fetch(`${API_BASE}/api${endpoint}`, {
+    ...options,
+    headers,
+  })
+
+  const data = await response.json()
+
+  if (!response.ok) {
+    const error = new Error(data.error || 'Something went wrong')
+    error.status = response.status
+    throw error
+  }
+
+  return data
+}
+
+export const churchApi = {
+  get: (endpoint) => churchApiFetch(endpoint),
+
+  post: (endpoint, body) => churchApiFetch(endpoint, {
+    method: 'POST',
+    body: JSON.stringify(body),
+  }),
+
+  put: (endpoint, body) => churchApiFetch(endpoint, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+  }),
+
+  delete: (endpoint) => churchApiFetch(endpoint, {
     method: 'DELETE',
   }),
 }

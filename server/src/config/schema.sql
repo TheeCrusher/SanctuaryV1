@@ -227,6 +227,10 @@ CREATE TABLE IF NOT EXISTS churches (
   avg_facilities    DECIMAL(2,1) DEFAULT NULL,
   overall_rating    DECIMAL(2,1) DEFAULT 0,
   review_count      INTEGER DEFAULT 0,
+  custom_description TEXT,
+  custom_hours       TEXT,
+  custom_programs    TEXT,
+  managed_by         INTEGER,
   created_at        TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -658,6 +662,43 @@ CREATE INDEX IF NOT EXISTS idx_guide_waitlist_guide ON guide_waitlist(guide_id);
 CREATE INDEX IF NOT EXISTS idx_guide_waitlist_seeker ON guide_waitlist(seeker_id);
 
 -- ============================================================
+-- CHURCH ACCOUNTS TABLE
+-- ============================================================
+-- Separate account type for churches to manage their own pages.
+-- One account per church. Login is separate from user accounts.
+-- Status: pending (awaiting verification), active (can log in), suspended.
+
+CREATE TABLE IF NOT EXISTS church_accounts (
+  id              SERIAL PRIMARY KEY,
+  church_id       INTEGER REFERENCES churches(id) UNIQUE NOT NULL,
+  email           VARCHAR(255) UNIQUE NOT NULL,
+  password_hash   VARCHAR(255) NOT NULL,
+  display_name    VARCHAR(255),
+  status          VARCHAR(20) DEFAULT 'pending'
+                  CHECK (status IN ('pending', 'active', 'suspended')),
+  verified_at     TIMESTAMP WITH TIME ZONE,
+  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_church_accounts_email ON church_accounts(email);
+CREATE INDEX IF NOT EXISTS idx_church_accounts_church_id ON church_accounts(church_id);
+
+-- ============================================================
+-- CHURCH ACCOUNT GUIDES TABLE
+-- ============================================================
+-- Links church accounts to verified guides. Every church account
+-- must have at least one linked guide (physical representation).
+-- Guides can be verified/vouched for by the church.
+
+CREATE TABLE IF NOT EXISTS church_account_guides (
+  church_account_id INTEGER REFERENCES church_accounts(id) ON DELETE CASCADE,
+  guide_id          INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  verified_at       TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (church_account_id, guide_id)
+);
+
+-- ============================================================
 -- DEFERRED FOREIGN KEYS (added after all tables exist)
 -- ============================================================
 DO $$
@@ -668,5 +709,13 @@ BEGIN
   ) THEN
     ALTER TABLE users ADD CONSTRAINT fk_users_preferred_church
       FOREIGN KEY (preferred_church_id) REFERENCES churches(id) ON DELETE SET NULL;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_churches_managed_by'
+  ) THEN
+    ALTER TABLE churches ADD CONSTRAINT fk_churches_managed_by
+      FOREIGN KEY (managed_by) REFERENCES church_accounts(id) ON DELETE SET NULL;
   END IF;
 END $$;

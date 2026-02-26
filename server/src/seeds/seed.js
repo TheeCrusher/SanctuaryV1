@@ -63,6 +63,8 @@ async function seed() {
     // ---- Step 1: Drop existing tables and recreate ----
     console.log('🗑️  Dropping existing tables...')
     await client.query(`
+      DROP TABLE IF EXISTS church_account_guides CASCADE;
+      DROP TABLE IF EXISTS church_accounts CASCADE;
       DROP TABLE IF EXISTS user_study_streaks CASCADE;
       DROP TABLE IF EXISTS user_memorization_stats CASCADE;
       DROP TABLE IF EXISTS guide_waitlist CASCADE;
@@ -664,6 +666,33 @@ async function seed() {
 
     const totalConnections = 6 + connCount
     const totalEvents = SAMPLE_EVENTS.length + SAMPLE_DIGITAL_EVENTS.length + EXTRA_EVENTS.length + EXTRA_DIGITAL_EVENTS.length
+
+    // ---- Step 20: Create test church account ----
+    console.log('\n⛪ Creating test church account...')
+    const willowCreek = await client.query(
+      "SELECT id FROM churches WHERE name ILIKE '%willow creek%' LIMIT 1"
+    )
+    if (willowCreek.rows.length > 0) {
+      const churchId = willowCreek.rows[0].id
+      const churchAcctHash = await bcrypt.hash('Sanctuary123', 10)
+      const churchAcctResult = await client.query(
+        `INSERT INTO church_accounts (church_id, email, password_hash, display_name, status, verified_at)
+         VALUES ($1, $2, $3, $4, 'active', NOW())
+         RETURNING id`,
+        [churchId, 'church@sanctuary.com', churchAcctHash, 'Willow Creek Admin']
+      )
+      const churchAcctId = churchAcctResult.rows[0].id
+      // Link Pastor Mike as a verified guide
+      await client.query(
+        'INSERT INTO church_account_guides (church_account_id, guide_id) VALUES ($1, $2)',
+        [churchAcctId, guideId]
+      )
+      // Set managed_by on the church
+      await client.query('UPDATE churches SET managed_by = $1 WHERE id = $2', [churchAcctId, churchId])
+      console.log('   ✅ Willow Creek church account (church@sanctuary.com / Sanctuary123)')
+    } else {
+      console.log('   ⚠️  Willow Creek not found — skipping church account')
+    }
 
     console.log('\n🎉 Database seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')

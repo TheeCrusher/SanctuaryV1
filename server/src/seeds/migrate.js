@@ -102,6 +102,11 @@ async function migrate() {
       // Session 24: Custom reading plans — created_by tracks plan owner (NULL = preset)
       'ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS created_by INTEGER',
       "ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()",
+      // Session 30: Church accounts — new columns on churches table
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS custom_description TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS custom_hours TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS custom_programs TEXT',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS managed_by INTEGER',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
@@ -197,6 +202,42 @@ async function migrate() {
       console.log('   ✅ Jordan Rivera created (jordan@sanctuary.com)')
     } else {
       console.log('   ✅ Jordan Rivera already exists (jordan@sanctuary.com)')
+    }
+    console.log('')
+
+    // ---- Church test account ----
+    console.log('⛪ Ensuring test church account exists...')
+    const willowCreek = await client.query(
+      "SELECT id FROM churches WHERE name ILIKE '%willow creek%' LIMIT 1"
+    )
+    if (willowCreek.rows.length > 0) {
+      const churchId = willowCreek.rows[0].id
+      const churchAcctCheck = await client.query(
+        'SELECT id FROM church_accounts WHERE church_id = $1', [churchId]
+      )
+      if (churchAcctCheck.rows.length === 0) {
+        const result = await client.query(
+          `INSERT INTO church_accounts (church_id, email, password_hash, display_name, status, verified_at)
+           VALUES ($1, $2, $3, $4, 'active', NOW())
+           RETURNING id`,
+          [churchId, 'church@sanctuary.com', passwordHash, 'Willow Creek Admin']
+        )
+        // Link Pastor Mike as a verified guide
+        const mike = await client.query("SELECT id FROM users WHERE email = 'test@sanctuary.com'")
+        if (mike.rows.length > 0) {
+          await client.query(
+            'INSERT INTO church_account_guides (church_account_id, guide_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+            [result.rows[0].id, mike.rows[0].id]
+          )
+        }
+        // Set managed_by on the church
+        await client.query('UPDATE churches SET managed_by = $1 WHERE id = $2', [result.rows[0].id, churchId])
+        console.log('   ✅ Willow Creek church account created (church@sanctuary.com)')
+      } else {
+        console.log('   ✅ Willow Creek church account already exists')
+      }
+    } else {
+      console.log('   ⚠️  Willow Creek Church not found — skipping church account')
     }
     console.log('')
 

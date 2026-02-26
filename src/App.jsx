@@ -48,6 +48,10 @@ import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 import ForgotPassword from './components/screens/ForgotPassword'
 import FindGuides from './components/screens/FindGuides'
 import WalkOnWater from './components/screens/WalkOnWater'
+import ChurchDashboard from './components/screens/ChurchDashboard'
+import ChurchProfileEditor from './components/screens/ChurchProfileEditor'
+import ChurchCongregation from './components/screens/ChurchCongregation'
+import ChurchGuides from './components/screens/ChurchGuides'
 import { UserActionMenu } from './components/common'
 
 // =============================================================================
@@ -79,6 +83,29 @@ function ProtectedRoute({ children }) {
 }
 
 // =============================================================================
+// CHURCH PROTECTED ROUTE COMPONENT
+// =============================================================================
+// Same as ProtectedRoute but checks for a church account instead of a user.
+
+function ChurchProtectedRoute({ children }) {
+  const { churchAccount, isLoading } = useApp()
+
+  if (isLoading) {
+    return (
+      <div className="screen">
+        <LoadingSpinner size={48} />
+      </div>
+    )
+  }
+
+  if (!churchAccount) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
+
+// =============================================================================
 // LAYOUT COMPONENT
 // =============================================================================
 // Wraps screens that should have the bottom navigation bar.
@@ -98,7 +125,7 @@ function MainLayout({ children }) {
 // =============================================================================
 
 function App() {
-  const { user } = useApp()
+  const { user, churchAccount } = useApp()
   const location = useLocation()
 
   // ----- Onboarding Tour -----
@@ -114,7 +141,7 @@ function App() {
   }, [user, location.pathname])
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water']
+  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water', '/church-dashboard', '/church-profile-editor', '/church-congregation', '/church-guides']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   // Swipe navigation between the 4 main tabs
@@ -151,8 +178,10 @@ function App() {
         <Route
           path="/login"
           element={
-            // If already logged in, redirect to dashboard
-            user ? <Navigate to="/dashboard" replace /> : <LoginScreen />
+            // If already logged in, redirect to appropriate dashboard
+            user ? <Navigate to="/dashboard" replace /> :
+            churchAccount ? <Navigate to="/church-dashboard" replace /> :
+            <LoginScreen />
           }
         />
 
@@ -449,6 +478,12 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* ====== CHURCH ACCOUNT ROUTES ====== */}
+        <Route path="/church-dashboard" element={<ChurchProtectedRoute><ChurchDashboard /></ChurchProtectedRoute>} />
+        <Route path="/church-profile-editor" element={<ChurchProtectedRoute><ChurchProfileEditor /></ChurchProtectedRoute>} />
+        <Route path="/church-congregation" element={<ChurchProtectedRoute><ChurchCongregation /></ChurchProtectedRoute>} />
+        <Route path="/church-guides" element={<ChurchProtectedRoute><ChurchGuides /></ChurchProtectedRoute>} />
 
         {/* ====== DEFAULT ROUTE ====== */}
         {/* Redirect root URL to dashboard (or login if not authenticated) */}

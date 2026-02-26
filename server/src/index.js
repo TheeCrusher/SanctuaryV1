@@ -32,6 +32,7 @@ import homeRoutes from './routes/home.js'
 import eventRoutes from './routes/events.js'
 import blockRoutes from './routes/blocks.js'
 import notificationRoutes from './routes/notifications.js'
+import churchAuthRoutes from './routes/church-auth.js'
 
 // Load environment variables from .env
 dotenv.config()
@@ -101,6 +102,7 @@ app.use('/api/home', homeRoutes)
 app.use('/api/events', eventRoutes)
 app.use('/api/blocks', blockRoutes)
 app.use('/api/notifications', notificationRoutes)
+app.use('/api/church-auth', churchAuthRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE

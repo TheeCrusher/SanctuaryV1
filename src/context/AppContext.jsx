@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useRef } from 'react'
-import { api, getToken, setToken, removeToken } from '../utils/api'
+import { api, getToken, setToken, removeToken, getChurchToken, setChurchToken, removeChurchToken, churchApi } from '../utils/api'
 import { connectSocket, disconnectSocket, getSocket } from '../utils/socket'
 
 // ============================================================================
@@ -73,6 +73,9 @@ export function AppProvider({ children }) {
   function hideUserActionMenu() {
     setUserActionMenu(null)
   }
+
+  // ----- CHURCH ACCOUNT STATE -----
+  const [churchAccount, setChurchAccount] = useState(null)
 
   // ----- NOTIFICATIONS STATE -----
   const [notifications, setNotifications] = useState([])
@@ -268,9 +271,20 @@ export function AppProvider({ children }) {
         // Token is invalid or expired -- clear it
         console.error('Session restore failed:', error)
         removeToken()
-      } finally {
-        setIsLoading(false)
       }
+
+      // Check for church session (separate from user session)
+      const cToken = getChurchToken()
+      if (cToken) {
+        try {
+          const { churchAccount: acct } = await churchApi.get('/church-auth/me')
+          setChurchAccount(acct)
+        } catch {
+          removeChurchToken()
+        }
+      }
+
+      setIsLoading(false)
     }
 
     initialize()
@@ -345,6 +359,26 @@ export function AppProvider({ children }) {
     setTypingUsers({})
     setNotifications([])
     setUnreadNotifCount(0)
+  }
+
+  // =========================================================================
+  // CHURCH ACCOUNT AUTHENTICATION
+  // =========================================================================
+
+  async function churchLogin(email, password) {
+    try {
+      const data = await churchApi.post('/church-auth/login', { email, password })
+      setChurchToken(data.token)
+      setChurchAccount(data.churchAccount)
+      return { success: true }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  }
+
+  function churchLogout() {
+    removeChurchToken()
+    setChurchAccount(null)
   }
 
   async function updateUserPhoto(photoUrl) {
@@ -931,6 +965,11 @@ export function AppProvider({ children }) {
     markNotificationRead,
     markAllNotificationsRead,
     deleteNotification,
+
+    // Church Account
+    churchAccount,
+    churchLogin,
+    churchLogout,
 
     // Utils
     getDailyQuote: () => dailyQuote
