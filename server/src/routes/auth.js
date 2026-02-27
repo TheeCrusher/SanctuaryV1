@@ -12,6 +12,7 @@ import { Router } from 'express'
 import crypto from 'crypto'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import rateLimit from 'express-rate-limit'
 import pool from '../config/db.js'
 import { sendPasswordResetEmail } from '../utils/sendEmail.js'
 import dotenv from 'dotenv'
@@ -19,6 +20,24 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const router = Router()
+
+// Rate limiter: max 10 login attempts per IP per 15 minutes
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { error: 'Too many login attempts. Please try again in 15 minutes.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
+// Rate limiter: max 5 registration attempts per IP per hour
+const registerLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  message: { error: 'Too many accounts created from this device. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
 
 // Helper function to create a JWT token
 function createToken(userId) {
@@ -43,7 +62,7 @@ function createToken(userId) {
 // 3. Insert the new user into the database
 // 4. Create a JWT token and send it back
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', registerLimiter, async (req, res, next) => {
   try {
     const { name, email, password, role, phoneNumber } = req.body
 
@@ -115,7 +134,7 @@ router.post('/register', async (req, res, next) => {
 // 2. Compare the password with the stored hash
 // 3. If match, create a JWT token and send it back
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', loginLimiter, async (req, res, next) => {
   try {
     const { email, password } = req.body
 

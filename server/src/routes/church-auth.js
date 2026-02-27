@@ -14,6 +14,7 @@
 import { Router } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import rateLimit from 'express-rate-limit'
 import pool from '../config/db.js'
 import { authenticateChurch } from '../middleware/churchAuth.js'
 import dotenv from 'dotenv'
@@ -21,6 +22,15 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const router = Router()
+
+// Rate limiter: max 10 login attempts per IP per 15 minutes
+const churchLoginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { error: 'Too many login attempts. Please try again in 15 minutes.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
 
 // Helper: create a church-specific JWT token
 function createChurchToken(churchAccountId, churchId) {
@@ -108,7 +118,7 @@ router.post('/register', async (req, res, next) => {
 // Logs in a church account.
 // Body: { email, password }
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', churchLoginLimiter, async (req, res, next) => {
   try {
     const { email, password } = req.body
 
