@@ -1,0 +1,598 @@
+/* ---------------------------------------------------------------------------
+   EVENTS SCREEN
+   In-person and digital events. Digital events get burgundy left border,
+   live badge with pulsing dot, and Join/Watch button.
+   Also covers EventDetail.jsx.
+   --------------------------------------------------------------------------- */
+
+/* ---- Events header ---- */
+.events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.events-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.events-create-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Category filter tabs — horizontal scrollable pills */
+.events-category-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.events-category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.events-category-tab {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.events-category-tab.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* ---- Event cards ---- */
+.event-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.event-card:active {
+  transform: scale(0.98);
+}
+
+.event-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.event-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.event-card-category {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Category color variants */
+.event-card-category-worship {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.event-card-category-service,
+.event-card-category-mission {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
+.event-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.event-card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.event-card-meta-row svg {
+  flex-shrink: 0;
+  color: var(--text-faint);
+}
+
+.event-card-church {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.event-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+.event-rsvp-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.event-rsvp-count svg {
+  color: var(--accent-gold);
+}
+
+.event-rsvp-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.event-rsvp-btn.active {
+  background: var(--accent-gold);
+  color: white;
+  border-color: var(--accent-gold);
+}
+
+/* ---- Event Detail screen ---- */
+.event-detail-screen {
+  padding-bottom: 100px;
+}
+
+.event-detail-card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+}
+
+.event-detail-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.event-detail-category {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  margin-bottom: 16px;
+}
+
+.event-detail-category-worship {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.event-detail-category-service,
+.event-detail-category-mission {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
+.event-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.event-detail-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.event-detail-info-row svg {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.event-detail-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.event-detail-creator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.event-detail-rsvp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid var(--brand-primary);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  color: var(--brand-primary);
+  margin-bottom: 16px;
+}
+
+.event-detail-rsvp-btn.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: white;
+}
+
+/* Attendees section */
+.event-attendees-section {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+}
+
+.event-attendees-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.event-attendee-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.event-attendee-row + .event-attendee-row {
+  border-top: 1px solid var(--border-light);
+}
+
+.event-attendee-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.event-attendee-role {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ---- Create Event modal form ---- */
+.create-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-event-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.create-event-form input,
+.create-event-form textarea,
+.create-event-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.create-event-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* ---- Digital Events ---- */
+
+/* Top-level type tabs (In-Person / Digital segmented control) */
+.events-type-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 12px;
+  background: var(--bg-muted);
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.events-type-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.events-type-tab.active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Digital event card visual distinction */
+.event-card-digital {
+  border-left: 3px solid var(--accent-burgundy);
+}
+
+/* Video icon next to digital event title */
+.event-digital-icon {
+  color: var(--accent-burgundy);
+  flex-shrink: 0;
+}
+
+/* LIVE badge (pulsing dot + text) — card size */
+.event-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+  white-space: nowrap;
+}
+
+/* LIVE badge — detail screen (larger) */
+.event-live-badge-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
+/* Pulsing dot for live indicator */
+.event-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-burgundy);
+  animation: live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Recorded badge — gold accent */
+.event-recorded-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  white-space: nowrap;
+}
+
+/* Platform name in event card meta */
+.event-platform-name {
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+/* Join / Watch button on event cards */
+.event-join-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: var(--accent-burgundy);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.event-join-btn:active {
+  opacity: 0.8;
+}
+
+/* Join/Watch button on detail screen (full width) */
+.event-detail-join-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--accent-burgundy);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.event-detail-join-btn:active {
+  opacity: 0.8;
+}
+
+/* Link text in event detail */
+.event-detail-link {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Create event type toggle (In-Person / Digital) */
+.create-event-type-toggle {
+  display: flex;
+  gap: 0;
+  background: var(--bg-muted);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.create-event-type-toggle .toggle-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.create-event-type-toggle .toggle-btn.active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- Dark mode overrides ---- */
+[data-theme="dark"] .event-card-category {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .event-detail-category {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .event-rsvp-btn:not(.active) {
+  background: var(--bg-muted);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .events-type-tab.active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .event-live-badge {
+  background: rgba(155, 77, 86, 0.25);
+  color: #e5a0a8;
+}
+
+[data-theme="dark"] .event-live-badge-large {
+  background: rgba(155, 77, 86, 0.25);
+  color: #e5a0a8;
+}
+
+[data-theme="dark"] .event-live-dot {
+  background: #e5a0a8;
+}
+
+[data-theme="dark"] .event-recorded-badge {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--accent-gold);
+}
+
+[data-theme="dark"] .event-platform-name {
+  color: var(--brand-light-text);
+}
+
+[data-theme="dark"] .event-detail-link {
+  color: var(--brand-light-text);
+}
+
+[data-theme="dark"] .create-event-type-toggle .toggle-btn.active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

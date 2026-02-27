@@ -1,0 +1,452 @@
+/* ---------------------------------------------------------------------------
+   SCRIPTURE STUDY
+   Covers Scripture.jsx (verse-of-day, category browse, plan cards, game
+   selection grid) and ReadingPlan.jsx (plan day list).
+   MemorizationGame.jsx has its own file: MemorizationGame.css
+   --------------------------------------------------------------------------- */
+
+/* ---- Verse of the Day card ---- */
+.verse-of-day {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-top: 3px solid var(--accent-gold);
+}
+
+.verse-of-day-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+.verse-of-day-text {
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.verse-of-day-ref {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.verse-of-day-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.verse-action-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.verse-action-pill:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ---- Quick Actions (Browse / Bookmarks toggle) ---- */
+.quick-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quick-action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.quick-action-btn.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* ---- Category filter pills ---- */
+.category-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.category-pill.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* ---- Individual verse card in browse list ---- */
+.verse-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.verse-reference {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-gold-text);
+  margin-bottom: 6px;
+}
+
+.verse-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.verse-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.verse-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+}
+
+.verse-category-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+/* ---- Reading Plan cards (shown in Scripture.jsx overview) ---- */
+.plan-card {
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  background: var(--bg-card);
+}
+
+.plan-card:active {
+  background: var(--bg-hover);
+}
+
+.plan-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.plan-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.plan-progress-bar {
+  height: 6px;
+  background: var(--border-primary);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.plan-progress-fill {
+  height: 100%;
+  background: var(--accent-gold);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.plan-progress-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ---- Plan Day list (used in ReadingPlan.jsx) ---- */
+.plan-day-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+
+.plan-day-item:active {
+  background: var(--bg-secondary);
+}
+
+.plan-day-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--brand-primary);
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid rgba(30, 58, 138, 0.15);
+}
+
+.plan-day-number.completed {
+  background: var(--badge-confirmed-bg);
+  color: var(--badge-confirmed-text);
+  border-color: transparent;
+}
+
+.plan-day-info {
+  flex: 1;
+}
+
+.plan-day-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.plan-day-ref {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+[data-theme="dark"] .plan-day-number {
+  background: rgba(96, 165, 250, 0.1);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.2);
+}
+
+/* ---- Scripture section layout ---- */
+.scripture-section { margin-bottom: 28px; }
+
+.scripture-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.scripture-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.scripture-section-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.scripture-small-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-warm);
+  background: var(--bg-warm-tint);
+  color: var(--accent-gold-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.scripture-small-btn:active { background: var(--accent-gold-light); }
+
+/* ---- Plan card enhancements ---- */
+.plan-card-started { border-left: 3px solid var(--accent-gold); }
+
+.plan-continue-badge {
+  background: var(--accent-gold);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan-custom-badge {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.plan-duration-badge {
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-card-badges {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* ---- Create Custom Plan modal ---- */
+.create-plan-form { display: flex; flex-direction: column; gap: 16px; }
+
+.create-plan-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.create-plan-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.create-plan-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+.duration-options {
+  display: flex;
+  gap: 8px;
+}
+
+.duration-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+}
+
+.duration-btn.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+
+/* ---- Memorization Challenge section (game picker in Scripture.jsx) ---- */
+.memo-game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.memo-game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.memo-game-card:active { transform: scale(0.97); }
+
+.memo-game-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.memo-game-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.memo-game-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.streak-badge {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+[data-theme="dark"] .memo-game-card { border-color: var(--border-primary); }
+[data-theme="dark"] .create-plan-input { background: var(--bg-tertiary); }

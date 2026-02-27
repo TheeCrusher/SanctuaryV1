@@ -4,6 +4,7 @@
 // A hub screen accessed from the 4th bottom nav tab.
 // Organized into sections: Discover, Spiritual, My Stuff, Account.
 
+import '../layout/MoreMenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'

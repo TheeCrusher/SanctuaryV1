@@ -5,6 +5,7 @@
 // Tap a day to see that day's sessions in a detail panel below.
 // Navigate months with arrow buttons.
 
+import './Appointments.css'
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

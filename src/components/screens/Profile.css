@@ -1,0 +1,280 @@
+/* ---------------------------------------------------------------------------
+   PROFILE
+   Covers: own profile header/menu (Profile.jsx), other user profile detail
+   (UserProfile.jsx), role badges, photo preview, and the privacy hint.
+   --------------------------------------------------------------------------- */
+
+/* ---- Profile Header (Section 14) ---- */
+.profile-header {
+  background: var(--bg-secondary);
+  padding: 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-primary);
+  position: relative;
+}
+
+/* Guide profiles get a warm gold gradient tint behind the avatar */
+.profile-header.profile-header-guide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-gold-light), transparent);
+  pointer-events: none;
+}
+
+/* Avatar ring colors based on role */
+.profile-avatar-guide {
+  box-shadow: 0 0 0 3px var(--accent-gold);
+}
+
+.profile-avatar-seeker {
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  width: 100px;
+  margin: 0 auto 16px;
+  cursor: pointer;
+}
+
+.profile-avatar-wrap .camera-overlay {
+  position: absolute;
+  bottom: 0;
+  right: -6px;
+  width: 32px;
+  height: 32px;
+  background: var(--brand-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 2px solid var(--bg-secondary);
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Photo Preview Modal */
+.photo-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.photo-preview-content {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.photo-preview-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.photo-preview-emoji {
+  font-size: 120px;
+  line-height: 1;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.profile-email {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Profile settings menu items */
+.menu-section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.menu-section-label + .menu-section-label,
+.menu-item + .menu-section-label {
+  margin-top: 24px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-item:active {
+  background: var(--bg-hover);
+}
+
+.menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-item-icon {
+  font-size: 20px;
+}
+
+.menu-item-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.menu-item-text.danger {
+  color: var(--danger);
+}
+
+.menu-item-arrow {
+  color: var(--text-faint);
+  font-size: 18px;
+}
+
+.menu-item-arrow.danger {
+  color: var(--danger);
+}
+
+/* ---- User Profile Details (Section 27) ---- */
+.profile-details {
+  margin-top: 16px;
+}
+
+.profile-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.profile-bio {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 10px;
+  padding: 0 16px;
+}
+
+.profile-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--brand-primary);
+  cursor: pointer;
+}
+
+.profile-edit-btn:active {
+  background: var(--bg-hover);
+}
+
+.profile-edit-form {
+  margin-top: 16px;
+  text-align: left;
+  padding: 0 8px;
+}
+
+.profile-edit-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.profile-edit-actions button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.profile-char-count {
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: right;
+  margin-top: 4px;
+}
+
+.profile-role-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+  text-transform: capitalize;
+  margin-top: 4px;
+}
+
+.profile-role-badge.role-seeker {
+  background: var(--bg-accent);
+  color: var(--brand-light-text);
+}
+
+.profile-role-badge.role-guide {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+/* ---- Profile Privacy Hint (Section 33) ---- */
+.profile-limited-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin: 16px 0 0;
+  background: var(--accent-gold-light);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.profile-limited-hint svg {
+  flex-shrink: 0;
+  color: var(--accent-gold);
+}
+
+[data-theme="dark"] .profile-limited-hint {
+  background: var(--accent-gold-light);
+}

@@ -7,6 +7,8 @@
 // - "Book Session" only when a Seeker views a Guide's profile
 // - 3-dot menu with "Block User" option
 
+import './Profile.css'
+import './BlockedUsersScreen.css'
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

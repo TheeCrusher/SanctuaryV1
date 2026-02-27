@@ -5,6 +5,7 @@
 // Step 2: About you (location, denomination, church) — skippable
 // Step 3: Your interests (tappable chips) — skippable
 
+import './SignUpScreen.css'
 import { useState, useRef } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

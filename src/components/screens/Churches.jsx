@@ -6,6 +6,7 @@
 // Tapping a church auto-saves it to Sanctuary's database (if not already there)
 // then navigates to the detail page.
 
+import './Churches.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'

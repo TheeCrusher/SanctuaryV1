@@ -3,6 +3,7 @@
 // =============================================================================
 // Community prayer request board where users can post, pray, and comment.
 
+import './PrayerBoard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

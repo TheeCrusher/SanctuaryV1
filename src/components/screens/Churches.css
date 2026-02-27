@@ -1,0 +1,492 @@
+/* ---------------------------------------------------------------------------
+   CHURCHES
+   Covers: church cards/detail, search bar, ratings, hours, photos,
+   favorites toggle, church reviews, bulletin board, and church members.
+   --------------------------------------------------------------------------- */
+
+/* ---- Church Cards & Detail (Section 13) ---- */
+.church-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.church-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.church-address {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.church-distance {
+  font-size: 12px;
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.church-overall {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.church-ratings-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.church-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.church-hours-list {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.church-hours-line {
+  padding: 2px 0;
+}
+
+.stars {
+  color: var(--accent-gold);
+  letter-spacing: 1px;
+}
+
+.stars-sm {
+  font-size: 14px;
+}
+
+.stars-lg {
+  font-size: 18px;
+}
+
+.star-score {
+  font-weight: 600;
+  color: var(--accent-gold-text);
+}
+
+.rating-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rating-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.church-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.meta-tag {
+  font-size: 12px;
+  background: var(--meta-tag-bg);
+  color: var(--text-secondary);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.meta-tag-yes {
+  background: var(--meta-yes-bg);
+  color: var(--meta-yes-text);
+}
+
+.meta-tag-no {
+  background: var(--meta-no-bg);
+  color: var(--meta-no-text);
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-row input {
+  flex: 1;
+}
+
+.search-clear {
+  color: var(--text-faint);
+  font-size: 20px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Church search bar */
+.church-search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0 12px;
+  height: 48px;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+
+.church-search-bar:focus-within {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 2px var(--accent-gold-light);
+}
+
+.church-search-icon {
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.church-search-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 15px;
+  color: var(--text-primary);
+  padding: 0;
+  height: 100%;
+  outline: none;
+}
+
+.church-search-bar input::placeholder {
+  color: var(--text-faint);
+}
+
+.church-search-clear {
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  padding: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.church-search-submit {
+  background: var(--brand-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.church-search-submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Church photo with fallback icon */
+.church-photo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border-warm);
+}
+
+.church-photo-fallback {
+  position: absolute;
+}
+
+.church-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ---- Church Favorites (Section 24) ---- */
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.favorite-btn:active {
+  transform: scale(1.3);
+}
+
+.favorites-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.favorites-filter-btn.active {
+  background: var(--accent-burgundy-light);
+  border-color: var(--accent-burgundy);
+  color: var(--accent-burgundy);
+}
+
+/* ---- Church Reviews (Section 28) ---- */
+.review-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.review-info {
+  flex: 1;
+}
+
+.review-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.review-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.review-star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: transform 0.15s ease;
+}
+
+.review-star-btn:active {
+  transform: scale(1.2);
+}
+
+.category-rating-list {
+  margin-bottom: 12px;
+}
+
+.category-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.category-rating-row:last-child {
+  border-bottom: none;
+}
+
+.category-rating-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 105px;
+}
+
+.category-rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-computed-overall {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 12px;
+}
+
+.category-breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.category-breakdown-row:last-child {
+  margin-bottom: 0;
+}
+
+.category-breakdown-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.category-breakdown-bar-wrapper {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-muted);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-breakdown-bar {
+  height: 100%;
+  background: var(--accent-gold);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.category-breakdown-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 28px;
+  text-align: right;
+}
+
+.review-categories-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.review-category-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-muted);
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.review-category-tag .stars-sm {
+  font-size: 11px;
+}
+
+/* ---- Church Members (Section 31) ---- */
+.church-members-section {
+  margin-top: 8px;
+}
+
+.church-members-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.church-members-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.church-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  padding: 12px 8px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s;
+}
+
+.church-member-card:active {
+  transform: scale(0.97);
+}
+
+.church-member-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
+
+.church-member-role {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.church-member-shared {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+[data-theme="dark"] .church-member-card {
+  background: var(--bg-tertiary);
+}

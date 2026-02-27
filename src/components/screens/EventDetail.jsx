@@ -7,6 +7,7 @@
 //
 // Route: /events/:id
 
+import './EventsScreen.css'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Calendar, MapPin, Clock, Tag, Users, Video, Radio, ExternalLink } from 'lucide-react'

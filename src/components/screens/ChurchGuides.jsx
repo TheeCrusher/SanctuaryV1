@@ -5,6 +5,7 @@
 // Church can add new guides (search by name) and remove existing ones
 // (but at least one guide must always remain).
 
+import './ChurchDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'

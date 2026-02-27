@@ -4,6 +4,7 @@
 // Allows church accounts to edit their custom description, service times,
 // and programs. These override the Google-sourced defaults when present.
 
+import './ChurchDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'

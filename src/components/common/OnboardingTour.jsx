@@ -8,6 +8,7 @@
 // Props:
 //   onComplete - callback when tour finishes or is skipped
 
+import './OnboardingTour.css'
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

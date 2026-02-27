@@ -5,6 +5,7 @@
 // the Bible Reader. Currently only KJV is available.
 // Accessed from: More menu → "Bibles"
 
+import './BibleSelect.css'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Book, ChevronRight, Plus } from 'lucide-react'
 

@@ -5,6 +5,7 @@
 // Admin overview with navigation cards to manage their church page.
 // No bottom nav — church accounts have their own simple layout.
 
+import './ChurchDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

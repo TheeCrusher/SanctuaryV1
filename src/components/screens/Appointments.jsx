@@ -6,6 +6,7 @@
 // Session Notes tab: chronological list of all session notes with linked appointments.
 // Completion flow: guides can mark sessions complete and get prompted to add notes.
 
+import './Appointments.css'
 import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

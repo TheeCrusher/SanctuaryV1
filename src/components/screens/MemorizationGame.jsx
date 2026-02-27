@@ -9,6 +9,7 @@
 // Flow: Source Select → Playing → Results
 // Route: /scripture/game/:mode
 
+import './MemorizationGame.css'
 import { useState, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

@@ -1,0 +1,91 @@
+/* ---------------------------------------------------------------------------
+   BIBLE SELECT SCREEN
+   Translation selection cards with gold left border and icon badges.
+   --------------------------------------------------------------------------- */
+
+.bible-select-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.bible-select-card:active {
+  transform: scale(0.98);
+}
+
+.bible-select-card-disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.bible-select-card-disabled:active {
+  transform: none;
+}
+
+.bible-select-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bible-select-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-gold);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bible-select-icon-muted {
+  background: var(--bg-accent);
+  color: var(--text-muted);
+}
+
+.bible-select-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.bible-select-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.bible-select-card-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bible-select-abbrev {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-gold-text);
+  background: var(--accent-gold-light);
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.bible-coming-soon-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-accent);
+  padding: 4px 10px;
+  border-radius: 8px;
+}

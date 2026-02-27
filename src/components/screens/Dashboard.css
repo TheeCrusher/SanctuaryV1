@@ -1,0 +1,352 @@
+/* ---------------------------------------------------------------------------
+   DASHBOARD (Home Screen)
+   --------------------------------------------------------------------------- */
+.dashboard-header {
+  background: linear-gradient(135deg, #1e3a8a, #1e40af);
+  color: white;
+  padding: 24px;
+  border-radius: 0 0 24px 24px;
+}
+
+.dashboard-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-box {
+  background: rgba(30, 58, 138, 0.06);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 8px 0 24px;
+  border: 1px solid rgba(30, 58, 138, 0.12);
+}
+
+.stats-box-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-primary);
+  margin-bottom: 10px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-card {
+  background: rgba(30, 58, 138, 0.04);
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 58, 138, 0.1);
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-icon {
+  opacity: 0.5;
+}
+
+.stat-icon-inline {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.stat-icon-gold {
+  color: var(--accent-gold);
+}
+
+/* --- Home Screen Sections --- */
+.home-section {
+  margin-bottom: 20px;
+}
+
+.home-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.home-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-section-title::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--accent-gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* --- Role Badge in Header --- */
+.home-role-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.home-role-guide {
+  background: rgba(201, 162, 39, 0.3);
+  color: #FFD700;
+}
+
+.home-role-seeker {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+/* --- Notification Cards --- */
+.home-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-notif-card {
+  cursor: pointer;
+}
+
+.home-notif-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.home-notif-messages {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+}
+
+.home-notif-connections {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+}
+
+.home-notif-prayers {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
+.home-notif-sessions {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.home-notif-text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.home-notif-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-primary);
+  min-width: 20px;
+  text-align: center;
+}
+
+.home-notif-arrow {
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+/* --- Caught Up State --- */
+.home-caught-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  gap: 6px;
+}
+
+.home-caught-up-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --- Upcoming Appointment Row --- */
+.home-upcoming-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-upcoming-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.home-upcoming-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-upcoming-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-upcoming-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- Community Activity Cards --- */
+.home-activity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-activity-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-activity-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.home-activity-title {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-activity-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Daily Word --- */
+.home-daily-word {
+  text-align: left;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.home-daily-text {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.home-daily-ref {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-gold-text);
+}
+
+/* --- Dark Mode Overrides --- */
+[data-theme="dark"] .home-role-guide {
+  background: rgba(212, 175, 55, 0.25);
+  color: var(--accent-gold);
+}
+
+[data-theme="dark"] .home-role-seeker {
+  background: rgba(96, 165, 250, 0.2);
+  color: #93bbfd;
+}
+
+[data-theme="dark"] .home-notif-messages {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .home-notif-connections {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+[data-theme="dark"] .home-notif-prayers {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
+}
+
+[data-theme="dark"] .home-notif-sessions {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
+}
+
+[data-theme="dark"] .stats-box {
+  background: rgba(96, 165, 250, 0.08);
+  border-color: rgba(96, 165, 250, 0.15);
+}
+
+[data-theme="dark"] .stat-card {
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.12);
+}

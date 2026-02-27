@@ -1,3 +1,4 @@
+import './SplashScreen.css'
 import { useRef } from 'react'
 
 // SplashScreen plays the intro video when the app first loads.

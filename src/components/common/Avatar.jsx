@@ -12,6 +12,7 @@
 //   - variant: 'white' | 'blue' | 'gradient' (default: 'blue')
 //   - className: Additional CSS classes (optional)
 
+import './Avatar.css'
 import { User } from 'lucide-react'
 
 // Consistent colors for initials — same name always gets the same color

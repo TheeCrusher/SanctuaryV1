@@ -8,6 +8,7 @@
 //   - Navigate to different screens when tapped
 //   - Highlight the currently active screen
 
+import './BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Home, Users, CalendarDays, MoreHorizontal } from 'lucide-react'

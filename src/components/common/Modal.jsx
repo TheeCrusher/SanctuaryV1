@@ -10,6 +10,7 @@
 //   - title: The heading text at the top of the modal
 //   - children: The content inside the modal
 
+import './Modal.css'
 import { useEffect } from 'react'
 
 function Modal({ isOpen, onClose, title, children }) {

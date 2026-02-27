@@ -5,6 +5,7 @@
 // book/chapter navigation, verse highlighting, bookmarks, and search.
 // This screen hides the bottom nav for an immersive reading feel.
 
+import './BibleReader.css'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {

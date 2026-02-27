@@ -11,6 +11,7 @@
 //
 // Fetches all data from GET /api/home in a single call.
 
+import './Dashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

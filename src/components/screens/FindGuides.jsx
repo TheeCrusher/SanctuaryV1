@@ -7,6 +7,7 @@
 //   National — all remaining guides
 // Shows guide cards with availability status, search filtering, and pagination.
 
+import './FindGuides.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

@@ -4,6 +4,7 @@
 // Shows the actual chat conversation with messages.
 // Features: real-time via Socket.io, typing indicators, online status.
 
+import './Community.css'
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

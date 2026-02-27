@@ -5,6 +5,7 @@
 // Shows quick actions: "Visit Profile" (always) and "Message" (contextual).
 // Rendered once in App.jsx, triggered from any component via AppContext.
 
+import './UserActionMenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'

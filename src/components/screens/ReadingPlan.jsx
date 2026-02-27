@@ -5,6 +5,7 @@
 // Users can track progress by marking days as complete.
 // Accessed via Scripture > [Plan Name].
 
+import './Scripture.css'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

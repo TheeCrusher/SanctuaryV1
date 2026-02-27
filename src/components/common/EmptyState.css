@@ -1,0 +1,28 @@
+/* ---------------------------------------------------------------------------
+   EMPTY STATES
+   Used by the EmptyState component — shown when a list has no items.
+   --------------------------------------------------------------------------- */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+  color: var(--accent-gold);
+}
+
+.empty-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.empty-subtext {
+  font-size: 14px;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}

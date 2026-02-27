@@ -8,6 +8,7 @@
 //
 // All steps in one component using step state.
 
+import './ForgotPassword.css'
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../utils/api'

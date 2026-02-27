@@ -5,6 +5,7 @@
 // Each blocked user has an "Unblock" button to remove the block.
 // Accessible from Profile > Account > Blocked Users.
 
+import './BlockedUsersScreen.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, EmptyState, LoadingSpinner } from '../common'

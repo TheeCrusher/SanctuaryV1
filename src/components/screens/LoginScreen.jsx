@@ -4,6 +4,9 @@
 // The first screen users see. Handles email/password authentication.
 // Supports two login modes: User (guide/seeker) and Church (church accounts).
 
+import './LoginScreen.css'
+import './ForgotPassword.css'
+import './ChurchDashboard.css'
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

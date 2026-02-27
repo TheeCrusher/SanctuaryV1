@@ -4,6 +4,7 @@
 // Shows user profile info with editable bio, specialization, and location.
 // Allows photo upload, dark mode toggle, and logout.
 
+import './Profile.css'
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

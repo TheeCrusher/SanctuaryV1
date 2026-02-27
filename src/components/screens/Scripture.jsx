@@ -5,6 +5,7 @@
 // challenge, browse by category, bookmark verses, and sharing.
 // Accessed via More > Scripture Study.
 
+import './Scripture.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

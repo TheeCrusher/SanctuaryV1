@@ -12,6 +12,7 @@
 //   - LIVE NOW badge for active livestreams
 //   - Create Event modal with type-specific fields
 
+import './EventsScreen.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Plus, Calendar, MapPin, Users, Video, Radio, ExternalLink, Clock } from 'lucide-react'

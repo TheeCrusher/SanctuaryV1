@@ -4,6 +4,7 @@
 // Shows all Sanctuary users who belong to this church (favorited, reviewed,
 // or have it as their preferred church). Read-only — no interaction from here.
 
+import './ChurchDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'

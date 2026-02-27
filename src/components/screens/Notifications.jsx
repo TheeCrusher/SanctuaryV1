@@ -5,6 +5,7 @@
 // Each notification has a type icon, title, body, timestamp, and unread indicator.
 // Tapping a notification marks it as read and navigates to the related screen.
 
+import './Notifications.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'

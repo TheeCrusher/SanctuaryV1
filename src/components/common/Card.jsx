@@ -9,6 +9,8 @@
 //   - onClick: Function to call when clicked (optional - makes it clickable)
 //   - className: Additional CSS classes (optional)
 
+import './Card.css'
+
 function Card({ children, onClick, className = '' }) {
   // If onClick is provided, add the 'card-clickable' class for hover/tap effects
   const clickableClass = onClick ? 'card-clickable' : ''

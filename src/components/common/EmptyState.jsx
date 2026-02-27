@@ -11,6 +11,7 @@
 //   - actionLabel: Text for the action button (optional)
 //   - onAction: Function to call when action button is clicked (optional)
 
+import './EmptyState.css'
 import { Inbox } from 'lucide-react'
 
 function EmptyState({

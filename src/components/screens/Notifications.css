@@ -1,0 +1,182 @@
+/* ---------------------------------------------------------------------------
+   NOTIFICATIONS
+   Bell icon badge (used in Dashboard header) and the notification feed screen.
+   Unread items get a warm tint background and gold dot indicator.
+   --------------------------------------------------------------------------- */
+
+/* --- Bell icon in Dashboard header --- */
+.notif-bell-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notif-bell-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: var(--accent-burgundy);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+/* --- Notifications screen content --- */
+.notif-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* --- Mark All Read button in header --- */
+.notif-mark-all-btn {
+  background: none;
+  border: none;
+  color: var(--brand-primary, #1e3a8a);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.notif-mark-all-btn:active {
+  background: rgba(30, 58, 138, 0.08);
+}
+
+/* --- Notification list --- */
+.notif-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-light, #e5e7eb);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.notif-item:active {
+  background: var(--bg-hover, rgba(0, 0, 0, 0.04));
+}
+
+/* Unread notification highlight — warm tint */
+.notif-item.notif-unread {
+  background: var(--bg-warm-tint);
+}
+
+/* --- Type icon circle --- */
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* --- Text content area --- */
+.notif-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary, #111827);
+  line-height: 1.4;
+}
+
+.notif-unread .notif-title {
+  font-weight: 600;
+}
+
+.notif-body {
+  font-size: 13px;
+  color: var(--text-secondary, #6b7280);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notif-time {
+  font-size: 12px;
+  color: var(--text-secondary, #6b7280);
+  margin-top: 4px;
+}
+
+/* --- Right side actions (unread dot + delete) --- */
+.notif-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.notif-unread-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.notif-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #6b7280);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.notif-delete-btn:hover,
+.notif-delete-btn:active {
+  opacity: 1;
+  color: #ef4444;
+}
+
+/* --- Dark mode --- */
+[data-theme="dark"] .notif-item {
+  border-bottom-color: var(--border-light, #374151);
+}
+
+[data-theme="dark"] .notif-item.notif-unread {
+  background: var(--bg-warm-tint);
+}
+
+[data-theme="dark"] .notif-mark-all-btn {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .notif-bell-btn {
+  color: white;
+}

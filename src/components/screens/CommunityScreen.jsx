@@ -6,6 +6,7 @@
 // "Messages" tab: Conversation list, new conversation modal with user search.
 // Fixed "Invite Friends" button at the bottom of both tabs.
 
+import './Community.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
