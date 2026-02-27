@@ -70,7 +70,6 @@ function ChurchDetail() {
       const data = await api.get(`/churches/${id}`)
       setChurch(data.church)
     } catch (error) {
-      console.error('Failed to load church:', error)
       setChurch(null)
     } finally {
       setLoading(false)
@@ -90,7 +89,7 @@ function ChurchDetail() {
       const { reviews: data } = await api.get(`/churches/${id}/reviews`)
       setReviews(data)
     } catch (error) {
-      console.error('Failed to load reviews:', error)
+      // ignore
     }
   }
 
@@ -99,7 +98,7 @@ function ChurchDetail() {
       const { members: data } = await api.get(`/churches/${id}/members`)
       setMembers(data)
     } catch (error) {
-      console.error('Failed to load members:', error)
+      // ignore
     }
   }
 
@@ -108,7 +107,7 @@ function ChurchDetail() {
       const { announcements: data } = await api.get(`/churches/${id}/announcements`)
       setAnnouncements(data)
     } catch (error) {
-      console.error('Failed to load announcements:', error)
+      // ignore
     }
   }
 
@@ -127,7 +126,7 @@ function ChurchDetail() {
       setShowAnnouncementModal(false)
       loadAnnouncements()
     } catch (error) {
-      console.error('Failed to create announcement:', error)
+      // ignore
     } finally {
       setAnnSubmitting(false)
     }
@@ -169,7 +168,7 @@ function ChurchDetail() {
       await Promise.all([loadReviews(), loadChurch()])
       setShowReviewModal(false)
     } catch (error) {
-      console.error('Failed to submit review:', error)
+      // ignore
     } finally {
       setSubmitting(false)
     }
@@ -181,7 +180,7 @@ function ChurchDetail() {
       await Promise.all([loadReviews(), loadChurch()])
       setShowReviewModal(false)
     } catch (error) {
-      console.error('Failed to delete review:', error)
+      // ignore
     }
   }
 

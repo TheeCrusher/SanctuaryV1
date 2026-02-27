@@ -52,7 +52,6 @@ function FindGuides() {
       setGuides(data.guides || [])
       setVisibleCount(10)
     } catch (err) {
-      console.error('Failed to load guides:', err)
       setError('Failed to load guides. Please try again.')
     } finally {
       setLoading(false)

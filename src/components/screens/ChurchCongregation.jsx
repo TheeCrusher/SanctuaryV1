@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { churchApi, API_BASE } from '../../utils/api'
+import { churchApi } from '../../utils/api'
 import { ArrowLeft, Users } from 'lucide-react'
 
 function ChurchCongregation() {
@@ -20,7 +20,7 @@ function ChurchCongregation() {
         const data = await churchApi.get('/church-auth/congregation')
         setMembers(data.members)
       } catch (error) {
-        console.error('Failed to load congregation:', error)
+        // ignore
       } finally {
         setLoading(false)
       }

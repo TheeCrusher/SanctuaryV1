@@ -24,12 +24,8 @@ export function connectSocket() {
     transports: ['websocket', 'polling']
   })
 
-  socket.on('connect', () => {
-    console.log('Socket connected:', socket.id)
-  })
-
-  socket.on('connect_error', (err) => {
-    console.error('Socket connection error:', err.message)
+  socket.on('connect_error', () => {
+    // Silently ignore — socket will retry automatically
   })
 
   return socket

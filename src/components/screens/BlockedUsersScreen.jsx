@@ -23,7 +23,7 @@ function BlockedUsersScreen() {
         const data = await api.get('/blocks')
         setBlockedUsers(data.blocked || [])
       } catch (error) {
-        console.error('Failed to load blocked users:', error)
+        // ignore
       } finally {
         setLoading(false)
       }
@@ -37,7 +37,7 @@ function BlockedUsersScreen() {
       await api.delete(`/blocks/${userId}`)
       setBlockedUsers(prev => prev.filter(u => u.id !== userId))
     } catch (error) {
-      console.error('Failed to unblock user:', error)
+      // ignore
     } finally {
       setUnblockingId(null)
     }

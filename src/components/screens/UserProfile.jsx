@@ -38,7 +38,6 @@ function UserProfile() {
       setProfile(profileRes.user)
       setConnectionStatus(statusRes.status)
     } catch (err) {
-      console.error('Failed to load profile:', err)
       setError('Failed to load profile. Please try again.')
     } finally {
       setLoading(false)
@@ -71,7 +70,7 @@ function UserProfile() {
       await api.post('/community/request', { recipientId: Number(id) })
       setConnectionStatus('pending_sent')
     } catch (error) {
-      console.error('Failed to send connection request:', error)
+      // ignore
     } finally {
       setConnectionLoading(false)
     }
@@ -89,7 +88,6 @@ function UserProfile() {
       await api.post('/blocks', { blockedId: Number(id) })
       navigate(-1)
     } catch (error) {
-      console.error('Failed to block user:', error)
       setBlocking(false)
     }
   }
@@ -100,7 +98,7 @@ function UserProfile() {
       await api.post('/users/waitlist', { guideId: Number(id) })
       setProfile(prev => ({ ...prev, onWaitlist: true }))
     } catch (error) {
-      console.error('Failed to join waitlist:', error)
+      // ignore
     } finally {
       setWaitlistLoading(false)
     }

@@ -64,7 +64,7 @@ function CommunityScreen() {
         const { users } = await api.get(`/users/search?q=${encodeURIComponent(searchQuery.trim())}`)
         setSearchResults(users)
       } catch (err) {
-        console.error('Search failed:', err)
+        // ignore
       }
     }, 300)
 
@@ -84,7 +84,6 @@ function CommunityScreen() {
       setPending(pendingRes || { incoming: [], outgoing: [] })
       setSuggested(suggestedRes.suggested || [])
     } catch (err) {
-      console.error('Failed to load community:', err)
       setError('Failed to load community. Please try again.')
     } finally {
       setLoading(false)
@@ -96,7 +95,7 @@ function CommunityScreen() {
       await api.patch(`/community/${connectionId}`, { status: 'accepted' })
       await loadData()
     } catch (error) {
-      console.error('Failed to accept request:', error)
+      // ignore
     }
   }
 
@@ -105,7 +104,7 @@ function CommunityScreen() {
       await api.patch(`/community/${connectionId}`, { status: 'declined' })
       await loadData()
     } catch (error) {
-      console.error('Failed to decline request:', error)
+      // ignore
     }
   }
 
@@ -173,9 +172,7 @@ function CommunityScreen() {
       try {
         await navigator.share(shareData)
       } catch (err) {
-        if (err.name !== 'AbortError') {
-          console.error('Share failed:', err)
-        }
+        // AbortError means user dismissed share sheet — ignore
       }
     } else {
       try {
@@ -183,7 +180,7 @@ function CommunityScreen() {
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
       } catch (err) {
-        console.error('Copy failed:', err)
+        // ignore
       }
     }
   }

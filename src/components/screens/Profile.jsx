@@ -55,7 +55,7 @@ function Profile() {
       const compressed = await compressImage(file)
       updateUserPhoto(compressed)
     } catch (err) {
-      console.error('Image compression failed:', err)
+      // ignore
     }
     e.target.value = ''
   }

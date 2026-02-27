@@ -35,7 +35,7 @@ function EventDetail() {
       setEvent(data.event)
       setAttendees(data.attendees)
     } catch (error) {
-      console.error('Failed to load event:', error)
+      // ignore
     } finally {
       setLoading(false)
     }
@@ -51,7 +51,7 @@ function EventDetail() {
       }
       loadEvent()
     } catch (error) {
-      console.error('RSVP failed:', error)
+      // ignore
     }
   }
 

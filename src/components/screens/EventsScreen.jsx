@@ -63,7 +63,6 @@ function EventsScreen() {
       const data = await api.get(`/events?${params.toString()}`)
       setEvents(data.events)
     } catch (err) {
-      console.error('Failed to load events:', err)
       setError('Failed to load events. Please try again.')
     } finally {
       setLoading(false)
@@ -85,7 +84,7 @@ function EventsScreen() {
       }
       loadEvents()
     } catch (error) {
-      console.error('RSVP failed:', error)
+      // ignore
     }
   }
 
@@ -132,7 +131,7 @@ function EventsScreen() {
         loadEvents()
       }
     } catch (error) {
-      console.error('Failed to create event:', error)
+      // ignore
     } finally {
       setCreating(false)
     }

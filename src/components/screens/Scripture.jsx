@@ -68,7 +68,7 @@ function Scripture() {
       setRandomVerse(verse)
       setShowRandomModal(true)
     } catch (error) {
-      console.error('Failed to get random verse:', error)
+      // ignore
     }
   }
 

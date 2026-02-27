@@ -27,18 +27,18 @@ import {
 
 // Icon + color mapping for each notification type
 const NOTIF_CONFIG = {
-  new_message:             { icon: MessageCircle, color: '#3b82f6', bg: 'rgba(59,130,246,0.1)' },
-  connection_request:      { icon: UserPlus,      color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  connection_accepted:     { icon: Users,         color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  prayer_prayed:           { icon: Heart,         color: '#722F37', bg: 'rgba(114,47,55,0.1)' },
-  prayer_comment:          { icon: MessageCircle, color: '#f97316', bg: 'rgba(249,115,22,0.1)' },
-  testimony_celebration:   { icon: PartyPopper,   color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  event_rsvp:              { icon: Calendar,      color: '#06b6d4', bg: 'rgba(6,182,212,0.1)' },
-  appointment_request:     { icon: Clock,         color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  appointment_confirmed:   { icon: Clock,         color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  appointment_declined:    { icon: Clock,         color: '#722F37', bg: 'rgba(114,47,55,0.1)' },
-  waitlist_spot_open:      { icon: Clock,         color: '#C9A227', bg: 'rgba(201,162,39,0.1)' },
-  church_announcement:     { icon: Megaphone,     color: '#059669', bg: 'rgba(5,150,105,0.1)' }
+  new_message:             { icon: MessageCircle, color: 'var(--brand-primary)',         bg: 'var(--brand-light)' },
+  connection_request:      { icon: UserPlus,      color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  connection_accepted:     { icon: Users,         color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  prayer_prayed:           { icon: Heart,         color: 'var(--accent-burgundy)',        bg: 'var(--accent-burgundy-light)' },
+  prayer_comment:          { icon: MessageCircle, color: 'var(--accent-orange)',          bg: 'var(--accent-orange-light)' },
+  testimony_celebration:   { icon: PartyPopper,   color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  event_rsvp:              { icon: Calendar,      color: 'var(--accent-teal)',            bg: 'var(--accent-teal-light)' },
+  appointment_request:     { icon: Clock,         color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  appointment_confirmed:   { icon: Clock,         color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  appointment_declined:    { icon: Clock,         color: 'var(--accent-burgundy)',        bg: 'var(--accent-burgundy-light)' },
+  waitlist_spot_open:      { icon: Clock,         color: 'var(--accent-gold)',            bg: 'var(--accent-gold-light)' },
+  church_announcement:     { icon: Megaphone,     color: 'var(--accent-green)',           bg: 'var(--accent-green-light)' }
 }
 
 // Determine where to navigate when tapping a notification
@@ -75,7 +75,6 @@ function Notifications() {
       setError(null)
       await fetchNotifications()
     } catch (err) {
-      console.error('Failed to load notifications:', err)
       setError('Failed to load notifications. Please try again.')
     } finally {
       setLoading(false)

@@ -45,7 +45,7 @@ function Churches() {
     try {
       await searchChurches(query)
     } catch (err) {
-      console.error('Search error:', err)
+      // ignore
     }
     setLoading(false)
   }
@@ -81,7 +81,7 @@ function Churches() {
         })
         navigate(`/churches/${church.id}`)
       } catch (err) {
-        console.error('Failed to save church:', err)
+        // ignore
       }
       setSaving(null)
     }

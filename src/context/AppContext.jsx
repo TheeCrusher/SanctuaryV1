@@ -235,7 +235,7 @@ export function AppProvider({ children }) {
       setUnreadNotifCount(unreadCountRes.count)
       setMemorizationStats(memoStatsRes)
     } catch (error) {
-      console.error('Failed to load data:', error)
+      // ignore — individual screens handle their own error states
     }
   }
 
@@ -269,7 +269,6 @@ export function AppProvider({ children }) {
         if (sock) setupSocketListeners(sock)
       } catch (error) {
         // Token is invalid or expired -- clear it
-        console.error('Session restore failed:', error)
         removeToken()
       }
 
@@ -386,7 +385,7 @@ export function AppProvider({ children }) {
       const { user: updatedUser } = await api.put('/users/me', { photoUrl })
       setUser(updatedUser)
     } catch (error) {
-      console.error('Failed to update photo:', error)
+      // ignore
     }
   }
 
@@ -396,7 +395,6 @@ export function AppProvider({ children }) {
       setUser(updatedUser)
       return { success: true }
     } catch (error) {
-      console.error('Failed to update profile:', error)
       return { success: false, error: error.message }
     }
   }
@@ -411,7 +409,6 @@ export function AppProvider({ children }) {
       setAppointments(prev => [...prev, ...newApts])
       return newApts
     } catch (error) {
-      console.error('Failed to create appointment:', error)
       throw error
     }
   }
@@ -421,7 +418,6 @@ export function AppProvider({ children }) {
       const { appointment } = await api.patch(`/appointments/${id}/status`, { status: 'confirmed' })
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
     } catch (error) {
-      console.error('Failed to confirm appointment:', error)
       throw error
     }
   }
@@ -431,7 +427,6 @@ export function AppProvider({ children }) {
       const { appointment } = await api.patch(`/appointments/${id}/status`, { status: 'declined' })
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
     } catch (error) {
-      console.error('Failed to decline appointment:', error)
       throw error
     }
   }
@@ -442,7 +437,7 @@ export function AppProvider({ children }) {
       setAppointments(prev => prev.map(apt => apt.id === id ? appointment : apt))
       return appointment
     } catch (error) {
-      console.error('Failed to complete appointment:', error)
+      // ignore
     }
   }
 
@@ -451,7 +446,7 @@ export function AppProvider({ children }) {
       await api.delete(`/appointments/${id}`)
       setAppointments(prev => prev.filter(apt => apt.id !== id))
     } catch (error) {
-      console.error('Failed to cancel appointment:', error)
+      // ignore
     }
   }
 
@@ -461,7 +456,7 @@ export function AppProvider({ children }) {
       const cancelledIds = new Set(cancelled.map(a => a.id))
       setAppointments(prev => prev.filter(apt => !cancelledIds.has(apt.id)))
     } catch (error) {
-      console.error('Failed to cancel series:', error)
+      // ignore
     }
   }
 
@@ -495,12 +490,11 @@ export function AppProvider({ children }) {
           prev && prev.id === conversation.id ? { ...prev, msgs: messages } : prev
         )
       } catch (err) {
-        console.error('Failed to load messages:', err)
+        // ignore
       }
 
       return convWithMsgs
     } catch (error) {
-      console.error('Failed to start conversation:', error)
       return null
     }
   }
@@ -525,7 +519,6 @@ export function AppProvider({ children }) {
 
       return convWithMsgs
     } catch (error) {
-      console.error('Failed to load messages:', error)
       return conv
     }
   }
@@ -567,7 +560,7 @@ export function AppProvider({ children }) {
         socket.emit('typing_stop', { conversationId: selectedConversation.id })
       }
     } catch (error) {
-      console.error('Failed to send message:', error)
+      // ignore
     }
   }
 
@@ -694,7 +687,6 @@ export function AppProvider({ children }) {
         else next.delete(churchId)
         return next
       })
-      console.error('Failed to toggle favorite:', error)
     }
   }
 
@@ -724,7 +716,6 @@ export function AppProvider({ children }) {
         else next.delete(verseId)
         return next
       })
-      console.error('Failed to toggle bookmark:', error)
     }
   }
 
@@ -821,7 +812,7 @@ export function AppProvider({ children }) {
       setNotifications(data.notifications)
       setUnreadNotifCount(data.unreadCount)
     } catch (error) {
-      console.error('Failed to load notifications:', error)
+      // ignore
     }
   }
 
@@ -831,7 +822,7 @@ export function AppProvider({ children }) {
       setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n))
       setUnreadNotifCount(prev => Math.max(0, prev - 1))
     } catch (error) {
-      console.error('Failed to mark notification read:', error)
+      // ignore
     }
   }
 
@@ -841,7 +832,7 @@ export function AppProvider({ children }) {
       setNotifications(prev => prev.map(n => ({ ...n, isRead: true })))
       setUnreadNotifCount(0)
     } catch (error) {
-      console.error('Failed to mark all read:', error)
+      // ignore
     }
   }
 
@@ -854,7 +845,7 @@ export function AppProvider({ children }) {
         setUnreadNotifCount(prev => Math.max(0, prev - 1))
       }
     } catch (error) {
-      console.error('Failed to delete notification:', error)
+      // ignore
     }
   }
 

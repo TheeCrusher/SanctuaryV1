@@ -43,7 +43,6 @@ function Dashboard() {
       const data = await api.get('/home')
       setHomeData(data)
     } catch (err) {
-      console.error('Failed to load home data:', err)
       setError('Failed to load home data. Please try again.')
     } finally {
       setLoading(false)

@@ -16,11 +16,11 @@ import { formatDateShort, timeAgo } from '../../utils/helpers'
 
 // Tag color mapping (from Notes.jsx)
 const TAG_COLORS = {
-  Prayer:     { bg: '#dbeafe', color: '#1e40af' },
-  Scripture:  { bg: '#d1fae5', color: '#065f46' },
-  Reflection: { bg: '#fef3c7', color: '#92400e' },
-  Testimony:  { bg: '#ede9fe', color: '#5b21b6' },
-  Question:   { bg: '#fce7f3', color: '#9d174d' },
+  Prayer:     { bg: 'var(--brand-light)',           color: 'var(--brand-light-text)' },
+  Scripture:  { bg: 'var(--accent-green-light)',    color: 'var(--accent-green-text)' },
+  Reflection: { bg: 'var(--accent-gold-light)',     color: 'var(--accent-gold-text)' },
+  Testimony:  { bg: 'var(--accent-purple-light)',   color: 'var(--accent-purple-text)' },
+  Question:   { bg: 'var(--accent-burgundy-light)', color: 'var(--accent-burgundy-text)' },
 }
 
 const ALL_TAGS = ['Prayer', 'Scripture', 'Reflection', 'Testimony', 'Question']
@@ -102,7 +102,7 @@ function Appointments() {
       }))
       setCommunityGuides(guides)
     } catch (error) {
-      console.error('Failed to load guides:', error)
+      // ignore
     }
   }
 
@@ -112,7 +112,7 @@ function Appointments() {
       const seekers = (data.community || []).filter(p => p.role === 'Seeker')
       setCommunitySeekers(seekers)
     } catch (error) {
-      console.error('Failed to load community seekers:', error)
+      // ignore
     }
   }
 
@@ -256,7 +256,7 @@ function Appointments() {
       }
       setShowNoteEditor(false)
     } catch (error) {
-      console.error('Failed to save note:', error)
+      // ignore
     }
   }
 
@@ -268,7 +268,7 @@ function Appointments() {
       await deleteNote(editingNote.id)
       setShowNoteEditor(false)
     } catch (error) {
-      console.error('Failed to delete note:', error)
+      // ignore
     }
   }
 
@@ -350,7 +350,7 @@ function Appointments() {
                         try {
                           await declineAppointment(apt.id)
                         } catch (err) {
-                          console.error('Failed to decline:', err)
+                          // ignore
                         }
                       }}
                     >

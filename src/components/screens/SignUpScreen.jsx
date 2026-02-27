@@ -118,7 +118,7 @@ function SignUpScreen() {
       const compressed = await compressImage(file)
       setPhotoPreview(compressed)
     } catch (err) {
-      console.error('Image compression failed:', err)
+      // ignore
     }
     e.target.value = ''
   }

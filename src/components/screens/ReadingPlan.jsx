@@ -32,7 +32,7 @@ function ReadingPlan() {
         setPlan(planData)
         setCompletedDays(progressData.completedDays || [])
       } catch (error) {
-        console.error('Failed to load plan:', error)
+        // ignore
       } finally {
         setLoading(false)
       }
@@ -47,7 +47,7 @@ function ReadingPlan() {
       const progressData = await markDayComplete(id, dayNumber)
       setCompletedDays(progressData.completedDays || [])
     } catch (error) {
-      console.error('Failed to mark day complete:', error)
+      // ignore
     }
   }
 

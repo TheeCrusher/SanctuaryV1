@@ -9,11 +9,10 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { churchApi } from '../../utils/api'
-import { API_BASE } from '../../utils/api'
-import { Pencil, Users, ShieldCheck, LogOut, Star, Church } from 'lucide-react'
+import { Pencil, Users, ShieldCheck, LogOut, Church } from 'lucide-react'
 
 function ChurchDashboard() {
-  const { churchAccount, churchLogout } = useApp()
+  const { churchLogout } = useApp()
   const navigate = useNavigate()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -24,7 +23,7 @@ function ChurchDashboard() {
         const { churchAccount: acct } = await churchApi.get('/church-auth/me')
         setData(acct)
       } catch (error) {
-        console.error('Failed to load church data:', error)
+        // ignore
       } finally {
         setLoading(false)
       }

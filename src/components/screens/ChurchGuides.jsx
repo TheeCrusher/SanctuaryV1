@@ -30,7 +30,7 @@ function ChurchGuides() {
       const { churchAccount } = await churchApi.get('/church-auth/me')
       setGuides(churchAccount.guides)
     } catch (error) {
-      console.error('Failed to load guides:', error)
+      // ignore
     } finally {
       setLoading(false)
     }
@@ -49,7 +49,7 @@ function ChurchGuides() {
       const linkedIds = new Set(guides.map(g => g.id))
       setSearchResults(data.guides.filter(g => !linkedIds.has(g.id)))
     } catch (error) {
-      console.error('Search failed:', error)
+      // ignore
     } finally {
       setSearching(false)
     }
@@ -65,7 +65,7 @@ function ChurchGuides() {
         setSearchResults([])
       }
     } catch (error) {
-      console.error('Failed to add guide:', error)
+      // ignore
     }
   }
 
@@ -75,7 +75,7 @@ function ChurchGuides() {
       await churchApi.delete(`/church-auth/verify-guide/${guideId}`)
       setGuides(prev => prev.filter(g => g.id !== guideId))
     } catch (error) {
-      console.error('Failed to remove guide:', error)
+      // ignore
     }
   }
 

@@ -14,12 +14,12 @@ import { timeAgo } from '../../utils/helpers'
 const CATEGORIES = ['All', 'Health', 'Family', 'Guidance', 'Gratitude', 'Financial', 'Other']
 
 const CATEGORY_COLORS = {
-  Health: { bg: '#fef2f2', color: '#dc2626' },
-  Family: { bg: '#fef3c7', color: '#92400e' },
-  Guidance: { bg: '#dbeafe', color: '#1e40af' },
-  Gratitude: { bg: '#d1fae5', color: '#065f46' },
-  Financial: { bg: '#f3e8ff', color: '#7c3aed' },
-  Other: { bg: 'var(--bg-muted)', color: 'var(--text-secondary)' }
+  Health:    { bg: 'var(--accent-burgundy-light)', color: 'var(--accent-burgundy-text)' },
+  Family:    { bg: 'var(--accent-gold-light)',     color: 'var(--accent-gold-text)' },
+  Guidance:  { bg: 'var(--brand-light)',           color: 'var(--brand-light-text)' },
+  Gratitude: { bg: 'var(--accent-green-light)',    color: 'var(--accent-green-text)' },
+  Financial: { bg: 'var(--accent-purple-light)',   color: 'var(--accent-purple-text)' },
+  Other:     { bg: 'var(--bg-muted)',              color: 'var(--text-secondary)' }
 }
 
 function PrayerBoard() {
@@ -70,7 +70,6 @@ function PrayerBoard() {
       const result = await api.get(`/prayers?type=${topTab}${catParam}`)
       setRequests(result?.requests || [])
     } catch (err) {
-      console.error('Failed to load prayers:', err)
       setFetchError('Failed to load prayer requests. Please try again.')
       setRequests([])
     } finally {
@@ -105,7 +104,7 @@ function PrayerBoard() {
       setFormAnonymous(false)
       setFormLinkedPrayerId('')
     } catch (error) {
-      console.error('Failed to create:', error)
+      // ignore
     } finally {
       setSubmitting(false)
     }
@@ -118,7 +117,7 @@ function PrayerBoard() {
         r.id === requestId ? { ...r, prayerCount, hasPrayed: true } : r
       ))
     } catch (error) {
-      console.error('Failed to pray:', error)
+      // ignore
     }
   }
 
@@ -133,7 +132,7 @@ function PrayerBoard() {
         const { comments: data } = await api.get(`/prayers/${requestId}/comments`)
         setComments(prev => ({ ...prev, [requestId]: data }))
       } catch (error) {
-        console.error('Failed to load comments:', error)
+        // ignore
       }
     }
   }
@@ -154,7 +153,7 @@ function PrayerBoard() {
       ))
       setNewComment('')
     } catch (error) {
-      console.error('Failed to add comment:', error)
+      // ignore
     }
   }
 
@@ -163,7 +162,7 @@ function PrayerBoard() {
       await api.patch(`/prayers/${requestId}`)
       setRequests(prev => prev.filter(r => r.id !== requestId))
     } catch (error) {
-      console.error('Failed to mark answered:', error)
+      // ignore
     }
   }
 

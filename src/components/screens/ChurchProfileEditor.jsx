@@ -45,7 +45,7 @@ function ChurchProfileEditor() {
           setPlaceholders(prev => ({ ...prev, hours: church.hours }))
         }
       } catch (error) {
-        console.error('Failed to load profile:', error)
+        // ignore
       } finally {
         setLoading(false)
       }
@@ -66,7 +66,7 @@ function ChurchProfileEditor() {
       setSuccess(true)
       setTimeout(() => setSuccess(false), 2000)
     } catch (error) {
-      console.error('Failed to save profile:', error)
+      // ignore
     } finally {
       setSaving(false)
     }
