@@ -7,7 +7,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Avatar } from '../common'
+import { Avatar, EmptyState } from '../common'
 import { ArrowLeft, MessageCircle, Send } from 'lucide-react'
 
 function Chat() {
@@ -126,11 +126,11 @@ function Chat() {
       {/* Chat Messages */}
       <div className="chat-messages" id="chatMsgs">
         {selectedConversation.msgs.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '48px 20px', color: 'var(--text-faint)' }}>
-            <div style={{ marginBottom: '12px' }}><MessageCircle size={48} /></div>
-            <div>No messages yet</div>
-            <div style={{ fontSize: '14px' }}>Start the conversation!</div>
-          </div>
+          <EmptyState
+            icon={MessageCircle}
+            title="No messages yet"
+            subtitle="Start the conversation!"
+          />
         ) : (
           selectedConversation.msgs.map(msg => (
             <div

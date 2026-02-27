@@ -7,7 +7,7 @@
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Avatar } from '../common'
+import { Avatar, EmptyState, LoadingSpinner } from '../common'
 import { ArrowLeft, ShieldOff } from 'lucide-react'
 import { api } from '../../utils/api'
 
@@ -57,17 +57,13 @@ function BlockedUsersScreen() {
 
       <div className="screen-content">
         {loading ? (
-          <div style={{ textAlign: 'center', padding: 40, color: 'var(--text-secondary)' }}>
-            Loading...
-          </div>
+          <LoadingSpinner />
         ) : blockedUsers.length === 0 ? (
-          <div className="empty-state">
-            <ShieldOff size={48} style={{ color: 'var(--text-secondary)', marginBottom: 12 }} />
-            <div className="empty-text">No blocked users</div>
-            <div style={{ color: 'var(--text-secondary)', fontSize: 14 }}>
-              Users you block will appear here
-            </div>
-          </div>
+          <EmptyState
+            icon={ShieldOff}
+            title="No blocked users"
+            subtitle="Users you block will appear here"
+          />
         ) : (
           blockedUsers.map(user => (
             <div key={user.id} className="blocked-user-card">

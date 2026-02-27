@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { useToast } from '../../context/ToastContext'
-import { Modal } from '../common'
+import { Modal, EmptyState } from '../common'
 import {
   ArrowLeft, BookOpen, Star, Share2, Shuffle, Bookmark,
   Plus, Sparkles, Flame, Trash2
@@ -323,9 +323,11 @@ function Scripture() {
 
           {/* Verses List */}
           {displayedVerses.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-faint)' }}>
-              {showBookmarksOnly ? 'No bookmarked verses yet' : 'No verses in this category'}
-            </div>
+            <EmptyState
+              icon={showBookmarksOnly ? Bookmark : BookOpen}
+              title={showBookmarksOnly ? 'No bookmarks yet' : 'No verses in this category'}
+              subtitle={showBookmarksOnly ? 'Tap the star on any verse to save it' : 'Try selecting a different category'}
+            />
           ) : (
             displayedVerses.map(verse => (
               <div key={verse.id} className="verse-card">
