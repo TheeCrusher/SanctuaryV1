@@ -14,6 +14,8 @@ function ChurchGuides() {
   const navigate = useNavigate()
   const [guides, setGuides] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
+  const [actionError, setActionError] = useState(null)
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('')
@@ -29,8 +31,8 @@ function ChurchGuides() {
     try {
       const { churchAccount } = await churchApi.get('/church-auth/me')
       setGuides(churchAccount.guides)
-    } catch (error) {
-      // ignore
+    } catch (err) {
+      setLoadError(true)
     } finally {
       setLoading(false)
     }
@@ -56,26 +58,27 @@ function ChurchGuides() {
   }
 
   async function addGuide(guideId) {
+    setActionError(null)
     try {
       const data = await churchApi.post('/church-auth/verify-guide', { guideId })
       if (data.success) {
-        // Reload guides to get fresh data
         await loadGuides()
         setSearchQuery('')
         setSearchResults([])
       }
-    } catch (error) {
-      // ignore
+    } catch (err) {
+      setActionError('Failed to add guide. Please try again.')
     }
   }
 
   async function removeGuide(guideId) {
     if (guides.length <= 1) return
+    setActionError(null)
     try {
       await churchApi.delete(`/church-auth/verify-guide/${guideId}`)
       setGuides(prev => prev.filter(g => g.id !== guideId))
-    } catch (error) {
-      // ignore
+    } catch (err) {
+      setActionError('Failed to remove guide. Please try again.')
     }
   }
 
@@ -88,8 +91,26 @@ function ChurchGuides() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="screen church-screen-center">
         <div className="loading-spinner" />
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="church-editor">
+        <div className="church-editor-header">
+          <button className="church-back-btn" onClick={() => navigate('/church-dashboard')}>
+            <ArrowLeft size={20} />
+          </button>
+          <h2>Verified Guides</h2>
+        </div>
+        <div className="church-empty-state">
+          <AlertCircle size={48} />
+          <p>Failed to load guides.</p>
+          <p className="church-empty-hint">Check your connection and try again.</p>
+        </div>
       </div>
     )
   }
@@ -136,6 +157,12 @@ function ChurchGuides() {
         </div>
       )}
 
+      {actionError && (
+        <div className="church-editor-error">
+          <AlertCircle size={16} /> {actionError}
+        </div>
+      )}
+
       {/* Add Guide Section */}
       <div className="church-add-guide-section">
         {!showSearch ? (
@@ -156,7 +183,11 @@ function ChurchGuides() {
               />
             </div>
 
-            {searchResults.length > 0 && (
+            {searching && (
+              <p className="church-guide-no-results">Searching...</p>
+            )}
+
+            {!searching && searchResults.length > 0 && (
               <div className="church-search-results">
                 {searchResults.map(guide => (
                   <div key={guide.id} className="church-member-card">
@@ -174,8 +205,8 @@ function ChurchGuides() {
               </div>
             )}
 
-            {searchQuery && searchResults.length === 0 && !searching && (
-              <p style={{ color: 'var(--text-muted)', fontSize: 14, textAlign: 'center', padding: '12px 0' }}>
+            {!searching && searchQuery && searchResults.length === 0 && (
+              <p className="church-guide-no-results">
                 No guides found matching "{searchQuery}"
               </p>
             )}

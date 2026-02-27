@@ -9,13 +9,14 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { churchApi } from '../../utils/api'
-import { Pencil, Users, ShieldCheck, LogOut, Church } from 'lucide-react'
+import { Pencil, Users, ShieldCheck, LogOut, Church, AlertCircle } from 'lucide-react'
 
 function ChurchDashboard() {
   const { churchLogout } = useApp()
   const navigate = useNavigate()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     async function loadData() {
@@ -23,7 +24,7 @@ function ChurchDashboard() {
         const { churchAccount: acct } = await churchApi.get('/church-auth/me')
         setData(acct)
       } catch (error) {
-        // ignore
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -38,23 +39,28 @@ function ChurchDashboard() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="screen church-screen-center">
         <div className="loading-spinner" />
       </div>
     )
   }
 
-  if (!data) {
+  if (error || !data) {
     return (
-      <div className="screen" style={{ padding: 24, textAlign: 'center' }}>
-        <p style={{ color: 'var(--text-muted)' }}>Failed to load church data.</p>
-        <button className="church-editor-save" onClick={handleLogout} style={{ marginTop: 16 }}>
-          Log Out
-        </button>
+      <div className="screen">
+        <div className="church-empty-state">
+          <AlertCircle size={48} />
+          <p>Failed to load church data.</p>
+          <p className="church-empty-hint">Check your connection and try again.</p>
+          <button className="church-logout-btn" onClick={handleLogout}>
+            <LogOut size={18} /> Log Out
+          </button>
+        </div>
       </div>
     )
   }
 
+  const API_BASE = import.meta.env.VITE_API_URL || ''
   const { church, guides, stats } = data
   const photoUrl = church.googlePlaceId
     ? `${API_BASE}/api/churches/photo/${church.googlePlaceId}`

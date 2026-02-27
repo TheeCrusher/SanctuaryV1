@@ -7,13 +7,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'
-import { ArrowLeft, Save, Check } from 'lucide-react'
+import { ArrowLeft, Save, Check, AlertCircle } from 'lucide-react'
 
 function ChurchProfileEditor() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
 
   // Form fields
   const [displayName, setDisplayName] = useState('')
@@ -56,6 +57,7 @@ function ChurchProfileEditor() {
   async function handleSave() {
     setSaving(true)
     setSuccess(false)
+    setError(null)
     try {
       await churchApi.put('/church-auth/profile', {
         displayName,
@@ -65,8 +67,8 @@ function ChurchProfileEditor() {
       })
       setSuccess(true)
       setTimeout(() => setSuccess(false), 2000)
-    } catch (error) {
-      // ignore
+    } catch (err) {
+      setError('Failed to save changes. Please try again.')
     } finally {
       setSaving(false)
     }
@@ -74,7 +76,7 @@ function ChurchProfileEditor() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="screen church-screen-center">
         <div className="loading-spinner" />
       </div>
     )
@@ -138,10 +140,15 @@ function ChurchProfileEditor() {
         />
       </div>
 
-      {/* Success Message */}
+      {/* Success / Error feedback */}
       {success && (
         <div className="church-editor-success">
           <Check size={16} /> Changes saved!
+        </div>
+      )}
+      {error && (
+        <div className="church-editor-error">
+          <AlertCircle size={16} /> {error}
         </div>
       )}
 

@@ -8766,3 +8766,12 @@ select.account-edit-input {
 .church-empty-state svg { margin-bottom: 16px; opacity: 0.4; }
 .church-empty-state p { margin: 0; font-size: 16px; font-weight: 600; color: var(--text-primary); }
 .church-empty-hint { font-size: 14px !important; font-weight: 400 !important; color: var(--text-muted) !important; margin-top: 8px !important; }
+
+/* --- Utility: centered loading/error screen wrapper --- */
+.church-screen-center { display: flex; justify-content: center; align-items: center; }
+
+/* --- Error toast (mirrors church-editor-success but red) --- */
+.church-editor-error { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border-radius: 10px; background: rgba(239, 68, 68, 0.1); color: #ef4444; font-size: 14px; font-weight: 600; margin-top: 12px; }
+
+/* --- No-results text in guide search (replaces inline style) --- */
+.church-guide-no-results { color: var(--text-muted); font-size: 14px; text-align: center; padding: 12px 0; }

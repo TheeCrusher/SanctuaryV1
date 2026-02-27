@@ -7,20 +7,21 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'
-import { ArrowLeft, Users } from 'lucide-react'
+import { ArrowLeft, Users, AlertCircle } from 'lucide-react'
 
 function ChurchCongregation() {
   const navigate = useNavigate()
   const [members, setMembers] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     async function loadCongregation() {
       try {
         const data = await churchApi.get('/church-auth/congregation')
         setMembers(data.members)
-      } catch (error) {
-        // ignore
+      } catch (err) {
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -37,8 +38,26 @@ function ChurchCongregation() {
 
   if (loading) {
     return (
-      <div className="screen" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="screen church-screen-center">
         <div className="loading-spinner" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="church-editor">
+        <div className="church-editor-header">
+          <button className="church-back-btn" onClick={() => navigate('/church-dashboard')}>
+            <ArrowLeft size={20} />
+          </button>
+          <h2>Congregation</h2>
+        </div>
+        <div className="church-empty-state">
+          <AlertCircle size={48} />
+          <p>Failed to load congregation.</p>
+          <p className="church-empty-hint">Check your connection and try again.</p>
+        </div>
       </div>
     )
   }
