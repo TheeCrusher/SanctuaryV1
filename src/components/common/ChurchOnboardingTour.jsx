@@ -192,15 +192,28 @@ function ChurchOnboardingTour({ onComplete, churchAccount }) {
 
       {/* Spotlight cutout for spotlight steps */}
       {step.type === 'spotlight' && spotlightRect && (
-        <div
-          className="onboarding-spotlight"
-          style={{
-            top: spotlightRect.top - 8,
-            left: spotlightRect.left - 8,
-            width: spotlightRect.width + 16,
-            height: spotlightRect.height + 16,
-          }}
-        />
+        <>
+          <div
+            className="onboarding-spotlight"
+            style={{
+              top: spotlightRect.top - 8,
+              left: spotlightRect.left - 8,
+              width: spotlightRect.width + 16,
+              height: spotlightRect.height + 16,
+            }}
+          />
+          {/* Click-blocker: prevents tapping nav card buttons mid-tour */}
+          <div
+            style={{
+              position: 'fixed',
+              top: spotlightRect.top - 8,
+              left: spotlightRect.left - 8,
+              width: spotlightRect.width + 16,
+              height: spotlightRect.height + 16,
+              zIndex: 10003,
+            }}
+          />
+        </>
       )}
 
       {/* Tooltip card */}

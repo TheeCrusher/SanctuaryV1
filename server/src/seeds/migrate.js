@@ -215,7 +215,7 @@ async function migrate() {
     if (willowCreek.rows.length > 0) {
       const churchId = willowCreek.rows[0].id
       const churchAcctCheck = await client.query(
-        'SELECT id FROM church_accounts WHERE church_id = $1', [churchId]
+        "SELECT id FROM church_accounts WHERE church_id = $1 OR email = 'church@sanctuary.com'", [churchId]
       )
       if (churchAcctCheck.rows.length === 0) {
         const result = await client.query(

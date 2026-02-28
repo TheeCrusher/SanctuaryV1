@@ -4,7 +4,7 @@
 // This is the root component of your application.
 // It defines all the routes (URLs) and which components to show for each.
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from './context/AppContext'
 import { LoadingSpinner, OnboardingTour, ChurchOnboardingTour } from './components/common'
@@ -141,13 +141,18 @@ function App() {
   }, [user, location.pathname])
 
   // ----- Church Onboarding Tour -----
-  // Shows once for new church accounts when they first land on the church dashboard
+  // Shows once for new church accounts when they first land on the church dashboard.
+  // useRef guard prevents it from restarting if the user navigates away and back mid-tour.
   const [showChurchTour, setShowChurchTour] = useState(false)
+  const churchTourShownRef = useRef(false)
 
   useEffect(() => {
     if (churchAccount && churchAccount.onboardingCompleted === false && location.pathname === '/church-dashboard') {
-      const timer = setTimeout(() => setShowChurchTour(true), 600)
-      return () => clearTimeout(timer)
+      if (!churchTourShownRef.current) {
+        churchTourShownRef.current = true
+        const timer = setTimeout(() => setShowChurchTour(true), 600)
+        return () => clearTimeout(timer)
+      }
     }
   }, [churchAccount, location.pathname])
 
