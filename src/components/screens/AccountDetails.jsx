@@ -5,12 +5,13 @@
 // View mode: read-only Card rows
 // Edit mode: editable form fields for name, phone, state, city, denomination, churchName
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Check, X, MapPin } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card } from '../common'
 import { US_STATES, getStateName } from '../../utils/constants'
+import { api } from '../../utils/api'
 
 const DENOMINATIONS = [
   'Non-denominational', 'Baptist', 'Catholic', 'Methodist', 'Pentecostal',
@@ -24,6 +25,8 @@ function AccountDetails() {
   const [isEditing, setIsEditing] = useState(false)
   const [saving, setSaving] = useState(false)
   const [editData, setEditData] = useState({})
+  const [churchSuggestions, setChurchSuggestions] = useState([])
+  const churchTimer = useRef(null)
 
   function startEditing() {
     setEditData({
@@ -32,9 +35,28 @@ function AccountDetails() {
       state: user?.state || '',
       city: user?.city || '',
       denomination: user?.denomination || '',
-      churchName: user?.churchName || ''
+      churchName: user?.churchName || '',
+      preferredChurchId: user?.preferredChurchId || null
     })
+    setChurchSuggestions([])
     setIsEditing(true)
+  }
+
+  function handleChurchInput(val) {
+    setEditData(prev => ({ ...prev, churchName: val, preferredChurchId: null }))
+    clearTimeout(churchTimer.current)
+    if (val.trim().length < 2) { setChurchSuggestions([]); return }
+    churchTimer.current = setTimeout(async () => {
+      try {
+        const data = await api.get(`/churches?q=${encodeURIComponent(val.trim())}&limit=5`)
+        setChurchSuggestions(data.churches || [])
+      } catch { setChurchSuggestions([]) }
+    }, 400)
+  }
+
+  function selectChurch(church) {
+    setEditData(prev => ({ ...prev, churchName: church.name, preferredChurchId: church.id }))
+    setChurchSuggestions([])
   }
 
   function cancelEditing() {
@@ -57,7 +79,8 @@ function AccountDetails() {
       city: editData.city || undefined,
       location: locationStr,
       denomination: editData.denomination || undefined,
-      churchName: editData.churchName || undefined
+      churchName: editData.churchName || undefined,
+      preferredChurchId: editData.preferredChurchId ?? undefined
     })
 
     // If state changed, reload churches to reflect new location
@@ -85,7 +108,7 @@ function AccountDetails() {
     { label: 'State', value: user?.state ? getStateName(user.state) : 'Not set' },
     { label: 'City', value: user?.city || 'Not set' },
     { label: 'Denomination', value: user?.denomination || 'Not set' },
-    { label: 'Church', value: user?.churchName || 'Not set' },
+    { label: 'Church', value: user?.churchName || 'Not set', linked: !!user?.preferredChurchId },
     { label: 'Role', value: user?.role === 'guide' ? 'Guide' : 'Seeker' },
     { label: 'Status', value: 'Active' }
   ]
@@ -192,16 +215,45 @@ function AccountDetails() {
                   </select>
                 </div>
 
-                {/* Church Name */}
-                <div>
+                {/* Church Name — searchable */}
+                <div style={{ position: 'relative' }}>
                   <label className="account-edit-label">Church</label>
-                  <input
-                    type="text"
-                    value={editData.churchName}
-                    onChange={(e) => updateField('churchName', e.target.value)}
-                    className="account-edit-input"
-                    placeholder="Church you attend"
-                  />
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type="text"
+                      value={editData.churchName}
+                      onChange={(e) => handleChurchInput(e.target.value)}
+                      className="account-edit-input"
+                      placeholder="Search for your church..."
+                      autoComplete="off"
+                    />
+                    {editData.preferredChurchId && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '4px', fontSize: '12px', color: 'var(--accent-gold)' }}>
+                        <Check size={12} /> Linked to church profile
+                      </div>
+                    )}
+                    {!editData.preferredChurchId && editData.churchName && (
+                      <div style={{ marginTop: '4px', fontSize: '12px', color: 'var(--text-faint)' }}>
+                        <MapPin size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
+                        Type to search and link a church
+                      </div>
+                    )}
+                  </div>
+                  {churchSuggestions.length > 0 && (
+                    <div className="account-church-dropdown">
+                      {churchSuggestions.map(ch => (
+                        <button
+                          key={ch.id}
+                          type="button"
+                          className="account-church-option"
+                          onClick={() => selectChurch(ch)}
+                        >
+                          <span className="account-church-option-name">{ch.name}</span>
+                          <span className="account-church-option-addr">{ch.city}, {ch.state}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </Card>
@@ -236,7 +288,10 @@ function AccountDetails() {
               <Card key={index}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>{detail.label}</span>
-                  <span style={{ fontSize: '15px', fontWeight: '600', color: 'var(--text-primary)' }}>{detail.value}</span>
+                  <span style={{ fontSize: '15px', fontWeight: '600', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {detail.value}
+                    {detail.linked && <Check size={14} color="var(--accent-gold)" />}
+                  </span>
                 </div>
               </Card>
             ))}

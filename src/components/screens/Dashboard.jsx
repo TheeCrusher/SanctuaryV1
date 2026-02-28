@@ -674,7 +674,12 @@ function Dashboard() {
                 </span>
               )}
             </button>
-            <Avatar src={user?.photoUrl} emoji={user?.avatar} size="lg" variant="white" />
+            <button
+              onClick={() => navigate('/account-details')}
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', borderRadius: '50%' }}
+            >
+              <Avatar src={user?.photoUrl} emoji={user?.avatar} size="lg" variant="white" />
+            </button>
           </div>
         </div>
       </div>

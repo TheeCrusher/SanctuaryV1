@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, LoadingSpinner } from '../common'
-import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock } from 'lucide-react'
+import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock, Home } from 'lucide-react'
 import { api, API_BASE } from '../../utils/api'
 import { timeAgo } from '../../utils/helpers'
 
@@ -41,7 +41,7 @@ function computeOverall(cats) {
 function ChurchDetail() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { toggleFavoriteChurch, isChurchFavorited, user, showUserActionMenu } = useApp()
+  const { toggleFavoriteChurch, isChurchFavorited, user, showUserActionMenu, updateProfile } = useApp()
 
   // Fetch church by ID from the API (not from local cache)
   const [church, setChurch] = useState(null)
@@ -60,6 +60,20 @@ function ChurchDetail() {
   const [reviewText, setReviewText] = useState('')
   const [editingReview, setEditingReview] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+
+  const [settingPreferred, setSettingPreferred] = useState(false)
+
+  const isMyChurch = user?.preferredChurchId === church?.id
+
+  async function handleSetPreferred() {
+    setSettingPreferred(true)
+    const updates = { preferredChurchId: isMyChurch ? null : church.id }
+    // When setting a preferred church, sync the church_name field too so
+    // Account Details view reflects the chosen church immediately
+    if (!isMyChurch) updates.churchName = church.name
+    await updateProfile(updates)
+    setSettingPreferred(false)
+  }
 
   // Bulletin board state
   const [announcements, setAnnouncements] = useState([])
@@ -335,6 +349,32 @@ function ChurchDetail() {
               )}
             </div>
           )}
+
+          {/* Set as My Church */}
+          <button
+            onClick={handleSetPreferred}
+            disabled={settingPreferred}
+            style={{
+              marginTop: '16px',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              padding: '10px',
+              borderRadius: '10px',
+              border: `2px solid ${isMyChurch ? 'var(--accent-gold)' : 'var(--border)'}`,
+              background: isMyChurch ? 'var(--bg-warm-tint)' : 'transparent',
+              color: isMyChurch ? 'var(--accent-gold)' : 'var(--text-secondary)',
+              fontWeight: '600',
+              fontSize: '14px',
+              cursor: 'pointer',
+            }}
+          >
+            <Home size={16} />
+            {settingPreferred ? 'Saving...' : isMyChurch ? 'My Church' : 'Set as My Church'}
+            {isMyChurch && <Check size={14} />}
+          </button>
         </Card>
 
         {/* Service Times (only show if data exists) */}
