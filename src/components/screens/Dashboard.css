@@ -310,6 +310,244 @@
   color: var(--accent-gold-text);
 }
 
+/* ==========================================================================
+   GUIDE DASHBOARD — Pending Request Cards
+   ========================================================================== */
+.dash-pending-card {
+  border-left: 3px solid var(--accent-gold);
+}
+
+.dash-pending-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.dash-confirm-btn,
+.dash-decline-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.dash-confirm-btn {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+
+.dash-decline-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.dash-confirm-btn:disabled,
+.dash-decline-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ==========================================================================
+   GUIDE DASHBOARD — Availability Card
+   ========================================================================== */
+.dash-availability-card {
+  padding: 2px 0;
+}
+
+.dash-availability-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dash-avail-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.dash-avail-select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.dash-avail-status {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   GUIDE DASHBOARD — Active Seekers List
+   ========================================================================== */
+.dash-seekers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dash-seeker-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.dash-seeker-chip:hover {
+  background: var(--bg-secondary);
+}
+
+.dash-seeker-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  max-width: 56px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   GUIDE DASHBOARD — Recent Notes
+   ========================================================================== */
+.dash-note-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dash-note-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.dash-note-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-note-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.dash-note-meta {
+  font-size: 12px;
+  color: var(--accent-gold-text);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.dash-note-preview {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   SEEKER DASHBOARD — Suggested Guide Cards
+   ========================================================================== */
+.dash-guide-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dash-guide-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-guide-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.dash-guide-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-guide-accepting {
+  font-size: 11px;
+  font-weight: 600;
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.dash-guide-full {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.dash-guide-request-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.dash-guide-request-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* --- Dark Mode Overrides --- */
 [data-theme="dark"] .home-role-guide {
   background: rgba(212, 175, 55, 0.25);
@@ -349,4 +587,19 @@
 [data-theme="dark"] .stat-card {
   background: rgba(96, 165, 250, 0.06);
   border-color: rgba(96, 165, 250, 0.12);
+}
+
+[data-theme="dark"] .dash-confirm-btn {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+[data-theme="dark"] .dash-decline-btn {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+}
+
+[data-theme="dark"] .dash-guide-accepting {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
 }
