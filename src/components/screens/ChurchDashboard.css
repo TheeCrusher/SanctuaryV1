@@ -401,6 +401,104 @@
   color: var(--brand-light-text);
 }
 
+/* ---- Congregation Stats / Search / Filter ---- */
+.congregation-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+  padding: 14px 12px;
+  margin-bottom: 14px;
+}
+
+.congregation-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.congregation-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.congregation-stat-gold { color: var(--accent-gold); }
+.congregation-stat-blue { color: var(--brand-primary); }
+
+.congregation-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.congregation-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border-color);
+}
+
+.congregation-search-row {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.congregation-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+.congregation-search-input {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.congregation-search-input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+.congregation-filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.congregation-filter-tab {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.congregation-filter-tab.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #fff;
+  font-weight: 600;
+}
+
 /* ---- Guide Verification ---- */
 .church-guide-verified {
   display: flex;

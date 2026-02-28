@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Modal, EmptyState, LoadingSpinner, ErrorState } from '../common'
-import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles } from 'lucide-react'
+import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles, Church } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function CommunityScreen() {
@@ -419,9 +419,22 @@ function CommunityScreen() {
                             {person.role}
                           </span>
                         </div>
-                        {(person.denomination || person.churchName) && (
+                        {(person.denomination || person.churchName || person.preferredChurchId) && (
                           <div className="community-card-detail">
-                            {person.churchName || person.denomination}
+                            {person.preferredChurchId ? (
+                              <span
+                                className="community-church-badge"
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  navigate(`/churches/${person.preferredChurchId}`)
+                                }}
+                              >
+                                <Church size={11} />
+                                {person.preferredChurchName || person.churchName}
+                              </span>
+                            ) : (
+                              person.churchName || person.denomination
+                            )}
                           </div>
                         )}
                         {shared.length > 0 && (

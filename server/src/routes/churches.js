@@ -487,6 +487,53 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // ============================================================
+// GET /api/churches/:id/congregation
+// ============================================================
+// Returns the logged-in user's accepted connections who are
+// affiliated with this church (favorited, reviewed, or set as
+// their preferred church). Shown as "Your Connections Here".
+
+router.get('/:id/congregation', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const userId = req.user.id
+
+    const result = await pool.query(`
+      SELECT DISTINCT u.id, u.name, u.avatar, u.photo_url, u.role
+      FROM users u
+      JOIN user_connections uc ON (
+        (uc.requester_id = $1 AND uc.recipient_id = u.id)
+        OR (uc.recipient_id = $1 AND uc.requester_id = u.id)
+      )
+      WHERE uc.status = 'accepted'
+        AND (
+          u.id IN (SELECT user_id FROM church_favorites WHERE church_id = $2)
+          OR u.id IN (SELECT user_id FROM church_reviews WHERE church_id = $2)
+          OR u.preferred_church_id = $2
+        )
+        AND u.id NOT IN (
+          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+          UNION
+          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+        )
+      ORDER BY u.name ASC
+    `, [userId, id])
+
+    const connections = result.rows.map(row => ({
+      id: row.id,
+      name: row.name,
+      avatar: row.avatar,
+      photoUrl: row.photo_url,
+      role: row.role.charAt(0).toUpperCase() + row.role.slice(1)
+    }))
+
+    res.json({ connections })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
 // GET /api/churches/:id/members
 // ============================================================
 // Returns users who have favorited OR reviewed this church.

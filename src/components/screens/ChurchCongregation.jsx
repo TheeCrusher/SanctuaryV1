@@ -8,13 +8,15 @@ import './ChurchDashboard.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { churchApi } from '../../utils/api'
-import { ArrowLeft, Users, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Users, AlertCircle, Search } from 'lucide-react'
 
 function ChurchCongregation() {
   const navigate = useNavigate()
   const [members, setMembers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const [roleFilter, setRoleFilter] = useState('all')
 
   useEffect(() => {
     async function loadCongregation() {
@@ -36,6 +38,18 @@ function ChurchCongregation() {
     }
     return <span className="church-member-avatar-emoji">{member.avatar || '🙏'}</span>
   }
+
+  const guideCount = members.filter(m => m.role === 'guide').length
+  const seekerCount = members.filter(m => m.role === 'seeker').length
+
+  const filtered = members.filter(m => {
+    const matchesSearch = !searchText || m.name.toLowerCase().includes(searchText.toLowerCase())
+    const matchesRole =
+      roleFilter === 'all' ||
+      (roleFilter === 'guides' && m.role === 'guide') ||
+      (roleFilter === 'seekers' && m.role === 'seeker')
+    return matchesSearch && matchesRole
+  })
 
   if (loading) {
     return (
@@ -82,25 +96,76 @@ function ChurchCongregation() {
           </p>
         </div>
       ) : (
-        <div className="church-member-list">
-          <p className="church-member-count">{members.length} member{members.length !== 1 ? 's' : ''}</p>
-          {members.map(member => (
-            <div key={member.id} className="church-member-card">
-              <div className="church-member-avatar">
-                {renderAvatar(member)}
-              </div>
-              <div className="church-member-info">
-                <span className="church-member-name">{member.name}</span>
-                {member.city && member.state && (
-                  <span className="church-member-location">{member.city}, {member.state}</span>
-                )}
-              </div>
-              <span className={`church-member-badge ${member.role === 'guide' ? 'badge-guide' : 'badge-seeker'}`}>
-                {member.role === 'guide' ? 'Guide' : 'Seeker'}
-              </span>
+        <>
+          {/* Stats bar */}
+          <div className="congregation-stats-bar">
+            <div className="congregation-stat">
+              <span className="congregation-stat-value">{members.length}</span>
+              <span className="congregation-stat-label">Total</span>
             </div>
-          ))}
-        </div>
+            <div className="congregation-stat-divider" />
+            <div className="congregation-stat">
+              <span className="congregation-stat-value congregation-stat-gold">{guideCount}</span>
+              <span className="congregation-stat-label">Guides</span>
+            </div>
+            <div className="congregation-stat-divider" />
+            <div className="congregation-stat">
+              <span className="congregation-stat-value congregation-stat-blue">{seekerCount}</span>
+              <span className="congregation-stat-label">Seekers</span>
+            </div>
+          </div>
+
+          {/* Search */}
+          <div className="congregation-search-row">
+            <Search size={16} className="congregation-search-icon" />
+            <input
+              type="text"
+              className="congregation-search-input"
+              placeholder="Search members..."
+              value={searchText}
+              onChange={e => setSearchText(e.target.value)}
+            />
+          </div>
+
+          {/* Role filter tabs */}
+          <div className="congregation-filter-tabs">
+            {['all', 'guides', 'seekers'].map(tab => (
+              <button
+                key={tab}
+                className={`congregation-filter-tab ${roleFilter === tab ? 'active' : ''}`}
+                onClick={() => setRoleFilter(tab)}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          {/* Member list */}
+          {filtered.length === 0 ? (
+            <div className="church-empty-state" style={{ paddingTop: 32 }}>
+              <p>No members match your search.</p>
+            </div>
+          ) : (
+            <div className="church-member-list">
+              {filtered.map(member => (
+                <div key={member.id} className="church-member-card">
+                  <div className="church-member-avatar">
+                    {renderAvatar(member)}
+                  </div>
+                  <div className="church-member-info">
+                    <span className="church-member-name">{member.name}</span>
+                    {member.city && member.state && (
+                      <span className="church-member-location">{member.city}, {member.state}</span>
+                    )}
+                  </div>
+                  <span className={`church-member-badge ${member.role === 'guide' ? 'badge-guide' : 'badge-seeker'}`}>
+                    {member.role === 'guide' ? 'Guide' : 'Seeker'}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

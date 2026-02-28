@@ -47,6 +47,9 @@ function ChurchDetail() {
   const [church, setChurch] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  // Connections at this church (accepted connections who are affiliated here)
+  const [connections, setConnections] = useState([])
+
   // Church members state (people who favorited/reviewed this church)
   const [members, setMembers] = useState([])
 
@@ -77,11 +80,12 @@ function ChurchDetail() {
     }
   }
 
-  // Load church data, reviews, members, and announcements when component mounts
+  // Load church data, reviews, members, connections, and announcements when component mounts
   useEffect(() => {
     loadChurch()
     loadReviews()
     loadMembers()
+    loadConnections()
     loadAnnouncements()
   }, [id])
 
@@ -89,6 +93,15 @@ function ChurchDetail() {
     try {
       const { reviews: data } = await api.get(`/churches/${id}/reviews`)
       setReviews(data)
+    } catch (error) {
+      // ignore
+    }
+  }
+
+  async function loadConnections() {
+    try {
+      const { connections: data } = await api.get(`/churches/${id}/congregation`)
+      setConnections(data)
     } catch (error) {
       // ignore
     }
@@ -376,6 +389,37 @@ function ChurchDetail() {
               )
             })}
           </Card>
+        )}
+
+        {/* Your Connections Here */}
+        {connections.length > 0 && (
+          <div className="church-connections-section">
+            <div className="section-header">
+              <h3 className="section-title">
+                <Users size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                Your Connections Here
+              </h3>
+              <span className="church-connections-count">{connections.length}</span>
+            </div>
+            <div className="church-connections-list">
+              {connections.map(person => (
+                <button
+                  key={person.id}
+                  className="church-connection-card"
+                  onClick={() => showUserActionMenu({
+                    userId: person.id, userName: person.name,
+                    photoUrl: person.photoUrl, avatar: person.avatar
+                  })}
+                >
+                  <Avatar emoji={person.avatar} src={person.photoUrl} name={person.name} size="md" />
+                  <div className="church-connection-name tappable-name">{person.name}</div>
+                  <span className={`role-badge role-badge-${person.role.toLowerCase()}`}>
+                    {person.role}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* People at This Church */}

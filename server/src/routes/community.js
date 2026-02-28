@@ -30,6 +30,8 @@ function formatUser(row) {
     role: row.role === 'guide' ? 'Guide' : row.role === 'admin' ? 'Admin' : 'Seeker',
     denomination: row.denomination || null,
     churchName: row.church_name || null,
+    preferredChurchId: row.preferred_church_id || null,
+    preferredChurchName: row.preferred_church_name || null,
     interests: row.interests || []
   }
 }
@@ -46,7 +48,8 @@ router.get('/', async (req, res, next) => {
     const result = await pool.query(
       `SELECT
         u.id, uc.id AS connection_id, u.name, u.avatar, u.photo_url,
-        u.role, u.denomination, u.church_name, u.interests
+        u.role, u.denomination, u.church_name, u.interests,
+        u.preferred_church_id, c.name AS preferred_church_name
        FROM user_connections uc
        JOIN users u ON (
          CASE
@@ -54,6 +57,7 @@ router.get('/', async (req, res, next) => {
            ELSE u.id = uc.requester_id
          END
        )
+       LEFT JOIN churches c ON c.id = u.preferred_church_id
        WHERE (uc.requester_id = $1 OR uc.recipient_id = $1)
          AND uc.status = 'accepted'
          AND u.id NOT IN (
