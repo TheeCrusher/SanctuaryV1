@@ -32,38 +32,22 @@ const SEEKER_STEPS = [
     id: 'welcome',
     type: 'fullscreen',
     title: 'Welcome to Sanctuary!',
-    message: name => `Hi ${name}! As a Seeker, you're here to find spiritual guidance and grow in your faith. Let's take a quick tour so you know where everything is.`,
+    message: name => `Hi ${name}! As a Seeker, you're here to find spiritual guidance and grow in your faith. Let's take a quick tour of where to start.`,
     target: null
-  },
-  {
-    id: 'home-tab',
-    type: 'spotlight',
-    title: 'Home',
-    message: 'Your personalized dashboard. See upcoming sessions, community activity, notifications, and your daily verse all in one place.',
-    target: '[data-tour-id="nav-home"]',
-    tooltipPos: 'above'
   },
   {
     id: 'community-tab',
     type: 'spotlight',
     title: 'Community',
-    message: 'Connect with other believers. Find church members, send messages, and build meaningful relationships.',
+    message: 'Start here. Find other believers — especially people from your church. Connect, send messages, and build real relationships.',
     target: '[data-tour-id="nav-community"]',
-    tooltipPos: 'above'
-  },
-  {
-    id: 'events-tab',
-    type: 'spotlight',
-    title: 'Events',
-    message: 'Discover community events — both in-person and digital. RSVP to events, join live streams, and see what\'s happening.',
-    target: '[data-tour-id="nav-events"]',
     tooltipPos: 'above'
   },
   {
     id: 'more-tab',
     type: 'spotlight',
-    title: 'More',
-    message: 'Access additional features: Find a Guide, Churches, Bible, Scripture Study, Prayer Board, and your Sessions.',
+    title: 'More Menu',
+    message: 'This is where your most important tools live — including Find a Guide, Prayer Board, and your Sessions.',
     target: '[data-tour-id="nav-more"]',
     tooltipPos: 'above',
     navigateTo: '/more'
@@ -72,8 +56,17 @@ const SEEKER_STEPS = [
     id: 'find-guide',
     type: 'spotlight',
     title: 'Find a Guide',
-    message: 'Looking for spiritual guidance? Browse guides locally, regionally, or nationally. You can request sessions directly from their profile.',
+    message: 'The heart of Sanctuary. Browse spiritual guides near you or across the country and request a session directly from their profile.',
     target: '[data-tour-id="more-find-guide"]',
+    tooltipPos: 'below',
+    navigateTo: '/more'
+  },
+  {
+    id: 'sessions',
+    type: 'spotlight',
+    title: 'Sessions',
+    message: 'Once you book with a guide, your appointments show up here. You\'ll get notified when your guide confirms.',
+    target: '[data-tour-id="more-sessions"]',
     tooltipPos: 'below',
     navigateTo: '/more'
   },
@@ -81,16 +74,24 @@ const SEEKER_STEPS = [
     id: 'prayer-board',
     type: 'spotlight',
     title: 'Prayer Board',
-    message: 'Share prayer requests, read testimonies, and pray for others in your community.',
+    message: 'Share your prayer requests and lift others up. This is your community\'s shared prayer wall.',
     target: '[data-tour-id="more-prayer-board"]',
     tooltipPos: 'below',
     navigateTo: '/more'
   },
   {
+    id: 'events-tab',
+    type: 'spotlight',
+    title: 'Events',
+    message: 'Discover what\'s happening — in-person gatherings and digital events like live streams and recorded teachings.',
+    target: '[data-tour-id="nav-events"]',
+    tooltipPos: 'above'
+  },
+  {
     id: 'profile-tab',
     type: 'spotlight',
     title: 'Your Profile',
-    message: "Update your photo, bio, and interests. Manage your account settings and preferences. You're all set — enjoy Sanctuary!",
+    message: 'Complete your profile with a photo, bio, and interests — guides and community members use it to get to know you. Welcome to Sanctuary!',
     target: '[data-tour-id="nav-profile"]',
     tooltipPos: 'above',
     isFinal: true
@@ -102,91 +103,81 @@ const GUIDE_STEPS = [
     id: 'welcome',
     type: 'fullscreen',
     title: 'Welcome to Sanctuary!',
-    message: name => `Hi ${name}! As a Guide, you'll be helping seekers grow in their spiritual journey. Let's walk through the tools at your disposal.`,
+    message: name => `Hi ${name}! As a Guide, you'll be helping seekers grow in their spiritual journey. Let's get you set up — there are a few things to do first.`,
+    target: null
+  },
+  {
+    id: 'profile-setup',
+    type: 'spotlight',
+    title: 'Set Up Your Profile',
+    message: 'Start here. Seekers choose guides based on your photo, bio, specialization, and church. Head to Profile to fill these in.',
+    target: '[data-tour-id="nav-profile"]',
+    tooltipPos: 'above'
+  },
+  {
+    id: 'guide-availability',
+    type: 'fullscreen',
+    title: 'Enable Accepting Seekers',
+    message: "On your Profile page, turn on 'Accepting New Seekers' and set your max pending requests. Until this is enabled, seekers won't be able to book sessions with you.",
     target: null
   },
   {
     id: 'home-tab',
     type: 'spotlight',
-    title: 'Home',
-    message: 'Your personalized dashboard. See upcoming sessions, community activity, notifications, and your daily verse all in one place.',
+    title: 'Your Guide Dashboard',
+    message: 'Your home base. See incoming session requests, upcoming appointments, and your quick availability toggle — all without leaving this screen.',
     target: '[data-tour-id="nav-home"]',
     tooltipPos: 'above'
   },
   {
-    id: 'community-tab',
-    type: 'spotlight',
-    title: 'Community',
-    message: 'Connect with seekers and fellow guides. Build meaningful relationships and start conversations.',
-    target: '[data-tour-id="nav-community"]',
-    tooltipPos: 'above'
-  },
-  {
-    id: 'events-tab',
-    type: 'spotlight',
-    title: 'Events',
-    message: 'Discover community events — both in-person and digital. As a guide, you can also create your own events.',
-    target: '[data-tour-id="nav-events"]',
-    tooltipPos: 'above',
-    navigateTo: '/events'
-  },
-  {
-    id: 'events-create',
-    type: 'spotlight',
-    title: 'Create Events',
-    message: 'Host Bible studies, prayer meetings, sermons, and more. Create in-person gatherings or digital events like live streams and recorded teachings.',
-    target: '[data-tour-id="events-create"]',
-    tooltipPos: 'below',
-    navigateTo: '/events'
-  },
-  {
     id: 'more-tab',
     type: 'spotlight',
-    title: 'More',
-    message: 'Access additional features: Find a Guide, Churches, Bible, Scripture Study, Prayer Board, and your Sessions.',
+    title: 'More Menu',
+    message: 'Sessions, Prayer Board, Scripture Study, and more are all in here.',
     target: '[data-tour-id="nav-more"]',
     tooltipPos: 'above',
-    navigateTo: '/more'
-  },
-  {
-    id: 'find-guide',
-    type: 'spotlight',
-    title: 'Find a Guide',
-    message: 'This is where seekers will find you. Make sure your profile is complete with your specialization, denomination, and church so seekers can connect with you.',
-    target: '[data-tour-id="more-find-guide"]',
-    tooltipPos: 'below',
     navigateTo: '/more'
   },
   {
     id: 'sessions',
     type: 'spotlight',
     title: 'Sessions',
-    message: 'Manage your guidance appointments here. Confirm or decline requests from seekers, mark sessions complete, and add notes to track your conversations.',
+    message: 'All appointment requests land here. Confirm or decline, mark sessions complete, and add session notes to track your conversations with seekers.',
     target: '[data-tour-id="more-sessions"]',
     tooltipPos: 'below',
     navigateTo: '/more'
   },
   {
-    id: 'guide-availability',
-    type: 'fullscreen',
-    title: 'Guide Availability',
-    message: 'Head to your Profile to set whether you\'re accepting new seekers and your max pending requests. This controls whether seekers can book sessions with you.',
-    target: null
+    id: 'community-tab',
+    type: 'spotlight',
+    title: 'Community',
+    message: 'Build your network. Connect with seekers and fellow guides, start conversations, and grow your ministry presence.',
+    target: '[data-tour-id="nav-community"]',
+    tooltipPos: 'above'
   },
   {
     id: 'prayer-board',
     type: 'spotlight',
     title: 'Prayer Board',
-    message: 'View and respond to prayer requests from seekers. Your words of encouragement can make a real difference.',
+    message: 'Seekers post prayer requests here. Responding with encouragement or scripture is one of the most meaningful things you can do as a guide.',
     target: '[data-tour-id="more-prayer-board"]',
     tooltipPos: 'below',
     navigateTo: '/more'
   },
   {
-    id: 'profile-tab',
+    id: 'find-guide',
     type: 'spotlight',
-    title: 'Your Profile',
-    message: "Keep your profile updated — seekers choose guides based on your photo, bio, specialization, and church affiliation. You're all set — welcome to Sanctuary!",
+    title: 'Find a Guide',
+    message: 'This is where seekers discover you. A strong profile — photo, bio, specialization, church — means more seekers will choose to connect with you.',
+    target: '[data-tour-id="more-find-guide"]',
+    tooltipPos: 'below',
+    navigateTo: '/more'
+  },
+  {
+    id: 'profile-final',
+    type: 'spotlight',
+    title: 'You\'re All Set!',
+    message: "Keep your profile current and your availability on. The more active you are, the more seekers you'll reach. Welcome to Sanctuary!",
     target: '[data-tour-id="nav-profile"]',
     tooltipPos: 'above',
     isFinal: true

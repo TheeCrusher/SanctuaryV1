@@ -669,16 +669,17 @@ CREATE INDEX IF NOT EXISTS idx_guide_waitlist_seeker ON guide_waitlist(seeker_id
 -- Status: pending (awaiting verification), active (can log in), suspended.
 
 CREATE TABLE IF NOT EXISTS church_accounts (
-  id              SERIAL PRIMARY KEY,
-  church_id       INTEGER REFERENCES churches(id) UNIQUE NOT NULL,
-  email           VARCHAR(255) UNIQUE NOT NULL,
-  password_hash   VARCHAR(255) NOT NULL,
-  display_name    VARCHAR(255),
-  status          VARCHAR(20) DEFAULT 'pending'
-                  CHECK (status IN ('pending', 'active', 'suspended')),
-  verified_at     TIMESTAMP WITH TIME ZONE,
-  created_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at      TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id                   SERIAL PRIMARY KEY,
+  church_id            INTEGER REFERENCES churches(id) UNIQUE NOT NULL,
+  email                VARCHAR(255) UNIQUE NOT NULL,
+  password_hash        VARCHAR(255) NOT NULL,
+  display_name         VARCHAR(255),
+  status               VARCHAR(20) DEFAULT 'pending'
+                       CHECK (status IN ('pending', 'active', 'suspended')),
+  onboarding_completed BOOLEAN DEFAULT false,
+  verified_at          TIMESTAMP WITH TIME ZONE,
+  created_at           TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at           TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_church_accounts_email ON church_accounts(email);

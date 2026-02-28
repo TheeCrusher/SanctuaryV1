@@ -129,6 +129,7 @@ router.post('/login', churchLoginLimiter, async (req, res, next) => {
     // Look up church account
     const result = await pool.query(
       `SELECT ca.id, ca.church_id, ca.email, ca.password_hash, ca.display_name, ca.status,
+              ca.onboarding_completed,
               c.name AS church_name, c.google_place_id, c.overall_rating, c.review_count
        FROM church_accounts ca
        JOIN churches c ON c.id = ca.church_id
@@ -170,7 +171,8 @@ router.post('/login', churchLoginLimiter, async (req, res, next) => {
         googlePlaceId: account.google_place_id,
         overallRating: account.overall_rating,
         reviewCount: account.review_count,
-        status: account.status
+        status: account.status,
+        onboardingCompleted: account.onboarding_completed
       }
     })
   } catch (error) {
@@ -189,7 +191,7 @@ router.get('/me', authenticateChurch, async (req, res, next) => {
 
     // Get account + church data
     const acctResult = await pool.query(
-      `SELECT ca.id, ca.email, ca.display_name, ca.status,
+      `SELECT ca.id, ca.email, ca.display_name, ca.status, ca.onboarding_completed,
               c.id AS church_id, c.name, c.address, c.city, c.state,
               c.custom_description, c.custom_hours, c.custom_programs,
               c.google_place_id, c.overall_rating, c.review_count,
@@ -241,6 +243,7 @@ router.get('/me', authenticateChurch, async (req, res, next) => {
         email: data.email,
         displayName: data.display_name,
         status: data.status,
+        onboardingCompleted: data.onboarding_completed,
         church: {
           id: data.church_id,
           name: data.name,
@@ -282,13 +285,26 @@ router.get('/me', authenticateChurch, async (req, res, next) => {
 router.put('/profile', authenticateChurch, async (req, res, next) => {
   try {
     const { accountId, churchId } = req.church
-    const { displayName, customDescription, customHours, customPrograms } = req.body
+    const { displayName, customDescription, customHours, customPrograms, onboardingCompleted } = req.body
 
-    // Update display_name on church_accounts if provided
-    if (displayName !== undefined) {
+    // Update church_accounts fields if provided
+    if (displayName !== undefined || onboardingCompleted !== undefined) {
+      const acctFields = []
+      const acctValues = []
+      let acctIdx = 1
+      if (displayName !== undefined) {
+        acctFields.push(`display_name = $${acctIdx++}`)
+        acctValues.push(displayName)
+      }
+      if (onboardingCompleted !== undefined) {
+        acctFields.push(`onboarding_completed = $${acctIdx++}`)
+        acctValues.push(onboardingCompleted)
+      }
+      acctFields.push(`updated_at = NOW()`)
+      acctValues.push(accountId)
       await pool.query(
-        'UPDATE church_accounts SET display_name = $1, updated_at = NOW() WHERE id = $2',
-        [displayName, accountId]
+        `UPDATE church_accounts SET ${acctFields.join(', ')} WHERE id = $${acctIdx}`,
+        acctValues
       )
     }
 
@@ -321,7 +337,7 @@ router.put('/profile', authenticateChurch, async (req, res, next) => {
     // Return the updated profile (reuse /me logic)
     // Redirect internally by re-calling the same query
     const acctResult = await pool.query(
-      `SELECT ca.id, ca.email, ca.display_name, ca.status,
+      `SELECT ca.id, ca.email, ca.display_name, ca.status, ca.onboarding_completed,
               c.id AS church_id, c.name, c.address, c.city, c.state,
               c.custom_description, c.custom_hours, c.custom_programs,
               c.google_place_id, c.overall_rating, c.review_count,
@@ -367,6 +383,7 @@ router.put('/profile', authenticateChurch, async (req, res, next) => {
         email: data.email,
         displayName: data.display_name,
         status: data.status,
+        onboardingCompleted: data.onboarding_completed,
         church: {
           id: data.church_id,
           name: data.name,

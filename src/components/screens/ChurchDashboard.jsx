@@ -111,15 +111,15 @@ function ChurchDashboard() {
 
       {/* Navigation Cards */}
       <div className="church-nav-grid">
-        <button className="church-nav-card" onClick={() => navigate('/church-profile-editor')}>
+        <button className="church-nav-card" data-tour-id="church-edit-profile" onClick={() => navigate('/church-profile-editor')}>
           <Pencil size={24} />
           <span>Edit Profile</span>
         </button>
-        <button className="church-nav-card" onClick={() => navigate('/church-congregation')}>
+        <button className="church-nav-card" data-tour-id="church-congregation" onClick={() => navigate('/church-congregation')}>
           <Users size={24} />
           <span>Congregation</span>
         </button>
-        <button className="church-nav-card" onClick={() => navigate('/church-guides')}>
+        <button className="church-nav-card" data-tour-id="church-verified-guides" onClick={() => navigate('/church-guides')}>
           <ShieldCheck size={24} />
           <span>Verified Guides</span>
         </button>

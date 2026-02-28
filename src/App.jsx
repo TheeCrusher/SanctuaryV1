@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from './context/AppContext'
-import { LoadingSpinner, OnboardingTour } from './components/common'
+import { LoadingSpinner, OnboardingTour, ChurchOnboardingTour } from './components/common'
 import { useSwipeable } from 'react-swipeable'
 
 // Layout components
@@ -128,7 +128,7 @@ function App() {
   const { user, churchAccount } = useApp()
   const location = useLocation()
 
-  // ----- Onboarding Tour -----
+  // ----- Onboarding Tour (regular users) -----
   // Shows once for new users when they first land on the dashboard
   const [showTour, setShowTour] = useState(false)
 
@@ -139,6 +139,17 @@ function App() {
       return () => clearTimeout(timer)
     }
   }, [user, location.pathname])
+
+  // ----- Church Onboarding Tour -----
+  // Shows once for new church accounts when they first land on the church dashboard
+  const [showChurchTour, setShowChurchTour] = useState(false)
+
+  useEffect(() => {
+    if (churchAccount && churchAccount.onboardingCompleted === false && location.pathname === '/church-dashboard') {
+      const timer = setTimeout(() => setShowChurchTour(true), 600)
+      return () => clearTimeout(timer)
+    }
+  }, [churchAccount, location.pathname])
 
   // Pages where we DON'T show the bottom navigation
   const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water', '/church-dashboard', '/church-profile-editor', '/church-congregation', '/church-guides']
@@ -509,6 +520,14 @@ function App() {
       {/* Onboarding Tour — renders above everything for first-time users */}
       {showTour && (
         <OnboardingTour onComplete={() => setShowTour(false)} />
+      )}
+
+      {/* Church Onboarding Tour — shown once on first church account login */}
+      {showChurchTour && (
+        <ChurchOnboardingTour
+          churchAccount={churchAccount}
+          onComplete={() => setShowChurchTour(false)}
+        />
       )}
     </div>
   )
