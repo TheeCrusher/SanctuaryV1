@@ -26,7 +26,7 @@ const DIGITAL_CATEGORIES = ['All', 'Sermons/Teachings', 'Prayer', 'Worship', 'Bi
 
 function EventsScreen() {
   const navigate = useNavigate()
-  const { allChurches } = useApp()
+  const { allChurches, user } = useApp()
 
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
@@ -95,7 +95,7 @@ function EventsScreen() {
     setDateTime('')
     setLocation('')
     setCategory(createEventType === 'digital' ? 'General' : 'Social')
-    setChurchId('')
+    setChurchId(createEventType === 'in_person' ? (user?.preferredChurchId || '') : '')
     setEventLink('')
     setIsLive(true)
   }
@@ -432,9 +432,21 @@ function EventsScreen() {
             <label>Church (optional)</label>
             <select value={churchId} onChange={e => setChurchId(e.target.value)}>
               <option value="">None — informal event</option>
-              {allChurches.map(c => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
+              {user?.preferredChurchId && (() => {
+                const myChurch = allChurches.find(c => c.id === user.preferredChurchId)
+                return myChurch ? (
+                  <>
+                    <option key={`my-${myChurch.id}`} value={myChurch.id}>⭐ {myChurch.name} (Your Church)</option>
+                    <option disabled>──────────────</option>
+                  </>
+                ) : null
+              })()}
+              {allChurches
+                .filter(c => c.id !== user?.preferredChurchId)
+                .map(c => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
+                ))
+              }
             </select>
           </div>
 

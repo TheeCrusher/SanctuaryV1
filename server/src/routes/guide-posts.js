@@ -148,7 +148,12 @@ router.get('/user/:id', async (req, res, next) => {
 // Create a new guide post. Guide role required.
 router.post('/', async (req, res, next) => {
   try {
-    if (req.user.role !== 'guide') {
+    // authenticate middleware only sets req.user.id — fetch role from DB
+    const { rows: [currentUser] } = await pool.query(
+      'SELECT role, name, avatar, photo_url, denomination FROM users WHERE id = $1',
+      [req.user.id]
+    )
+    if (!currentUser || currentUser.role !== 'guide') {
       return res.status(403).json({ error: 'Only guides can publish posts.' })
     }
 
@@ -180,10 +185,10 @@ router.post('/', async (req, res, next) => {
         scriptureRef: post.scripture_ref,
         likeCount: post.like_count,
         createdAt: post.created_at,
-        userName: req.user.name,
-        userAvatar: req.user.avatar,
-        userPhoto: req.user.photo_url,
-        userDenomination: req.user.denomination,
+        userName: currentUser.name,
+        userAvatar: currentUser.avatar,
+        userPhoto: currentUser.photo_url,
+        userDenomination: currentUser.denomination,
         liked: false,
         isOwn: true
       }
