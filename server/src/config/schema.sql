@@ -702,6 +702,41 @@ CREATE TABLE IF NOT EXISTS church_account_guides (
 );
 
 -- ============================================================
+-- GUIDE POSTS TABLE
+-- ============================================================
+-- Short-form content published by guides: devotionals, reflections,
+-- scripture notes, and general messages. Public to all logged-in users.
+
+CREATE TABLE IF NOT EXISTS guide_posts (
+  id            SERIAL PRIMARY KEY,
+  user_id       INTEGER NOT NULL,
+  title         VARCHAR(200) NOT NULL,
+  content       TEXT NOT NULL,
+  post_type     VARCHAR(20) NOT NULL DEFAULT 'general',
+  scripture_ref VARCHAR(200),
+  like_count    INTEGER DEFAULT 0,
+  created_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  CONSTRAINT guide_posts_type_check CHECK (post_type IN ('devotional','reflection','scripture','general'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_guide_posts_user_id ON guide_posts(user_id);
+CREATE INDEX IF NOT EXISTS idx_guide_posts_created_at ON guide_posts(created_at DESC);
+
+-- ============================================================
+-- GUIDE POST LIKES TABLE
+-- ============================================================
+-- Tracks which users liked which guide posts (toggle, no duplicates).
+
+CREATE TABLE IF NOT EXISTS guide_post_likes (
+  id         SERIAL PRIMARY KEY,
+  user_id    INTEGER NOT NULL,
+  post_id    INTEGER NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, post_id)
+);
+
+-- ============================================================
 -- DEFERRED FOREIGN KEYS (added after all tables exist)
 -- ============================================================
 DO $$
@@ -739,5 +774,30 @@ BEGIN
   ) THEN
     ALTER TABLE churches ADD CONSTRAINT fk_churches_featured_plan
       FOREIGN KEY (featured_plan_id) REFERENCES reading_plans(id) ON DELETE SET NULL;
+  END IF;
+
+  -- Session 34: Guide Posts
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_posts_user'
+  ) THEN
+    ALTER TABLE guide_posts ADD CONSTRAINT fk_guide_posts_user
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_post_likes_user'
+  ) THEN
+    ALTER TABLE guide_post_likes ADD CONSTRAINT fk_guide_post_likes_user
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_post_likes_post'
+  ) THEN
+    ALTER TABLE guide_post_likes ADD CONSTRAINT fk_guide_post_likes_post
+      FOREIGN KEY (post_id) REFERENCES guide_posts(id) ON DELETE CASCADE;
   END IF;
 END $$;

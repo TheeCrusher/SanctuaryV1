@@ -47,6 +47,7 @@ import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 import ForgotPassword from './components/screens/ForgotPassword'
 import FindGuides from './components/screens/FindGuides'
+import GuidePostsFeed from './components/screens/GuidePostsFeed'
 import WalkOnWater from './components/screens/WalkOnWater'
 import ChurchDashboard from './components/screens/ChurchDashboard'
 import ChurchProfileEditor from './components/screens/ChurchProfileEditor'
@@ -248,6 +249,15 @@ function App() {
           element={
             <ProtectedRoute>
               <FindGuides />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/guide-posts"
+          element={
+            <ProtectedRoute>
+              <GuidePostsFeed />
             </ProtectedRoute>
           }
         />

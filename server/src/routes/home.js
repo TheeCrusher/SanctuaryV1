@@ -179,6 +179,29 @@ router.get('/', async (req, res, next) => {
            FROM appointments
            WHERE seeker_id = $1 AND status = 'completed'`,
           [userId]
+        ),
+        // 8e. Recent guide posts from connected guides (for "From Your Guides" dashboard section)
+        pool.query(
+          `SELECT gp.id, gp.title, gp.content, gp.post_type, gp.scripture_ref,
+                  gp.like_count, gp.created_at, gp.user_id,
+                  u.name AS user_name, u.avatar AS user_avatar, u.photo_url AS user_photo,
+                  EXISTS(
+                    SELECT 1 FROM guide_post_likes WHERE user_id = $1 AND post_id = gp.id
+                  ) AS liked
+           FROM guide_posts gp
+           JOIN users u ON u.id = gp.user_id
+           JOIN user_connections uc ON (
+             (uc.requester_id = $1 AND uc.recipient_id = gp.user_id) OR
+             (uc.recipient_id = $1 AND uc.requester_id = gp.user_id)
+           ) AND uc.status = 'accepted'
+           WHERE u.id NOT IN (
+             SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+             UNION
+             SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+           )
+           ORDER BY gp.created_at DESC
+           LIMIT 4`,
+          [userId]
         )
       )
     }
@@ -195,6 +218,7 @@ router.get('/', async (req, res, next) => {
 
     // Build role-specific sessionStats
     let sessionStats
+    let guidePostsFromConnections = []
     if (userRole === 'guide') {
       const guideStats = roleResults[0]
       sessionStats = {
@@ -204,7 +228,7 @@ router.get('/', async (req, res, next) => {
         uniqueSeekers: parseInt(guideStats.rows[0].unique_seekers)
       }
     } else {
-      const [streakResult, eventsResult, scoreResult, sessionsResult] = roleResults
+      const [streakResult, eventsResult, scoreResult, sessionsResult, guidePostsResult] = roleResults
       sessionStats = {
         role: 'seeker',
         studyStreak: streakResult.rows[0]?.current_streak || 0,
@@ -212,6 +236,20 @@ router.get('/', async (req, res, next) => {
         communityScore: parseInt(scoreResult.rows[0].score) || 0,
         sessionsCompleted: sessionsResult.rows[0].count
       }
+      guidePostsFromConnections = guidePostsResult.rows.map(r => ({
+        id: r.id,
+        userId: r.user_id,
+        title: r.title,
+        content: r.content,
+        postType: r.post_type,
+        scriptureRef: r.scripture_ref,
+        likeCount: r.like_count,
+        createdAt: r.created_at,
+        liked: r.liked,
+        userName: r.user_name,
+        userAvatar: r.user_avatar,
+        userPhoto: r.user_photo
+      }))
     }
 
     // Format the response
@@ -250,6 +288,7 @@ router.get('/', async (req, res, next) => {
         userPhoto: r.is_anonymous ? null : r.user_photo
       })),
       sessionStats,
+      guidePostsFromConnections,
       upcomingEvents: upcomingEventsResult.rows.map(e => ({
         id: e.id,
         title: e.title,

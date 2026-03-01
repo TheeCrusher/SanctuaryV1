@@ -33,6 +33,7 @@ import eventRoutes from './routes/events.js'
 import blockRoutes from './routes/blocks.js'
 import notificationRoutes from './routes/notifications.js'
 import churchAuthRoutes from './routes/church-auth.js'
+import guidePostsRoutes from './routes/guide-posts.js'
 
 // Load environment variables from .env
 dotenv.config()
@@ -103,6 +104,7 @@ app.use('/api/events', eventRoutes)
 app.use('/api/blocks', blockRoutes)
 app.use('/api/notifications', notificationRoutes)
 app.use('/api/church-auth', churchAuthRoutes)
+app.use('/api/guide-posts', guidePostsRoutes)
 
 // ============================================================
 // ERROR HANDLING MIDDLEWARE

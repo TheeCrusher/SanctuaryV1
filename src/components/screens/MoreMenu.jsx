@@ -20,6 +20,7 @@ function MoreMenu() {
       label: 'Discover',
       items: [
         { icon: Users, text: 'Find a Guide', subtitle: 'Browse spiritual guides nationwide', path: '/guides', colorClass: 'icon-gold', tourId: 'more-find-guide' },
+        { icon: BookOpen, text: 'Guide Posts', subtitle: 'Devotionals & wisdom from guides', path: '/guide-posts', colorClass: 'icon-gold' },
         { icon: Church, text: 'Churches', subtitle: 'Find & favorite churches', path: '/churches', colorClass: 'icon-gold' }
       ]
     },

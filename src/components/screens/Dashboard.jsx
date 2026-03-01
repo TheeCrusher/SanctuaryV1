@@ -21,6 +21,7 @@
 //   7. Ministry Stats + Daily Word
 
 import './Dashboard.css'
+import './GuidePostsFeed.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
@@ -30,7 +31,7 @@ import {
   MessageCircle, Users, Heart, Calendar, CheckCircle,
   ChevronRight, Bell, Flame, Trophy, CalendarCheck,
   CircleCheckBig, Star, FileText, ThumbsUp, X, Compass,
-  Clock, UserCheck
+  Clock, UserCheck, BookOpen
 } from 'lucide-react'
 import { formatDateShort } from '../../utils/helpers'
 
@@ -96,6 +97,38 @@ function Dashboard() {
     await declineAppointment(id)
     await fetchHome()
     setActionLoading(null)
+  }
+
+  // ── Seeker: like a guide post from the dashboard ──────────────────────────
+  async function handleDashPostLike(postId) {
+    // Optimistic update on homeData
+    setHomeData(prev => ({
+      ...prev,
+      guidePostsFromConnections: prev.guidePostsFromConnections.map(p =>
+        p.id === postId
+          ? { ...p, liked: !p.liked, likeCount: p.liked ? p.likeCount - 1 : p.likeCount + 1 }
+          : p
+      )
+    }))
+    try {
+      const data = await api.post(`/guide-posts/${postId}/like`, {})
+      setHomeData(prev => ({
+        ...prev,
+        guidePostsFromConnections: prev.guidePostsFromConnections.map(p =>
+          p.id === postId ? { ...p, liked: data.liked, likeCount: data.likeCount } : p
+        )
+      }))
+    } catch {
+      // Revert on failure
+      setHomeData(prev => ({
+        ...prev,
+        guidePostsFromConnections: prev.guidePostsFromConnections.map(p =>
+          p.id === postId
+            ? { ...p, liked: !p.liked, likeCount: p.liked ? p.likeCount - 1 : p.likeCount + 1 }
+            : p
+        )
+      }))
+    }
   }
 
   // ── Guide: availability quick-toggle ──────────────────────────────────────
@@ -282,6 +315,40 @@ function Dashboard() {
             ))
           )}
         </div>
+
+        {/* SECTION: From Your Guides */}
+        {homeData.guidePostsFromConnections?.length > 0 && (
+          <div className="home-section">
+            <div className="home-section-header">
+              <h2 className="home-section-title">From Your Guides</h2>
+              <button className="view-all-btn" onClick={() => navigate('/guide-posts')}>See All</button>
+            </div>
+            {homeData.guidePostsFromConnections.map(post => (
+              <Card key={post.id} onClick={() => navigate('/guide-posts')}>
+                <div className="home-activity-row">
+                  <Avatar src={post.userPhoto} emoji={post.userAvatar} size="sm" variant="guide" />
+                  <div className="home-activity-info" style={{ flex: 1, minWidth: 0 }}>
+                    <span className="home-activity-name">{post.userName}</span>
+                    <span className="home-activity-title" style={{ fontWeight: 600 }}>{post.title}</span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
+                    <span className={`gp-type-badge gp-type-${post.postType}`} style={{ fontSize: 10, padding: '2px 6px' }}>
+                      {post.postType}
+                    </span>
+                    <button
+                      className={`gp-like-btn${post.liked ? ' liked' : ''}`}
+                      style={{ fontSize: 12, padding: 0 }}
+                      onClick={e => { e.stopPropagation(); handleDashPostLike(post.id) }}
+                    >
+                      <Heart size={14} fill={post.liked ? 'currentColor' : 'none'} />
+                      {post.likeCount > 0 && <span>{post.likeCount}</span>}
+                    </button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
 
         {/* SECTION: Community Activity */}
         <div className="home-section">

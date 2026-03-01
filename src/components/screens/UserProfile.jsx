@@ -9,12 +9,14 @@
 
 import './Profile.css'
 import './BlockedUsersScreen.css'
+import './GuidePostsFeed.css'
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, LoadingSpinner, ErrorState } from '../common'
-import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff } from 'lucide-react'
+import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff, Heart, Trash2 } from 'lucide-react'
 import { api } from '../../utils/api'
+import { timeAgo } from '../../utils/helpers'
 
 function UserProfile() {
   const { id } = useParams()
@@ -39,6 +41,15 @@ function UserProfile() {
       ])
       setProfile(profileRes.user)
       setConnectionStatus(statusRes.status)
+      // Fetch posts if this is a guide profile
+      if (profileRes.user?.role === 'guide') {
+        try {
+          const postsRes = await api.get(`/guide-posts/user/${id}`)
+          setGuidePosts(postsRes.posts || [])
+        } catch {
+          // non-critical — silently skip
+        }
+      }
     } catch (err) {
       setError('Failed to load profile. Please try again.')
     } finally {
@@ -75,6 +86,38 @@ function UserProfile() {
       // ignore
     } finally {
       setConnectionLoading(false)
+    }
+  }
+
+  const [guidePosts, setGuidePosts] = useState([])
+
+  async function handleProfilePostLike(postId) {
+    setGuidePosts(prev => prev.map(p =>
+      p.id === postId
+        ? { ...p, liked: !p.liked, likeCount: p.liked ? p.likeCount - 1 : p.likeCount + 1 }
+        : p
+    ))
+    try {
+      const data = await api.post(`/guide-posts/${postId}/like`, {})
+      setGuidePosts(prev => prev.map(p =>
+        p.id === postId ? { ...p, liked: data.liked, likeCount: data.likeCount } : p
+      ))
+    } catch {
+      setGuidePosts(prev => prev.map(p =>
+        p.id === postId
+          ? { ...p, liked: !p.liked, likeCount: p.liked ? p.likeCount - 1 : p.likeCount + 1 }
+          : p
+      ))
+    }
+  }
+
+  async function handleProfilePostDelete(postId) {
+    if (!window.confirm('Delete this post?')) return
+    try {
+      await api.delete(`/guide-posts/${postId}`)
+      setGuidePosts(prev => prev.filter(p => p.id !== postId))
+    } catch {
+      // silently fail
     }
   }
 
@@ -288,6 +331,66 @@ function UserProfile() {
           </div>
         )}
       </div>
+
+      {/* Guide Posts Section — shown below profile card for guide profiles */}
+      {isGuide && (
+        <div className="screen-content" style={{ paddingTop: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, padding: '0 4px' }}>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>Posts</h2>
+          </div>
+
+          {guidePosts.length === 0 ? (
+            <p style={{ color: 'var(--text-faint)', fontSize: 14, textAlign: 'center', padding: '16px 0' }}>
+              No posts yet.
+            </p>
+          ) : (
+            guidePosts.map(post => (
+              <div key={post.id} className="gp-card" style={{ margin: '0 0 12px' }}>
+                <div className="gp-card-inner">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                    <span className={`gp-type-badge gp-type-${post.postType}`}>
+                      {post.postType === 'devotional' && '✨ '}
+                      {post.postType === 'reflection' && '💭 '}
+                      {post.postType === 'scripture' && '📖 '}
+                      {post.postType === 'general' && '💬 '}
+                      {post.postType}
+                    </span>
+                    <span className="gp-time">{timeAgo(post.createdAt)}</span>
+                  </div>
+
+                  <h3 className="gp-title">{post.title}</h3>
+
+                  {post.scriptureRef && (
+                    <div className="gp-scripture-ref" style={{ marginBottom: 8 }}>
+                      <BookOpen size={12} />
+                      {post.scriptureRef}
+                    </div>
+                  )}
+
+                  <p className="gp-content" style={{ WebkitLineClamp: 3, display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                    {post.content}
+                  </p>
+
+                  <div className="gp-footer">
+                    <button
+                      className={`gp-like-btn${post.liked ? ' liked' : ''}`}
+                      onClick={() => handleProfilePostLike(post.id)}
+                    >
+                      <Heart size={16} fill={post.liked ? 'currentColor' : 'none'} />
+                      {post.likeCount > 0 && <span>{post.likeCount}</span>}
+                    </button>
+                    {post.isOwn && (
+                      <button className="gp-delete-btn" onClick={() => handleProfilePostDelete(post.id)}>
+                        <Trash2 size={15} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   )
 }
