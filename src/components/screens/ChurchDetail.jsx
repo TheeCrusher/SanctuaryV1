@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card, Modal, Avatar, LoadingSpinner } from '../common'
-import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock, Home } from 'lucide-react'
+import { ArrowLeft, Church, Check, Heart, Star, Edit3, Trash2, Users, Megaphone, Music, BookOpen, GraduationCap, Baby, Book, Car, Building, Navigation, Clock, Home, CheckCircle } from 'lucide-react'
 import { api, API_BASE } from '../../utils/api'
 import { timeAgo } from '../../utils/helpers'
 
@@ -62,6 +62,8 @@ function ChurchDetail() {
   const [submitting, setSubmitting] = useState(false)
 
   const [settingPreferred, setSettingPreferred] = useState(false)
+  const [joiningPlan, setJoiningPlan] = useState(false)
+  const [joinToast, setJoinToast] = useState('')
 
   const isMyChurch = user?.preferredChurchId === church?.id
 
@@ -73,6 +75,24 @@ function ChurchDetail() {
     if (!isMyChurch) updates.churchName = church.name
     await updateProfile(updates)
     setSettingPreferred(false)
+  }
+
+  async function handleJoinPlan(planId) {
+    setJoiningPlan(true)
+    try {
+      await api.post(`/scripture/plans/${planId}/join`, {})
+      // Update the church data locally so button flips to "Joined ✓"
+      setChurch(prev => ({
+        ...prev,
+        featuredPlan: { ...prev.featuredPlan, userJoined: true }
+      }))
+      setJoinToast('Added to your Scripture Study')
+      setTimeout(() => setJoinToast(''), 3000)
+    } catch (error) {
+      // ignore
+    } finally {
+      setJoiningPlan(false)
+    }
   }
 
   // Bulletin board state
@@ -376,6 +396,37 @@ function ChurchDetail() {
             {isMyChurch && <Check size={14} />}
           </button>
         </Card>
+
+        {/* Current Congregation Study */}
+        {church.featuredPlan && (
+          <div className="church-featured-plan-card">
+            <div className="church-featured-plan-header">
+              <BookOpen size={16} className="church-featured-plan-icon" />
+              <span className="church-featured-plan-label">Current Congregation Study</span>
+            </div>
+            <div className="church-featured-plan-name">{church.featuredPlan.name}</div>
+            <div className="church-featured-plan-meta">
+              <span className="church-featured-plan-days">{church.featuredPlan.totalDays}-day study</span>
+            </div>
+            {joinToast ? (
+              <div className="church-featured-plan-toast">
+                <CheckCircle size={14} /> {joinToast}
+              </div>
+            ) : church.featuredPlan.userJoined ? (
+              <div className="church-featured-plan-joined">
+                <CheckCircle size={14} /> Joined
+              </div>
+            ) : (
+              <button
+                className="church-featured-plan-join-btn"
+                onClick={() => handleJoinPlan(church.featuredPlan.id)}
+                disabled={joiningPlan}
+              >
+                {joiningPlan ? 'Joining…' : 'Join This Plan'}
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Service Times (only show if data exists) */}
         {church.hours && (

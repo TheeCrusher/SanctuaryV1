@@ -1,14 +1,19 @@
 // ============================================================
 // Church Auth Routes - Register, Login & Church Management
 // ============================================================
-// POST   /api/church-auth/register       - Create a new church account
-// POST   /api/church-auth/login          - Log in as a church
-// GET    /api/church-auth/me             - Get church account profile
-// PUT    /api/church-auth/profile        - Update church profile
-// GET    /api/church-auth/congregation   - View church members
-// POST   /api/church-auth/verify-guide   - Add a verified guide
+// POST   /api/church-auth/register              - Create a new church account
+// POST   /api/church-auth/login                 - Log in as a church
+// GET    /api/church-auth/me                    - Get church account profile
+// PUT    /api/church-auth/profile               - Update church profile
+// GET    /api/church-auth/congregation          - View church members
+// POST   /api/church-auth/verify-guide          - Add a verified guide
 // DELETE /api/church-auth/verify-guide/:guideId - Remove a verified guide
-// GET    /api/church-auth/search-guides  - Search guides by name
+// GET    /api/church-auth/search-guides         - Search guides by name
+// GET    /api/church-auth/plans                 - List church's reading plans
+// POST   /api/church-auth/plans                 - Create a church reading plan
+// PUT    /api/church-auth/plans/feature         - Set featured congregation plan
+// DELETE /api/church-auth/plans/feature         - Remove featured congregation plan
+// DELETE /api/church-auth/plans/:id             - Delete a church plan
 // ============================================================
 
 import { Router } from 'express'
@@ -552,6 +557,238 @@ router.get('/search-guides', authenticateChurch, async (req, res, next) => {
         photoUrl: g.photo_url
       }))
     })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// GET /api/church-auth/plans
+// ============================================================
+// Returns all reading plans created by this church account.
+// Includes whether each plan is currently featured.
+
+router.get('/plans', authenticateChurch, async (req, res, next) => {
+  try {
+    const { accountId, churchId } = req.church
+
+    // Get the church's featured_plan_id for comparison
+    const churchResult = await pool.query(
+      'SELECT featured_plan_id FROM churches WHERE id = $1',
+      [churchId]
+    )
+    const featuredPlanId = churchResult.rows[0]?.featured_plan_id || null
+
+    const result = await pool.query(
+      `SELECT rp.id, rp.name, rp.description, rp.total_days, rp.created_at,
+              (SELECT COUNT(*) FROM reading_plan_days WHERE plan_id = rp.id) AS day_count
+       FROM reading_plans rp
+       WHERE rp.church_account_id = $1
+       ORDER BY rp.created_at DESC`,
+      [accountId]
+    )
+
+    const plans = result.rows.map(row => ({
+      id: row.id,
+      name: row.name,
+      description: row.description,
+      totalDays: row.total_days,
+      dayCount: parseInt(row.day_count),
+      createdAt: row.created_at,
+      isFeatured: row.id === featuredPlanId
+    }))
+
+    res.json({ plans, featuredPlanId })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// POST /api/church-auth/plans
+// ============================================================
+// Creates a new reading plan for the church.
+// Body: { name, category, duration }
+// Selects random verses from the category, one per day.
+
+const VALID_CATEGORIES = ['Love', 'Strength', 'Hope', 'Comfort', 'Trust', 'Courage', 'Faith', 'Peace', 'Gratitude']
+const VALID_DURATIONS = [7, 14, 21, 30]
+
+router.post('/plans', authenticateChurch, async (req, res, next) => {
+  try {
+    const { accountId } = req.church
+    const { name, category, duration } = req.body
+
+    if (!name || !category || !duration) {
+      return res.status(400).json({ error: 'name, category, and duration are required.' })
+    }
+
+    if (!VALID_CATEGORIES.includes(category)) {
+      return res.status(400).json({ error: `category must be one of: ${VALID_CATEGORIES.join(', ')}.` })
+    }
+
+    if (!VALID_DURATIONS.includes(parseInt(duration))) {
+      return res.status(400).json({ error: 'duration must be 7, 14, 21, or 30.' })
+    }
+
+    const days = parseInt(duration)
+
+    // Get verses from the chosen category
+    const versesResult = await pool.query(
+      'SELECT * FROM scripture_verses WHERE category = $1 ORDER BY RANDOM()',
+      [category]
+    )
+
+    if (versesResult.rows.length === 0) {
+      return res.status(400).json({ error: 'No verses found for this category.' })
+    }
+
+    // Cycle verses if fewer than duration
+    const verses = versesResult.rows
+    const planVerses = []
+    for (let i = 0; i < days; i++) {
+      planVerses.push(verses[i % verses.length])
+    }
+
+    // Create the plan — created_by is NULL (church plan, not user plan)
+    const planResult = await pool.query(
+      `INSERT INTO reading_plans (name, description, total_days, created_by, church_account_id)
+       VALUES ($1, $2, $3, NULL, $4) RETURNING *`,
+      [name.trim(), `${category} study — ${days}-day congregation plan`, days, accountId]
+    )
+    const plan = planResult.rows[0]
+
+    // Insert days (reference = verse reference, title = truncated verse text)
+    for (let i = 0; i < planVerses.length; i++) {
+      await pool.query(
+        'INSERT INTO reading_plan_days (plan_id, day_number, title, reference) VALUES ($1, $2, $3, $4)',
+        [plan.id, i + 1, planVerses[i].reference, planVerses[i].text.substring(0, 80) + '...']
+      )
+    }
+
+    res.status(201).json({
+      plan: {
+        id: plan.id,
+        name: plan.name,
+        description: plan.description,
+        totalDays: plan.total_days,
+        dayCount: days,
+        createdAt: plan.created_at,
+        isFeatured: false
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// PUT /api/church-auth/plans/feature
+// ============================================================
+// Sets the featured congregation plan for this church.
+// Body: { planId }
+
+router.put('/plans/feature', authenticateChurch, async (req, res, next) => {
+  try {
+    const { accountId, churchId } = req.church
+    const { planId } = req.body
+
+    if (!planId) {
+      return res.status(400).json({ error: 'planId is required.' })
+    }
+
+    // Verify the plan belongs to this church account
+    const planCheck = await pool.query(
+      'SELECT id, name, total_days, description FROM reading_plans WHERE id = $1 AND church_account_id = $2',
+      [planId, accountId]
+    )
+
+    if (planCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Plan not found or does not belong to this church.' })
+    }
+
+    // Set featured_plan_id on the church
+    await pool.query(
+      'UPDATE churches SET featured_plan_id = $1 WHERE id = $2',
+      [planId, churchId]
+    )
+
+    const plan = planCheck.rows[0]
+    const dayCountResult = await pool.query(
+      'SELECT COUNT(*) FROM reading_plan_days WHERE plan_id = $1',
+      [planId]
+    )
+
+    res.json({
+      featuredPlan: {
+        id: plan.id,
+        name: plan.name,
+        description: plan.description,
+        totalDays: plan.total_days,
+        dayCount: parseInt(dayCountResult.rows[0].count)
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// DELETE /api/church-auth/plans/feature
+// ============================================================
+// Removes the featured congregation plan (sets featured_plan_id = NULL).
+
+router.delete('/plans/feature', authenticateChurch, async (req, res, next) => {
+  try {
+    const { churchId } = req.church
+
+    await pool.query(
+      'UPDATE churches SET featured_plan_id = NULL WHERE id = $1',
+      [churchId]
+    )
+
+    res.json({ success: true })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
+// DELETE /api/church-auth/plans/:id
+// ============================================================
+// Deletes a church reading plan. Guards:
+// - Must belong to this church account
+// - Cannot delete the currently featured plan
+
+router.delete('/plans/:id', authenticateChurch, async (req, res, next) => {
+  try {
+    const { accountId, churchId } = req.church
+    const planId = parseInt(req.params.id)
+
+    // Verify ownership
+    const planCheck = await pool.query(
+      'SELECT id FROM reading_plans WHERE id = $1 AND church_account_id = $2',
+      [planId, accountId]
+    )
+
+    if (planCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Plan not found or does not belong to this church.' })
+    }
+
+    // Check if currently featured
+    const churchResult = await pool.query(
+      'SELECT featured_plan_id FROM churches WHERE id = $1',
+      [churchId]
+    )
+
+    if (churchResult.rows[0]?.featured_plan_id === planId) {
+      return res.status(400).json({ error: 'Cannot delete the active congregation study. Remove it from the featured slot first.' })
+    }
+
+    // CASCADE will remove plan_days and any user progress on this plan
+    await pool.query('DELETE FROM reading_plans WHERE id = $1', [planId])
+
+    res.json({ success: true })
   } catch (error) {
     next(error)
   }

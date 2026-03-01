@@ -544,3 +544,96 @@
 [data-theme="dark"] .church-member-card {
   background: var(--bg-tertiary);
 }
+
+/* ---- Current Congregation Study (ChurchDetail) ---- */
+.church-featured-plan-card {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--accent-gold);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.church-featured-plan-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.church-featured-plan-icon {
+  color: var(--accent-gold);
+}
+
+.church-featured-plan-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-gold);
+}
+
+.church-featured-plan-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.church-featured-plan-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.church-featured-plan-days {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.church-featured-plan-join-btn {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent-gold);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.church-featured-plan-join-btn:hover { opacity: 0.88; }
+.church-featured-plan-join-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.church-featured-plan-joined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+}
+
+.church-featured-plan-toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4caf50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+[data-theme="dark"] .church-featured-plan-card {
+  background: var(--bg-tertiary);
+}

@@ -485,6 +485,42 @@ router.post('/plans/:id/progress', async (req, res, next) => {
 })
 
 // ============================================================
+// POST /api/scripture/plans/:id/join
+// ============================================================
+// Allows a user to join any plan by ID, including church plans.
+// Creates a user_reading_progress row if one doesn't exist yet.
+// If the user already joined, returns a friendly message without error.
+
+router.post('/plans/:id/join', async (req, res, next) => {
+  try {
+    const planId = parseInt(req.params.id)
+    const userId = req.user.id
+
+    // Verify the plan exists
+    const planCheck = await pool.query(
+      'SELECT id, name, total_days FROM reading_plans WHERE id = $1',
+      [planId]
+    )
+
+    if (planCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Plan not found.' })
+    }
+
+    // Insert progress row — ON CONFLICT DO NOTHING means second tap is a no-op
+    await pool.query(
+      `INSERT INTO user_reading_progress (user_id, plan_id, completed_days, started_at)
+       VALUES ($1, $2, '{}', NOW())
+       ON CONFLICT (user_id, plan_id) DO NOTHING`,
+      [userId, planId]
+    )
+
+    res.json({ success: true, planName: planCheck.rows[0].name })
+  } catch (error) {
+    next(error)
+  }
+})
+
+// ============================================================
 // GET /api/scripture/memorization/stats
 // ============================================================
 // Returns the user's memorization streak and per-verse stats.

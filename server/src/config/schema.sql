@@ -231,6 +231,7 @@ CREATE TABLE IF NOT EXISTS churches (
   custom_hours       TEXT,
   custom_programs    TEXT,
   managed_by         INTEGER,
+  featured_plan_id   INTEGER,
   created_at        TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -314,12 +315,13 @@ CREATE INDEX IF NOT EXISTS idx_scripture_category ON scripture_verses(category);
 -- Multi-day reading plans (e.g., "Gospel of John - 21 Days").
 
 CREATE TABLE IF NOT EXISTS reading_plans (
-  id          SERIAL PRIMARY KEY,
-  name        VARCHAR(200) NOT NULL,
-  description TEXT,
-  total_days  INTEGER NOT NULL,
-  created_by  INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  id                SERIAL PRIMARY KEY,
+  name              VARCHAR(200) NOT NULL,
+  description       TEXT,
+  total_days        INTEGER NOT NULL,
+  created_by        INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  church_account_id INTEGER,
+  created_at        TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- ============================================================
@@ -718,5 +720,24 @@ BEGIN
   ) THEN
     ALTER TABLE churches ADD CONSTRAINT fk_churches_managed_by
       FOREIGN KEY (managed_by) REFERENCES church_accounts(id) ON DELETE SET NULL;
+  END IF;
+
+  -- Session 33: Church Scripture Study
+  -- reading_plans.church_account_id → church_accounts (defined after reading_plans)
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_reading_plans_church_account'
+  ) THEN
+    ALTER TABLE reading_plans ADD CONSTRAINT fk_reading_plans_church_account
+      FOREIGN KEY (church_account_id) REFERENCES church_accounts(id) ON DELETE SET NULL;
+  END IF;
+
+  -- churches.featured_plan_id → reading_plans (defined after churches)
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_churches_featured_plan'
+  ) THEN
+    ALTER TABLE churches ADD CONSTRAINT fk_churches_featured_plan
+      FOREIGN KEY (featured_plan_id) REFERENCES reading_plans(id) ON DELETE SET NULL;
   END IF;
 END $$;

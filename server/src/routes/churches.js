@@ -467,12 +467,15 @@ router.get('/', async (req, res, next) => {
 // GET /api/churches/:id
 // ============================================================
 // Returns a single church by ID.
+// Includes featuredPlan if the church has set a congregation study,
+// and whether the current user has already joined that plan.
 //
 // Replaces: allChurches.find(c => c.id === ...) in ChurchDetail screen
 
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params
+    const userId = req.user.id
 
     const result = await pool.query('SELECT * FROM churches WHERE id = $1', [id])
 
@@ -480,7 +483,37 @@ router.get('/:id', async (req, res, next) => {
       return res.status(404).json({ error: 'Church not found.' })
     }
 
-    res.json({ church: formatChurch(result.rows[0]) })
+    const church = formatChurch(result.rows[0])
+
+    // If the church has a featured plan, include it in the response
+    let featuredPlan = null
+    if (result.rows[0].featured_plan_id) {
+      const planResult = await pool.query(
+        `SELECT rp.id, rp.name, rp.description, rp.total_days,
+                (SELECT COUNT(*) FROM reading_plan_days WHERE plan_id = rp.id) AS day_count,
+                EXISTS(
+                  SELECT 1 FROM user_reading_progress
+                  WHERE user_id = $1 AND plan_id = rp.id
+                ) AS user_joined
+         FROM reading_plans rp
+         WHERE rp.id = $2`,
+        [userId, result.rows[0].featured_plan_id]
+      )
+
+      if (planResult.rows.length > 0) {
+        const p = planResult.rows[0]
+        featuredPlan = {
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          totalDays: p.total_days,
+          dayCount: parseInt(p.day_count),
+          userJoined: p.user_joined
+        }
+      }
+    }
+
+    res.json({ church: { ...church, featuredPlan } })
   } catch (error) {
     next(error)
   }

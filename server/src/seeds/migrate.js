@@ -109,6 +109,9 @@ async function migrate() {
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS managed_by INTEGER',
       // Session 33: Church onboarding tour
       'ALTER TABLE church_accounts ADD COLUMN IF NOT EXISTS onboarding_completed BOOLEAN DEFAULT false',
+      // Session 33: Church Scripture Study
+      'ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS church_account_id INTEGER',
+      'ALTER TABLE churches ADD COLUMN IF NOT EXISTS featured_plan_id INTEGER',
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet
