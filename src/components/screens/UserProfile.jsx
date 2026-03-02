@@ -14,7 +14,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, LoadingSpinner, ErrorState } from '../common'
-import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff, Heart, Trash2 } from 'lucide-react'
+import { ArrowLeft, MapPin, BookOpen, MessageCircle, UserPlus, Clock, Users, Calendar, Lock, MoreVertical, ShieldOff, Heart, Trash2, Star, UserCheck } from 'lucide-react'
 import { api } from '../../utils/api'
 import { timeAgo } from '../../utils/helpers'
 
@@ -39,13 +39,26 @@ function UserProfile() {
         api.get(`/users/${id}`),
         api.get(`/community/status/${id}`)
       ])
-      setProfile(profileRes.user)
+      const p = profileRes.user
+      setProfile(p)
       setConnectionStatus(statusRes.status)
-      // Fetch posts if this is a guide profile
-      if (profileRes.user?.role === 'guide') {
+      setIsFollowing(p?.isFollowing || false)
+      setFollowerCount(p?.followerCount || 0)
+      // Fetch guide-specific data in parallel
+      if (p?.role === 'guide') {
         try {
-          const postsRes = await api.get(`/guide-posts/user/${id}`)
+          const [postsRes, reviewsRes] = await Promise.all([
+            api.get(`/guide-posts/user/${id}`),
+            api.get(`/guide-reviews/guide/${id}`)
+          ])
           setGuidePosts(postsRes.posts || [])
+          setReviews(reviewsRes.reviews || [])
+          // Pre-fill review modal if user already left a review
+          const mine = reviewsRes.reviews?.find(r => r.isOwn)
+          if (mine) {
+            setReviewRating(mine.rating)
+            setReviewText(mine.reviewText || '')
+          }
         } catch {
           // non-critical — silently skip
         }
@@ -90,6 +103,26 @@ function UserProfile() {
   }
 
   const [guidePosts, setGuidePosts] = useState([])
+  const [isFollowing, setIsFollowing] = useState(false)
+  const [followerCount, setFollowerCount] = useState(0)
+  const [followLoading, setFollowLoading] = useState(false)
+  const [reviews, setReviews] = useState([])
+  const [showReviewModal, setShowReviewModal] = useState(false)
+  const [reviewRating, setReviewRating] = useState(0)
+  const [reviewText, setReviewText] = useState('')
+  const [reviewSubmitting, setReviewSubmitting] = useState(false)
+  const [reviewToast, setReviewToast] = useState(null)
+
+  function showToast(msg) {
+    setReviewToast(msg)
+    setTimeout(() => setReviewToast(null), 3000)
+  }
+
+  function formatCount(n) {
+    if (!n) return '0'
+    if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}K`
+    return String(n)
+  }
 
   async function handleProfilePostLike(postId) {
     setGuidePosts(prev => prev.map(p =>
@@ -134,6 +167,71 @@ function UserProfile() {
       navigate(-1)
     } catch (error) {
       setBlocking(false)
+    }
+  }
+
+  async function handleFollow() {
+    setFollowLoading(true)
+    try {
+      if (isFollowing) {
+        const data = await api.delete(`/follows/${id}`)
+        setIsFollowing(false)
+        setFollowerCount(data.followerCount)
+      } else {
+        const data = await api.post(`/follows/${id}`, {})
+        setIsFollowing(true)
+        setFollowerCount(data.followerCount)
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setFollowLoading(false)
+    }
+  }
+
+  async function handleSubmitReview() {
+    if (!reviewRating) return
+    setReviewSubmitting(true)
+    try {
+      const data = await api.post(`/guide-reviews/guide/${id}`, {
+        rating: reviewRating,
+        reviewText: reviewText.trim() || null
+      })
+      // Update profile rating stats + reviews list
+      setProfile(prev => ({
+        ...prev,
+        overallRating: data.guideStats.overallRating,
+        reviewCount: data.guideStats.reviewCount
+      }))
+      const refreshed = await api.get(`/guide-reviews/guide/${id}`)
+      setReviews(refreshed.reviews || [])
+      setShowReviewModal(false)
+      showToast('Review submitted!')
+    } catch {
+      showToast('Failed to submit review.')
+    } finally {
+      setReviewSubmitting(false)
+    }
+  }
+
+  async function handleDeleteReview() {
+    if (!confirm('Delete your review?')) return
+    try {
+      await api.delete(`/guide-reviews/guide/${id}`)
+      const data = await api.get(`/guide-reviews/guide/${id}`)
+      setReviews(data.reviews || [])
+      const statsData = await api.get(`/users/${id}`)
+      setProfile(prev => ({
+        ...prev,
+        overallRating: statsData.user.overallRating,
+        reviewCount: statsData.user.reviewCount
+      }))
+      setReviewRating(0)
+      setReviewText('')
+      setShowReviewModal(false)
+      showToast('Review deleted.')
+    } catch {
+      showToast('Failed to delete review.')
     }
   }
 
@@ -261,9 +359,41 @@ function UserProfile() {
           )}
         </div>
 
+        {/* Guide credibility stats — followers + rating */}
+        {isGuide && (followerCount > 0 || profile.overallRating > 0) && (
+          <div className="profile-guide-cred">
+            {followerCount > 0 && (
+              <span className="profile-cred-chip">
+                <Users size={13} /> {formatCount(followerCount)} {followerCount === 1 ? 'follower' : 'followers'}
+              </span>
+            )}
+            {profile.overallRating > 0 && (
+              <span className="profile-cred-chip profile-cred-chip-gold">
+                <Star size={13} fill="var(--accent-gold)" color="var(--accent-gold)" />
+                {profile.overallRating.toFixed(1)} ({profile.reviewCount} {profile.reviewCount === 1 ? 'review' : 'reviews'})
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Connection status / action */}
         {connectionStatus !== 'self' && (
           <div className="profile-actions">
+            {/* Follow button — for guide profiles, any user can follow */}
+            {isGuide && (
+              <button
+                className={isFollowing ? 'btn-secondary' : 'btn-gold'}
+                onClick={handleFollow}
+                disabled={followLoading}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+              >
+                {isFollowing
+                  ? <><UserCheck size={18} /> Following</>
+                  : <><UserPlus size={18} /> Follow</>
+                }
+              </button>
+            )}
+
             {connectionStatus === 'none' && (
               <button
                 className="connection-btn"
@@ -328,9 +458,154 @@ function UserProfile() {
                 You're on the waitlist. You'll be notified when a spot opens.
               </div>
             )}
+
+            {/* Write / Edit review button — seeker viewing a guide's profile */}
+            {isGuide && isViewerSeeker && (
+              <button
+                className="btn-secondary"
+                onClick={() => setShowReviewModal(true)}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+              >
+                <Star size={16} />
+                {reviews.some(r => r.isOwn) ? 'Edit Review' : 'Write a Review'}
+              </button>
+            )}
           </div>
         )}
       </div>
+
+      {/* Toast */}
+      {reviewToast && (
+        <div style={{
+          position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)',
+          background: 'var(--bg-secondary)', color: 'var(--text-primary)',
+          padding: '10px 20px', borderRadius: 20, fontSize: 14,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.2)', zIndex: 1000,
+          border: '1px solid var(--border-color)'
+        }}>
+          {reviewToast}
+        </div>
+      )}
+
+      {/* Review Modal */}
+      {showReviewModal && (
+        <div className="modal-overlay" onClick={() => setShowReviewModal(false)}>
+          <div className="modal-sheet" onClick={e => e.stopPropagation()}>
+            <div className="modal-title">
+              {reviews.some(r => r.isOwn) ? `Edit Your Review` : `Rate ${profile.name}`}
+            </div>
+
+            {/* Star picker */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 10, margin: '16px 0' }}>
+              {[1,2,3,4,5].map(n => (
+                <button
+                  key={n}
+                  onClick={() => setReviewRating(reviewRating === n ? 0 : n)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2 }}
+                >
+                  <Star
+                    size={32}
+                    fill={n <= reviewRating ? 'var(--accent-gold)' : 'none'}
+                    color={n <= reviewRating ? 'var(--accent-gold)' : 'var(--text-faint)'}
+                  />
+                </button>
+              ))}
+            </div>
+            {reviewRating > 0 && (
+              <div style={{ textAlign: 'center', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: 12, fontSize: 14 }}>
+                {['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'][reviewRating]}
+              </div>
+            )}
+
+            <textarea
+              value={reviewText}
+              onChange={e => setReviewText(e.target.value)}
+              placeholder="Share your experience (optional)..."
+              maxLength={500}
+              rows={3}
+              style={{
+                width: '100%', padding: '10px 12px', borderRadius: 10, border: '1px solid var(--border-color)',
+                background: 'var(--bg-primary)', color: 'var(--text-primary)',
+                fontSize: 14, resize: 'none', boxSizing: 'border-box'
+              }}
+            />
+
+            <div className="modal-buttons" style={{ marginTop: 16 }}>
+              <button className="btn-secondary" onClick={() => setShowReviewModal(false)}>
+                Cancel
+              </button>
+              <button
+                className="btn-gold"
+                onClick={handleSubmitReview}
+                disabled={!reviewRating || reviewSubmitting}
+              >
+                {reviewSubmitting ? 'Saving...' : reviews.some(r => r.isOwn) ? 'Update' : 'Submit'}
+              </button>
+            </div>
+
+            {reviews.some(r => r.isOwn) && (
+              <button
+                onClick={handleDeleteReview}
+                style={{ width: '100%', marginTop: 8, padding: '8px', background: 'none',
+                  border: 'none', color: 'var(--text-faint)', fontSize: 13, cursor: 'pointer' }}
+              >
+                Delete my review
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Guide Reviews Section — shown for guide profiles with reviews */}
+      {isGuide && reviews.length > 0 && (
+        <div className="screen-content" style={{ paddingTop: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 10px 4px' }}>
+            Reviews
+            {profile.overallRating > 0 && (
+              <span style={{ fontWeight: 400, fontSize: 14, color: 'var(--accent-gold)', marginLeft: 8 }}>
+                ★ {profile.overallRating.toFixed(1)}
+              </span>
+            )}
+          </h2>
+          {reviews.map(review => (
+            <div key={review.id} style={{
+              background: 'var(--bg-secondary)', borderRadius: 12, padding: '12px 14px',
+              marginBottom: 10, border: '1px solid var(--border-warm)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Avatar
+                    src={review.seekerPhoto}
+                    emoji={review.seekerAvatar}
+                    size="sm"
+                  />
+                  <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>
+                    {review.seekerName}
+                  </span>
+                </div>
+                <div style={{ display: 'flex', gap: 2 }}>
+                  {[1,2,3,4,5].map(n => (
+                    <Star
+                      key={n}
+                      size={13}
+                      fill={n <= review.rating ? 'var(--accent-gold)' : 'none'}
+                      color={n <= review.rating ? 'var(--accent-gold)' : 'var(--text-faint)'}
+                    />
+                  ))}
+                </div>
+              </div>
+              {review.reviewText && (
+                <p style={{ fontSize: 13, color: 'var(--text-secondary)', margin: '4px 0 0', lineHeight: 1.5 }}>
+                  {review.reviewText}
+                </p>
+              )}
+              <div style={{ fontSize: 12, color: 'var(--text-faint)', marginTop: 6 }}>
+                {timeAgo(review.createdAt)}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Guide Posts Section — shown below profile card for guide profiles */}
       {isGuide && (

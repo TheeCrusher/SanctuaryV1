@@ -11,7 +11,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Badge, Modal, EmptyState } from '../common'
-import { Plus, Calendar, Repeat, X, CalendarDays, ArrowLeft, FileText, Search } from 'lucide-react'
+import { Plus, Calendar, Repeat, X, CalendarDays, ArrowLeft, FileText, Search, Star } from 'lucide-react'
 import { api } from '../../utils/api'
 import { formatDateShort, timeAgo } from '../../utils/helpers'
 
@@ -38,6 +38,11 @@ function Appointments() {
   const [showCancelConfirm, setShowCancelConfirm] = useState(null)
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(null)
   const [showNotePrompt, setShowNotePrompt] = useState(null) // completed apt to prompt notes for
+  const [showReviewModal, setShowReviewModal] = useState(null) // appointment to review
+  const [reviewRating, setReviewRating] = useState(0)
+  const [reviewText, setReviewText] = useState('')
+  const [reviewSubmitting, setReviewSubmitting] = useState(false)
+  const [reviewedAptIds, setReviewedAptIds] = useState(new Set()) // locally tracked reviews
   const [communityGuides, setCommunityGuides] = useState([])
   const [communitySeekers, setCommunitySeekers] = useState([])
   const [confirmError, setConfirmError] = useState(null)
@@ -148,6 +153,27 @@ function Appointments() {
     return isSeeker
       ? (apt.guideName || apt.seekerName)
       : apt.seekerName
+  }
+
+  async function handleSubmitReview() {
+    if (!reviewRating || !showReviewModal) return
+    setReviewSubmitting(true)
+    try {
+      await api.post(`/guide-reviews/guide/${showReviewModal.guideId}`, {
+        rating: reviewRating,
+        reviewText: reviewText.trim() || null,
+        appointmentId: showReviewModal.id
+      })
+      // Track locally so button disappears immediately
+      setReviewedAptIds(prev => new Set([...prev, showReviewModal.id]))
+      setShowReviewModal(null)
+      setReviewRating(0)
+      setReviewText('')
+    } catch {
+      // silently fail — user can try again
+    } finally {
+      setReviewSubmitting(false)
+    }
   }
 
   function handleInputChange(e) {
@@ -384,6 +410,23 @@ function Appointments() {
                   onClick={() => openNewNote(apt.id)}
                 >
                   <FileText size={14} /> Add Notes
+                </button>
+              </div>
+            )}
+
+            {/* Rate Session button — seeker only, completed, not yet reviewed */}
+            {apt.status === 'completed' && isSeeker && !isGuideOnThis &&
+             !apt.hasReviewed && !reviewedAptIds.has(apt.id) && (
+              <div className="apt-actions">
+                <button
+                  className="btn-gold-sm"
+                  onClick={() => {
+                    setShowReviewModal(apt)
+                    setReviewRating(0)
+                    setReviewText('')
+                  }}
+                >
+                  <Star size={14} /> Rate Session
                 </button>
               </div>
             )}
@@ -764,6 +807,67 @@ function Appointments() {
               }}
             >
               <FileText size={16} /> Add Notes
+            </button>
+          </div>
+        </Modal>
+      )}
+
+      {/* Rate Session Modal (seeker post-completion review) */}
+      {showReviewModal && (
+        <Modal onClose={() => setShowReviewModal(null)}>
+          <div className="modal-title">
+            Rate your session with {getDisplayName(showReviewModal)}
+          </div>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: 16, fontSize: 14 }}>
+            How was your session on {formatDateShort(showReviewModal.date)}?
+          </p>
+
+          {/* Star picker */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginBottom: 8 }}>
+            {[1,2,3,4,5].map(n => (
+              <button
+                key={n}
+                onClick={() => setReviewRating(reviewRating === n ? 0 : n)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2 }}
+              >
+                <Star
+                  size={34}
+                  fill={n <= reviewRating ? 'var(--accent-gold)' : 'none'}
+                  color={n <= reviewRating ? 'var(--accent-gold)' : 'var(--text-faint)'}
+                />
+              </button>
+            ))}
+          </div>
+          {reviewRating > 0 && (
+            <div style={{ textAlign: 'center', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: 12, fontSize: 14 }}>
+              {['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'][reviewRating]}
+            </div>
+          )}
+
+          <textarea
+            value={reviewText}
+            onChange={e => setReviewText(e.target.value)}
+            placeholder="Share your experience (optional)..."
+            maxLength={500}
+            rows={3}
+            style={{
+              width: '100%', padding: '10px 12px', borderRadius: 10,
+              border: '1px solid var(--border-color)',
+              background: 'var(--bg-primary)', color: 'var(--text-primary)',
+              fontSize: 14, resize: 'none', boxSizing: 'border-box', marginBottom: 16
+            }}
+          />
+
+          <div className="modal-buttons">
+            <button className="btn-secondary" onClick={() => setShowReviewModal(null)}>
+              Skip
+            </button>
+            <button
+              className="btn-gold"
+              onClick={handleSubmitReview}
+              disabled={!reviewRating || reviewSubmitting}
+            >
+              {reviewSubmitting ? 'Saving...' : 'Submit'}
             </button>
           </div>
         </Modal>

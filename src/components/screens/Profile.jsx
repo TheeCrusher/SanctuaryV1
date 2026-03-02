@@ -11,7 +11,7 @@ import { useApp } from '../../context/AppContext'
 import { useTheme } from '../../context/ThemeContext'
 import { Avatar } from '../common'
 import { compressImage } from '../../utils/imageCompress'
-import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff, Users, Clock, Compass } from 'lucide-react'
+import { User, Bell, CreditCard, Mail, HelpCircle, FileText, Lock, LogOut, Camera, ChevronRight, Moon, Sun, MapPin, BookOpen, Edit3, Check, X, ShieldOff, Users, Clock, Compass, Star } from 'lucide-react'
 
 const SPECIALIZATIONS = [
   'Bible Study',
@@ -203,6 +203,22 @@ function Profile() {
         {user?.role === 'guide' && (
           <>
             <div className="menu-section-label">Guide Settings</div>
+            {/* Guide credibility stats — read-only summary */}
+            {(user?.followerCount > 0 || user?.overallRating > 0) && (
+              <div style={{ display: 'flex', gap: 10, padding: '0 4px 8px', flexWrap: 'wrap' }}>
+                {user.followerCount > 0 && (
+                  <span className="profile-cred-chip">
+                    <Users size={13} /> {user.followerCount.toLocaleString()} {user.followerCount === 1 ? 'follower' : 'followers'}
+                  </span>
+                )}
+                {user.overallRating > 0 && (
+                  <span className="profile-cred-chip profile-cred-chip-gold">
+                    <Star size={13} fill="var(--accent-gold)" color="var(--accent-gold)" />
+                    {user.overallRating.toFixed(1)} avg · {user.reviewCount} {user.reviewCount === 1 ? 'review' : 'reviews'}
+                  </span>
+                )}
+              </div>
+            )}
             <div className="menu-item" style={{ justifyContent: 'space-between' }}>
               <div className="menu-item-left">
                 <span className="menu-item-icon"><Users size={20} /></span>

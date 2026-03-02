@@ -737,6 +737,45 @@ CREATE TABLE IF NOT EXISTS guide_post_likes (
 );
 
 -- ============================================================
+-- GUIDE FOLLOWS TABLE
+-- ============================================================
+-- One-way follow: any user can follow a guide without approval.
+-- Following expands the follower's "From Your Guides" home feed.
+
+CREATE TABLE IF NOT EXISTS guide_follows (
+  id          SERIAL PRIMARY KEY,
+  follower_id INTEGER NOT NULL,
+  guide_id    INTEGER NOT NULL,
+  created_at  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(follower_id, guide_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_guide_follows_follower ON guide_follows(follower_id);
+CREATE INDEX IF NOT EXISTS idx_guide_follows_guide    ON guide_follows(guide_id);
+
+-- ============================================================
+-- GUIDE REVIEWS TABLE
+-- ============================================================
+-- Seekers rate guides (1-5 stars) after completed sessions.
+-- One review per guide-seeker pair (updateable). Ratings are
+-- denormalized onto users.overall_rating for efficient sorting.
+
+CREATE TABLE IF NOT EXISTS guide_reviews (
+  id             SERIAL PRIMARY KEY,
+  guide_id       INTEGER NOT NULL,
+  seeker_id      INTEGER NOT NULL,
+  appointment_id INTEGER,
+  rating         INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  review_text    TEXT,
+  created_at     TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at     TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(guide_id, seeker_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_guide_reviews_guide   ON guide_reviews(guide_id);
+CREATE INDEX IF NOT EXISTS idx_guide_reviews_seeker  ON guide_reviews(seeker_id);
+
+-- ============================================================
 -- DEFERRED FOREIGN KEYS (added after all tables exist)
 -- ============================================================
 DO $$
@@ -774,6 +813,48 @@ BEGIN
   ) THEN
     ALTER TABLE churches ADD CONSTRAINT fk_churches_featured_plan
       FOREIGN KEY (featured_plan_id) REFERENCES reading_plans(id) ON DELETE SET NULL;
+  END IF;
+
+  -- Session 35: Guide Follows
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_follows_follower'
+  ) THEN
+    ALTER TABLE guide_follows ADD CONSTRAINT fk_guide_follows_follower
+      FOREIGN KEY (follower_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_follows_guide'
+  ) THEN
+    ALTER TABLE guide_follows ADD CONSTRAINT fk_guide_follows_guide
+      FOREIGN KEY (guide_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  -- Session 35: Guide Reviews
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_reviews_guide'
+  ) THEN
+    ALTER TABLE guide_reviews ADD CONSTRAINT fk_guide_reviews_guide
+      FOREIGN KEY (guide_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_reviews_seeker'
+  ) THEN
+    ALTER TABLE guide_reviews ADD CONSTRAINT fk_guide_reviews_seeker
+      FOREIGN KEY (seeker_id) REFERENCES users(id) ON DELETE CASCADE;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'fk_guide_reviews_appointment'
+  ) THEN
+    ALTER TABLE guide_reviews ADD CONSTRAINT fk_guide_reviews_appointment
+      FOREIGN KEY (appointment_id) REFERENCES appointments(id) ON DELETE SET NULL;
   END IF;
 
   -- Session 34: Guide Posts

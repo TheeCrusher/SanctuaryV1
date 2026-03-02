@@ -31,7 +31,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, follower_count, overall_rating, review_count, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -61,6 +61,9 @@ router.get('/me', async (req, res, next) => {
         acceptingSeekers: user.accepting_seekers,
         maxPendingRequests: user.max_pending_requests,
         onboardingCompleted: user.onboarding_completed,
+        followerCount: user.follower_count || 0,
+        overallRating: parseFloat(user.overall_rating) || 0,
+        reviewCount: user.review_count || 0,
         createdAt: user.created_at
       }
     })
@@ -406,13 +409,14 @@ router.get('/suggested', async (req, res, next) => {
 router.get('/guides', async (req, res, next) => {
   try {
     const userId = req.user.id
-    const { q, scope, state: userState, city: userCity, churchId } = req.query
+    const { q, scope, state: userState, city: userCity, churchId, sort } = req.query
 
     let query = `
       SELECT
         u.id, u.name, u.avatar, u.photo_url, u.specialization,
         u.denomination, u.state, u.city, u.church_name, u.bio,
         u.accepting_seekers, u.max_pending_requests, u.preferred_church_id,
+        u.overall_rating, u.review_count, u.follower_count,
         COALESCE(pending.count, 0)::int AS pending_count
       FROM users u
       LEFT JOIN (
@@ -468,9 +472,11 @@ router.get('/guides', async (req, res, next) => {
       }
     }
 
-    // Sorting: accepting first, available slots, then name
-    // For local scope, sub-sort by proximity (same church > same city > rest)
-    if (scope === 'local' && userState) {
+    // Sorting: top-rated sort overrides all other sort logic
+    if (sort === 'rating') {
+      query += ` ORDER BY u.overall_rating DESC, u.follower_count DESC, u.review_count DESC, u.name ASC`
+    } else if (scope === 'local' && userState) {
+      // Local: accepting first, then available slots, then proximity (church > city), then name
       let orderClauses = [
         'u.accepting_seekers DESC',
         'CASE WHEN COALESCE(pending.count, 0) < u.max_pending_requests THEN 0 ELSE 1 END ASC'
@@ -507,6 +513,9 @@ router.get('/guides', async (req, res, next) => {
       bio: row.bio,
       acceptingSeekers: row.accepting_seekers,
       pendingCount: row.pending_count,
+      overallRating: parseFloat(row.overall_rating) || 0,
+      reviewCount: row.review_count || 0,
+      followerCount: row.follower_count || 0,
       maxPendingRequests: row.max_pending_requests
     }))
 
@@ -592,7 +601,7 @@ router.get('/:id', async (req, res, next) => {
     }
 
     const result = await pool.query(
-      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, accepting_seekers, max_pending_requests, created_at FROM users WHERE id = $1',
+      'SELECT id, name, avatar, photo_url, role, bio, specialization, location, state, city, denomination, church_name, interests, accepting_seekers, max_pending_requests, overall_rating, review_count, follower_count, created_at FROM users WHERE id = $1',
       [profileId]
     )
 
@@ -616,23 +625,40 @@ router.get('/:id', async (req, res, next) => {
       isConnected = true // viewing own profile
     }
 
-    // For guides: get pending appointment count and check waitlist status
+    // For guides: get pending appointment count, waitlist status, follow status, and own review
     let pendingCount = 0
     let onWaitlist = false
+    let isFollowing = false
+    let myReview = null
     if (profile.role === 'guide' && parseInt(profileId) !== userId) {
-      const pendingResult = await pool.query(
-        `SELECT COUNT(*)::int AS count FROM appointments
-         WHERE guide_id = $1 AND status = 'pending'`,
-        [profileId]
-      )
+      const [pendingResult, waitlistCheck, followCheck, reviewCheck] = await Promise.all([
+        pool.query(
+          `SELECT COUNT(*)::int AS count FROM appointments
+           WHERE guide_id = $1 AND status = 'pending'`,
+          [profileId]
+        ),
+        pool.query(
+          `SELECT id FROM guide_waitlist
+           WHERE guide_id = $1 AND seeker_id = $2 AND notified_at IS NULL`,
+          [profileId, userId]
+        ),
+        pool.query(
+          `SELECT id FROM guide_follows WHERE follower_id = $1 AND guide_id = $2`,
+          [userId, profileId]
+        ),
+        pool.query(
+          `SELECT id, rating, review_text, created_at FROM guide_reviews
+           WHERE guide_id = $1 AND seeker_id = $2`,
+          [profileId, userId]
+        ),
+      ])
       pendingCount = pendingResult.rows[0].count
-
-      const waitlistCheck = await pool.query(
-        `SELECT id FROM guide_waitlist
-         WHERE guide_id = $1 AND seeker_id = $2 AND notified_at IS NULL`,
-        [profileId, userId]
-      )
       onWaitlist = waitlistCheck.rows.length > 0
+      isFollowing = followCheck.rows.length > 0
+      if (reviewCheck.rows.length > 0) {
+        const r = reviewCheck.rows[0]
+        myReview = { id: r.id, rating: r.rating, reviewText: r.review_text, createdAt: r.created_at }
+      }
     }
 
     res.json({
@@ -652,8 +678,13 @@ router.get('/:id', async (req, res, next) => {
         interests: profile.interests || [],
         acceptingSeekers: profile.accepting_seekers,
         maxPendingRequests: profile.max_pending_requests,
+        overallRating: parseFloat(profile.overall_rating) || 0,
+        reviewCount: profile.review_count || 0,
+        followerCount: profile.follower_count || 0,
         pendingCount,
         onWaitlist,
+        isFollowing,
+        myReview,
         createdAt: profile.created_at,
         isConnected
       }

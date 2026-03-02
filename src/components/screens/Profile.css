@@ -278,3 +278,32 @@
 [data-theme="dark"] .profile-limited-hint {
   background: var(--accent-gold-light);
 }
+
+/* ---- Guide Credibility Chips (Session 35: Followers + Rating) ---- */
+.profile-guide-cred {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.profile-cred-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.profile-cred-chip-gold {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-light);
+}

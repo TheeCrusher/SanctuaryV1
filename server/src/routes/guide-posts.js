@@ -81,7 +81,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // ── GET /api/guide-posts/connections ──────────────────────────────────────
-// Posts from guides you're connected with — used by the seeker dashboard.
+// Posts from guides you're connected with OR following — used by seeker dashboard.
 router.get('/connections', async (req, res, next) => {
   try {
     const userId = req.user.id
@@ -93,11 +93,16 @@ router.get('/connections', async (req, res, next) => {
          ) AS liked
        FROM guide_posts gp
        JOIN users u ON u.id = gp.user_id
-       JOIN user_connections uc ON (
-         (uc.requester_id = $1 AND uc.recipient_id = gp.user_id) OR
-         (uc.recipient_id = $1 AND uc.requester_id = gp.user_id)
-       ) AND uc.status = 'accepted'
-       WHERE u.id NOT IN (
+       WHERE gp.user_id IN (
+         -- Connected guides (mutual accepted connection)
+         SELECT CASE WHEN uc.requester_id = $1 THEN uc.recipient_id ELSE uc.requester_id END
+         FROM user_connections uc
+         WHERE (uc.requester_id = $1 OR uc.recipient_id = $1) AND uc.status = 'accepted'
+         UNION
+         -- Followed guides (one-way follow)
+         SELECT guide_id FROM guide_follows WHERE follower_id = $1
+       )
+       AND u.id NOT IN (
          SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
          UNION
          SELECT blocker_id FROM user_blocks WHERE blocked_id = $1

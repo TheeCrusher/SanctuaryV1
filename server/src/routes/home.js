@@ -180,7 +180,32 @@ router.get('/', async (req, res, next) => {
            WHERE seeker_id = $1 AND status = 'completed'`,
           [userId]
         ),
-        // 8e. Recent guide posts from connected guides (for "From Your Guides" dashboard section)
+        // 8f. Featured / top-rated guides for "Top Guides" dashboard section
+        pool.query(
+          `SELECT u.id, u.name, u.avatar, u.photo_url, u.specialization,
+                  u.denomination, u.state, u.city,
+                  u.overall_rating, u.review_count, u.follower_count,
+                  u.accepting_seekers, u.max_pending_requests,
+                  COALESCE(pending.count, 0)::int AS pending_count
+           FROM users u
+           LEFT JOIN (
+             SELECT guide_id, COUNT(*) AS count FROM appointments
+             WHERE status = 'pending' GROUP BY guide_id
+           ) pending ON pending.guide_id = u.id
+           WHERE u.role = 'guide'
+             AND u.overall_rating > 0
+             AND u.review_count >= 1
+             AND u.id != $1
+             AND u.id NOT IN (
+               SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
+               UNION
+               SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
+             )
+           ORDER BY u.overall_rating DESC, u.follower_count DESC
+           LIMIT 5`,
+          [userId]
+        ),
+        // 8e. Recent guide posts from connected OR followed guides (for "From Your Guides" section)
         pool.query(
           `SELECT gp.id, gp.title, gp.content, gp.post_type, gp.scripture_ref,
                   gp.like_count, gp.created_at, gp.user_id,
@@ -190,11 +215,16 @@ router.get('/', async (req, res, next) => {
                   ) AS liked
            FROM guide_posts gp
            JOIN users u ON u.id = gp.user_id
-           JOIN user_connections uc ON (
-             (uc.requester_id = $1 AND uc.recipient_id = gp.user_id) OR
-             (uc.recipient_id = $1 AND uc.requester_id = gp.user_id)
-           ) AND uc.status = 'accepted'
-           WHERE u.id NOT IN (
+           WHERE gp.user_id IN (
+             -- Connected guides (mutual accepted connection)
+             SELECT CASE WHEN uc.requester_id = $1 THEN uc.recipient_id ELSE uc.requester_id END
+             FROM user_connections uc
+             WHERE (uc.requester_id = $1 OR uc.recipient_id = $1) AND uc.status = 'accepted'
+             UNION
+             -- Followed guides (one-way follow)
+             SELECT guide_id FROM guide_follows WHERE follower_id = $1
+           )
+           AND u.id NOT IN (
              SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
              UNION
              SELECT blocker_id FROM user_blocks WHERE blocked_id = $1
@@ -219,6 +249,7 @@ router.get('/', async (req, res, next) => {
     // Build role-specific sessionStats
     let sessionStats
     let guidePostsFromConnections = []
+    let featuredGuides = []
     if (userRole === 'guide') {
       const guideStats = roleResults[0]
       sessionStats = {
@@ -228,7 +259,7 @@ router.get('/', async (req, res, next) => {
         uniqueSeekers: parseInt(guideStats.rows[0].unique_seekers)
       }
     } else {
-      const [streakResult, eventsResult, scoreResult, sessionsResult, guidePostsResult] = roleResults
+      const [streakResult, eventsResult, scoreResult, sessionsResult, featuredGuidesResult, guidePostsResult] = roleResults
       sessionStats = {
         role: 'seeker',
         studyStreak: streakResult.rows[0]?.current_streak || 0,
@@ -236,6 +267,22 @@ router.get('/', async (req, res, next) => {
         communityScore: parseInt(scoreResult.rows[0].score) || 0,
         sessionsCompleted: sessionsResult.rows[0].count
       }
+      featuredGuides = featuredGuidesResult.rows.map(r => ({
+        id: r.id,
+        name: r.name,
+        avatar: r.avatar,
+        photoUrl: r.photo_url,
+        specialization: r.specialization,
+        denomination: r.denomination,
+        state: r.state,
+        city: r.city,
+        overallRating: parseFloat(r.overall_rating),
+        reviewCount: r.review_count,
+        followerCount: r.follower_count,
+        acceptingSeekers: r.accepting_seekers,
+        pendingCount: r.pending_count,
+        maxPendingRequests: r.max_pending_requests,
+      }))
       guidePostsFromConnections = guidePostsResult.rows.map(r => ({
         id: r.id,
         userId: r.user_id,
@@ -289,6 +336,7 @@ router.get('/', async (req, res, next) => {
       })),
       sessionStats,
       guidePostsFromConnections,
+      featuredGuides,
       upcomingEvents: upcomingEventsResult.rows.map(e => ({
         id: e.id,
         title: e.title,

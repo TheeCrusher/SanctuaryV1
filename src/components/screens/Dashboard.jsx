@@ -316,6 +316,58 @@ function Dashboard() {
           )}
         </div>
 
+        {/* SECTION: Top Guides (Phase 3 — shown when rated guides exist) */}
+        {homeData.featuredGuides?.length > 0 && (
+          <div className="home-section">
+            <div className="home-section-header">
+              <h2 className="home-section-title">Top Guides</h2>
+              <button className="view-all-btn" onClick={() => navigate('/find-guide?sort=rating')}>See All</button>
+            </div>
+            {homeData.featuredGuides.map(guide => (
+              <Card key={guide.id} onClick={() => navigate(`/user/${guide.id}`)}>
+                <div className="dash-guide-row">
+                  <Avatar src={guide.photoUrl} emoji={guide.avatar} size="sm" variant="guide" />
+                  <div className="dash-guide-info">
+                    <div className="dash-guide-name">{guide.name}</div>
+                    <div className="dash-guide-meta">
+                      {guide.specialization || guide.denomination || 'Spiritual Guide'}
+                      {guide.city ? ` · ${guide.city}` : ''}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 12, color: 'var(--accent-gold)', fontWeight: 600 }}>
+                        <Star size={12} fill="var(--accent-gold)" color="var(--accent-gold)" />
+                        {guide.overallRating.toFixed(1)}
+                        <span style={{ fontWeight: 400, color: 'var(--text-faint)' }}>({guide.reviewCount})</span>
+                      </span>
+                      {guide.followerCount > 0 && (
+                        <span style={{ fontSize: 12, color: 'var(--text-faint)' }}>
+                          · {guide.followerCount >= 1000 ? `${(guide.followerCount/1000).toFixed(1)}K` : guide.followerCount} followers
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {guide.acceptingSeekers && guide.pendingCount < guide.maxPendingRequests ? (
+                    <button
+                      className="dash-guide-request-btn"
+                      onClick={e => { e.stopPropagation(); navigate(`/appointments?guideId=${guide.id}&guideName=${encodeURIComponent(guide.name)}`) }}
+                    >
+                      Book
+                    </button>
+                  ) : (
+                    <button
+                      className="dash-guide-request-btn"
+                      style={{ opacity: 0.5, cursor: 'default' }}
+                      disabled
+                    >
+                      Full
+                    </button>
+                  )}
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
+
         {/* SECTION: From Your Guides */}
         {homeData.guidePostsFromConnections?.length > 0 && (
           <div className="home-section">

@@ -112,6 +112,13 @@ async function migrate() {
       // Session 33: Church Scripture Study
       'ALTER TABLE reading_plans ADD COLUMN IF NOT EXISTS church_account_id INTEGER',
       'ALTER TABLE churches ADD COLUMN IF NOT EXISTS featured_plan_id INTEGER',
+      // Session 35: Guide Following + Ratings
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS follower_count INTEGER DEFAULT 0',
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS overall_rating DECIMAL(3,2) DEFAULT 0',
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS review_count INTEGER DEFAULT 0',
+      // Session 35: Expand notification types for review prompt
+      `ALTER TABLE notifications DROP CONSTRAINT IF EXISTS notifications_type_check`,
+      `ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN ('new_message', 'connection_request', 'connection_accepted', 'prayer_prayed', 'prayer_comment', 'testimony_celebration', 'event_rsvp', 'appointment_request', 'appointment_confirmed', 'appointment_declined', 'appointment_scheduled', 'church_announcement', 'waitlist_spot_open', 'guide_review_prompt'))`,
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

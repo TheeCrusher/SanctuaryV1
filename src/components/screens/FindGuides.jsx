@@ -9,11 +9,11 @@
 
 import './FindGuides.css'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, LoadingSpinner, ErrorState, EmptyState } from '../common'
 import { api } from '../../utils/api'
-import { ArrowLeft, Search, X, MapPin, BookOpen, Info } from 'lucide-react'
+import { ArrowLeft, Search, X, MapPin, BookOpen, Info, Star } from 'lucide-react'
 
 const SCOPES = [
   { key: 'local', label: 'Local' },
@@ -23,17 +23,19 @@ const SCOPES = [
 
 function FindGuides() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const { user } = useApp()
   const [guides, setGuides] = useState([])
   const [query, setQuery] = useState('')
   const [scope, setScope] = useState('local')
+  const [sort, setSort] = useState(searchParams.get('sort') === 'rating' ? 'rating' : 'match')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [visibleCount, setVisibleCount] = useState(10)
 
   useEffect(() => {
     loadGuides()
-  }, [scope])
+  }, [scope, sort])
 
   async function loadGuides(searchQuery = '') {
     setLoading(true)
@@ -41,8 +43,11 @@ function FindGuides() {
     try {
       const params = new URLSearchParams()
       if (searchQuery) params.set('q', searchQuery)
-      // Only send scope/location if user has a state set
-      if (user?.state) {
+      if (sort === 'rating') {
+        // Top Rated — national scope, sorted by rating descending
+        params.set('sort', 'rating')
+      } else if (user?.state) {
+        // Best Match — location-scoped
         params.set('scope', scope)
         params.set('state', user.state)
         if (user.city) params.set('city', user.city)
@@ -132,18 +137,36 @@ function FindGuides() {
           </button>
         </div>
 
-        {/* Scope pills (Local / Regional / National) */}
-        <div className="guide-scope-pills">
-          {SCOPES.map(s => (
-            <button
-              key={s.key}
-              className={`guide-scope-pill ${scope === s.key ? 'active' : ''}`}
-              onClick={() => { setScope(s.key); setVisibleCount(10) }}
-            >
-              {s.label}
-            </button>
-          ))}
+        {/* Sort pills (Best Match / Top Rated) */}
+        <div className="guide-scope-pills" style={{ marginBottom: 8 }}>
+          <button
+            className={`guide-scope-pill ${sort === 'match' ? 'active' : ''}`}
+            onClick={() => { setSort('match'); setVisibleCount(10) }}
+          >
+            Best Match
+          </button>
+          <button
+            className={`guide-scope-pill ${sort === 'rating' ? 'active' : ''}`}
+            onClick={() => { setSort('rating'); setVisibleCount(10) }}
+          >
+            <Star size={12} style={{ marginRight: 2 }} /> Top Rated
+          </button>
         </div>
+
+        {/* Scope pills (Local / Regional / National) — hidden when sort=rating */}
+        {sort === 'match' && (
+          <div className="guide-scope-pills">
+            {SCOPES.map(s => (
+              <button
+                key={s.key}
+                className={`guide-scope-pill ${scope === s.key ? 'active' : ''}`}
+                onClick={() => { setScope(s.key); setVisibleCount(10) }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Location banner if user hasn't set their state */}
         {!user?.state && (
@@ -209,6 +232,13 @@ function FindGuides() {
                     <div className="guide-card-meta">
                       <MapPin size={13} />
                       {location}
+                    </div>
+                  )}
+                  {guide.overallRating > 0 && (
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 12, color: 'var(--accent-gold)', fontWeight: 600, marginTop: 2 }}>
+                      <Star size={11} fill="var(--accent-gold)" color="var(--accent-gold)" />
+                      {guide.overallRating.toFixed(1)}
+                      <span style={{ fontWeight: 400, color: 'var(--text-faint)' }}>({guide.reviewCount})</span>
                     </div>
                   )}
                   <div className={`availability-label ${availability.color}`}>
