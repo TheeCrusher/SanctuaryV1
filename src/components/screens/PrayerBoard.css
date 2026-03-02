@@ -35,7 +35,7 @@
 
 .prayer-card {
   background: var(--bg-card);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 16px;
   margin-bottom: 12px;
   box-shadow: var(--card-shadow);
@@ -85,8 +85,9 @@
 
 .prayer-card-desc {
   font-size: 14px;
+  font-family: 'Lora', Georgia, serif;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.7;
   margin-bottom: 12px;
 }
 

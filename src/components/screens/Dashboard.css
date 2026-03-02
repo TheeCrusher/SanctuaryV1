@@ -38,7 +38,7 @@
 .stat-card {
   background: rgba(30, 58, 138, 0.04);
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid rgba(30, 58, 138, 0.1);
 }
 
@@ -74,14 +74,19 @@
 
 /* --- Home Screen Sections --- */
 .home-section {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .home-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.home-section:first-child .home-section-header {
+  margin-top: 8px;
 }
 
 .home-section-title {
@@ -298,10 +303,11 @@
 }
 
 .home-daily-text {
+  font-family: 'Lora', Georgia, serif;
   font-style: italic;
   color: var(--text-secondary);
   margin-bottom: 8px;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
 .home-daily-ref {

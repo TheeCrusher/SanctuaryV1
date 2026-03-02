@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&display=swap');
+
 /* =============================================================================
    SANCTUARY APP - GLOBAL STYLESHEET
    =============================================================================
@@ -115,7 +117,8 @@
 [data-theme="dark"] {
   --bg-primary: #0f1520;
   --bg-secondary: #1a2332;
-  --bg-card: #1a2332;
+  --bg-card-warm: #1e1b18;
+  --bg-card: #1e1b18;
   --bg-hover: #2a3545;
   --bg-input: #2a3545;
   --bg-accent: rgba(59, 130, 246, 0.15);
@@ -622,7 +625,7 @@ select.account-edit-input {
 .faq-item {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 10px;
   overflow: hidden;
 }
@@ -670,7 +673,7 @@ select.account-edit-input {
   gap: 14px;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 16px;
   margin-bottom: 10px;
 }
@@ -1151,6 +1154,34 @@ select.account-edit-input {
 }
 
 /* =================================== */
+/* 44. STAT BLOCK — reusable number+label pair */
+/* =================================== */
+
+/* Wrapper — stack number above label */
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The large number */
+.stat-block-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* The small label beneath */
+.stat-block-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* =================================== */
 /* 43. iOS INSTALL PROMPT              */
 /* =================================== */
 
@@ -1327,6 +1358,11 @@ select.account-edit-input {
 
 .ios-install-btn-secondary:active {
   background: var(--bg-muted);
+}
+
+/* Dark mode — warm card borders */
+[data-theme="dark"] .card {
+  border-color: var(--border-warm);
 }
 
 /* Dark mode adjustments */

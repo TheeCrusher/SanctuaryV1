@@ -26,7 +26,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 24px 0 16px;
+  margin: 28px 0 12px;
+}
+
+.section-header:first-child {
+  margin-top: 8px;
 }
 
 .section-title {
