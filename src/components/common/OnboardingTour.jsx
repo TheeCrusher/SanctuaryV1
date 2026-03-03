@@ -36,18 +36,19 @@ const SEEKER_STEPS = [
     target: null
   },
   {
-    id: 'community-tab',
-    type: 'spotlight',
-    title: 'Community',
-    message: 'Start here. Find other believers — especially people from your church. Connect, send messages, and build real relationships.',
-    target: '[data-tour-id="nav-community"]',
-    tooltipPos: 'above'
-  },
-  {
     id: 'more-tab',
     type: 'spotlight',
     title: 'More Menu',
-    message: 'This is where your most important tools live — including Find a Guide, Prayer Board, and your Sessions.',
+    message: 'This is where your most important tools live — including Find Guides, Community, Prayer Board, and your Sessions.',
+    target: '[data-tour-id="nav-more"]',
+    tooltipPos: 'above',
+    navigateTo: '/more'
+  },
+  {
+    id: 'community-tab',
+    type: 'spotlight',
+    title: 'Community',
+    message: 'Connect with believers. Find people from your church, send messages, and build real relationships.',
     target: '[data-tour-id="nav-more"]',
     tooltipPos: 'above',
     navigateTo: '/more'
@@ -55,9 +56,9 @@ const SEEKER_STEPS = [
   {
     id: 'find-guide',
     type: 'spotlight',
-    title: 'Find a Guide',
+    title: 'Find Guides',
     message: 'The heart of Sanctuary. Browse spiritual guides near you or across the country and request a session directly from their profile.',
-    target: '[data-tour-id="more-find-guide"]',
+    target: '[data-tour-id="more-find"]',
     tooltipPos: 'below',
     navigateTo: '/more'
   },
@@ -85,6 +86,14 @@ const SEEKER_STEPS = [
     title: 'Events',
     message: 'Discover what\'s happening — in-person gatherings and digital events like live streams and recorded teachings.',
     target: '[data-tour-id="nav-events"]',
+    tooltipPos: 'above'
+  },
+  {
+    id: 'bible-study-tab',
+    type: 'spotlight',
+    title: 'Bible Study',
+    message: 'Read scripture, explore reading plans, and practice memorization — all in one place right from the nav bar.',
+    target: '[data-tour-id="nav-bible-study"]',
     tooltipPos: 'above'
   },
   {
@@ -133,7 +142,7 @@ const GUIDE_STEPS = [
     id: 'more-tab',
     type: 'spotlight',
     title: 'More Menu',
-    message: 'Sessions, Prayer Board, Scripture Study, and more are all in here.',
+    message: 'Sessions, Prayer Board, Community, and more are all in here.',
     target: '[data-tour-id="nav-more"]',
     tooltipPos: 'above',
     navigateTo: '/more'
@@ -151,9 +160,10 @@ const GUIDE_STEPS = [
     id: 'community-tab',
     type: 'spotlight',
     title: 'Community',
-    message: 'Build your network. Connect with seekers and fellow guides, start conversations, and grow your ministry presence.',
-    target: '[data-tour-id="nav-community"]',
-    tooltipPos: 'above'
+    message: 'Build your network. Community is in the More menu — connect with seekers and fellow guides, start conversations, and grow your ministry presence.',
+    target: '[data-tour-id="nav-more"]',
+    tooltipPos: 'above',
+    navigateTo: '/more'
   },
   {
     id: 'prayer-board',
@@ -167,11 +177,19 @@ const GUIDE_STEPS = [
   {
     id: 'find-guide',
     type: 'spotlight',
-    title: 'Find a Guide',
+    title: 'Find Guides',
     message: 'This is where seekers discover you. A strong profile — photo, bio, specialization, church — means more seekers will choose to connect with you.',
-    target: '[data-tour-id="more-find-guide"]',
+    target: '[data-tour-id="more-find"]',
     tooltipPos: 'below',
     navigateTo: '/more'
+  },
+  {
+    id: 'bible-study-tab',
+    type: 'spotlight',
+    title: 'Bible Study',
+    message: 'Quick access to scripture reading plans and the full Bible — useful for preparing sessions and sharing verses with seekers.',
+    target: '[data-tour-id="nav-bible-study"]',
+    tooltipPos: 'above'
   },
   {
     id: 'profile-final',

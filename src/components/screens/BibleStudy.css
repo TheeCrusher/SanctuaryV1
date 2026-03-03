@@ -1,0 +1,64 @@
+/* =============================================================================
+   BIBLE STUDY COMBINED SCREEN
+   ============================================================================= */
+
+.bible-study-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Pill toggle bar */
+.bible-study-pills {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 12px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.bible-study-pill {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.bible-study-pill.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Content area — scrollable, fills remaining height */
+.bible-study-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide the inner component's own header — BibleStudy provides the title */
+.bible-study-content .screen-header {
+  display: none;
+}
+
+/* Remove inner screen's fixed/full-height constraints so it flows naturally */
+.bible-study-content .screen {
+  min-height: unset;
+  height: auto;
+  padding-top: 0;
+}
+
+/* Ensure inner screen-content scrolls within our container */
+.bible-study-content .screen-content {
+  padding-bottom: 80px; /* room for bottom nav */
+}

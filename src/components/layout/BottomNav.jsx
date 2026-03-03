@@ -2,7 +2,7 @@
 // BOTTOM NAVIGATION COMPONENT
 // =============================================================================
 // The main navigation bar fixed at the bottom of the screen.
-// Shows 5 tabs: Home, Community, Events, More, Profile Photo
+// Shows 5 tabs: Home, Events, Bible Study, More, Profile Photo
 //
 // Uses React Router to:
 //   - Navigate to different screens when tapped
@@ -11,7 +11,7 @@
 import './BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { Home, Users, CalendarDays, MoreHorizontal } from 'lucide-react'
+import { Home, CalendarDays, BookOpen, MoreHorizontal } from 'lucide-react'
 
 // Consistent colors for initials — matches Avatar component
 const INITIALS_COLORS = [
@@ -52,10 +52,18 @@ function BottomNav() {
     return location.pathname === '/events' || location.pathname.startsWith('/events/')
   }
 
+  // Bible Study tab is active for /bible-study, /scripture, and /bibles paths
+  function isBibleStudyActive() {
+    const biblePaths = ['/bible-study', '/scripture', '/bibles']
+    return biblePaths.some(p =>
+      location.pathname === p || location.pathname.startsWith(p + '/')
+    )
+  }
+
   // "More" is active when viewing any screen accessible from the More menu.
-  // Events removed — it now has its own tab.
+  // Community moved to More menu; Bible/Scripture moved to Bible Study tab.
   function isMoreActive() {
-    const morePaths = ['/more', '/scripture', '/churches', '/prayers', '/appointments', '/calendar', '/guides', '/bibles']
+    const morePaths = ['/more', '/find', '/find-guides', '/churches', '/prayers', '/appointments', '/calendar', '/community', '/guide-posts']
     return morePaths.some(p =>
       location.pathname === p || location.pathname.startsWith(p + '/')
     )
@@ -84,17 +92,6 @@ function BottomNav() {
           <Home size={24} />
         </button>
 
-        {/* Community */}
-        <button
-          className={`nav-btn ${isActive('/community') ? 'active' : ''}`}
-          onClick={() => navigate('/community')}
-          aria-label="Community"
-          title="Community"
-          data-tour-id="nav-community"
-        >
-          <Users size={24} />
-        </button>
-
         {/* Events */}
         <button
           className={`nav-btn ${isEventsActive() ? 'active' : ''}`}
@@ -104,6 +101,17 @@ function BottomNav() {
           data-tour-id="nav-events"
         >
           <CalendarDays size={24} />
+        </button>
+
+        {/* Bible Study */}
+        <button
+          className={`nav-btn ${isBibleStudyActive() ? 'active' : ''}`}
+          onClick={() => navigate('/bible-study')}
+          aria-label="Bible Study"
+          title="Bible Study"
+          data-tour-id="nav-bible-study"
+        >
+          <BookOpen size={24} />
         </button>
 
         {/* More */}

@@ -47,6 +47,8 @@ import EventDetail from './components/screens/EventDetail'
 import BlockedUsersScreen from './components/screens/BlockedUsersScreen'
 import ForgotPassword from './components/screens/ForgotPassword'
 import FindGuides from './components/screens/FindGuides'
+import FindScreen from './components/screens/FindScreen'
+import BibleStudy from './components/screens/BibleStudy'
 import GuidePostsFeed from './components/screens/GuidePostsFeed'
 import WalkOnWater from './components/screens/WalkOnWater'
 import ChurchDashboard from './components/screens/ChurchDashboard'
@@ -163,7 +165,7 @@ function App() {
 
   // Swipe navigation between the 4 main tabs
   const navigate = useNavigate()
-  const mainTabs = ['/dashboard', '/community', '/more', '/profile']
+  const mainTabs = ['/dashboard', '/events', '/bible-study', '/profile']
   const currentTabIndex = mainTabs.indexOf(location.pathname)
 
   const swipeHandlers = useSwipeable({
@@ -249,6 +251,24 @@ function App() {
           element={
             <ProtectedRoute>
               <FindGuides />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/find"
+          element={
+            <ProtectedRoute>
+              <FindScreen />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bible-study"
+          element={
+            <ProtectedRoute>
+              <BibleStudy />
             </ProtectedRoute>
           }
         />
