@@ -14,11 +14,11 @@ import './index.css'
 
 function Root() {
   const [splashDone, setSplashDone] = useState(
-    () => sessionStorage.getItem('sanctuary_splash_done') === 'true'
+    () => sessionStorage.getItem('sanctuary_splash_v3') === 'true'
   )
 
   function handleSplashComplete() {
-    sessionStorage.setItem('sanctuary_splash_done', 'true')
+    sessionStorage.setItem('sanctuary_splash_v3', 'true')
     setSplashDone(true)
   }
 

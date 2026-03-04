@@ -48,6 +48,7 @@ function Dashboard() {
   const [suggestedGuides, setSuggested]   = useState([])   // seeker only
   const [actionLoading, setActionLoading] = useState(null) // apt id being actioned (guide)
   const [availLoading, setAvailLoading]   = useState(false)
+  const [featuredExpanded, setFeaturedExpanded] = useState(false)
 
   const quote = getDailyQuote()
 
@@ -271,6 +272,40 @@ function Dashboard() {
           })()}
         </div>
 
+        {/* SECTION: From Your Guides */}
+        {homeData.guidePostsFromConnections?.length > 0 && (
+          <div className="home-section">
+            <div className="home-section-header">
+              <h2 className="home-section-title">From Your Guides</h2>
+              <button className="view-all-btn" onClick={() => navigate('/guide-posts')}>See All</button>
+            </div>
+            {homeData.guidePostsFromConnections.map(post => (
+              <Card key={post.id} onClick={() => navigate('/guide-posts')}>
+                <div className="home-activity-row">
+                  <Avatar src={post.userPhoto} emoji={post.userAvatar} size="sm" variant="guide" />
+                  <div className="home-activity-info" style={{ flex: 1, minWidth: 0 }}>
+                    <span className="home-activity-name">{post.userName}</span>
+                    <span className="home-activity-title" style={{ fontWeight: 600 }}>{post.title}</span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
+                    <span className={`gp-type-badge gp-type-${post.postType}`} style={{ fontSize: 10, padding: '2px 6px' }}>
+                      {post.postType}
+                    </span>
+                    <button
+                      className={`gp-like-btn${post.liked ? ' liked' : ''}`}
+                      style={{ fontSize: 12, padding: 0 }}
+                      onClick={e => { e.stopPropagation(); handleDashPostLike(post.id) }}
+                    >
+                      <Heart size={14} fill={post.liked ? 'currentColor' : 'none'} />
+                      {post.likeCount > 0 && <span>{post.likeCount}</span>}
+                    </button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
+
         {/* SECTION: Suggested Guides */}
         <div className="home-section">
           <div className="home-section-header">
@@ -316,14 +351,14 @@ function Dashboard() {
           )}
         </div>
 
-        {/* SECTION: Top Guides (Phase 3 — shown when rated guides exist) */}
+        {/* SECTION: Top Guides (shown when rated guides exist) */}
         {homeData.featuredGuides?.length > 0 && (
           <div className="home-section">
             <div className="home-section-header">
               <h2 className="home-section-title">Top Guides</h2>
               <button className="view-all-btn" onClick={() => navigate('/find-guide?sort=rating')}>See All</button>
             </div>
-            {homeData.featuredGuides.map(guide => (
+            {homeData.featuredGuides.slice(0, featuredExpanded ? undefined : 3).map(guide => (
               <Card key={guide.id} onClick={() => navigate(`/user/${guide.id}`)}>
                 <div className="dash-guide-row">
                   <Avatar src={guide.photoUrl} emoji={guide.avatar} size="sm" variant="guide" />
@@ -365,40 +400,11 @@ function Dashboard() {
                 </div>
               </Card>
             ))}
-          </div>
-        )}
-
-        {/* SECTION: From Your Guides */}
-        {homeData.guidePostsFromConnections?.length > 0 && (
-          <div className="home-section">
-            <div className="home-section-header">
-              <h2 className="home-section-title">From Your Guides</h2>
-              <button className="view-all-btn" onClick={() => navigate('/guide-posts')}>See All</button>
-            </div>
-            {homeData.guidePostsFromConnections.map(post => (
-              <Card key={post.id} onClick={() => navigate('/guide-posts')}>
-                <div className="home-activity-row">
-                  <Avatar src={post.userPhoto} emoji={post.userAvatar} size="sm" variant="guide" />
-                  <div className="home-activity-info" style={{ flex: 1, minWidth: 0 }}>
-                    <span className="home-activity-name">{post.userName}</span>
-                    <span className="home-activity-title" style={{ fontWeight: 600 }}>{post.title}</span>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
-                    <span className={`gp-type-badge gp-type-${post.postType}`} style={{ fontSize: 10, padding: '2px 6px' }}>
-                      {post.postType}
-                    </span>
-                    <button
-                      className={`gp-like-btn${post.liked ? ' liked' : ''}`}
-                      style={{ fontSize: 12, padding: 0 }}
-                      onClick={e => { e.stopPropagation(); handleDashPostLike(post.id) }}
-                    >
-                      <Heart size={14} fill={post.liked ? 'currentColor' : 'none'} />
-                      {post.likeCount > 0 && <span>{post.likeCount}</span>}
-                    </button>
-                  </div>
-                </div>
-              </Card>
-            ))}
+            {homeData.featuredGuides.length > 3 && (
+              <button className="dash-show-more-btn" onClick={() => setFeaturedExpanded(e => !e)}>
+                {featuredExpanded ? 'Show Less' : `Show ${homeData.featuredGuides.length - 3} More`}
+              </button>
+            )}
           </div>
         )}
 

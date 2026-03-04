@@ -410,6 +410,20 @@ async function seedDemo() {
       console.log('   ⚠️  Extended guides already seeded — skipping.\n')
     } else {
       // ---- 10a: Guide user definitions ----
+      // Photos from randomuser.me (unique IDs, avoid conflicts with seedData.js)
+      const newGuidePhotos = {
+        'Rev. Dominique Fontaine': 'https://randomuser.me/api/portraits/women/58.jpg',
+        'Dr. James Osei-Bonsu':    'https://randomuser.me/api/portraits/men/60.jpg',
+        'Pastor Carmen Delgado':   'https://randomuser.me/api/portraits/women/35.jpg',
+        'Elder Nathaniel Pierce':  'https://randomuser.me/api/portraits/men/70.jpg',
+        'Dr. Grace Huang':         'https://randomuser.me/api/portraits/women/49.jpg',
+        'Rev. Simone Adeyemi':     'https://randomuser.me/api/portraits/women/23.jpg',
+        'Rev. Marcus Holloway':    'https://randomuser.me/api/portraits/men/28.jpg',
+        'Pastor Anna Kowalski':    'https://randomuser.me/api/portraits/women/19.jpg',
+        'Rev. Diego Sandoval':     'https://randomuser.me/api/portraits/men/46.jpg',
+        'Minister Keisha Freeman': 'https://randomuser.me/api/portraits/women/83.jpg',
+        'Pastor Jerome Watkins':   'https://randomuser.me/api/portraits/men/34.jpg',
+      }
       const newGuideDefs = [
         // ── NATIONAL GUIDES (5) ─────────────────────────────────────
         {
@@ -550,7 +564,7 @@ async function seedDemo() {
            ON CONFLICT (email) DO NOTHING
            RETURNING id`,
           [
-            g.name, g.email, passwordHash, '🙏', null, 'guide', g.denomination, null, [],
+            g.name, g.email, passwordHash, '🙏', newGuidePhotos[g.name] || null, 'guide', g.denomination, null, [],
             g.acceptingSeekers, g.maxPendingRequests, g.state, g.city, g.bio, g.specialization,
             `${g.city}, ${g.state}`, g.preferredChurchId || null
           ]
@@ -914,6 +928,32 @@ async function seedDemo() {
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
     } // end extended guides block
 
+    // ── Always backfill photos for extended guides (fixes existing production rows) ──
+    {
+      const guidePhotoBackfill = {
+        'dominique.fontaine@sanctuary.com': 'https://randomuser.me/api/portraits/women/58.jpg',
+        'james.osei.bonsu@sanctuary.com':   'https://randomuser.me/api/portraits/men/60.jpg',
+        'carmen.delgado@sanctuary.com':     'https://randomuser.me/api/portraits/women/35.jpg',
+        'nathaniel.pierce@sanctuary.com':   'https://randomuser.me/api/portraits/men/70.jpg',
+        'grace.huang@sanctuary.com':        'https://randomuser.me/api/portraits/women/49.jpg',
+        'simone.adeyemi@sanctuary.com':     'https://randomuser.me/api/portraits/women/23.jpg',
+        'marcus.holloway@sanctuary.com':    'https://randomuser.me/api/portraits/men/28.jpg',
+        'anna.kowalski@sanctuary.com':      'https://randomuser.me/api/portraits/women/19.jpg',
+        'diego.sandoval@sanctuary.com':     'https://randomuser.me/api/portraits/men/46.jpg',
+        'keisha.freeman@sanctuary.com':     'https://randomuser.me/api/portraits/women/83.jpg',
+        'jerome.watkins@sanctuary.com':     'https://randomuser.me/api/portraits/men/34.jpg',
+      }
+      let guidePhotosUpdated = 0
+      for (const [email, url] of Object.entries(guidePhotoBackfill)) {
+        const r = await client.query(
+          'UPDATE users SET photo_url = $2 WHERE email = $1 AND photo_url IS NULL',
+          [email, url]
+        )
+        if (r.rowCount > 0) guidePhotosUpdated++
+      }
+      if (guidePhotosUpdated > 0) console.log(`   📸 Backfilled photos for ${guidePhotosUpdated} extended guides`)
+    }
+
     // ---- Step 11: Additional seekers for 3:1 seeker-to-guide ratio ----
     // Target: ~75 seekers / 25 guides. Currently 26 seekers exist → add 50 more.
     // Geographic spread ensures every guide (national/regional/local) has nearby seekers.
@@ -939,6 +979,59 @@ async function seedDemo() {
         if (r.rows.length > 0) extGuideIdMap[name] = r.rows[0].id
       }
 
+      // Photos from randomuser.me (unique IDs, no conflicts)
+      const newSeekerPhotos = {
+        'Elena Vasquez':      'https://randomuser.me/api/portraits/women/27.jpg',
+        'Marcus Webb':        'https://randomuser.me/api/portraits/men/39.jpg',
+        'Natalie Chen':       'https://randomuser.me/api/portraits/women/53.jpg',
+        'Derek Osei':         'https://randomuser.me/api/portraits/men/14.jpg',
+        'Brianna Russo':      'https://randomuser.me/api/portraits/women/10.jpg',
+        'James Okafor':       'https://randomuser.me/api/portraits/men/18.jpg',
+        'Sophie Laurent':     'https://randomuser.me/api/portraits/women/66.jpg',
+        'Thomas Griffith':    'https://randomuser.me/api/portraits/men/57.jpg',
+        'Aaliyah Monroe':     'https://randomuser.me/api/portraits/women/29.jpg',
+        'Peter Kowalczyk':    'https://randomuser.me/api/portraits/men/93.jpg',
+        'Darius Jackson':     'https://randomuser.me/api/portraits/men/30.jpg',
+        'Kezia Montgomery':   'https://randomuser.me/api/portraits/women/40.jpg',
+        'Samuel Perkins':     'https://randomuser.me/api/portraits/men/64.jpg',
+        'Priscilla Owens':    'https://randomuser.me/api/portraits/women/56.jpg',
+        'Andre Williams':     'https://randomuser.me/api/portraits/men/20.jpg',
+        'Tamara Bell':        'https://randomuser.me/api/portraits/women/77.jpg',
+        'Carlos Reyes':       'https://randomuser.me/api/portraits/men/48.jpg',
+        'Whitney Thomas':     'https://randomuser.me/api/portraits/women/16.jpg',
+        'Luis Menendez':      'https://randomuser.me/api/portraits/men/25.jpg',
+        'Jasmine Powell':     'https://randomuser.me/api/portraits/women/69.jpg',
+        'Elaine Dupree':      'https://randomuser.me/api/portraits/women/54.jpg',
+        'Kevin Odom':         'https://randomuser.me/api/portraits/men/82.jpg',
+        'Rachel Nguyen':      'https://randomuser.me/api/portraits/women/43.jpg',
+        'Noah Fischer':       'https://randomuser.me/api/portraits/men/13.jpg',
+        'Latoya Simmons':     'https://randomuser.me/api/portraits/women/61.jpg',
+        'Patrick Mahoney':    'https://randomuser.me/api/portraits/men/88.jpg',
+        'Yuki Tanaka':        'https://randomuser.me/api/portraits/women/79.jpg',
+        'Dominique Petersen': 'https://randomuser.me/api/portraits/women/74.jpg',
+        'Isaiah Chambers':    'https://randomuser.me/api/portraits/men/56.jpg',
+        'Cassandra Hill':     'https://randomuser.me/api/portraits/women/38.jpg',
+        'Ben Kowalski':       'https://randomuser.me/api/portraits/men/43.jpg',
+        'Nadia Petrov':       'https://randomuser.me/api/portraits/women/47.jpg',
+        'Elijah Moss':        'https://randomuser.me/api/portraits/men/77.jpg',
+        'Tanya Rivers':       'https://randomuser.me/api/portraits/women/87.jpg',
+        'Marcus Young':       'https://randomuser.me/api/portraits/men/84.jpg',
+        'Jade Nguyen':        'https://randomuser.me/api/portraits/women/7.jpg',
+        'Connor Sullivan':    'https://randomuser.me/api/portraits/men/96.jpg',
+        'Aaliya Hassan':      'https://randomuser.me/api/portraits/women/31.jpg',
+        'Roberto Fuentes':    'https://randomuser.me/api/portraits/men/5.jpg',
+        'Amara Okonkwo':      'https://randomuser.me/api/portraits/women/60.jpg',
+        'Devin Harris':       'https://randomuser.me/api/portraits/men/1.jpg',
+        'Marissa Castillo':   'https://randomuser.me/api/portraits/women/93.jpg',
+        'Lena Park':          'https://randomuser.me/api/portraits/women/26.jpg',
+        'Gabriel Torres':     'https://randomuser.me/api/portraits/men/50.jpg',
+        'Faith Osei':         'https://randomuser.me/api/portraits/women/80.jpg',
+        'Tyler Brooks':       'https://randomuser.me/api/portraits/men/95.jpg',
+        'Camille Broussard':  'https://randomuser.me/api/portraits/women/90.jpg',
+        'Marco Reyes':        'https://randomuser.me/api/portraits/men/62.jpg',
+        'Josephine Nakamura': 'https://randomuser.me/api/portraits/women/86.jpg',
+        'Elias Moreno':       'https://randomuser.me/api/portraits/men/72.jpg',
+      }
       const newSeekerDefs = [
         // ── NORTHEAST (10) ──────────────────────────────────────────────
         { name: 'Elena Vasquez',     state: 'NY', city: 'Brooklyn',      denomination: 'Catholic',         preferredChurchName: 'Brooklyn Tabernacle',
@@ -1114,7 +1207,7 @@ async function seedDemo() {
           [
             s.name,
             s.name.toLowerCase().replace(/['']/g, '').replace(/\s+/g, '.') + '@sanctuary.com',
-            passwordHash, '🙏', null, 'seeker',
+            passwordHash, '🙏', newSeekerPhotos[s.name] || null, 'seeker',
             s.bio, `${s.city}, ${s.state}`,
             s.state, s.city, s.denomination,
             s.interests || [],
@@ -1264,6 +1357,71 @@ async function seedDemo() {
       console.log(`   New follows:    ${newFollowsAdded}`)
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
     } // end extended seekers block
+
+    // ── Always backfill photos for extended seekers (fixes existing production rows) ──
+    {
+      const seekerPhotoBackfill = {
+        'elena.vasquez@sanctuary.com':      'https://randomuser.me/api/portraits/women/27.jpg',
+        'marcus.webb@sanctuary.com':        'https://randomuser.me/api/portraits/men/39.jpg',
+        'natalie.chen@sanctuary.com':       'https://randomuser.me/api/portraits/women/53.jpg',
+        'derek.osei@sanctuary.com':         'https://randomuser.me/api/portraits/men/14.jpg',
+        'brianna.russo@sanctuary.com':      'https://randomuser.me/api/portraits/women/10.jpg',
+        'james.okafor@sanctuary.com':       'https://randomuser.me/api/portraits/men/18.jpg',
+        'sophie.laurent@sanctuary.com':     'https://randomuser.me/api/portraits/women/66.jpg',
+        'thomas.griffith@sanctuary.com':    'https://randomuser.me/api/portraits/men/57.jpg',
+        'aaliyah.monroe@sanctuary.com':     'https://randomuser.me/api/portraits/women/29.jpg',
+        'peter.kowalczyk@sanctuary.com':    'https://randomuser.me/api/portraits/men/93.jpg',
+        'darius.jackson@sanctuary.com':     'https://randomuser.me/api/portraits/men/30.jpg',
+        'kezia.montgomery@sanctuary.com':   'https://randomuser.me/api/portraits/women/40.jpg',
+        'samuel.perkins@sanctuary.com':     'https://randomuser.me/api/portraits/men/64.jpg',
+        'priscilla.owens@sanctuary.com':    'https://randomuser.me/api/portraits/women/56.jpg',
+        'andre.williams@sanctuary.com':     'https://randomuser.me/api/portraits/men/20.jpg',
+        'tamara.bell@sanctuary.com':        'https://randomuser.me/api/portraits/women/77.jpg',
+        'carlos.reyes@sanctuary.com':       'https://randomuser.me/api/portraits/men/48.jpg',
+        'whitney.thomas@sanctuary.com':     'https://randomuser.me/api/portraits/women/16.jpg',
+        'luis.menendez@sanctuary.com':      'https://randomuser.me/api/portraits/men/25.jpg',
+        'jasmine.powell@sanctuary.com':     'https://randomuser.me/api/portraits/women/69.jpg',
+        'elaine.dupree@sanctuary.com':      'https://randomuser.me/api/portraits/women/54.jpg',
+        'kevin.odom@sanctuary.com':         'https://randomuser.me/api/portraits/men/82.jpg',
+        'rachel.nguyen@sanctuary.com':      'https://randomuser.me/api/portraits/women/43.jpg',
+        'noah.fischer@sanctuary.com':       'https://randomuser.me/api/portraits/men/13.jpg',
+        'latoya.simmons@sanctuary.com':     'https://randomuser.me/api/portraits/women/61.jpg',
+        'patrick.mahoney@sanctuary.com':    'https://randomuser.me/api/portraits/men/88.jpg',
+        'yuki.tanaka@sanctuary.com':        'https://randomuser.me/api/portraits/women/79.jpg',
+        'dominique.petersen@sanctuary.com': 'https://randomuser.me/api/portraits/women/74.jpg',
+        'isaiah.chambers@sanctuary.com':    'https://randomuser.me/api/portraits/men/56.jpg',
+        'cassandra.hill@sanctuary.com':     'https://randomuser.me/api/portraits/women/38.jpg',
+        'ben.kowalski@sanctuary.com':       'https://randomuser.me/api/portraits/men/43.jpg',
+        'nadia.petrov@sanctuary.com':       'https://randomuser.me/api/portraits/women/47.jpg',
+        'elijah.moss@sanctuary.com':        'https://randomuser.me/api/portraits/men/77.jpg',
+        'tanya.rivers@sanctuary.com':       'https://randomuser.me/api/portraits/women/87.jpg',
+        'marcus.young@sanctuary.com':       'https://randomuser.me/api/portraits/men/84.jpg',
+        'jade.nguyen@sanctuary.com':        'https://randomuser.me/api/portraits/women/7.jpg',
+        'connor.sullivan@sanctuary.com':    'https://randomuser.me/api/portraits/men/96.jpg',
+        'aaliya.hassan@sanctuary.com':      'https://randomuser.me/api/portraits/women/31.jpg',
+        'roberto.fuentes@sanctuary.com':    'https://randomuser.me/api/portraits/men/5.jpg',
+        'amara.okonkwo@sanctuary.com':      'https://randomuser.me/api/portraits/women/60.jpg',
+        'devin.harris@sanctuary.com':       'https://randomuser.me/api/portraits/men/1.jpg',
+        'marissa.castillo@sanctuary.com':   'https://randomuser.me/api/portraits/women/93.jpg',
+        'lena.park@sanctuary.com':          'https://randomuser.me/api/portraits/women/26.jpg',
+        'gabriel.torres@sanctuary.com':     'https://randomuser.me/api/portraits/men/50.jpg',
+        'faith.osei@sanctuary.com':         'https://randomuser.me/api/portraits/women/80.jpg',
+        'tyler.brooks@sanctuary.com':       'https://randomuser.me/api/portraits/men/95.jpg',
+        'camille.broussard@sanctuary.com':  'https://randomuser.me/api/portraits/women/90.jpg',
+        'marco.reyes@sanctuary.com':        'https://randomuser.me/api/portraits/men/62.jpg',
+        'josephine.nakamura@sanctuary.com': 'https://randomuser.me/api/portraits/women/86.jpg',
+        'elias.moreno@sanctuary.com':       'https://randomuser.me/api/portraits/men/72.jpg',
+      }
+      let seekerPhotosUpdated = 0
+      for (const [email, url] of Object.entries(seekerPhotoBackfill)) {
+        const r = await client.query(
+          'UPDATE users SET photo_url = $2 WHERE email = $1 AND photo_url IS NULL',
+          [email, url]
+        )
+        if (r.rowCount > 0) seekerPhotosUpdated++
+      }
+      if (seekerPhotosUpdated > 0) console.log(`   📸 Backfilled photos for ${seekerPhotosUpdated} extended seekers`)
+    }
 
     // ---- Step 12: Community Activity Fill (Session 36) ----
     // Adds prayers, guide posts, event RSVPs, connections,

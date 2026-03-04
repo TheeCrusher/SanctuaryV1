@@ -48,14 +48,32 @@ function AccountDetails() {
     if (val.trim().length < 2) { setChurchSuggestions([]); return }
     churchTimer.current = setTimeout(async () => {
       try {
-        const data = await api.get(`/churches?q=${encodeURIComponent(val.trim())}&limit=5`)
-        setChurchSuggestions(data.churches || [])
+        const data = await api.get(`/churches/search?q=${encodeURIComponent(val.trim())}`)
+        setChurchSuggestions(data.results || [])
       } catch { setChurchSuggestions([]) }
     }, 400)
   }
 
-  function selectChurch(church) {
-    setEditData(prev => ({ ...prev, churchName: church.name, preferredChurchId: church.id }))
+  async function selectChurch(church) {
+    let churchId = church.sanctuaryId
+    if (!churchId) {
+      try {
+        const saved = await api.post('/churches/save-from-google', {
+          googlePlaceId: church.googlePlaceId,
+          name: church.name,
+          address: church.address,
+          city: church.city,
+          state: church.state,
+          zip: church.zip,
+          phone: church.phone,
+          website: church.website,
+          hours: church.hours,
+          googleRating: church.googleRating
+        })
+        churchId = saved.church?.id || null
+      } catch { /* save failed — link won't persist, but name will */ }
+    }
+    setEditData(prev => ({ ...prev, churchName: church.name, preferredChurchId: churchId }))
     setChurchSuggestions([])
   }
 
@@ -243,7 +261,7 @@ function AccountDetails() {
                     <div className="account-church-dropdown">
                       {churchSuggestions.map(ch => (
                         <button
-                          key={ch.id}
+                          key={ch.googlePlaceId || ch.id}
                           type="button"
                           className="account-church-option"
                           onClick={() => selectChurch(ch)}

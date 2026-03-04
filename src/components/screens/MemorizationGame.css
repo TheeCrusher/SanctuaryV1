@@ -22,6 +22,29 @@
   color: var(--text-muted);
 }
 
+/* Progress row: dots + live score counter */
+.game-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.game-progress-header .game-progress {
+  margin-bottom: 0;
+}
+
+.game-score-live {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-gold-text);
+  background: var(--accent-gold-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
 /* Progress dots showing how many verses remain */
 .game-progress {
   display: flex;
@@ -73,6 +96,14 @@
   cursor: pointer;
   transition: all 0.2s;
   vertical-align: baseline;
+}
+
+/* Small × shown inside filled blanks — signals they can be tapped to undo */
+.game-blank-x {
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0.5;
+  vertical-align: super;
 }
 
 .game-blank.filled {
@@ -341,6 +372,30 @@
 .game-verse-feedback.incorrect {
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
+}
+
+/* Try Again row — shows alongside Next Verse after a wrong answer */
+.game-try-again-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.game-try-again-btn {
+  flex-shrink: 0;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 2px solid var(--accent-burgundy);
+  background: transparent;
+  color: var(--accent-burgundy);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-check-btn-flex {
+  flex: 1;
+  margin-top: 0;
 }
 
 /* Dark mode overrides */

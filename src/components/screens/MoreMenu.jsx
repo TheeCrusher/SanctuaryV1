@@ -8,7 +8,7 @@ import '../layout/MoreMenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { Compass, Users, BookOpen, Heart, Calendar, ChevronRight, LogOut, Waves } from 'lucide-react'
+import { Compass, Users, BookOpen, Heart, Calendar, LogOut, Waves } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
@@ -41,27 +41,24 @@ function MoreMenu() {
         <ChevronRight size={20} style={{ color: 'var(--text-faint)' }} />
       </div>
 
-      {/* Menu Items */}
+      {/* Menu Grid */}
       <div className="screen-content">
-        {items.map((item) => (
-          <button
-            key={item.text}
-            className="more-menu-item"
-            onClick={() => navigate(item.path)}
-            {...(item.tourId ? { 'data-tour-id': item.tourId } : {})}
-          >
-            <div className="more-menu-item-left">
-              <span className={`more-menu-item-icon ${item.colorClass || ''}`}>
-                <item.icon size={20} />
+        <div className="more-grid-container">
+          {items.map((item) => (
+            <button
+              key={item.text}
+              className="more-grid-tile"
+              onClick={() => navigate(item.path)}
+              {...(item.tourId ? { 'data-tour-id': item.tourId } : {})}
+            >
+              <span className={`more-grid-tile-icon ${item.colorClass || ''}`}>
+                <item.icon size={28} />
               </span>
-              <div>
-                <div className="more-menu-item-text">{item.text}</div>
-                <div className="more-menu-item-subtitle">{item.subtitle}</div>
-              </div>
-            </div>
-            <ChevronRight size={18} style={{ color: 'var(--text-faint)' }} />
-          </button>
-        ))}
+              <span className="more-grid-tile-text">{item.text}</span>
+              <span className="more-grid-tile-subtitle">{item.subtitle}</span>
+            </button>
+          ))}
+        </div>
 
         {/* Logout */}
         <div className="more-section-label">Account</div>

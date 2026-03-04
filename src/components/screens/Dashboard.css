@@ -609,3 +609,22 @@
   background: rgba(34, 197, 94, 0.15);
   color: #4ade80;
 }
+
+.dash-show-more-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.dash-show-more-btn:active {
+  color: var(--text-primary);
+}

@@ -127,6 +127,13 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true, // Allows access from network (useful in Codespaces)
+    headers: {
+      // Allow media elements (<video>) to load from same origin and blob URLs.
+      // Codespaces' proxy can apply a restrictive CSP that blocks media-src
+      // even when the file is reachable via fetch(). This header overrides it
+      // for dev only — production (Vercel) is unaffected.
+      'Content-Security-Policy': "media-src 'self' blob:"
+    },
     proxy: {
       // Forward any request starting with /api to the Express backend
       '/api': {

@@ -4,6 +4,10 @@ import { useRef } from 'react'
 // SplashScreen plays the intro video when the app first loads.
 // It auto-transitions when the video ends, or the user can tap "Skip".
 // The video file lives at public/sanctuary-intro.mp4
+//
+// Relies on autoPlay + muted + playsInline for Safari compatibility.
+// The CSP header in vite.config.js (media-src 'self' blob:) allows
+// the video element to load in Codespaces' restricted environment.
 
 function SplashScreen({ onComplete }) {
   const videoRef = useRef(null)
@@ -21,16 +25,14 @@ function SplashScreen({ onComplete }) {
         autoPlay
         muted
         playsInline
+        preload="auto"
         onEnded={onComplete}
         onPlay={(e) => { e.target.playbackRate = 1.5 }}
         className="splash-video"
       />
       <button
         className="splash-skip"
-        onClick={(e) => {
-          e.stopPropagation()
-          handleSkip()
-        }}
+        onClick={(e) => { e.stopPropagation(); handleSkip() }}
       >
         Skip
       </button>

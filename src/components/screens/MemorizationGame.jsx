@@ -75,6 +75,9 @@ function MemorizationGame() {
   // Flashcard state
   const [revealed, setRevealed] = useState(false)
 
+  // Try Again state — true after user retries a verse (score already counted, don't re-record)
+  const [triedAgain, setTriedAgain] = useState(false)
+
   // Available categories from verses
   const categories = useMemo(() => {
     const cats = new Set(scriptureVerses.map(v => v.category))
@@ -185,24 +188,30 @@ function MemorizationGame() {
     ))
   }
 
+  function isFillBlankCorrect() {
+    return blanks.every(b => {
+      const fc = (b.filled || '').replace(/[^a-zA-Z]/g, '').toLowerCase()
+      const wc = b.word.replace(/[^a-zA-Z]/g, '').toLowerCase()
+      return fc === wc
+    })
+  }
+
   function checkFillBlank() {
     setBlankChecked(true)
-    const allCorrect = blanks.every(b => {
-      // Compare cleaned versions (strip punctuation for comparison)
-      const filledClean = (b.filled || '').replace(/[^a-zA-Z]/g, '').toLowerCase()
-      const wordClean = b.word.replace(/[^a-zA-Z]/g, '').toLowerCase()
-      return filledClean === wordClean
-    })
+    const allCorrect = isFillBlankCorrect()
 
-    const verse = gameVerses[currentIndex]
-    recordGameRound(verse.id, 'fill_blank', allCorrect)
-      .then(data => setLatestStreak(data.streak))
-      .catch(() => {})
+    // Only record score on first attempt — retries are practice only
+    if (!triedAgain) {
+      const verse = gameVerses[currentIndex]
+      recordGameRound(verse.id, 'fill_blank', allCorrect)
+        .then(data => setLatestStreak(data.streak))
+        .catch(() => {})
 
-    setScore(prev => ({
-      correct: prev.correct + (allCorrect ? 1 : 0),
-      total: prev.total + 1
-    }))
+      setScore(prev => ({
+        correct: prev.correct + (allCorrect ? 1 : 0),
+        total: prev.total + 1
+      }))
+    }
   }
 
   // ============================
@@ -241,21 +250,28 @@ function MemorizationGame() {
     setAnswerWords(prev => prev.filter((_, i) => i !== answerIndex))
   }
 
+  function isScrambleCorrect() {
+    const original = gameVerses[currentIndex]?.text.split(/\s+/) || []
+    return answerWords.length === original.length &&
+      answerWords.every((w, i) => w === original[i])
+  }
+
   function checkScramble() {
     setScrambleChecked(true)
-    const verse = gameVerses[currentIndex]
-    const originalWords = verse.text.split(/\s+/)
-    const isCorrect = answerWords.length === originalWords.length &&
-      answerWords.every((w, i) => w === originalWords[i])
 
-    recordGameRound(verse.id, 'scramble', isCorrect)
-      .then(data => setLatestStreak(data.streak))
-      .catch(() => {})
+    // Only record score on first attempt — retries are practice only
+    if (!triedAgain) {
+      const verse = gameVerses[currentIndex]
+      const isCorrect = isScrambleCorrect()
+      recordGameRound(verse.id, 'scramble', isCorrect)
+        .then(data => setLatestStreak(data.streak))
+        .catch(() => {})
 
-    setScore(prev => ({
-      correct: prev.correct + (isCorrect ? 1 : 0),
-      total: prev.total + 1
-    }))
+      setScore(prev => ({
+        correct: prev.correct + (isCorrect ? 1 : 0),
+        total: prev.total + 1
+      }))
+    }
   }
 
   // ============================
@@ -278,7 +294,13 @@ function MemorizationGame() {
   // ============================
   // NAVIGATION
   // ============================
+  function handleTryAgain() {
+    setTriedAgain(true)
+    initializeVerse(gameVerses[currentIndex])
+  }
+
   function goToNext() {
+    setTriedAgain(false)
     const nextIdx = currentIndex + 1
     if (nextIdx >= gameVerses.length) {
       setPhase('results')
@@ -368,14 +390,19 @@ function MemorizationGame() {
         {/* ============================================================ */}
         {phase === 'playing' && mode === 'fill_blank' && currentVerse && (
           <div>
-            {/* Progress dots */}
-            <div className="game-progress">
-              {gameVerses.map((_, i) => (
-                <div
-                  key={i}
-                  className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
-                />
-              ))}
+            {/* Progress dots + live score */}
+            <div className="game-progress-header">
+              <div className="game-progress">
+                {gameVerses.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
+                  />
+                ))}
+              </div>
+              {score.total > 0 && (
+                <span className="game-score-live">{score.correct}/{score.total}</span>
+              )}
             </div>
 
             <div className="game-verse-ref">{currentVerse.reference}</div>
@@ -398,7 +425,10 @@ function MemorizationGame() {
                         className={className}
                         onClick={() => handleBlankTap(blanks.indexOf(blankEntry))}
                       >
-                        {blankEntry.filled || '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                        {blankEntry.filled
+                          ? <>{blankEntry.filled}{!blankChecked && <span className="game-blank-x">✕</span>}</>
+                          : '\u00A0\u00A0\u00A0\u00A0\u00A0'
+                        }
                       </span>
                       {' '}
                     </span>
@@ -434,20 +464,23 @@ function MemorizationGame() {
               </button>
             ) : (
               <div>
-                <div className={`game-verse-feedback ${blanks.every(b => {
-                  const fc = (b.filled || '').replace(/[^a-zA-Z]/g, '').toLowerCase()
-                  const wc = b.word.replace(/[^a-zA-Z]/g, '').toLowerCase()
-                  return fc === wc
-                }) ? 'correct' : 'incorrect'}`}>
-                  {blanks.every(b => {
-                    const fc = (b.filled || '').replace(/[^a-zA-Z]/g, '').toLowerCase()
-                    const wc = b.word.replace(/[^a-zA-Z]/g, '').toLowerCase()
-                    return fc === wc
-                  }) ? 'Correct! Great job!' : 'Not quite — keep practicing!'}
+                <div className={`game-verse-feedback ${isFillBlankCorrect() ? 'correct' : 'incorrect'}`}>
+                  {isFillBlankCorrect() ? 'Correct! Great job!' : 'Not quite — keep practicing!'}
                 </div>
-                <button className="game-check-btn" onClick={handleNextAfterCheck}>
-                  {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
-                </button>
+                {isFillBlankCorrect() ? (
+                  <button className="game-check-btn" onClick={handleNextAfterCheck}>
+                    {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
+                  </button>
+                ) : (
+                  <div className="game-try-again-row">
+                    <button className="game-try-again-btn" onClick={handleTryAgain}>
+                      Try Again
+                    </button>
+                    <button className="game-check-btn game-check-btn-flex" onClick={handleNextAfterCheck}>
+                      {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -458,14 +491,19 @@ function MemorizationGame() {
         {/* ============================================================ */}
         {phase === 'playing' && mode === 'scramble' && currentVerse && (
           <div>
-            {/* Progress dots */}
-            <div className="game-progress">
-              {gameVerses.map((_, i) => (
-                <div
-                  key={i}
-                  className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
-                />
-              ))}
+            {/* Progress dots + live score */}
+            <div className="game-progress-header">
+              <div className="game-progress">
+                {gameVerses.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
+                  />
+                ))}
+              </div>
+              {score.total > 0 && (
+                <span className="game-score-live">{score.correct}/{score.total}</span>
+              )}
             </div>
 
             <div className="game-verse-ref">{currentVerse.reference}</div>
@@ -514,22 +552,28 @@ function MemorizationGame() {
               </button>
             ) : (
               <div>
-                <div className={`game-verse-feedback ${
-                  answerWords.join(' ') === currentVerse.text.split(/\s+/).join(' ') ? 'correct' : 'incorrect'
-                }`}>
-                  {answerWords.join(' ') === currentVerse.text.split(/\s+/).join(' ')
-                    ? 'Perfect! You nailed it!'
-                    : 'Not quite — here\'s the correct order:'
-                  }
+                <div className={`game-verse-feedback ${isScrambleCorrect() ? 'correct' : 'incorrect'}`}>
+                  {isScrambleCorrect() ? 'Perfect! You nailed it!' : 'Not quite — here\'s the correct order:'}
                 </div>
-                {answerWords.join(' ') !== currentVerse.text.split(/\s+/).join(' ') && (
+                {!isScrambleCorrect() && (
                   <div className="game-verse-display" style={{ fontSize: '14px', minHeight: 'auto', padding: '16px' }}>
                     {currentVerse.text}
                   </div>
                 )}
-                <button className="game-check-btn" onClick={handleNextAfterCheck}>
-                  {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
-                </button>
+                {isScrambleCorrect() ? (
+                  <button className="game-check-btn" onClick={handleNextAfterCheck}>
+                    {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
+                  </button>
+                ) : (
+                  <div className="game-try-again-row">
+                    <button className="game-try-again-btn" onClick={handleTryAgain}>
+                      Try Again
+                    </button>
+                    <button className="game-check-btn game-check-btn-flex" onClick={handleNextAfterCheck}>
+                      {currentIndex < gameVerses.length - 1 ? 'Next Verse' : 'See Results'}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -540,14 +584,19 @@ function MemorizationGame() {
         {/* ============================================================ */}
         {phase === 'playing' && mode === 'flashcard' && currentVerse && (
           <div>
-            {/* Progress dots */}
-            <div className="game-progress">
-              {gameVerses.map((_, i) => (
-                <div
-                  key={i}
-                  className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
-                />
-              ))}
+            {/* Progress dots + live score */}
+            <div className="game-progress-header">
+              <div className="game-progress">
+                {gameVerses.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`game-progress-dot ${i === currentIndex ? 'active' : i < currentIndex ? 'done' : ''}`}
+                  />
+                ))}
+              </div>
+              {score.total > 0 && (
+                <span className="game-score-live">{score.correct}/{score.total}</span>
+              )}
             </div>
 
             <div className="flashcard">

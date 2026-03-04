@@ -285,7 +285,17 @@ function BibleReader() {
                 key={c.name}
                 className={`bible-color-dot${selectedColor === c.name ? ' bible-color-dot-active' : ''}`}
                 style={{ background: c.hex }}
-                onClick={() => setSelectedColor(c.name)}
+                onClick={async () => {
+                  setSelectedColor(c.name)
+                  const existing = getHighlightForVerse(selectedVerse)
+                  if (existing) {
+                    if (existing.color !== c.name) {
+                      await handleChangeHighlightColor(existing.id, c.name)
+                    }
+                  } else {
+                    await addBibleHighlight(currentBook.name, chapterIndex + 1, selectedVerse, c.name)
+                  }
+                }}
               />
             ))}
           </div>
