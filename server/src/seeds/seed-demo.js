@@ -46,16 +46,19 @@ async function seedDemo() {
     await client.connect()
     console.log('📦 Connected to database\n')
 
-    // ---- Check if demo data already exists ----
+    // ---- Shared setup ----
+    const passwordHash = await bcrypt.hash('password123', 10)
+    const churchResult = await client.query('SELECT id, name FROM churches')
+    const churchIdMap = {}
+    for (const row of churchResult.rows) { churchIdMap[row.name] = row.id }
+
+    // ---- Check if base demo data already exists ----
     const demoCheck = await client.query(
       "SELECT id FROM users WHERE email = 'sarah.johnson@sanctuary.com'"
     )
     if (demoCheck.rows.length > 0) {
-      console.log('⚠️  Demo data already exists! (Sarah Johnson found)')
-      console.log('   To re-seed, you would need to remove existing demo users first.')
-      console.log('   Exiting safely — no changes made.\n')
-      return
-    }
+      console.log('ℹ️  Base demo data exists (Sarah Johnson found) — skipping to Steps 10-12...\n')
+    } else {
 
     // ---- Get existing test account IDs ----
     const guideResult = await client.query(
@@ -74,7 +77,6 @@ async function seedDemo() {
 
     // ---- Step 1: Create demo users (AVAILABLE_PEOPLE) ----
     console.log('👥 Creating demo users...')
-    const passwordHash = await bcrypt.hash('password123', 10)
     const peopleIds = []
     for (const person of AVAILABLE_PEOPLE) {
       const email = person.name.toLowerCase().replace(/\s+/g, '.') + '@sanctuary.com'
@@ -218,11 +220,6 @@ async function seedDemo() {
 
     // ---- Step 4: Events (in-person + digital) ----
     console.log('📅 Creating events...')
-    const churchResult = await client.query('SELECT id, name FROM churches')
-    const churchIdMap = {}
-    for (const row of churchResult.rows) {
-      churchIdMap[row.name] = row.id
-    }
 
     const allEvents = [
       ...SAMPLE_EVENTS.map(e => ({ ...e, eventType: 'in_person', eventLink: null, isLive: false })),
@@ -398,6 +395,7 @@ async function seedDemo() {
     } else {
       console.log(`   ✅ Already has ${existingQuotes} Bible quotes — skipping`)
     }
+    } // end base demo data (Steps 1-9)
 
     // ---- Step 10: Extended guide accounts (Session 36) ----
     console.log('\n🌟 Adding extended guide accounts...')
@@ -2037,18 +2035,10 @@ async function seedDemo() {
     } // end activity block
 
     // ---- Summary ----
+    const totalUsers = await client.query('SELECT count(*) FROM users')
     console.log('\n🎉 Demo data seeded successfully!')
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    console.log(`   Demo users:     ${AVAILABLE_PEOPLE.length + DISCOVERY_USERS.length}`)
-    console.log(`   Connections:    ${5 + 1 + connCount}`)
-    console.log(`   Appointments:   ${SAMPLE_APPOINTMENTS.length}`)
-    console.log(`   Events:         ${allEvents.length}`)
-    console.log(`   RSVPs:          ${rsvpCount}`)
-    console.log(`   Announcements:  ${SAMPLE_ANNOUNCEMENTS.length}`)
-    console.log(`   Prayers:        ${SAMPLE_PRAYERS.length} + ${SAMPLE_TESTIMONIES.length} testimonies`)
-    console.log(`   Interactions:   ${interactionCount}`)
-    console.log(`   Conversations:  ${convCount} (${msgCount} messages)`)
-    console.log(`   Verses:         ${SCRIPTURE_VERSES.length}`)
+    console.log(`   Total users:    ${totalUsers.rows[0].count}`)
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   } catch (error) {
