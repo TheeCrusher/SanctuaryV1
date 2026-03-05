@@ -8,7 +8,7 @@ import '../layout/MoreMenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { Compass, Users, BookOpen, Heart, Calendar, LogOut, Waves } from 'lucide-react'
+import { Compass, Users, BookOpen, Heart, Calendar, LogOut, Waves, ChevronRight } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
