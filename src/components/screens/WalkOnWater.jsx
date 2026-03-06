@@ -848,7 +848,8 @@ export default function WalkOnWater() {
             <p style={styles.verse}>Matthew 14:22-33</p>
             <p style={styles.subtitle}>
               Swipe left & right to dodge the serpents.{'\n'}
-              Double-tap to catch fish & feed the crowd!
+              Double-tap to catch fish & feed the crowd!{'\n'}
+              Score = distance walked + people fed.
             </p>
 
             <button style={styles.playBtn} onClick={startGame}>

@@ -24,6 +24,17 @@ import { formatDateShort, formatTime, getPlatformName } from '../../utils/helper
 const IN_PERSON_CATEGORIES = ['All', 'Social', 'Service/Mission', 'Youth', 'Worship', 'Active/Outdoor']
 const DIGITAL_CATEGORIES = ['All', 'Sermons/Teachings', 'Prayer', 'Worship', 'Bible Study', 'General']
 
+// Returns a CSS modifier (e.g. 'prayer', 'worship') based on category name
+function getCategoryMod(category) {
+  if (!category) return ''
+  const c = category.toLowerCase()
+  if (c.includes('prayer')) return 'prayer'
+  if (c.includes('worship')) return 'worship'
+  if (c.includes('bible') || c.includes('sermon') || c.includes('teach')) return 'bible'
+  if (c.includes('service') || c.includes('mission')) return 'service'
+  return ''
+}
+
 function EventsScreen() {
   const navigate = useNavigate()
   const { allChurches, user } = useApp()
@@ -35,6 +46,8 @@ function EventsScreen() {
   const [selectedCategory, setSelectedCategory] = useState('All')
 
   // Create modal state
+  const [visibleCount, setVisibleCount] = useState(7)
+
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -73,6 +86,7 @@ function EventsScreen() {
   function handleEventTypeChange(type) {
     setEventType(type)
     setSelectedCategory('All')
+    setVisibleCount(7)
   }
 
   async function handleRsvp(e, eventId, hasRsvpd) {
@@ -188,7 +202,7 @@ function EventsScreen() {
           <button
             key={cat}
             className={`events-category-tab ${selectedCategory === cat ? 'active' : ''}`}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => { setSelectedCategory(cat); setVisibleCount(7) }}
           >
             {cat}
           </button>
@@ -214,92 +228,104 @@ function EventsScreen() {
             setShowCreateModal(true)
           }}
         />
-      ) : (
-        events.map(evt => {
-          const isDigital = evt.eventType === 'digital'
+      ) : (() => {
+        const limitedEvents = selectedCategory === 'All' ? events.slice(0, visibleCount) : events
+        const hasMore = selectedCategory === 'All' && events.length > visibleCount
+        return (
+          <>
+            {limitedEvents.map(evt => {
+              const isDigital = evt.eventType === 'digital'
+              const catMod = getCategoryMod(evt.category)
+              return (
+                <div
+                  key={evt.id}
+                  className={`event-card ${isDigital ? 'event-card-digital' : catMod ? `event-card-${catMod}` : ''}`}
+                  onClick={() => navigate(`/events/${evt.id}`)}
+                >
+                  <div className="event-card-header">
+                    <div className="event-card-title">
+                      {isDigital && <Video size={16} className="event-digital-icon" />}
+                      {evt.title}
+                    </div>
+                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
+                      {evt.status === 'live_now' && (
+                        <span className="event-live-badge"><span className="event-live-dot" />LIVE</span>
+                      )}
+                      {evt.status === 'recorded' && (
+                        <span className="event-recorded-badge">Watch Anytime</span>
+                      )}
+                      <span className={`event-card-category ${catMod ? `event-card-category-${catMod}` : ''}`}>{evt.category}</span>
+                    </div>
+                  </div>
 
-          return (
-            <div
-              key={evt.id}
-              className={`event-card ${isDigital ? 'event-card-digital' : ''}`}
-              onClick={() => navigate(`/events/${evt.id}`)}
-            >
-              <div className="event-card-header">
-                <div className="event-card-title">
-                  {isDigital && <Video size={16} className="event-digital-icon" />}
-                  {evt.title}
-                </div>
-                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
-                  {evt.status === 'live_now' && (
-                    <span className="event-live-badge"><span className="event-live-dot" />LIVE</span>
+                  <div className="event-card-meta">
+                    {evt.status === 'recorded' ? (
+                      <div className="event-card-meta-row">
+                        <Clock size={14} />
+                        <span>Available anytime</span>
+                      </div>
+                    ) : (
+                      <div className="event-card-meta-row">
+                        <Calendar size={14} />
+                        <span>{formatDateShort(evt.dateTime)} at {formatTime(evt.dateTime)}</span>
+                      </div>
+                    )}
+
+                    {isDigital && evt.eventLink ? (
+                      <div className="event-card-meta-row">
+                        <ExternalLink size={14} />
+                        <span className="event-platform-name">{getPlatformName(evt.eventLink)}</span>
+                      </div>
+                    ) : !isDigital && evt.location ? (
+                      <div className="event-card-meta-row">
+                        <MapPin size={14} />
+                        <span>{evt.location}</span>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  {evt.churchName && (
+                    <div className="event-card-church">{evt.churchName}</div>
                   )}
-                  {evt.status === 'recorded' && (
-                    <span className="event-recorded-badge">Watch Anytime</span>
-                  )}
-                  <span className="event-card-category">{evt.category}</span>
+
+                  <div className="event-card-footer">
+                    <div className="event-rsvp-count">
+                      <Users size={14} />
+                      <span>{evt.rsvpCount} {isDigital ? 'interested' : 'going'}</span>
+                    </div>
+                    {isDigital && evt.eventLink ? (
+                      <button
+                        className="event-join-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          window.open(evt.eventLink, '_blank', 'noopener,noreferrer')
+                        }}
+                      >
+                        {evt.isLive ? 'Join' : 'Watch'}
+                      </button>
+                    ) : (
+                      <button
+                        className={`event-rsvp-btn ${evt.hasRsvpd ? 'active' : ''}`}
+                        onClick={(e) => handleRsvp(e, evt.id, evt.hasRsvpd)}
+                      >
+                        {evt.hasRsvpd ? 'Going' : "I'm Going"}
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-
-              <div className="event-card-meta">
-                {/* Date/time — show differently for recorded vs live/in-person */}
-                {evt.status === 'recorded' ? (
-                  <div className="event-card-meta-row">
-                    <Clock size={14} />
-                    <span>Available anytime</span>
-                  </div>
-                ) : (
-                  <div className="event-card-meta-row">
-                    <Calendar size={14} />
-                    <span>{formatDateShort(evt.dateTime)} at {formatTime(evt.dateTime)}</span>
-                  </div>
-                )}
-
-                {/* Location (in-person) or Platform (digital) */}
-                {isDigital && evt.eventLink ? (
-                  <div className="event-card-meta-row">
-                    <ExternalLink size={14} />
-                    <span className="event-platform-name">{getPlatformName(evt.eventLink)}</span>
-                  </div>
-                ) : !isDigital && evt.location ? (
-                  <div className="event-card-meta-row">
-                    <MapPin size={14} />
-                    <span>{evt.location}</span>
-                  </div>
-                ) : null}
-              </div>
-
-              {evt.churchName && (
-                <div className="event-card-church">{evt.churchName}</div>
-              )}
-
-              <div className="event-card-footer">
-                <div className="event-rsvp-count">
-                  <Users size={14} />
-                  <span>{evt.rsvpCount} {isDigital ? 'interested' : 'going'}</span>
-                </div>
-                {isDigital && evt.eventLink ? (
-                  <button
-                    className="event-join-btn"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      window.open(evt.eventLink, '_blank', 'noopener,noreferrer')
-                    }}
-                  >
-                    {evt.isLive ? 'Join' : 'Watch'}
-                  </button>
-                ) : (
-                  <button
-                    className={`event-rsvp-btn ${evt.hasRsvpd ? 'active' : ''}`}
-                    onClick={(e) => handleRsvp(e, evt.id, evt.hasRsvpd)}
-                  >
-                    {evt.hasRsvpd ? 'Going' : "I'm Going"}
-                  </button>
-                )}
-              </div>
-            </div>
-          )
-        })
-      )}
+              )
+            })}
+            {hasMore && (
+              <button
+                className="show-more-btn"
+                onClick={() => setVisibleCount(c => c + 7)}
+              >
+                Show More ({events.length - visibleCount} remaining)
+              </button>
+            )}
+          </>
+        )
+      })()}
 
       {/* Create Event Modal */}
       <Modal

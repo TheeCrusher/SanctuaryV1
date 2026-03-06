@@ -9,17 +9,23 @@ import './Scripture.css'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
-import { ArrowLeft, Check, ChevronDown, ChevronRight } from 'lucide-react'
+import { ArrowLeft, Check, ChevronRight, BookOpen } from 'lucide-react'
 import { LoadingSpinner } from '../common'
+
+// Parse "John 1:1-end" or "1 Corinthians 13:4-7" → { book: "John", chapter: 1 }
+function parseRef(reference) {
+  const match = reference.match(/^(.*?)\s+(\d+)/)
+  if (!match) return null
+  return { book: match[1], chapter: parseInt(match[2]) }
+}
 
 function ReadingPlan() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { getReadingPlanDetail, getReadingProgress, markDayComplete } = useApp()
+  const { getReadingPlanDetail, getReadingProgress } = useApp()
 
   const [plan, setPlan] = useState(null)
   const [completedDays, setCompletedDays] = useState([])
-  const [expandedDay, setExpandedDay] = useState(null)
   const [loading, setLoading] = useState(true)
 
   // Load plan detail and progress on mount
@@ -40,17 +46,6 @@ function ReadingPlan() {
     }
     loadPlan()
   }, [id])
-
-  async function handleMarkComplete(dayNumber) {
-    if (completedDays.includes(dayNumber)) return // Already done
-
-    try {
-      const progressData = await markDayComplete(id, dayNumber)
-      setCompletedDays(progressData.completedDays || [])
-    } catch (error) {
-      // ignore
-    }
-  }
 
   if (loading) {
     return (
@@ -110,68 +105,40 @@ function ReadingPlan() {
         {/* Days List */}
         {plan.days && plan.days.map(day => {
           const isCompleted = completedDays.includes(day.dayNumber)
-          const isExpanded = expandedDay === day.dayNumber
+          const parsed = parseRef(day.reference)
+
+          function openInBible() {
+            if (!parsed) return
+            const nextDay = plan.days.find(d => d.dayNumber === day.dayNumber + 1)
+            const nextParsed = nextDay ? parseRef(nextDay.reference) : null
+            const params = new URLSearchParams({
+              planId: id,
+              dayNumber: day.dayNumber,
+              book: parsed.book,
+              chapter: parsed.chapter,
+              backTo: `/scripture/plan/${id}`
+            })
+            if (nextParsed) {
+              params.set('nextBook', nextParsed.book)
+              params.set('nextChapter', nextParsed.chapter)
+              params.set('nextDayNumber', nextDay.dayNumber)
+            }
+            navigate(`/bibles/reader?${params.toString()}`)
+          }
 
           return (
-            <div key={day.dayNumber}>
-              <div
-                className="plan-day-item"
-                onClick={() => setExpandedDay(isExpanded ? null : day.dayNumber)}
-              >
-                <div className={`plan-day-number ${isCompleted ? 'completed' : ''}`}>
-                  {isCompleted ? <Check size={18} /> : day.dayNumber}
-                </div>
-                <div className="plan-day-info">
-                  <div className="plan-day-title">{day.title}</div>
-                  <div className="plan-day-ref">{day.reference}</div>
-                </div>
-                {isExpanded
-                  ? <ChevronDown size={20} style={{ color: 'var(--text-faint)' }} />
-                  : <ChevronRight size={20} style={{ color: 'var(--text-faint)' }} />
-                }
+            <div key={day.dayNumber} className="plan-day-item" onClick={openInBible}>
+              <div className={`plan-day-number ${isCompleted ? 'completed' : ''}`}>
+                {isCompleted ? <Check size={18} /> : day.dayNumber}
               </div>
-
-              {/* Expanded Content */}
-              {isExpanded && (
-                <div style={{ padding: '12px 0 12px 48px' }}>
-                  <p style={{
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                    lineHeight: '1.6',
-                    marginBottom: '12px'
-                  }}>
-                    Read <strong>{day.reference}</strong> and reflect on what God is saying to you through this passage.
-                  </p>
-                  {!isCompleted && (
-                    <button
-                      className="btn-primary"
-                      style={{ padding: '10px 20px', fontSize: '14px' }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleMarkComplete(day.dayNumber)
-                      }}
-                    >
-                      <Check
-                        size={16}
-                        style={{ display: 'inline', verticalAlign: 'middle', marginRight: '6px' }}
-                      />
-                      Mark as Complete
-                    </button>
-                  )}
-                  {isCompleted && (
-                    <div style={{
-                      color: 'var(--badge-confirmed-text)',
-                      fontWeight: '600',
-                      fontSize: '14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}>
-                      <Check size={16} /> Completed
-                    </div>
-                  )}
-                </div>
-              )}
+              <div className="plan-day-info">
+                <div className="plan-day-title">{day.title}</div>
+                <div className="plan-day-ref">{day.reference}</div>
+              </div>
+              {parsed
+                ? <BookOpen size={18} style={{ color: 'var(--accent-gold-text)', flexShrink: 0 }} />
+                : <ChevronRight size={20} style={{ color: 'var(--text-faint)', flexShrink: 0 }} />
+              }
             </div>
           )
         })}

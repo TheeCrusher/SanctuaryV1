@@ -56,7 +56,7 @@ function ChurchDashboard() {
 
   function handleLogout() {
     churchLogout()
-    navigate('/login')
+    window.location.href = '/login'
   }
 
   async function loadPlans() {

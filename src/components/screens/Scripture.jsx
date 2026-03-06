@@ -38,6 +38,7 @@ function Scripture() {
   // Browse state
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [showBookmarksOnly, setShowBookmarksOnly] = useState(false)
+  const [versesVisible, setVersesVisible] = useState(7)
 
   // Random verse modal
   const [randomVerse, setRandomVerse] = useState(null)
@@ -298,7 +299,7 @@ function Scripture() {
             <div className="scripture-section-actions">
               <button
                 className={`scripture-small-btn ${showBookmarksOnly ? 'active' : ''}`}
-                onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
+                onClick={() => { setShowBookmarksOnly(!showBookmarksOnly); setVersesVisible(7) }}
                 style={showBookmarksOnly ? { background: 'var(--brand-primary)', color: 'white', borderColor: 'var(--brand-primary)' } : {}}
               >
                 <Bookmark size={12} /> Bookmarks
@@ -315,7 +316,7 @@ function Scripture() {
               <button
                 key={cat}
                 className={`category-pill ${selectedCategory === cat ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => { setSelectedCategory(cat); setVersesVisible(7) }}
               >
                 {cat}
               </button>
@@ -329,35 +330,55 @@ function Scripture() {
               title={showBookmarksOnly ? 'No bookmarks yet' : 'No verses in this category'}
               subtitle={showBookmarksOnly ? 'Tap the star on any verse to save it' : 'Try selecting a different category'}
             />
-          ) : (
-            displayedVerses.map(verse => (
-              <div key={verse.id} className="verse-card">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div className="verse-reference">{verse.reference}</div>
-                  <span className="verse-category-badge">{verse.category}</span>
-                </div>
-                <p className="verse-text">"{verse.text}"</p>
-                <div className="verse-actions">
+          ) : (() => {
+            const isAllUnfiltered = selectedCategory === 'All' && !showBookmarksOnly
+            const sliced = isAllUnfiltered ? displayedVerses.slice(0, versesVisible) : displayedVerses
+            const hasMore = isAllUnfiltered && displayedVerses.length > versesVisible
+            return (
+              <>
+                {sliced.map(verse => (
+                  <div key={verse.id} className="verse-card">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div className="verse-reference">{verse.reference}</div>
+                      <span className="verse-category-badge">{verse.category}</span>
+                    </div>
+                    <p className="verse-text">"{verse.text}"</p>
+                    <div className="verse-actions">
+                      <button
+                        className="verse-action-btn"
+                        onClick={() => toggleVerseBookmark(verse.id)}
+                        style={scriptureBookmarkIds.has(verse.id) ? { color: 'var(--accent-gold)' } : {}}
+                      >
+                        <Star
+                          size={18}
+                          fill={scriptureBookmarkIds.has(verse.id) ? 'var(--accent-gold)' : 'none'}
+                        />
+                      </button>
+                      <button
+                        className="verse-action-btn"
+                        onClick={() => handleShare(verse)}
+                      >
+                        <Share2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                {hasMore && (
                   <button
-                    className="verse-action-btn"
-                    onClick={() => toggleVerseBookmark(verse.id)}
-                    style={scriptureBookmarkIds.has(verse.id) ? { color: 'var(--accent-gold)' } : {}}
+                    className="show-more-btn"
+                    onClick={() => setVersesVisible(v => v + 7)}
                   >
-                    <Star
-                      size={18}
-                      fill={scriptureBookmarkIds.has(verse.id) ? 'var(--accent-gold)' : 'none'}
-                    />
+                    Show More
                   </button>
-                  <button
-                    className="verse-action-btn"
-                    onClick={() => handleShare(verse)}
-                  >
-                    <Share2 size={18} />
-                  </button>
-                </div>
-              </div>
-            ))
-          )}
+                )}
+                {isAllUnfiltered && !hasMore && displayedVerses.length > 7 && (
+                  <p className="verses-end-nudge">
+                    That's all for now — pick a category above or open the Bible reader for more.
+                  </p>
+                )}
+              </>
+            )
+          })()}
         </div>
       </div>
 

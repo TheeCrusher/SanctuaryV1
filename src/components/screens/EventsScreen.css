@@ -109,16 +109,28 @@
   flex-shrink: 0;
 }
 
-/* Category color variants */
-.event-card-category-worship {
+/* Category badge color variants */
+.event-card-category-worship,
+.event-card-category-bible {
   background: var(--accent-gold-light);
   color: var(--accent-gold-text);
 }
 
-.event-card-category-service,
-.event-card-category-mission {
+.event-card-category-prayer,
+.event-card-category-service {
   background: var(--accent-burgundy-light);
   color: var(--accent-burgundy-text);
+}
+
+/* Card left-border accent by category */
+.event-card-prayer,
+.event-card-service {
+  border-left: 3px solid var(--accent-burgundy);
+}
+
+.event-card-worship,
+.event-card-bible {
+  border-left: 3px solid var(--accent-gold);
 }
 
 .event-card-meta {
@@ -173,9 +185,9 @@
   gap: 6px;
   padding: 8px 16px;
   border-radius: 20px;
-  border: 1px solid var(--border-light);
-  background: var(--bg-card);
-  color: var(--text-secondary);
+  border: 1.5px solid var(--accent-gold);
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

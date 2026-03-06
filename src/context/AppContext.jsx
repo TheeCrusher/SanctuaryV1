@@ -123,23 +123,7 @@ export function AppProvider({ children }) {
       const churchQuery = churchParams.toString()
       const churchUrl = `/churches${churchQuery ? '?' + churchQuery : ''}`
 
-      const [
-        appointmentsRes,
-        conversationsRes,
-        churchesRes,
-        quoteRes,
-        peopleRes,
-        notesRes,
-        favoritesRes,
-        dailyVerseRes,
-        versesRes,
-        verseBookmarksRes,
-        plansRes,
-        bibleHighlightsRes,
-        bibleBookmarksRes,
-        unreadCountRes,
-        memoStatsRes
-      ] = await Promise.all([
+      const results = await Promise.allSettled([
         api.get('/appointments'),
         api.get('/conversations'),
         api.get(churchUrl),
@@ -157,33 +141,53 @@ export function AppProvider({ children }) {
         api.get('/scripture/memorization/stats')
       ])
 
-      appointments.setAppointments(appointmentsRes.appointments)
-      conversations.setConversations(conversationsRes.conversations)
-      conversations.setAvailablePeople(peopleRes.people)
+      const ok = (i) => results[i].status === 'fulfilled' ? results[i].value : null
+
+      const appointmentsRes    = ok(0)
+      const conversationsRes   = ok(1)
+      const churchesRes        = ok(2)
+      const quoteRes           = ok(3)
+      const peopleRes          = ok(4)
+      const notesRes           = ok(5)
+      const favoritesRes       = ok(6)
+      const dailyVerseRes      = ok(7)
+      const versesRes          = ok(8)
+      const verseBookmarksRes  = ok(9)
+      const plansRes           = ok(10)
+      const bibleHighlightsRes = ok(11)
+      const bibleBookmarksRes  = ok(12)
+      const unreadCountRes     = ok(13)
+      const memoStatsRes       = ok(14)
+
+      if (appointmentsRes) appointments.setAppointments(appointmentsRes.appointments)
+      if (conversationsRes) conversations.setConversations(conversationsRes.conversations)
+      if (peopleRes) conversations.setAvailablePeople(peopleRes.people)
 
       // Preferred church — prepend to list if not already present
-      let churchList = churchesRes.churches
-      if (churchesRes.preferred) {
-        const prefId = churchesRes.preferred.id
-        if (!churchList.find(c => c.id === prefId)) {
-          churchList = [churchesRes.preferred, ...churchList]
+      if (churchesRes) {
+        let churchList = churchesRes.churches
+        if (churchesRes.preferred) {
+          const prefId = churchesRes.preferred.id
+          if (!churchList.find(c => c.id === prefId)) {
+            churchList = [churchesRes.preferred, ...churchList]
+          }
         }
+        churches.setChurches(churchList)
       }
-      churches.setChurches(churchList)
-      churches.setFavoriteChurchIds(new Set(favoritesRes.favoriteIds))
+      if (favoritesRes) churches.setFavoriteChurchIds(new Set(favoritesRes.favoriteIds))
 
-      ui.setDailyQuote(quoteRes.quote)
-      ui.setNotes(notesRes.notes)
+      if (quoteRes) ui.setDailyQuote(quoteRes.quote)
+      if (notesRes) ui.setNotes(notesRes.notes)
 
-      scripture.setScriptureDailyVerse(dailyVerseRes.verse)
-      scripture.setScriptureVerses(versesRes.verses)
-      scripture.setScriptureBookmarkIds(new Set(verseBookmarksRes.bookmarkIds))
-      scripture.setReadingPlans(plansRes.plans)
-      scripture.setBibleHighlights(bibleHighlightsRes.highlights)
-      scripture.setBibleBookmarks(bibleBookmarksRes.bookmarks)
-      scripture.setMemorizationStats(memoStatsRes)
+      if (dailyVerseRes) scripture.setScriptureDailyVerse(dailyVerseRes.verse)
+      if (versesRes) scripture.setScriptureVerses(versesRes.verses)
+      if (verseBookmarksRes) scripture.setScriptureBookmarkIds(new Set(verseBookmarksRes.bookmarkIds))
+      if (plansRes) scripture.setReadingPlans(plansRes.plans)
+      if (bibleHighlightsRes) scripture.setBibleHighlights(bibleHighlightsRes.highlights)
+      if (bibleBookmarksRes) scripture.setBibleBookmarks(bibleBookmarksRes.bookmarks)
+      if (memoStatsRes) scripture.setMemorizationStats(memoStatsRes)
 
-      notifications.setUnreadNotifCount(unreadCountRes.count)
+      if (unreadCountRes) notifications.setUnreadNotifCount(unreadCountRes.count)
     } catch (error) {
       // ignore — individual screens handle their own error states
     }
@@ -200,6 +204,16 @@ export function AppProvider({ children }) {
       const token = getToken()
 
       if (!token) {
+        // No regular user — but still restore church session if present
+        const cToken = getChurchToken()
+        if (cToken) {
+          try {
+            const { churchAccount: acct } = await churchApi.get('/church-auth/me')
+            auth.setChurchAccount(acct)
+          } catch {
+            removeChurchToken()
+          }
+        }
         auth.setIsLoading(false)
         return
       }

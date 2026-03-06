@@ -51,6 +51,7 @@ import FindScreen from './components/screens/FindScreen'
 import BibleStudy from './components/screens/BibleStudy'
 import GuidePostsFeed from './components/screens/GuidePostsFeed'
 import WalkOnWater from './components/screens/WalkOnWater'
+import WordRain from './components/screens/WordRain'
 import ChurchDashboard from './components/screens/ChurchDashboard'
 import ChurchProfileEditor from './components/screens/ChurchProfileEditor'
 import ChurchCongregation from './components/screens/ChurchCongregation'
@@ -62,6 +63,13 @@ import { UserActionMenu } from './components/common'
 // =============================================================================
 // This component wraps routes that require authentication.
 // If the user isn't logged in, it redirects them to the login page.
+
+function ResetRoute() {
+  localStorage.removeItem('sanctuary_token')
+  localStorage.removeItem('sanctuary_church_token')
+  sessionStorage.removeItem('sanctuary_splash_v3')
+  return <Navigate to="/login" replace />
+}
 
 function ProtectedRoute({ children }) {
   const { user, isLoading } = useApp()
@@ -160,7 +168,7 @@ function App() {
   }, [churchAccount, location.pathname])
 
   // Pages where we DON'T show the bottom navigation
-  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water', '/church-dashboard', '/church-profile-editor', '/church-congregation', '/church-guides']
+  const noNavPages = ['/login', '/signup', '/forgot-password', '/chat', '/bibles/reader', '/walk-on-water', '/word-rain', '/church-dashboard', '/church-profile-editor', '/church-congregation', '/church-guides']
   const showNav = user && !noNavPages.some(page => location.pathname.startsWith(page))
 
   // Swipe navigation between the 4 main tabs
@@ -427,6 +435,15 @@ function App() {
         />
 
         <Route
+          path="/word-rain"
+          element={
+            <ProtectedRoute>
+              <WordRain />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/blocked-users"
           element={
             <ProtectedRoute>
@@ -530,6 +547,10 @@ function App() {
         <Route path="/church-profile-editor" element={<ChurchProtectedRoute><ChurchProfileEditor /></ChurchProtectedRoute>} />
         <Route path="/church-congregation" element={<ChurchProtectedRoute><ChurchCongregation /></ChurchProtectedRoute>} />
         <Route path="/church-guides" element={<ChurchProtectedRoute><ChurchGuides /></ChurchProtectedRoute>} />
+
+        {/* ====== RESET ROUTE ====== */}
+        {/* Clears all stored tokens/session and returns to login */}
+        <Route path="/reset" element={<ResetRoute />} />
 
         {/* ====== DEFAULT ROUTE ====== */}
         {/* Redirect root URL to dashboard (or login if not authenticated) */}

@@ -8,20 +8,23 @@ import '../layout/MoreMenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar } from '../common'
-import { Compass, Users, BookOpen, Heart, Calendar, LogOut, Waves, ChevronRight } from 'lucide-react'
+import { Compass, Users, BookOpen, Heart, Calendar, LogOut, Waves, CloudRain, ChevronRight } from 'lucide-react'
 
 function MoreMenu() {
   const navigate = useNavigate()
   const { user, logout } = useApp()
 
-  // Flat menu list — Community moved here from nav; Bible/Scripture combined into Bible Study nav tab
   const items = [
     { icon: Compass, text: 'Find Guides', subtitle: 'Browse guides & find churches', path: '/find', colorClass: 'icon-gold', tourId: 'more-find' },
     { icon: Users, text: 'Community', subtitle: 'Connect with believers', path: '/community', colorClass: 'icon-gold' },
     { icon: Heart, text: 'Prayer Board', subtitle: 'Community prayer requests', path: '/prayers', colorClass: 'icon-burgundy', tourId: 'more-prayer-board' },
     { icon: Calendar, text: 'Sessions', subtitle: 'Appointments & session notes', path: '/appointments', colorClass: 'icon-gold', tourId: 'more-sessions' },
     { icon: BookOpen, text: 'Guide Posts', subtitle: 'Devotionals & wisdom from guides', path: '/guide-posts', colorClass: 'icon-gold' },
-    { icon: Waves, text: 'Walk on Water', subtitle: 'Dodge serpents & feed the crowd', path: '/walk-on-water', colorClass: 'icon-gold' }
+  ]
+
+  const gameItems = [
+    { icon: Waves, text: 'Walk on Water', subtitle: 'Dodge serpents & feed the crowd', path: '/walk-on-water', colorClass: 'icon-gold' },
+    { icon: CloudRain, text: 'Word Rain', subtitle: 'Catch the falling verse', path: '/word-rain', colorClass: 'icon-gold' },
   ]
 
   async function handleLogout() {
@@ -50,6 +53,24 @@ function MoreMenu() {
               className="more-grid-tile"
               onClick={() => navigate(item.path)}
               {...(item.tourId ? { 'data-tour-id': item.tourId } : {})}
+            >
+              <span className={`more-grid-tile-icon ${item.colorClass || ''}`}>
+                <item.icon size={28} />
+              </span>
+              <span className="more-grid-tile-text">{item.text}</span>
+              <span className="more-grid-tile-subtitle">{item.subtitle}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Games Section */}
+        <div className="more-section-label">Games</div>
+        <div className="more-grid-container">
+          {gameItems.map((item) => (
+            <button
+              key={item.text}
+              className="more-grid-tile"
+              onClick={() => navigate(item.path)}
             >
               <span className={`more-grid-tile-icon ${item.colorClass || ''}`}>
                 <item.icon size={28} />

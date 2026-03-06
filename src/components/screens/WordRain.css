@@ -1,0 +1,682 @@
+/* =============================================================================
+   WORD RAIN GAME STYLES
+   ============================================================================= */
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+
+.wr-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.wr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg-primary);
+  z-index: 10;
+}
+
+.wr-back-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.wr-back-btn:hover {
+  background: var(--bg-muted);
+}
+
+.wr-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wr-score {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  min-width: 64px;
+  text-align: right;
+}
+
+.wr-header-spacer {
+  min-width: 64px;
+}
+
+/* ── Source Select ────────────────────────────────────────────────────────── */
+
+.wr-source-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.wr-source-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+}
+
+/* ── Playing layout ───────────────────────────────────────────────────────── */
+
+.wr-playing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Status bar (hearts + progress) ──────────────────────────────────────── */
+
+.wr-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 8px;
+  flex-shrink: 0;
+}
+
+.wr-hearts {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.wr-heart {
+  transition: transform 0.2s;
+}
+
+.wr-heart-full {
+  color: var(--accent-burgundy);
+}
+
+.wr-heart-empty {
+  color: var(--border);
+}
+
+.wr-progress {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.wr-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.wr-progress-dot.active {
+  background: var(--accent-gold);
+  transform: scale(1.2);
+}
+
+.wr-progress-dot.done {
+  background: var(--accent-gold);
+  opacity: 0.5;
+}
+
+/* ── Verse panel ──────────────────────────────────────────────────────────── */
+
+.wr-verse-panel {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  margin: 0 16px 12px;
+  padding: 14px 16px;
+  flex-shrink: 0;
+}
+
+.wr-verse-ref {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.wr-verse-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.wr-word {
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.wr-word-done {
+  color: var(--text-faint);
+}
+
+.wr-word-target {
+  color: var(--accent-gold);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+
+/* ── How to Play card ─────────────────────────────────────────────────────── */
+
+.wr-how-to {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.wr-how-to-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.wr-how-to-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.wr-how-to-row:last-child {
+  margin-bottom: 0;
+}
+
+.wr-how-to-icon {
+  flex-shrink: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* ── Game area (falling bubbles) ──────────────────────────────────────────── */
+
+.wr-game-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  margin: 0 8px;
+  border-radius: 12px;
+}
+
+/* ── Word bubbles ─────────────────────────────────────────────────────────── */
+
+.wr-bubble {
+  position: absolute;
+  width: 90px;
+  padding: 10px 8px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.wr-bubble:active {
+  transform: scale(0.92);
+}
+
+.wr-bubble-falling {
+  /* default styles above */
+}
+
+.wr-bubble-correct {
+  background: color-mix(in srgb, var(--accent-gold) 20%, var(--bg-secondary));
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  animation: wr-pop 0.3s ease;
+}
+
+.wr-bubble-wrong {
+  background: color-mix(in srgb, var(--accent-burgundy) 20%, var(--bg-secondary));
+  border-color: var(--accent-burgundy);
+  color: var(--accent-burgundy);
+  animation: wr-shake 0.4s ease;
+}
+
+.wr-bubble-missed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes wr-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wr-shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-8px); }
+  40%  { transform: translateX(8px); }
+  60%  { transform: translateX(-6px); }
+  80%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Results ──────────────────────────────────────────────────────────────── */
+
+.wr-results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.wr-results-score {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.wr-results-label {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.wr-results-verses {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.wr-results-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 260px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.wr-results-streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: color-mix(in srgb, var(--accent-gold) 12%, var(--bg-secondary));
+  color: var(--accent-gold);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.wr-results-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.wr-result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+}
+
+.wr-result-ref {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.wr-result-badge {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wr-result-row.done .wr-result-badge {
+  color: var(--accent-gold);
+}
+
+.wr-result-row.failed .wr-result-badge {
+  color: var(--accent-burgundy);
+}
+
+.wr-results-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ── Header right group (score + pause) ──────────────────────────────────── */
+
+.wr-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+  justify-content: flex-end;
+}
+
+.wr-pause-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.wr-pause-btn:hover {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+/* ── Difficulty pills ─────────────────────────────────────────────────────── */
+
+.wr-difficulty-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  margin-bottom: 16px;
+}
+
+.wr-difficulty-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.wr-difficulty-pill {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.wr-difficulty-pill.active {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: color-mix(in srgb, var(--accent-gold) 10%, var(--bg-secondary));
+}
+
+/* ── Source card best score ───────────────────────────────────────────────── */
+
+.wr-card-best {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-top: 4px;
+}
+
+/* ── Combo badge ──────────────────────────────────────────────────────────── */
+
+.wr-combo-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  background: color-mix(in srgb, var(--accent-gold) 12%, var(--bg-secondary));
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 4px;
+  animation: wr-combo-pulse 0.3s ease;
+}
+
+@keyframes wr-combo-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ── Boss verse progress dot ──────────────────────────────────────────────── */
+
+.wr-progress-dot.boss {
+  background: color-mix(in srgb, var(--accent-gold) 40%, var(--border));
+  position: relative;
+}
+
+.wr-progress-dot.boss.active {
+  background: var(--accent-gold);
+  box-shadow: 0 0 6px var(--accent-gold);
+}
+
+/* ── Verse panel flash + boss ─────────────────────────────────────────────── */
+
+.wr-verse-panel.flash {
+  animation: wr-panel-flash 0.3s ease;
+}
+
+.wr-verse-panel.boss {
+  border: 1.5px solid color-mix(in srgb, var(--accent-gold) 40%, transparent);
+}
+
+@keyframes wr-panel-flash {
+  0%   { box-shadow: none; }
+  40%  { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-gold) 30%, transparent); }
+  100% { box-shadow: none; }
+}
+
+/* ── Floating feedback pops ───────────────────────────────────────────────── */
+
+.wr-feedback-pop {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  animation: wr-pop-rise 0.9s ease forwards;
+  z-index: 20;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes wr-pop-rise {
+  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  70%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-60px); }
+}
+
+/* ── Pause overlay ────────────────────────────────────────────────────────── */
+
+.wr-pause-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px;
+  z-index: 30;
+  border-radius: 0;
+}
+
+.wr-pause-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* ── Boss intro screen ────────────────────────────────────────────────────── */
+
+.wr-boss-intro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  animation: wr-boss-fade 0.4s ease;
+}
+
+@keyframes wr-boss-fade {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.wr-boss-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  animation: wr-boss-pulse 0.8s ease infinite alternate;
+}
+
+@keyframes wr-boss-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
+}
+
+.wr-boss-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.wr-boss-ref {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.wr-boss-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* ── Verse reveal (after failure) ────────────────────────────────────────── */
+
+.wr-reveal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  gap: 16px;
+}
+
+.wr-reveal-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-burgundy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.wr-reveal-ref {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.wr-reveal-text {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  font-style: italic;
+  max-width: 320px;
+}
+
+.wr-reveal-countdown {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: -4px;
+}
+
+/* ── New best badge ───────────────────────────────────────────────────────── */
+
+.wr-new-best {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--bg-primary);
+  background: var(--accent-gold);
+  border-radius: 20px;
+  padding: 4px 14px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  animation: wr-pop 0.4s ease;
+}
+
+/* ── Per-word results ─────────────────────────────────────────────────────── */
+
+.wr-result-words {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.wr-result-row.done .wr-result-words {
+  color: var(--accent-gold);
+}
+
+.wr-result-row.failed .wr-result-words {
+  color: var(--accent-burgundy);
+}
+
+/* ── Dark mode ────────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] .wr-bubble {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .wr-bubble-correct {
+  background: color-mix(in srgb, var(--accent-gold) 15%, var(--bg-secondary));
+}
+
+[data-theme="dark"] .wr-bubble-wrong {
+  background: color-mix(in srgb, var(--accent-burgundy) 15%, var(--bg-secondary));
+}

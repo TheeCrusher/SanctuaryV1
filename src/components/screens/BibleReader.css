@@ -232,6 +232,79 @@
   opacity: 0.85;
 }
 
+/* ---- Reading Plan Bar ---- */
+.bible-plan-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-primary);
+  z-index: 11;
+}
+
+.bible-plan-bar-day {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.bible-plan-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bible-plan-mark-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color);
+  background: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bible-plan-mark-btn:active {
+  background: var(--bg-muted);
+}
+
+.bible-plan-read-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-gold-text);
+}
+
+.bible-plan-continue-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: var(--brand-primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bible-plan-continue-btn:active {
+  opacity: 0.85;
+}
+
 /* ---- Tools FAB (floating action button) ---- */
 .bible-tools-fab {
   position: fixed;

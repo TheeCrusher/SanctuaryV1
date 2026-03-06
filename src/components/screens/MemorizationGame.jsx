@@ -348,31 +348,37 @@ function MemorizationGame() {
               <p className="game-screen-subtitle">Choose your verses to practice with</p>
             </div>
 
-            <div className="game-source-grid">
-              {bookmarkCount > 0 && (
-                <div
-                  className={`game-source-card ${source === 'bookmarks' ? 'selected' : ''}`}
-                  onClick={() => setSource('bookmarks')}
-                >
-                  <div className="game-source-title">My Bookmarks</div>
-                  <div className="game-source-desc">{bookmarkCount} saved verse{bookmarkCount !== 1 ? 's' : ''}</div>
-                </div>
-              )}
-
-              {categories.map(cat => {
-                const count = scriptureVerses.filter(v => v.category === cat).length
-                return (
+            {scriptureVerses.length === 0 ? (
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '14px', padding: '24px 0' }}>
+                Loading verses…
+              </p>
+            ) : (
+              <div className="game-source-grid">
+                {bookmarkCount > 0 && (
                   <div
-                    key={cat}
-                    className={`game-source-card ${source === cat ? 'selected' : ''}`}
-                    onClick={() => setSource(cat)}
+                    className={`game-source-card ${source === 'bookmarks' ? 'selected' : ''}`}
+                    onClick={() => setSource('bookmarks')}
                   >
-                    <div className="game-source-title">{cat}</div>
-                    <div className="game-source-desc">{count} verse{count !== 1 ? 's' : ''}</div>
+                    <div className="game-source-title">My Bookmarks</div>
+                    <div className="game-source-desc">{bookmarkCount} saved verse{bookmarkCount !== 1 ? 's' : ''}</div>
                   </div>
-                )
-              })}
-            </div>
+                )}
+
+                {categories.map(cat => {
+                  const count = scriptureVerses.filter(v => v.category === cat).length
+                  return (
+                    <div
+                      key={cat}
+                      className={`game-source-card ${source === cat ? 'selected' : ''}`}
+                      onClick={() => setSource(cat)}
+                    >
+                      <div className="game-source-title">{cat}</div>
+                      <div className="game-source-desc">{count} verse{count !== 1 ? 's' : ''}</div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
 
             <button
               className="btn-primary"

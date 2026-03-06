@@ -7,11 +7,11 @@
 
 import './BibleReader.css'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   ArrowLeft, ChevronLeft, ChevronRight, BookOpen,
   Search, Highlighter, Bookmark, BookMarked,
-  X, Loader2
+  X, Loader2, Check
 } from 'lucide-react'
 import { LoadingSpinner } from '../common'
 import { useBibleData } from '../../hooks/useBibleData'
@@ -28,6 +28,7 @@ const HIGHLIGHT_COLORS = [
 
 function BibleReader() {
   const navigate = useNavigate()
+  const location = useLocation()
   const contentRef = useRef(null)
   const touchStartRef = useRef({ x: 0, y: 0 })
 
@@ -41,8 +42,42 @@ function BibleReader() {
     addBibleHighlight,
     removeBibleHighlight,
     addBibleBookmark,
-    removeBibleBookmark
+    removeBibleBookmark,
+    markDayComplete
   } = useApp()
+
+  // Reading plan context (when opened from a reading plan day)
+  const [planContext, setPlanContext] = useState(null)
+  const [dayMarked, setDayMarked] = useState(false)
+
+  // Parse URL params after Bible data loads, and whenever URL changes
+  useEffect(() => {
+    if (loading) return
+    const params = new URLSearchParams(location.search)
+    const bookName = params.get('book')
+    const chapterNum = parseInt(params.get('chapter'))
+    if (bookName && chapterNum) {
+      const bIdx = books.findIndex(b => b.name === bookName)
+      if (bIdx >= 0) {
+        setBookIndex(bIdx)
+        setChapterIndex(chapterNum - 1)
+      }
+    }
+    const planId = params.get('planId')
+    if (planId) {
+      setPlanContext({
+        planId,
+        dayNumber: parseInt(params.get('dayNumber')),
+        nextBook: params.get('nextBook'),
+        nextChapter: params.get('nextChapter') ? parseInt(params.get('nextChapter')) : null,
+        nextDayNumber: params.get('nextDayNumber') ? parseInt(params.get('nextDayNumber')) : null,
+        backTo: params.get('backTo') || '/bibles'
+      })
+      setDayMarked(false)
+    } else {
+      setPlanContext(null)
+    }
+  }, [loading, location.search])
 
   // ----- LOCAL STATE -----
   const [bookIndex, setBookIndex] = useState(0)         // Current book (0 = Genesis)
@@ -221,7 +256,7 @@ function BibleReader() {
     <div className="bible-reader">
       {/* ===== TOP BAR ===== */}
       <div className="bible-top-bar">
-        <button className="bible-top-btn" onClick={() => navigate('/bibles')}>
+        <button className="bible-top-btn" onClick={() => navigate(planContext?.backTo || '/bibles')}>
           <ArrowLeft size={22} />
         </button>
         <button className="bible-location-btn" onClick={openPicker}>
@@ -306,9 +341,54 @@ function BibleReader() {
         </div>
       )}
 
+      {/* ===== READING PLAN BAR ===== */}
+      {planContext && !showTools && !selectedVerse && (
+        <div className="bible-plan-bar">
+          <span className="bible-plan-bar-day">Day {planContext.dayNumber}</span>
+          <div className="bible-plan-bar-actions">
+            {!dayMarked ? (
+              <button
+                className="bible-plan-mark-btn"
+                onClick={async () => {
+                  try {
+                    await markDayComplete(planContext.planId, planContext.dayNumber)
+                    setDayMarked(true)
+                  } catch {
+                    // ignore
+                  }
+                }}
+              >
+                <Check size={15} /> Mark as Read
+              </button>
+            ) : (
+              <span className="bible-plan-read-badge"><Check size={13} /> Read</span>
+            )}
+            {planContext.nextBook && planContext.nextChapter && (
+              <button
+                className="bible-plan-continue-btn"
+                onClick={() => {
+                  const p = new URLSearchParams({
+                    planId: planContext.planId,
+                    dayNumber: planContext.nextDayNumber,
+                    book: planContext.nextBook,
+                    chapter: planContext.nextChapter,
+                    backTo: planContext.backTo
+                  })
+                  navigate(`/bibles/reader?${p.toString()}`)
+                }}
+              >
+                Continue <ChevronRight size={15} />
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* ===== TOOLS BUTTON ===== */}
       {!showTools && !selectedVerse && (
-        <button className="bible-tools-fab" onClick={() => setShowTools(true)}>
+        <button className="bible-tools-fab" onClick={() => setShowTools(true)}
+          style={planContext ? { bottom: '76px' } : {}}
+        >
           <Search size={20} />
           <span>Tools</span>
         </button>

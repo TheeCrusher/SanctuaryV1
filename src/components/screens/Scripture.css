@@ -117,6 +117,14 @@
   border-color: var(--brand-primary);
 }
 
+.verses-end-nudge {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-faint);
+  padding: 16px 8px 4px;
+  line-height: 1.5;
+}
+
 /* ---- Individual verse card in browse list ---- */
 .verse-card {
   padding: 16px 0;
@@ -288,7 +296,7 @@
 .scripture-section-title {
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--accent-gold-text);
   margin: 0;
 }
 

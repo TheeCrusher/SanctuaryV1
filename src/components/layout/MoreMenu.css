@@ -135,6 +135,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--bg-accent);
+  color: var(--text-secondary);
+}
+
+.more-grid-tile-icon.icon-gold {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold-text);
+}
+
+.more-grid-tile-icon.icon-burgundy {
+  background: var(--accent-burgundy-light);
+  color: var(--accent-burgundy-text);
 }
 
 .more-grid-tile-text {
