@@ -82,6 +82,7 @@ async function apiFetch(endpoint, options = {}) {
   if (!response.ok) {
     const error = new Error(data.error || 'Something went wrong')
     error.status = response.status
+    error.code = data.code || null
     throw error
   }
 

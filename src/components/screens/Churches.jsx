@@ -11,9 +11,34 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Card } from '../common'
 import { useState } from 'react'
-import { X, Church, Heart, Search, MapPin, Star } from 'lucide-react'
+import { X, Heart, Search, MapPin, Star } from 'lucide-react'
 
 import { API_BASE } from '../../utils/api'
+
+// Warm, spiritual color palette for church initials tiles
+const CHURCH_COLORS = [
+  '#8B0000', '#C9A227', '#1e3a5f', '#1B4332',
+  '#6b3a2a', '#4a2c6e', '#2d6a4f', '#7b3f00',
+  '#1a3a4a', '#5c1a1a', '#2c4a1e', '#8B4513'
+]
+
+function getChurchInitials(name) {
+  if (!name) return '?'
+  const skip = new Set(['the','of','in','at','and','a','an','&','church','chapel'])
+  const words = name.trim().split(/\s+/).filter(w => !skip.has(w.toLowerCase()))
+  if (words.length === 0) return name[0].toUpperCase()
+  if (words.length === 1) return words[0][0].toUpperCase()
+  return (words[0][0] + words[1][0]).toUpperCase()
+}
+
+function getChurchColor(name) {
+  if (!name) return CHURCH_COLORS[0]
+  let hash = 0
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  return CHURCH_COLORS[Math.abs(hash) % CHURCH_COLORS.length]
+}
 
 function Churches() {
   const navigate = useNavigate()
@@ -105,12 +130,15 @@ function Churches() {
 
   return (
     <div className="screen with-bottom-nav">
-      {/* Header */}
+      {/* Header — title only (hidden when inside FindScreen) */}
       <div className="screen-header">
-        <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>
+        <h1 style={{ fontSize: '24px', fontWeight: '700' }}>
           Find Churches
         </h1>
+      </div>
 
+      {/* Content */}
+      <div className="screen-content">
         {/* Search Input */}
         <div className="church-search-bar">
           <Search size={18} className="church-search-icon" />
@@ -138,7 +166,7 @@ function Churches() {
 
         {/* Result count or favorites toggle */}
         {hasSearched ? (
-          <div style={{ fontSize: '14px', color: 'var(--text-muted)', marginTop: '8px' }}>
+          <div style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '8px' }}>
             {loading ? 'Searching Google Places...' : `Showing ${Math.min(visibleCount, churchSearchResults.length)} of ${churchSearchResults.length} results for "${query}"`}
           </div>
         ) : favoriteChurchIds.size > 0 ? (
@@ -154,10 +182,6 @@ function Churches() {
             My Favorites ({favoriteChurchIds.size})
           </button>
         ) : null}
-      </div>
-
-      {/* Content */}
-      <div className="screen-content">
         {loading && !churchSearchResults.length ? (
           <div className="empty-state">
             <div className="empty-text">Searching Google Places...</div>
@@ -167,7 +191,7 @@ function Churches() {
           // ===== GOOGLE SEARCH RESULTS =====
           churchSearchResults.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-icon"><Church size={48} /></div>
+              <div className="church-initials-tile church-initials-tile-lg" style={{ background: 'var(--accent-gold)', opacity: 0.4, margin: '0 auto 12px' }}>?</div>
               <div className="empty-text">No churches found</div>
               <div className="empty-subtext">Try a different search term</div>
             </div>
@@ -181,7 +205,9 @@ function Churches() {
                   <div style={{ display: 'flex', gap: '12px' }}>
                     {/* Church Photo from Google (via our proxy) */}
                     <div className="church-photo-container">
-                      <Church size={32} color="var(--text-faint)" className="church-photo-fallback" />
+                      <div className="church-initials-tile" style={{ background: getChurchColor(result.name) }}>
+                        {getChurchInitials(result.name)}
+                      </div>
                       {result.hasPhoto && (
                         <img
                           src={`${API_BASE}/api/churches/photo/${result.googlePlaceId}`}
@@ -293,7 +319,7 @@ function Churches() {
           // ===== DEFAULT VIEW (no search) =====
           defaultChurches.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-icon"><Church size={48} /></div>
+              <div className="church-initials-tile church-initials-tile-lg" style={{ background: 'var(--accent-gold)', opacity: 0.4, margin: '0 auto 12px' }}>?</div>
               {!user?.state ? (
                 <>
                   <div className="empty-text">Set your location to see nearby churches</div>
@@ -320,7 +346,9 @@ function Churches() {
                   <div style={{ display: 'flex', gap: '12px' }}>
                     {/* Church Photo */}
                     <div className="church-photo-container">
-                      <Church size={32} color="var(--text-faint)" className="church-photo-fallback" />
+                      <div className="church-initials-tile" style={{ background: getChurchColor(church.name) }}>
+                        {getChurchInitials(church.name)}
+                      </div>
                       {church.googlePlaceId ? (
                         <img
                           src={`${API_BASE}/api/churches/photo/${church.googlePlaceId}`}

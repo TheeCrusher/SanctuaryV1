@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card, Modal, EmptyState, LoadingSpinner, ErrorState } from '../common'
-import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles, Church } from 'lucide-react'
+import { Search, ChevronDown, ChevronUp, Check, X, Users, UserPlus, Plus, MessageCircle, ChevronRight, Share2, Sparkles, Church, Mail, Eye, EyeOff } from 'lucide-react'
 import { api } from '../../utils/api'
 
 function CommunityScreen() {
@@ -23,7 +23,8 @@ function CommunityScreen() {
     selectConversation,
     startNewConversation,
     onlineUsers,
-    showUserActionMenu
+    showUserActionMenu,
+    updateProfile
   } = useApp()
 
   // Top-level toggle: 'community' or 'messages'
@@ -41,9 +42,12 @@ function CommunityScreen() {
   const [error, setError] = useState(null)
 
   // Messages state
+  const [messagesTab, setMessagesTab] = useState('inbox') // 'inbox' | 'requests'
+  const [messageRequests, setMessageRequests] = useState([])
   const [showNewConvModal, setShowNewConvModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [convError, setConvError] = useState(null)
 
   // Invite Friends state
   const [copied, setCopied] = useState(false)
@@ -76,14 +80,16 @@ function CommunityScreen() {
     try {
       setLoading(true)
       setError(null)
-      const [communityRes, pendingRes, suggestedRes] = await Promise.all([
+      const [communityRes, pendingRes, suggestedRes, requestsRes] = await Promise.all([
         api.get('/community'),
         api.get('/community/pending'),
-        api.get('/users/suggested?limit=5')
+        api.get('/users/suggested?limit=5'),
+        api.get('/conversations/requests')
       ])
       setCommunity(communityRes.community || [])
       setPending(pendingRes || { incoming: [], outgoing: [] })
       setSuggested(suggestedRes.suggested || [])
+      setMessageRequests(requestsRes.requests || [])
     } catch (err) {
       setError('Failed to load community. Please try again.')
     } finally {
@@ -150,10 +156,39 @@ function CommunityScreen() {
   }
 
   async function handleNewConversation(personId) {
-    await startNewConversation(personId)
+    setConvError(null)
+    const result = await startNewConversation(personId)
     setShowNewConvModal(false)
     setSearchQuery('')
+    if (!result || !result.ok) {
+      setConvError(result?.error || 'Could not start conversation.')
+      return
+    }
+    if (result.isRequest) {
+      setConvError('__request_sent__')
+      return
+    }
     navigate('/chat')
+  }
+
+  async function handleAcceptRequest(convId) {
+    try {
+      await api.post(`/conversations/${convId}/accept`)
+      const { requests } = await api.get('/conversations/requests')
+      setMessageRequests(requests || [])
+      setMessagesTab('inbox')
+    } catch (err) {
+      // ignore
+    }
+  }
+
+  async function handleDeclineRequest(convId) {
+    try {
+      await api.post(`/conversations/${convId}/decline`)
+      setMessageRequests(prev => prev.filter(r => r.id !== convId))
+    } catch (err) {
+      // ignore
+    }
   }
 
   function handleCloseModal() {
@@ -270,13 +305,36 @@ function CommunityScreen() {
         {/* Messages sub-header */}
         {topTab === 'messages' && (
           <div className="community-messages-header">
-            <h2>Messages</h2>
-            <button
-              className="icon-btn"
-              onClick={() => setShowNewConvModal(true)}
-            >
-              <Plus size={22} />
-            </button>
+            <div className="messages-sub-tabs">
+              <button
+                className={`messages-sub-tab ${messagesTab === 'inbox' ? 'active' : ''}`}
+                onClick={() => setMessagesTab('inbox')}
+              >
+                Inbox
+              </button>
+              <button
+                className={`messages-sub-tab ${messagesTab === 'requests' ? 'active' : ''}`}
+                onClick={() => setMessagesTab('requests')}
+              >
+                Requests
+                {messageRequests.length > 0 && (
+                  <span className="messages-requests-badge">{messageRequests.length}</span>
+                )}
+              </button>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <button
+                className={`messages-visibility-chip ${user?.discoverable !== false ? 'visible' : 'hidden'}`}
+                onClick={() => updateProfile({ discoverable: !(user?.discoverable !== false) })}
+                title={user?.discoverable !== false ? 'You are visible — tap to hide' : 'You are hidden — tap to show'}
+              >
+                {user?.discoverable !== false ? <Eye size={14} /> : <EyeOff size={14} />}
+                {user?.discoverable !== false ? 'Visible' : 'Hidden'}
+              </button>
+              <button className="icon-btn" onClick={() => setShowNewConvModal(true)}>
+                <Plus size={22} />
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -454,32 +512,33 @@ function CommunityScreen() {
               </div>
             )}
           </>
-        ) : (
+        ) : messagesTab === 'inbox' ? (
           <>
-            {/* Messages conversation list */}
+            {/* Permission error / request-sent feedback */}
+            {convError && (
+              <div className={`conv-feedback ${convError === '__request_sent__' ? 'conv-feedback-info' : 'conv-feedback-error'}`}>
+                {convError === '__request_sent__'
+                  ? 'Message request sent. You\'ll be notified when they accept.'
+                  : convError}
+                <button className="conv-feedback-close" onClick={() => setConvError(null)}><X size={14} /></button>
+              </div>
+            )}
             {conversations.length === 0 ? (
               <EmptyState
                 icon={MessageCircle}
                 title="No conversations yet"
-                subtitle="Start a conversation with a seeker"
+                subtitle="Start a conversation with someone"
                 actionLabel="New Message"
                 onAction={() => setShowNewConvModal(true)}
               />
             ) : (
               conversations.map(conv => (
-                <Card
-                  key={conv.id}
-                  onClick={() => handleConversationClick(conv.id)}
-                >
+                <Card key={conv.id} onClick={() => handleConversationClick(conv.id)}>
                   <div className="conv-row">
                     <div className="conv-avatar-wrap">
                       <Avatar src={conv.photoUrl} emoji={conv.avatar} name={conv.name} size="md" variant="blue" />
-                      {onlineUsers.has(conv.personId) && (
-                        <span className="online-dot" />
-                      )}
-                      {conv.unread > 0 && (
-                        <span className="unread-badge">{conv.unread}</span>
-                      )}
+                      {onlineUsers.has(conv.personId) && <span className="online-dot" />}
+                      {conv.unread > 0 && <span className="unread-badge">{conv.unread}</span>}
                     </div>
                     <div className="conv-info">
                       <div className="conv-header">
@@ -487,6 +546,48 @@ function CommunityScreen() {
                         <span className="conv-time">{conv.time}</span>
                       </div>
                       <div className="conv-preview">{conv.last}</div>
+                    </div>
+                  </div>
+                </Card>
+              ))
+            )}
+          </>
+        ) : (
+          <>
+            {/* Message Requests tab */}
+            {messageRequests.length === 0 ? (
+              <EmptyState
+                icon={Mail}
+                title="No message requests"
+                subtitle="When someone outside your connections messages you, they'll appear here"
+              />
+            ) : (
+              messageRequests.map(req => (
+                <Card key={req.id}>
+                  <div className="conv-row">
+                    <Avatar src={req.photoUrl} emoji={req.avatar} name={req.name} size="md" variant="blue" />
+                    <div className="conv-info">
+                      <div className="conv-header">
+                        <span className="conv-name">{req.name}</span>
+                        <span className="conv-time">{req.time}</span>
+                      </div>
+                      {req.preview && <div className="conv-preview">{req.preview}</div>}
+                    </div>
+                    <div className="msg-request-actions">
+                      <button
+                        className="pending-btn pending-btn-accept"
+                        onClick={() => handleAcceptRequest(req.id)}
+                        title="Accept"
+                      >
+                        <Check size={16} />
+                      </button>
+                      <button
+                        className="pending-btn pending-btn-decline"
+                        onClick={() => handleDeclineRequest(req.id)}
+                        title="Decline"
+                      >
+                        <X size={16} />
+                      </button>
                     </div>
                   </div>
                 </Card>

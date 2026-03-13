@@ -23,10 +23,17 @@ export function useConversationSlice() {
   async function startNewConversation(personId) {
     try {
       const { conversation } = await api.post('/conversations', { personId })
+
+      // If this is a message request (recipient has connections-only permission
+      // and we're not connected), don't open chat — just confirm the request was sent.
+      if (conversation.status === 'request') {
+        return { ok: true, isRequest: true, conversation }
+      }
+
       const convWithMsgs = { ...conversation, msgs: [] }
       setSelectedConversation(convWithMsgs)
 
-      // Add to list if it's genuinely new
+      // Add to active list if it's genuinely new
       setConversations(prev => {
         const exists = prev.find(c => c.id === conversation.id)
         if (exists) return prev
@@ -43,9 +50,9 @@ export function useConversationSlice() {
         // ignore
       }
 
-      return convWithMsgs
+      return { ok: true, isRequest: false, conversation: convWithMsgs }
     } catch (error) {
-      return null
+      return { ok: false, error: error.message || 'Could not start conversation.', code: error.code || null }
     }
   }
 

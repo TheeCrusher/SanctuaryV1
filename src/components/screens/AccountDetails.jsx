@@ -7,7 +7,7 @@
 
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Check, X, MapPin } from 'lucide-react'
+import { ArrowLeft, Check, X, MapPin, Shield, ChevronRight } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { Avatar, Card } from '../common'
 import { US_STATES, getStateName } from '../../utils/constants'
@@ -323,6 +323,23 @@ function AccountDetails() {
             </button>
           </>
         )}
+
+        {/* Privacy & Messaging — navigates to dedicated settings screen */}
+        <div className="account-section-label">Privacy</div>
+        <Card onClick={() => navigate('/privacy-messaging')} style={{ cursor: 'pointer' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ color: 'var(--accent-gold)' }}><Shield size={20} /></span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>Privacy & Messaging</div>
+                <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>
+                  Discovery visibility · Who can message you
+                </div>
+              </div>
+            </div>
+            <ChevronRight size={18} color="var(--text-faint)" />
+          </div>
+        </Card>
       </div>
     </div>
   )

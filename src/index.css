@@ -522,6 +522,84 @@ textarea {
   padding-bottom: 100px;
 }
 
+/* Account Details section divider label */
+.account-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin: 24px 0 8px;
+}
+
+/* Privacy & Messaging option cards */
+.pm-option-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.pm-option-card.pm-option-selected {
+  border-color: var(--accent-gold);
+  background: color-mix(in srgb, var(--accent-gold) 8%, var(--bg-primary));
+}
+
+.pm-option-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.pm-option-icon {
+  color: var(--text-faint);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.pm-option-icon-active {
+  color: var(--accent-gold);
+}
+
+.pm-option-text {
+  flex: 1;
+}
+
+.pm-option-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.pm-option-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.pm-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+
+.pm-radio-selected {
+  border: 5px solid var(--accent-gold);
+}
+
 /* Account Details Edit Mode */
 .account-edit-label {
   display: block;

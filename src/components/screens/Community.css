@@ -631,6 +631,112 @@
   margin: 0;
 }
 
+/* Messages inbox / requests sub-tabs */
+.messages-sub-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.messages-sub-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.messages-sub-tab.active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+.messages-requests-badge {
+  background: var(--accent-burgundy);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Feedback bar for permission errors / request-sent confirmation */
+.conv-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.conv-feedback-info {
+  background: color-mix(in srgb, var(--accent-gold) 15%, transparent);
+  color: var(--text-primary);
+  border: 1px solid color-mix(in srgb, var(--accent-gold) 40%, transparent);
+}
+
+.conv-feedback-error {
+  background: color-mix(in srgb, var(--accent-burgundy) 15%, transparent);
+  color: var(--text-primary);
+  border: 1px solid color-mix(in srgb, var(--accent-burgundy) 40%, transparent);
+}
+
+.conv-feedback-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+/* Accept/Decline buttons on message request cards */
+.msg-request-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Quick visibility chip in Messages header */
+.messages-visibility-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.messages-visibility-chip.visible {
+  background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent-gold) 40%, transparent);
+  color: var(--accent-gold);
+}
+
+.messages-visibility-chip.hidden {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-faint);
+}
+
 .community-screen-content {
   padding-bottom: 80px;
 }

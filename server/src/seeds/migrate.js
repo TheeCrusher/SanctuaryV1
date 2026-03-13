@@ -119,6 +119,13 @@ async function migrate() {
       // Session 35: Expand notification types for review prompt
       `ALTER TABLE notifications DROP CONSTRAINT IF EXISTS notifications_type_check`,
       `ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN ('new_message', 'connection_request', 'connection_accepted', 'prayer_prayed', 'prayer_comment', 'testimony_celebration', 'event_rsvp', 'appointment_request', 'appointment_confirmed', 'appointment_declined', 'appointment_scheduled', 'church_announcement', 'waitlist_spot_open', 'guide_review_prompt'))`,
+      // Session 37: Messaging Privacy System
+      // discoverable — controls whether user appears in Suggested for You / church discovery
+      'ALTER TABLE users ADD COLUMN IF NOT EXISTS discoverable BOOLEAN DEFAULT true',
+      // message_permission — who can start a DM with this user
+      "ALTER TABLE users ADD COLUMN IF NOT EXISTS message_permission VARCHAR(20) DEFAULT 'everyone'",
+      // status on conversations — 'active' (normal), 'request' (gated), 'declined'
+      "ALTER TABLE conversations ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'active'",
     ]
     for (const sql of columnMigrations) {
       // Wrap in try/catch so it doesn't fail if churches table doesn't exist yet

@@ -31,7 +31,7 @@ router.use(authenticate)
 router.get('/me', async (req, res, next) => {
   try {
     const result = await pool.query(
-      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, follower_count, overall_rating, review_count, created_at FROM users WHERE id = $1',
+      'SELECT id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, follower_count, overall_rating, review_count, discoverable, message_permission, created_at FROM users WHERE id = $1',
       [req.user.id]
     )
 
@@ -64,6 +64,8 @@ router.get('/me', async (req, res, next) => {
         followerCount: user.follower_count || 0,
         overallRating: parseFloat(user.overall_rating) || 0,
         reviewCount: user.review_count || 0,
+        discoverable: user.discoverable !== false,
+        messagePermission: user.message_permission || 'everyone',
         createdAt: user.created_at
       }
     })
@@ -83,7 +85,7 @@ router.get('/me', async (req, res, next) => {
 
 router.put('/me', async (req, res, next) => {
   try {
-    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber, acceptingSeekers, maxPendingRequests, onboardingCompleted } = req.body
+    const { name, avatar, photoUrl, bio, specialization, location, state, city, preferredChurchId, denomination, churchName, interests, phoneNumber, acceptingSeekers, maxPendingRequests, onboardingCompleted, discoverable, messagePermission } = req.body
 
     // Build the UPDATE query dynamically based on which fields were provided
     const updates = []
@@ -170,6 +172,20 @@ router.put('/me', async (req, res, next) => {
       updates.push(`onboarding_completed = $${paramCount}`)
       values.push(onboardingCompleted)
     }
+    if (discoverable !== undefined) {
+      paramCount++
+      updates.push(`discoverable = $${paramCount}`)
+      values.push(discoverable)
+    }
+    if (messagePermission !== undefined) {
+      const valid = ['everyone', 'connections', 'nobody']
+      if (!valid.includes(messagePermission)) {
+        return res.status(400).json({ error: 'Invalid messagePermission value.' })
+      }
+      paramCount++
+      updates.push(`message_permission = $${paramCount}`)
+      values.push(messagePermission)
+    }
 
     if (updates.length === 0) {
       return res.status(400).json({ error: 'No fields to update.' })
@@ -184,7 +200,7 @@ router.put('/me', async (req, res, next) => {
 
     const result = await pool.query(
       `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramCount}
-       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed`,
+       RETURNING id, name, email, avatar, photo_url, role, bio, specialization, location, state, city, preferred_church_id, denomination, church_name, interests, phone_number, accepting_seekers, max_pending_requests, onboarding_completed, discoverable, message_permission`,
       values
     )
 
@@ -209,7 +225,9 @@ router.put('/me', async (req, res, next) => {
         phoneNumber: user.phone_number,
         acceptingSeekers: user.accepting_seekers,
         maxPendingRequests: user.max_pending_requests,
-        onboardingCompleted: user.onboarding_completed
+        onboardingCompleted: user.onboarding_completed,
+        discoverable: user.discoverable !== false,
+        messagePermission: user.message_permission || 'everyone'
       }
     })
   } catch (error) {
@@ -332,6 +350,7 @@ router.get('/suggested', async (req, res, next) => {
       SELECT u.id, u.name, u.avatar, u.photo_url, u.role, u.interests, u.denomination
       FROM users u
       WHERE u.id != $1
+        AND u.discoverable IS NOT FALSE
         AND u.id NOT IN (
           SELECT CASE WHEN requester_id = $1 THEN recipient_id ELSE requester_id END
           FROM user_connections
@@ -427,6 +446,7 @@ router.get('/guides', async (req, res, next) => {
       ) pending ON pending.guide_id = u.id
       WHERE u.role = 'guide'
         AND u.id != $1
+        AND u.discoverable IS NOT FALSE
         AND u.id NOT IN (
           SELECT blocked_id FROM user_blocks WHERE blocker_id = $1
           UNION

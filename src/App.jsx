@@ -52,6 +52,7 @@ import BibleStudy from './components/screens/BibleStudy'
 import GuidePostsFeed from './components/screens/GuidePostsFeed'
 import WalkOnWater from './components/screens/WalkOnWater'
 import WordRain from './components/screens/WordRain'
+import PrivacyMessaging from './components/screens/PrivacyMessaging'
 import ChurchDashboard from './components/screens/ChurchDashboard'
 import ChurchProfileEditor from './components/screens/ChurchProfileEditor'
 import ChurchCongregation from './components/screens/ChurchCongregation'
@@ -502,6 +503,15 @@ function App() {
           element={
             <ProtectedRoute>
               <AccountDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/privacy-messaging"
+          element={
+            <ProtectedRoute>
+              <PrivacyMessaging />
             </ProtectedRoute>
           }
         />
